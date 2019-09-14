@@ -80,7 +80,8 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 										</div>
-										<input name="password" class="form-control" placeholder="{{ __('Password') }}" type="password">
+										<input name="password" class="form-control" placeholder="{{ __('Password') }}"
+											type="password">
 									</div>
 									@error('password')
 									<span class="invalid-feedback" style="display:block" role="alert">
@@ -92,8 +93,8 @@
 								<div class="row">
 									<div class="col">
 										<div class="custom-control custom-control-alternative custom-checkbox">
-											<input class="custom-control-input" id=" customCheckLogin" type="checkbox" name="remember"
-												id="remember" {{ old('remember') ? 'checked' : '' }}>
+											<input class="custom-control-input" id=" customCheckLogin" type="checkbox"
+												name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 											<label class="custom-control-label" for=" customCheckLogin">
 												<span class="text-muted">{{ __('Remember me') }}</span>
 											</label>

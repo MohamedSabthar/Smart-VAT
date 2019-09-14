@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
-
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -41,5 +41,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo('App\User', 'adminId', 'id');   //each employee registered by an admin
                                                                 //one admin belongs to many employees
+    }
+
+    public function userVat()
+    {
+        return $this->hasMany('App\User_vat', 'user_id');       //employee can be assigned to many vat categories
     }
 }

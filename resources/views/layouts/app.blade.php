@@ -69,9 +69,11 @@
 							<i class="ni ni-single-02"></i>
 							<span>{{__('menu.My profile')}}</span>
 						</a>
-						<a href="./examples/profile.html" class="dropdown-item">
+
+						<a href="{!! App::getLocale()=='en' ? '/language/si' : '/language/en' !!}"
+							class="dropdown-item">
 							<i class="ni ni-settings-gear-65"></i>
-							<span>Settings</span>
+							<span>{{ __('menu.Language') }}</span>
 						</a>
 						<a href="{{route('change-password')}}" class="dropdown-item">
 							<i class="ni ni-lock-circle-open"></i>
@@ -113,12 +115,7 @@
 
 				{{-- Navigation --}}
 				<ul class="navbar-nav">
-					<li class="nav-item  class=" active>
-						<a class=" nav-link " href="{{  url('/') }}">
-							<i class="ni ni-tv-2 text-primary"></i>
-							{{ __('menu.Dashboard') }}
-						</a>
-					</li>
+
 					@yield('sidebar')
 				</ul>
 
@@ -164,7 +161,7 @@
 		<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
 			<div class="container-fluid">
 				{{-- Brand --}}
-				<a class="h4 mb-0 text-white  d-none d-lg-inline-block" href="javascript:history.back()">
+				<a class="h4 mb-0 text-white  d-none d-md-inline-block" href="javascript:history.back()">
 					<span> <i class="ni ni-bold-left"></i></span>
 				</a>
 
@@ -177,7 +174,7 @@
 								<span class="avatar avatar-sm rounded-circle">
 									<img alt="profile pic" src="{{ asset('assets/img/theme/girl.png') }}">
 								</span>
-								<div class="media-body ml-2 d-none d-lg-block">
+								<div class="media-body ml-2 d-lg-block">
 									<span class="mb-0  font-weight-bold">
 										{{ Auth::user()->userName }}
 									</span>

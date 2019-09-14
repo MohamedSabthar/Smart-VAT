@@ -16,7 +16,7 @@ return [
     'Dashboard' => 'Dashboard',
     'Language' => 'සිංහල',
     'Employees' => 'Employees',
-    'Employees' => 'employees',
+    'employee' => 'employee',
     'admin'=>'admin',
 
     'User ID'=>'User ID',

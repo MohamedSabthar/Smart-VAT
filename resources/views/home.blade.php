@@ -144,16 +144,13 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-search-input"
-							class="col-md-2 col-form-label form-control-label">Search</label>
+						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">Search</label>
 						<div class="col-md-10">
-							<input class="form-control" type="search" value="Tell me your secret ..."
-								id="example-search-input">
+							<input class="form-control" type="search" value="Tell me your secret ..." id="example-search-input">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-email-input"
-							class="col-md-2 col-form-label form-control-label">Email</label>
+						<label for="example-email-input" class="col-md-2 col-form-label form-control-label">Email</label>
 						<div class="col-md-10">
 							<input class="form-control" type="email" value="argon@example.com" id="example-email-input">
 						</div>
@@ -161,8 +158,7 @@
 					<div class="form-group row">
 						<label for="example-url-input" class="col-md-2 col-form-label form-control-label">URL</label>
 						<div class="col-md-10">
-							<input class="form-control" type="url" value="https://www.creative-tim.com"
-								id="example-url-input">
+							<input class="form-control" type="url" value="https://www.creative-tim.com" id="example-url-input">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -172,15 +168,13 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-password-input"
-							class="col-md-2 col-form-label form-control-label">Password</label>
+						<label for="example-password-input" class="col-md-2 col-form-label form-control-label">Password</label>
 						<div class="col-md-10">
 							<input class="form-control" type="password" value="password" id="example-password-input">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-number-input"
-							class="col-md-2 col-form-label form-control-label">Number</label>
+						<label for="example-number-input" class="col-md-2 col-form-label form-control-label">Number</label>
 						<div class="col-md-10">
 							<input class="form-control" type="number" value="23" id="example-number-input">
 						</div>
@@ -200,8 +194,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-month-input"
-							class="col-md-2 col-form-label form-control-label">Month</label>
+						<label for="example-month-input" class="col-md-2 col-form-label form-control-label">Month</label>
 						<div class="col-md-10">
 							<input class="form-control" type="month" value="2018-11" id="example-month-input">
 						</div>
@@ -219,8 +212,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-color-input"
-							class="col-md-2 col-form-label form-control-label">Color</label>
+						<label for="example-color-input" class="col-md-2 col-form-label form-control-label">Color</label>
 						<div class="col-md-10">
 							<input class="form-control" type="color" value="#5e72e4" id="example-color-input">
 						</div>

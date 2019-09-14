@@ -63,7 +63,8 @@ class RegisterController extends Controller
 
         //$this->guard()->login($user);  //autologin after registration dissabled
 
-        return redirect()->route('register')->with('status', ' Employee registerd successfully');
+        // redirecting to employee profile page with success notification
+        return redirect()->route('employee-profile', ['id'=>$user->id])->with('status', ' Employee registerd successfully');
     }
 
     /**
@@ -77,11 +78,11 @@ class RegisterController extends Controller
         return Validator::make(
             $data,
             [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required','alpha', 'string', 'max:255'],
             'userName' => ['required', 'string', 'max:255', 'unique:users'],   //   username should be unique
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/','unique:users'],     //   validation for nic
-            'phone' => ['nullable','regex:/[+94|0][0-9]{9}$/'],
+            'phone' => ['required','regex:/[+94|0][0-9]{9}$/'],
         ]
         );
     }

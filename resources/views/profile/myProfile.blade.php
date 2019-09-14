@@ -120,17 +120,15 @@
 							<div class="col-lg-6">
 								<div class="form-group focused">
 									<label class="form-control-label" for="input-first-name">First name</label>
-									<input type="text" id="input-first-name"
-										class="form-control form-control-alternative" placeholder="First name"
-										value="Lucky">
+									<input type="text" id="input-first-name" class="form-control form-control-alternative"
+										placeholder="First name" value="Lucky">
 								</div>
 							</div>
 							<div class="col-lg-6">
 								<div class="form-group focused">
 									<label class="form-control-label" for="input-last-name">Last name</label>
-									<input type="text" id="input-last-name"
-										class="form-control form-control-alternative" placeholder="Last name"
-										value="Jesse">
+									<input type="text" id="input-last-name" class="form-control form-control-alternative"
+										placeholder="Last name" value="Jesse">
 								</div>
 							</div>
 						</div>
@@ -143,8 +141,7 @@
 							<div class="col-md-12">
 								<div class="form-group focused">
 									<label class="form-control-label" for="input-address">Address</label>
-									<input id="input-address" class="form-control form-control-alternative"
-										placeholder="Home Address"
+									<input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"
 										value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
 								</div>
 							</div>
@@ -153,8 +150,8 @@
 							<div class="col-lg-4">
 								<div class="form-group focused">
 									<label class="form-control-label" for="input-city">City</label>
-									<input type="text" id="input-city" class="form-control form-control-alternative"
-										placeholder="City" value="New York">
+									<input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City"
+										value="New York">
 								</div>
 							</div>
 							<div class="col-lg-4">
@@ -167,8 +164,8 @@
 							<div class="col-lg-4">
 								<div class="form-group">
 									<label class="form-control-label" for="input-country">Postal code</label>
-									<input type="number" id="input-postal-code"
-										class="form-control form-control-alternative" placeholder="Postal code">
+									<input type="number" id="input-postal-code" class="form-control form-control-alternative"
+										placeholder="Postal code">
 								</div>
 							</div>
 						</div>

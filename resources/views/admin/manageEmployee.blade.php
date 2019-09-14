@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
 
 @endpush
@@ -15,7 +15,8 @@
 @section('header')
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
+        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
+        <div id="#card" class="card-body">
             <div class="row">
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
@@ -109,20 +110,21 @@
         <div class="card shadow">
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
-                    <div class="col-8">
+                    <div class="col-6 card-header">
                         <h3 class="mb-0">Employee Listing</h3>
                     </div>
-                    <div class="col-4 text-right">
-                        <a class="btn btn-icon btn-success text-white" href="{{route('register')}}">
+                    <div class="col-6 text-right">
+                        <button class="btn btn-icon btn-3 btn-success text-white"
+                            onclick="javascript:window.open('{{route('register')}}','_self')">
                             <span><i class="fas fa-user-plus"></i></span>
                             <span class="btn-inner--text">Register</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="table-responsive py-4">
-                <table id="example" class="table  px-5">
+                <table id="example" class="table  ">
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.User ID')}}</th>
@@ -152,7 +154,7 @@
  
                          @foreach ($employees as $employee)
                         <tr>
-                            <td>{{$employee->id}}</th>
+                            <td class="text-center">{{$employee->id}}</th>
                             <td>{{$employee->name}}</td>
                             <td>{{$employee->userName}}</td>
                             <td>{{$employee->email}}</td>
@@ -208,10 +210,10 @@
 
         });            //table object
 
-        $(id+'_filter').addClass('pr-5');         //adding padding to table elements
-        $(id+'_info').addClass('pl-5');
-        $(id+'_paginate').addClass('pr-5');
-        $(id+'_length').addClass('pl-5')
+        $(id+'_filter').addClass('pr-md-5');         //adding padding to table elements
+        $(id+'_info').addClass('pl-md-5');
+        $(id+'_paginate').addClass('pr-md-5');
+        $(id+'_length').addClass('pl-md-5')
 
 
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector

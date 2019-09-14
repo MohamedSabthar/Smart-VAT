@@ -18,7 +18,7 @@ class CheckRole
     {
         if (Auth::user()->role != 'admin') {    //only allow if user is Admin
             abort(403);
-            return redirect('/restricted');
+            // return redirect('/restricted');
         }
         return $next($request);
     }

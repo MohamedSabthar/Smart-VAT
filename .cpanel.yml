@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/aspaceba/public_html/
+    - /Smart-VAT/public/cp -a * $DEPLOYPATH

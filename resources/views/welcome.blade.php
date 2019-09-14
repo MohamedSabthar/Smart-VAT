@@ -117,8 +117,9 @@
 				</form>
 				<!-- Navigation -->
 				<ul class="navbar-nav">
-					<li class="nav-item  class=" active" ">
-          <a class=" nav-link active " href=" ./index.html"> <i class="ni ni-tv-2 text-primary"></i> Dashboard
+					<li class="nav-item  class=" active>
+						<a class=" nav-link active " href=" ./index.html"> <i class="ni ni-tv-2 text-primary"></i>
+							Dashboard
 						</a>
 					</li>
 					<li class="nav-item">
@@ -668,10 +669,10 @@
 	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 	<script>
 		window.TrackJS &&
-      TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "argon-dashboard-free"
-      });
+	  TrackJS.install({
+		token: "ee6fab19c5a04ac1a32a645abde4613a",
+		application: "argon-dashboard-free"
+	  });
 	</script>
 </body>
 
