@@ -50,7 +50,7 @@ Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
 */
 
 
-Route::get('/latest','BusinessTaxController@latestPayment'); // display latset payment page route
+Route::get('/latest','BusinessTaxController@latestPayment'); // display latest payment page route
 
 
 try {
