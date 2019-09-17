@@ -186,6 +186,30 @@
 							@enderror
 						</div>
 					</div>
+					<div class="form-group row pt-3">
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Address</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('address') is-invalid  @enderror" type="text" value="{{old('adress')}}"
+								id="address" name="address">
+							@error('address')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group row pt-3">
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Regitered by</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('Reg') is-invalid  @enderror" type="text" value="{{old('Reg')}}"
+								id="Reg" name="Reg">
+							@error('Reg')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
 					<div class="form-group">
 						<input class=" btn btn-primary float-right" type="submit">
 					</div>
