@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class latest extends Controller
+class latestController extends Controller
 {
     //
     public function latestPayment(){
-        return view('latest.latestPay');
+        return view('vat.businesstax.latestPay');
 
     }
 }

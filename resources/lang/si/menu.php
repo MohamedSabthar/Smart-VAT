@@ -35,4 +35,12 @@ return [
     'Logout'=>'ඉවත්වීම',
     'Change Password'=>'මුරපදය වෙනස් කිරීම ',
 
+    //latest Payment
+    
+    'Assesment No.' => 'වරිපනම් අංකය',
+    'Owner Name' => 'අයිතිකරුගේ නම',
+    'Payment' => 'ගෙවීම',
+    'Date' => 'දිනය',
+    
+
 ];

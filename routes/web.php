@@ -59,7 +59,9 @@ Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
 
 // ------latest Payment....
 
-Route::get('/latest','latest@latestPayment'); // display latset payment 
+Route::get('/latest','latestController@latestPayment'); // display latset payment page route
+
+Route::get('/business','VatPagesController@buisness'); //bussiness tax page route
 try {
     foreach (Vat::all() as $vat) {      //routes for all vat categories, VatPagesController contains methodes which show the forms
         Route::get('/'.$vat->route, 'VatPagesController@'.$vat->route)->name($vat->route);

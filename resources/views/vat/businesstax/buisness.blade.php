@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Industrial Tax')
+@section('title','Business Tax')
 
 @section('sidebar')
 @includeWhen(Auth::user()->role=='admin','admin.include.sidebar')
@@ -112,4 +112,5 @@
 		</div>
 	</div>
 </div>
+
 @endsection
