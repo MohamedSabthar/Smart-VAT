@@ -45,6 +45,11 @@ return [
 
     
     'Configurations' => 'Configurations',
-    'VAT Categories'=>'VAT Categories'
+    'VAT Categories'=>'VAT Categories',
+    //business tax
+    'Annual Assesment Amount' => 'Annual Assesment Amount',
+    'Total amount payable'=> 'Total amount payable',
+    'Paid' => 'Paid',
+    'Option' => 'Option',
 
 ];

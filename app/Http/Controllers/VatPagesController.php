@@ -17,7 +17,7 @@ class VatPagesController extends Controller
 
     public function buisness()
     {
-        return view('vat.businesstax.buisness');
+        return view('vat.business.buisness');
     }
 
     public function industrial()

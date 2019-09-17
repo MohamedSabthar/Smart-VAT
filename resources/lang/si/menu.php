@@ -44,5 +44,11 @@ return [
     
     'Configurations'=>'වින්‍යාසයන්',
     'VAT Categories'=>'බදු කාණ්ඩ',
+     
+    //business tax
+    'Annual Assesment Amount' => 'වාර්ෂික තක්සේරු මුදල',
+    'Total amount payable'=> 'ගෙවිය යුතු මුළු මුදල',
+    'Option' => 'විකල්පය',
+
 
 ];

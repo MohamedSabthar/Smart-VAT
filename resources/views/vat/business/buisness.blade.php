@@ -98,7 +98,7 @@
 @endsection
 
 @section('pageContent')
-<div class="row">
+<!-- <div class="row">
 	<div class="col">
 
 		<div class="card shadow">
@@ -111,6 +111,52 @@
 
 		</div>
 	</div>
+</div> -->
+
+<div class="row">
+	<div class="col">
+
+		<div class="card shadow">
+			<div class="card-body bg-white border-0">
+				<div class="row align-items-centerm ml-4">
+					Business Tax 
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+<div class="row">
+    <div class="col">
+
+        <div class="card shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+
+                </div>
+            </div>
+
+            <div class="table-responsive py-4">
+                <table id="example" class="table  ">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>{{__('menu.Assesment No.')}}</th>
+                            <th>{{__('menu.Owner Name')}}</th>
+                            <th>{{__('menu.Annual Assesment Amount')}}</th>
+                            <th>{{__('menu.Total amount payable')}}</th>
+                            <th>{{__('menu.Paid')}}</th>
+                            <th>{{__('menu.Option')}}</th>
+                        </tr>
+                    </thead>
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
