@@ -9,7 +9,7 @@
 @section('title','Latestpayment')
 
 @section('sidebar')
-@include('employee.include.sidebar')
+@include('admin.include.sidebar')
 @endsection
 
 @section('header')
