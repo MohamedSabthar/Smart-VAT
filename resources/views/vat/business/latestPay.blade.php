@@ -127,7 +127,7 @@
         <div class="card shadow">
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
-                    
+
                 </div>
             </div>
 
@@ -143,8 +143,8 @@
                             <th></th>
                         </tr>
                     </thead>
-                   
-                    
+
+
 
                 </table>
             </div>

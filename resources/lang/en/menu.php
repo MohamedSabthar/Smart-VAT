@@ -44,5 +44,7 @@ return [
     'Date' => 'Date',
 
     
+    'Configurations' => 'Configurations',
+    'VAT Categories'=>'VAT Categories'
 
 ];

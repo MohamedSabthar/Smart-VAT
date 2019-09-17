@@ -42,5 +42,7 @@ return [
     'Payment' => 'ගෙවීම',
     'Date' => 'දිනය',
     
+    'Configurations'=>'වින්‍යාසයන්',
+    'VAT Categories'=>'බදු කාණ්ඩ',
 
 ];

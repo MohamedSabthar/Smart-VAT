@@ -18,7 +18,6 @@ use App\Vat;
 */
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('root');  //site root shows the login form
 Auth::routes(['verify' => true]);                                     //authentication routes with email verification
-Route::get('/change-password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change-password'); //show change password form
 Route::name('password.')->group(
     function () {
         Route::post('change-password/{useId}', 'Auth\ChangePasswordController@changePassword')->name('change'); //password reset post
@@ -34,7 +33,7 @@ Route::get('/employee-profile/{id}', 'AdminController@employeeProfile')->name('e
 Route::put('/employee-profile/{id}', 'AdminController@updateEmployeeProfile')->name('update-employee');
 Route::get('/mangae-employee', 'AdminController@manageEmployee')->name('manage-employee');
 Route::post('/assign-vat', 'AdminController@assignVatCategories')->name('assign-vat');
-
+Route::get('/gloabl-conf', 'AdminController@globalConfiguration')->name('global-conf');
 
 /**
  * Routes common to admin and employee
@@ -49,19 +48,11 @@ Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
 /**
  * Routes related to vat category (return view of the vat category)
 */
-//try {
-//    foreach (Vat::all() as $vat) {      //routes for all vat categories, VatPagesController contains methodes which show the forms
-//        Route::get('/'.$vat->route, 'VatPagesController@'.$vat->route)->name($vat->route);
-//    }
-//} catch (Exception $e) {
-//    echo "dynamic routes will only work after migration \n";
-//}
 
-// ------latest Payment....
 
-Route::get('/latest','latestController@latestPayment'); // display latset payment page route
+Route::get('/latest','BusinessTaxController@latestPayment'); // display latset payment page route
 
-Route::get('/business','VatPagesController@buisness'); //bussiness tax page route
+
 try {
     foreach (Vat::all() as $vat) {      //routes for all vat categories, VatPagesController contains methodes which show the forms
         Route::get('/'.$vat->route, 'VatPagesController@'.$vat->route)->name($vat->route);
@@ -69,3 +60,9 @@ try {
 } catch (Exception $e) {
     echo "dynamic routes will only work after migration \n";
 }
+
+
+
+// Route::get('/latest', function () {
+//     return view('admin.globalConfiguration');
+// }); // display latset payment
