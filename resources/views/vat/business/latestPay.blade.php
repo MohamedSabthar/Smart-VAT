@@ -143,6 +143,16 @@
                             <th></th>
                         </tr>
                     </thead>
+                    <thead id="search_inputs">
+                        <tr>
+                            <th><input type="text" class="form-control form-control-sm" id="searchVAT"
+									placeholder="Search Assesment no." /></th>
+							<th><input type="text" class="form-control form-control-sm" id="searchVAT"
+									placeholder= "Owner Name" /></th>
+							
+
+                        </tr>
+                    </thead>
 
 
 
