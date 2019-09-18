@@ -148,10 +148,16 @@
 
 		</div>
 	</nav>
+
+
+
+
+
+
 	{{-- End of Side-Navbar --}}
 
 	{{-- Main Contennt --}}
-	<div class="main-content">
+	<div class="main-content" id="main-content">
 
 		{{-- Top-Navbar --}}
 		<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -261,6 +267,11 @@
 	<script>
 		$(document).ready(function(){
 		  $('[data-toggle="tooltip"]').tooltip();
+
+		//add side-bar toggle
+		//   $('#sidenav-main').addClass('d-none');
+		//   $('#main-content').addClass('side-bar-hidden');
+
 		});
 	</script>
 	{{-- Argon JS --}}
