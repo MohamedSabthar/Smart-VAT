@@ -175,7 +175,6 @@
                             <td>Sales Assistant</td>
                             <td>San Francisco</td>
                             <td>59</td>
-                            <td>2012/08/06</td>
                             <td>$137,500</td>
                         </tr>
                         <tr>
@@ -183,7 +182,6 @@
                             <td>Integration Specialist</td>
                             <td>Tokyo</td>
                             <td>55</td>
-                            <td>2010/10/14</td>
                             <td>$327,900</td>
                         </tr>
                         <tr>
@@ -191,7 +189,6 @@
                             <td>Javascript Developer</td>
                             <td>San Francisco</td>
                             <td>39</td>
-                            <td>2009/09/15</td>
                             <td>$205,500</td>
                         </tr>
                         <tr>
@@ -199,7 +196,6 @@
                             <td>Software Engineer</td>
                             <td>Edinburgh</td>
                             <td>23</td>
-                            <td>2008/12/13</td>
                             <td>$103,600</td>
                         </tr>
                         {{-- @foreach ($employees as $employee)
