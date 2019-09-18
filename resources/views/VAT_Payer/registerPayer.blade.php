@@ -8,7 +8,11 @@
 @section('title','Register')
 
 @section('sidebar')
-@include('VAT_Payer.include.sidebar')
+@if (Auth::user()->role=='admin')
+@include('admin.include.sidebar')
+@else
+@include('employee.include.sidebar')
+@endif
 @endsection
 
 @section('header')
@@ -123,13 +127,14 @@
 				</div>
 				@endif
 
-				<form method="POST" action="{{route('register')}}"> 
+				<form method="POST" action="{{route('register')}}">
 					@csrf
 					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">First Name</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">First
+							Name</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('f_name') is-invalid  @enderror" type="text" value="{{old('f_name')}}"
-								id="f_name" name="f_name">
+							<input class="form-control @error('f_name') is-invalid  @enderror" type="text"
+								value="{{old('f_name')}}" id="f_name" name="f_name">
 							@error('name')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -138,7 +143,8 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">Last Name</label>
+						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">Last
+							Name</label>
 						<div class="col-md-10">
 							<input class="form-control @error('L_name') is-invalid @enderror" type="text"
 								value="{{old('L_name')}}" id="L_name" name="L_name">
@@ -150,10 +156,11 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-email-input" class="col-md-2 col-form-label form-control-label">Email</label>
+						<label for="example-email-input"
+							class="col-md-2 col-form-label form-control-label">Email</label>
 						<div class="col-md-10">
-							<input class="form-control @error('email') is-invalid @enderror" type="email" value="{{old('email')}}"
-								id="email" name="email">
+							<input class="form-control @error('email') is-invalid @enderror" type="email"
+								value="{{old('email')}}" id="email" name="email">
 							@error('email')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -164,8 +171,8 @@
 					<div class="form-group row">
 						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
 						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text" value="{{old('nic')}}" id="nic"
-								name="nic">
+							<input class="form-control @error('nic') is-invalid @enderror" type="text"
+								value="{{old('nic')}}" id="nic" name="nic">
 							@error('nic')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -177,8 +184,8 @@
 						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">Phone
 							No</label>
 						<div class="col-md-10">
-							<input class="form-control @error('phone') is-invalid @enderror" type="text" value="{{old('phone')}}"
-								id="phone" name="phone">
+							<input class="form-control @error('phone') is-invalid @enderror" type="text"
+								value="{{old('phone')}}" id="phone" name="phone">
 							@error('phone')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -187,10 +194,11 @@
 						</div>
 					</div>
 					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Address</label>
+						<label for="example-text-input"
+							class="col-md-2 col-form-label form-control-label ">Address</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('address') is-invalid  @enderror" type="text" value="{{old('adress')}}"
-								id="address" name="address">
+							<input class="form-control @error('address') is-invalid  @enderror" type="text"
+								value="{{old('adress')}}" id="address" name="address">
 							@error('address')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -199,10 +207,11 @@
 						</div>
 					</div>
 					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Regitered by</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Regitered
+							by</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('Reg') is-invalid  @enderror" type="text" value="{{old('Reg')}}"
-								id="Reg" name="Reg">
+							<input class="form-control @error('Reg') is-invalid  @enderror" type="text"
+								value="{{old('Reg')}}" id="Reg" name="Reg">
 							@error('Reg')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>

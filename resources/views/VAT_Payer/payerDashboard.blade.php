@@ -9,7 +9,11 @@
 @section('title','Dashboard')
 
 @section('sidebar')
-@include('VAT_Payer.include.sidebar')
+@if (Auth::user()->role=='admin')
+@include('admin.include.sidebar')
+@else
+@include('employee.include.sidebar')
+@endif
 @endsection
 
 @section('header')
@@ -151,7 +155,7 @@
                     </thead>
                     <tbody>
 
-                    <tr>
+                        <tr>
                             <td><a href="{{route('my-profile')}}">Herrod Chandler</a></td>
                             <td>Accountant</td>
                             <td>Tokyo</td>
@@ -199,27 +203,27 @@
                             <td>2008/12/13</td>
                             <td>$103,600</td>
                         </tr>
-                     {{-- @foreach ($employees as $employee)
+                        {{-- @foreach ($employees as $employee)
                         <tr>
                             <td>{{$employee->id}}</th>
-                            <td>{{$employee->name}}</td>
-                            <td>{{$employee->userName}}</td>
-                            <td>{{$employee->email}}</td>
-                            <td>{{$employee->admin->name}}</td>
+                        <td>{{$employee->name}}</td>
+                        <td>{{$employee->userName}}</td>
+                        <td>{{$employee->email}}</td>
+                        <td>{{$employee->admin->name}}</td>
 
-                            <td class="text-right">
-                                <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item"
-                                            href="{{route('employee-profile',['id'=>$employee->id])}}">View profile</a>
-                                    </div>
-
+                        <td class="text-right">
+                            <div class="dropdown">
+                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item"
+                                        href="{{route('employee-profile',['id'=>$employee->id])}}">View profile</a>
                                 </div>
-                            </td>
+
+                            </div>
+                        </td>
 
 
                         </tr>
