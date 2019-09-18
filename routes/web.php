@@ -49,10 +49,6 @@ Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
  * Routes related to vat category (return view of the vat category)
 */
 
-// Route to latest payment
-Route::get('/latest','BusinessTaxController@latestPayment'); 
-
-
 try {
     foreach (Vat::all() as $vat) {      //routes for all vat categories, VatPagesController contains methodes which show the forms
         Route::get('/'.$vat->route, 'VatPagesController@'.$vat->route)->name($vat->route);
@@ -61,6 +57,8 @@ try {
     echo "dynamic routes will only work after migration \n";
 }
 
+// Route to latest payment
+Route::get('/latest', 'BusinessTaxController@latestPayment');
 
 
 // Route::get('/latest', function () {

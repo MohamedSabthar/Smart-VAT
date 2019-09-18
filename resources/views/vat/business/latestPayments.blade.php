@@ -119,7 +119,7 @@
             </div>
 
             <div class="table-responsive">
-                <table id="example1" class="table ">
+                <table id="example" class="table">
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.Assesment No.')}}</th>
@@ -127,7 +127,6 @@
                             <th>{{__('menu.Payment(LRK)')}}</th>
                             <th>{{__('menu.Date')}}</th>
                             <th>{{__('menu.Registerd By')}}</th>
-                            
                         </tr>
                     </thead>
                     <thead id="search_inputs">
@@ -136,32 +135,30 @@
                                     placeholder="{{__('menu.Assesment No.')}}" /></th>
                             <th><input type="text" class="form-control form-control-sm" id="searchOwnerName"
                                     placeholder="{{__('menu.Owner Name')}}" /></th>
-
                         </tr>
                     </thead>
-<tbody>
-                    <tr>
-                        <th>01</th>
-                        <th>perera</th>
-                        <th>2000</th>
-                        <th>9/18/2019</th>
-                        <th>john</th>
-                    </tr>
-                    <tr>
-                        <th>02</th>
-                        <th>perera</th>
-                        <th>2000</th>
-                        <th>9/18/2019</th>
-                        <th>perera</th>
-                    </tr>
-</tbody>
+                    <tbody>
+                        <tr>
+                            <td>02</td>
+                            <td>perera</td>
+                            <td>2p0</td>
+                            <td>9/18/2019</td>
+                            <td>john</td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>perera</td>
+                            <td>2000</td>
+                            <td>9/18/2019</td>
+                            <td>john</td>
+                        </tr>
+                    </tbody>
                     <thead class="thead-light">
                         <th>{{__('menu.Assesment No.')}}</th>
                         <th>{{__('menu.Owner Name')}}</th>
                         <th>{{__('menu.Payment(LRK)')}}</th>
                         <th>{{__('menu.Date')}}</th>
                         <th>{{__('menu.Registerd By')}}</th>
-                        
                     </thead>
 
                 </table>
@@ -171,15 +168,13 @@
 </div>
 @endsection
 
-
-
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script>
     $(document).ready(function() {
 
-        var id = '#example1';                      //data table id
+        var id = '#example';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -209,7 +204,8 @@
                 .search( this.value )
                 .draw();
             });
-          
+           
+
       } );
 
 </script>
