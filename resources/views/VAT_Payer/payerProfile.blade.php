@@ -3,7 +3,11 @@
 @section('title','Dashboard')
 
 @section('sidebar')
-@include('VAT_Payer.include.sidebar')
+@if (Auth::user()->role=='admin')
+@include('admin.include.sidebar')
+@else
+@include('employee.include.sidebar')
+@endif
 @endsection?
 
 @section('header')

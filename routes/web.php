@@ -48,15 +48,15 @@ Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/language/{locale}', 'LanguageController@changeLanguage');  //language switcher
 
-Route::get('/Payer','PayerController@payer')->name('VAT_Payer'); //
-Route::get('/Reg','PayerController@register');
-Route::get('/payerProfile','PayerController@profile');
+Route::get('/Payer', 'PayerController@payer')->name('VAT_Payer'); //
+Route::get('/Reg', 'PayerController@register');
+Route::get('/payerProfile', 'PayerController@profile');
 /**
  * Routes related to vat category (return view of the vat category)
 */
 
 // Route to latest payment
-Route::get('/latest','BusinessTaxController@latestPayment'); 
+Route::get('/latest', 'BusinessTaxController@latestPayment');
 
 
 try {
@@ -69,12 +69,6 @@ try {
 
 
 
-<<<<<<< HEAD
 Route::get('/latest', function () {
     return view('admin.globalConfiguration');
 }); // display latset payment
-=======
-// Route::get('/latest', function () {
-//     return view('admin.globalConfiguration');
-// }); // display latset payment
->>>>>>> aa27e12fd7879293bcc659de3d2a1625663177da
