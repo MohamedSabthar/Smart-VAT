@@ -55,6 +55,9 @@ Route::get('/payerProfile','PayerController@profile');
  * Routes related to vat category (return view of the vat category)
 */
 
+// Route to latest payment
+Route::get('/latest','BusinessTaxController@latestPayment'); 
+
 
 try {
     foreach (Vat::all() as $vat) {      //routes for all vat categories, VatPagesController contains methodes which show the forms
@@ -66,6 +69,12 @@ try {
 
 
 
+<<<<<<< HEAD
 Route::get('/latest', function () {
     return view('admin.globalConfiguration');
 }); // display latset payment
+=======
+// Route::get('/latest', function () {
+//     return view('admin.globalConfiguration');
+// }); // display latset payment
+>>>>>>> aa27e12fd7879293bcc659de3d2a1625663177da

@@ -9,7 +9,7 @@
 @section('title','Dashboard')
 
 @section('sidebar')
-@include('VAT_Payer.include.sidebar')
+@include('.include.sidebar')
 @endsection
 
 @section('header')
