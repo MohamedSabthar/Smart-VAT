@@ -8,7 +8,7 @@
 @else
 @include('employee.include.sidebar')
 @endif
-@endsection?
+@endsection
 
 @section('header')
 
@@ -106,7 +106,7 @@
 									<label class="form-control-label" for="input-first-name">First name</label>
 									<input type="text" id="input-first-name"
 										class="form-control form-control-alternative" placeholder="First name"
-										value={{$employee->id}}>
+										value={{"content"}}>
 								</div>
 							</div>
 							<div class="col-lg-6">

@@ -118,7 +118,7 @@
                         <h3 class="mb-0">VAT Payer Listing</h3>
                     </div>
                     <div class="col-4 text-right">
-                        <a class="btn btn-icon btn-success text-white" href="{{route('register')}}">
+                        <a class="btn btn-icon btn-success text-white" href="{{route('register-vat-payer')}}">
                             <span><i class="fas fa-user-plus"></i></span>
                             <span class="btn-inner--text">Register</span>
                         </a>
@@ -156,14 +156,14 @@
                     <tbody>
 
                         <tr>
-                            <td><a href="{{route('my-profile')}}">Herrod Chandler</a></td>
+                            <td><a href="{{route('vat-payer-profile')}}">Herrod Chandler</a></td>
                             <td>Accountant</td>
                             <td>Tokyo</td>
                             <td>33</td>
                             <td>$162,700</td>
                         </tr>
                         <tr>
-                            <td><a href="{{route('my-profile')}}">Herrod Chandler</a></td>
+                            <td><a href="{{route('vat-payer-profile')}}">Herrod Chandler</a></td>
                             <td>Integration Specialist</td>
                             <td>New York</td>
                             <td>61</td>
@@ -171,7 +171,7 @@
                             <td>$372,000</td>
                         </tr>
                         <tr>
-                            <td><a href="{{route('my-profile')}}">Herrod Chandler</a></td>
+                            <td><a href="{{route('vat-payer-profile')}}">Herrod Chandler</a></td>
                             <td>Sales Assistant</td>
                             <td>San Francisco</td>
                             <td>59</td>
