@@ -3,8 +3,12 @@
 @section('title','Dashboard')
 
 @section('sidebar')
-@include('VAT_Payer.include.sidebar')
-@endsection?
+@if (Auth::user()->role=='admin')
+@include('admin.include.sidebar')
+@else
+@include('employee.include.sidebar')
+@endif
+@endsection
 
 @section('header')
 
@@ -99,16 +103,18 @@
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="form-group focused">
-									<label class="form-control-label" for="input-username">Username</label>
-									<input type="text" id="input-username" class="form-control form-control-alternative"
-										placeholder="Username" value="lucky.jesse">
+									<label class="form-control-label" for="input-first-name">First name</label>
+									<input type="text" id="input-first-name"
+										class="form-control form-control-alternative" placeholder="First name"
+										value={{"content"}}>
 								</div>
 							</div>
 							<div class="col-lg-6">
-								<div class="form-group">
-									<label class="form-control-label" for="input-email">Email address</label>
-									<input type="email" id="input-email" class="form-control form-control-alternative"
-										placeholder="jesse@example.com">
+								<div class="form-group focused">
+									<label class="form-control-label" for="input-last-name">Last name</label>
+									<input type="text" id="input-last-name"
+										class="form-control form-control-alternative" placeholder="Last name"
+										value="Jesse">
 								</div>
 							</div>
 						</div>
