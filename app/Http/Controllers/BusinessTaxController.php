@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 class BusinessTaxController extends Controller
 {
-    //
-    public function latestPayment(){
+    public function latestPayment()
+    {
         return view('vat.business.latestPay');
-
     }
 }

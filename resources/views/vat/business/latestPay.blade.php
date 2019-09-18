@@ -104,40 +104,27 @@
 </div>
 @endsection
 
-
 @section('pageContent')
-<div class="row">
-	<div class="col">
-
-		<div class="card shadow">
-			<div class="card-body bg-white border-0">
-				<div class="row align-items-centerm ml-4">
-					Latest Payment List
-				</div>
-			</div>
-
-
-		</div>
-	</div>
-</div>
-
 <div class="row">
     <div class="col">
 
         <div class="card shadow">
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
-
+                    <div class="col-6 card-header">
+                        <h3 class="mb-0">{{__('menu.Latest Payment')}}</h3>
+                    </div>
+                    
                 </div>
             </div>
 
-            <div class="table-responsive py-4">
+            <div class="table-responsive">
                 <table id="example" class="table  ">
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.Assesment No.')}}</th>
                             <th>{{__('menu.Owner Name')}}</th>
-                            <th>{{__('menu.Payment')}}</th>
+                            <th>{{__('menu.Payment(LRK)')}}</th>
                             <th>{{__('menu.Date')}}</th>
                             <th>{{__('menu.Registerd By')}}</th>
                             <th></th>
@@ -145,16 +132,22 @@
                     </thead>
                     <thead id="search_inputs">
                         <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchVAT"
-									placeholder="Search Assesment no." /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchVAT"
-									placeholder= "Owner Name" /></th>
-							
-
+                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo."
+                                    placeholder="{{__('menu.Assesment No.')}}" /></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchOwnerName"
+                                    placeholder="{{__('menu.Owner Name')}}" /></th>
+                            
                         </tr>
                     </thead>
-
-
+                    <thead class="thead-light">
+                        <tr>
+                            <th>01</th>
+                            <th>perera</th>
+                            <th>2000</th>
+                            <th>9/18/2019</th>
+                            <th>john</th>
+                        </tr>
+                    </thead>
 
                 </table>
             </div>
