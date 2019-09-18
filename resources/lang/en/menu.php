@@ -37,13 +37,17 @@ return [
 
 
     //latest payment//
-    
+    'Latest Payment'=>'Latest Payment',
     'Assesment No.' => 'Assesment No.',
     'Owner Name' => 'Owner Name',
-    'Payment' => 'Payment',
+    'Payment(LRK)' => 'Payment(LRK)',
     'Date' => 'Date',
-
+     
+    'Search Assesment No.' => 'Search Assesment No.',
+    'Search Owner Name' => 'Search Owner Name',
     
+     
+     
     'Configurations' => 'Configurations',
     'VAT Categories'=>'VAT Categories',
     //business tax
