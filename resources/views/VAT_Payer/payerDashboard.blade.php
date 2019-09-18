@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('css')
-<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
 
 @endpush
@@ -9,55 +9,10 @@
 @section('title','Dashboard')
 
 @section('sidebar')
-@include('admin.include.sidebar')
+@include('VAT_Payer.include.sidebar')
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
-        <div id="#card" class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-                    <span class="h2 font-weight-bold mb-0">350,897</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
-            </p>
-        </div>
-    </div>
-</div>
-
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-            </p>
-        </div>
-    </div>
-</div>
-
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -85,22 +40,67 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                    <span class="h2 font-weight-bold mb-0">49,65%</span>
+                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                    <span class="h2 font-weight-bold mb-0">2,356</span>
                 </div>
                 <div class="col-auto">
-                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                        <i class="fas fa-percent"></i>
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
                     </div>
                 </div>
             </div>
             <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
+                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                <span class="text-nowrap">Since last week</span>
             </p>
         </div>
     </div>
 </div>
+<div class="col-xl-3 col-lg-6">
+    <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                <span class="text-nowrap">Since last week</span>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-xl-3 col-lg-6">
+    <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                <span class="text-nowrap">Since last week</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
 @endsection
 
 @section('pageContent')
@@ -110,22 +110,20 @@
         <div class="card shadow">
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
-                    <div class="col-6 card-header">
-                        <h3 class="mb-0">Employee Listing</h3>
+                    <div class="col-8">
+                        <h3 class="mb-0">VAT Payer Listing</h3>
                     </div>
-                    <div class="col-6 text-right">
-                        <button class="btn btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
-                            data-placement="right" title="Click to registern an employee to the system"
-                            onclick="javascript:window.open('{{route('register')}}','_self')">
+                    <div class="col-4 text-right">
+                        <a class="btn btn-icon btn-success text-white" href="{{route('register')}}">
                             <span><i class="fas fa-user-plus"></i></span>
                             <span class="btn-inner--text">Register</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <div class="table-responsive">
-                <table id="example" class="table  ">
+            <div class="table-responsive py-4">
+                <table id="example" class="table  px-5">
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.User ID')}}</th>
@@ -152,31 +150,58 @@
                         </tr>
                     </thead>
                     <tbody>
+
                     <tr>
-                            <td>61</td>
-                            <td>Brielle Williamson</td>
+                            <td><a href="{{route('my-profile')}}">Herrod Chandler</a></td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>$162,700</td>
+                        </tr>
+                        <tr>
+                            <td><a href="{{route('my-profile')}}">Herrod Chandler</a></td>
                             <td>Integration Specialist</td>
-                            <td>New York</td> 
+                            <td>New York</td>
+                            <td>61</td>
+                            <td>2012/12/02</td>
                             <td>$372,000</td>
                         </tr>
                         <tr>
-                            <td><a href="{{route('my-profile')}}">59</td>
-                            <td>Herrod Chandler</a></td>
+                            <td><a href="{{route('my-profile')}}">Herrod Chandler</a></td>
                             <td>Sales Assistant</td>
                             <td>San Francisco</td>
+                            <td>59</td>
+                            <td>2012/08/06</td>
                             <td>$137,500</td>
                         </tr>
                         <tr>
-                            <td>55</td>
                             <td>Rhona Davidson</td>
                             <td>Integration Specialist</td>
                             <td>Tokyo</td>
+                            <td>55</td>
+                            <td>2010/10/14</td>
                             <td>$327,900</td>
                         </tr>
- 
-                         <!-- @foreach ($employees as $employee)
                         <tr>
-                            <td class="text-center">{{$employee->id}}</th>
+                            <td>Colleen Hurst</td>
+                            <td>Javascript Developer</td>
+                            <td>San Francisco</td>
+                            <td>39</td>
+                            <td>2009/09/15</td>
+                            <td>$205,500</td>
+                        </tr>
+                        <tr>
+                            <td>Sonya Frost</td>
+                            <td>Software Engineer</td>
+                            <td>Edinburgh</td>
+                            <td>23</td>
+                            <td>2008/12/13</td>
+                            <td>$103,600</td>
+                        </tr>
+                     {{-- @foreach ($employees as $employee)
+                        <tr>
+                            <td>{{$employee->id}}</th>
                             <td>{{$employee->name}}</td>
                             <td>{{$employee->userName}}</td>
                             <td>{{$employee->email}}</td>
@@ -198,13 +223,13 @@
 
 
                         </tr>
-                        @endforeach  -->
+                        @endforeach --}}
 
 
                     </tbody>
                     <thead class="thead-light">
                         <tr>
-                            <th>{{__('menu.User ID')}} ASDFGH</th>
+                            <th>{{__('menu.User ID')}}</th>
                             <th>{{__('menu.Employee Name')}}</th>
                             <th>{{__('menu.Username')}}</th>
                             <th>{{__('menu.Email')}}</th>
@@ -228,19 +253,16 @@
 
         var id = '#example';                      //data table id
         var table = $(id).DataTable({
-          "pagingType": "full_numbers",
-          "sDom": '<'+
-          '<"row"'+
-          '<"col-sm-12 col-md-6 px-md-5"l>'+
-          '<"col-sm-12 col-md-6 px-md-5"f>'+
-          '>'+
-          '<"py-2"t>'+
-          '<"row"'+
-          '<"py-3 col-sm-12 col-md-6 px-md-5"i>'+
-          '<"py-3 col-sm-12 col-md-6 px-md-5 px-sm-3"p>>'+
-          '>'
+          "pagingType": "full_numbers"
+
         });            //table object
- 
+
+        $(id+'_filter').addClass('pr-5');         //adding padding to table elements
+        $(id+'_info').addClass('pl-5');
+        $(id+'_paginate').addClass('pr-5');
+        $(id+'_length').addClass('pl-5')
+
+
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
@@ -274,6 +296,9 @@
                 .search( this.value )
                 .draw();
             });
+
+
+
 
       } );
 
