@@ -75,10 +75,6 @@
 							<i class="ni ni-settings-gear-65"></i>
 							<span>{{ __('menu.Language') }}</span>
 						</a>
-						<a href="{{route('change-password')}}" class="dropdown-item">
-							<i class="ni ni-lock-circle-open"></i>
-							<span>{{__('menu.Change Password')}}</span>
-						</a>
 
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -196,10 +192,7 @@
 								<i class="ni ni-settings-gear-65"></i>
 								<span>{{ __('menu.Language') }}</span>
 							</a>
-							<a href="{{route('change-password')}}" class="dropdown-item">
-								<i class="ni ni-lock-circle-open"></i>
-								<span>{{__('menu.Change Password')}}</span>
-							</a>
+
 
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -264,6 +257,12 @@
 	{{-- Core --}}
 	<script src="{{ asset('assets/js/plugins/jquery/dist/jquery.min.js')}}"></script>
 	<script src="{{ asset('assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+	{{-- enabling bootstrap tooltip --}}
+	<script>
+		$(document).ready(function(){
+		  $('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
 	{{-- Argon JS --}}
 	{{-- <script src="{{ asset('assets/js/argon-dashboard.js')}}"></script> --}}
 	@stack('script')

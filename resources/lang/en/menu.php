@@ -34,4 +34,8 @@ return [
     'My profile'=>'My profile',
     'Logout'=>'Logout',
     'Change Password'=>'Change Password',
+
+    'Configurations' => 'Configurations',
+    'VAT Categories'=>'VAT Categories'
+
 ];

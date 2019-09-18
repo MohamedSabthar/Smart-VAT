@@ -35,4 +35,7 @@ return [
     'Logout'=>'ඉවත්වීම',
     'Change Password'=>'මුරපදය වෙනස් කිරීම ',
 
+    'Configurations'=>'වින්‍යාසයන්',
+    'VAT Categories'=>'බදු කාණ්ඩ',
+
 ];

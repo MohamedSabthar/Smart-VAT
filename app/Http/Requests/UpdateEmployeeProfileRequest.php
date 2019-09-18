@@ -29,8 +29,8 @@ class UpdateEmployeeProfileRequest extends FormRequest
             'name' => ['required','alpha', 'string', 'max:255'],
             'userName' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($this->id)],   // username should be unique exclude current user
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->id)],    //unique exclude current user
-            'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/',Rule::unique('users')->ignore($this->id)],     //   validation for nic, unique exclude current user
-            'phone' => ['required','regex:/[+94|0][0-9]{9}$/'],
+            'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/','min:10','max:12',Rule::unique('users')->ignore($this->id)],     //   validation for nic, unique exclude current user
+            'phone' => ['required','regex:/[+94|0][0-9]{9}$/','min:10','max:12'],
         ];
     }
 }
