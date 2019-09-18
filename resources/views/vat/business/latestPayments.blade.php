@@ -119,7 +119,7 @@
             </div>
 
             <div class="table-responsive">
-                <table id="example" class="table  ">
+                <table id="example" class="table">
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.Assesment No.')}}</th>
@@ -127,40 +127,39 @@
                             <th>{{__('menu.Payment(LRK)')}}</th>
                             <th>{{__('menu.Date')}}</th>
                             <th>{{__('menu.Registerd By')}}</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <thead id="search_inputs">
                         <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo."
+                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
                                     placeholder="{{__('menu.Assesment No.')}}" /></th>
                             <th><input type="text" class="form-control form-control-sm" id="searchOwnerName"
                                     placeholder="{{__('menu.Owner Name')}}" /></th>
-
                         </tr>
                     </thead>
-
-                    <tr>
-                        <th>01</th>
-                        <th>perera</th>
-                        <th>2000</th>
-                        <th>9/18/2019</th>
-                        <th>john</th>
-                    </tr>
-                    <tr>
-                        <th>01</th>
-                        <th>perera</th>
-                        <th>2000</th>
-                        <th>9/18/2019</th>
-                        <th>john</th>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>02</td>
+                            <td>perera</td>
+                            <td>2p0</td>
+                            <td>9/18/2019</td>
+                            <td>john</td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>perera</td>
+                            <td>2000</td>
+                            <td>9/18/2019</td>
+                            <td>john</td>
+                        </tr>
+                    </tbody>
                     <thead class="thead-light">
                         <th>{{__('menu.Assesment No.')}}</th>
                         <th>{{__('menu.Owner Name')}}</th>
                         <th>{{__('menu.Payment(LRK)')}}</th>
                         <th>{{__('menu.Date')}}</th>
                         <th>{{__('menu.Registerd By')}}</th>
-                        <th></th>
+
                     </thead>
 
                 </table>
@@ -169,3 +168,46 @@
     </div>
 </div>
 @endsection
+
+@push('script')
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+
+        var id = '#example';                      //data table id
+        var table = $(id).DataTable({
+          "pagingType": "full_numbers",
+          "sDom": '<'+
+          '<"row"'+
+          '<"col-sm-12 col-md-6 px-md-5"l>'+
+          '<"col-sm-12 col-md-6 px-md-5"f>'+
+          '>'+
+          '<"py-2"t>'+
+          '<"row"'+
+          '<"py-3 col-sm-12 col-md-6 px-md-5"i>'+
+          '<"py-3 col-sm-12 col-md-6 px-md-5 px-sm-3"p>>'+
+          '>'
+        });            //table object
+ 
+        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
+        
+        //individulat column search
+        $('#searchaAssesmentNo').on( 'keyup', function () { 
+            table
+                .columns( 0 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchOwnerName').on( 'keyup', function () { 
+            table
+                .columns( 1 )
+                .search( this.value )
+                .draw();
+            });
+           
+
+      } );
+
+</script>
+@endpush
