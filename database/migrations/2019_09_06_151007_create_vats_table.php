@@ -16,8 +16,8 @@ class CreateVatsTable extends Migration
         Schema::create('vats', function (Blueprint $table) {
             $table->bigIncrements('id');            //id for VAT
             $table->string('name');                 //name of the VAT
-            $table->double('vat%')->nullable();     //vat% some vat has assesment ammounts
-            $table->double('fine%')->nullable();    //fine% some vat doesn't has fine
+            $table->double('vat_percentage')->nullable();     //vat% some vat has assesment ammounts
+            $table->double('fine_percentage')->nullable();    //fine% some vat doesn't has fine
             $table->string('route');                //contain route link names used in laravel web.php routes
         });
     }

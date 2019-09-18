@@ -34,4 +34,22 @@ return [
     'My profile'=>'My profile',
     'Logout'=>'Logout',
     'Change Password'=>'Change Password',
+
+
+    //latest payment//
+    
+    'Assesment No.' => 'Assesment No.',
+    'Owner Name' => 'Owner Name',
+    'Payment' => 'Payment',
+    'Date' => 'Date',
+
+    
+    'Configurations' => 'Configurations',
+    'VAT Categories'=>'VAT Categories',
+    //business tax
+    'Annual Assesment Amount' => 'Annual Assesment Amount',
+    'Total amount payable'=> 'Total amount payable',
+    'Paid' => 'Paid',
+    'Option' => 'Option',
+
 ];

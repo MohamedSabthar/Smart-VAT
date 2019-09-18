@@ -9,7 +9,7 @@
 @section('title','Latestpayment')
 
 @section('sidebar')
-@include('employee.include.sidebar')
+@include('admin.include.sidebar')
 @endsection
 
 @section('header')
@@ -60,6 +60,7 @@
 
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
+    {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
         <div class="card-body">
             <div class="row">
                 <div class="col">
@@ -106,12 +107,27 @@
 
 @section('pageContent')
 <div class="row">
+	<div class="col">
+
+		<div class="card shadow">
+			<div class="card-body bg-white border-0">
+				<div class="row align-items-centerm ml-4">
+					Latest Payment List
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+<div class="row">
     <div class="col">
 
         <div class="card shadow">
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
-                    
+
                 </div>
             </div>
 
@@ -119,16 +135,26 @@
                 <table id="example" class="table  ">
                     <thead class="thead-light">
                         <tr>
-                            <th>{{__('menu.User ID')}}</th>
-                            <th>{{__('menu.Employee Name')}}</th>
-                            <th>{{__('menu.Username')}}</th>
-                            <th>{{__('menu.Email')}}</th>
+                            <th>{{__('menu.Assesment No.')}}</th>
+                            <th>{{__('menu.Owner Name')}}</th>
+                            <th>{{__('menu.Payment')}}</th>
+                            <th>{{__('menu.Date')}}</th>
                             <th>{{__('menu.Registerd By')}}</th>
                             <th></th>
                         </tr>
                     </thead>
-                   
-                    
+                    <thead id="search_inputs">
+                        <tr>
+                            <th><input type="text" class="form-control form-control-sm" id="searchVAT"
+									placeholder="Search Assesment no." /></th>
+							<th><input type="text" class="form-control form-control-sm" id="searchVAT"
+									placeholder= "Owner Name" /></th>
+							
+
+                        </tr>
+                    </thead>
+
+
 
                 </table>
             </div>

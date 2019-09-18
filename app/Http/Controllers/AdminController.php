@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Vat;
 use App\User_vat;
+use App\Assessment_range;
 use Illuminate\Support\Arr;
 use App\Http\Requests\UpdateEmployeeProfileRequest;
 
@@ -68,5 +69,13 @@ class AdminController extends Controller
         }
 
         return redirect()->back()->with('status', 'Categories assigned successfully');  //redirecting back to employee-profile page with success message
+    }
+
+
+    public function globalConfiguration()
+    {
+        $vats = Vat::all();
+        $assessment_ranges = Assessment_range::all();
+        return view('admin.globalConfiguration', ['vats'=>$vats , 'assessment_ranges'=>$assessment_ranges]);
     }
 }

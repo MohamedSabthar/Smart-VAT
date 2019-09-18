@@ -1,22 +1,16 @@
 @extends('layouts.app')
 
-@push('css')
-<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
-
-@endpush
-
-@section('title','Dashboard')
+@section('title','Industrial Tax')
 
 @section('sidebar')
-@include('admin.include.sidebar')
+@includeWhen(Auth::user()->role=='admin','admin.include.sidebar')
+@includeWhen(Auth::user()->role=='employee','employee.include.sidebar')
 @endsection
 
 @section('header')
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
-        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
-        <div id="#card" class="card-body">
+        <div class="card-body">
             <div class="row">
                 <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
@@ -105,60 +99,37 @@
 
 @section('pageContent')
 <div class="row">
-    <div class="col">
-
+    <div class="mb-4 col-lg-6 col-sm-12">
         <div class="card shadow">
             <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                    <div class="col-6 card-header">
-                        <h3 class="mb-0">Employee Listing</h3>
-                    </div>
-                    <div class="col-6 text-right">
-                        <button class="btn btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
-                            data-placement="right" title="Click to registern an employee to the system"
-                            onclick="javascript:window.open('{{route('register')}}','_self')">
-                            <span><i class="fas fa-user-plus"></i></span>
-                            <span class="btn-inner--text">Register</span>
-                        </button>
-                    </div>
-                </div>
+                <h3 class="mb-0">VAT & Fine %</h3>
+                <hr class="mt-4 mb-0">
             </div>
-
             <div class="table-responsive">
-                <table id="example" class="table  ">
+                <table id="vat_table" class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th>{{__('menu.User ID')}}</th>
-                            <th>{{__('menu.Employee Name')}}</th>
-                            <th>{{__('menu.Username')}}</th>
-                            <th>{{__('menu.Email')}}</th>
-                            <th>{{__('menu.Registerd By')}}</th>
+                            <th>VAT Category</th>
+                            <th>VAT % </th>
+                            <th>Fine %</th>
                             <th></th>
                         </tr>
                     </thead>
                     <thead id="search_inputs">
                         <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchId"
-                                    placeholder="{{__('menu.Search User ID')}}" /></th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchName"
-                                    placeholder="{{__('menu.Search Name')}}" /></th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchUsername"
-                                    placeholder="{{__('menu.Search Username')}}" /></th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchEmail"
-                                    placeholder="{{__('menu.Search Email')}}" /></th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchAdmin"
-                                    placeholder="{{__('menu.Search Admin')}}" /></th>
-                            <th></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchVAT"
+                                    placeholder="Search VAT category" /></th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($employees as $employee)
+                        @foreach ($vats as $vat)
                         <tr>
-                            <td class="text-center">{{$employee->id}}</th>
-                            <td>{{$employee->name}}</td>
-                            <td>{{$employee->userName}}</td>
-                            <td>{{$employee->email}}</td>
-                            <td>{{$employee->admin->name}}</td>
+                            <td class="text-center">{{$vat->name}}</td>
+                            <td>{!! $vat->vat_percentage ? $vat->vat_percentage : 'N/A' !!}</td>
+                            <td>{!! $vat->fine_percentage ? $vat->fine_percentage : 'N/A' !!}</td>
+
+
 
                             <td class="text-right">
                                 <div class="dropdown">
@@ -167,30 +138,84 @@
                                         <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item"
-                                            href="{{route('employee-profile',['id'=>$employee->id])}}">View profile</a>
+                                        <a class="dropdown-item" href="#">View profile</a>
                                     </div>
-
                                 </div>
                             </td>
-
-
                         </tr>
                         @endforeach
-
-
                     </tbody>
                     <thead class="thead-light">
                         <tr>
-                            <th>{{__('menu.User ID')}}</th>
-                            <th>{{__('menu.Employee Name')}}</th>
-                            <th>{{__('menu.Username')}}</th>
-                            <th>{{__('menu.Email')}}</th>
-                            <th>{{__('menu.Registerd By')}}</th>
+                            <th>VAT Category</th>
+                            <th>VAT % </th>
+                            <th>Fine %</th>
                             <th></th>
                         </tr>
                     </thead>
+                </table>
+            </div>
+        </div>
+    </div>
 
+    <div class="mb-4 col-lg-6 col-sm-12">
+        <div class="card shadow">
+            <div class="card-header bg-white border-0">
+                <h3 class="mb-0">Assessment Ranges</h3>
+                <hr class="mt-4 mb-0">
+            </div>
+            <div class="table-responsive" style="width:100%">
+                <table id="assessment_table" class="table  ">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>VAT Category</th>
+                            <th>Start Value </th>
+                            <th>End Value</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <thead id="search_inputs">
+                        <tr>
+                            <th><input type="text" class="form-control form-control-sm" id="searchAssessment"
+                                    placeholder="Search VAT category" /></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchStartValue"
+                                    placeholder="Search start value" /></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchEndValue"
+                                    placeholder="Search end value" /></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($assessment_ranges as $assessment_range)
+                        <tr>
+                            <td class="text-center">{{$assessment_range->vat->name}}</td>
+                            <td>{{$assessment_range->start_value}}</td>
+                            <td>{{$assessment_range->end_value}}</td>
+
+
+                            <td class="text-right">
+                                <div class="dropdown">
+                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                        <a class="dropdown-item" href="#">View profile</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    <thead class="thead-light">
+                        <tr>
+                            <th>VAT Category</th>
+                            <th>Start Value </th>
+                            <th>End Value</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
                 </table>
             </div>
         </div>
@@ -204,54 +229,74 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#example';                      //data table id
-        var table = $(id).DataTable({
+        var vat_table = $('#vat_table').DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
-          '<"row"'+
-          '<"col-sm-12 col-md-6 px-md-5"l>'+
-          '<"col-sm-12 col-md-6 px-md-5"f>'+
-          '>'+
-          '<"py-2"t>'+
-          '<"row"'+
-          '<"py-3 col-sm-12 col-md-6 px-md-5"i>'+
-          '<"py-3 col-sm-12 col-md-6 px-md-5 px-sm-3"p>>'+
+          '<" px-0 text-center d-flex justify-content-center"l>'+
+          't'+
+          '<"d-flex justify-content-center pt-4"p>'+
           '>'
-        });            //table object
+        });     
  
-        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
+        $('#vat_table_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchName').on( 'keyup', function () { 
-            table
-                .columns( 1 )
+        $('#searchVAT').on( 'keyup', function () { 
+            vat_table
+                .columns( 0 )
                 .search( this.value )
                 .draw();
-            });
-            $('#searchId').on( 'keyup', function () { 
-            table
+
+
+                assessment_table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchUsername').on( 'keyup', function () { 
-            table
+
+
+
+
+
+        var assessment_table = $('#assessment_table').DataTable({
+          "pagingType": "full_numbers",
+          "sDom": '<'+
+          '<"px-0 text-center d-flex justify-content-center"l>'+
+          't'+
+          '<"d-flex justify-content-center pt-4"p>'+
+          '>'
+        });     
+ 
+        $('#assessment_table_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
+        
+       
+        
+        //individulat column search
+        $('#searchAssessment').on( 'keyup', function () { 
+            assessment_table
+                .columns( 0 )
+                .search( this.value )
+                .draw();
+            });
+
+            $('#searchStartValue').on( 'keyup', function () { 
+            assessment_table
+                .columns( 1 )
+                .search( this.value )
+                .draw();
+            });
+
+            $('#searchEndValue').on( 'keyup', function () { 
+            assessment_table
                 .columns( 2 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchEmail').on( 'keyup', function () { 
-            table
-                .columns( 3 )
-                .search( this.value )
-                .draw();
-            });
-            $('#searchAdmin').on( 'keyup', function () { 
-            table
-                .columns( 4 )
-                .search( this.value )
-                .draw();
-            });
+
+
+
+
+
 
       } );
 

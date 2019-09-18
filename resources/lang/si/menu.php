@@ -35,4 +35,20 @@ return [
     'Logout'=>'ඉවත්වීම',
     'Change Password'=>'මුරපදය වෙනස් කිරීම ',
 
+    //latest Payment
+    
+    'Assesment No.' => 'වරිපනම් අංකය',
+    'Owner Name' => 'අයිතිකරුගේ නම',
+    'Payment' => 'ගෙවීම',
+    'Date' => 'දිනය',
+    
+    'Configurations'=>'වින්‍යාසයන්',
+    'VAT Categories'=>'බදු කාණ්ඩ',
+     
+    //business tax
+    'Annual Assesment Amount' => 'වාර්ෂික තක්සේරු මුදල',
+    'Total amount payable'=> 'ගෙවිය යුතු මුළු මුදල',
+    'Option' => 'විකල්පය',
+
+
 ];

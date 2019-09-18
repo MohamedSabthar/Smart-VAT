@@ -17,7 +17,7 @@ class VatPagesController extends Controller
 
     public function buisness()
     {
-        return view('vat.buisness');
+        return view('vat.business.buisness');
     }
 
     public function industrial()
@@ -38,5 +38,9 @@ class VatPagesController extends Controller
     public function advertizement()
     {
         return view('vat.advertizement');
+    }
+    public function booking()
+    {
+        return view('vat.booking');
     }
 }

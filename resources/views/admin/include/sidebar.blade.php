@@ -11,11 +11,20 @@
         <i class="fas fa-users text-green"></i> {{__('menu.Employees')}}
     </a>
 </li>
+
 <li class="nav-item">
-    <a id="allVats" class="nav-link  collapsed" href="#navbar-vats" data-toggle="collapse" role="button"
-        aria-expanded="false" aria-controls="navbar-vats">
+    <a class="nav-link {!! url()->current() == route('global-conf') ? 'active' : ''!!}" href="{{route('global-conf')}}">
+        <i class="fas fa-cogs text-red"></i></i> {{__('menu.Configurations')}}
+    </a>
+</li>
+
+<li class="nav-item">
+    <a id="allVats"
+        class="nav-link  collapsed 
+        {!!in_array(url()->current(),App\Vat::all()->pluck('route')->map(function($route){return route($route);})->all()) ? 'active':'' !!} "
+        href="#navbar-vats" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-vats">
         <i class="ni ni-align-left-2 text-default"></i>
-        <span class="nav-link-text">VAT Categories</span>
+        <span class="nav-link-text">{{__('menu.VAT Categories')}}</span>
     </a>
     <div class="collapse" id="navbar-vats">
         <ul class="nav nav-sm flex-column">
