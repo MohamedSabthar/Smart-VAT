@@ -6,7 +6,7 @@
 
 @endpush
 
-@section('title','Latestpayment')
+@section('title','Dashboard')
 
 @section('sidebar')
 @include('admin.include.sidebar')
@@ -60,7 +60,6 @@
 
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
-        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
         <div class="card-body">
             <div class="row">
                 <div class="col">
@@ -112,56 +111,84 @@
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
                     <div class="col-6 card-header">
-                        <h3 class="mb-0">{{__('menu.Latest Payment')}}</h3>
+                        <h3 class="mb-0">Employee Listing</h3>
                     </div>
-
+                    <div class="col-6 text-right">
+                        <button class="btn btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
+                            data-placement="right" title="Click to registern an employee to the system"
+                            onclick="javascript:window.open('{{route('register')}}','_self')">
+                            <span><i class="fas fa-user-plus"></i></span>
+                            <span class="btn-inner--text">Register</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div class="table-responsive">
-                <table id="example1" class="table ">
+                <table id="example" class="table  ">
                     <thead class="thead-light">
                         <tr>
-                            <th>{{__('menu.Assesment No.')}}</th>
-                            <th>{{__('menu.Owner Name')}}</th>
-                            <th>{{__('menu.Payment(LRK)')}}</th>
-                            <th>{{__('menu.Date')}}</th>
+                            <th>{{__('menu.User ID')}}</th>
+                            <th>{{__('menu.Employee Name')}}</th>
+                            <th>{{__('menu.Username')}}</th>
+                            <th>{{__('menu.Email')}}</th>
                             <th>{{__('menu.Registerd By')}}</th>
-                            
+                            <th></th>
                         </tr>
                     </thead>
                     <thead id="search_inputs">
                         <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
-                                    placeholder="{{__('menu.Assesment No.')}}" /></th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchOwnerName"
-                                    placeholder="{{__('menu.Owner Name')}}" /></th>
-
+                            <th><input type="text" class="form-control form-control-sm" id="searchId"
+                                    placeholder="{{__('menu.Search User ID')}}" /></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchName"
+                                    placeholder="{{__('menu.Search Name')}}" /></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchUsername"
+                                    placeholder="{{__('menu.Search Username')}}" /></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchEmail"
+                                    placeholder="{{__('menu.Search Email')}}" /></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchAdmin"
+                                    placeholder="{{__('menu.Search Admin')}}" /></th>
+                            <th></th>
                         </tr>
                     </thead>
-<tbody>
-                    <tr>
-                        <th>01</th>
-                        <th>perera</th>
-                        <th>2000</th>
-                        <th>9/18/2019</th>
-                        <th>john</th>
-                    </tr>
-                    <tr>
-                        <th>02</th>
-                        <th>perera</th>
-                        <th>2000</th>
-                        <th>9/18/2019</th>
-                        <th>perera</th>
-                    </tr>
-</tbody>
+                    <tbody>
+                        @foreach ($employees as $employee)
+                        <tr>
+                            <td class="text-center">{{$employee->id}}</th>
+                            <td>{{$employee->name}}</td>
+                            <td>{{$employee->userName}}</td>
+                            <td>{{$employee->email}}</td>
+                            <td>{{$employee->admin->name}}</td>
+
+                            <td class="text-right">
+                                <div class="dropdown">
+                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                        <a class="dropdown-item"
+                                            href="{{route('employee-profile',['id'=>$employee->id])}}">View profile</a>
+                                    </div>
+
+                                </div>
+                            </td>
+
+
+                        </tr>
+                        @endforeach
+
+
+                    </tbody>
                     <thead class="thead-light">
-                        <th>{{__('menu.Assesment No.')}}</th>
-                        <th>{{__('menu.Owner Name')}}</th>
-                        <th>{{__('menu.Payment(LRK)')}}</th>
-                        <th>{{__('menu.Date')}}</th>
-                        <th>{{__('menu.Registerd By')}}</th>
-                        
+                        <tr>
+                            <th>{{__('menu.User ID')}}</th>
+                            <th>{{__('menu.Employee Name')}}</th>
+                            <th>{{__('menu.Username')}}</th>
+                            <th>{{__('menu.Email')}}</th>
+                            <th>{{__('menu.Registerd By')}}</th>
+                            <th></th>
+                        </tr>
                     </thead>
 
                 </table>
@@ -171,15 +198,13 @@
 </div>
 @endsection
 
-
-
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script>
     $(document).ready(function() {
 
-        var id = '#example1';                      //data table id
+        var id = '#example';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -197,19 +222,37 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchaAssesmentNo').on( 'keyup', function () { 
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-            });
-            $('#searchOwnerName').on( 'keyup', function () { 
+        $('#searchName').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-          
+            $('#searchId').on( 'keyup', function () { 
+            table
+                .columns( 0 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchUsername').on( 'keyup', function () { 
+            table
+                .columns( 2 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchEmail').on( 'keyup', function () { 
+            table
+                .columns( 3 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchAdmin').on( 'keyup', function () { 
+            table
+                .columns( 4 )
+                .search( this.value )
+                .draw();
+            });
+
       } );
 
 </script>
