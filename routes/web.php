@@ -48,9 +48,9 @@ Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/language/{locale}', 'LanguageController@changeLanguage');  //language switcher
 
-Route::get('/Payer', 'PayerController@payer')->name('VAT_Payer'); //
-Route::get('/Reg', 'PayerController@register');
-Route::get('/payerProfile', 'PayerController@profile');
+Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
+Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
 /**
  * Routes related to vat category (return view of the vat category)
 */
