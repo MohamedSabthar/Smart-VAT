@@ -174,7 +174,7 @@
                             <td>$327,900</td>
                         </tr>
  
-                         <!-- @foreach ($employees as $employee)
+                         @foreach ($employees as $employee)
                         <tr>
                             <td class="text-center">{{$employee->id}}</th>
                             <td>{{$employee->name}}</td>
@@ -198,7 +198,7 @@
 
 
                         </tr>
-                        @endforeach  -->
+                        @endforeach 
 
 
                     </tbody>
