@@ -8,6 +8,6 @@ class BusinessTaxController extends Controller
 {
     public function latestPayment()
     {
-        return view('vat.business.latestPay');
+        return view('vat.business.latestPayments');
     }
 }

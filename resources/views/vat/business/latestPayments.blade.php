@@ -60,7 +60,7 @@
 
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
-    {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
+        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
         <div class="card-body">
             <div class="row">
                 <div class="col">
@@ -114,7 +114,7 @@
                     <div class="col-6 card-header">
                         <h3 class="mb-0">{{__('menu.Latest Payment')}}</h3>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -136,17 +136,31 @@
                                     placeholder="{{__('menu.Assesment No.')}}" /></th>
                             <th><input type="text" class="form-control form-control-sm" id="searchOwnerName"
                                     placeholder="{{__('menu.Owner Name')}}" /></th>
-                            
+
                         </tr>
                     </thead>
+
+                    <tr>
+                        <th>01</th>
+                        <th>perera</th>
+                        <th>2000</th>
+                        <th>9/18/2019</th>
+                        <th>john</th>
+                    </tr>
+                    <tr>
+                        <th>01</th>
+                        <th>perera</th>
+                        <th>2000</th>
+                        <th>9/18/2019</th>
+                        <th>john</th>
+                    </tr>
                     <thead class="thead-light">
-                        <tr>
-                            <th>01</th>
-                            <th>perera</th>
-                            <th>2000</th>
-                            <th>9/18/2019</th>
-                            <th>john</th>
-                        </tr>
+                        <th>{{__('menu.Assesment No.')}}</th>
+                        <th>{{__('menu.Owner Name')}}</th>
+                        <th>{{__('menu.Payment(LRK)')}}</th>
+                        <th>{{__('menu.Date')}}</th>
+                        <th>{{__('menu.Registerd By')}}</th>
+                        <th></th>
                     </thead>
 
                 </table>
