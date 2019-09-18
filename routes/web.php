@@ -49,8 +49,8 @@ Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
  * Routes related to vat category (return view of the vat category)
 */
 
-
-Route::get('/latest','BusinessTaxController@latestPayment'); // display latest payment page route
+// Route to latest payment
+Route::get('/latest','BusinessTaxController@latestPayment'); 
 
 
 try {

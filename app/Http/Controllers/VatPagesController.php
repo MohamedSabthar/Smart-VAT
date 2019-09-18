@@ -39,4 +39,8 @@ class VatPagesController extends Controller
     {
         return view('vat.advertizement');
     }
+    public function booking()
+    {
+        return view('vat.booking');
+    }
 }
