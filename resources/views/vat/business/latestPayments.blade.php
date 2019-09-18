@@ -9,7 +9,7 @@
 @section('title','Latestpayment')
 
 @section('sidebar')
-@include('employee.include.sidebar')
+@include('admin.include.sidebar')
 @endsection
 
 @section('header')
@@ -60,6 +60,7 @@
 
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
+        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
         <div class="card-body">
             <div class="row">
                 <div class="col">
@@ -103,7 +104,6 @@
 </div>
 @endsection
 
-
 @section('pageContent')
 <div class="row">
     <div class="col">
@@ -111,24 +111,56 @@
         <div class="card shadow">
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
-                    
+                    <div class="col-6 card-header">
+                        <h3 class="mb-0">{{__('menu.Latest Payment')}}</h3>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="table-responsive py-4">
-                <table id="example" class="table  ">
+            <div class="table-responsive">
+                <table id="example" class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th>{{__('menu.User ID')}}</th>
-                            <th>{{__('menu.Employee Name')}}</th>
-                            <th>{{__('menu.Username')}}</th>
-                            <th>{{__('menu.Email')}}</th>
+                            <th>{{__('menu.Assesment No.')}}</th>
+                            <th>{{__('menu.Owner Name')}}</th>
+                            <th>{{__('menu.Payment(LRK)')}}</th>
+                            <th>{{__('menu.Date')}}</th>
                             <th>{{__('menu.Registerd By')}}</th>
-                            <th></th>
                         </tr>
                     </thead>
-                   
-                    
+                    <thead id="search_inputs">
+                        <tr>
+                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                    placeholder="{{__('menu.Assesment No.')}}" /></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchOwnerName"
+                                    placeholder="{{__('menu.Owner Name')}}" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>02</td>
+                            <td>perera</td>
+                            <td>2p0</td>
+                            <td>9/18/2019</td>
+                            <td>john</td>
+                        </tr>
+                        <tr>
+                            <td>01</td>
+                            <td>perera</td>
+                            <td>2000</td>
+                            <td>9/18/2019</td>
+                            <td>john</td>
+                        </tr>
+                    </tbody>
+                    <thead class="thead-light">
+                        <th>{{__('menu.Assesment No.')}}</th>
+                        <th>{{__('menu.Owner Name')}}</th>
+                        <th>{{__('menu.Payment(LRK)')}}</th>
+                        <th>{{__('menu.Date')}}</th>
+                        <th>{{__('menu.Registerd By')}}</th>
+
+                    </thead>
 
                 </table>
             </div>
@@ -136,3 +168,46 @@
     </div>
 </div>
 @endsection
+
+@push('script')
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+
+        var id = '#example';                      //data table id
+        var table = $(id).DataTable({
+          "pagingType": "full_numbers",
+          "sDom": '<'+
+          '<"row"'+
+          '<"col-sm-12 col-md-6 px-md-5"l>'+
+          '<"col-sm-12 col-md-6 px-md-5"f>'+
+          '>'+
+          '<"py-2"t>'+
+          '<"row"'+
+          '<"py-3 col-sm-12 col-md-6 px-md-5"i>'+
+          '<"py-3 col-sm-12 col-md-6 px-md-5 px-sm-3"p>>'+
+          '>'
+        });            //table object
+ 
+        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
+        
+        //individulat column search
+        $('#searchaAssesmentNo').on( 'keyup', function () { 
+            table
+                .columns( 0 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchOwnerName').on( 'keyup', function () { 
+            table
+                .columns( 1 )
+                .search( this.value )
+                .draw();
+            });
+           
+
+      } );
+
+</script>
+@endpush

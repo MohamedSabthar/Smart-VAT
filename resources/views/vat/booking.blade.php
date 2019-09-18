@@ -104,7 +104,7 @@
 		<div class="card shadow">
 			<div class="card-body bg-white border-0">
 				<div class="row align-items-centerm ml-4">
-					Buisness Tax
+					Booking 
 				</div>
 			</div>
 

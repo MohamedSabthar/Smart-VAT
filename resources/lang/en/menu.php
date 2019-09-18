@@ -34,4 +34,26 @@ return [
     'My profile'=>'My profile',
     'Logout'=>'Logout',
     'Change Password'=>'Change Password',
+
+
+    //latest payment//
+    'Latest Payment'=>'Latest Payment',
+    'Assesment No.' => 'Assesment No.',
+    'Owner Name' => 'Owner Name',
+    'Payment(LRK)' => 'Payment(LRK)',
+    'Date' => 'Date',
+     
+    'Search Assesment No.' => 'Search Assesment No.',
+    'Search Owner Name' => 'Search Owner Name',
+    
+     
+     
+    'Configurations' => 'Configurations',
+    'VAT Categories'=>'VAT Categories',
+    //business tax
+    'Annual Assesment Amount' => 'Annual Assesment Amount',
+    'Total amount payable'=> 'Total amount payable',
+    'Paid' => 'Paid',
+    'Option' => 'Option',
+
 ];
