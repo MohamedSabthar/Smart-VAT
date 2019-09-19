@@ -156,7 +156,7 @@
                     <tbody>
 
                         <tr>
-                            <td><a href="{{route('vat-payer-profile')}}">Herrod Chandler</a></td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
                             <td>Accountant</td>
                             <td>Tokyo</td>
                             <td>33</td>
@@ -164,7 +164,7 @@
                             <td>$162,700</td>
                         </tr>
                         <tr>
-                            <td><a href="{{route('vat-payer-profile')}}">Herrod Chandler</a></td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
                             <td>Integration Specialist</td>
                             <td>New York</td>
                             <td>61</td>
@@ -172,7 +172,7 @@
                             <td>$372,000</td>
                         </tr>
                         <tr>
-                            <td><a href="{{route('vat-payer-profile')}}">Herrod Chandler</a></td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
                             <td>Sales Assistant</td>
                             <td>San Francisco</td>
                             <td>59</td>

@@ -72,3 +72,5 @@ try {
 Route::get('/latest', function () {
     return view('admin.globalConfiguration');
 }); // display latset payment
+
+Route::get('/vat-payer-business-list','PayerController@businesslist')->name('vat-payer-business-list');

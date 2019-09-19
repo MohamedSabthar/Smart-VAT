@@ -56,4 +56,6 @@ return [
     'Paid' => 'Paid',
     'Option' => 'Option',
 
+    'VAT Payer Business List' => 'VAT Payer Business List',
+
 ];
