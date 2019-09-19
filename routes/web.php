@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use App\Vat;
 
@@ -44,6 +44,16 @@ Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
 
 
 
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/language/{locale}', 'LanguageController@changeLanguage');  //language switcher
+
+//Routes related to VAT Payer
+
+Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
+Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
+Route::get('/vat-payer-businessPayment-list','PayerController@businessPaymentList')->name('payment-list');
 
 /**
  * Routes related to vat category (return view of the vat category)
