@@ -175,9 +175,118 @@
 			</div>
 			<div class="card-body">
 				<form>
-                <div class="card-header bg-transparent">
+               
+            <div class="table-responsive py-4">
+                <table id="example" class="table  px-5">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>{{__('menu.Assesment No.')}}</th>
+                            <th>{{__('menu.Business ')}}</th>
+                           
+                        </tr>
+                    </thead>
+                    <thead id="search_inputs">
+                        <tr>
+                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo."
+                                    placeholder="{{__('menu.Search Assesment No.')}}" /></th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><a href="{{route('vat-payer-businessPayment-list')}}">Herrod Chandler</a></td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            
+                        </tr>
+                        <tr>
+                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
+                            <td>Integration Specialist</td>
+                            <td>New York</td>
+                            <td>61</td>
+                            <td>2012/12/02</td>
+                            <td>$372,000</td>
+                        </tr>
+                        <tr>
+                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
+                            <td>Sales Assistant</td>
+                            <td>San Francisco</td>
+                            <td>59</td>
+                            <td>2012/08/06</td>
+                            <td>$137,500</td>
+                        </tr>
+                        <tr>
+                            <td>Rhona Davidson</td>
+                            <td>Integration Specialist</td>
+                            <td>Tokyo</td>
+                            <td>55</td>
+                            <td>2010/10/14</td>
+                            <td>$327,900</td>
+                        </tr>
+                        <tr>
+                            <td>Colleen Hurst</td>
+                            <td>Javascript Developer</td>
+                            <td>San Francisco</td>
+                            <td>39</td>
+                            <td>2009/09/15</td>
+                            <td>$205,500</td>
+                        </tr>
+                        <tr>
+                            <td>Sonya Frost</td>
+                            <td>Software Engineer</td>
+                            <td>Edinburgh</td>
+                            <td>23</td>
+                            <td>2008/12/13</td>
+                            <td>$103,600</td>
+                        </tr>
+                        {{-- @foreach ($employees as $employee)
+                        <tr>
+                            <td>{{$employee->id}}</th>
+                        <td>{{$employee->name}}</td>
+                        <td>{{$employee->userName}}</td>
+                        <td>{{$employee->email}}</td>
+                        <td>{{$employee->admin->name}}</td>
+
+                        <td class="text-right">
+                            <div class="dropdown">
+                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item"
+                                        href="{{route('employee-profile',['id'=>$employee->id])}}">View profile</a>
+                                </div>
+
+                            </div>
+                        </td>
+
+
+                        </tr>
+                        @endforeach --}}
+
+
+                    </tbody>
+                    <thead class="thead-light">
+                        <tr>
+                            <th>{{__('menu.User ID')}}</th>
+                            <th>{{__('menu.Employee Name')}}</th>
+                            <th>{{__('menu.Username')}}</th>
+                            <th>{{__('menu.Email')}}</th>
+                            <th>{{__('menu.Registerd By')}}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+            <div class="card-header bg-transparent">
 				<h4 class="mb-0"><span class="text-uppercase">Add new Business</span></h4>
-			</div>
+            </div>
+            <div class="form-group">
+						<input class=" btn btn-primary float-right" type="submit">
+					</div>
 					
 				</form>
 				
