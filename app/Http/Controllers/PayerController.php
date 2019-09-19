@@ -17,4 +17,8 @@ class PayerController extends Controller
     public function profile(){
         return view('VAT_Payer.payerProfile');
     }
+
+    public function businessPaymentList(){
+        return view('VAT_Payer.payerPaymentList');
+    }
 }

@@ -103,7 +103,6 @@
     </div>
 </div>
 
-
 @endsection
 
 @section('pageContent')
@@ -131,9 +130,6 @@
                         <tr>
                             <th>{{__('menu.User ID')}}</th>
                             <th>{{__('menu.VAT Payer Name')}}</th>
-                            <th>{{__('menu.Address')}}</th>
-                            <th>{{__('menu.Email')}}</th>
-                            <th>{{__('menu.Registerd By')}}</th>
                             
                         </tr>
                     </thead>
@@ -143,37 +139,24 @@
                                     placeholder="{{__('menu.Search User ID')}}" /></th>
                             <th><input type="text" class="form-control form-control-sm" id="searchName"
                                     placeholder="{{__('menu.Search Name')}}" /></th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchAddress"
-                                    placeholder="{{__('menu.Search Address')}}" /></th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchEmail"
-                                    placeholder="{{__('menu.Search Email')}}" /></th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchAdmin"
-                                    placeholder="{{__('menu.Search Admin')}}" /></th>
-                            
+
+         
                         </tr>
                     </thead>
                     <tbody>
 
                         <tr>
-                            <td><a href="{{route('vat-payer-profile')}}">01</a></td>
+                            <td>01</td>
                             <td>Emma Wotsan</td>
-                            <td>Galle</td>
-                            <td>abcd@yopmail.com</td>
-                            <td>Empl02</td>
                         </tr>
                         <tr>
-                            <td><a href="{{route('vat-payer-profile')}}">02</a></td>
+                            <td>02</td>
                             <td>Jueliuos Ceisor</td>
-                            <td>Colombo</td>
-                            <td>abcd@yopmail.com</td>
-                            <td>Empl03</td>
                         </tr>
                         <tr>
-                            <td><a href="{{route('vat-payer-profile')}}">03</a></td>
+                            <td>03</td>
                             <td>Herrod Chandler</td>
-                            <td>Kandy</td>
-                            <td>abcd@yopmail.com</td>
-                            <td>Empl04</td>
+
                         </tr>
                         <tr>
                             <td>04</td>
