@@ -56,4 +56,9 @@ return [
     'Paid' => 'Paid',
     'Option' => 'Option',
 
+    //VAT Payer
+    'user Id' => 'User ID',
+    'VAT Payer Name'=> 'VAT Payer Name',
+    'Address' =>'Address',
+
 ];
