@@ -18,8 +18,8 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-					<span class="h2 font-weight-bold mb-0">924</span>
+					<h5 class="card-title text-uppercase text-muted mb-0">Buisness Tax payers</h5>
+					<span class=" font-weight-bold mb-0">924</span>
 				</div>
 				<div class="col-auto">
 					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -153,7 +153,7 @@
 
 						@foreach ($payers as $payer)
 						<tr>
-							<td>{{$payer->id}}</th>
+							<td>{{$payer->nic}}</th>
 							<td>{{$payer->full_name}}</td>
 							<td>{{$payer->address}}</td>
 							<td>{{$payer->email}}</td>

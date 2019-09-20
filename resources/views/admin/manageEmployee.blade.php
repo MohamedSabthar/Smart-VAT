@@ -114,7 +114,7 @@
                         <h3 class="mb-0 d-inline pr-2">Employees</h3> <span>register under Smart VAT </span>
                     </div>
                     <div class="col-6 text-right">
-                        <button class="btn btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
+                        <button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
                             data-placement="right" title="Click to registern an employee to the system"
                             onclick="javascript:window.open('{{route('register')}}','_self')">
                             <span><i class="fas fa-user-plus"></i></span>
