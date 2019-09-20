@@ -20777,3 +20777,8 @@ pre > code.highlight {
 .nav-link {
     font-size: 1rem !important;
 }
+
+/* .side-bar-hidden {
+    margin-left: 100px !important;
+    z-index: 3;
+} */

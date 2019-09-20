@@ -126,8 +126,8 @@
                         @foreach ($vats as $vat)
                         <tr>
                             <td class="text-center">{{$vat->name}}</td>
-                            <td>{!! $vat->vat_percentage ? $vat->vat_percentage : 'N/A' !!}</td>
-                            <td>{!! $vat->fine_percentage ? $vat->fine_percentage : 'N/A' !!}</td>
+                            <td>{!! $vat->vat_percentage ? $vat->vat_percentage.' %' : 'N/A' !!}</td>
+                            <td>{!! $vat->fine_percentage ? $vat->fine_percentage.' %' : 'N/A' !!}</td>
 
 
 
@@ -138,8 +138,10 @@
                                         <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" href="#">View profile</a>
+                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" href="#">Delete</a>
                                     </div>
+
                                 </div>
                             </td>
                         </tr>
@@ -169,8 +171,8 @@
                     <thead class="thead-light">
                         <tr>
                             <th>VAT Category</th>
-                            <th>Start Value </th>
-                            <th>End Value</th>
+                            <th>Start Value (LKR) </th>
+                            <th>End Value (LKR)</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -189,8 +191,8 @@
                         @foreach ($assessment_ranges as $assessment_range)
                         <tr>
                             <td class="text-center">{{$assessment_range->vat->name}}</td>
-                            <td>{{$assessment_range->start_value}}</td>
-                            <td>{{$assessment_range->end_value}}</td>
+                            <td>{{  number_format( $assessment_range->start_value,2)}}</td>
+                            <td>{{ number_format($assessment_range->end_value,2)}}</td>
 
 
                             <td class="text-right">
