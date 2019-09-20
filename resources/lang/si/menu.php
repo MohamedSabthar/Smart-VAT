@@ -54,6 +54,13 @@ return [
     'Total amount payable'=> 'ගෙවිය යුතු මුළු මුදල',
     'Option' => 'විකල්පය',
 
+    'VAT Payer Business List' => 'බදු ගෙවන්නගේ ව්‍යාපාර ලැයිස්තුව ',
+    'Business Name' => '‍ව්‍යාපාර නාමය',
+    'Business' => 'ව්‍යාපාරය',
+    'Add new Business' => 'නව ව්‍යාපාරයක් එකතු කිරීම ',
+    'Select Business' => 'ව්‍යාපාරය තෝරන්න',
+    'Business Address'=> 'ව්‍යාපාරික ලිපිනය',
+    
     //VAT PAyer
     'User ID' => 'පරිශීලක අංකය',
     'VAT Payer Name'=> 'වැට් බදු ගෙවන්නාගේ නම',

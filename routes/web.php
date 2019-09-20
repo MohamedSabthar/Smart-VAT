@@ -67,3 +67,8 @@ Route::get('/latest', 'BusinessTaxController@latestPayment');
 // Route::get('/latest', function () {
 //     return view('admin.globalConfiguration');
 // }); // display latset payment
+
+//Route to vat payer business list
+
+Route::get('/vat-payer-business-list','PayerController@businesslist')->name('vat-payer-business-list');
+// }); // display latset payment
