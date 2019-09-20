@@ -114,7 +114,7 @@
                         <h3 class="mb-0 d-inline pr-2">Employees</h3> <span>register under Smart VAT </span>
                     </div>
                     <div class="col-6 text-right">
-                        <button class="btn btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
+                        <button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
                             data-placement="right" title="Click to registern an employee to the system"
                             onclick="javascript:window.open('{{route('register')}}','_self')">
                             <span><i class="fas fa-user-plus"></i></span>
@@ -152,29 +152,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                            <td>61</td>
-                            <td>Brielle Williamson</td>
-                            <td>Integration Specialist</td>
-                            <td>New York</td> 
-                            <td>$372,000</td>
-                        </tr>
-                        <tr>
-                            <td><a href="{{route('my-profile')}}">59</td>
-                            <td>Herrod Chandler</a></td>
-                            <td>Sales Assistant</td>
-                            <td>San Francisco</td>
-                            <td>$137,500</td>
-                        </tr>
-                        <tr>
-                            <td>55</td>
-                            <td>Rhona Davidson</td>
-                            <td>Integration Specialist</td>
-                            <td>Tokyo</td>
-                            <td>$327,900</td>
-                        </tr>
- 
-                         @foreach ($employees as $employee)
+
+
+                        @foreach ($employees as $employee)
                         <tr>
                             <td class="text-center">{{$employee->id}}</th>
                             <td>{{$employee->name}}</td>
@@ -198,7 +178,7 @@
 
 
                         </tr>
-                        @endforeach 
+                        @endforeach
 
 
                     </tbody>

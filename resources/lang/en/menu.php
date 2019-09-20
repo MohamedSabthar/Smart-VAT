@@ -67,5 +67,6 @@ return [
     'user Id' => 'User ID',
     'VAT Payer Name'=> 'VAT Payer Name',
     'Address' =>'Address',
+    'Search Address' => 'Search Address',
 
 ];

@@ -23,6 +23,7 @@ class UsersTableSeeder extends Seeder
             'remember_token' => Str::random(10),
             'phone' => '+94772489893',
             'nic' => '9723584563V',
+            'role'=>'admin',
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),
