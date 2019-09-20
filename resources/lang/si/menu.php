@@ -54,5 +54,11 @@ return [
     'Total amount payable'=> 'ගෙවිය යුතු මුළු මුදල',
     'Option' => 'විකල්පය',
 
+    //VAT PAyer
+    'User ID' => 'පරිශීලක අංකය',
+    'VAT Payer Name'=> 'වැට් බදු ගෙවන්නාගේ නම',
+    'Address' => 'ලිපිනය',
+    'Search Address' => 'ලිපිනය සෙවීම',
+
 
 ];
