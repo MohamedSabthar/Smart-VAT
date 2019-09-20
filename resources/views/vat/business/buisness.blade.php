@@ -110,7 +110,7 @@
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-						<h3 class="mb-0">VAT Payers</h3>
+						<h3 class="mb-0">Business Tax Payers</h3>
 					</div>
 					<div class="col-4 text-right">
 						<a class="btn btn-icon btn-success text-white" href="{{route('register-vat-payer')}}">
@@ -130,6 +130,7 @@
 							<th>{{__('menu.Address')}}</th>
 							<th>{{__('menu.Email')}}</th>
 							<th>{{__('menu.Registerd By')}}</th>
+							<th></th>
 
 						</tr>
 					</thead>
@@ -150,73 +151,30 @@
 					</thead>
 					<tbody>
 
+						@foreach ($payers as $payer)
 						<tr>
-							<td><a href="{{route('vat-payer-profile')}}">01</a></td>
-							<td>Emma Wotsan</td>
-							<td>Galle</td>
-							<td>abcd@ymail.com</td>
-							<td>Empl02</td>
-						</tr>
-						<tr>
-							<td><a href="{{route('vat-payer-profile')}}">02</a></td>
-							<td>Jueliuos Ceisor</td>
-							<td>Colombo</td>
-							<td>abcd@yopmail.com</td>
-							<td>Empl03</td>
-						</tr>
-						<tr>
-							<td><a href="{{route('vat-payer-profile')}}">03</a></td>
-							<td>Herrod Chandler</td>
-							<td>Kandy</td>
-							<td>abcd@ypmail.com</td>
-							<td>Empl04</td>
-						</tr>
-						<tr>
-							<td>04</td>
-							<td>Rhona Davidson</td>
-							<td>Kandy</td>
-							<td>abcd@yopmail.com</td>
-							<td>Empl01</td>
-						</tr>
-						<tr>
-							<td>05</td>
-							<td>Colleen Hurst</td>
-							<td>Galle</td>
-							<td>abcd@yopmail.com</td>
-							<td>Empl02</td>
-						</tr>
-						<tr>
-							<td>06</td>
-							<td>Sonya Frost</td>
-							<td>Colombo</td>
-							<td>abcd@yopmail.com</td>
-							<td>Empl06</td>
-						</tr>
-						{{-- @foreach ($employees as $employee)
-                        <tr>
-                            <td>{{$employee->id}}</th>
-						<td>{{$employee->name}}</td>
-						<td>{{$employee->userName}}</td>
-						<td>{{$employee->email}}</td>
-						<td>{{$employee->admin->name}}</td>
+							<td>{{$payer->id}}</th>
+							<td>{{$payer->full_name}}</td>
+							<td>{{$payer->address}}</td>
+							<td>{{$payer->email}}</td>
+							<td>{{$payer->user->name}}</td>
 
-						<td class="text-right">
-							<div class="dropdown">
-								<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<i class="fas fa-ellipsis-v"></i>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-									<a class="dropdown-item"
-										href="{{route('employee-profile',['id'=>$employee->id])}}">View profile</a>
+							<td class="text-right">
+								<div class="dropdown">
+									<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class="fas fa-ellipsis-v"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+										<a class="dropdown-item" href="{{route('vat-payer-profile')}}">View profile</a>
+									</div>
+
 								</div>
-
-							</div>
-						</td>
+							</td>
 
 
 						</tr>
-						@endforeach --}}
+						@endforeach
 
 
 					</tbody>
@@ -227,7 +185,7 @@
 							<th>{{__('menu.Address')}}</th>
 							<th>{{__('menu.Email')}}</th>
 							<th>{{__('menu.Registerd By')}}</th>
-
+							<th></th>
 						</tr>
 					</thead>
 
