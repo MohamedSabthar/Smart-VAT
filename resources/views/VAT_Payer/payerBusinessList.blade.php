@@ -163,7 +163,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+    </div>
+
+    
 	<div class="col-xl-8 order-xl-1">
 		<div class="card bg-secondary shadow">
 			<div class="card-header bg-white border-0">
@@ -175,129 +177,160 @@
 			</div>
 			<div class="card-body">
 				<form>
-               
-            <div class="table-responsive py-4">
-                <table id="example" class="table  px-5">
+                <div class="table-responsive">
+                <table id="example" class="table">
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.Assesment No.')}}</th>
-                            <th>{{__('menu.Business ')}}</th>
-                           
+                            <th>{{__('menu.Business Name')}}</th>  
                         </tr>
                     </thead>
                     <thead id="search_inputs">
                         <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo."
-                                    placeholder="{{__('menu.Search Assesment No.')}}" /></th>
-                           
+                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                    placeholder="{{__('menu.Assesment No.')}}" /></th>
                         </tr>
                     </thead>
                     <tbody>
-
                         <tr>
-                            <td><a href="{{route('vat-payer-businessPayment-list')}}">Herrod Chandler</a></td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            
+                            <td>01</td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Maintaining a place for the sale of Sweet meats</a></td>    
                         </tr>
                         <tr>
-                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
-                            <td>Integration Specialist</td>
-                            <td>New York</td>
-                            <td>61</td>
-                            <td>2012/12/02</td>
-                            <td>$372,000</td>
+                            <td>02</td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Bulk Storage of Sweet meats, Biscuits, for wholesale distribution</a></td>   
                         </tr>
                         <tr>
-                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
-                            <td>Sales Assistant</td>
-                            <td>San Francisco</td>
-                            <td>59</td>
-                            <td>2012/08/06</td>
-                            <td>$137,500</td>
+                            <td>03</td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Sale of cooked /processed food</a></td>  
                         </tr>
                         <tr>
-                            <td>Rhona Davidson</td>
-                            <td>Integration Specialist</td>
-                            <td>Tokyo</td>
-                            <td>55</td>
-                            <td>2010/10/14</td>
-                            <td>$327,900</td>
+                            <td>04</td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Packing, storage or sale of Tea</a></td>            
                         </tr>
                         <tr>
-                            <td>Colleen Hurst</td>
-                            <td>Javascript Developer</td>
-                            <td>San Francisco</td>
-                            <td>39</td>
-                            <td>2009/09/15</td>
-                            <td>$205,500</td>
+                            <td>05</td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Storage and sale or distribution of milk powder or Biscuits</a></td>   
                         </tr>
-                        <tr>
-                            <td>Sonya Frost</td>
-                            <td>Software Engineer</td>
-                            <td>Edinburgh</td>
-                            <td>23</td>
-                            <td>2008/12/13</td>
-                            <td>$103,600</td>
-                        </tr>
-                        {{-- @foreach ($employees as $employee)
-                        <tr>
-                            <td>{{$employee->id}}</th>
-                        <td>{{$employee->name}}</td>
-                        <td>{{$employee->userName}}</td>
-                        <td>{{$employee->email}}</td>
-                        <td>{{$employee->admin->name}}</td>
-
-                        <td class="text-right">
-                            <div class="dropdown">
-                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item"
-                                        href="{{route('employee-profile',['id'=>$employee->id])}}">View profile</a>
-                                </div>
-
-                            </div>
-                        </td>
-
-
-                        </tr>
-                        @endforeach --}}
-
-
                     </tbody>
-                    <thead class="thead-light">
-                        <tr>
-                            <th>{{__('menu.User ID')}}</th>
-                            <th>{{__('menu.Employee Name')}}</th>
-                            <th>{{__('menu.Username')}}</th>
-                            <th>{{__('menu.Email')}}</th>
-                            <th>{{__('menu.Registerd By')}}</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-
                 </table>
             </div>
-            <div class="card-header bg-transparent">
-				<h4 class="mb-0"><span class="text-uppercase">Add new Business</span></h4>
-            </div>
-            <div class="form-group">
-						<input class=" btn btn-primary float-right" type="submit">
+                    <div class="card-header bg-transparent">
+                        <h4 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Business')}}</span></h4>
+                        <div class="card-body">
+
+				<form method="POST" action="{{route('register')}}">
+					@csrf
+					<div class="form-group row pt-3">
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('name') is-invalid  @enderror" type="text"
+								value="{{old('name')}}" id="name" name="name">
+							@error('name')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
 					</div>
+					<div class="form-group row">
+						<label for="example-search-input"
+							class="col-md-2 col-form-label form-control-label">{{__('menu.Business Name')}}</label>
+						<div class="col-md-10">
+							<input class="form-control @error('userName') is-invalid @enderror" type="text"
+								value="{{old('userName')}}" id="userName" name="userName">
+							@error('userName')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+                    </div>
+                    <div class="form-group row">
+						<label for="example-search-input"
+							class="col-md-2 col-form-label form-control-label">{{__('menu.Business')}}</label>
+						<div class="col-md-10">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{__('menu.Select Business')}}
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Maintaining a place for the sale of Sweet meats</a></li>
+                                <li><a href="#">Sale of cooked /processed food</a></li>
+                                <li><a href="#">Packing, storage or sale of Tea</a></li>
+                            </ul>
+                        </div>
+						</div>
+                    </div>
+                    <div class="form-group row">
+						<label for="example-search-input"
+							class="col-md-2 col-form-label form-control-label">{{__('menu.Business Address')}}</label>
+						<div class="col-md-10">
+							<input class="form-control @error('userName') is-invalid @enderror" type="text"
+								value="{{old('userName')}}" id="userName" name="userName">
+							@error('userName')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+                    </div>
 					
+					
+					
+					
+					<div class="form-group">
+						<input class=" btn btn-primary float-right" type="submit" value="submit">
+					</div>
+
 				</form>
-				
 			</div>
-
+                  
+                  
+  </div>
+                    
+				</form>	
+			</div>
 		</div>
+   </div>
 
-
-	</div>
-
+   
 </div>
-
-
 @endsection
+
+
+@push('script')
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+
+        var id = '#example';                      //data table id
+        var table = $(id).DataTable({
+          "pagingType": "full_numbers",
+          "sDom": '<'+
+          '<"row"'+
+          '<"col-sm-12 col-md-6 px-md-5"l>'+
+          '<"col-sm-12 col-md-6 px-md-5"f>'+
+          '>'+
+          '<"py-2"t>'+
+          '<"row"'+
+          '<"py-3 col-sm-12 col-md-6 px-md-5"i>'+
+          '<"py-3 col-sm-12 col-md-6 px-md-5 px-sm-3"p>>'+
+          '>'
+        });            //table object
+ 
+        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
+        
+        //individulat column search
+        $('#searchaAssesmentNo').on( 'keyup', function () { 
+            table
+                .columns( 0 )
+                .search( this.value )
+                .draw();
+            });
+            
+
+      } );
+
+</script>
+@endpush

@@ -55,10 +55,6 @@ Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-pro
  * Routes related to vat category (return view of the vat category)
 */
 
-// Route to latest payment
-Route::get('/latest', 'BusinessTaxController@latestPayment');
-
-
 try {
     foreach (Vat::all() as $vat) {      //routes for all vat categories, VatPagesController contains methodes which show the forms
         Route::get('/'.$vat->route, 'VatPagesController@'.$vat->route)->name($vat->route);
@@ -67,10 +63,14 @@ try {
     echo "dynamic routes will only work after migration \n";
 }
 
+// Route to latest payment
+Route::get('/latest', 'BusinessTaxController@latestPayment');
 
 
-Route::get('/latest', function () {
-    return view('admin.globalConfiguration');
-}); // display latset payment
+// Route::get('/latest', function () {
+//     return view('admin.globalConfiguration');
+// }); // display latset payment
+
+//Route to vat payer business list
 
 Route::get('/vat-payer-business-list','PayerController@businesslist')->name('vat-payer-business-list');
