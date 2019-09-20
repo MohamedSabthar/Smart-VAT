@@ -194,23 +194,23 @@
                     <tbody>
                         <tr>
                             <td>01</td>
-                            <td><a href="{{route('vat-payer-business-list')}}">Maintaining a place for the sale of Sweet meats</a></td>    
+                            <td><a href="{{route('payment-list')}}">Maintaining a place for the sale of Sweet meats</a></td>    
                         </tr>
                         <tr>
                             <td>02</td>
-                            <td><a href="{{route('vat-payer-business-list')}}">Bulk Storage of Sweet meats, Biscuits, for wholesale distribution</a></td>   
+                            <td><a href="{{route('payment-list')}}">Bulk Storage of Sweet meats, Biscuits, for wholesale distribution</a></td>   
                         </tr>
                         <tr>
                             <td>03</td>
-                            <td><a href="{{route('vat-payer-business-list')}}">Sale of cooked /processed food</a></td>  
+                            <td><a href="{{route('payment-list')}}">Sale of cooked /processed food</a></td>  
                         </tr>
                         <tr>
                             <td>04</td>
-                            <td><a href="{{route('vat-payer-business-list')}}">Packing, storage or sale of Tea</a></td>            
+                            <td><a href="{{route('payment-list')}}">Packing, storage or sale of Tea</a></td>            
                         </tr>
                         <tr>
                             <td>05</td>
-                            <td><a href="{{route('vat-payer-business-list')}}">Storage and sale or distribution of milk powder or Biscuits</a></td>   
+                            <td><a href="{{route('payment-list')}}">Storage and sale or distribution of milk powder or Biscuits</a></td>   
                         </tr>
                     </tbody>
                 </table>
