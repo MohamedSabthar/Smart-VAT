@@ -63,5 +63,9 @@ return [
     'Select Business' => 'Select Business',
     'Business Address' => 'Business Address',    
     
+    //VAT Payer
+    'user Id' => 'User ID',
+    'VAT Payer Name'=> 'VAT Payer Name',
+    'Address' =>'Address',
 
 ];

@@ -21,5 +21,11 @@ class PayerController extends Controller
     public function businesslist()
     {
         return view('VAT_Payer.payerBusinessList');
+
     }
+    public function businessPaymentList()
+    {
+        return view('VAT_Payer.payerPaymentList');
+    }
+
 }

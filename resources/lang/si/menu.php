@@ -61,6 +61,10 @@ return [
     'Select Business' => 'ව්‍යාපාරය තෝරන්න',
     'Business Address'=> 'ව්‍යාපාරික ලිපිනය',
     
+    //VAT PAyer
+    'User ID' => 'පරිශීලක අංකය',
+    'VAT Payer Name'=> 'වැට් බදු ගෙවන්නාගේ නම',
+    'Address' => 'ලිපිනය',
 
 
 ];
