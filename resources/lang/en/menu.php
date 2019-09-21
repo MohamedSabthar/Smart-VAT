@@ -56,4 +56,17 @@ return [
     'Paid' => 'Paid',
     'Option' => 'Option',
 
+    'VAT Payer Business List' => 'VAT Payer Business List',
+    'Business Name' => 'Business Name',
+    'Business' => 'Business',
+    'Add new Business' => 'Add new Business',
+    'Select Business' => 'Select Business',
+    'Business Address' => 'Business Address',    
+    
+    //VAT Payer
+    'user Id' => 'User ID',
+    'VAT Payer Name'=> 'VAT Payer Name',
+    'Address' =>'Address',
+    'Search Address' => 'Search Address',
+
 ];

@@ -114,7 +114,7 @@
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">VAT Payer Listing</h3>
+                        <h3 class="mb-0">VAT Payers</h3>
                     </div>
                     <div class="col-4 text-right">
                         <a class="btn btn-icon btn-success text-white" href="{{route('register-vat-payer')}}">
@@ -155,25 +155,28 @@
                     <tbody>
 
                         <tr>
-                            <td><a href="{{route('vat-payer-profile')}}">01</a></td>
-                            <td>Emma Wotsan</td>
-                            <td>Galle</td>
-                            <td>abcd@yopmail.com</td>
-                            <td>Empl02</td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>$162,700</td>
                         </tr>
                         <tr>
-                            <td><a href="{{route('vat-payer-profile')}}">02</a></td>
-                            <td>Jueliuos Ceisor</td>
-                            <td>Colombo</td>
-                            <td>abcd@yopmail.com</td>
-                            <td>Empl03</td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
+                            <td>Integration Specialist</td>
+                            <td>New York</td>
+                            <td>61</td>
+                            <td>2012/12/02</td>
+                            <td>$372,000</td>
                         </tr>
                         <tr>
-                            <td><a href="{{route('vat-payer-profile')}}">03</a></td>
-                            <td>Herrod Chandler</td>
-                            <td>Kandy</td>
-                            <td>abcd@yopmail.com</td>
-                            <td>Empl04</td>
+                            <td><a href="{{route('vat-payer-business-list')}}">Herrod Chandler</a></td>
+                            <td>Sales Assistant</td>
+                            <td>San Francisco</td>
+                            <td>59</td>
+                            <td>2012/08/06</td>
+                            <td>$137,500</td>
                         </tr>
                         <tr>
                             <td>04</td>
