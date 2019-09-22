@@ -69,15 +69,3 @@ try {
 } catch (Exception $e) {
     echo "dynamic routes will only work after migration \n";
 }
-
-
-
-// Route::get('/latest', function () {
-//     return view('admin.globalConfiguration');
-// }); // display latset payment
-
-//Route to vat payer business list
-
-Route::get('/vat-payer-business-list', 'PayerController@businesslist')->name('vat-payer-business-list');
-Route::get('/buisness/business-list/{id}', 'PayerController@businesslist')->name('business-tax-list');
-// }); // display latset payment
