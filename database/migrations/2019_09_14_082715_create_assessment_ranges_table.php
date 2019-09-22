@@ -16,7 +16,7 @@ class CreateAssessmentRangesTable extends Migration
         Schema::create('assessment_ranges', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->double('start_value');                                          //assessment range starts on this value
-            $table->double('end_value');
+            $table->double('end_value')->nullable();
             $table->bigInteger('vat_id')->unsigned();                                           //assessment range ends on this value
             $table->foreign('vat_id')->references('id')->on('vats');                    //admin id is FK of users table
             // $table->timestamps();                                                //assesment range created and updated time

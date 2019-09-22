@@ -167,7 +167,7 @@
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<a class="dropdown-item"
-											href="{{route('buisness-profile',['id'=>$payer->id])}}">View profile</a>
+											href="{{route('business-tax-list',['id'=>$payer->id])}}">View profile</a>
 									</div>
 
 								</div>
