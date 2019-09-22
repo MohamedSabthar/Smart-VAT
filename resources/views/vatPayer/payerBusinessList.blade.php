@@ -55,7 +55,7 @@
 
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
-    {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
+        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
         <div class="card-body">
             <div class="row">
                 <div class="col">
@@ -116,20 +116,25 @@
 			<div class="card-body pt-0 pt-md-4">
 				<div class="text-center pt-9">
 					
+                
+					<h3>Name :</h3>
 					<div class="h5 font-weight-300">
-						
+						<i class="far fa-user"></i> Address :
 					</div>
 
 					<div>
-						
+						<i class="far fa-id-card"></i> NIC : 
 					</div>
 
 					<hr class="my-4">
 
 					<div class="h5 mt-4">
-						
+						<i class="fas fa-at"></i> E-Mail : <a href="#"></a>
 					</div>
-					
+					<div>
+						<i class="fas fa-phone"></i> Phone No : 
+					</div>
+				
 				</div>
 			</div>
 		</div>
@@ -139,14 +144,14 @@
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-                    <h3 class="mb-0"><span class="text-uppercase">{{__('menu.VAT Payer Business List')}}</span></h3>
+                    <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Business')}}</span></h3>
 					</div>
 					
 				</div>
 			</div>
 			<div class="card-body">
 				<form method="POST" action="{{route('register')}}">
-					<h4 class="heading-small text-muted mb-4">{{__('menu.Add new Business')}}</h4>
+					
 					@csrf					
 					<div class="form-group row pt-3">
                     <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
@@ -214,13 +219,31 @@
 						<input class=" btn btn-primary float-right" value="Submit" type="submit">
 					</div>
 				</form>
-				<hr class="my-4 mt-7">		
-             </div>
-
-            <!-- business list -->
-                <div class="card-body">
+				<!-- <hr class="my-4 mt-7">		 -->
+             </div> 	    
+		</div>
+    </div>
+    
+                     
+</div>
+</div>
+ 
+<!-- business list -->
+<div class ="pt-5">
+<div class="row ">
+	
+	<div class="col-xl-8 order-xl-1">
+		<div class="card bg-secondary shadow">
+			<div class="card-header bg-white border-0">
+				<div class="row align-items-center">
+					<div class="col-8">
+                    <h3 class="mb-0"><span class="text-uppercase">{{__('menu.VAT Payer Business List')}}</span></h3>
+					</div>
+					
+				</div>
+			</div>
+			<div class="card-body">
                 <form id="assignVat" action="">
-                    <h4 class="heading-small text-muted mb-4"> Business List</h4>
                 <div class="table-responsive">
                 <table id="example" class="table">
                     <thead class="thead-light">
@@ -261,9 +284,16 @@
             </div>
           
             </form>    
-			  </div>	    
+			  </div>
+
+          
+           	    
 		</div>
-	</div>
+    </div>
+    
+  
+   
+                     
 </div>
 </div>
 
