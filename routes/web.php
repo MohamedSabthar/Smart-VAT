@@ -42,10 +42,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/language/{locale}', 'LanguageController@changeLanguage');  //language switcher
 Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
 
+/**
+ * Routes related to buisness tax
+ */
+Route::get('/buisness/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('buisness-profile');
+Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
+
+
+
+
+
 Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
-Route::get('/vat-payer-businessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 
 
 /**
@@ -60,8 +70,6 @@ try {
     echo "dynamic routes will only work after migration \n";
 }
 
-// Route to latest payment
-Route::get('/latest', 'BusinessTaxController@latestPayment')->name('latest');
 
 
 // Route::get('/latest', function () {
@@ -70,5 +78,5 @@ Route::get('/latest', 'BusinessTaxController@latestPayment')->name('latest');
 
 //Route to vat payer business list
 
-Route::get('/vat-payer-business-list','PayerController@businesslist')->name('vat-payer-business-list');
+Route::get('/vat-payer-business-list', 'PayerController@businesslist')->name('vat-payer-business-list');
 // }); // display latset payment
