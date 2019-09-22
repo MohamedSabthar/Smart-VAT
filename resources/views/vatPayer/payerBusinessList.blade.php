@@ -249,7 +249,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.Assesment No.')}}</th>
-                            <th>{{__('menu.Business Name')}}</th>  
+                            <th>{{__('menu.Business')}}</th>  
                         </tr>
                     </thead>
                     <thead id="search_inputs">

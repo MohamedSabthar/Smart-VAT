@@ -68,5 +68,11 @@ return [
     'Address' => 'ලිපිනය',
     'Search Address' => 'ලිපිනය සෙවීම',
 
+    'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',
+    'Name' => 'නම',    
+    'NIC' => 'ජාතික හැඳුනුම්පත් අංකය',
+    'Phone No' => 'දුරකතන අංකය',
+    'Assigned VAT categories' => 'පවරා ඇති වැට් බදු කාණ්ඩ',
+
 
 ];

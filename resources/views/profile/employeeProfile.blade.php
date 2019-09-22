@@ -88,11 +88,11 @@
 			</div>
 			<div class="card-body">
 				<form method="POST" action="{{route('update-employee',['id'=>$employee->id])}}">
-					<h6 class="heading-small text-muted mb-4"> Update mployee information</h6>
+					<h6 class="heading-small text-muted mb-4"> {{__('menu.Update employee information')}}</h6>
 					@csrf
 					@method('put')
 					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Name</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Name')}}</label>
 						<div class="col-md-10 ">
 							<input class="form-control @error('name') is-invalid  @enderror" type="text"
 								value="{{old('name',$employee->name)}}" id="name" name="name">
@@ -105,7 +105,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-search-input"
-							class="col-md-2 col-form-label form-control-label">Username</label>
+							class="col-md-2 col-form-label form-control-label">{{__('menu.Username')}}</label>
 						<div class="col-md-10">
 							<input class="form-control @error('userName') is-invalid @enderror" type="text"
 								value="{{old('userName',$employee->userName)}}" id="userName" name="userName">
@@ -118,7 +118,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-email-input"
-							class="col-md-2 col-form-label form-control-label">Email</label>
+							class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
 						<div class="col-md-10">
 							<input class="form-control @error('email') is-invalid @enderror" type="email"
 								value="{{old('email',$employee->email)}}" id="email" name="email">
@@ -130,7 +130,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
+						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
 						<div class="col-md-10">
 							<input class="form-control @error('nic') is-invalid @enderror" type="text"
 								value="{{old('nic',$employee->nic)}}" id="nic" name="nic">
@@ -142,8 +142,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">Phone
-							No</label>
+						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">{{__('menu.Phone No')}}</label>
 						<div class="col-md-10">
 							<input class="form-control @error('phone') is-invalid @enderror" type="text"
 								value="{{old('phone',$employee->phone)}}" id="phone" name="phone">
@@ -160,7 +159,7 @@
 				</form>
 				<hr class="my-4 mt-7">
 				<!-- Address -->
-				<h6 class="heading-small text-muted mb-4">Assigned VAT categories</h6>
+				<h6 class="heading-small text-muted mb-4">{{__('menu.Assigned VAT categories')}}</h6>
 				<form id="assignVat" action="{{route('assign-vat')}}" method="POST">
 					@csrf
 					<input name="id" id="id" value="{{$employee->id}}" hidden>

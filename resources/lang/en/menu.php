@@ -70,4 +70,11 @@ return [
     'Address' =>'Address',
     'Search Address' => 'Search Address',
 
+    //employee profile
+    'Update employee information' => 'Update employee information',
+    'Name' => 'Name',    
+    'NIC' => 'NIC',
+    'Phone No' => 'Phone No',
+    'Assigned VAT categories' => 'Assigned VAT categories',
+
 ];
