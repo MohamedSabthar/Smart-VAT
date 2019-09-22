@@ -198,19 +198,24 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Business')}}</label>
-                            <div class="col-md-10 ">
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button"
-                                        data-toggle="dropdown">{{__('menu.Select Business')}}
-                                        <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Maintaining a place for the sale of Sweet meats</a></li>
-                                        <li><a href="#">Sale of cooked /processed food</a></li>
-                                        <li><a href="#">Packing, storage or sale of Tea</a></li>
-                                    </ul>
-                                </div>
+                            <label for="business-type" class="col-md-2 col-form-label form-control-label ">Business
+                                type</label>
+                            <div class="col-md-10">
+                                <input list="type" class="form-control">
+                                <datalist id="type">
+                                    <option value="JAN">January</option>
+                                    <option value="FEB">February</option>
+                                    <option value="MAR">March</option>
+                                    <option value="APR">April</option>
+                                    <option value="MAY">May</option>
+                                    <option value="JUN">June</option>
+                                    <option value="JUL">July</option>
+                                    <option value="AUG">August</option>
+                                    <option value="SEP">September</option>
+                                    <option value="OCT">October</option>
+                                    <option value="NOV">November</option>
+                                    <option value="DEC">December</option>
+                                </datalist>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -306,6 +311,7 @@
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+
 <script>
     $(document).ready(function() {
 
@@ -347,7 +353,10 @@
                 $("#business-registration").slideToggle("slow");
             });
 
+            
       } );
+
+      
 
 </script>
 @endpush
