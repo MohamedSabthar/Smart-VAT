@@ -174,55 +174,29 @@
 						<h3 class="mb-0">{{__('menu.VAT Payer Business List')}}</h3>
 					</div>
 				</div>
-			</div>
-			<div class="card-body">
-				<form>
-                <div class="table-responsive">
-                <table id="example" class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>{{__('menu.Assesment No.')}}</th>
-                            <th>{{__('menu.Business Name')}}</th>  
-                        </tr>
-                    </thead>
-                    <thead id="search_inputs">
-                        <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
-                                    placeholder="{{__('menu.Assesment No.')}}" /></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td><a href="{{route('payment-list')}}">Maintaining a place for the sale of Sweet meats</a></td>    
-                        </tr>
-                        <tr>
-                            <td>02</td>
-                            <td><a href="{{route('payment-list')}}">Bulk Storage of Sweet meats, Biscuits, for wholesale distribution</a></td>   
-                        </tr>
-                        <tr>
-                            <td>03</td>
-                            <td><a href="{{route('payment-list')}}">Sale of cooked /processed food</a></td>  
-                        </tr>
-                        <tr>
-                            <td>04</td>
-                            <td><a href="{{route('payment-list')}}">Packing, storage or sale of Tea</a></td>            
-                        </tr>
-                        <tr>
-                            <td>05</td>
-                            <td><a href="{{route('payment-list')}}">Storage and sale or distribution of milk powder or Biscuits</a></td>   
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-                    <div class="card-header bg-transparent">
+          
+            
+                   <div class="card-header bg-transparent">
                         <h4 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Business')}}</span></h4>
-                        <div class="card-body">
-
+                  </div>
+            
+            <div class="card-body">
 				<form method="POST" action="{{route('register')}}">
 					@csrf
 					<div class="form-group row pt-3">
 						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('name') is-invalid  @enderror" type="text"
+								value="{{old('name')}}" id="name" name="name">
+							@error('name')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+                    </div>
+                    <div class="form-group row pt-3">
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
 						<div class="col-md-10 ">
 							<input class="form-control @error('name') is-invalid  @enderror" type="text"
 								value="{{old('name')}}" id="name" name="name">
@@ -274,21 +248,59 @@
 							@enderror
 						</div>
                     </div>
-					
-					
-					
-					
 					<div class="form-group">
 						<input class=" btn btn-primary float-right" type="submit" value="submit">
 					</div>
-
 				</form>
-			</div>
-                  
-                  
-  </div>
+			</div>      
+            
+
+            <!--Business list -->
+            
+
+			<div class="card-body">
+				
+                <div class="table-responsive">
+                <table id="example" class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>{{__('menu.Assesment No.')}}</th>
+                            <th>{{__('menu.Business Name')}}</th>  
+                        </tr>
+                    </thead>
+                    <thead id="search_inputs">
+                        <tr>
+                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                    placeholder="{{__('menu.Assesment No.')}}" /></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td><a href="{{route('payment-list')}}">Maintaining a place for the sale of Sweet meats</a></td>    
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td><a href="{{route('payment-list')}}">Bulk Storage of Sweet meats, Biscuits, for wholesale distribution</a></td>   
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td><a href="{{route('payment-list')}}">Sale of cooked /processed food</a></td>  
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td><a href="{{route('payment-list')}}">Packing, storage or sale of Tea</a></td>            
+                        </tr>
+                        <tr>
+                            <td>05</td>
+                            <td><a href="{{route('payment-list')}}">Storage and sale or distribution of milk powder or Biscuits</a></td>   
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          
                     
-				</form>	
+			  </div>	
 			</div>
 		</div>
    </div>

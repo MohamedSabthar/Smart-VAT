@@ -61,7 +61,7 @@ try {
 }
 
 // Route to latest payment
-Route::get('/latest', 'BusinessTaxController@latestPayment');
+Route::get('/latest', 'BusinessTaxController@latestPayment')->name('latest');
 
 
 // Route::get('/latest', function () {
