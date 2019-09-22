@@ -45,7 +45,7 @@ Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
 /**
  * Routes related to buisness tax
  */
-Route::get('/buisness/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('buisness-profile');
+Route::get('/buisness/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
 Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 
 
