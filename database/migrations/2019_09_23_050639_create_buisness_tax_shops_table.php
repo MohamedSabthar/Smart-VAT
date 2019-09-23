@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBuisnessTaxShopsTable extends Migration
+class CreateBusinessTaxShopsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBuisnessTaxShopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('buisness_tax_shops', function (Blueprint $table) {
+        Schema::create('business_tax_shops', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('shop_name');                                    // shop/buisness name
             $table->double('anual_worth');                                  // anual worth of the shop
@@ -25,9 +25,10 @@ class CreateBuisnessTaxShopsTable extends Migration
             $table->string('Address')->virtualAs('concat(door_no," ",street," ",city)');    //derived attribute Addrerss
             $table->bigInteger('payer_id')->unsigned();                         // buisness/Shop owner
             $table->bigInteger('employee_id')->unsigned();
+            $table->bigInteger('type')->unsigned();
             $table->foreign('payer_id')->references('id')->on('vat_payers');                    //payer id is FK of vat_payers table
             $table->foreign('employee_id')->references('id')->on('users');                    //employee id is FK of users table
-            
+            $table->foreign('type')->references('id')->on('business_types');
         
             $table->timestamps();
         });

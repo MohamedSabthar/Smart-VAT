@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Buisness_tax_shop extends Model
 {
-    protected $table = 'buisness_tax_shops';
+    protected $table = 'business_tax_shops';
 
     public function payer()
     {

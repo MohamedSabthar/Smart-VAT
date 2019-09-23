@@ -119,7 +119,7 @@
 						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Name</label>
 						<div class="col-md-10 ">
 							<input class="form-control @error('name') is-invalid  @enderror" type="text"
-								value="{{old('name')}}" id="name" name="name">
+								value="{{old('name')}}" id="name" name="name" autofocus>
 							@error('name')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
