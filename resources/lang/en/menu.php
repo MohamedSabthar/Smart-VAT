@@ -61,7 +61,8 @@ return [
     'Business' => 'Business',
     'Add new Business' => 'Add new Business',
     'Select Business' => 'Select Business',
-    'Business Address' => 'Business Address',    
+    'Business Address' => 'Business Address',  
+      
     
     //VAT Payer
     'VAT Payer Name'=> 'VAT Payer Name',

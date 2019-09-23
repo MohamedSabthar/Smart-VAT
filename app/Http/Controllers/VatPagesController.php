@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Buisness_tax_shop;
+use App\Business_tax_shop;
 
 class VatPagesController extends Controller
 {
@@ -18,7 +18,7 @@ class VatPagesController extends Controller
 
     public function buisness()
     {
-        $payers = Buisness_tax_shop::buisness_tax_payers(); //get all vat_payers who pay buisness tax
+        $payers = Business_tax_shop::buisness_tax_payers(); //get all vat_payers who pay buisness tax
         return view('vat.business.buisness', ['payers' => $payers]);
     }
 

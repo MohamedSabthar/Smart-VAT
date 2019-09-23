@@ -1,16 +1,13 @@
 @extends('layouts.app')
 
-@section('title','Payer Business List')
+@section('title','Dashboard')
 
 @section('sidebar')
-@if (Auth::user()->role=='admin')
 @include('admin.include.sidebar')
-@else
-@include('employee.include.sidebar')
-@endif
 @endsection
 
 @section('header')
+
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
@@ -58,7 +55,7 @@
 
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
-    {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
+        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
         <div class="card-body">
             <div class="row">
                 <div class="col">
@@ -100,11 +97,10 @@
         </div>
     </div>
 </div>
-
-
 @endsection
 
 @section('pageContent')
+<div class = "pt-5">
 <div class="row ">
 	<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
 		<div class="card card-profile shadow">
@@ -112,71 +108,142 @@
 				<div class="col-lg-3 order-lg-2">
 					<div class="card-profile-image">
 						<a href="#">
-							<img src="../assets/img/theme/girl.png" class="rounded-circle">
+							<img src="{{asset('assets/img/theme/girl.png')}}" class="rounded-circle">
 						</a>
 					</div>
 				</div>
 			</div>
-			<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-				<div class="d-flex justify-content-between">
-					<a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-					<a href="#" class="btn btn-sm btn-default float-right">Message</a>
-				</div>
-			</div>
 			<div class="card-body pt-0 pt-md-4">
-				<div class="row">
-					<div class="col">
-						<div class="card-profile-stats d-flex justify-content-center mt-md-5">
-							<div>
-								<span class="heading">22</span>
-								<span class="description">Friends</span>
-							</div>
-							<div>
-								<span class="heading">10</span>
-								<span class="description">Photos</span>
-							</div>
-							<div>
-								<span class="heading">89</span>
-								<span class="description">Comments</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="text-center">
-					<h3>
-						Jessica Jones<span class="font-weight-light">, 27</span>
-					</h3>
+				<div class="text-center pt-9">
+					
+                
+					<h3>Name :</h3>
 					<div class="h5 font-weight-300">
-						<i class="ni location_pin mr-2"></i>Bucharest, Romania
+						<i class="far fa-user"></i> Address :
 					</div>
+
+					<div>
+						<i class="far fa-id-card"></i> NIC : 
+					</div>
+
+					<hr class="my-4">
+
 					<div class="h5 mt-4">
-						<i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+						<i class="fas fa-at"></i> E-Mail : <a href="#"></a>
 					</div>
 					<div>
-						<i class="ni education_hat mr-2"></i>University of Computer Science
+						<i class="fas fa-phone"></i> Phone No : 
 					</div>
-					<hr class="my-4">
-					<p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and
-						records all
-						of his own music.</p>
-					<a href="#">Show more</a>
+				
 				</div>
 			</div>
 		</div>
-    </div>
-
-    
+	</div>
 	<div class="col-xl-8 order-xl-1">
 		<div class="card bg-secondary shadow">
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-						<h3 class="mb-0">{{__('menu.VAT Payer Business List')}}</h3>
+                    <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Business')}}</span></h3>
 					</div>
+					
 				</div>
 			</div>
 			<div class="card-body">
-				<form>
+				<form method="POST" action="{{route('register')}}">
+					
+					@csrf					
+					<div class="form-group row pt-3">
+                    <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('name') is-invalid  @enderror" type="text"
+								value="{{old('name')}}" id="name" name="name">
+							@error('name')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('name') is-invalid  @enderror" type="text"
+								value="{{old('name')}}" id="name" name="name">
+							@error('name')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('name') is-invalid  @enderror" type="text"
+								value="{{old('name')}}" id="name" name="name">
+							@error('name')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Business')}}</label>
+						<div class="col-md-10 ">	
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{__('menu.Select Business')}}
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Maintaining a place for the sale of Sweet meats</a></li>
+                                <li><a href="#">Sale of cooked /processed food</a></li>
+                                <li><a href="#">Packing, storage or sale of Tea</a></li>
+                            </ul>
+                        </div>
+						</div>
+					</div>
+					<div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Address')}}</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('name') is-invalid  @enderror" type="text"
+								value="{{old('name')}}" id="name" name="name">
+							@error('name')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group">
+						<input class=" btn btn-primary float-right" value="Submit" type="submit">
+					</div>
+				</form>
+				<!-- <hr class="my-4 mt-7">		 -->
+             </div> 	    
+		</div>
+    </div>
+    
+                     
+</div>
+</div>
+ 
+<!-- business list -->
+<div class ="pt-5">
+<div class="row ">
+	
+	<div class="col-xl-8 order-xl-1">
+		<div class="card bg-secondary shadow">
+			<div class="card-header bg-white border-0">
+				<div class="row align-items-center">
+					<div class="col-8">
+                    <h3 class="mb-0"><span class="text-uppercase">{{__('menu.VAT Payer Business List')}}</span></h3>
+					</div>
+					
+				</div>
+			</div>
+			<div class="card-body">
+                <form id="assignVat" action="">
                 <div class="table-responsive">
                 <table id="example" class="table">
                     <thead class="thead-light">
@@ -215,122 +282,19 @@
                     </tbody>
                 </table>
             </div>
-                    <div class="card-header bg-transparent">
-                        <h4 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Business')}}</span></h4>
-                        <div class="card-body">
+          
+            </form>    
+			  </div>
 
-				<form method="POST" action="{{route('register')}}">
-					@csrf
-					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('name') is-invalid  @enderror" type="text"
-								value="{{old('name')}}" id="name" name="name">
-							@error('name')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-search-input"
-							class="col-md-2 col-form-label form-control-label">{{__('menu.Business Name')}}</label>
-						<div class="col-md-10">
-							<input class="form-control @error('userName') is-invalid @enderror" type="text"
-								value="{{old('userName')}}" id="userName" name="userName">
-							@error('userName')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-                    </div>
-                    <div class="form-group row">
-						<label for="example-search-input"
-							class="col-md-2 col-form-label form-control-label">{{__('menu.Business')}}</label>
-						<div class="col-md-10">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{__('menu.Select Business')}}
-                            <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Maintaining a place for the sale of Sweet meats</a></li>
-                                <li><a href="#">Sale of cooked /processed food</a></li>
-                                <li><a href="#">Packing, storage or sale of Tea</a></li>
-                            </ul>
-                        </div>
-						</div>
-                    </div>
-                    <div class="form-group row">
-						<label for="example-search-input"
-							class="col-md-2 col-form-label form-control-label">{{__('menu.Business Address')}}</label>
-						<div class="col-md-10">
-							<input class="form-control @error('userName') is-invalid @enderror" type="text"
-								value="{{old('userName')}}" id="userName" name="userName">
-							@error('userName')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-                    </div>
-					
-					
-					
-					
-					<div class="form-group">
-						<input class=" btn btn-primary float-right" type="submit" value="submit">
-					</div>
-
-				</form>
-			</div>
-                  
-                  
-  </div>
-                    
-				</form>	
-			</div>
+          
+           	    
 		</div>
-   </div>
-
+    </div>
+    
+  
    
+                     
 </div>
+</div>
+
 @endsection
-
-
-@push('script')
-<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-<script>
-    $(document).ready(function() {
-
-        var id = '#example';                      //data table id
-        var table = $(id).DataTable({
-          "pagingType": "full_numbers",
-          "sDom": '<'+
-          '<"row"'+
-          '<"col-sm-12 col-md-6 px-md-5"l>'+
-          '<"col-sm-12 col-md-6 px-md-5"f>'+
-          '>'+
-          '<"py-2"t>'+
-          '<"row"'+
-          '<"py-3 col-sm-12 col-md-6 px-md-5"i>'+
-          '<"py-3 col-sm-12 col-md-6 px-md-5 px-sm-3"p>>'+
-          '>'
-        });            //table object
- 
-        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
-        
-        //individulat column search
-        $('#searchaAssesmentNo').on( 'keyup', function () { 
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-            });
-            
-
-      } );
-
-</script>
-@endpush
