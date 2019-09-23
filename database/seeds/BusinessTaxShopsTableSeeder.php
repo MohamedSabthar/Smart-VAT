@@ -19,6 +19,7 @@ class BusinessTaxShopsTableSeeder extends Seeder
             'door_no' => '89',
             'street' => 'olcot street',
             'city' => 'gale 08',
+            'type' => 21,
             'payer_id'   => 1,
            'employee_id' => 1,
            
@@ -32,6 +33,7 @@ class BusinessTaxShopsTableSeeder extends Seeder
              'door_no' => '9',
              'street' => 'dickson street',
              'city' => 'gale 07',
+             'type' => 80,
              'payer_id'   => 1,
             'employee_id' => 2,
             
@@ -45,6 +47,7 @@ class BusinessTaxShopsTableSeeder extends Seeder
              'door_no' => '9',
              'street' => 'dickson street',
              'city' => 'gale 07',
+             'type' => 100,
              'payer_id'   => 1,
             'employee_id' => 2,
             
@@ -58,6 +61,7 @@ class BusinessTaxShopsTableSeeder extends Seeder
              'door_no' => '99',
              'street' => 'upperdickson street',
              'city' => 'gale 02',
+             'type' => 30,
              'payer_id'   => 2,
             'employee_id' => 1,
             

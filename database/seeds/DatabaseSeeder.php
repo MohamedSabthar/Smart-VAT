@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(VatsTableSeeder::class);
         $this->call(VatPayersTableSeeder::class);
-        $this->call(BusinessTaxShopsTableSeeder::class);
+      
         $this->call(AssessmentRangesTableSeeder::class);
+        $this->call(BusinessTypesTableSeeder::class);
+        $this->call(BusinessTaxShopsTableSeeder::class);
     }
 }
