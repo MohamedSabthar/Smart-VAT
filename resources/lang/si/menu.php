@@ -62,10 +62,16 @@ return [
     'Business Address'=> 'ව්‍යාපාරික ලිපිනය',
     
     //VAT PAyer
-    'User ID' => 'පරිශීලක අංකය',
     'VAT Payer Name'=> 'වැට් බදු ගෙවන්නාගේ නම',
     'Address' => 'ලිපිනය',
     'Search Address' => 'ලිපිනය සෙවීම',
 
-
+    'First Name' => 'මුල් නම',
+    'Middle Name'=> 'මැද නම',
+    'Last Name'  => 'අවසන් නම',
+    'Street'  => 'වීදිය',
+    'City'  =>  'නගරය',
+    'NIC' =>    'ජාතික හැඳුනුම්පත් අංකය',
+    'Phone No' => 'දුරකතන අංකය',
+    'Business Categories' => 'ව්‍යාපාර කාණ්ඩ'
 ];
