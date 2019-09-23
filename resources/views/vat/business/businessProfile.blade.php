@@ -2,6 +2,10 @@
 
 @section('title','Dashboard')
 
+@push('css')
+<link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
+@endpush
+
 @section('sidebar')
 @include('admin.include.sidebar')
 @endsection
@@ -201,21 +205,16 @@
                             <label for="business-type" class="col-md-2 col-form-label form-control-label ">Business
                                 type</label>
                             <div class="col-md-10">
-                                <input list="type" class="form-control">
-                                <datalist id="type">
-                                    <option value="JAN">January</option>
-                                    <option value="FEB">February</option>
-                                    <option value="MAR">March</option>
-                                    <option value="APR">April</option>
-                                    <option value="MAY">May</option>
-                                    <option value="JUN">June</option>
-                                    <option value="JUL">July</option>
-                                    <option value="AUG">August</option>
-                                    <option value="SEP">September</option>
-                                    <option value="OCT">October</option>
-                                    <option value="NOV">November</option>
-                                    <option value="DEC">December</option>
-                                </datalist>
+
+                                <select id="type" class="form-control">
+
+                                    {{-- only for testing need to implement Ajax searchBuisness --}}
+                                    @foreach ($businessTypes as $type)
+                                    <option value="{{$type->id}}">{{$type->description}}</option>
+                                    @endforeach
+
+
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -311,6 +310,7 @@
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('js/select2.js')}}"></script>
 
 <script>
     $(document).ready(function() {
@@ -353,6 +353,10 @@
                 $("#business-registration").slideToggle("slow");
             });
 
+
+            $('#type').select2({
+    placeholder: 'Select a buisness type'
+});
             
       } );
 

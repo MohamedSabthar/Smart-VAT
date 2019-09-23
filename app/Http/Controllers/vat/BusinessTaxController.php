@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Vat_payer;
+use App\Business_type;
 
 class BusinessTaxController extends Controller
 {
@@ -21,6 +22,8 @@ class BusinessTaxController extends Controller
     public function buisnessProfile($id)
     {
         $vatPayer = Vat_payer::find($id);
-        return view('vat.business.businessProfile', ['vatPayer'=>$vatPayer]);
+        $businessTypes = Business_type::all();
+
+        return view('vat.business.businessProfile', ['vatPayer'=>$vatPayer,'businessTypes'=>$businessTypes]);
     }
 }

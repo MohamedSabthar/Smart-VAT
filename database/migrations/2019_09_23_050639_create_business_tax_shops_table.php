@@ -13,7 +13,7 @@ class CreateBusinessTaxShopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('buisness_tax_shops', function (Blueprint $table) {
+        Schema::create('business_tax_shops', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('shop_name');                                    // shop/buisness name
             $table->double('anual_worth');                                  // anual worth of the shop

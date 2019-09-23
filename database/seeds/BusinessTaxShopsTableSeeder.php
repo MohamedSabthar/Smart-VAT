@@ -11,7 +11,7 @@ class BusinessTaxShopsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('buisness_tax_shops')->insert([
+        DB::table('business_tax_shops')->insert([
            'shop_name' => 'punsaraX',
            'anual_worth' => '1000000',
             'phone' => '0776543678',
@@ -25,7 +25,7 @@ class BusinessTaxShopsTableSeeder extends Seeder
            
          ]);
 
-        DB::table('buisness_tax_shops')->insert([
+        DB::table('business_tax_shops')->insert([
             'shop_name' => 'punsaray',
             'anual_worth' => '1500000',
              'phone' => '0776534678',
@@ -39,7 +39,7 @@ class BusinessTaxShopsTableSeeder extends Seeder
             
           ]);
 
-        DB::table('buisness_tax_shops')->insert([
+        DB::table('business_tax_shops')->insert([
             'shop_name' => 'punsaray',
             'anual_worth' => '1500000',
              'phone' => '0776534678',
@@ -53,7 +53,7 @@ class BusinessTaxShopsTableSeeder extends Seeder
             
           ]);
 
-        DB::table('buisness_tax_shops')->insert([
+        DB::table('business_tax_shops')->insert([
             'shop_name' => 'tharuX',
             'anual_worth' => '1600000',
              'phone' => '0776984678',
