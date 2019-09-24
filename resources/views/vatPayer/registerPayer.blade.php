@@ -208,11 +208,24 @@
 					</div>
 					<div class="form-group row pt-3">
 						<label for="example-text-input"
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('street') is-invalid  @enderror" type="text"
+								value="{{old('doorNo')}}" id="doorNo" name="doorNo">
+							@error('doorNo')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group row pt-3">
+						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('address') is-invalid  @enderror" type="text"
-								value="{{old('adress')}}" id="address" name="address">
-							@error('address')
+							<input class="form-control @error('street') is-invalid  @enderror" type="text"
+								value="{{old('street')}}" id="street" name="street">
+							@error('street')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -232,18 +245,20 @@
 							@enderror
 						</div>
 					</div>
-					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
-								{{__('menu.Business Categories')}}</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('Reg') is-invalid  @enderror" type="text"
-								value="{{old('Reg')}}" id="Reg" name="Reg">
-							@error('Reg')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
+					<div class="form-group row">
+						<label for="business-type" class="col-md-2 col-form-label form-control-label ">Business
+							type</label>
+						<div class="col-md-10">
+
+							<select id="type" class="form-control">
+
+								{{-- only for testing need to implement Ajax searchBuisness --}}
+								@foreach ($businessTypes as $type)
+								<option value="{{$type->id}}">{{$type->description}}</option>
+								@endforeach
+
+
+							</select>
 					</div>
 
 					<div class="form-group">

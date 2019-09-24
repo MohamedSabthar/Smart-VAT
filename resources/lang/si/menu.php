@@ -74,5 +74,6 @@ return [
     'City'  =>  'නගරය',
     'NIC' =>    'ජාතික හැඳුනුම්පත් අංකය',
     'Phone No' => 'දුරකතන අංකය',
-    'Business Categories' => 'ව්‍යාපාර කාණ්ඩ'
+    'Business Categories' => 'ව්‍යාපාර කාණ්ඩ',
+    'Door No.' => 'දොර අංකය'
 ];

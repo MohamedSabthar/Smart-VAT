@@ -76,6 +76,7 @@ return [
     'City'  =>  'City',
     'NIC' => 'NIC',
     'Phone No' => 'Phone No',
-    'Business Categories' => 'Business Categories'
+    'Business Categories' => 'Business Categories',
+    'Door No.'  => 'Door No.'
 
 ];
