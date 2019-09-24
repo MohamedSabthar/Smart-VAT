@@ -202,8 +202,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="business-type" class="col-md-2 col-form-label form-control-label ">Business
-                                type</label>
+                            <label for="business-type" class="col-md-2 col-form-label form-control-label ">{{__('menu.Business type')}}</label>
                             <div class="col-md-10">
 
                                 <select id="type" class="form-control">

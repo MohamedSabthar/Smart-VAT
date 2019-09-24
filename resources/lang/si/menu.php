@@ -56,7 +56,7 @@ return [
 
     'VAT Payer Business List' => 'බදු ගෙවන්නගේ ව්‍යාපාර ලැයිස්තුව ',
     'Business Name' => '‍ව්‍යාපාර නාමය',
-    'Business' => 'ව්‍යාපාරය',
+    'Business type' => 'ව්‍යාපාර වර්ගය',
     'Add new Business' => 'නව ව්‍යාපාරයක් එකතු කිරීම ',
     'Select Business' => 'ව්‍යාපාරය තෝරන්න',
     'Business Address'=> 'ව්‍යාපාරික ලිපිනය',
@@ -67,12 +67,18 @@ return [
     'VAT Payer Name'=> 'වැට් බදු ගෙවන්නාගේ නම',
     'Address' => 'ලිපිනය',
     'Search Address' => 'ලිපිනය සෙවීම',
+    
 
+    //employee profile
     'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',
     'Name' => 'නම',    
     'NIC' => 'ජාතික හැඳුනුම්පත් අංකය',
     'Phone No' => 'දුරකතන අංකය',
     'Assigned VAT categories' => 'පවරා ඇති වැට් බදු කාණ්ඩ',
+    'E-Mail' => 'විද්යුත් තැපෑල',
+    'Update' => 'යාවත්කාලීන කිරීම',
+    'Assign' => 'පවරන්න',
+    
 
 
 ];

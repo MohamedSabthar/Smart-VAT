@@ -58,7 +58,7 @@ return [
 
     'VAT Payer Business List' => 'VAT Payer Business List',
     'Business Name' => 'Business Name',
-    'Business' => 'Business',
+    'Business type' => 'Business',
     'Add new Business' => 'Add new Business',
     'Select Business' => 'Select Business',
     'Business Address' => 'Business Address',  
@@ -76,5 +76,8 @@ return [
     'NIC' => 'NIC',
     'Phone No' => 'Phone No',
     'Assigned VAT categories' => 'Assigned VAT categories',
+    'E-Mail' => 'E-Mail',
+    'Update' => 'Update',
+    'Assign' => 'Assign',
 
 ];

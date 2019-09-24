@@ -117,22 +117,22 @@
 				<div class="text-center pt-9">
 					
                 
-					<h3>Name :</h3>
+					<h3>{{__('menu.Name')}} :</h3>
 					<div class="h5 font-weight-300">
-						<i class="far fa-user"></i> Address :
+						<i class="far fa-user"></i> {{__('menu.Address')}} :
 					</div>
 
 					<div>
-						<i class="far fa-id-card"></i> NIC : 
+						<i class="far fa-id-card"></i> {{__('menu.NIC')}} : 
 					</div>
 
 					<hr class="my-4">
 
 					<div class="h5 mt-4">
-						<i class="fas fa-at"></i> E-Mail : <a href="#"></a>
+						<i class="fas fa-at"></i> {{__('menu.E-Mail')}} : <a href="#"></a>
 					</div>
 					<div>
-						<i class="fas fa-phone"></i> Phone No : 
+						<i class="fas fa-phone"></i> {{__('menu.Phone No')}} : 
 					</div>
 				
 				</div>
