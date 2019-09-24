@@ -7,7 +7,8 @@
 @endpush
 
 @section('sidebar')
-@include('admin.include.sidebar')
+@includeWhen(Auth::user()->role=='admin','admin.include.sidebar')
+@includeWhen(Auth::user()->role=='employee','employee.include.sidebar')
 @endsection
 
 @section('header')
@@ -353,9 +354,7 @@
             });
 
 
-            $('#type').select2({
-    placeholder: 'Select a buisness type'
-});
+            $('#type').select2();
             
       } );
 

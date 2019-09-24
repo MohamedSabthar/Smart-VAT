@@ -111,7 +111,7 @@
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
                     <div class="col-6 card-header">
-                        <h3 class="mb-0 d-inline pr-2">Employees</h3> <span>register under Smart VAT </span>
+                        <h3 class="mb-0 d-inline pr-2">Employees</h3> <span>registered under Smart VAT </span>
                     </div>
                     <div class="col-6 text-right">
                         <button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
