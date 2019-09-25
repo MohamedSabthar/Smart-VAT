@@ -70,4 +70,10 @@ return [
     'Address' =>'Address',
     'Search Address' => 'Search Address',
 
+    //update Employee
+    'Update Profile'=>'Update Profile',
+    'Name'=>'Name',
+    'Address'=>'Address',
+    'Phone No'=>'Phone No'
+
 ];

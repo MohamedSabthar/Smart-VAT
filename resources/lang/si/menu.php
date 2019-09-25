@@ -68,5 +68,13 @@ return [
     'Address' => 'ලිපිනය',
     'Search Address' => 'ලිපිනය සෙවීම',
 
+    //employee Update
+    'Name'=>'නම',
+    'Address'=>'ලිපිනය',
+    'NIC'=>'ජාතික හැන්දුමුපත් අංකය',
+    'Phone No'=>'දුරකථන අංකය',
+    'Update Profile'=>'යාවත්කාලීන කිරීම'
+
+
 
 ];
