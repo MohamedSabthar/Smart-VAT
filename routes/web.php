@@ -50,7 +50,7 @@ Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest')
 
 
 
-
+// Routes related to VAT Payer
 
 Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');

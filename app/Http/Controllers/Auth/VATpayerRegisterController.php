@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -12,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Auth;
 
-class RegisterController extends Controller
+class VATpayerRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -35,18 +34,6 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth'=>'verified']);  //checking for email verification
-        $this->middleware('admin');               //allow if user is admin
-    }
-
-
-    /**
      * overriding registerfuntion
      *
      *
@@ -63,8 +50,8 @@ class RegisterController extends Controller
 
         //$this->guard()->login($user);  //autologin after registration dissabled
 
-        // redirecting to employee profile page with success notification
-        return redirect()->route('employee-profile', ['id'=>$user->id])->with('status', ' Employee registerd successfully');
+        // redirecting to BUsiness VAT payers' page with success notification
+        return redirect()->back()->with('status', ' New Payer registerd successfully');
     }
 
     /**
@@ -72,16 +59,19 @@ class RegisterController extends Controller
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
-     */
+     */ 
     protected function validator(array $data)
     {
         return Validator::make(
             $data,
             [
-            'name' => ['required','alpha', 'string', 'max:255'],
-            'userName' => ['required', 'string', 'max:255', 'unique:users'],   //   username should be unique
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/','unique:users'],     //   validation for nic
+            'f_name' => ['required','alpha', 'string', 'max:255'],
+            'L_name' => ['required','alpha', 'string', 'max:255'],
+            'doorNo' =>['required','alpha','varchar','max:100'],                              
+            'street'=>['required','alpha', 'string', 'max:255'],
+            'city'  =>['required','alpha', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:vat_payers'],        //   Validate to be a unique email
+            'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/','unique:vat_payers'],     //   validation for nic
             'phone' => ['required','regex:/[+94|0][0-9]{9}$/'],
         ]
         );
@@ -96,8 +86,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'userName'=> $data['userName'],
+            'f_name' => $data['f_name'],
+            'L_name' => $data['L_name'],
+            'doorNo' =>$data['doorNo'],
+            'street' => $data['street'],
+            'city'  => $data['city'],
             'email' => $data['email'],
             'nic'=> $data['nic'],
             'phone' => $data['phone'],
@@ -107,4 +100,3 @@ class RegisterController extends Controller
         ]);
     }
 }
-
