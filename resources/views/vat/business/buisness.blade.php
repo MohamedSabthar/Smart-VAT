@@ -113,12 +113,10 @@
 						<h3 class="mb-0">Business Tax Payers</h3>
 					</div>
 					<div class="col-4 text-right">
-						<button class="btn btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
-						 data-placement="right" title="Click here to register new payer to business VAT category" 
-					onclick="javascript:window.open('{{route('register-vat-payer')}}','_self')">
+						<a class="btn btn-icon btn-success text-white" href="{{route('register-vat-payer')}}">
 							<span><i class="fas fa-user-plus"></i></span>
 							<span class="btn-inner--text">Register</span>
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>

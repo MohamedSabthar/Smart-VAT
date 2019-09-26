@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Vat_payer;
-use App\Business_type;
 
 class PayerController extends Controller
 {
@@ -15,8 +13,7 @@ class PayerController extends Controller
 
     public function register()
     {
-        $businessTypes = Business_type::all();
-        return view('vatPayer.registerPayer', ['businessTypes'=>$businessTypes]);
+        return view('vatPayer.registerPayer');
     }
 
     public function profile()
