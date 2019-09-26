@@ -65,18 +65,9 @@ return [
       
     
     //VAT Payer
+    'user Id' => 'User ID',
     'VAT Payer Name'=> 'VAT Payer Name',
     'Address' =>'Address',
     'Search Address' => 'Search Address',
-
-    'First Name' => 'First Name',
-    'Middle Name'=> 'Middle Name',
-    'Last Name'  => 'Last Name',
-    'Street'  => 'Street',
-    'City'  =>  'City',
-    'NIC' => 'NIC',
-    'Phone No' => 'Phone No',
-    'Business Categories' => 'Business Categories',
-    'Door No.'  => 'Door No.'
 
 ];
