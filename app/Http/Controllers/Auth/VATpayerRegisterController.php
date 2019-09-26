@@ -70,8 +70,8 @@ class VATpayerRegisterController extends Controller
             'doorNo' =>['required','alpha','varchar','max:100'],                              
             'street'=>['required','alpha', 'string', 'max:255'],
             'city'  =>['required','alpha', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],          //   Validate to be a unique email
-            'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/','unique:users'],     //   validation for nic
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:vat_payers'],        //   Validate to be a unique email
+            'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/','unique:vat_payers'],     //   validation for nic
             'phone' => ['required','regex:/[+94|0][0-9]{9}$/'],
         ]
         );
