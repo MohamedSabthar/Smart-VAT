@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Vat_payer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Requests\VATpayerRegisterRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
@@ -18,7 +18,7 @@ class VATpayerRegisterController extends Controller
     | Register Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users as well as their
+    | This controller handles the registration of new VAT Payers per business as well as their
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
@@ -27,7 +27,7 @@ class VATpayerRegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
+     * Where to redirect user after registration.
      *
      * @var string
      */
@@ -46,7 +46,7 @@ class VATpayerRegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+        event(new Registered($vat_payer = $this->create($request->all())));
 
         //$this->guard()->login($user);  //autologin after registration dissabled
 
@@ -61,7 +61,7 @@ class VATpayerRegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */ 
     protected function validator(array $data)
-    {
+    { 
         return Validator::make(
             $data,
             [
@@ -78,7 +78,7 @@ class VATpayerRegisterController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Create a new VAT Payer instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User

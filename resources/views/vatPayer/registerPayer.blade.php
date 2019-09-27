@@ -133,9 +133,9 @@
 						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">First
 							Name</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('f_name') is-invalid  @enderror" type="text"
-								value="{{old('f_name')}}" id="f_name" name="f_name">
-							@error('name')
+							<input class="form-control @error('first_name') is-invalid  @enderror" type="text"
+								value="{{old('first_name')}}" id="first_name" name="first_name">
+							@error('first_name')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -146,9 +146,9 @@
 						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">Last
 							Name</label>
 						<div class="col-md-10">
-							<input class="form-control @error('L_name') is-invalid @enderror" type="text"
-								value="{{old('L_name')}}" id="L_name" name="L_name">
-							@error('L_name')
+							<input class="form-control @error('Last_name') is-invalid @enderror" type="text"
+								value="{{old('Last_name')}}" id="Last_name" name="Last_name">
+							@error('Last_name')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>

@@ -24,8 +24,8 @@ class VATPayerRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'f_name' => ['required','alpha', 'string', 'max:255', Rule::unique('vat_payers')->ignore($this->id)],
-            'L_name' => ['required','alpha', 'string', 'max:255',Rule::unique('vat_payers')->ignore($this->id)],
+            'first_name' => ['required','alpha', 'string', 'max:255', Rule::unique('vat_payers')->ignore($this->id)],
+            'Last_name' => ['required','alpha', 'string', 'max:255',Rule::unique('vat_payers')->ignore($this->id)],
             'doorNo' =>['required','alpha','varchar','max:100'],                              
             'street'=>['required','alpha', 'string', 'max:255'],
             'city'  =>['required','alpha', 'string', 'max:255'],
