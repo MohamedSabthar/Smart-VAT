@@ -78,6 +78,10 @@ return [
     'NIC' => 'NIC',
     'Phone No' => 'Phone No',
     'Business Categories' => 'Business Categories',
-    'Door No.'  => 'Door No.'
+    'Door No.'  => 'Door No.',
+
+    'Arrears' => 'Arrears',
+    'Payment Date' => 'Payment Date',
+    'Annual Amount' =>  'Annual Amount'
 
 ];

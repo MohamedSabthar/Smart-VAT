@@ -86,8 +86,8 @@ class VATpayerRegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'first_name' => $data['f_name'],
-            'Last_name' => $data['L_name'],
+            'first_name' => $data['first_name'],
+            'Last_name' => $data['Last_name'],
             'doorNo' =>$data['doorNo'],
             'street' => $data['street'],
             'city'  => $data['city'],

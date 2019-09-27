@@ -76,7 +76,10 @@ return [
     'NIC' =>    'ජාතික හැඳුනුම්පත් අංකය',
     'Phone No' => 'දුරකතන අංකය',
     'Business Categories' => 'ව්‍යාපාර කාණ්ඩ',
-    'Door No.' => 'දොර අංකය'
+    'Door No.' => 'දොර අංකය',
 
+    'Arrears' => 'හිඟ මුදල',
+    'Payment Date' => 'ගෙවීම් දිනය',
+    'Annual Amount' =>  'වාර්ෂික මුදල'
 
 ];

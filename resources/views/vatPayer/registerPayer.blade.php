@@ -1,10 +1,12 @@
 @extends('layouts.app')
+
 @push('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
 @endpush
 
 @section('title','Register')
+
 @section('sidebar')
 @if (Auth::user()->role=='admin')
 @include('admin.include.sidebar')
@@ -12,6 +14,7 @@
 @include('employee.include.sidebar')
 @endif
 @endsection
+
 @section('header')
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
@@ -99,8 +102,8 @@
 	</div>
 </div>
 @endsection
-
 @section('pageContent')
+
 <div class="row">
 	<div class="col">
 
@@ -108,174 +111,167 @@
 			<div class="card-header bg-transparent">
 				<h3 class="mb-0"><span class="text-uppercase">Register Payer</span></h3>
 			</div>
-
-
+			
 			<div class="card-body ">
+			   
+					<form method="POST" action="{{route('vat-payer-registration')}}">
+							@csrf
+							<div class="form-group row pt-3">
+								<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
+									{{__('menu.First Name')}}</label>
+								<div class="col-md-10 ">
+									<input class="form-control @error('first_name') is-invalid  @enderror" type="text"
+										value="{{old('first_name')}}" id="first_name" name="first_name">
+									@error('name')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+									@enderror
+								</div>
+							</div>
+
+							<div class="form-group row">
+									<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
+										{{__('menu.Middle Name')}}</label>
+									<div class="col-md-10">
+										<input class="form-control @error('middle_name') is-invalid @enderror" type="text"
+											value="{{old('middle_name')}}" id="middle_name" name="middle_name">
+										@error('middle_name')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+										@enderror
+									</div>
+								</div>
+								<div class="form-group row">
+										<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
+											{{__('menu.Last Name')}}</label>
+										<div class="col-md-10">
+											<input class="form-control @error('L_name') is-invalid @enderror" type="text"
+												value="{{old('L_name')}}" id="L_name" name="L_name">
+											@error('L_name')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+										</div>
+								</div>
+								
+								<div class="form-group row">
+										<label for="example-email-input"
+											class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
+										<div class="col-md-10">
+											<input class="form-control @error('email') is-invalid @enderror" type="email"
+												value="{{old('email')}}" id="email" name="email">
+											@error('email')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+										</div>
+								</div>
+
+								<div class="form-group row">
+										<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
+										<div class="col-md-10">
+											<input class="form-control @error('nic') is-invalid @enderror" type="text"
+												value="{{old('nic')}}" id="nic" name="nic">
+											@error('nic')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+										</div>
+								</div>
+
+								<div class="form-group row">
+										<label for="example-time-input" class="col-md-2 col-form-label form-control-label">
+												{{__('menu.Phone No')}}</label>
+										<div class="col-md-10">
+											<input class="form-control @error('phone') is-invalid @enderror" type="text"
+												value="{{old('phone')}}" id="phone" name="phone">
+											@error('phone')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+										</div>
+								</div>
+
+								<div class="form-group row pt-3">
+										<label for="example-text-input"
+											class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
+											
+										<div class="col-md-10 ">
+											<input class="form-control @error('street') is-invalid  @enderror" type="text"
+												value="{{old('doorNo')}}" id="doorNo" name="doorNo">
+											@error('doorNo')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+										</div>
+								</div>
+
+								<div class="form-group row pt-3">
+										<label for="example-text-input"
+											class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
+										<div class="col-md-10 ">
+											<input class="form-control @error('street') is-invalid  @enderror" type="text"
+												value="{{old('street')}}" id="street" name="street">
+											@error('street')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+										</div>
+								</div>
+
+								<div class="form-group row pt-3">
+										<label for="example-text-input"
+											class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
+										<div class="col-md-10 ">
+											<input class="form-control @error('city') is-invalid  @enderror" type="text"
+												value="{{old('city')}}" id="city" name="city">
+											@error('city')
+											<span class="invalid-feedback" role="alert">
+												<strong>{{ $message }}</strong>
+											</span>
+											@enderror
+										</div>
+								</div>
+
+								{{-- <div class="form-group row">
+										<label for="business-type" class="col-md-2 col-form-label form-control-label ">Business
+											type</label>
+										<div class="col-md-10">
 				
-				<form method="POST" action="{{route('register')}}">
-					@csrf
-					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
-							{{__('menu.First Name')}}</label>
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">First
-							Name</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('f_name') is-invalid  @enderror" type="text"
-								value="{{old('f_name')}}" id="f_name" name="f_name">
-							@error('name')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
-							{{__('menu.Middle Name')}}</label>
-						<div class="col-md-10">
-							<input class="form-control @error('M_name') is-invalid @enderror" type="text"
-								value="{{old('M_name')}}" id="M_name" name="M_name">
-							@error('M_name')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
-							{{__('menu.Last Name')}}</label>
-						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">Last
-							Name</label>
-						<div class="col-md-10">
-							<input class="form-control @error('L_name') is-invalid @enderror" type="text"
-								value="{{old('L_name')}}" id="L_name" name="L_name">
-							@error('L_name')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-email-input"
-							class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
-							class="col-md-2 col-form-label form-control-label">Email</label>
-						<div class="col-md-10">
-							<input class="form-control @error('email') is-invalid @enderror" type="email"
-								value="{{old('email')}}" id="email" name="email">
-							@error('email')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
-						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
-						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text"
-								value="{{old('nic')}}" id="nic" name="nic">
-							@error('nic')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">
-								{{__('menu.Phone No')}}</label>
-						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">Phone
-							No</label>
-						<div class="col-md-10">
-							<input class="form-control @error('phone') is-invalid @enderror" type="text"
-								value="{{old('phone')}}" id="phone" name="phone">
-							@error('phone')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row pt-3">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
-							class="col-md-2 col-form-label form-control-label ">Address</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('street') is-invalid  @enderror" type="text"
-								value="{{old('doorNo')}}" id="doorNo" name="doorNo">
-							@error('doorNo')
-							<input class="form-control @error('address') is-invalid  @enderror" type="text"
-								value="{{old('adress')}}" id="address" name="address">
-							@error('address')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row pt-3">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Regitered
-							by</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('street') is-invalid  @enderror" type="text"
-								value="{{old('street')}}" id="street" name="street">
-							@error('street')
-							<input class="form-control @error('Reg') is-invalid  @enderror" type="text"
-								value="{{old('Reg')}}" id="Reg" name="Reg">
-							@error('Reg')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row pt-3">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('city') is-invalid  @enderror" type="text"
-								value="{{old('city')}}" id="city" name="city">
-							@error('city')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="business-type" class="col-md-2 col-form-label form-control-label ">Business
-							type</label>
-						<div class="col-md-10">
+											<select id="type" class="form-control">
+				 --}}
+												{{-- only for testing need to implement Ajax searchBuisness --}}
+												{{-- @foreach ($businessTypes as $type) --}}
+												{{-- <option value="{{$type->id}}">{{$type->description}}</option>
+												@endforeach --}}
+				
+				
+											{{-- </select>
+									   </div>
+								</div>  --}}
+								<div class="form-group">
+										<input class=" btn btn-primary float-right" type="submit">
+								</div>
+					</form>		
 
-							<select id="type" class="form-control">
-
-								{{-- only for testing need to implement Ajax searchBuisness --}}
-								@foreach ($businessTypes as $type)
-								<option value="{{$type->id}}">{{$type->description}}</option>
-								@endforeach
-
-
-							</select>
-					</div>
-
-					<div class="form-group">
-							<input class=" btn btn-primary float-right" type="submit">
-						<input class=" btn btn-primary float-right" type="submit">
-					</div>
-				</div>
-
-
-				</form>
-			</div>
+			</div>	
 		</div>
 	</div>
-</div>
+</div>			
+
+
+
+
 @endsection
+
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>

@@ -58,6 +58,7 @@ Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+Route::post('/vat-payer-registration', 'VATpayerRegisterController@validator')->name('vat-payer-registration');
 
 
 /**

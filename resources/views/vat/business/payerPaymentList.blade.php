@@ -119,19 +119,19 @@
 				<table id="example" class="table  px-5">
 					<thead class="thead-light">
 						<tr>
-							<th>{{__('menu.ID')}}</th>
+							<th>{{__('menu.Assesment No.')}}</th>
 							<th>{{__('menu.Payment Date')}}</th>
-							<th>{{__('menu.Ammount')}}</th>
-							<th>{{__('menu.Fine')}}</th>
+							<th>{{__('menu.Annual Amount')}}</th>
+							<th>{{__('menu.Arrears')}}</th>
 							
 						</tr>
 					</thead>
 					<thead id="search_inputs">
 						<tr>
-							<th><input type="text" class="form-control form-control-sm" id="searchId"
-									placeholder="{{__('menu.Search Business ID')}}" /></th>
+							<th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
+									placeholder="{{__('menu.Search Assesment No.')}}" /></th>
 							<th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
-									placeholder="{{__('menu.Search Name')}}" /></th>
+									placeholder="{{__('menu.Search Payment date')}}" /></th>
 
 						</tr>
 					</thead>
@@ -152,12 +152,10 @@
 					</tbody>
 					<thead class="thead-light">
 						<tr>
-							<th>{{__('menu.ID')}}</th>
+							<th>{{__('menu.Assesment No.')}}</th>
 							<th>{{__('menu.Payment Date')}}</th>
-							<th>{{__('menu.Ammount')}}</th>
-							<th>{{__('menu.Fine')}}</th>
-							
-							<th></th>
+							<th>{{__('menu.Annual Amount')}}</th>
+							<th>{{__('menu.Arrears')}}</th>
 						</tr>
 					</thead>
 
@@ -192,7 +190,7 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchId').on( 'keyup', function () { 
+        $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
