@@ -24,4 +24,9 @@ class Business_tax_shop extends Model
             return $tax->payer;
         })->unique('id');   //collection filtered using unique id
     }
+
+    public function payments()
+    {
+        return $this->hasMany('App\Business_tax_payment', 'shop_id');   //a shop has many payments
+    }
 }
