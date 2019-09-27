@@ -11,15 +11,15 @@ class PayerController extends Controller
         return view('vatPayer.payerDashboard');
     }
 
-   /** public function register()
-    * {
-    *     return view('vatPayer.registerPayer');
-    * }
+    public function register()
+    {
+        return view('vatPayer.registerPayer');
+    }
 
-    * public function profile()
-    * {
-    *     return view('vatPayer.payerProfile');
-     *}*/
+    public function profile()
+    {
+        return view('vatPayer.payerProfile');
+    }
 
     public function businesslist()
     {
@@ -27,7 +27,7 @@ class PayerController extends Controller
     }
     public function businessPaymentList()
     {
-        return view('business.payerPaymentList');
+        return view('vat.business.payerPaymentList');
     }
 
 

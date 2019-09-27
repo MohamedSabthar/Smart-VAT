@@ -1,12 +1,10 @@
 @extends('layouts.app')
-
 @push('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
 @endpush
 
 @section('title','Register')
-
 @section('sidebar')
 @if (Auth::user()->role=='admin')
 @include('admin.include.sidebar')
@@ -14,7 +12,6 @@
 @include('employee.include.sidebar')
 @endif
 @endsection
-
 @section('header')
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
@@ -37,7 +34,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -59,7 +55,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -116,26 +111,18 @@
 
 
 			<div class="card-body ">
-
-				@if (session('status'))
-				<div class="alert alert-success alert-dismissible fade show" role="alert">
-					<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-					<span class="alert-inner--text"><strong>Success!</strong>{{session('status')}}</span>
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				@endif
-
+				
 				<form method="POST" action="{{route('register')}}">
 					@csrf
 					<div class="form-group row pt-3">
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
+							{{__('menu.First Name')}}</label>
 						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">First
 							Name</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('first_name') is-invalid  @enderror" type="text"
-								value="{{old('first_name')}}" id="first_name" name="first_name">
-							@error('first_name')
+							<input class="form-control @error('f_name') is-invalid  @enderror" type="text"
+								value="{{old('f_name')}}" id="f_name" name="f_name">
+							@error('name')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -143,12 +130,27 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
+							{{__('menu.Middle Name')}}</label>
+						<div class="col-md-10">
+							<input class="form-control @error('M_name') is-invalid @enderror" type="text"
+								value="{{old('M_name')}}" id="M_name" name="M_name">
+							@error('M_name')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
+							{{__('menu.Last Name')}}</label>
 						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">Last
 							Name</label>
 						<div class="col-md-10">
-							<input class="form-control @error('Last_name') is-invalid @enderror" type="text"
-								value="{{old('Last_name')}}" id="Last_name" name="Last_name">
-							@error('Last_name')
+							<input class="form-control @error('L_name') is-invalid @enderror" type="text"
+								value="{{old('L_name')}}" id="L_name" name="L_name">
+							@error('L_name')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -157,6 +159,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-email-input"
+							class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
 							class="col-md-2 col-form-label form-control-label">Email</label>
 						<div class="col-md-10">
 							<input class="form-control @error('email') is-invalid @enderror" type="email"
@@ -169,6 +172,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
 						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
 						<div class="col-md-10">
 							<input class="form-control @error('nic') is-invalid @enderror" type="text"
@@ -181,6 +185,8 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">
+								{{__('menu.Phone No')}}</label>
 						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">Phone
 							No</label>
 						<div class="col-md-10">
@@ -195,8 +201,12 @@
 					</div>
 					<div class="form-group row pt-3">
 						<label for="example-text-input"
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
 							class="col-md-2 col-form-label form-control-label ">Address</label>
 						<div class="col-md-10 ">
+							<input class="form-control @error('street') is-invalid  @enderror" type="text"
+								value="{{old('doorNo')}}" id="doorNo" name="doorNo">
+							@error('doorNo')
 							<input class="form-control @error('address') is-invalid  @enderror" type="text"
 								value="{{old('adress')}}" id="address" name="address">
 							@error('address')
@@ -207,9 +217,14 @@
 						</div>
 					</div>
 					<div class="form-group row pt-3">
+						<label for="example-text-input"
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
 						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Regitered
 							by</label>
 						<div class="col-md-10 ">
+							<input class="form-control @error('street') is-invalid  @enderror" type="text"
+								value="{{old('street')}}" id="street" name="street">
+							@error('street')
 							<input class="form-control @error('Reg') is-invalid  @enderror" type="text"
 								value="{{old('Reg')}}" id="Reg" name="Reg">
 							@error('Reg')
@@ -219,38 +234,61 @@
 							@enderror
 						</div>
 					</div>
+					<div class="form-group row pt-3">
+						<label for="example-text-input"
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('city') is-invalid  @enderror" type="text"
+								value="{{old('city')}}" id="city" name="city">
+							@error('city')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="business-type" class="col-md-2 col-form-label form-control-label ">Business
+							type</label>
+						<div class="col-md-10">
+
+							<select id="type" class="form-control">
+
+								{{-- only for testing need to implement Ajax searchBuisness --}}
+								@foreach ($businessTypes as $type)
+								<option value="{{$type->id}}">{{$type->description}}</option>
+								@endforeach
+
+
+							</select>
+					</div>
+
 					<div class="form-group">
+							<input class=" btn btn-primary float-right" type="submit">
 						<input class=" btn btn-primary float-right" type="submit">
 					</div>
+				</div>
+
 
 				</form>
 			</div>
-
-
-
 		</div>
 	</div>
 </div>
 @endsection
-
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script>
 	$(document).ready(function() {
-
         var id = '#example';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers"
-
         });            //table object
-
         $(id+'_filter').addClass('pr-5');         //adding padding to table elements
         $(id+'_info').addClass('pl-5');
         $(id+'_paginate').addClass('pr-5');
         $(id+'_length').addClass('pl-5')
-
-
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         $('#searchName').on( 'keyup', function () { //individulat column search
@@ -259,8 +297,6 @@
                 .search( this.value )
                 .draw();
             });
-
       } );
-
 </script>
 @endpush

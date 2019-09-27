@@ -18,7 +18,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h5 class="card-title text-uppercase text-muted mb-0">Buisness Tax payers</h5>
+					<h5 class="card-title text-uppercase text-muted mb-0">Payment List</h5>
 					<span class=" font-weight-bold mb-0">924</span>
 				</div>
 				<div class="col-auto">
@@ -110,13 +110,7 @@
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-						<h3 class="mb-0">Business Tax Payers</h3>
-					</div>
-					<div class="col-4 text-right">
-						<a class="btn btn-icon btn-success text-white" href="{{route('register-vat-payer')}}">
-							<span><i class="fas fa-user-plus"></i></span>
-							<span class="btn-inner--text">Register</span>
-						</a>
+						<h3 class="mb-0">Payment List</h3>
 					</div>
 				</div>
 			</div>

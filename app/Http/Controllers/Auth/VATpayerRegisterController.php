@@ -65,8 +65,8 @@ class VATpayerRegisterController extends Controller
         return Validator::make(
             $data,
             [
-            'f_name' => ['required','alpha', 'string', 'max:255'],
-            'L_name' => ['required','alpha', 'string', 'max:255'],
+            'first_name' => ['required','alpha', 'string', 'max:255'],
+            'Last_name' => ['required','alpha', 'string', 'max:255'],
             'doorNo' =>['required','alpha','varchar','max:100'],                              
             'street'=>['required','alpha', 'string', 'max:255'],
             'city'  =>['required','alpha', 'string', 'max:255'],
@@ -86,17 +86,14 @@ class VATpayerRegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'f_name' => $data['f_name'],
-            'L_name' => $data['L_name'],
+            'first_name' => $data['f_name'],
+            'Last_name' => $data['L_name'],
             'doorNo' =>$data['doorNo'],
             'street' => $data['street'],
             'city'  => $data['city'],
             'email' => $data['email'],
             'nic'=> $data['nic'],
-            'phone' => $data['phone'],
-            'password' => Hash::make('council@123'),         // default password
-            'adminId' => Auth::user()->id,                   // setting up adminId FK
-
+            'phone' => $data['phone']
         ]);
     }
 }
