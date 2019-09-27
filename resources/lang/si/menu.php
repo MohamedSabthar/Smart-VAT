@@ -54,11 +54,32 @@ return [
     'Total amount payable'=> 'ගෙවිය යුතු මුළු මුදල',
     'Option' => 'විකල්පය',
 
+    'VAT Payer Business List' => 'බදු ගෙවන්නගේ ව්‍යාපාර ලැයිස්තුව ',
+    'Business Name' => '‍ව්‍යාපාර නාමය',
+    'Business' => 'ව්‍යාපාරය',
+    'Add new Business' => 'නව ව්‍යාපාරයක් එකතු කිරීම ',
+    'Select Business' => 'ව්‍යාපාරය තෝරන්න',
+    'Business Address'=> 'ව්‍යාපාරික ලිපිනය',
+    
+    
     //VAT PAyer
     'User ID' => 'පරිශීලක අංකය',
     'VAT Payer Name'=> 'වැට් බදු ගෙවන්නාගේ නම',
     'Address' => 'ලිපිනය',
     'Search Address' => 'ලිපිනය සෙවීම',
 
+    'First Name' => 'මුල් නම',
+    'Middle Name'=> 'මැද නම',
+    'Last Name'  => 'අවසන් නම',
+    'Street'  => 'වීදිය',
+    'City'  =>  'නගරය',
+    'NIC' =>    'ජාතික හැඳුනුම්පත් අංකය',
+    'Phone No' => 'දුරකතන අංකය',
+    'Business Categories' => 'ව්‍යාපාර කාණ්ඩ',
+    'Door No.' => 'දොර අංකය',
+
+    'Arrears' => 'හිඟ මුදල',
+    'Payment Date' => 'ගෙවීම් දිනය',
+    'Annual Amount' =>  'වාර්ෂික මුදල'
 
 ];

@@ -6,19 +6,29 @@ use Illuminate\Http\Request;
 
 class PayerController extends Controller
 {
-    public function payer(){
-        return view('VAT_Payer.payerDashboard');
+    public function payer()
+    {
+        return view('vatPayer.payerDashboard');
     }
 
-    public function register(){
-        return view('VAT_Payer.registerPayer');
+    public function register()
+    {
+        return view('vatPayer.registerPayer');
     }
 
-    public function profile(){
-        return view('VAT_Payer.payerProfile');
+    public function profile()
+    {
+        return view('vatPayer.payerProfile');
     }
 
-    public function businessPaymentList(){
-        return view('VAT_Payer.payerPaymentList');
+    public function businesslist()
+    {
+        return view('vatPayer.payerBusinessList');
     }
+    public function businessPaymentList()
+    {
+        return view('vat.business.payerPaymentList');
+    }
+
+
 }

@@ -92,8 +92,8 @@
 				<div class="navbar-collapse-header d-md-none">
 					<div class="row">
 						<div class="col-6 collapse-brand">
-							<a href="../index.html">
-								<img src="../assets/img/brand/blue.png" alt="profile pic">
+							<a href="#">
+								<img src="{{asset('assets/img/brand/blue.png')}}" alt="profile pic">
 							</a>
 						</div>
 						<div class="col-6 collapse-close">

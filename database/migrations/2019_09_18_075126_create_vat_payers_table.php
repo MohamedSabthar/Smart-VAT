@@ -25,7 +25,7 @@ class CreateVatPayersTable extends Migration
             $table->string('door_no');
             $table->string('street');
             $table->string('city');
-            $table->string('address')->virtualAs('concat(door_no," ",street," ",city)');    //derived attribute Addrerss
+            $table->string('address')->virtualAs('concat(door_no,", ",street,", ",city)');    //derived attribute Addrerss
             $table->bigInteger('employee_id')->unsigned();
             $table->foreign('employee_id')->references('id')->on('users');                    //employee id is FK of users table
 

@@ -9,7 +9,8 @@
 @section('title','Latestpayment')
 
 @section('sidebar')
-@include('admin.include.sidebar')
+@includeWhen(Auth::user()->role=='admin','admin.include.sidebar')
+@includeWhen(Auth::user()->role=='employee','employee.include.sidebar')
 @endsection
 
 @section('header')
@@ -159,7 +160,6 @@
                         <th>{{__('menu.Payment(LRK)')}}</th>
                         <th>{{__('menu.Date')}}</th>
                         <th>{{__('menu.Registerd By')}}</th>
-
                     </thead>
 
                 </table>

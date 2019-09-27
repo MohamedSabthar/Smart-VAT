@@ -56,10 +56,32 @@ return [
     'Paid' => 'Paid',
     'Option' => 'Option',
 
+    'VAT Payer Business List' => 'VAT Payer Business List',
+    'Business Name' => 'Business Name',
+    'Business' => 'Business',
+    'Add new Business' => 'Add new Business',
+    'Select Business' => 'Select Business',
+    'Business Address' => 'Business Address',  
+      
+    
     //VAT Payer
     'user Id' => 'User ID',
     'VAT Payer Name'=> 'VAT Payer Name',
     'Address' =>'Address',
     'Search Address' => 'Search Address',
+
+    'First Name' => 'First Name',
+    'Middle Name'=> 'Middle Name',
+    'Last Name'  => 'Last Name',
+    'Street'  => 'Street',
+    'City'  =>  'City',
+    'NIC' => 'NIC',
+    'Phone No' => 'Phone No',
+    'Business Categories' => 'Business Categories',
+    'Door No.'  => 'Door No.',
+
+    'Arrears' => 'Arrears',
+    'Payment Date' => 'Payment Date',
+    'Annual Amount' =>  'Annual Amount'
 
 ];
