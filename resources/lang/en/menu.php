@@ -61,7 +61,8 @@ return [
     'Business type' => 'Business',
     'Add new Business' => 'Add new Business',
     'Select Business' => 'Select Business',
-    'Business Address' => 'Business Address',  
+    'Business Address' => 'Business Address',
+    'Search Business Name' => 'Search Business Name',  
       
     
     //VAT Payer

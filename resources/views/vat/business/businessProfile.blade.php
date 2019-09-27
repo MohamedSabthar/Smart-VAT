@@ -160,16 +160,16 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('register')}}">
+                    <form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
 
                         @csrf
                         <div class="form-group row pt-3">
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
-                                    value="{{old('name')}}" id="name" name="name" autofocus>
-                                @error('name')
+                                <input class="form-control @error('assesmentNo') is-invalid  @enderror" type="text"
+                                    value="{{old('assesmentNo')}}" id="assesmentNo" name="assesmentNo" autofocus>
+                                @error('assesmentNo')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -180,9 +180,9 @@
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
-                                    value="{{old('name')}}" id="name" name="name">
-                                @error('name')
+                                <input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror" type="text"
+                                    value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount" name="annualAssesmentAmount">
+                                @error('annualAssesmentAmount')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -193,9 +193,9 @@
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
-                                    value="{{old('name')}}" id="name" name="name">
-                                @error('name')
+                                <input class="form-control @error('businessName') is-invalid  @enderror" type="text"
+                                    value="{{old('businessName')}}" id="businessName" name="businessName">
+                                @error('businessName')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -221,9 +221,9 @@
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Address')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
-                                    value="{{old('name')}}" id="name" name="name">
-                                @error('name')
+                                <input class="form-control @error('businessAddress') is-invalid  @enderror" type="text"
+                                    value="{{old('businessAddress')}}" id="businessAddress" name="businessAddress">
+                                @error('businessAddress')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -258,25 +258,27 @@
                         <table id="example" class="table">
                             <thead class="thead-light">
                                 <tr>
-
-                                    <th style="width:400px;">{{__('menu.Business Name')}}</th>
+                                    <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
+                                    <th style="width:300px;">{{__('menu.Business Name')}}</th>
                                     <th> Shop Phone</th>
                                 </tr>
                             </thead>
                             <thead id="search_inputs">
                                 <tr>
+                                    <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                            placeholder="{{__('menu.Search Assesment No.')}}" />
+                                    </th>
                                     <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                            placeholder="search buisness name" />
+                                            placeholder="{{__('menu.Search Business Name')}}" />
                                     </th>
-                                    <th><input type="text" class="form-control form-control-sm" id="searchPhone"
-                                            placeholder="search phone number" />
-                                    </th>
+                                    
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($vatPayer->buisness as $buisness)
                                 <tr>
-
+                                    <td class="text-center">{{$buisness->id}}</td>
                                     <td>{{$buisness->shop_name}}</td>
                                     <td>{{$buisness->phone}}</td>
                                 </tr>
@@ -284,7 +286,7 @@
                             </tbody>
                             <thead class="thead-light">
                                 <tr>
-
+                                    <th>{{__('menu.Assesment No.')}}</th>
                                     <th>{{__('menu.Business Name')}}</th>
                                     <th>Shop Phone</th>
                                 </tr>
@@ -333,13 +335,13 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchBuisness').on( 'keyup', function () { 
+        $('#searchaAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchPhone').on( 'keyup', function () { 
+            $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )

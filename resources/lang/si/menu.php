@@ -60,6 +60,7 @@ return [
     'Add new Business' => 'නව ව්‍යාපාරයක් එකතු කිරීම ',
     'Select Business' => 'ව්‍යාපාරය තෝරන්න',
     'Business Address'=> 'ව්‍යාපාරික ලිපිනය',
+    'Search Business Name' => 'ව්‍යාපාර නම සෙවීම',
     
     
     //VAT PAyer

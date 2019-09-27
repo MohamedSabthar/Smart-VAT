@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Vat_payer;
 use App\Business_type;
+use App\Http\Requests\AddBusinessRequest;
 
 class BusinessTaxController extends Controller
 {
@@ -26,4 +27,8 @@ class BusinessTaxController extends Controller
 
         return view('vat.business.businessProfile', ['vatPayer'=>$vatPayer,'businessTypes'=>$businessTypes]);
     }
-}
+
+    public function registerBusiness($id,AddBusinessRequest $request){
+        dd('job');
+    }
+ }
