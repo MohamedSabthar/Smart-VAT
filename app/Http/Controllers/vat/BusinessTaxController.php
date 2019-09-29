@@ -29,7 +29,11 @@ class BusinessTaxController extends Controller
         return view('vat.business.businessProfile', ['vatPayer'=>$vatPayer,'businessTypes'=>$businessTypes]);
     }
 
-    public function registerBusiness($id,AddBusinessRequest $request){
-        dd('job');
+    public function registerBusiness($id, AddBusinessRequest $request){
+        $vatPayer = Vat_payer :: find($id);
+        
+        return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', ' New Business Added successfully');
+
+       
     }
  }

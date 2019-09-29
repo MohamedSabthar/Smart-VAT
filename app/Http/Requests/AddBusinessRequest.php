@@ -26,8 +26,8 @@ class AddBusinessRequest extends FormRequest
     {
         return [
             'assesmentNo' =>['required', 'string', 'max:255', Rule::unique('business_tax_shop')->ignore($this->id)], 
-            'annualAssesmentAmount' => ['required','alpha', 'string', 'max:255'],  
-            'businessName' => ['required', 'alpha','string', 'email', 'max:255'],    
+            'annualAssesmentAmount' => ['required','string', 'max:255'],  
+            'businessName' => ['required', 'alpha','string','max:255'],    
             'businessAddress' => ['required','alpha','string','max:255'],     
             
         ];
