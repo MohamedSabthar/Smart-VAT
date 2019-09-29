@@ -127,22 +127,22 @@
                 </div>
                 <div class="card-body pt-0 pt-md-4">
                     <div class="text-left pt-5">
-                        <h3 class="d-inline">Name : </h3> {{$vatPayer->full_name}}
+                        <h3 class="d-inline">{{__('menu.Name')}} : </h3> {{$vatPayer->full_name}}
                         <div class="pt-1">
-                            <h3 class="d-inline">Address : </h3> {{$vatPayer->address}}
+                            <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{$vatPayer->address}}
                         </div>
 
                         <div class="pt-1">
-                            <h3 class="d-inline"> NIC : </h3> {{$vatPayer->nic}}
+                            <h3 class="d-inline">{{__('menu.NIC')}} : </h3> {{$vatPayer->nic}}
                         </div>
 
                         <hr class="my-4">
 
                         <div class=" mt-4">
-                            <h3 class="d-inline"> E-Mail : </h3> {{$vatPayer->email}} <a href="#"></a>
+                            <h3 class="d-inline">{{__('menu.E-Mail')}} : </h3> {{$vatPayer->email}} <a href="#"></a>
                         </div>
                         <div class="pt-1">
-                            <h3 class="d-inline"> Phone No : </h3> {{$vatPayer->phone}}
+                            <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
                         </div>
 
                     </div>

@@ -79,6 +79,18 @@ return [
     'E-Mail' => 'විද්යුත් තැපෑල',
     'Update' => 'යාවත්කාලීන කිරීම',
     'Assign' => 'පවරන්න',
+
+    //globle config
+     'VAT & Fine %' => 'වැට් සහ දඩ %',
+     'VAT Category' => 'වැට් වර්ගය',
+     'VAT %' => 'වැට් %',
+     'Fine %' => 'දඩ %',
+     'Search VAT category' => 'වැට් වර්ගය සෙවීම',
+     'Assessment Ranges' => 'තක්සේරු පරාස',
+     'Start Value (LKR)' => 'ආරම්භක අගය(රු.)',
+     'End Value (LKR)' => 'අවසාන අගය(රු.)',
+     'Search start value' =>'ආරම්භක අගය සෙවීම',
+     'Search end value'=> 'අවසාන අගය සෙවීම',
     
 
 

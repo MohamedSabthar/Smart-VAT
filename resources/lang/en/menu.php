@@ -81,4 +81,16 @@ return [
     'Update' => 'Update',
     'Assign' => 'Assign',
 
+    //globle config
+    'VAT & Fine %' => 'VAT & Fine %',
+    'VAT Category' => 'VAT Category',
+    'VAT %' => 'VAT %',
+    'Fine %' => 'Fine %',
+    'Search VAT category' => 'Search VAT category',
+    'Assessment Ranges' => 'Assessment Ranges',
+    'Start Value (LKR)' => 'Start Value (LKR)',
+    'End Value (LKR)' => 'End Value (LKR)',
+    'Search start value'=> 'Search start value',
+    'Search end value'=> 'Search end value',
+
 ];
