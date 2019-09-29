@@ -64,7 +64,7 @@ class VatsTableSeeder extends Seeder
             'route'=> 'vehical-park'
         ]);
         DB::table('vats')->insert([
-            'name' => 'Entertancement And Performance tax',
+            'name' => 'Entertancement And Performance Tax',
             'vat_percentage' => 15,
             'route'=> 'entertancement-an-performance'
         ]);
