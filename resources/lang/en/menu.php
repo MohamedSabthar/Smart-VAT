@@ -58,10 +58,11 @@ return [
 
     'VAT Payer Business List' => 'VAT Payer Business List',
     'Business Name' => 'Business Name',
-    'Business' => 'Business',
+    'Business type' => 'Business',
     'Add new Business' => 'Add new Business',
     'Select Business' => 'Select Business',
-    'Business Address' => 'Business Address',  
+    'Business Address' => 'Business Address',
+    'Search Business Name' => 'Search Business Name',  
       
     
     //VAT Payer
@@ -69,5 +70,27 @@ return [
     'VAT Payer Name'=> 'VAT Payer Name',
     'Address' =>'Address',
     'Search Address' => 'Search Address',
+
+    //employee profile
+    'Update employee information' => 'Update employee information',
+    'Name' => 'Name',    
+    'NIC' => 'NIC',
+    'Phone No' => 'Phone No',
+    'Assigned VAT categories' => 'Assigned VAT categories',
+    'E-Mail' => 'E-Mail',
+    'Update' => 'Update',
+    'Assign' => 'Assign',
+
+    //globle config
+    'VAT & Fine %' => 'VAT & Fine %',
+    'VAT Category' => 'VAT Category',
+    'VAT %' => 'VAT %',
+    'Fine %' => 'Fine %',
+    'Search VAT category' => 'Search VAT category',
+    'Assessment Ranges' => 'Assessment Ranges',
+    'Start Value (LKR)' => 'Start Value (LKR)',
+    'End Value (LKR)' => 'End Value (LKR)',
+    'Search start value'=> 'Search start value',
+    'Search end value'=> 'Search end value',
 
 ];

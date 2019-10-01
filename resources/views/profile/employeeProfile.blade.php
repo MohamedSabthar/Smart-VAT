@@ -70,22 +70,22 @@
 			</div>
 			<div class="card-body pt-0 pt-md-4">
 				<div class="text-center pt-9">
-					<h3>Name : {{$employee->name}}</h3>
+					<h3>{{__('menu.Name')}} : {{$employee->name}}</h3>
 					<div class="h5 font-weight-300">
-						<i class="far fa-user"></i> Username : {{$employee->userName}}
+						<i class="far fa-user"></i>{{__('menu.Username')}} : {{$employee->userName}}
 					</div>
 
 					<div>
-						<i class="far fa-id-card"></i> NIC : {{$employee->nic}}
+						<i class="far fa-id-card"></i>{{__('menu.NIC')}} : {{$employee->nic}}
 					</div>
 
 					<hr class="my-4">
 
 					<div class="h5 mt-4">
-						<i class="fas fa-at"></i> E-Mail : <a href="#">{{$employee->email}}</a>
+						<i class="fas fa-at"></i> {{__('menu.E-Mail')}} : <a href="#">{{$employee->email}}</a>
 					</div>
 					<div>
-						<i class="fas fa-phone"></i> Phone No : {{$employee->phone}}
+						<i class="fas fa-phone"></i> {{__('menu.Phone No')}} : {{$employee->phone}}
 					</div>
 				</div>
 			</div>
@@ -183,7 +183,7 @@
 					<hr class="my-4 mt-7">
 				</div>
 				<!-- Address -->
-				<h6 class="heading-small text-muted mb-4">Assigned VAT categories</h6>
+				<h6 class="heading-small text-muted mb-4">{{__('menu.Assigned VAT categories')}}</h6>
 				<form id="assignVat" action="{{route('assign-vat')}}" method="POST">
 					@csrf
 					<input name="id" id="id" value="{{$employee->id}}" hidden>
@@ -203,7 +203,7 @@
 						@endforeach
 					</div>
 					<div class="form-group">
-						<input class=" btn btn-primary float-right" value="Assign" type="submit">
+						<input class=" btn btn-primary float-right" value="{{__('menu.Assign')}}" type="submit">
 					</div>
 				</form>
 			</div>
