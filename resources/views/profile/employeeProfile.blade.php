@@ -31,6 +31,18 @@
 			</button>
 		</div>
 		@endif
+		@elseif($errors->any())
+		<div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2">
+				<strong class="mx-1">Error!</strong>
+				Data you entered is/are incorrect
+				<a href="#" class="btn btn-sm btn-primary mx-3 update-info">view</a>
+			</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 		@endif
 	</div>
 </div>
@@ -43,10 +55,17 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-3 order-lg-2">
 					<div class="card-profile-image">
+
 						<a href="#">
 							<img src="{{asset('assets/img/theme/girl.png')}}" class="rounded-circle">
 						</a>
 					</div>
+				</div>
+			</div>
+			<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+				<div class="d-flex justify-content-between">
+					<a href="#" class="btn btn-sm btn-success mr-4 update-info">Update info</a>
+
 				</div>
 			</div>
 			<div class="card-body pt-0 pt-md-4">
@@ -87,78 +106,82 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form method="POST" action="{{route('update-employee',['id'=>$employee->id])}}">
-					<h6 class="heading-small text-muted mb-4"> Update mployee information</h6>
-					@csrf
-					@method('put')
-					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Name</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('name') is-invalid  @enderror" type="text"
-								value="{{old('name',$employee->name)}}" id="name" name="name">
-							@error('name')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
+				<div id="update-data">
+					<form method="POST" action="{{route('update-employee',['id'=>$employee->id])}}">
+						<h6 class="heading-small text-muted mb-4"> Update mployee information</h6>
+						@csrf
+						@method('put')
+						<div class="form-group row pt-3">
+							<label for="example-text-input"
+								class="col-md-2 col-form-label form-control-label ">Name</label>
+							<div class="col-md-10 ">
+								<input class="form-control @error('name') is-invalid  @enderror" type="text"
+									value="{{old('name',$employee->name)}}" id="name" name="name">
+								@error('name')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-search-input"
-							class="col-md-2 col-form-label form-control-label">Username</label>
-						<div class="col-md-10">
-							<input class="form-control @error('userName') is-invalid @enderror" type="text"
-								value="{{old('userName',$employee->userName)}}" id="userName" name="userName">
-							@error('userName')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
+						<div class="form-group row">
+							<label for="example-search-input"
+								class="col-md-2 col-form-label form-control-label">Username</label>
+							<div class="col-md-10">
+								<input class="form-control @error('userName') is-invalid @enderror" type="text"
+									value="{{old('userName',$employee->userName)}}" id="userName" name="userName">
+								@error('userName')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-email-input"
-							class="col-md-2 col-form-label form-control-label">Email</label>
-						<div class="col-md-10">
-							<input class="form-control @error('email') is-invalid @enderror" type="email"
-								value="{{old('email',$employee->email)}}" id="email" name="email">
-							@error('email')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
+						<div class="form-group row">
+							<label for="example-email-input"
+								class="col-md-2 col-form-label form-control-label">Email</label>
+							<div class="col-md-10">
+								<input class="form-control @error('email') is-invalid @enderror" type="email"
+									value="{{old('email',$employee->email)}}" id="email" name="email">
+								@error('email')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
-						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text"
-								value="{{old('nic',$employee->nic)}}" id="nic" name="nic">
-							@error('nic')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
+						<div class="form-group row">
+							<label for="example-week-input"
+								class="col-md-2 col-form-label form-control-label">NIC</label>
+							<div class="col-md-10">
+								<input class="form-control @error('nic') is-invalid @enderror" type="text"
+									value="{{old('nic',$employee->nic)}}" id="nic" name="nic">
+								@error('nic')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">Phone
-							No</label>
-						<div class="col-md-10">
-							<input class="form-control @error('phone') is-invalid @enderror" type="text"
-								value="{{old('phone',$employee->phone)}}" id="phone" name="phone">
-							@error('phone')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
+						<div class="form-group row">
+							<label for="example-time-input" class="col-md-2 col-form-label form-control-label">Phone
+								No</label>
+							<div class="col-md-10">
+								<input class="form-control @error('phone') is-invalid @enderror" type="text"
+									value="{{old('phone',$employee->phone)}}" id="phone" name="phone">
+								@error('phone')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<input class=" btn btn-primary float-right" value="Update" type="submit">
-					</div>
-				</form>
-				<hr class="my-4 mt-7">
+						<div class="form-group">
+							<input class=" btn btn-primary float-right" value="Update" type="submit">
+						</div>
+					</form>
+					<hr class="my-4 mt-7">
+				</div>
 				<!-- Address -->
 				<h6 class="heading-small text-muted mb-4">Assigned VAT categories</h6>
 				<form id="assignVat" action="{{route('assign-vat')}}" method="POST">
@@ -189,3 +212,17 @@
 </div>
 
 @endsection
+
+
+
+@push('script')
+<script>
+	$(document).ready(function() {
+		$("#update-data").hide();
+		$(".update-info").click(function(){
+			$("#update-data").slideToggle();
+			$("#name").focus();
+		})
+      } );
+</script>
+@endpush
