@@ -102,23 +102,23 @@
     <div class="mb-4 col-lg-6 col-sm-12">
         <div class="card shadow">
             <div class="card-header bg-white border-0">
-                <h3 class="mb-0">VAT & Fine %</h3>
+                <h3 class="mb-0">{{__('menu.VAT & Fine %')}}</h3>
                 <hr class="mt-4 mb-0">
             </div>
             <div class="table-responsive">
                 <table id="vat_table" class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th>VAT Category</th>
-                            <th>VAT % </th>
-                            <th>Fine %</th>
+                            <th>{{__('menu.VAT Category')}}</th>
+                            <th>{{__('menu.VAT %')}} </th>
+                            <th>{{__('menu.Fine %')}}</th>
                             <th></th>
                         </tr>
                     </thead>
                     <thead id="search_inputs">
                         <tr>
                             <th><input type="text" class="form-control form-control-sm" id="searchVAT"
-                                    placeholder="Search VAT category" /></th>
+                                    placeholder="{{__('menu.Search VAT category')}}" /></th>
 
                         </tr>
                     </thead>
@@ -149,9 +149,9 @@
                     </tbody>
                     <thead class="thead-light">
                         <tr>
-                            <th>VAT Category</th>
-                            <th>VAT % </th>
-                            <th>Fine %</th>
+                            <th>{{__('menu.VAT Category')}}</th>
+                            <th>{{__('menu.VAT %')}} </th>
+                            <th>{{__('menu.Fine %')}}</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -163,27 +163,27 @@
     <div class="mb-4 col-lg-6 col-sm-12">
         <div class="card shadow">
             <div class="card-header bg-white border-0">
-                <h3 class="mb-0">Assessment Ranges</h3>
+                <h3 class="mb-0">{{__('menu.Assessment Ranges')}}</h3>
                 <hr class="mt-4 mb-0">
             </div>
             <div class="table-responsive" style="width:100%">
                 <table id="assessment_table" class="table  ">
                     <thead class="thead-light">
                         <tr>
-                            <th>VAT Category</th>
-                            <th>Start Value (LKR) </th>
-                            <th>End Value (LKR)</th>
+                            <th>{{__('menu.VAT Category')}}</th>
+                            <th>{{__('menu.Start Value (LKR)')}} </th>
+                            <th>{{__('menu.End Value (LKR)')}}</th>
                             <th></th>
                         </tr>
                     </thead>
                     <thead id="search_inputs">
                         <tr>
                             <th><input type="text" class="form-control form-control-sm" id="searchAssessment"
-                                    placeholder="Search VAT category" /></th>
+                                    placeholder="{{__('menu.Search VAT category')}}" /></th>
                             <th><input type="text" class="form-control form-control-sm" id="searchStartValue"
-                                    placeholder="Search start value" /></th>
+                                    placeholder="{{__('menu.Search start value')}}" /></th>
                             <th><input type="text" class="form-control form-control-sm" id="searchEndValue"
-                                    placeholder="Search end value" /></th>
+                                    placeholder="{{__('menu.Search end value')}}" /></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -202,7 +202,7 @@
                                         <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" href="#">View profile</a>
+                                        <a class="dropdown-item" href="#">view types</a>
                                     </div>
                                 </div>
                             </td>
@@ -211,9 +211,9 @@
                     </tbody>
                     <thead class="thead-light">
                         <tr>
-                            <th>VAT Category</th>
-                            <th>Start Value </th>
-                            <th>End Value</th>
+                            <th>{{__('menu.VAT Category')}}</th>
+                            <th>{{__('menu.Start Value (LKR)')}} </th>
+                            <th>{{__('menu.End Value (LKR)')}}</th>
 
                             <th></th>
                         </tr>

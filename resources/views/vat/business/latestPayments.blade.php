@@ -9,7 +9,8 @@
 @section('title','Latestpayment')
 
 @section('sidebar')
-@include('admin.include.sidebar')
+@includeWhen(Auth::user()->role=='admin','admin.include.sidebar')
+@includeWhen(Auth::user()->role=='employee','employee.include.sidebar')
 @endsection
 
 @section('header')
