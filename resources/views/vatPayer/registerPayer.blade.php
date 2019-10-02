@@ -122,7 +122,7 @@
 								<div class="col-md-10 ">
 									<input class="form-control @error('first_name') is-invalid  @enderror" type="text"
 										value="{{old('first_name')}}" id="first_name" name="first_name">
-									@error('name')
+									@error('first_name')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
@@ -147,9 +147,9 @@
 										<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
 											{{__('menu.Last Name')}}</label>
 										<div class="col-md-10">
-											<input class="form-control @error('Last_name') is-invalid @enderror" type="text"
-												value="{{old('Last_name')}}" id="Last_name" name="Last_name">
-											@error('Last_name')
+											<input class="form-control @error('last_name') is-invalid @enderror" type="text"
+												value="{{old('last_name')}}" id="last_name" name="last_name">
+											@error('last_name')
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
