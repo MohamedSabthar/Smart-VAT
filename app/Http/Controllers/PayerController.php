@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vat_payer;
+use App\Business_tax_shop;
 
 class PayerController extends Controller
 {
@@ -29,7 +30,9 @@ class PayerController extends Controller
     }
     public function businessPaymentList()
     {
-        return view('vat.business.payerPaymentList',['businessTaxShops'=>$businessTaxShop]);
+        $businessTaxShop = Business_tax_shop::find(1);
+        // dd($businessTaxShop->shop_name);
+        return view('vat.business.payerPaymentList', ['businessTaxShop'=>$businessTaxShop]);
     }
 
     public function updateVATpayerProfile($id, UpdateVATpayerProfileRequest $request)
@@ -46,8 +49,5 @@ class PayerController extends Controller
 
         $vat_payer->save();
         return redirect()->back()->with('status', 'VAT Payer details updated successful');
-
-
     }
-
 }
