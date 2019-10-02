@@ -117,7 +117,8 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-sm btn-default float-right">owner</a>
+                        <a href="{{route('business-profile',['id'=>$businessTaxShop->payer->id])}}"
+                            class="btn btn-sm btn-default float-right">view owner</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">

@@ -18,7 +18,7 @@ class Business_tax_shop extends Model
         return $this->belongsTo('App\User', 'employee_id'); // a shop registered by an employee
     }
 
-    public static function buisness_tax_payers()    // return vat payers; only related to buisness tax
+    public static function business_tax_payers()    // return vat payers; only related to buisness tax
     {
         return Business_tax_shop::all()->map(function ($tax) {
             return $tax->payer;
