@@ -22,7 +22,7 @@ class CreateBusinessTaxShopsTable extends Migration
             $table->string('door_no');
             $table->string('street');
             $table->string('city');
-            $table->string('Address')->virtualAs('concat(door_no," ",street," ",city)');    //derived attribute Addrerss
+            $table->string('address')->virtualAs('concat(door_no,", ",street,", ",city)');    //derived attribute Addrerss
             $table->bigInteger('payer_id')->unsigned();                         // buisness/Shop owner
             $table->bigInteger('employee_id')->unsigned();
             $table->bigInteger('type')->unsigned();
