@@ -102,24 +102,6 @@
         </div>
     </div>
 </div>
-
-
-
-<div class="col mt-5">
-    @if($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show col-lg-8 col-sm-12 mb-3" role="alert">
-        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-        <span class="alert-inner--text mx-2">
-            <strong class="mx-1">Error!</strong>
-            Data you entered is/are incorrect
-            <a href="#" class="btn btn-sm btn-primary mx-3 add-buissness">view</a>
-        </span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @endif
-</div>
 @endsection
 
 @section('pageContent')
@@ -140,7 +122,7 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-sm btn-success mr-4 add-buissness">[+] Buissness</a>
+                        <a href="#" id="add-buissness" class="btn btn-sm btn-success mr-4">[+] Buissness</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
@@ -381,7 +363,7 @@
 
         //toggle transition for buisness registration form
         $("#business-registration").hide();
-        $(".add-buissness").on('click',function(){
+        $("#add-buissness").on('click',function(){
             $("#business-registration").slideToggle("slow");
         });
 
