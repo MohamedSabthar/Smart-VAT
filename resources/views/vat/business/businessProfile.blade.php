@@ -281,6 +281,7 @@
                                     <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
                                     <th style="width:300px;">{{__('menu.Business Name')}}</th>
                                     <th> Shop Phone</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <thead id="search_inputs">
@@ -304,6 +305,20 @@
                                     <td class="text-center">{{$buisness->id}}</td>
                                     <td>{{$buisness->shop_name}}</td>
                                     <td>{{$buisness->phone}}</td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item"
+                                                    href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
+                                                    View payments</a>
+                                            </div>
+
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -312,6 +327,7 @@
                                     <th>{{__('menu.Assesment No.')}}</th>
                                     <th>{{__('menu.Business Name')}}</th>
                                     <th>Shop Phone</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                         </table>

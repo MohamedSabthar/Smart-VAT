@@ -54,10 +54,10 @@ try {
 /**
  * Routes related to buisness tax
  */
-Route::get('/buisness/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
+Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
 Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
-
+Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 
 
 
