@@ -147,9 +147,9 @@
 										<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
 											{{__('menu.Last Name')}}</label>
 										<div class="col-md-10">
-											<input class="form-control @error('L_name') is-invalid @enderror" type="text"
-												value="{{old('L_name')}}" id="L_name" name="L_name">
-											@error('L_name')
+											<input class="form-control @error('Last_name') is-invalid @enderror" type="text"
+												value="{{old('Last_name')}}" id="Last_name" name="Last_name">
+											@error('Last_name')
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
@@ -162,7 +162,7 @@
 											class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
 										<div class="col-md-10">
 											<input class="form-control @error('email') is-invalid @enderror" type="email"
-												value="{{old('email')}}" id="email" name="email">
+												value="{{old('email')}}" id="email" name="email">  
 											@error('email')
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $message }}</strong>

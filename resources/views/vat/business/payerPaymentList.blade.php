@@ -99,71 +99,114 @@
 	</div>
 </div>
 
-
 @endsection
 
 @section('pageContent')
-<div class="row">
-	<div class="col">
-
-		<div class="card shadow">
-			<div class="card-header bg-white border-0">
-				<div class="row align-items-center">
-					<div class="col-8">
-						<h3 class="mb-0">Payment List</h3>
+<div class="pt-5">
+	<div class="row">
+		 <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+			<div class="card card-profile shadow">
+				<div class="row justify-content-center">
+					<div class="col-lg-3 order-lg-2">
+						<div class="card-profile-image">
+							<a href="#">
+								<img src="../assets/img/theme/girl.png" class="rounded-circle">
+							</a>
+						</div>
 					</div>
 				</div>
+				<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+					<div class="d-flex justify-content-between">
+						<a href="#" class="btn btn-sm btn-default float-right">Message</a>
+					</div>
+				</div>
+				<div class="card-body pt-0 pt-md-4">
+					<div class="test-left pt-5">
+							<h3 class="d-inline">Business Name : </h3> {{$businessTaxShop->shop_name}}
+							<div class="pt-1">
+								<h3 class="d-inline">Address : </h3> {{$businessTaxShop->address}}
+							</div>
+							
+							<hr class="my-4">
+							<div class="pt-1">
+								<h3 class="d-inline"> Registration No. : </h3> {{$businessTaxShop->registration_no}}
+							</div>
+	
+							<div class="pt-1">
+								<h3 class="d-inline"> Phone No : </h3> {{$businessTaxShop->phone}}
+							</div>
+
+
+					</div>
+
+				</div>
 			</div>
-
-			<div class="table-responsive py-4">
-				<table id="example" class="table  px-5">
-					<thead class="thead-light">
-						<tr>
-							<th>{{__('menu.Assesment No.')}}</th>
-							<th>{{__('menu.Payment Date')}}</th>
-							<th>{{__('menu.Annual Amount')}}</th>
-							<th>{{__('menu.Arrears')}}</th>
-							
-						</tr>
-					</thead>
-					<thead id="search_inputs">
-						<tr>
-							<th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
-									placeholder="{{__('menu.Search Assesment No.')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
-									placeholder="{{__('menu.Search Payment date')}}" /></th>
-
-						</tr>
-					</thead>
-					<tbody>
-
-						{{-- @foreach ($payers as $payer)
-						<tr>
-							<td>{{$payer->id}}</th>
-							<td>{{$payer->payment_Date}}</td>
-							<td>{{$payer->amount}}</td>
-							<td>{{$payer->fine}}</td>
-							
-
-						</tr>
-						@endforeach --}}
+		</div> 
 
 
-					</tbody>
-					<thead class="thead-light">
-						<tr>
-							<th>{{__('menu.Assesment No.')}}</th>
-							<th>{{__('menu.Payment Date')}}</th>
-							<th>{{__('menu.Annual Amount')}}</th>
-							<th>{{__('menu.Arrears')}}</th>
-						</tr>
-					</thead>
 
-				</table>
+		<div class="col">
+
+			<div class="card shadow">
+				<div class="card-header bg-white border-0">
+					<div class="row align-items-center">
+						<div class="col-8">
+							<h3 class="mb-0">Payment List</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="table-responsive py-4">
+					<table id="example" class="table  px-5">
+						<thead class="thead-light">
+							<tr>
+								<th>{{__('menu.Assesment No.')}}</th>
+								<th>{{__('menu.Payment Date')}}</th>
+								<th>{{__('menu.Annual Amount')}}</th>
+								<th>{{__('menu.Arrears')}}</th>
+								
+							</tr>
+						</thead>
+						<thead id="search_inputs">
+							<tr>
+								<th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
+										placeholder="{{__('menu.Search Assesment No.')}}" /></th>
+								<th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
+										placeholder="{{__('menu.Search Payment date')}}" /></th>
+
+							</tr>
+						</thead>
+						<tbody>
+
+							{{-- @foreach ($payers as $payer)
+							<tr>
+								<td>{{$payer->id}}</th>
+								<td>{{$payer->payment_Date}}</td>
+								<td>{{$payer->amount}}</td>
+								<td>{{$payer->fine}}</td>
+								
+
+							</tr>
+							@endforeach --}}
+
+
+						</tbody>
+						<thead class="thead-light">
+							<tr>
+								<th>{{__('menu.Assesment No.')}}</th>
+								<th>{{__('menu.Payment Date')}}</th>
+								<th>{{__('menu.Annual Amount')}}</th>
+								<th>{{__('menu.Arrears')}}</th>
+							</tr>
+						</thead>
+
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 @endsection
 
 @push('script')
