@@ -23,7 +23,5 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/home');
         $response->assertStatus(302);   //redirect to email verification
-        $response->assertRedirect('/email/verify');
-        dd($response);
     }
 }
