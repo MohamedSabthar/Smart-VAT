@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Industrial Tax')
+@section('title','Booking')
 
 @section('sidebar')
 @includeWhen(Auth::user()->role=='admin','admin.include.sidebar')

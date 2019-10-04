@@ -231,7 +231,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input class=" btn btn-primary float-right" value="Submit" type="submit">
+                            <input class=" btn btn-primary float-right" value="{{__('menu.Submit')}}" type="submit">
                         </div>
                     </form>
                     <!-- <hr class="my-4 mt-7">		 -->
@@ -260,7 +260,7 @@
                                 <tr>
                                     <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
                                     <th style="width:300px;">{{__('menu.Business Name')}}</th>
-                                    <th> Shop Phone</th>
+                                    <th>{{__('menu.Shop Phone')}}</th>
                                 </tr>
                             </thead>
                             <thead id="search_inputs">
@@ -281,6 +281,21 @@
                                     <td class="text-center">{{$buisness->id}}</td>
                                     <td>{{$buisness->shop_name}}</td>
                                     <td>{{$buisness->phone}}</td>
+
+                                    <td class="text-right">
+								    <div class="dropdown">
+									    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+										    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    <i class="fas fa-ellipsis-v"></i>
+									    </a>
+									    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+										    <a class="dropdown-item"
+											    href="{{route('payment-list',['id'=>$buisness->id])}}">View Payment List</a>
+									    </div>
+
+								   </div>
+							    </td>
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -288,7 +303,7 @@
                                 <tr>
                                     <th>{{__('menu.Assesment No.')}}</th>
                                     <th>{{__('menu.Business Name')}}</th>
-                                    <th>Shop Phone</th>
+                                    <th>{{__('menu.Shop Phone')}}</th>
                                 </tr>
                             </thead>
                         </table>

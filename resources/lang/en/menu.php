@@ -62,7 +62,9 @@ return [
     'Add new Business' => 'Add new Business',
     'Select Business' => 'Select Business',
     'Business Address' => 'Business Address',
-    'Search Business Name' => 'Search Business Name',  
+    'Search Business Name' => 'Search Business Name',
+    'Shop Phone' => 'Shop Phone',
+    'Submit' => 'Submit',  
       
     
     //VAT Payer

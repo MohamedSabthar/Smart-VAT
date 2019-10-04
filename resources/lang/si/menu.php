@@ -61,11 +61,13 @@ return [
     'Select Business' => 'ව්‍යාපාරය තෝරන්න',
     'Business Address'=> 'ව්‍යාපාරික ලිපිනය',
     'Search Business Name' => 'ව්‍යාපාර නම සෙවීම',
+    'Shop Phone' => 'දුරකථන අංකය',
+    'Submit' => 'ඉදිරිපත් කරන්න',
     
     
     //VAT PAyer
     'User ID' => 'පරිශීලක අංකය',
-    'VAT Payer Name'=> 'වැට් බදු ගෙවන්නාගේ නම',
+    'VAT Payer Name'=> 'බදු ගෙවන්නාගේ නම',
     'Address' => 'ලිපිනය',
     'Search Address' => 'ලිපිනය සෙවීම',
     
@@ -81,11 +83,11 @@ return [
     'Assign' => 'පවරන්න',
 
     //globle config
-     'VAT & Fine %' => 'වැට් සහ දඩ %',
-     'VAT Category' => 'වැට් වර්ගය',
-     'VAT %' => 'වැට් %',
+     'VAT & Fine %' => 'බදු සහ දඩ ප්‍රතිශත(%)',
+     'VAT Category' => 'බදු වර්ගය',
+     'VAT %' => 'බදු %',
      'Fine %' => 'දඩ %',
-     'Search VAT category' => 'වැට් වර්ගය සෙවීම',
+     'Search VAT category' => 'බදු වර්ගය සෙවීම',
      'Assessment Ranges' => 'තක්සේරු පරාස',
      'Start Value (LKR)' => 'ආරම්භක අගය(රු.)',
      'End Value (LKR)' => 'අවසාන අගය(රු.)',
