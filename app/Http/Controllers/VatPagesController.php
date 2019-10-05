@@ -17,9 +17,9 @@ class VatPagesController extends Controller
         $this->middleware('vat');
     }
 
-    public function buisness()
+    public function business()
     {
-        $payers = Business_tax_shop::buisness_tax_payers(); //get all vat_payers who pay buisness tax
+        $payers = Business_tax_shop::business_tax_payers(); //get all vat_payers who pay buisness tax
         return view('vat.business.buisness', ['payers' => $payers]);
     }
 

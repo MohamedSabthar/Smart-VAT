@@ -102,6 +102,24 @@
         </div>
     </div>
 </div>
+
+
+
+<div class="col mt-5">
+    @if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show col-lg-8 col-sm-12 mb-3" role="alert">
+        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+        <span class="alert-inner--text mx-2">
+            <strong class="mx-1">Error!</strong>
+            Data you entered is/are incorrect
+            <a href="#" class="btn btn-sm btn-primary mx-3 add-buissness">view</a>
+        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+</div>
 @endsection
 
 @section('pageContent')
@@ -122,7 +140,7 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="#" id="add-buissness" class="btn btn-sm btn-success mr-4">[+] Buissness</a>
+                        <a href="#" class="btn btn-sm btn-success mr-4 add-buissness">[+] Buissness</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
@@ -180,8 +198,9 @@
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror" type="text"
-                                    value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount" name="annualAssesmentAmount">
+                                <input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
+                                    type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
+                                    name="annualAssesmentAmount">
                                 @error('annualAssesmentAmount')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -203,7 +222,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="business-type" class="col-md-2 col-form-label form-control-label ">{{__('menu.Business type')}}</label>
+                            <label for="business-type"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Business type')}}</label>
                             <div class="col-md-10">
 
                                 <select id="type" class="form-control">
@@ -261,6 +281,7 @@
                                     <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
                                     <th style="width:300px;">{{__('menu.Business Name')}}</th>
                                     <th> Shop Phone</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <thead id="search_inputs">
@@ -271,8 +292,11 @@
                                     <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
                                             placeholder="{{__('menu.Search Business Name')}}" />
                                     </th>
-                                    
-                                    
+                                    <th><input type="text" class="form-control form-control-sm" id="searchPhone"
+                                            placeholder="{{__('menu.Search Phone')}}" />
+                                    </th>
+
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -281,6 +305,20 @@
                                     <td class="text-center">{{$buisness->id}}</td>
                                     <td>{{$buisness->shop_name}}</td>
                                     <td>{{$buisness->phone}}</td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item"
+                                                    href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
+                                                    View payments</a>
+                                            </div>
+
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -289,6 +327,7 @@
                                     <th>{{__('menu.Assesment No.')}}</th>
                                     <th>{{__('menu.Business Name')}}</th>
                                     <th>Shop Phone</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                         </table>
@@ -313,7 +352,6 @@
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('js/select2.js')}}"></script>
-
 <script>
     $(document).ready(function() {
 
@@ -340,27 +378,33 @@
                 .columns( 0 )
                 .search( this.value )
                 .draw();
-            });
-            $('#searchBuisness').on( 'keyup', function () { 
-            table
-                .columns( 1 )
-                .search( this.value )
-                .draw();
-            });
+        });
+
+        $('#searchBuisness').on( 'keyup', function () { 
+        table
+            .columns( 1 )
+            .search( this.value )
+            .draw();
+        });
+
+        $('#searchPhone').on( 'keyup', function () { 
+        table
+            .columns( 2 )
+            .search( this.value )
+            .draw();
+        });
 
 
-            //toggle transition for buisness registration form
-            $("#business-registration").hide();
-            $("#add-buissness").on('click',function(){
-                $("#business-registration").slideToggle("slow");
-            });
+        //toggle transition for buisness registration form
+        $("#business-registration").hide();
+        $(".add-buissness").on('click',function(){
+            $("#business-registration").slideToggle("slow");
+        });
 
 
-            $('#type').select2();
+        $('#type').select2();
             
-      } );
-
-      
+    } );
 
 </script>
 @endpush
