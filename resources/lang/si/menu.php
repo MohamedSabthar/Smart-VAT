@@ -56,10 +56,11 @@ return [
 
     'VAT Payer Business List' => 'බදු ගෙවන්නගේ ව්‍යාපාර ලැයිස්තුව ',
     'Business Name' => '‍ව්‍යාපාර නාමය',
-    'Business' => 'ව්‍යාපාරය',
+    'Business type' => 'ව්‍යාපාර වර්ගය',
     'Add new Business' => 'නව ව්‍යාපාරයක් එකතු කිරීම ',
     'Select Business' => 'ව්‍යාපාරය තෝරන්න',
     'Business Address'=> 'ව්‍යාපාරික ලිපිනය',
+    'Search Business Name' => 'ව්‍යාපාර නම සෙවීම',
     
     
     //VAT PAyer
@@ -67,6 +68,30 @@ return [
     'VAT Payer Name'=> 'වැට් බදු ගෙවන්නාගේ නම',
     'Address' => 'ලිපිනය',
     'Search Address' => 'ලිපිනය සෙවීම',
+    
+
+    //employee profile
+    'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',
+    'Name' => 'නම',    
+    'NIC' => 'ජාතික හැඳුනුම්පත් අංකය',
+    'Phone No' => 'දුරකතන අංකය',
+    'Assigned VAT categories' => 'පවරා ඇති වැට් බදු කාණ්ඩ',
+    'E-Mail' => 'විද්යුත් තැපෑල',
+    'Update' => 'යාවත්කාලීන කිරීම',
+    'Assign' => 'පවරන්න',
+
+    //globle config
+     'VAT & Fine %' => 'වැට් සහ දඩ %',
+     'VAT Category' => 'වැට් වර්ගය',
+     'VAT %' => 'වැට් %',
+     'Fine %' => 'දඩ %',
+     'Search VAT category' => 'වැට් වර්ගය සෙවීම',
+     'Assessment Ranges' => 'තක්සේරු පරාස',
+     'Start Value (LKR)' => 'ආරම්භක අගය(රු.)',
+     'End Value (LKR)' => 'අවසාන අගය(රු.)',
+     'Search start value' =>'ආරම්භක අගය සෙවීම',
+     'Search end value'=> 'අවසාන අගය සෙවීම',
+    
 
     'First Name' => 'මුල් නම',
     'Middle Name'=> 'මැද නම',

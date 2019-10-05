@@ -20,8 +20,10 @@ class CreateBusinessTaxPaymentsTable extends Migration
             $table->double('due_payment');
             $table->bigInteger('shop_id')->unsigned();
             $table->bigInteger('payer_id')->unsigned();
-            $table->foreign('shop_id')->references('id')->on('business_tax_shops');
-            $table->foreign('payer_id')->references('id')->on('vat_payers');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('shop_id')->references('id')->on('business_tax_shops'); // a tax payment for a buisness
+            $table->foreign('payer_id')->references('id')->on('vat_payers');    // a tax payment by a vat payer
+            $table->foreign('user_id')->references('id')->on('users');          // an employee enteres the record
             $table->timestamps();
         });
     }
