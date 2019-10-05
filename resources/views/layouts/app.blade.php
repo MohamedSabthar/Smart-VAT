@@ -149,11 +149,6 @@
 		</div>
 	</nav>
 
-
-
-
-
-
 	{{-- End of Side-Navbar --}}
 
 	{{-- Main Contennt --}}

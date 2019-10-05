@@ -12,10 +12,10 @@ class VatsTableSeeder extends Seeder
     public function run()
     {
         DB::table('vats')->insert([
-            'name' => 'Buisness Tax',
+            'name' => 'Business Tax',
             'vat_percentage' => 15,
             //vat and fine refered on seperate table
-            'route'=> 'buisness'
+            'route'=> 'business'
         ]);
 
         DB::table('vats')->insert([
