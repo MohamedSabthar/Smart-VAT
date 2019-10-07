@@ -1,10 +1,5 @@
 @extends('layouts.app')
 
-@push('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
-@endpush
-
 @section('title','Dashboard')
 
 @section('sidebar')
@@ -104,15 +99,13 @@
 @section('pageContent')
 <div class="row">
 	<div class="col">
-
 		<div class="card bg-secondary shadow">
 			<div class="card-header bg-white border-0">
 				<h3 class="mb-0"><span class="text-uppercase">Register Employee</span></h3>
 			</div>
 
-
 			<div class="card-body">
-
+				{{-- Employee registration form --}}
 				<form method="POST" action="{{route('register')}}">
 					@csrf
 					<div class="form-group row pt-3">
@@ -183,43 +176,10 @@
 					</div>
 
 				</form>
+				{{-- end of Employee registration form --}}
 			</div>
-
-
 
 		</div>
 	</div>
 </div>
 @endsection
-
-@push('script')
-<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-<script>
-	$(document).ready(function() {
-
-        var id = '#example';                      //data table id
-        var table = $(id).DataTable({
-          "pagingType": "full_numbers"
-
-        });            //table object
-
-        $(id+'_filter').addClass('pr-5');         //adding padding to table elements
-        $(id+'_info').addClass('pl-5');
-        $(id+'_paginate').addClass('pr-5');
-        $(id+'_length').addClass('pl-5')
-
-
-        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
-        
-        $('#searchName').on( 'keyup', function () { //individulat column search
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-            });
-
-      } );
-
-</script>
-@endpush

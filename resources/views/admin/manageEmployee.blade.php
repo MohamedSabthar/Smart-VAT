@@ -125,7 +125,8 @@
             </div>
 
             <div class="table-responsive">
-                <table id="example" class="table  ">
+                {{-- Employees table --}}
+                <table id="employees_table" class="table">
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.User ID')}}</th>
@@ -194,6 +195,7 @@
                     </thead>
 
                 </table>
+                {{-- end of Employees table --}}
             </div>
         </div>
     </div>
@@ -206,7 +208,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#example';                      //data table id
+        var id = '#employees_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -230,32 +232,35 @@
                 .search( this.value )
                 .draw();
             });
-            $('#searchId').on( 'keyup', function () { 
+
+        $('#searchId').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
-            });
-            $('#searchUsername').on( 'keyup', function () { 
+        });
+
+        $('#searchUsername').on( 'keyup', function () { 
             table
                 .columns( 2 )
                 .search( this.value )
                 .draw();
-            });
-            $('#searchEmail').on( 'keyup', function () { 
+        });
+
+        $('#searchEmail').on( 'keyup', function () { 
             table
                 .columns( 3 )
                 .search( this.value )
                 .draw();
-            });
-            $('#searchAdmin').on( 'keyup', function () { 
+        });
+        
+        $('#searchAdmin').on( 'keyup', function () { 
             table
                 .columns( 4 )
                 .search( this.value )
                 .draw();
-            });
+        });
 
-      } );
-
+      });
 </script>
 @endpush
