@@ -106,6 +106,7 @@
                 <hr class="mt-4 mb-0">
             </div>
             <div class="table-responsive">
+                {{-- Vat percentage table --}}
                 <table id="vat_table" class="table">
                     <thead class="thead-light">
                         <tr>
@@ -117,9 +118,10 @@
                     </thead>
                     <thead id="search_inputs">
                         <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchVAT"
-                                    placeholder="{{__('menu.Search VAT category')}}" /></th>
-
+                            <th>
+                                <input type="text" class="form-control form-control-sm" id="searchVAT"
+                                    placeholder="{{__('menu.Search VAT category')}}" />
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,9 +130,6 @@
                             <td class="text-center">{{$vat->name}}</td>
                             <td>{!! $vat->vat_percentage ? $vat->vat_percentage.' %' : 'N/A' !!}</td>
                             <td>{!! $vat->fine_percentage ? $vat->fine_percentage.' %' : 'N/A' !!}</td>
-
-
-
                             <td class="text-right">
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -156,6 +155,7 @@
                         </tr>
                     </thead>
                 </table>
+                {{-- end of Vat percentage table --}}
             </div>
         </div>
     </div>
@@ -167,7 +167,8 @@
                 <hr class="mt-4 mb-0">
             </div>
             <div class="table-responsive" style="width:100%">
-                <table id="assessment_table" class="table  ">
+                {{-- Assessment ranges table --}}
+                <table id="assessment_table" class="table">
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.VAT Category')}}</th>
@@ -219,6 +220,7 @@
                         </tr>
                     </thead>
                 </table>
+                {{-- end of Assessment ranges table --}}
             </div>
         </div>
     </div>
@@ -249,16 +251,11 @@
                 .search( this.value )
                 .draw();
 
-
                 assessment_table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-
-
-
-
 
         var assessment_table = $('#assessment_table').DataTable({
           "pagingType": "full_numbers",
@@ -271,8 +268,6 @@
  
         $('#assessment_table_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
-       
-        
         //individulat column search
         $('#searchAssessment').on( 'keyup', function () { 
             assessment_table
@@ -281,26 +276,20 @@
                 .draw();
             });
 
-            $('#searchStartValue').on( 'keyup', function () { 
-            assessment_table
-                .columns( 1 )
-                .search( this.value )
-                .draw();
-            });
+        $('#searchStartValue').on( 'keyup', function () { 
+        assessment_table
+            .columns( 1 )
+            .search( this.value )
+            .draw();
+        });
 
-            $('#searchEndValue').on( 'keyup', function () { 
-            assessment_table
-                .columns( 2 )
-                .search( this.value )
-                .draw();
-            });
+        $('#searchEndValue').on( 'keyup', function () { 
+        assessment_table
+            .columns( 2 )
+            .search( this.value )
+            .draw();
+        });
 
-
-
-
-
-
-      } );
-
+    });
 </script>
 @endpush

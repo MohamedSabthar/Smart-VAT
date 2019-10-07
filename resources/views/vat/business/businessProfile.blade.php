@@ -103,8 +103,7 @@
     </div>
 </div>
 
-
-
+{{-- Alert notifications --}}
 <div class="col mt-5">
     @if($errors->any())
     <div class="alert alert-danger alert-dismissible fade show col-lg-8 col-sm-12 mb-3" role="alert">
@@ -120,6 +119,8 @@
     </div>
     @endif
 </div>
+{{-- end of Alert notifications --}}
+
 @endsection
 
 @section('pageContent')
@@ -134,9 +135,7 @@
                                 <img src="{{asset('assets/img/theme/girl.png')}}" class="rounded-circle">
                             </a>
                         </div>
-
                     </div>
-
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
@@ -178,8 +177,8 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    {{-- Buisness registration form --}}
                     <form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
-
                         @csrf
                         <div class="form-group row pt-3">
                             <label for="example-text-input"
@@ -293,28 +292,25 @@
                             <input class=" btn btn-primary float-right" value="{{__('menu.Submit')}}" type="submit">
                         </div>
                     </form>
-                    <!-- <hr class="my-4 mt-7">		 -->
+                    {{-- end of Buisness registration form --}}
                 </div>
             </div>
-            <!-- business list -->
 
             <div class="card shadow">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="mb-0"><span class="text-uppercase">{{$vatPayer->first_name}} 's
-                                    businesses</span>
-
+                            <h3 class="mb-0">
+                                <span class="text-uppercase">{{$vatPayer->first_name}} 's businesses</span>
                             </h3>
                             <hr class="mt-4 mb-0">
                         </div>
-
                     </div>
                 </div>
                 <div class="card-body">
-
                     <div class="table-responsive">
-                        <table id="example" class="table">
+                        {{-- Business shops table --}}
+                        <table id="business_shops_table" class="table">
                             <thead class="thead-light">
                                 <tr>
                                     <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
@@ -368,16 +364,11 @@
                                 </tr>
                             </thead>
                         </table>
+                        {{-- end of Business shops table --}}
                     </div>
-
-                    </form>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
 </div>
 
@@ -392,7 +383,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#example';                      //data table id
+        var id = '#business_shops_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -418,17 +409,17 @@
         });
 
         $('#searchBuisness').on( 'keyup', function () { 
-        table
-            .columns( 1 )
-            .search( this.value )
-            .draw();
+            table
+                .columns( 1 )
+                .search( this.value )
+                .draw();
         });
 
         $('#searchPhone').on( 'keyup', function () { 
-        table
-            .columns( 2 )
-            .search( this.value )
-            .draw();
+            table
+                .columns( 2 )
+                .search( this.value )
+                .draw();
         });
 
 
