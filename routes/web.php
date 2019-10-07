@@ -24,8 +24,6 @@ Route::name('password.')->group(
     }
 );
 
-
-
 /**
  * Routes related to admin
 */
@@ -43,25 +41,8 @@ Route::get('/language/{locale}', 'LanguageController@changeLanguage');  //langua
 Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
 
 /**
- * Routes related to buisness tax
- */
-Route::get('/buisness/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
-Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
-Route::post('/business/business-register/{id}','vat\BusinessTaxController@registerBusiness')->name('business-register');
-
-
-
-
-Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
-Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
-Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
-Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
-
-
-/**
  * Routes related to vat category (return view of the vat category)
 */
-
 try {
     foreach (Vat::all() as $vat) {      //routes for all vat categories, VatPagesController contains methodes which show the forms
         Route::get('/'.$vat->route, 'VatPagesController@'.$vat->route)->name($vat->route);
@@ -69,3 +50,18 @@ try {
 } catch (Exception $e) {
     echo "dynamic routes will only work after migration \n";
 }
+
+/**
+ * Routes related to buisness tax
+ */
+Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
+Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
+Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
+Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
+//all business tax related tax routes should starts with "/buisness"
+
+
+Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
+Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
+Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');

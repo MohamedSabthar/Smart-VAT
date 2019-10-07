@@ -198,16 +198,16 @@
                 .columns( 0 )
                 .search( this.value )
                 .draw();
-            });
-            $('#searchOwnerName').on( 'keyup', function () { 
-            table
-                .columns( 1 )
-                .search( this.value )
-                .draw();
-            });
-           
+        });
 
-      } );
+        $('#searchOwnerName').on( 'keyup', function () { 
+        table
+            .columns( 1 )
+            .search( this.value )
+            .draw();
+        });
+           
+    } );
 
 </script>
 @endpush
