@@ -164,10 +164,9 @@
                     <table id="business_payments_table" class="table  px-5">
                         <thead class="thead-light">
                             <tr>
-                                <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Annual Amount')}}</th>
-                                <th>{{__('menu.Arrears')}}</th>
+                                <th>{{__('menu.Assigned To Court')}}</th>
 
                             </tr>
                         </thead>
@@ -177,6 +176,13 @@
                                         placeholder="{{__('menu.Search Assesment No.')}}" /></th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
                                         placeholder="{{__('menu.Search Payment date')}}" /></th>
+                                <th>
+                                    <select class="form-control form-control-sm" id="selectCourt">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+
+                                </th>
 
                             </tr>
                         </thead>
@@ -198,10 +204,9 @@
                         </tbody>
                         <thead class="thead-light">
                             <tr>
-                                <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Annual Amount')}}</th>
-                                <th>{{__('menu.Arrears')}}</th>
+                                <th>{{__('menu.Assigned To Court')}}</th>
                             </tr>
                         </thead>
 
@@ -248,6 +253,12 @@
             $('#searchPaymentDate').on( 'keyup', function () { 
             table
                 .columns( 1 )
+                .search( this.value )
+                .draw();
+            });
+            $('#selectCourt').on( 'keyup', function () { 
+            table
+                .columns( 2 )
                 .search( this.value )
                 .draw();
             });
