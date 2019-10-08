@@ -32,7 +32,7 @@ class BusinessTaxController extends Controller
     }
 
     public function businessPayments($shop_id)
-    { 
+    {
         $businessTaxShop = Business_tax_shop::findOrFail($shop_id);
 
         return view('vat.business.businessPayments', ['businessTaxShop'=>$businessTaxShop]);
@@ -40,23 +40,22 @@ class BusinessTaxController extends Controller
 
     public function registerBusiness($id, AddBusinessRequest $request)
     {
-    
-       $vatPayer = Vat_payer :: find($id);
-       $businessTaxShop = new Business_tax_shop();
-       $businessTaxShop->registration_no = $request->assesmentNo;
-       $businessTaxShop->anual_worth = $request->annualAssesmentAmount;
-       $businessTaxShop->shop_name = $request->businessName;
-       $businessTaxShop->phone = $request->phoneno;
-       $businessTaxShop->door_no = $request->doorno;
-       $businessTaxShop->street = $request->street;
-       $businessTaxShop->city = $request->city;
-       $businessTaxShop->type = "1";
-       $businessTaxShop->employee_id =$id;
-       $businessTaxShop->payer_id =$id;
+        $vatPayer = Vat_payer :: find($id);
+        $businessTaxShop = new Business_tax_shop();
+        $businessTaxShop->registration_no = $request->assesmentNo;
+        $businessTaxShop->anual_worth = $request->annualAssesmentAmount;
+        $businessTaxShop->shop_name = $request->businessName;
+        $businessTaxShop->phone = $request->phoneno;
+        $businessTaxShop->door_no = $request->doorno;
+        $businessTaxShop->street = $request->street;
+        $businessTaxShop->city = $request->city;
+        $businessTaxShop->type = "1";
+        $businessTaxShop->employee_id =$id;
+        $businessTaxShop->payer_id =$id;
 
-       $businessTaxShop ->save();
+        $businessTaxShop ->save();
         
      
-       return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', 'New Business Added successfully');
+        return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', 'New Business Added successfully');
     }
 }
