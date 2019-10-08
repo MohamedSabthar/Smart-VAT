@@ -229,7 +229,9 @@
 
                                     {{-- only for testing need to implement Ajax searchBuisness --}}
                                     @foreach ($businessTypes as $type)
-                                    <option value="{{$type->id}}">{{$type->description}}</option>
+                                    <option value="{{$type->id}}">{{$type->description}}
+                                        {{'('.$type->ranges->start_value .'-'. $type->ranges->end_value .')'}}
+                                    </option>
                                     @endforeach
 
 
@@ -316,6 +318,7 @@
                                     <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
                                     <th style="width:300px;">{{__('menu.Business Name')}}</th>
                                     <th>{{__('menu.Shop Phone')}}</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <thead id="search_inputs">
@@ -361,6 +364,7 @@
                                     <th>{{__('menu.Assesment No.')}}</th>
                                     <th>{{__('menu.Business Name')}}</th>
                                     <th>{{__('menu.Shop Phone')}}</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                         </table>
