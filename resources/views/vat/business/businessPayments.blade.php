@@ -148,6 +148,7 @@
                 </div>
             </div>
         </div>
+        
 
         <div class="col">
             <div class="card shadow">
@@ -212,6 +213,8 @@
         </div>
     </div>
 </div>
+
+
 
 @endsection
 
