@@ -225,7 +225,7 @@
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Business type')}}</label>
                             <div class="col-md-10">
 
-                                <select id="type" class="form-control">
+                                <select id="type" name="type" class="form-control">
 
                                     {{-- only for testing need to implement Ajax searchBuisness --}}
                                     @foreach ($businessTypes as $type)

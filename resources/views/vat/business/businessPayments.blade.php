@@ -148,7 +148,6 @@
                 </div>
             </div>
         </div>
-        
 
         <div class="col">
             <div class="card shadow">
@@ -215,6 +214,8 @@
                     {{-- end of Business TAX payments table --}}
                 </div>
             </div>
+        
+            
         </div>
     </div>
 </div>

@@ -40,6 +40,7 @@ class BusinessTaxController extends Controller
 
     public function registerBusiness($id, AddBusinessRequest $request)
     {
+        
         $vatPayer = Vat_payer :: find($id);
         $businessTaxShop = new Business_tax_shop();
         $businessTaxShop->registration_no = $request->assesmentNo;
@@ -49,8 +50,8 @@ class BusinessTaxController extends Controller
         $businessTaxShop->door_no = $request->doorno;
         $businessTaxShop->street = $request->street;
         $businessTaxShop->city = $request->city;
-        $businessTaxShop->type = "1";
-        $businessTaxShop->employee_id =$id;
+        $businessTaxShop->type = $request->type;
+        $businessTaxShop->employee_id =Auth::user()->id;
         $businessTaxShop->payer_id =$id;
 
         $businessTaxShop ->save();
