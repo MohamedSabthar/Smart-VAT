@@ -26,12 +26,12 @@ class AddBusinessRequest extends FormRequest
     {
         return[
             'assesmentNo' =>['required', 'string', 'max:255', 'unique:business_tax_shops,registration_no'], 
-            'annualAssesmentAmount' => ['required','string', 'max:255'],  
-            'businessName' => ['required', 'alpha','string','max:255'], 
-            'phoneno' => ['required','alpha','string','max:255'],    
-            'doorno' => ['required','alpha','string','max:255'],  
-            'street' => ['required','alpha','string','max:255'],  
-            'city' => ['required','alpha','string','max:255'],     
+            'annualAssesmentAmount' => ['required','numeric'],  
+            'businessName' => ['required','string','max:255'], 
+            'phoneno' => ['required','numeric','digits_between:10,10'],    
+            'doorno' => ['required','numeric'],  
+            'street' => ['required','alpha_num','max:255'],  
+            'city' => ['required','string','max:255'],     
             
         ];
     }
