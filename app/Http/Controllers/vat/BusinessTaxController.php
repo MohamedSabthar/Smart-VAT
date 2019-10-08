@@ -51,7 +51,7 @@ class BusinessTaxController extends Controller
        $businessTaxShop->street = $request->street;
        $businessTaxShop->city = $request->city;
        $businessTaxShop->type = "1";
-       $businessTaxShop->employee_id = $id;
+       $businessTaxShop->employee_id =$id;
        $businessTaxShop->payer_id =$id;
 
        $businessTaxShop ->save();

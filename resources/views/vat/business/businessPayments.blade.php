@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('title','Business Tax')
+
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
-
 @endpush
 
 @section('sidebar')
@@ -56,6 +56,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -77,6 +78,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -142,18 +144,12 @@
                             <h3 class="d-inline"> Phone No : </h3> {{$businessTaxShop->phone}}
                         </div>
 
-
-
                     </div>
-
                 </div>
             </div>
         </div>
 
-
-
         <div class="col">
-
             <div class="card shadow">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
@@ -164,7 +160,8 @@
                 </div>
 
                 <div class="table-responsive py-4">
-                    <table id="example" class="table  px-5">
+                    {{-- Business TAX payments table --}}
+                    <table id="business_payments_table" class="table  px-5">
                         <thead class="thead-light">
                             <tr>
                                 <th>{{__('menu.Assesment No.')}}</th>
@@ -209,6 +206,7 @@
                         </thead>
 
                     </table>
+                    {{-- end of Business TAX payments table --}}
                 </div>
             </div>
         </div>
@@ -223,7 +221,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#example';                      //data table id
+        var id = '#business_payments_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+

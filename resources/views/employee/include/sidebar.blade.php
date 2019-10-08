@@ -1,3 +1,4 @@
+{{-- Sidebar content --}}
 <li class="nav-item  {!! url()->current() == route('home') ? 'active' : ''!!}">
 	<a class=" nav-link " href="{{  url('/') }}">
 		<i class="ni ni-tv-2 text-primary"></i>
@@ -12,3 +13,4 @@
 	</a>
 </li>
 @endforeach
+{{-- end of Sidebar content --}}

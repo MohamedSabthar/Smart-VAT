@@ -17,7 +17,7 @@ class CreateBusinessTaxShopsTable extends Migration
             $table->bigIncrements('id');
            // $table->string('assesment_no')->nullable();
             $table->string('shop_name');                                    // shop/buisness name
-            $table->string('anual_worth');                                  // anual worth of the shop
+            $table->double('anual_worth');                                  // anual worth of the shop
             $table->string('phone', 12);                                    // user's telephone number
             $table->string('registration_no');                              // shop/buisness registration no
             $table->string('door_no');
