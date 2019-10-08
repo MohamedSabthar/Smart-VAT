@@ -177,12 +177,12 @@
 						</thead>
 						<tbody>
 
-							{{-- @foreach ($payers as $payer)
+							{{-- @foreach ($businessTaxPayments as $businessTaxPayment)
 							<tr>
-								<td>{{$payer->id}}</th>
-							<td>{{$payer->payment_Date}}</td>
-							<td>{{$payer->amount}}</td>
-							<td>{{$payer->fine}}</td>
+								<td>{{$businessTaxPayment->assesmentNo}}</th>
+							<td>{{$businessTaxPayment->payment_Date}}</td>
+							<td>{{$businessTaxPayment->amount}}</td>
+							<td>{{$businessTaxPayment->arrears}}</td>
 
 
 							</tr>

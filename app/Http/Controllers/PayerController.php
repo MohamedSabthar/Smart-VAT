@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vat_payer;
 use App\Business_tax_shop;
+use App\Business_type;
 
 class PayerController extends Controller
 {
@@ -16,7 +17,7 @@ class PayerController extends Controller
     public function register()
     {
         $businessTypes = Business_type::all();
-        return view('vatPayer.registerPayer');
+        return view('vatPayer.registerPayer', ['businessTypes'=>$businessTypes]);
     }
 
     public function profile()
@@ -28,11 +29,11 @@ class PayerController extends Controller
     {
         return view('vatPayer.payerBusinessList');
     }
-    public function businessPaymentList()
+    public function businessPaymentList($id)
     {
-        $businessTaxShop = Business_tax_shop::find(1);
-        // dd($businessTaxShop->shop_name);
-        return view('vat.business.payerPaymentList', ['businessTaxShop'=>$businessTaxShop]);
+        $vatPayer = Vat_payer::find($id);
+        $businessTaxShop = Business_tax_shop::find($id);
+        return view('vat.business.payerPaymentList', ['vatPayer'=>$vatPayer,'businessTaxShops'=>$businessTaxShop]);
     }
 
     public function updateVATpayerProfile($id, UpdateVATpayerProfileRequest $request)
@@ -41,8 +42,8 @@ class PayerController extends Controller
 
         //update new VAT Payer details
         $vat_payer->first_name = $request->first_name;
-        $vat_payer->Middle_name = $request->Middle_name;
-        $vat_payer->Last_name = $request->Last_name;
+        $vat_payer->middle_name = $request->middle_name;
+        $vat_payer->last_name = $request->last_name;
         $vat_payer->nic = $request->nic;
         $vat_payer->email = $request->email;
         $vat_payer->phone = $request->phone;

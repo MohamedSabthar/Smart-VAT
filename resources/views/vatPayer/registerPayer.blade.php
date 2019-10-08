@@ -122,7 +122,7 @@
 								<div class="col-md-10 ">
 									<input class="form-control @error('first_name') is-invalid  @enderror" type="text"
 										value="{{old('first_name')}}" id="first_name" name="first_name">
-									@error('name')
+									@error('first_name')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
@@ -147,9 +147,9 @@
 										<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
 											{{__('menu.Last Name')}}</label>
 										<div class="col-md-10">
-											<input class="form-control @error('Last_name') is-invalid @enderror" type="text"
-												value="{{old('Last_name')}}" id="Last_name" name="Last_name">
-											@error('Last_name')
+											<input class="form-control @error('last_name') is-invalid @enderror" type="text"
+												value="{{old('last_name')}}" id="last_name" name="last_name">
+											@error('last_name')
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $message }}</strong>
 											</span>
@@ -241,22 +241,22 @@
 										</div>
 								</div>
 
-								{{-- <div class="form-group row">
+									 <div class="form-group row">
 										<label for="business-type" class="col-md-2 col-form-label form-control-label ">Business
 											type</label>
 										<div class="col-md-10">
 				
 											<select id="type" class="form-control">
-				 --}}
+				
 												{{-- only for testing need to implement Ajax searchBuisness --}}
-												{{-- @foreach ($businessTypes as $type) --}}
-												{{-- <option value="{{$type->id}}">{{$type->description}}</option>
-												@endforeach --}}
+												 @foreach ($businessTypes as $type) --}}
+												<option value="{{$type->id}}">{{$type->description}}</option>
+												@endforeach 
 				
 				
-											{{-- </select>
+											 </select>
 									   </div>
-								</div>  --}}
+								</div>  
 								<div class="form-group">
 										<input class=" btn btn-primary float-right" type="submit">
 								</div>
