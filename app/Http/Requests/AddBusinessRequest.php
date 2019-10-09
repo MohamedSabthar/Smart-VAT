@@ -29,9 +29,10 @@ class AddBusinessRequest extends FormRequest
             'annualAssesmentAmount' => ['required','numeric'],  
             'businessName' => ['required','string','max:255'], 
             'phoneno' => ['required','numeric','digits_between:10,10'],    
-            'doorno' => ['required','numeric'],  
+            'doorno' => ['required','alpha_num','max:255'],  
             'street' => ['required','alpha_num','max:255'],  
-            'city' => ['required','string','max:255'],     
+            'city' => ['required','string','max:255'], 
+            'type' =>['required'],    
             
         ];
     }
