@@ -20,6 +20,8 @@ class BusinessTaxController extends Controller
 
     public function latestPayment()
     {
+        //$vatPayer = Vat_payer::find($id);
+
         return view('vat.business.latestPayments');
     }
     
