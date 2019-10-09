@@ -13,42 +13,12 @@ use Auth;
 
 class VATpayerRegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new VAT Payers per business as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
-
-    /**
-     * Where to redirect user after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * overriding registerfuntion
-     *
-     *
-     * Handle a registration request for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
 
         event(new Registered($vat_payer = $this->create($request->all())));
-
-        //$this->guard()->login($user);  //autologin after registration dissabled
 
         // redirecting to BUsiness VAT payers' page with success notification
         return redirect()->back()->with('status', ' New Payer registerd successfully');
@@ -67,8 +37,8 @@ class VATpayerRegisterController extends Controller
             [
             'first_name' => ['required','alpha', 'string', 'max:255'],
             'Last_name' => ['required','alpha', 'string', 'max:255'],
-            'doorNo' =>['required','alpha','varchar','max:100'],                              
-            'street'=>['required','alpha', 'string', 'max:255'],
+            'doorNo' =>['required','alpha_num','max:100'],                              
+            'street'=>['required','alpha_num', 'max:255'],
             'city'  =>['required','alpha', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:vat_payers'],        //   Validate to be a unique email
             'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/','unique:vat_payers'],     //   validation for nic

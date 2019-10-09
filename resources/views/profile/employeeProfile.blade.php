@@ -108,7 +108,7 @@
 			<div class="card-body">
 				<div id="update-data">
 					<form method="POST" action="{{route('update-employee',['id'=>$employee->id])}}">
-						<h6 class="heading-small text-muted mb-4"> Update mployee information</h6>
+						<h6 class="heading-small text-muted mb-4"> Update Employee information</h6>
 						@csrf
 						@method('put')
 						<div class="form-group row pt-3">

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Vat_payer;
 use App\Business_type;
-use App\Business_tax_shop;
+
 use App\Http\Requests\AddBusinessRequest;
 
 class BusinessTaxController extends Controller

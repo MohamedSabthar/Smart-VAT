@@ -240,23 +240,7 @@
 											@enderror
 										</div>
 								</div>
-
-									 <div class="form-group row">
-										<label for="business-type" class="col-md-2 col-form-label form-control-label ">Business
-											type</label>
-										<div class="col-md-10">
-				
-											<select id="type" class="form-control">
-				
-												{{-- only for testing need to implement Ajax searchBuisness --}}
-												 @foreach ($businessTypes as $type) --}}
-												<option value="{{$type->id}}">{{$type->description}}</option>
-												@endforeach 
-				
-				
-											 </select>
-									   </div>
-								</div>  
+  
 								<div class="form-group">
 										<input class=" btn btn-primary float-right" type="submit">
 								</div>
