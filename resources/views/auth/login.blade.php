@@ -30,6 +30,8 @@
 				</a>
 			</div>
 		</nav>
+		{{-- end of Navbar --}}
+
 		{{-- Header  --}}
 		<div class="header bg-gradient-primary py-7 py-lg-8">
 			<div class="container">
@@ -49,6 +51,8 @@
 				</svg>
 			</div>
 		</div>
+		{{-- end of Header --}}
+
 		{{-- Page content  --}}
 		<div class="container mt--8 pb-5">
 			<div class="row justify-content-center">
@@ -119,8 +123,9 @@
 				</div>
 			</div>
 		</div>
+		{{-- end of Page content --}}
 
-
+		{{-- Footer --}}
 		<footer class="pt-9">
 			<div class="container">
 				<div class="row align-items-center justify-content-xl-between">
@@ -132,7 +137,7 @@
 				</div>
 			</div>
 		</footer>
-
+		{{-- end of Footer --}}
 	</div>
 	{{-- Core --}}
 	<script src="{{ asset('assets/js/plugins/jquery/dist/jquery.min.js')}}"></script>

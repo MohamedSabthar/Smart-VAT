@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('title','Business Tax')
+
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
-
 @endpush
 
 @section('sidebar')
@@ -56,6 +56,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -77,6 +78,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -142,17 +144,21 @@
                             <h3 class="d-inline"> Phone No : </h3> {{$businessTaxShop->phone}}
                         </div>
 
-
-
                     </div>
-
                 </div>
             </div>
         </div>
 
-
-
         <div class="col">
+
+            {{-- Payment --}}
+            <div class="card shadow text-center mb-3 p-4">
+                <div class="card-body bg-white border-0">
+                    <h1 style="font-weight: 400;">Due Payment : Rs 5000.00</h1>
+                    <button class="btn btn-success">Accept Payment</button>
+                    <button class="btn btn-danger">Assign to Court</button>
+                </div>
+            </div>
 
             <div class="card shadow">
                 <div class="card-header bg-white border-0">
@@ -164,13 +170,14 @@
                 </div>
 
                 <div class="table-responsive py-4">
-                    <table id="example" class="table  px-5">
+                    {{-- Business TAX payments table --}}
+                    <table id="business_payments_table" class="table  px-5">
                         <thead class="thead-light">
                             <tr>
-                                <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Annual Amount')}}</th>
-                                <th>{{__('menu.Arrears')}}</th>
+                                <th>{{__('menu.Payment')}}</th>
+                                <th>{{__('menu.Assigned To Court')}}</th>
 
                             </tr>
                         </thead>
@@ -180,6 +187,15 @@
                                         placeholder="{{__('menu.Search Assesment No.')}}" /></th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
                                         placeholder="{{__('menu.Search Payment date')}}" /></th>
+                                <th></th>
+                                <th>
+                                    <select class="form-control form-control-sm" id="selectCourt">
+                                        <option value="">All</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+
+                                </th>
 
                             </tr>
                         </thead>
@@ -191,7 +207,7 @@
                                 <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
                                 <td>{{ number_format($payments->payment,2)}}</td>
 
-                                <td>{{ number_format($payments->due_payment,2)}}</td>
+                                <td>{!! $payments->assinged_to_court ? "Yes" : "No" !!}</td>
 
 
                             </tr>
@@ -201,14 +217,15 @@
                         </tbody>
                         <thead class="thead-light">
                             <tr>
-                                <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Annual Amount')}}</th>
-                                <th>{{__('menu.Arrears')}}</th>
+                                <th>{{__('menu.Payment')}}</th>
+                                <th>{{__('menu.Assigned To Court')}}</th>
                             </tr>
                         </thead>
 
                     </table>
+                    {{-- end of Business TAX payments table --}}
                 </div>
             </div>
         </div>
@@ -223,7 +240,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#example';                      //data table id
+        var id = '#business_payments_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -250,6 +267,12 @@
             $('#searchPaymentDate').on( 'keyup', function () { 
             table
                 .columns( 1 )
+                .search( this.value )
+                .draw();
+            });
+            $('#selectCourt').on( 'change', function () { 
+            table
+                .columns( 3 )
                 .search( this.value )
                 .draw();
             });

@@ -9,6 +9,7 @@
 @section('header')
 
 <div class="container-fluid d-flex align-items-center">
+	{{-- Alert notifications --}}
 	<div class="col">
 		<h1 class="display-2 text-white text-uppercase">{{$employee->name}}'s Profile</h1>
 		<p class="text-white mt-0 mb-5">Role : <span class="text-uppercase">{{$employee->role}}</span></p>
@@ -45,6 +46,7 @@
 		</div>
 		@endif
 	</div>
+	{{-- end of Alert notifications --}}
 </div>
 @endsection
 
@@ -107,8 +109,10 @@
 			</div>
 			<div class="card-body">
 				<div id="update-data">
-					<form method="POST" action="{{route('update-employee',['id'=>$employee->id])}}">
-						<h6 class="heading-small text-muted mb-4"> Update Employee information</h6>
+					{{-- Employee details form --}}
+					<form method="POST" id="employee-details-form"
+						action="{{route('update-employee',['id'=>$employee->id])}}">
+						<h6 class="heading-small text-muted mb-4"> Update mployee information</h6>
 						@csrf
 						@method('put')
 						<div class="form-group row pt-3">
@@ -177,14 +181,47 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<input class=" btn btn-primary float-right" value="Update" type="submit">
+							<button class="btn btn-primary float-right" data-toggle="modal"
+								onclick="javascript:event.preventDefault()"
+								data-target="#confirm-update-employee">{{__('menu.Assign')}}</button>
 						</div>
+
+						{{-- Confirmation modal --}}
+						<div class="modal fade" id="confirm-update-employee" tabindex="-1" role="dialog"
+							aria-labelledby="modal-default" aria-hidden="true">
+							<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+								<div class="modal-content">
+
+									<div class="modal-header">
+										<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p>Are you sure you wish to Update the details of {{$employee->name}} ?
+										</p>
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-link"
+											onclick="javascript:location.reload()">Cancel</button>
+										<button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
+											onclick="javascript:document.getElementById('employee-details-form').submit();">Confirm</button>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						{{-- end of Confirmation modal --}}
 					</form>
+					{{-- end of Employee details form --}}
 					<hr class="my-4 mt-7">
 				</div>
-				<!-- Address -->
+
 				<h6 class="heading-small text-muted mb-4">{{__('menu.Assigned VAT categories')}}</h6>
-				<form id="assignVat" action="{{route('assign-vat')}}" method="POST">
+				{{-- Assign VAT categories form --}}
+				<form id="assign-vat-categories-form" action="{{route('assign-vat')}}" method="POST">
 					@csrf
 					<input name="id" id="id" value="{{$employee->id}}" hidden>
 					<div class="row">
@@ -202,18 +239,48 @@
 						</div>
 						@endforeach
 					</div>
-					<div class="form-group">
-						<input class=" btn btn-primary float-right" value="{{__('menu.Assign')}}" type="submit">
+					<div class="form" form-group>
+						<button class="btn btn-primary float-right" data-toggle="modal"
+							onclick="javascript:event.preventDefault()"
+							data-target="#confirm-assign-vat">{{__('menu.Assign')}}</button>
 					</div>
+
+					{{-- Confirmation modal --}}
+					<div class="modal fade" id="confirm-assign-vat" tabindex="-1" role="dialog"
+						aria-labelledby="modal-default" aria-hidden="true">
+						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p>Are you sure you wish to reassign new Vat categories to {{$employee->name}} ?
+									</p>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
+									<button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
+										onclick="javascript:document.getElementById('assign-vat-categories-form').submit();">Confirm</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					{{-- end of Confirmation modal --}}
 				</form>
+				{{-- end of Assign VAT categories form --}}
 			</div>
 		</div>
 	</div>
 </div>
 
 @endsection
-
-
 
 @push('script')
 <script>

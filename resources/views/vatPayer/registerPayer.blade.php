@@ -114,7 +114,7 @@
 			
 			<div class="card-body ">
 			   
-					<form method="POST" action="{{route('vat-payer-registration')}}">
+					<form method="POST" action="#">
 							@csrf
 							<div class="form-group row pt-3">
 								<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
