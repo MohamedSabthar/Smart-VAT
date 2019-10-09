@@ -226,8 +226,7 @@
                             <div class="col-md-10">
 
                                 <select id="type" class="form-control">
-                                    <option value="" disabled>Select business type here</option>
-
+                                    <option value=""></option>
                                     {{-- only for testing need to implement Ajax searchBuisness --}}
                                     @foreach ($businessTypes as $type)
                                     <option value="{{$type->id}}">{{$type->description}}
@@ -237,6 +236,11 @@
 
 
                                 </select>
+                                @error('type')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
@@ -435,7 +439,10 @@
         });
 
 
-        $('#type').select2();
+        $('#type').select2({
+            placeholder: "Select business type here",
+            allowClear: true
+        });
             
     } );
 
