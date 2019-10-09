@@ -4,6 +4,7 @@ namespace App\Http\Controllers\vat;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Vat;
 use App\Vat_payer;
 use App\Business_type;
 use App\Business_tax_shop;
@@ -36,8 +37,9 @@ class BusinessTaxController extends Controller
     public function businessPayments($shop_id)
     {
         $businessTaxShop = Business_tax_shop::findOrFail($shop_id);
-
-        return view('vat.business.businessPayments', ['businessTaxShop'=>$businessTaxShop]);
+        $businessTax = Vat::where('name', 'Business Tax')->find(1);
+        $duePayment = $businessTaxShop->anual_worth * ($businessTax->vat_percentage/100);
+        return view('vat.business.businessPayments', ['businessTaxShop'=>$businessTaxShop,'duePayment'=>$duePayment]);
     }
 
     public function registerBusiness($id, AddBusinessRequest $request)
