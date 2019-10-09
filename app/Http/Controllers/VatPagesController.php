@@ -46,4 +46,29 @@ class VatPagesController extends Controller
     {
         return view('vat.booking');
     }
+    public function clubhouselicence()
+    {
+        return view('vat.clubHouseLicence');
+    }
+    public function landauction()
+    {
+        return view('vat.landAuction');
+    }
+    public function entertancementandperformance()
+    {
+        return view('vat.entertainmentPerformance');
+    }
+    public function shoprent()
+    {
+        return view('vat.shopRent');
+    }
+    public function threewheelpark()
+    {
+        return view('vat.threeWheelPark');
+    }
+    public function vehicalpark()
+    {
+        return view('vat.vehicalPark');
+    }
+    
 }
