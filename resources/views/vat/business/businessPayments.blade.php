@@ -154,9 +154,9 @@
             {{-- Payment --}}
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
-                    <h1 style="font-weight: 400;">Due Payment : Rs 5000.00</h1>
-                    <button class="btn btn-success">Accept Payment</button>
-                    <button class="btn btn-danger">Assign to Court</button>
+                    <h1 style="font-weight: 400;">Due Payment : Rs. {{number_format($duePayment,2)}}</h1>
+                    <button class="btn btn-success mx-auto my-1">Accept Payment</button>
+                    <button class="btn btn-danger mx-auto my-1">Assign to Court</button>
                 </div>
             </div>
 
