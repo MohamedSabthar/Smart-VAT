@@ -32,7 +32,7 @@ class AddBusinessRequest extends FormRequest
             'doorno' => ['required','alpha_num','max:255'],  
             'street' => ['required','alpha_num','max:255'],  
             'city' => ['required','string','max:255'], 
-            'type' =>['required'],    
+            // 'type' =>['required'],    
             
         ];
     }
