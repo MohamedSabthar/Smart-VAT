@@ -9,7 +9,7 @@ use App\Vat_payer;
 use App\Business_type;
 use App\Business_tax_shop;
 use App\Http\Requests\AddBusinessRequest;
-use App\Business_tax_payments;
+use App\Business_tax_payment;
 use Auth;
 
 class BusinessTaxController extends Controller
@@ -69,5 +69,20 @@ class BusinessTaxController extends Controller
         $businessTaxShop ->save();
         
         return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', 'New Business Added successfully');
+    }
+
+    public function reciveBusinessPayments($shop_id, Request $request)
+    {
+        $payerId=Business_tax_shop::findOrFail($shop_id)->payer->id;  //get the VAT payer id
+        
+        $businessTaxPyament = new Business_tax_payment;
+        $businessTaxPyament->payment = $request->payment;
+        $businessTaxPyament->shop_id = $shop_id;
+        $businessTaxPyament->payer_id =$payerId;
+        $businessTaxPyament->user_id = Auth::user()->id;
+
+        $businessTaxPyament->save();
+
+        return redirect()->back()->with('sucess', 'Payment added successfuly');
     }
 }
