@@ -149,9 +149,9 @@
             </div>
         </div>
 
-        <div class="col">
-
-            {{-- Payment --}}
+        <div class="col-xl-8 order-xl-1">
+            {{-- Payment Notice --}}
+            @if (!$paid)
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
                     <h1 style="font-weight: 400;">Due Payment : Rs. {{number_format($duePayment,2)}}</h1>
@@ -159,6 +159,16 @@
                     <button class="btn btn-danger mx-auto my-1">Assign to Court</button>
                 </div>
             </div>
+            @else
+            <div class="card shadow text-center mb-3 p-4">
+                <div class="card-body bg-white border-0">
+                    <h1 style="font-weight: 400;">No Due payments</h1>
+
+                </div>
+            </div>
+            @endif
+            {{-- end of Pyament Notice --}}
+
 
             <div class="card shadow">
                 <div class="card-header bg-white border-0">
@@ -228,8 +238,8 @@
                     {{-- end of Business TAX payments table --}}
                 </div>
             </div>
-        
-            
+
+
         </div>
     </div>
 </div>
