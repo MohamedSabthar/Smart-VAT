@@ -62,8 +62,10 @@ return [
     'Door No' => ' අංකය',
     'Street' => 'වීදිය',
     'City' => 'නගරය',
+    's businesses'=>'ගේ ව්‍යාපාර',
     'Search Business Name' => 'ව්‍යාපාර නම සෙවීම',
     'Shop Phone' => 'දුරකථන අංකය',
+    'Search Phone' => 'දුරකථන අංකය සෙවීම',
     'Submit' => 'ඉදිරිපත් කරන්න',
     
     
@@ -95,6 +97,19 @@ return [
      'End Value (LKR)' => 'අවසාන අගය(රු.)',
      'Search start value' =>'ආරම්භක අගය සෙවීම',
      'Search end value'=> 'අවසාන අගය සෙවීම',
+
+     //business payment
+
+     'Annual worth' => 'වාර්ෂික වටිනාකම',
+     'Due Payment : Rs.' => 'නියමිත ගෙවීම : රු.',
+     'Accept Payment' => 'ගෙවීම පිළිගන්න',
+     'Assign to Court' => 'උසාවියට පවරන්න',
+     'No Due payments' => 'නියමිත ගෙවීම් නොමැත',
+     'Payment History' => 'කරන ලද ගෙවීම්',
+     'Receipt No.' => 'කුවිතාන්සිය අංක',
+     'Payment Date' => 'ගෙවීම් කල දිනය',
+     'Payment' => 'ගෙවීම',
+     'Assigned To Court' => 'උසාවියට ​​පවරා ඇත',
     
 
 

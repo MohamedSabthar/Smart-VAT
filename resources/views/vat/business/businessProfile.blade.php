@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Dashboard')
+@section('title','Business Profile')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
@@ -308,7 +308,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h3 class="mb-0">
-                                <span class="text-uppercase">{{$vatPayer->first_name}} 's businesses</span>
+                                <span class="text-uppercase">{{$vatPayer->first_name}} '{{__('menu.s businesses')}}</span>
                             </h3>
                             <hr class="mt-4 mb-0">
                         </div>
