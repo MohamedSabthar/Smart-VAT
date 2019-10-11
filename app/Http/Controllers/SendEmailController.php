@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Vat_payer;
+use App\Business_type;
+use App\Business_tax_shop;
 
 use Illuminate\Http\Request;
 
@@ -17,9 +20,9 @@ class SendEmailController extends Controller
     public function send(Request $request)
     {  
         $this->validate($request, [
-            'full_name' => 'required',
+            'name' => 'required',
             'email'     => 'required|email',
-            'message'   => 'required'      
+            'address'   => 'required'      
         ]);
 
 

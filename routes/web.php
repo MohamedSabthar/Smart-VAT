@@ -66,11 +66,16 @@ Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPa
 
 
 Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
-Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
+// Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
-Route::get('/vat-Register', 'PayerController@register')->name('register');
-//Route::get('/vat-payer-registration', 'VATpayerRegisterController@validator')->name('vat-payer-registration');
+/*
+*VAT Payer registration
+*/
+Route::get('/vat-payer/register', 'VATpayerRegisterController@create')->name('vat-payer-registration');
+Route::post('/vat-Register', 'VATpayerRegisterController@register');
+
 Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
 // Route for sending an Email for the VAT Payer informing the due Payments
 Route::get('/send-email', 'SendEmailController@sendEmail');
+Route::post('/send-email/send', 'SendEmailController@send');

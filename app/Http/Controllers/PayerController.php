@@ -47,7 +47,9 @@ class PayerController extends Controller
         $vatPayer->first_name = $request->first_name;
         $vatPayer->middle_name = $request->middle_name;
         $vatPayer->last_name = $request->last_name;
-
+        $vatPayer->doorNo = $request->doorNo;
+        $vatPayer->street = $request->street;
+        $vatPayer->city = $request->city;
         $vatPayer->nic = $request->nic;
         $vatPayer->email = $request->email;
         $vatPayer->phone = $request->phone;

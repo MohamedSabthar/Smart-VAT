@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Vat_payer;
+use App\Business_type;
+use App\Business_tax_shop;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\VATpayerRegisterRequest;
@@ -13,12 +16,20 @@ use Auth;
 
 class VATpayerRegisterController extends Controller
 {
-    
+    public function create()
+    {
+        $businessTypes = Business_type::all();
+        return view('vatPayer.registerPayer', ['businessTypes'=>$businessTypes]);
+
+    }
+
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
 
         event(new Registered($vat_payer = $this->create($request->all())));
+        
+        $this->create($request->all())->save();
 
         // redirecting to BUsiness VAT payers' page with success notification
         return redirect()->back()->with('status', ' New Payer registerd successfully');
@@ -30,7 +41,7 @@ class VATpayerRegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */ 
-    protected function validator(array $data)
+    public function validator(array $data)
     { 
         return Validator::make(
             $data,
@@ -47,6 +58,11 @@ class VATpayerRegisterController extends Controller
         );
     }
 
+    // public function validator(Request $request)
+    // {
+    //     $this->validate($request,)
+    // }
+
     /**
      * Create a new VAT Payer instance after a valid registration.
      *
@@ -55,7 +71,7 @@ class VATpayerRegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Vat_payer::create([
             'first_name' => $data['first_name'],
             'Last_name' => $data['Last_name'],
             'doorNo' =>$data['doorNo'],

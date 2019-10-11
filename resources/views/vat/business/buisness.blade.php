@@ -110,14 +110,16 @@
 		<div class="card shadow">
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
-					<div class="col-8">
-						<h3 class="mb-0">Business Tax Payers</h3>
+					<div class="col-6 card-header">
+						<h3 class="mb-0 d-inline pr-2">Business Tax Payers</h3>
 					</div>
-					<div class="col-4 text-right">
-						<a class="btn btn-icon btn-success text-white" href="{{route('register-vat-payer')}}">
+					<div class="col-6 text-right">
+						<button class="btn btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
+							data-placement="right" title="Click to register new VAT Payer"
+							onclick="javascript:window.open('{{route('vat-payer-registration')}}','_self')">
 							<span><i class="fas fa-user-plus"></i></span>
 							<span class="btn-inner--text">Register</span>
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>
