@@ -72,8 +72,8 @@ Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentLis
 /*
 *VAT Payer registration
 */
-Route::get('/vat-payer/register', 'VATpayerRegisterController@formVeiw')->name('vat-payer-registration');
-Route::post('/vat-Register', 'VATpayerRegisterController@register');
+Route::get('/vat-payer', 'Auth\VATpayerRegisterController@viewFrom')->name('payer-registration');
+Route::post('/vat-payer/Payer-Register', 'Auth\VATpayerRegisterController@register')->name('vat-payer-registration');
 
 Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 

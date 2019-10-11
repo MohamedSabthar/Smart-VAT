@@ -116,7 +116,7 @@
 					<div class="col-6 text-right">
 						<button class="btn btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
 							data-placement="right" title="Click to register new VAT Payer"
-							onclick="javascript:window.open('{{route('vat-payer-registration')}}','_self')">
+							onclick="javascript:window.open('{{route('payer-registration')}}','_self')">
 							<span><i class="fas fa-user-plus"></i></span>
 							<span class="btn-inner--text">Register</span>
 						</button>

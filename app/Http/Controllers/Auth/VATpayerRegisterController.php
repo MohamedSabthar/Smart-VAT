@@ -16,23 +16,29 @@ use Auth;
 
 class VATpayerRegisterController extends Controller
 {
-    public function formVeiw()
+    public function viewFrom()
     {
         $businessTypes = Business_type::all();
         return view('vatPayer.registerPayer', ['businessTypes'=>$businessTypes]);
-
     }
 
-    public function register(Request $request)
-    {
+    public function register(VATpayerRegisterRequest $request)
+    {   
         $this->validator($request->all())->validate();
 
-        event(new Registered($vat_payer = $this->create($request->all())));
+        $vatPayer = new Vat_payer();
+        $vatPayer->first_name= $request->first_name;
+        $vatPayer->middle_name = $request->middle_name;
+        $vatPayer->last_name = $request->last_name;
+        $vatPayer->door_no = $request->door_no;
+        $vatPayer->street = $request->street;
+        $vatPayer->city = $request->city;
+        $vatPayer->employee_id = Auth::user()->id;
         
-        $this->create($request->all())->save();
+        $vatPayer-> save();
 
         // redirecting to BUsiness VAT payers' page with success notification
-        return redirect()->back()->with('status', ' New Payer registerd successfully');
+        return redirect()->route('vat-payer-registration')->with('status', ' New Payer registerd successfully');
     }
 
     /**
@@ -47,7 +53,7 @@ class VATpayerRegisterController extends Controller
             $data,
             [
             'first_name' => ['required','alpha', 'string', 'max:255'],
-            'Last_name' => ['required','alpha', 'string', 'max:255'],
+            'last_name' => ['required','alpha', 'string', 'max:255'],
             'doorNo' =>['required','alpha_num','max:100'],                              
             'street'=>['required','alpha_num', 'max:255'],
             'city'  =>['required','alpha', 'string', 'max:255'],
@@ -58,28 +64,4 @@ class VATpayerRegisterController extends Controller
         );
     }
 
-    // public function validator(Request $request)
-    // {
-    //     $this->validate($request,)
-    // }
-
-    /**
-     * Create a new VAT Payer instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {
-        return Vat_payer::create([
-            'first_name' => $data['first_name'],
-            'Last_name' => $data['Last_name'],
-            'doorNo' =>$data['doorNo'],
-            'street' => $data['street'],
-            'city'  => $data['city'],
-            'email' => $data['email'],
-            'nic'=> $data['nic'],
-            'phone' => $data['phone']
-        ]);
-    }
 }
