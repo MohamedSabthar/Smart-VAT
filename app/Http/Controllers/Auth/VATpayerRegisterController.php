@@ -16,7 +16,7 @@ use Auth;
 
 class VATpayerRegisterController extends Controller
 {
-    public function create()
+    public function formVeiw()
     {
         $businessTypes = Business_type::all();
         return view('vatPayer.registerPayer', ['businessTypes'=>$businessTypes]);
