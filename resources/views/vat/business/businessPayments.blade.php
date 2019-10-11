@@ -149,16 +149,33 @@
             </div>
         </div>
 
-        <div class="col">
-
-            {{-- Payment --}}
+        <div class="col-xl-8 order-xl-1">
+            {{-- Payment Notice --}}
+            @if (!$paid)
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
-                    <h1 style="font-weight: 400;">Due Payment : Rs 5000.00</h1>
-                    <button class="btn btn-success">Accept Payment</button>
-                    <button class="btn btn-danger">Assign to Court</button>
+                    <h1 style="font-weight: 400;">Due Payment : Rs. {{number_format($duePayment,2)}}</h1>
+                    <button class="btn btn-success mx-auto my-1"
+                        onclick="javascript:document.getElementById('accept-payment').submit()">Accept Payment</button>
+                    <button class="btn btn-danger mx-auto my-1">Assign to Court</button>
                 </div>
             </div>
+            {{-- payment form --}}
+            <form action="" id="accept-payment" method="POST" hidden>
+                @csrf
+                <input type="text" name="payment" value="{{$duePayment}}">
+            </form>
+            {{-- end of payment form --}}
+            @else
+            <div class="card shadow text-center mb-3 p-4">
+                <div class="card-body bg-white border-0">
+                    <h1 style="font-weight: 400;">No Due payments</h1>
+
+                </div>
+            </div>
+            @endif
+            {{-- end of Pyament Notice --}}
+
 
             <div class="card shadow">
                 <div class="card-header bg-white border-0">
@@ -228,9 +245,13 @@
                     {{-- end of Business TAX payments table --}}
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>
+
+
 
 @endsection
 
