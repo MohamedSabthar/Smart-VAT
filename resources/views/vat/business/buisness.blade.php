@@ -56,27 +56,7 @@
 		</div>
 	</div>
 </div>
-<div class="col-xl-3 col-lg-6">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-					<h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-					<span class="h2 font-weight-bold mb-0">2,356</span>
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
-					</div>
-				</div>
-			</div>
-			<p class="mt-3 mb-0 text-muted text-sm">
-				<span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-				<span class="text-nowrap">Since last week</span>
-			</p>
-		</div>
-	</div>
-</div>
+
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -99,6 +79,27 @@
 	</div>
 </div>
 
+<div class="col-xl-3 col-lg-6">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+					<span class="h2 font-weight-bold mb-0">2,356</span>
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
+					</div>
+				</div>
+			</div>
+			<p class="mt-3 mb-0 text-muted text-sm">
+				<span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+				<span class="text-nowrap">Since last week</span>
+			</p>
+		</div>
+	</div>
+</div>
 
 @endsection
 
@@ -109,20 +110,23 @@
 		<div class="card shadow">
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
-					<div class="col-8">
-						<h3 class="mb-0">Business Tax Payers</h3>
+					<div class="col-6 card-header">
+						<h3 class="mb-0 d-inline pr-2">Business Tax Payers</h3>
 					</div>
-					<div class="col-4 text-right">
-						<a class="btn btn-icon btn-success text-white" href="{{route('register-vat-payer')}}">
+					<div class="col-6 text-right">
+						<button class="btn btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
+							data-placement="right" title="Click to register new VAT Payer"
+							onclick="javascript:window.open('{{route('payer-registration')}}','_self')">
 							<span><i class="fas fa-user-plus"></i></span>
 							<span class="btn-inner--text">Register</span>
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>
 
 			<div class="table-responsive py-4">
-				<table id="example" class="table  px-5">
+				{{-- Business VAT payers table --}}
+				<table id="business_payer_table" class="table  px-5">
 					<thead class="thead-light">
 						<tr>
 							<th>{{__('menu.User ID')}}</th>
@@ -191,6 +195,7 @@
 					</thead>
 
 				</table>
+				{{-- end of Business VAT payers table --}}
 			</div>
 		</div>
 	</div>
@@ -203,7 +208,7 @@
 <script>
 	$(document).ready(function() {
 
-        var id = '#example';                      //data table id
+        var id = '#business_payer_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -226,33 +231,37 @@
                 .columns( 1 )
                 .search( this.value )
                 .draw();
-            });
-            $('#searchId').on( 'keyup', function () { 
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-            });
-            $('#searchAddress').on( 'keyup', function () { 
-            table
-                .columns( 2 )
-                .search( this.value )
-                .draw();
-            });
-            $('#searchEmail').on( 'keyup', function () { 
-            table
-                .columns( 3 )
-                .search( this.value )
-                .draw();
-            });
-            $('#searchAdmin').on( 'keyup', function () { 
-            table
-                .columns( 4 )
-                .search( this.value )
-                .draw();
-            });
+		});
 
-      } );
+		$('#searchId').on( 'keyup', function () { 
+		table
+			.columns( 0 )
+			.search( this.value )
+			.draw();
+		});
+
+		$('#searchAddress').on( 'keyup', function () { 
+		table
+			.columns( 2 )
+			.search( this.value )
+			.draw();
+		});
+
+		$('#searchEmail').on( 'keyup', function () { 
+		table
+			.columns( 3 )
+			.search( this.value )
+			.draw();
+		});
+
+		$('#searchAdmin').on( 'keyup', function () { 
+		table
+			.columns( 4 )
+			.search( this.value )
+			.draw();
+		});
+
+	} );
 
 </script>
 @endpush

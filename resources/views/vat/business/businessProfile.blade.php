@@ -102,6 +102,25 @@
         </div>
     </div>
 </div>
+
+{{-- Alert notifications --}}
+<div class="col mt-5">
+    @if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show col-lg-8 col-sm-12 mb-3" role="alert">
+        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+        <span class="alert-inner--text mx-2">
+            <strong class="mx-1">Error!</strong>
+            Data you entered is/are incorrect
+            <a href="#" class="btn btn-sm btn-primary mx-3 add-buissness">view</a>
+        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+</div>
+{{-- end of Alert notifications --}}
+
 @endsection
 
 @section('pageContent')
@@ -116,13 +135,11 @@
                                 <img src="{{asset('assets/img/theme/girl.png')}}" class="rounded-circle">
                             </a>
                         </div>
-
                     </div>
-
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="#" id="add-buissness" class="btn btn-sm btn-success mr-4">[+] Buissness</a>
+                        <a href="#" class="btn btn-sm btn-success mr-4 add-buissness">[+] Buissness</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
@@ -160,8 +177,8 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    {{-- Buisness registration form --}}
                     <form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
-
                         @csrf
                         <div class="form-group row pt-3">
                             <label for="example-text-input"
@@ -180,8 +197,9 @@
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror" type="text"
-                                    value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount" name="annualAssesmentAmount">
+                                <input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
+                                    type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
+                                    name="annualAssesmentAmount">
                                 @error('annualAssesmentAmount')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -203,27 +221,74 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="business-type" class="col-md-2 col-form-label form-control-label ">{{__('menu.Business type')}}</label>
+                            <label for="business-type"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Business type')}}</label>
                             <div class="col-md-10">
 
-                                <select id="type" class="form-control">
-
+                                <select id="type" name="type" class="form-control @error('type') is-invalid  @enderror">
+                                    <option value=""></option>
                                     {{-- only for testing need to implement Ajax searchBuisness --}}
                                     @foreach ($businessTypes as $type)
-                                    <option value="{{$type->id}}">{{$type->description}}</option>
+                                    <option value="{{$type->id}}">{{$type->description}}
+                                        {{'('.$type->ranges->start_value .'-'. $type->ranges->end_value .')'}}
+                                    </option>
                                     @endforeach
 
 
                                 </select>
+                                @error('type')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Address')}}</label>
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('businessAddress') is-invalid  @enderror" type="text"
-                                    value="{{old('businessAddress')}}" id="businessAddress" name="businessAddress">
-                                @error('businessAddress')
+                                <input class="form-control @error('phoneno') is-invalid  @enderror" type="text"
+                                    value="{{old('phoneno')}}" id="phoneno" name="phoneno">
+                                @error('phoneno')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('doorno') is-invalid  @enderror" type="text"
+                                    value="{{old('doorno')}}" id="doorno" name="doorno">
+                                @error('doorno')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('street') is-invalid  @enderror" type="text"
+                                    value="{{old('street')}}" id="street" name="street">
+                                @error('street')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('city') is-invalid  @enderror" type="text"
+                                    value="{{old('city')}}" id="city" name="city">
+                                @error('city')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -231,36 +296,34 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input class=" btn btn-primary float-right" value="Submit" type="submit">
+                            <input class=" btn btn-primary float-right" value="{{__('menu.Submit')}}" type="submit">
                         </div>
                     </form>
-                    <!-- <hr class="my-4 mt-7">		 -->
+                    {{-- end of Buisness registration form --}}
                 </div>
             </div>
-            <!-- business list -->
 
             <div class="card shadow">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="mb-0"><span class="text-uppercase">{{$vatPayer->first_name}} 's
-                                    businesses</span>
-
+                            <h3 class="mb-0">
+                                <span class="text-uppercase">{{$vatPayer->first_name}} 's businesses</span>
                             </h3>
                             <hr class="mt-4 mb-0">
                         </div>
-
                     </div>
                 </div>
                 <div class="card-body">
-
                     <div class="table-responsive">
-                        <table id="example" class="table">
+                        {{-- Business shops table --}}
+                        <table id="business_shops_table" class="table">
                             <thead class="thead-light">
                                 <tr>
                                     <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
                                     <th style="width:300px;">{{__('menu.Business Name')}}</th>
-                                    <th> Shop Phone</th>
+                                    <th>{{__('menu.Shop Phone')}}</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <thead id="search_inputs">
@@ -271,8 +334,11 @@
                                     <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
                                             placeholder="{{__('menu.Search Business Name')}}" />
                                     </th>
-                                    
-                                    
+                                    <th><input type="text" class="form-control form-control-sm" id="searchPhone"
+                                            placeholder="{{__('menu.Search Phone')}}" />
+                                    </th>
+
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -281,6 +347,20 @@
                                     <td class="text-center">{{$buisness->id}}</td>
                                     <td>{{$buisness->shop_name}}</td>
                                     <td>{{$buisness->phone}}</td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item"
+                                                    href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
+                                                    View payments</a>
+                                            </div>
+
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -288,20 +368,16 @@
                                 <tr>
                                     <th>{{__('menu.Assesment No.')}}</th>
                                     <th>{{__('menu.Business Name')}}</th>
-                                    <th>Shop Phone</th>
+                                    <th>{{__('menu.Shop Phone')}}</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                         </table>
+                        {{-- end of Business shops table --}}
                     </div>
-
-                    </form>
                 </div>
-
             </div>
-
         </div>
-
-
     </div>
 </div>
 
@@ -313,11 +389,10 @@
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('js/select2.js')}}"></script>
-
 <script>
     $(document).ready(function() {
 
-        var id = '#example';                      //data table id
+        var id = '#business_shops_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -340,27 +415,36 @@
                 .columns( 0 )
                 .search( this.value )
                 .draw();
-            });
-            $('#searchBuisness').on( 'keyup', function () { 
+        });
+
+        $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
-            });
+        });
+
+        $('#searchPhone').on( 'keyup', function () { 
+            table
+                .columns( 2 )
+                .search( this.value )
+                .draw();
+        });
 
 
-            //toggle transition for buisness registration form
-            $("#business-registration").hide();
-            $("#add-buissness").on('click',function(){
-                $("#business-registration").slideToggle("slow");
-            });
+        //toggle transition for buisness registration form
+        $("#business-registration").hide();
+        $(".add-buissness").on('click',function(){
+            $("#business-registration").slideToggle("slow");
+        });
 
 
-            $('#type').select2();
+        $('#type').select2({
+            placeholder: "Select business type here",
+            allowClear: true,
+        });
             
-      } );
-
-      
+    } );
 
 </script>
 @endpush
