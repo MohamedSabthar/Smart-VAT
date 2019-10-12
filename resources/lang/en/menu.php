@@ -63,9 +63,11 @@ return [
     'Select Business' => 'Select Business',
     'Door No' => 'Door No',
     'Street' => 'Street',
-    'City' => 'City', 
+    'City' => 'City',
+    's businesses'=> 's businesses', 
     'Search Business Name' => 'Search Business Name',
     'Shop Phone' => 'Shop Phone',
+    'Search Phone' => 'Search Phone',
     'Submit' => 'Submit',  
       
     
@@ -96,5 +98,17 @@ return [
     'End Value (LKR)' => 'End Value (LKR)',
     'Search start value'=> 'Search start value',
     'Search end value'=> 'Search end value',
+
+    //business payment
+    'Annual worth' => 'Annual worth',
+    'Due Payment : Rs.' => 'Due Payment : Rs.',
+    'Accept Payment' => 'Accept Payment',
+    'Assign to Court' => 'Assign to Court',
+    'No Due payments' => 'No Due payments',
+    'Payment History' => 'Payment History',
+    'Receipt No.' => 'Receipt No.',
+    'Payment Date' => 'Payment Date',
+    'Payment' => 'Payment',
+    'Assigned To Court' => 'Assigned To Court',
 
 ];

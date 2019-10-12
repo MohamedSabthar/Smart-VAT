@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Dashboard')
+@section('title','Business Profile')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
@@ -225,10 +225,8 @@
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Business type')}}</label>
                             <div class="col-md-10">
 
-                                <select id="type" name="type" class="form-control">
-                                <!-- <select id="type" class="form-control">
-                                    <option value="" disabled>Select business type here</option> -->
-
+                                <select id="type" name="type" class="form-control @error('type') is-invalid  @enderror">
+                                    <option value=""></option>
                                     {{-- only for testing need to implement Ajax searchBuisness --}}
                                     @foreach ($businessTypes as $type)
                                     <option value="{{$type->id}}">{{$type->description}}
@@ -238,6 +236,11 @@
 
 
                                 </select>
+                                @error('type')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
@@ -305,7 +308,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h3 class="mb-0">
-                                <span class="text-uppercase">{{$vatPayer->first_name}} 's businesses</span>
+                                <span class="text-uppercase">{{$vatPayer->first_name}} '{{__('menu.s businesses')}}</span>
                             </h3>
                             <hr class="mt-4 mb-0">
                         </div>
@@ -436,7 +439,10 @@
         });
 
 
-        $('#type').select2();
+        $('#type').select2({
+            placeholder: "Select business type here",
+            allowClear: true,
+        });
             
     } );
 
