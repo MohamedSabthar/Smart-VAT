@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Booking')
+@section('title','Club House Licence Tax')
 
 @section('sidebar')
 @includeWhen(Auth::user()->role=='admin','admin.include.sidebar')
@@ -104,7 +104,7 @@
 		<div class="card shadow">
 			<div class="card-body bg-white border-0">
 				<div class="row align-items-centerm ml-4">
-					Booking 
+				    Club House Licence 
 				</div>
 			</div>
 
