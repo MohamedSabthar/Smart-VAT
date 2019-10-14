@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Mail;
 class BusinessTaxNoticeJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    public $id;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public $id;
+    
     public function __construct($id)
     {
         $this->id = $id;
@@ -32,6 +32,8 @@ class BusinessTaxNoticeJob implements ShouldQueue
      */
     public function handle()
     {
+        $mail = $this->id.'@yopmail.com';
+        // dd($mail);
         Mail::to($this->id.'@yopmail.com')->send(new BusinessTaxNotice); // Sending mail to Queue process
     }
 }

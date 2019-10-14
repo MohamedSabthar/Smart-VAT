@@ -28,6 +28,7 @@ class BusinessTaxNotice extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.businessTaxNotice');
+        return $this->markdown('mail.businessTaxNotice')
+                ->subject("Business-Tax Red Notice");
     }
 }

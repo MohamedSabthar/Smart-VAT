@@ -72,8 +72,8 @@ Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentLis
 
 //mail test
 Route::get('/mail-me', function () {
-    for ($i=0;$i<100;$i++) {
-        dispatch(new  BusinessTaxNoticeJob($i));
+    for ($id=1;$id<=3;$id++) {
+        dispatch(new  BusinessTaxNoticeJob($id));
     }
     dd('hi');
 });
