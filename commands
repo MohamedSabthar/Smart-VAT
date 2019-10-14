@@ -1,0 +1,3 @@
+#composer golobal require laravel/installer
+#composer create-project laravel/laravel "5.8.*"
+#

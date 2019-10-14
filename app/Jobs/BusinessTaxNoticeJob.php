@@ -7,6 +7,8 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\Mail\BusinessTaxNotice;
+use Illuminate\Support\Facades\Mail;
 
 class BusinessTaxNoticeJob implements ShouldQueue
 {
@@ -17,9 +19,10 @@ class BusinessTaxNoticeJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public $id;
+    public function __construct($id)
     {
-        //
+        $this->id = $id;
     }
 
     /**
@@ -29,6 +32,6 @@ class BusinessTaxNoticeJob implements ShouldQueue
      */
     public function handle()
     {
-        //
+        Mail::to($this->id.'@yopmail.com')->send(new BusinessTaxNotice); // Sending mail to Queue process
     }
 }
