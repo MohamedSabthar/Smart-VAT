@@ -97,4 +97,9 @@ return [
     'Search start value'=> 'Search start value',
     'Search end value'=> 'Search end value',
 
+    //Report Generation
+    'Start Date'=>'Start Date',
+    'End Date'=>'End Date'
+
+
 ];

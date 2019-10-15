@@ -97,5 +97,9 @@ return [
      'Search end value'=> 'අවසාන අගය සෙවීම',
     
 
+      //Report Generation
+    'Start Date'=>'ආරම්භක දිනය',
+    'End Date'=>'අවසන් දිනය'
+
 
 ];

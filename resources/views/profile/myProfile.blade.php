@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+				<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 				<div class="d-flex justify-content-between">
 					<a href="#" class="btn btn-sm btn-info mr-4" id="update-employee"><span class="d-block">Update</span> Profile</a>
 					<a href="#" class="btn btn-sm btn-default float-right">Message</a>

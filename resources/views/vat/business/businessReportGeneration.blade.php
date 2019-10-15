@@ -12,7 +12,6 @@
 @includeWhen(Auth::user()->role=='employee','employee.include.sidebar')
 @endsection
 
-
 @section('pageContent')
 <div class="row">
 	<div class="col">
@@ -23,89 +22,60 @@
 					<div class="col-8">
 						<h3 class="mb-0">Business Tax Report Generation</h3>
 					</div>
-					<div class="col-4 text-right">
-						<a class="btn btn-icon btn-success text-white" href="{{route('register-vat-payer')}}">
-							<span><i class="fas fa-user-plus"></i></span>
-							<span class="btn-inner--text">Generate</span>
-						</a>
-					</div>
 				</div>
 			</div>
 
-			<div class="table-responsive py-4">
-				{{-- Business VAT payers table --}}
-				<table id="business_payer_table" class="table  px-5">
-					<thead class="thead-light">
-						<tr>
-							<th>{{__('menu.User ID')}}</th>
-							<th>{{__('menu.VAT Payer Name')}}</th>
-							<th>{{__('menu.Address')}}</th>
-							<th>{{__('menu.Email')}}</th>
-							<th>{{__('menu.Registerd By')}}</th>
-							<th></th>
 
-						</tr>
-					</thead>
-					<thead id="search_inputs">
-						<tr>
-							<th><input type="text" class="form-control form-control-sm" id="searchId"
-									placeholder="{{__('menu.Search User ID')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchName"
-									placeholder="{{__('menu.Search Name')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchAddress"
-									placeholder="{{__('menu.Search Address')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchEmail"
-									placeholder="{{__('menu.Search Email')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchAdmin"
-									placeholder="{{__('menu.Search Admin')}}" /></th>
-
-						</tr>
-					</thead>
-					<tbody>
-
-						@foreach ($payers as $payer)
-						<tr>
-							<td>{{$payer->nic}}</th>
-							<td>{{$payer->full_name}}</td>
-							<td>{{$payer->address}}</td>
-							<td>{{$payer->email}}</td>
-							<td>{{$payer->user->name}}</td>
-
-							<td class="text-right">
-								<div class="dropdown">
-									<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<i class="fas fa-ellipsis-v"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-										<a class="dropdown-item"
-											href="{{route('business-profile',['id'=>$payer->id])}}">View profile</a>
-									</div>
-
-								</div>
-							</td>
-
-
-						</tr>
-						@endforeach
-
-
-					</tbody>
-					<thead class="thead-light">
-						<tr>
-							<th>{{__('menu.User ID')}}</th>
-							<th>{{__('menu.VAT Payer Name')}}</th>
-							<th>{{__('menu.Address')}}</th>
-							<th>{{__('menu.Email')}}</th>
-							<th>{{__('menu.Registerd By')}}</th>
-							<th></th>
-						</tr>
-					</thead>
-
-				</table>
-				{{-- end of Business VAT payers table --}}
-			</div>
+	<form method="POST" action="#">		
+	<div class="split right">
+	<label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Start Date')}}</label>
+	<div class="input-daterange datepicker row align-items-center">
+    <div class="col">
+        <div class="form-group">
+            <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                </div>
+                <input class="form-control" placeholder="Start date" type="text" value="06/18/2019">
+            </div>
+        </div>
+    </div>
+	</div>
+<div class="split left">
+	<label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.End Date')}}</label>
+		<div class="input-daterange datepicker row align-items-center">
+			<div class="col">
+       			<div class="form-group">
+            		<div class="input-group input-group-alternative">
+                		<div class="input-group-prepend">
+                    		<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                		</div>
+                		<input class="form-control" placeholder="End date" type="text" value="06/22/2019">
+            		</div>
+        		</div>
+    		</div>
 		</div>
 	</div>
 </div>
-@endsection
+
+     <input class=" btn btn-primary float-right" value="Submit" type="submit">
+
+			
+	</div>
+</div>
+
+	
+	</form>
+</div>
+
+ @endsection
+
+
+ @push('script')
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('js/select2.js')}}"></script>
+<script src="/assets/js/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+@endpush

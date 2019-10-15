@@ -63,4 +63,9 @@ class BusinessTaxController extends Controller
      
         return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', 'New Business Added successfully');
     }
+
+    public function businessReportGeneration()
+    {
+        return view('vat.business.businessReportGeneration');
+    }
 }
