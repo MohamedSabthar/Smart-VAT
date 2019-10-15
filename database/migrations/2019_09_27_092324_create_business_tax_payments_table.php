@@ -16,7 +16,7 @@ class CreateBusinessTaxPaymentsTable extends Migration
         Schema::create('business_tax_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->double('payment');
-            $table->boolean('assinged_to_court');       //if vat payer doesn't pay the amount on time then he will be assigned to court
+            $table->boolean('assinged_to_court')->default(0);       //if vat payer doesn't pay the amount on time then he will be assigned to court
             $table->bigInteger('shop_id')->unsigned();
             $table->bigInteger('payer_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();

@@ -1,6 +1,8 @@
 <?php
 
 use App\Vat;
+use App\Jobs\BusinessTaxNoticeJob;
+use App\Mail\BusinessTaxNotice;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +60,7 @@ Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile'
 Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
-Route::get('/business/ReportGenerate','vat\BusinessTaxController@businessReportGeneration');
+Route::get('/business/generate-report','vat\BusinessTaxController@businessReportGeneration')->name('business-generate-report');
 //all business tax related tax routes should starts with "/buisness"
 
 
@@ -66,3 +68,16 @@ Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+
+
+//mail test
+Route::get('/mail-me', function () {
+    for ($id=1;$id<=3;$id++) {
+        dispatch(new  BusinessTaxNoticeJob($id));
+    }
+    dd('hi');
+});
+
+Route::get('/test',function(){
+    return view('vat.business.test');
+});

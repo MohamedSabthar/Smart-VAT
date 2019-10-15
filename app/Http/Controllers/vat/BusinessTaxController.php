@@ -9,6 +9,7 @@ use App\Vat_payer;
 use App\Business_type;
 use App\Business_tax_shop;
 use App\Http\Requests\AddBusinessRequest;
+use App\Business_tax_payment;
 use Auth;
 
 class BusinessTaxController extends Controller
@@ -21,8 +22,6 @@ class BusinessTaxController extends Controller
 
     public function latestPayment()
     {
-        //$vatPayer = Vat_payer::find($id);
-
         return view('vat.business.latestPayments');
     }
     
@@ -38,13 +37,22 @@ class BusinessTaxController extends Controller
     {
         $businessTaxShop = Business_tax_shop::findOrFail($shop_id);
         $businessTax = Vat::where('name', 'Business Tax')->find(1);
-        $duePayment = $businessTaxShop->anual_worth * ($businessTax->vat_percentage/100);
-        return view('vat.business.businessPayments', ['businessTaxShop'=>$businessTaxShop,'duePayment'=>$duePayment]);
+        $currentDate = now()->toArray();    // get the currrent date properties
+        $lastPaymentDate = $businessTaxShop->payments->pluck('created_at')->last(); // get the last payment date
+        $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
+        $paid=false;
+        $duePayment = 0.0;
+        if ($lastPaymentDate!=null && $currentDate['year'] == $lastPaymentDate['year']) { //if last_payment year matchess current year
+            $paid=true; // then this year has no due
+        } else {
+            $duePayment = $businessTaxShop->anual_worth * ($businessTax->vat_percentage/100);   //Tax due payment ammount
+        }
+       
+        return view('vat.business.businessPayments', ['businessTaxShop'=>$businessTaxShop,'paid'=>$paid,'duePayment'=>$duePayment]);
     }
 
     public function registerBusiness($id, AddBusinessRequest $request)
     {
-        
         $vatPayer = Vat_payer :: find($id);
         $businessTaxShop = new Business_tax_shop();
         $businessTaxShop->registration_no = $request->assesmentNo;
@@ -60,12 +68,26 @@ class BusinessTaxController extends Controller
 
         $businessTaxShop ->save();
         
-     
         return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', 'New Business Added successfully');
     }
 
     public function businessReportGeneration()
     {
         return view('vat.business.businessReportGeneration');
+    }
+
+    public function reciveBusinessPayments($shop_id, Request $request)    
+    {
+        $payerId=Business_tax_shop::findOrFail($shop_id)->payer->id;  //get the VAT payer id
+        
+        $businessTaxPyament = new Business_tax_payment;
+        $businessTaxPyament->payment = $request->payment;
+        $businessTaxPyament->shop_id = $shop_id;
+        $businessTaxPyament->payer_id =$payerId;
+        $businessTaxPyament->user_id = Auth::user()->id;
+
+        $businessTaxPyament->save();
+
+        return redirect()->back()->with('sucess', 'Payment added successfuly');
     }
 }

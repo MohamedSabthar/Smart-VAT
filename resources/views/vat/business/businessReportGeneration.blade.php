@@ -45,19 +45,21 @@
 <div class="split left">
 	<label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.End Date')}}</label>
-		<div class="input-daterange datepicker row align-items-center">
-			<div class="col">
-       			<div class="form-group">
-            		<div class="input-group input-group-alternative">
-                		<div class="input-group-prepend">
-                    		<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                		</div>
-                		<input class="form-control" placeholder="End date" type="text" value="06/22/2019">
-            		</div>
-        		</div>
-    		</div>
-		</div>
+								<div class="input-daterange datepicker row align-items-center">
+		<div class="col">
+       		<div class="form-group">
+            	<div class="input-group input-group-alternative">
+                	<div class="input-group-prepend">
+                    	<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                	</div>
+                	<input class="form-control" placeholder="End date" type="text" value="06/22/2019">
+            	</div>
+        	</div>
+    	</div>
 	</div>
+</div>
+		
+
 </div>
 
      <input class=" btn btn-primary float-right" value="Submit" type="submit">
@@ -68,7 +70,9 @@
 
 	
 	</form>
+
 </div>
+	
 
  @endsection
 
@@ -77,5 +81,5 @@
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('js/select2.js')}}"></script>
-<script src="/assets/js/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="{{asset('assets\js\plugins\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js')}}"></script>
 @endpush
