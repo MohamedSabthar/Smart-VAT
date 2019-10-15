@@ -11,6 +11,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Mail\BusinessTaxNotice;
 use Illuminate\Support\Facades\Mail;
 
+use App\User;
+use App\Notifications\BusinessTaxNoticeJobFailedNotification;
+use Illuminate\Support\Facades\Notification;
+
 class BusinessTaxNoticeJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -34,9 +38,7 @@ class BusinessTaxNoticeJob implements ShouldQueue
     public function handle()
     {
         $mail =  $this->id!=2 ?$this->id.'@yopmail.com' : $this->id;
-        // dd($mail);
-        echo($mail);
-        Mail::to($mail)->send(new BusinessTaxNotice); // Sending mail to Queue process
+        Mail::to($mail)->send(new BusinessTaxNotice); // Sending vatpayer notification mail to Queue process
     }
 
     /**
@@ -47,6 +49,6 @@ class BusinessTaxNoticeJob implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        Mail::to('sabtharugc0@gmail.com')->send(new BusinessTaxNotice);
+        Notification::send(User::where('role', 'admin')->get(), new BusinessTaxNoticeJobFailedNotification); //sending notification to all admins on job fail
     }
 }
