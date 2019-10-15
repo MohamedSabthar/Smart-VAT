@@ -1,6 +1,8 @@
 <?php
 
 use App\Vat;
+use App\Jobs\BusinessTaxNoticeJob;
+use App\Mail\BusinessTaxNotice;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +68,12 @@ Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+
+
+//mail test
+Route::get('/mail-me', function () {
+    for ($id=1;$id<=3;$id++) {
+        dispatch(new  BusinessTaxNoticeJob($id));
+    }
+    dd('hi');
+});
