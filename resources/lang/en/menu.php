@@ -86,6 +86,26 @@ return [
     'E-Mail' => 'E-Mail',
     'Update' => 'Update',
     'Assign' => 'Assign',
+    's Profile' => 's Profile',
+    'Role' => 'Role',
+    's details' => 's details',
+
+    //myprofile
+
+    'Welcome' => 'Welcome',
+    'Access level' => 'Access level',
+    'My account' => 'My account',
+    'User information' =>'User information',
+    'Email address' => 'Email address',
+    'First name' => 'First name',
+    'Last name' => 'Last name',
+    'Contact information' => 'Contact information',
+    'Country' => 'Country',
+    'Postal code' => 'Postal code',
+    'Current Password' => 'Current Password',
+    'New Password' => 'New Password',
+    'Confirm Password' => 'Confirm Password',
+    'Reset Password' => 'Reset Password',   
 
     //globle config
     'VAT & Fine %' => 'VAT & Fine %',
@@ -110,5 +130,7 @@ return [
     'Payment Date' => 'Payment Date',
     'Payment' => 'Payment',
     'Assigned To Court' => 'Assigned To Court',
+
+    
 
 ];
