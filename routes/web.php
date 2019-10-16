@@ -72,7 +72,7 @@ Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentLis
 
 //mail test
 Route::get('/mail-me', function () {
-    for ($id=1;$id<=3;$id++) {
+    for ($id=1;$id<=10;$id++) {
         dispatch(new  BusinessTaxNoticeJob($id));
     }
     dd('hi');
