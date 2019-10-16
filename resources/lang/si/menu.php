@@ -67,6 +67,8 @@ return [
     'Shop Phone' => 'දුරකථන අංකය',
     'Search Phone' => 'දුරකථන අංකය සෙවීම',
     'Submit' => 'ඉදිරිපත් කරන්න',
+    '[+] Buissness' => '[+] ව්‍යාපාරය',
+    'View payments' => 'ගෙවීම් බලන්න',
     
     
     //VAT PAyer
@@ -121,7 +123,7 @@ return [
      'Search end value'=> 'අවසාන අගය සෙවීම',
 
      //business payment
-
+     'view owner' => 'අයිතිකරුව බලන්න',
      'Annual worth' => 'වාර්ෂික වටිනාකම',
      'Due Payment : Rs.' => 'නියමිත ගෙවීම : රු.',
      'Accept Payment' => 'ගෙවීම පිළිගන්න',
@@ -132,7 +134,15 @@ return [
      'Payment Date' => 'ගෙවීම් කල දිනය',
      'Payment' => 'ගෙවීම',
      'Assigned To Court' => 'උසාවියට ​​පවරා ඇත',
-
+     'Search Payment date' => 'ගෙවීම් කල දිනය සෙවීම',
+     'All' =>'සියල්ල',
+     'Yes' =>'ඔව්',
+     'No' => 'නැත',
+  
+     // massage
+     'Error!' => 'දෝෂයකි!',
+     'Data you entered is/are incorrect' => 'ඇතුළත් කළ දත්ත වැරදිය',
+     'view' => 'දැක්ම',
      
     
      

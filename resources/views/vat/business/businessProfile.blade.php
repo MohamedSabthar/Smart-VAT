@@ -118,9 +118,9 @@
 		<div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
-				<strong class="mx-1">Error!</strong>
-				Data you entered is/are incorrect
-				<a href="#" class="btn btn-sm btn-primary mx-3 update-info">view</a>
+				<strong class="mx-1">{{__('menu.Error!')}}</strong>
+				{{__('menu.Data you entered is/are incorrect')}}
+				<a href="#" class="btn btn-sm btn-primary mx-3 update-info">{{__('menu.view')}}</a>
 			</span>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
@@ -148,7 +148,7 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-sm btn-success mr-4 add-buissness">[+] Buissness</a>
+                        <a href="#" class="btn btn-sm btn-success mr-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
@@ -365,7 +365,7 @@
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                 <a class="dropdown-item"
                                                     href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
-                                                    View payments</a>
+                                                    {{__('menu.View payments')}}</a>
                                             </div>
 
                                         </div>

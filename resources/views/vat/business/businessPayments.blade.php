@@ -120,7 +120,7 @@
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
                         <a href="{{route('business-profile',['id'=>$businessTaxShop->payer->id])}}"
-                            class="btn btn-sm btn-default float-right">view owner</a>
+                            class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
@@ -208,9 +208,9 @@
                                 <th></th>
                                 <th>
                                     <select class="form-control form-control-sm" id="selectCourt">
-                                        <option value="">All</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                        <option value="">{{__('menu.All')}}</option>
+                                        <option value="Yes">{{__('menu.Yes')}}</option>
+                                        <option value="No">{{__('menu.No')}}</option>
                                     </select>
 
                                 </th>

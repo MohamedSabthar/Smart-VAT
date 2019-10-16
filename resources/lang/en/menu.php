@@ -50,6 +50,7 @@ return [
      
     'Configurations' => 'Configurations',
     'VAT Categories'=>'VAT Categories',
+    
     //business tax
     'Annual Assesment Amount' => 'Annual Assesment Amount',
     'Total amount payable'=> 'Total amount payable',
@@ -68,8 +69,10 @@ return [
     'Search Business Name' => 'Search Business Name',
     'Shop Phone' => 'Shop Phone',
     'Search Phone' => 'Search Phone',
-    'Submit' => 'Submit',  
-      
+    'Submit' => 'Submit', 
+    '[+] Buissness' =>'[+] Buissness',
+    'View payments' => 'View payments',
+   
     
     //VAT Payer
     'user Id' => 'User ID',
@@ -120,6 +123,7 @@ return [
     'Search end value'=> 'Search end value',
 
     //business payment
+    'view owner'=> 'view owner',
     'Annual worth' => 'Annual worth',
     'Due Payment : Rs.' => 'Due Payment : Rs.',
     'Accept Payment' => 'Accept Payment',
@@ -130,7 +134,16 @@ return [
     'Payment Date' => 'Payment Date',
     'Payment' => 'Payment',
     'Assigned To Court' => 'Assigned To Court',
+    'Search Payment date'=> 'Search Payment date',
+    'All' => 'All',
+    'Yes' => 'Yes',
+    'No' => 'No',
 
+    //massage
+
+    'Error!' => 'Error!',
+    'Data you entered is/are incorrect' => 'Data you entered is/are incorrect', 
+    'view' => 'view',
     
 
 ];
