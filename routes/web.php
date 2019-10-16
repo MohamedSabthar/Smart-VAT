@@ -41,6 +41,10 @@ Route::get('/gloabl-conf', 'AdminController@globalConfiguration')->name('global-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/language/{locale}', 'LanguageController@changeLanguage');  //language switcher
 Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
+Route::get('/mark-notification', function () {   //marking notification as read
+    Auth::User()->unreadNotifications->markAsRead();
+    return redirect()->back();
+})->name('mark-notification');
 
 /**
  * Routes related to vat category (return view of the vat category)
@@ -72,8 +76,29 @@ Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentLis
 
 //mail test
 Route::get('/mail-me', function () {
-    for ($id=1;$id<=10;$id++) {
+    for ($id=2;$id<=3;$id++) {
         dispatch(new  BusinessTaxNoticeJob($id));
     }
     dd('hi');
+});
+
+Route::get('/notify', function () {
+    Illuminate\Support\Facades\Notification::send(App\User::find(1), new App\Notifications\BusinessTaxNoticeJobFailedNotification(20));
+    dd('done');
+});
+
+
+Route::get('/my-notification', function () {
+    $user = App\User::find(1);
+
+    foreach ($user->unreadNotifications as $notification) { // unread notification
+        echo $notification->data['data'];
+    }
+
+    $user->unreadNotifications->markAsRead(); //marking as read
+
+
+    foreach ($user->notifications as $notification) {   //all notifications
+        echo $notification->data['data'];
+    }
 });

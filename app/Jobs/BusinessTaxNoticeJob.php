@@ -49,6 +49,7 @@ class BusinessTaxNoticeJob implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        Notification::send(User::where('role', 'admin')->get(), new BusinessTaxNoticeJobFailedNotification); //sending notification to all admins on job fail
+        $admins = User::where('role', 'admin')->get();
+        Notification::send($admins, new BusinessTaxNoticeJobFailedNotification($this->id)); //sending notification to all admins on job fail
     }
 }
