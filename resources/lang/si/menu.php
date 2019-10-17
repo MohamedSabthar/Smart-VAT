@@ -101,5 +101,13 @@ return [
     'Start Date'=>'ආරම්භක දිනය',
     'End Date'=>'අවසන් දිනය'
 
+    //employee Update
+    'Name'=>'නම',
+    'Address'=>'ලිපිනය',
+    'NIC'=>'ජාතික හැන්දුමුපත් අංකය',
+    'Phone No'=>'දුරකථන අංකය',
+    'Update Profile'=>'යාවත්කාලීන කිරීම'
+
+
 
 ];

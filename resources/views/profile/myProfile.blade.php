@@ -118,6 +118,8 @@
 					<h6 class="heading-small text-muted mb-4">User information</h6>
 					
 		
+					<!-- popup update -->
+					<!-- punsara edits-->
                         @csrf
 						<div class="form-group row">
                             <label for="example-text-input"

@@ -99,7 +99,12 @@ return [
 
     //Report Generation
     'Start Date'=>'Start Date',
-    'End Date'=>'End Date'
+    'End Date'=>'End Date',
 
+    //update Employee
+    'Update Profile'=>'Update Profile',
+    'Name'=>'Name',
+    'Address'=>'Address',
+    'Phone No'=>'Phone No'
 
 ];
