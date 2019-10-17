@@ -10,15 +10,15 @@ use Illuminate\Notifications\Messages\MailMessage;
 class BusinessTaxNoticeJobFailedNotification extends Notification
 {
     use Queueable;
-
+    public $vatPayerId;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($vatPayerId)
     {
-        //
+        $this->vatPayerId = $vatPayerId;
     }
 
     /**
@@ -52,7 +52,7 @@ class BusinessTaxNoticeJobFailedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'failed',
+            'data' => "Buisness Tax Notification sending failed for Vatpayer id : ".$this->vatPayerId,
         ];
     }
 }
