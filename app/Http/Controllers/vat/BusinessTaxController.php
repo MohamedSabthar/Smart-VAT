@@ -72,6 +72,14 @@ class BusinessTaxController extends Controller
         return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', 'New Business Added successfully');
     }
 
+    //delete business
+    public function removeBusiness($shop_id)
+    {
+        $businessTaxShop = Business_tax_shop::find($shop_id);
+        $businessTaxShop-> delete();
+        return redirect()->back()->with('status','Delete Successful');
+    }
+
     public function reciveBusinessPayments($shop_id, Request $request)
     {
         $payerId=Business_tax_shop::findOrFail($shop_id)->payer->id;  //get the VAT payer id

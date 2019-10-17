@@ -68,7 +68,8 @@ return [
     'Search Phone' => 'දුරකථන අංකය සෙවීම',
     'Submit' => 'ඉදිරිපත් කරන්න',
     '[+] Buissness' => '[+] ව්‍යාපාරය',
-    'View payments' => 'ගෙවීම් බලන්න',
+    'View Payments' => 'ගෙවීම් බලන්න',
+    'Remove Buisness' => ' ව්‍යාපාරය‍ ඉවත් කරන්න',
     
     
     //VAT PAyer

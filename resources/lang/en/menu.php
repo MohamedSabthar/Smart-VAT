@@ -71,7 +71,8 @@ return [
     'Search Phone' => 'Search Phone',
     'Submit' => 'Submit', 
     '[+] Buissness' =>'[+] Buissness',
-    'View payments' => 'View payments',
+    'View Payments' => 'View Payments',
+    'Remove Buisness' => 'Remove Buisness',
    
     
     //VAT Payer

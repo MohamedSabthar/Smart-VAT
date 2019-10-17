@@ -153,7 +153,7 @@
                 </div>
                 <div class="card-body pt-0 pt-md-4">
                     <div class="text-left pt-5">
-                        <h3 class="d-inline">{{__('menu.Name')}} : </h3> {{$vatPayer->full_name}}
+                        <h3 class="d-inline">{{__('menu.Name')}} : </h3> {{ucwords($vatPayer->full_name)}}
                         <div class="pt-1">
                             <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{$vatPayer->address}}
                         </div>
@@ -365,7 +365,10 @@
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                 <a class="dropdown-item"
                                                     href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
-                                                    {{__('menu.View payments')}}</a>
+                                                    {{__('menu.View Payments')}}</a>
+                                                <a class="dropdown-item"
+                                                    href="{{route('remove-business',['shop_id'=>$buisness->id])}}">
+                                                    {{__('menu.Remove Buisness')}}</a>    
                                             </div>
 
                                         </div>
