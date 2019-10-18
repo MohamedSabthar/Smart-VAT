@@ -122,7 +122,9 @@
 							<th>{{__('menu.VAT Payer Name')}}</th>
 							<th>{{__('menu.Address')}}</th>
 							<th>{{__('menu.Email')}}</th>
+							@if (Auth::user()->role=='admin')
 							<th>{{__('menu.Registerd By')}}</th>
+							@endif
 							<th></th>
 
 						</tr>
@@ -137,8 +139,11 @@
 									placeholder="{{__('menu.Search Address')}}" /></th>
 							<th><input type="text" class="form-control form-control-sm" id="searchEmail"
 									placeholder="{{__('menu.Search Email')}}" /></th>
+							@if (Auth::user()->role=='admin')
 							<th><input type="text" class="form-control form-control-sm" id="searchAdmin"
 									placeholder="{{__('menu.Search Admin')}}" /></th>
+							@endif
+
 
 						</tr>
 					</thead>
@@ -150,8 +155,9 @@
 							<td>{{$payer->full_name}}</td>
 							<td>{{$payer->address}}</td>
 							<td>{{$payer->email}}</td>
+							@if (Auth::user()->role=='admin')
 							<td>{{$payer->user->name}}</td>
-
+							@endif
 							<td class="text-right">
 								<div class="dropdown">
 									<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -178,7 +184,9 @@
 							<th>{{__('menu.VAT Payer Name')}}</th>
 							<th>{{__('menu.Address')}}</th>
 							<th>{{__('menu.Email')}}</th>
+							@if (Auth::user()->role=='admin')
 							<th>{{__('menu.Registerd By')}}</th>
+							@endif
 							<th></th>
 						</tr>
 					</thead>
