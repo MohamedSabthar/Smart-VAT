@@ -19,7 +19,7 @@
         <div id="#card" class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                    <h5 cla ss="card-title text-uppercase text-muted mb-0">Traffic</h5>
                     <span class="h2 font-weight-bold mb-0">350,897</span>
                 </div>
                 <div class="col-auto">
@@ -103,28 +103,37 @@
     </div>
 </div>
 
-{{-- Alert notifications --}}
-<div class="col mt-5">
-    @if($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show col-lg-8 col-sm-12 mb-3" role="alert">
-        <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-        <span class="alert-inner--text mx-2">
-            <strong class="mx-1">Error!</strong>
-            Data you entered is/are incorrect
-            <a href="#" class="btn btn-sm btn-primary mx-3 add-buissness">view</a>
-        </span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    @endif
+<div class="container-fluid d-flex align-items-center">
+	{{-- Alert notifications --}}
+	<div class="col mt-5">
+		@if (session('status'))
+		<div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@elseif($errors->any())
+		<div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2">
+				<strong class="mx-1">{{__('menu.Error!')}}</strong>
+				{{__('menu.Data you entered is/are incorrect')}}
+				<a href="#" class="btn btn-sm btn-primary mx-3 update-info">{{__('menu.view')}}</a>
+			</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+	</div>
+	{{-- end of Alert notifications --}}
 </div>
-{{-- end of Alert notifications --}}
 
 @endsection
 
 @section('pageContent')
-<div class="pt-5">
     <div class="row ">
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
             <div class="card card-profile shadow">
@@ -139,12 +148,12 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-sm btn-success mr-4 add-buissness">[+] Buissness</a>
+                        <a href="#" class="btn btn-sm btn-success mr-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
                     <div class="text-left pt-5">
-                        <h3 class="d-inline">{{__('menu.Name')}} : </h3> {{$vatPayer->full_name}}
+                        <h3 class="d-inline">{{__('menu.Name')}} : </h3> {{ucwords($vatPayer->full_name)}}
                         <div class="pt-1">
                             <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{$vatPayer->address}}
                         </div>
@@ -356,7 +365,10 @@
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                 <a class="dropdown-item"
                                                     href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
-                                                    View payments</a>
+                                                    {{__('menu.View Payments')}}</a>
+                                                <a class="dropdown-item"
+                                                    href="{{route('remove-business',['shop_id'=>$buisness->id])}}">
+                                                    {{__('menu.Remove Buisness')}}</a>    
                                             </div>
 
                                         </div>
@@ -379,7 +391,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 
 

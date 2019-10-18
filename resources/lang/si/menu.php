@@ -67,6 +67,9 @@ return [
     'Shop Phone' => 'දුරකථන අංකය',
     'Search Phone' => 'දුරකථන අංකය සෙවීම',
     'Submit' => 'ඉදිරිපත් කරන්න',
+    '[+] Buissness' => '[+] ව්‍යාපාරය',
+    'View Payments' => 'ගෙවීම් බලන්න',
+    'Remove Buisness' => ' ව්‍යාපාරය‍ ඉවත් කරන්න',
     
     
     //VAT PAyer
@@ -85,6 +88,28 @@ return [
     'E-Mail' => 'විද්යුත් තැපෑල',
     'Update' => 'යාවත්කාලීන කිරීම',
     'Assign' => 'පවරන්න',
+    's Profile' => 'ගේ ගිණුම',
+    'Role' => 'ප්‍රවේශ මට්ටම',
+    's details' => 'ගේ තොරතුරු',
+    
+
+
+    //myprofile
+    'Welcome'=>'සාදරයෙන් පිළිගනිමු',
+    'Access level' => 'ප්‍රවේශ මට්ටම',
+    'My account' => 'මගේ ගිණුම',
+    'User information' => 'පරිශීලක තොරතුරු',
+    'Email address' => 'විද්යුත් තැපැල් ලිපිනය',
+    'First name' => 'මුල් නම',
+    'Last name' => 'අවසන් නම',
+    'Contact information' => 'සබඳතා තොරතුරු',
+    'Country' => 'රට',
+    'Postal code' => 'තැපැල් කේතය',
+    'Current Password' => 'වත්මන් මුරපදය',
+    'New Password' => 'නව මුරපදය',
+    'Confirm Password' => 'මුරපදය තහවුරු කරන්න',
+    'Reset Password' => 'මුරපදය නැවත සකසන්න',
+   
 
     //globle config
      'VAT & Fine %' => 'බදු සහ දඩ ප්‍රතිශත(%)',
@@ -99,7 +124,7 @@ return [
      'Search end value'=> 'අවසාන අගය සෙවීම',
 
      //business payment
-
+     'view owner' => 'අයිතිකරුව බලන්න',
      'Annual worth' => 'වාර්ෂික වටිනාකම',
      'Due Payment : Rs.' => 'නියමිත ගෙවීම : රු.',
      'Accept Payment' => 'ගෙවීම පිළිගන්න',
@@ -110,7 +135,17 @@ return [
      'Payment Date' => 'ගෙවීම් කල දිනය',
      'Payment' => 'ගෙවීම',
      'Assigned To Court' => 'උසාවියට ​​පවරා ඇත',
+     'Search Payment date' => 'ගෙවීම් කල දිනය සෙවීම',
+     'All' =>'සියල්ල',
+     'Yes' =>'ඔව්',
+     'No' => 'නැත',
+  
+     // massage
+     'Error!' => 'දෝෂයකි!',
+     'Data you entered is/are incorrect' => 'ඇතුළත් කළ දත්ත වැරදිය',
+     'view' => 'දැක්ම',
+     
     
-
+     
 
 ];
