@@ -2,6 +2,8 @@
 use Illuminate\Http\Request;
 
 use App\Vat;
+use App\Jobs\BusinessTaxNoticeJob;
+use App\Mail\BusinessTaxNotice;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,10 @@ Route::get('/gloabl-conf', 'AdminController@globalConfiguration')->name('global-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/language/{locale}', 'LanguageController@changeLanguage');  //language switcher
 Route::get('/profile', 'EmployeeController@myProfile')->name('my-profile');
+Route::get('/mark-notification', function () {   //marking notification as read
+    Auth::User()->unreadNotifications->markAsRead();
+    return redirect()->back();
+})->name('mark-notification');
 
 /**
  * Routes related to vat category (return view of the vat category)
@@ -64,6 +70,7 @@ Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@regis
  */
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBusinessPayments')->name('receive-business-payments');
+Route::get('/business/business-remove/{shop_id}','vat\BusinessTaxController@removeBusiness')->name('remove-business'); // remove business route
 //all business tax related tax routes should starts with "/buisness"
 
 
@@ -94,3 +101,37 @@ Route::post('/t',
 //     return response()->json(array('msg'=> $msg), 200);}
 'VATpayerRegisterController@t'
 );
+
+Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
+Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
+Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+
+
+//mail test
+Route::get('/mail-me', function () {
+    for ($id=2;$id<=3;$id++) {
+        dispatch(new  BusinessTaxNoticeJob($id));
+    }
+    dd('hi');
+});
+
+Route::get('/notify', function () {
+    Illuminate\Support\Facades\Notification::send(App\User::find(1), new App\Notifications\BusinessTaxNoticeJobFailedNotification(20));
+    dd('done');
+});
+
+
+Route::get('/my-notification', function () {
+    $user = App\User::find(1);
+
+    foreach ($user->unreadNotifications as $notification) { // unread notification
+        echo $notification->data['data'];
+    }
+
+    $user->unreadNotifications->markAsRead(); //marking as read
+
+
+    foreach ($user->notifications as $notification) {   //all notifications
+        echo $notification->data['data'];
+    }
+});

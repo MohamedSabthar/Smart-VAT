@@ -50,18 +50,51 @@
 				<img src="{{ asset('assets/img/brand/blue.png') }}" class="navbar-brand-img" alt="...">
 			</a>
 
-			{{-- User --}}
+
 			<ul class="nav align-items-center d-md-none">
+				{{-- Notification --}}
 				<li class="nav-item dropdown">
 					<a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">
+						aria-expanded="false" data-target="notification">
+						<i class="ni ni-bell-55"><span
+								class="badge badge-primary">{!!Auth::user()->unreadNotifications->count()!=0 ?
+								Auth::user()->unreadNotifications->count() : '' !!}</span></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" id="notification">
+						<div class=" dropdown-header noti-title">
+							<h6 class="text-overflow m-0 notification-title">Unread Notifications</h6>
+						</div>
+						@foreach (Auth::user()->unreadNotifications as $notification)
+						<a class="dropdown-item">
+							<i class="far fa-dot-circle"></i>
+							<span style="width: 50px;">{{$notification->data['data']}}</span>
+						</a>
+						@endforeach
+						<div class="dropdown-divider mx-3"></div>
+						@if (Auth::user()->unreadNotifications->count())
+						<a href="{{route('mark-notification')}}" class="dropdown-item text-center">
+							Mark all as read
+						</a>
+						@else
+						<a href="{{route('mark-notification')}}" class="dropdown-item text-center">
+							No new notifications
+						</a>
+						@endif
+
+
+					</div>
+				</li>
+				{{-- User --}}
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" data-target="#user">
 						<div class="media align-items-center">
 							<span class="avatar avatar-sm rounded-circle">
 								<img alt="Image placeholder" src="{{ asset('assets/img/theme/girl.png')}}">
 							</span>
 						</div>
 					</a>
-					<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+					<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" id="user">
 						<div class=" dropdown-header noti-title">
 							<h6 class="text-overflow m-0 notification-title">{{ Auth::user()->role }}</h6>
 						</div>
@@ -84,6 +117,7 @@
 						</a>
 					</div>
 				</li>
+
 			</ul>
 
 			{{-- Collapse --}}
@@ -162,8 +196,40 @@
 					<span> <i class="ni ni-bold-left"></i></span>
 				</a>
 
-				{{-- User --}}
+
 				<ul class="navbar-nav align-items-center d-none d-md-flex">
+					{{-- Notification --}}
+					<li class="nav-item dropdown">
+						<a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false" data-target="notification">
+							<i class="ni ni-bell-55"><span
+									class="badge badge-primary">{!!Auth::user()->unreadNotifications->count()!=0 ?
+									Auth::user()->unreadNotifications->count() : '' !!}</span></i>
+						</a>
+						<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" id="notification">
+							<div class=" dropdown-header noti-title">
+								<h6 class="text-overflow m-0 notification-title">Unread Notifications</h6>
+							</div>
+							@foreach (Auth::user()->unreadNotifications as $notification)
+							<a class="dropdown-item">
+								<i class="far fa-dot-circle"></i>
+								<span>{{$notification->data['data']}}</span>
+							</a>
+							@endforeach
+							<div class="dropdown-divider mx-3"></div>
+							@if (Auth::user()->unreadNotifications->count())
+							<a href="{{route('mark-notification')}}" class="dropdown-item text-center">
+								Mark all as read
+							</a>
+							@else
+							<a href="{{route('mark-notification')}}" class="dropdown-item text-center">
+								No new notifications
+							</a>
+							@endif
+						</div>
+					</li>
+
+					{{-- User --}}
 					<li class="nav-item dropdown">
 						<a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false">
