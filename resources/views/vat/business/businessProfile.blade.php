@@ -178,7 +178,7 @@
                 </div>
                 <div class="card-body">
                     {{-- Buisness registration form --}}
-                    <form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
+                    <form method="POST" id="business-registration-form" action="{{route('business-register',['id'=> $vatPayer->id])}}">
                         @csrf
                         <div class="form-group row pt-3">
                             <label for="example-text-input"

@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 use App\Vat;
 
@@ -67,16 +68,29 @@ Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBus
 
 
 Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
-// Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 /*
 *VAT Payer registration
 */
 Route::get('/vat-payer', 'Auth\VATpayerRegisterController@viewFrom')->name('payer-registration');
 Route::post('/vat-payer/Payer-Register', 'Auth\VATpayerRegisterController@register')->name('vat-payer-registration');
+//Ajax url option
+Route::post('/nic_available/check', 'VATpayerRegisterController@check')->name('nic_available.check');
 
 Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
 // Route for sending an Email for the VAT Payer informing the due Payments
 Route::get('/send-email', 'SendEmailController@sendEmail');
 Route::post('/send-email/send', 'SendEmailController@send');
+
+
+Route::post('/t',
+// function(Request $request){
+//     $msg = array(
+//         'status' => 'success',
+//         'msg'    => 'Setting created successfully',
+//     );
+
+//     return response()->json(array('msg'=> $msg), 200);}
+'VATpayerRegisterController@t'
+);

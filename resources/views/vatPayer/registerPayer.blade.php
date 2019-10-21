@@ -101,6 +101,46 @@
 		</div>
 	</div>
 </div>
+
+<div class="container-fluid d-flex align-items-center">
+	{{-- Alert notifications --}}
+	<div class="col">
+		@if (session('status'))
+		<div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		{{-- alert only displayed; if the page redirected by registration request --}}
+		@if (url()->previous()==route('vat-payer-registration'))
+		<div class="alert alert-info alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2"><strong class="mx-1">Need to Assign-vat categories!</strong><a
+					href="#registerPayer" class="btn btn-sm btn-primary mx-3">Click me</a></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+		@elseif($errors->any())
+		<div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2">
+				<strong class="mx-1">Error!</strong>
+				Data you entered is/are incorrect
+				<a href="#" class="btn btn-sm btn-primary mx-3 update-info">view</a>
+			</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+	</div>
+	{{-- end of Alert notifications --}}
+</div>
+
 @endsection
 @section('pageContent')
 
@@ -186,7 +226,7 @@
 								<input class="form-control @error('nic') is-invalid @enderror" type="text"
 									value="{{old('nic')}}" id="nic" name="nic">
 								@error('nic')
-								<span class="invalid-feedback" role="alert">
+								<span id="error_nic" class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>
 								@enderror
@@ -212,7 +252,7 @@
 								class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
 								
 							<div class="col-md-10 ">
-								<input class="form-control @error('street') is-invalid  @enderror" type="text"
+								<input class="form-control @error('doorNo') is-invalid  @enderror" type="text"
 									value="{{old('doorNo')}}" id="doorNo" name="doorNo">
 								@error('doorNo')
 								<span class="invalid-feedback" role="alert">
@@ -250,8 +290,10 @@
 							</div>
 					</div>
 
+					{{-- Button --}}
 					<div class="form-group">
-							<input class=" btn btn-primary float-right" type="submit">
+						<input class=" btn btn-primary float-right" value="{{__('menu.Registration')}}" 
+						id="registration" name="registration" type="submit">
 					</div>
 				</form>		
 
@@ -260,44 +302,64 @@
 	</div>
 </div>			
 
-
-
-
 @endsection
 
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-<script>
-	$(document).ready(function() {
-        var id = '#example';                      //data table id
-        var table = $(id).DataTable({
-          "pagingType": "full_numbers"
-        });            //table object
-        $(id+'_filter').addClass('pr-5');         //adding padding to table elements
-        $(id+'_info').addClass('pl-5');
-        $(id+'_paginate').addClass('pr-5');
-        $(id+'_length').addClass('pl-5')
-        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
-        
-        $('#searchName').on( 'keyup', function () { //individulat column search
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-            });
-      } );
-</script>
-@endpush
 
-{{-- 
-				@if(count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                         <ul>
-                            @foreach($errors->all() as $error)
-                                <li> {{ $error }} </li>
-                            @endforeach
-                        </ul> 
-                    </div>
-                @endif --}}
+
+<script>
+	$(document).ready(function(){
+		
+		$('#nic').blur(function(){
+			var error_nic = '';
+			var nic = $('#nic').val();       //geting nic textbox value (id=nic) to nic variable
+			var _token = $('input[name="_token"]').val();
+			//var filter = regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/;
+
+			//if(filter.test(nic))
+			if(nic)
+			{
+				console.log(nic);
+
+				$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+	
+});
+var formdata = {'nic':nic,'_token':_token}
+	console.log(formdata);
+				$.ajax({
+				url:"/nic_available/check", 
+				method:"POST",
+				data: formdata,
+				success:function(result)
+				{
+					if(result == 'unique')
+					{
+						$('#error_nic').html('<label class="text-sucess">NIC Available</label>');
+						$('#nic').removeClass('has-error');
+						$('#register').attr('disabled', false);
+					}
+					else
+					{
+						$('#error_nic').html('<label class="text-sucess">NIC not Available</label>');
+						$('#nic').addClass('has-error');
+						$('#register').attr('disabled', 'disabled');
+					}
+				}
+			})
+			}
+			else{
+				// disabling registration 
+				$('#error').addClass('has-error');
+				$('#register').attr('disabled', 'disabled');  
+			}
+
+		});
+	});
+</script>
+
+@endpush

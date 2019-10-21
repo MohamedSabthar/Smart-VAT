@@ -72,8 +72,18 @@ return [
     'VAT Payer Name'=> 'බදු ගෙවන්නාගේ නම',
     'Address' => 'ලිපිනය',
     'Search Address' => 'ලිපිනය සෙවීම',
-    
 
+    'First Name' => 'මුල් නම',
+    'Middle Name'=> 'මැද නම',
+    'Last Name'  => 'අවසන් නම',
+    'Street'  => 'වීදිය',
+    'City'  =>  'නගරය',
+    'NIC' =>    'ජාතික හැඳුනුම්පත් අංකය',
+    'Phone No' => 'දුරකතන අංකය',
+    'Business Categories' => 'ව්‍යාපාර කාණ්ඩ',
+    'Door No.' => 'දොර අංකය',
+    'Registration' => 'ලියාපදිංචි කිරීම',
+    
     //employee profile
     'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',
     'Name' => 'නම',    
@@ -96,16 +106,6 @@ return [
      'Search start value' =>'ආරම්භක අගය සෙවීම',
      'Search end value'=> 'අවසාන අගය සෙවීම',
     
-
-    'First Name' => 'මුල් නම',
-    'Middle Name'=> 'මැද නම',
-    'Last Name'  => 'අවසන් නම',
-    'Street'  => 'වීදිය',
-    'City'  =>  'නගරය',
-    'NIC' =>    'ජාතික හැඳුනුම්පත් අංකය',
-    'Phone No' => 'දුරකතන අංකය',
-    'Business Categories' => 'ව්‍යාපාර කාණ්ඩ',
-    'Door No.' => 'දොර අංකය',
 
     'Arrears' => 'හිඟ මුදල',
     'Payment Date' => 'ගෙවීම් දිනය',
