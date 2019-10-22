@@ -81,7 +81,7 @@ return [
 
     //employee profile
     'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',
-    'Name' => 'නම',    
+    'Name' => 'නම',
     'NIC' => 'ජාතික හැඳුනුම්පත් අංකය',
     'Phone No' => 'දුරකතන අංකය',
     'Assigned VAT categories' => 'පවරා ඇති වැට් බදු කාණ්ඩ',
@@ -144,6 +144,7 @@ return [
      'Error!' => 'දෝෂයකි!',
      'Data you entered is/are incorrect' => 'ඇතුළත් කළ දත්ත වැරදිය',
      'view' => 'දැක්ම',
+     'Invalid Assesment Amount'=>'ලබා දී ඇති තක්සේරු මුදල අවලංගුය',
      
     
      
