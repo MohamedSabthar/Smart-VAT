@@ -99,6 +99,7 @@ class BusinessTaxController extends Controller
 
     public function getBusinestypes(Request $request)
     {
+        $search = $request->search;
         $businessTax = Vat::where('route', 'business')->firstOrFail();
         $assessmentRangeId =  Assessment_range::where('start_value', '<', $request->assessmentAmmount)
                             ->where(function (Builder $query) use ($request) {
@@ -107,9 +108,10 @@ class BusinessTaxController extends Controller
                             })
                             ->where('vat_id', $businessTax->id)
                             ->firstOrFail()->id;
-        $businessTypes = Business_type::where('assessment_range_id', $assessmentRangeId);
-        $data = $businessTypes->get(['id','description'])->toJson();
-        return response()->json(array("data"=>$data
+        $businessTypes = Business_type::where('assessment_range_id', $assessmentRangeId)->
+        where('description', 'like', "%$search%");
+        $data = $businessTypes->get(['id','description']);
+        return response()->json(array("results"=>$data
        ), 200);
     }
 }

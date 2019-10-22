@@ -478,46 +478,48 @@
 
 
 
-            // $('#type').select2({
-            // ajax: {
-            //     url: "{{route('get-business-types')}}",
-            //     dataType: 'json',
-            //     delay: 250,
-            //     data: { assessmentAmmount : assessmentAmmount },
-            //     processResults: function (data, params) {
-            //     // parse the results into the format expected by Select2
-            //     // since we are using custom formatting functions we do not need to
-            //     // alter the remote JSON data, except to indicate that infinite
-            //     // scrolling can be used
-            //     params.page = params.page || 1;
-
-            //     return {
-            //         results: data.items,
-            //         pagination: {
-            //         more: (params.page * 30) < data.total_count
-            //         }
-            //     };
-            //     },
-            //     cache: true
-            // },
+            $('#type').select2({
+                placeholder: "Select business type here",
+            allowClear: true,
+            ajax: {
+                url: "{{route('get-business-types')}}",
+                dataType: 'json',
+                type:"POST",
+                delay: 250,
+                data: function (params) {
+                        return {
+                            assessmentAmmount : assessmentAmmount,
+                            search: params.term,
+                            
+                        };
+                },
+                processResults: function (data) {
+                     return {
+                         results:$.map(data.results, function (obj) {
+                            return {id:obj.id,text:obj.description}
+                    })
+                    }
+                     
+                },
+                cache: true
+            },
 
             // minimumInputLength: 1,
-            // templateResult: formatRepo,
-            // templateSelection: formatRepoSelection
-            // });
-
-            $.ajax({
-                url: "{{route('get-business-types')}}",
-                type:"POST",
-                data: { assessmentAmmount : assessmentAmmount },
-                success:function(data){
-                            // alert(data);
-                            console.log(data);
-                            $('ul#select2-type-results').empty()
-                },error:function(){ 
-                            alert("error!!!!");
-                        }
+        
             });
+
+            // $.ajax({
+            //     url: "{{route('get-business-types')}}",
+            //     type:"POST",
+            //     data: { assessmentAmmount : assessmentAmmount },
+            //     success:function(data){
+            //                 // alert(data);
+            //                 console.log(data);
+            //                 $('ul#select2-type-results').empty()
+            //     },error:function(){ 
+            //                 alert("error!!!!");
+            //             }
+            // });
 
 
            }
