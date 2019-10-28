@@ -78,7 +78,7 @@ Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentLis
 
 //mail test
 Route::get('/mail-me', function () {
-    for ($id=2;$id<=3;$id++) {
+    for ($id=1;$id<=3;$id++) {
         dispatch(new  BusinessTaxNoticeJob($id));
     }
     dd('hi');
@@ -103,4 +103,21 @@ Route::get('/my-notification', function () {
     foreach ($user->notifications as $notification) {   //all notifications
         echo $notification->data['data'];
     }
+});
+
+
+Route::get('/restart', function () {
+    \Artisan::call('queue:restart');
+    dd('done');
+});
+
+
+Route::get('/retry', function () {
+    Artisan::call('queue:retry all');
+    dd('done');
+});
+
+Route::get('/retry/{$id}', function () {
+    Artisan::call("queue:retry $id");
+    dd('done');
 });
