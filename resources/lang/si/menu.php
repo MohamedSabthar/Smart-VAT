@@ -139,6 +139,7 @@ return [
      'All' =>'සියල්ල',
      'Yes' =>'ඔව්',
      'No' => 'නැත',
+     'Remove Payment' => '',
   
      // massage
      'Error!' => 'දෝෂයකි!',

@@ -139,6 +139,7 @@ return [
     'All' => 'All',
     'Yes' => 'Yes',
     'No' => 'No',
+    'Remove Payment'=> 'Remove Payment',
 
     //massage
 
