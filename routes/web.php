@@ -65,6 +65,7 @@ Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest')
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::get('/business/generate-report','vat\BusinessTaxController@businessReportGeneration')->name('business-generate-report');
+Route::post('/business/generation','vat\BusinessTaxController@GenerateReport')->name('business-report-view');
 //all business tax related tax routes should starts with "/buisness"
 
 

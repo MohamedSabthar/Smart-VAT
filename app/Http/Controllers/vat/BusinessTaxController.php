@@ -11,6 +11,7 @@ use App\Business_tax_shop;
 use App\Http\Requests\AddBusinessRequest;
 use App\Business_tax_payment;
 use Auth;
+use App\Http\Requests\BusinessTaxReportRequest;
 
 class BusinessTaxController extends Controller
 {
@@ -32,6 +33,7 @@ class BusinessTaxController extends Controller
 
         return view('vat.business.businessProfile', ['vatPayer'=>$vatPayer,'businessTypes'=>$businessTypes]);
     }
+
 
     public function businessPayments($shop_id)
     {
@@ -76,6 +78,13 @@ class BusinessTaxController extends Controller
         return view('vat.business.businessReportGeneration');
     }
 
+
+    public function GenerateReport(BusinessTaxReportRequest $request)
+    {
+        dd($request->startDate,$request->endDate);
+        
+    }
+
     public function reciveBusinessPayments($shop_id, Request $request)    
     {
         $payerId=Business_tax_shop::findOrFail($shop_id)->payer->id;  //get the VAT payer id
@@ -85,7 +94,6 @@ class BusinessTaxController extends Controller
         $businessTaxPyament->shop_id = $shop_id;
         $businessTaxPyament->payer_id =$payerId;
         $businessTaxPyament->user_id = Auth::user()->id;
-
         $businessTaxPyament->save();
 
         return redirect()->back()->with('sucess', 'Payment added successfuly');
