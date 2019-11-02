@@ -70,7 +70,8 @@ Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@regis
  */
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBusinessPayments')->name('receive-business-payments');
-Route::get('/business/business-remove/{shop_id}','vat\BusinessTaxController@removeBusiness')->name('remove-business'); // remove business route
+Route::get('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // remove business route
+Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
 //all business tax related tax routes should starts with "/buisness"
 
 
@@ -106,7 +107,7 @@ Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentLis
 
 //mail test
 Route::get('/mail-me', function () {
-    for ($id=2;$id<=3;$id++) {
+    for ($id=1;$id<=3;$id++) {
         dispatch(new  BusinessTaxNoticeJob($id));
     }
     dd('hi');
@@ -131,4 +132,21 @@ Route::get('/my-notification', function () {
     foreach ($user->notifications as $notification) {   //all notifications
         echo $notification->data['data'];
     }
+});
+
+
+Route::get('/restart', function () {
+    \Artisan::call('queue:restart');
+    dd('done');
+});
+
+
+Route::get('/retry', function () {
+    Artisan::call('queue:retry all');
+    dd('done');
+});
+
+Route::get('/retry/{$id}', function () {
+    Artisan::call("queue:retry $id");
+    dd('done');
 });

@@ -65,11 +65,11 @@ return [
     'Door No' => 'Door No',
     'Street' => 'Street',
     'City' => 'City',
-    's businesses'=> 's businesses', 
+    's businesses'=> 's businesses',
     'Search Business Name' => 'Search Business Name',
     'Shop Phone' => 'Shop Phone',
     'Search Phone' => 'Search Phone',
-    'Submit' => 'Submit', 
+    'Submit' => 'Submit',
     '[+] Buissness' =>'[+] Buissness',
     'View Payments' => 'View Payments',
     'Remove Buisness' => 'Remove Buisness',
@@ -99,7 +99,7 @@ return [
 
     //employee profile
     'Update employee information' => 'Update employee information',
-    'Name' => 'Name',    
+    'Name' => 'Name',
     'NIC' => 'NIC',
     'Phone No' => 'Phone No',
     'Assigned VAT categories' => 'Assigned VAT categories',
@@ -125,7 +125,7 @@ return [
     'Current Password' => 'Current Password',
     'New Password' => 'New Password',
     'Confirm Password' => 'Confirm Password',
-    'Reset Password' => 'Reset Password',   
+    'Reset Password' => 'Reset Password',
 
     //globle config
     'VAT & Fine %' => 'VAT & Fine %',
@@ -159,8 +159,9 @@ return [
     //massage
 
     'Error!' => 'Error!',
-    'Data you entered is/are incorrect' => 'Data you entered is/are incorrect', 
+    'Data you entered is/are incorrect' => 'Data you entered is/are incorrect',
     'view' => 'view',
+    'Invalid Assesment Amount' => 'The assessment amount provided is invalid'
     
 
 ];
