@@ -88,6 +88,7 @@ return [
     'Business Categories' => 'ව්‍යාපාර කාණ්ඩ',
     'Door No.' => 'දොර අංකය',
     'Registration' => 'ලියාපදිංචි කිරීම',
+    'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
     
     //employee profile
     'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',

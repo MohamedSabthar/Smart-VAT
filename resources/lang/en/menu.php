@@ -91,6 +91,7 @@ return [
     'Phone No' => 'Phone No',
     'Business Categories' => 'Business Categories',
     'Registration' => 'Registration',
+    'Add Business' => 'Add Business',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',

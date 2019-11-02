@@ -74,7 +74,7 @@ Route::get('/business/business-remove/{shop_id}','vat\BusinessTaxController@remo
 //all business tax related tax routes should starts with "/buisness"
 
 
-Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+// Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 /*
 *VAT Payer registration
@@ -82,13 +82,10 @@ Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentLis
 Route::get('/vat-payer', 'Auth\VATpayerRegisterController@viewFrom')->name('payer-registration');
 Route::post('/vat-payer/Payer-Register', 'Auth\VATpayerRegisterController@register')->name('vat-payer-registration');
 //Ajax url option
-Route::post('/nic_available/check', 'VATpayerRegisterController@check')->name('nic_available.check');
+Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->name('nic_available.check');
 
 Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
-// Route for sending an Email for the VAT Payer informing the due Payments
-Route::get('/send-email', 'SendEmailController@sendEmail');
-Route::post('/send-email/send', 'SendEmailController@send');
 
 
 Route::post('/t',

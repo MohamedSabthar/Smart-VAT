@@ -10,6 +10,7 @@ use App\Business_type;
 
 use App\Http\Requests\AddBusinessRequest;
 use App\Business_tax_payment;
+use App\Business_tax_shop;
 use Auth;
 
 class BusinessTaxController extends Controller

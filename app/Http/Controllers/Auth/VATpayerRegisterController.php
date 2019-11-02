@@ -19,8 +19,8 @@ class VATpayerRegisterController extends Controller
 {
     public function viewFrom()
     {
-        $businessTypes = Business_type::all();
-        return view('vatPayer.registerPayer', ['businessTypes'=>$businessTypes]);
+        //$vatPayer = Vat_payer::find($id);
+        return view('vatPayer.registerPayer');
     }
 
     public function register(VATpayerRegisterRequest $request)
@@ -42,7 +42,7 @@ class VATpayerRegisterController extends Controller
         $vatPayer-> save();
 
         // redirecting to add a business for the registered VAT Payer with success notification
-        return redirect()->back()->with('status', ' New Payer registerd successfully');
+        return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', ' New Payer registerd successfully');
     }
 
     /**
@@ -72,35 +72,27 @@ class VATpayerRegisterController extends Controller
     * Checking the Ajax requesst
     */
     public function check(Request $request){
-        // if($request->get('nic'))
-        // {
-        //     $nic = $request->get('nic');
-        //     $data = DB::table("Vat_payer")
-        //         ->where('nic', $nic)
-        //         ->count();     /* return number of raws affected which 
-        //                         *we have store under $data */
-        //     if($data >0)
-        //     {
-        //         // nic is registered in the database
-        //         return 'not_unique';
+        if($request->get('nic'))
+        {
+            $nic = $request->get('nic');
+            $data = DB::table("Vat_payers")
+                ->where('nic', $nic)
+                ->count();     /* return number of raws affected which 
+                                *we have store under $data */
+      
+            if($data >0)
+            {
+                // nic is registered in the database
+                return response()->json(array('data'=>'not_unique'));
 
-        //     }   
-        //     else{
-        //         return 'unique';           // not registered into the vatPayer db
-        //     }           
-        // }
+            }   
+            else{
+                return response()->json(array('data'=>'unique'));           // not registered into the vatPayer db
+            }           
+        }
 
        
 
-    }
-
-    public function t(Request $request){
-        $msg = array(
-            'status' => 'success',
-            'msg'    => 'Setting created successfully',
-        );
-    
-        return response()->json(array('msg'=> $msg), 200);
     }
 
 }
