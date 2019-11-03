@@ -62,9 +62,14 @@ return [
     'Door No' => ' අංකය',
     'Street' => 'වීදිය',
     'City' => 'නගරය',
+    's businesses'=>'ගේ ව්‍යාපාර',
     'Search Business Name' => 'ව්‍යාපාර නම සෙවීම',
     'Shop Phone' => 'දුරකථන අංකය',
+    'Search Phone' => 'දුරකථන අංකය සෙවීම',
     'Submit' => 'ඉදිරිපත් කරන්න',
+    '[+] Buissness' => '[+] ව්‍යාපාරය',
+    'View Payments' => 'ගෙවීම් බලන්න',
+    'Remove Buisness' => ' ව්‍යාපාරය‍ ඉවත් කරන්න',
     
     
     //VAT PAyer
@@ -76,13 +81,35 @@ return [
 
     //employee profile
     'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',
-    'Name' => 'නම',    
+    'Name' => 'නම',
     'NIC' => 'ජාතික හැඳුනුම්පත් අංකය',
     'Phone No' => 'දුරකතන අංකය',
     'Assigned VAT categories' => 'පවරා ඇති වැට් බදු කාණ්ඩ',
     'E-Mail' => 'විද්යුත් තැපෑල',
     'Update' => 'යාවත්කාලීන කිරීම',
     'Assign' => 'පවරන්න',
+    's Profile' => 'ගේ ගිණුම',
+    'Role' => 'ප්‍රවේශ මට්ටම',
+    's details' => 'ගේ තොරතුරු',
+    
+
+
+    //myprofile
+    'Welcome'=>'සාදරයෙන් පිළිගනිමු',
+    'Access level' => 'ප්‍රවේශ මට්ටම',
+    'My account' => 'මගේ ගිණුම',
+    'User information' => 'පරිශීලක තොරතුරු',
+    'Email address' => 'විද්යුත් තැපැල් ලිපිනය',
+    'First name' => 'මුල් නම',
+    'Last name' => 'අවසන් නම',
+    'Contact information' => 'සබඳතා තොරතුරු',
+    'Country' => 'රට',
+    'Postal code' => 'තැපැල් කේතය',
+    'Current Password' => 'වත්මන් මුරපදය',
+    'New Password' => 'නව මුරපදය',
+    'Confirm Password' => 'මුරපදය තහවුරු කරන්න',
+    'Reset Password' => 'මුරපදය නැවත සකසන්න',
+   
 
     //globle config
      'VAT & Fine %' => 'බදු සහ දඩ ප්‍රතිශත(%)',
@@ -95,19 +122,43 @@ return [
      'End Value (LKR)' => 'අවසාන අගය(රු.)',
      'Search start value' =>'ආරම්භක අගය සෙවීම',
      'Search end value'=> 'අවසාන අගය සෙවීම',
-    
 
       //Report Generation
     'Start Date'=>'ආරම්භක දිනය',
-    'End Date'=>'අවසන් දිනය'
+    'End Date'=>'අවසන් දිනය',
 
     //employee Update
     'Name'=>'නම',
     'Address'=>'ලිපිනය',
     'NIC'=>'ජාතික හැන්දුමුපත් අංකය',
     'Phone No'=>'දුරකථන අංකය',
-    'Update Profile'=>'යාවත්කාලීන කිරීම'
+    'Update Profile'=>'යාවත්කාලීන කිරීම',
 
 
+     //business payment
+     'view owner' => 'අයිතිකරුව බලන්න',
+     'Annual worth' => 'වාර්ෂික වටිනාකම',
+     'Due Payment : Rs.' => 'නියමිත ගෙවීම : රු.',
+     'Accept Payment' => 'ගෙවීම පිළිගන්න',
+     'Assign to Court' => 'උසාවියට පවරන්න',
+     'No Due payments' => 'නියමිත ගෙවීම් නොමැත',
+     'Payment History' => 'කරන ලද ගෙවීම්',
+     'Receipt No.' => 'කුවිතාන්සිය අංක',
+     'Payment Date' => 'ගෙවීම් කල දිනය',
+     'Payment' => 'ගෙවීම',
+     'Assigned To Court' => 'උසාවියට ​​පවරා ඇත',
+     'Search Payment date' => 'ගෙවීම් කල දිනය සෙවීම',
+     'All' =>'සියල්ල',
+     'Yes' =>'ඔව්',
+     'No' => 'නැත',
+  
+     // massage
+     'Error!' => 'දෝෂයකි!',
+     'Data you entered is/are incorrect' => 'ඇතුළත් කළ දත්ත වැරදිය',
+     'view' => 'දැක්ම',
+     'Invalid Assesment Amount'=>'ලබා දී ඇති තක්සේරු මුදල අවලංගුය'
+     
+    
+     
 
 ];
