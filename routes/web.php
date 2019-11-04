@@ -121,3 +121,16 @@ Route::get('/retry/{$id}', function () {
     Artisan::call("queue:retry $id");
     dd('done');
 });
+
+// use Carbon\Carbon;
+// use App\Business_tax_payment;
+
+// Route::get('/testing', function () {
+//     $currentDate = Carbon::now()->toArray();
+//     $year = $currentDate['year'];
+    
+//     foreach (Business_tax_payment::distinct()->get('shop_id') as $BusinessTaxShop) {
+//         //echo Business_tax_payment::where('shop_id', $BusinessTaxShop->id)->where('created_at', 'like', "%$year%")->first()->id;
+//         dd($BusinessTaxShop->shop_id);
+//     }
+// });
