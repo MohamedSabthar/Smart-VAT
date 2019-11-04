@@ -38,7 +38,7 @@ class BusinessTaxController extends Controller
     public function businessPayments($shop_id)
     {
         $businessTaxShop = Business_tax_shop::findOrFail($shop_id);
-        $businessTax = Vat::where('name', 'Business Tax')->find(1);
+        $businessTax = Vat::where('name', 'Business Tax')->get();
         $currentDate = now()->toArray();    // get the currrent date properties
         $lastPaymentDate = $businessTaxShop->payments->pluck('created_at')->last(); // get the last payment date
         $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties

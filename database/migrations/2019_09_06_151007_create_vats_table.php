@@ -19,6 +19,7 @@ class CreateVatsTable extends Migration
             $table->double('vat_percentage')->nullable();     //vat% some vat has assesment ammounts
             $table->double('fine_percentage')->nullable();    //fine% some vat doesn't has fine
             $table->string('route');                //contain route link names used in laravel web.php routes
+            $table->date('due_date')->nullable(); // automatic mail notifications send on this data
         });
     }
 

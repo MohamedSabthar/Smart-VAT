@@ -37,7 +37,8 @@ class BusinessTaxNoticeJob implements ShouldQueue
      */
     public function handle()
     {
-        $mail =  $this->id!=2 ?$this->id.'@yopmail.com' : $this->id;
+        // $mail =  $this->id!=2 ?$this->id.'@yopmail.com' : $this->id;
+        $mail = $this->id;
         Mail::to($mail)->send(new BusinessTaxNotice); // Sending vatpayer notification mail to Queue process
     }
 
