@@ -139,7 +139,8 @@ return [
      'All' =>'සියල්ල',
      'Yes' =>'ඔව්',
      'No' => 'නැත',
-     'Remove Payment' => '',
+     'Remove Payment' => 'ගෙවීම ඉවත් කරන්න',
+     'Restore Payment'=> 'ගෙවීම ප්‍රතිස්ථාපනය කරන්න',
   
      // massage
      'Error!' => 'දෝෂයකි!',

@@ -125,9 +125,9 @@
                 </div>
                 <div class="card-body pt-0 pt-md-4">
                     <div class="test-left pt-5">
-                        <h3 class="d-inline">{{__('menu.Business Name')}} : </h3> {{$businessTaxShop->shop_name}}
+                        <h3 class="d-inline">{{__('menu.Business Name')}} : </h3> {{ucwords($businessTaxShop->shop_name)}}
                         <div class="pt-1">
-                            <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{$businessTaxShop->address}}
+                            <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{ucwords($businessTaxShop->address)}}
                         </div>
 
                         <div class="pt-1">
@@ -143,6 +143,13 @@
 
                         <div class="pt-1">
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$businessTaxShop->phone}}
+                        </div>
+
+                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                             <div class="d-flex justify-content-between">
+                                 <a href="{{route('restore-payment',['id'=>$businessTaxShop->payer->id])}}"
+                                 class="btn btn-sm btn-default float-right">{{__('menu.Restore Payment')}}</a>
+                            </div>
                         </div>
 
                     </div>

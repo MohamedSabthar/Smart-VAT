@@ -89,6 +89,11 @@ class BusinessTaxController extends Controller
         return redirect()->back()->with('status','Delete Successful');
     }
 
+    //restore payment
+    public function restorePayment(){
+        return view('vat.business.restorePayment');
+    }
+
     public function reciveBusinessPayments($shop_id, Request $request)
     {
         $payerId=Business_tax_shop::findOrFail($shop_id)->payer->id;  //get the VAT payer id
