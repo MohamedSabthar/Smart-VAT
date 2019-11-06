@@ -70,5 +70,10 @@ class VatPagesController extends Controller
     {
         return view('vat.vehicalPark');
     }
+    public function slaughtering()
+    {
+        return view('vat.slaughtering');
+    }
+    
     
 }
