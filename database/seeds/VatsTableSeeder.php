@@ -83,5 +83,10 @@ class VatsTableSeeder extends Seeder
             'vat_percentage' => 15,
             'route' => 'booking',
         ]);
+        DB:: table('vats')->insert([
+            'name' => 'Slaughtering Tax',
+            'vat_percentage' => 15,
+            'route' => 'slaughtering',
+        ]);
     }
 }

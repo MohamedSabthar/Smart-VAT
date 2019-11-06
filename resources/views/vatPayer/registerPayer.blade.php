@@ -101,6 +101,48 @@
 		</div>
 	</div>
 </div>
+
+<div class="container-fluid d-flex align-items-center">
+	{{-- Alert notifications --}}
+	<div class="col">
+		@if (session('status'))
+		<div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}
+				<a href="#" class="btn btn-sm btn-primary mr-4 add-buissness">{{__('menu.Add Buissness')}}</a>
+			</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		{{-- alert only displayed; if the page redirected by registration request --}}
+		@if (url()->previous()==route('vat-payer-registration'))
+		<div class="alert alert-info alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2"><strong class="mx-1">Need to Assign-vat categories!</strong><a
+					href="#registerPayer" class="btn btn-sm btn-primary mx-3">Click me</a></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+		@elseif($errors->any())
+		<div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2">
+				<strong class="mx-1">Error!</strong>
+				Data you entered is/are incorrect
+				{{-- <a href="#" class="btn btn-sm btn-primary mx-3 update-info">view</a> --}}
+			</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+	</div>
+	{{-- end of Alert notifications --}}
+</div>
+
 @endsection
 @section('pageContent')
 
@@ -115,16 +157,8 @@
 			<div class="card-body ">
 			
 			{{--VAT payers Registration form  --}}
-			<form method="POST" action="{{route('vat-payer-registration')}}">
+			<form method="POST" action="{{route('vat-payer-registration')}}" onsubmit="return confirm-register-business(this)">
 				@csrf
-
-				@if(session('status'))
-				  <div class="col-md-8 alter alert-success">
-					  {{session('status')}}
-				  </div>
-				@endif
-
-
 				<div class="form-group row pt-3">
 					<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
 						{{__('menu.First Name')}}</label>
@@ -185,6 +219,9 @@
 							<div class="col-md-10">
 								<input class="form-control @error('nic') is-invalid @enderror" type="text"
 									value="{{old('nic')}}" id="nic" name="nic">
+									<span id="error_nic" class="invalid-feedback" role="alert">
+											
+										</span>
 								@error('nic')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
@@ -212,7 +249,7 @@
 								class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
 								
 							<div class="col-md-10 ">
-								<input class="form-control @error('street') is-invalid  @enderror" type="text"
+								<input class="form-control @error('doorNo') is-invalid  @enderror" type="text"
 									value="{{old('doorNo')}}" id="doorNo" name="doorNo">
 								@error('doorNo')
 								<span class="invalid-feedback" role="alert">
@@ -250,54 +287,121 @@
 							</div>
 					</div>
 
-					<div class="form-group">
-							<input class=" btn btn-primary float-right" type="submit">
+					{{-- Button --}}
+					{{-- <div class="form-group">
+						<input class=" btn btn-primary float-right" value="{{__('menu.Registration')}}" 
+						id="registration" name="registration" type="submit" data-toggle="modal" data-target="#confirm-register-business">
 					</div>
+
+					<div class="form-group">
+						<button class="btn btn-primary float-right" data-toggle="modal"
+							onclick="javascript:event.preventDefault()"
+							data-target="#confirm-register-business">{{__('menu.Registration')}}</button>
+					</div> --}}
+
+					<!-- button with onclick event that triggers the form validation. If the form is valid, triggers click of second button -->
+					<div class="form-group">
+						<button type="submit" id="register" value="Submit" class="btn btn-primary float-right" 
+						   onclick="if(formIsValid() $('#triggerModal').click();)">Register</button>
+					</div>
+					
+					<!-- hidden submit button -->
+					<div class="form-group">
+							<button type="submit" id="triggerModal" hidden value="Submit" 
+							    class="btn btn-info btn-lg" data-toggle="modal" data-target="#confirm-register-business">Submit2</button>
+					</div>
+
+					{{-- Confirmation modal for adding business for the registered VAT payer--}}
+					<div class="modal fade" id="confirm-register-business" tabindex="-1" role="dialog"
+						aria-labelledby="modal-default" aria-hidden="true">
+						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<strong>This VAT payer is alredy registered</strong>
+									<p>Are you wish to a add business ? </p>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
+									<button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal" onclick="javascript:event.preventDefault()" 
+									data-target="#confirm-register-business"
+										onclick="javascript:location.replace('{{route('business-profile',['id'=>'$vatPayer->id'])}}').submit();">
+										{{__('menu.Add Business')}}</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					{{-- End of confirmation modal --}}
 				</form>		
 
 			</div>	
 		</div>
 	</div>
-</div>			
-
-
-
+</div>
 
 @endsection
 
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-<script>
-	$(document).ready(function() {
-        var id = '#example';                      //data table id
-        var table = $(id).DataTable({
-          "pagingType": "full_numbers"
-        });            //table object
-        $(id+'_filter').addClass('pr-5');         //adding padding to table elements
-        $(id+'_info').addClass('pl-5');
-        $(id+'_paginate').addClass('pr-5');
-        $(id+'_length').addClass('pl-5')
-        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
-        
-        $('#searchName').on( 'keyup', function () { //individulat column search
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-            });
-      } );
-</script>
-@endpush
 
-{{-- 
-				@if(count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                         <ul>
-                            @foreach($errors->all() as $error)
-                                <li> {{ $error }} </li>
-                            @endforeach
-                        </ul> 
-                    </div>
-                @endif --}}
+
+<script>
+	$(document).ready(function(){
+		
+		$('#nic').blur(function(){
+			var error_nic = '';
+			var nic = " ";
+			var nic = $('#nic').val();       //geting nic textbox value (id=nic) to nic variable
+			var _token = $('input[name="_token"]').val();
+
+			if(nic)
+			{
+
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+	
+				});
+			var formdata = {'nic':nic}
+				console.log(formdata);
+				
+				$.ajax({
+				url:"{{ route('nic_available.check') }}", 
+				method:"POST",
+				data: formdata,
+				success:function(result)
+				{
+					console.log(result.data);
+					
+					if(result.data == 'not_unique')
+					{
+						$('#nic').addClass('is-invalid');
+						$('#error_nic').html('<strong>NIC already available</strong>');
+						$('#confirm-register-business').modal('show');
+						$('#register').attr('disabled', true);
+					}
+				}
+			});
+			}
+			else{
+				// disabling registration 
+				$('#error').addClass('has-error');
+				$('#register').attr('disabled', 'disabled');  
+			}
+
+		});
+	});
+</script>
+
+@endpush

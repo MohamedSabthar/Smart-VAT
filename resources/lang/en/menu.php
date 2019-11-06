@@ -50,6 +50,7 @@ return [
      
     'Configurations' => 'Configurations',
     'VAT Categories'=>'VAT Categories',
+    
     //business tax
     'Annual Assesment Amount' => 'Annual Assesment Amount',
     'Total amount payable'=> 'Total amount payable',
@@ -63,11 +64,16 @@ return [
     'Select Business' => 'Select Business',
     'Door No' => 'Door No',
     'Street' => 'Street',
-    'City' => 'City', 
+    'City' => 'City',
+    's businesses'=> 's businesses',
     'Search Business Name' => 'Search Business Name',
     'Shop Phone' => 'Shop Phone',
-    'Submit' => 'Submit',  
-      
+    'Search Phone' => 'Search Phone',
+    'Submit' => 'Submit',
+    '[+] Buissness' =>'[+] Buissness',
+    'View Payments' => 'View Payments',
+    'Remove Buisness' => 'Remove Buisness',
+   
     
     //VAT Payer
     'user Id' => 'User ID',
@@ -84,6 +90,8 @@ return [
     'NIC' =>    'NIC',
     'Phone No' => 'Phone No',
     'Business Categories' => 'Business Categories',
+    'Registration' => 'Registration',
+    'Add Business' => 'Add Business',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',
@@ -91,13 +99,33 @@ return [
 
     //employee profile
     'Update employee information' => 'Update employee information',
-    'Name' => 'Name',    
+    'Name' => 'Name',
     'NIC' => 'NIC',
     'Phone No' => 'Phone No',
     'Assigned VAT categories' => 'Assigned VAT categories',
     'E-Mail' => 'E-Mail',
     'Update' => 'Update',
     'Assign' => 'Assign',
+    's Profile' => 's Profile',
+    'Role' => 'Role',
+    's details' => 's details',
+
+    //myprofile
+
+    'Welcome' => 'Welcome',
+    'Access level' => 'Access level',
+    'My account' => 'My account',
+    'User information' =>'User information',
+    'Email address' => 'Email address',
+    'First name' => 'First name',
+    'Last name' => 'Last name',
+    'Contact information' => 'Contact information',
+    'Country' => 'Country',
+    'Postal code' => 'Postal code',
+    'Current Password' => 'Current Password',
+    'New Password' => 'New Password',
+    'Confirm Password' => 'Confirm Password',
+    'Reset Password' => 'Reset Password',
 
     //globle config
     'VAT & Fine %' => 'VAT & Fine %',
@@ -110,5 +138,30 @@ return [
     'End Value (LKR)' => 'End Value (LKR)',
     'Search start value'=> 'Search start value',
     'Search end value'=> 'Search end value',
+
+    //business payment
+    'view owner'=> 'view owner',
+    'Annual worth' => 'Annual worth',
+    'Due Payment : Rs.' => 'Due Payment : Rs.',
+    'Accept Payment' => 'Accept Payment',
+    'Assign to Court' => 'Assign to Court',
+    'No Due payments' => 'No Due payments',
+    'Payment History' => 'Payment History',
+    'Receipt No.' => 'Receipt No.',
+    'Payment Date' => 'Payment Date',
+    'Payment' => 'Payment',
+    'Assigned To Court' => 'Assigned To Court',
+    'Search Payment date'=> 'Search Payment date',
+    'All' => 'All',
+    'Yes' => 'Yes',
+    'No' => 'No',
+
+    //massage
+
+    'Error!' => 'Error!',
+    'Data you entered is/are incorrect' => 'Data you entered is/are incorrect',
+    'view' => 'view',
+    'Invalid Assesment Amount' => 'The assessment amount provided is invalid'
+    
 
 ];
