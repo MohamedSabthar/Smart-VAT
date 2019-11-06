@@ -65,7 +65,10 @@ Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest')
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBusinessPayments')->name('receive-business-payments');
-Route::get('/business/business-remove/{shop_id}','vat\BusinessTaxController@removeBusiness')->name('remove-business'); // remove business route
+Route::get('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
+Route::get('/business/payment-remove/{id}','vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
+Route::get('/business/payment-restore/{shop_id}','vat\BusinessTaxController@restorePayment')->name('restore-payment');//restore payment
+Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
 //all business tax related tax routes should starts with "/buisness"
 
 
@@ -77,7 +80,7 @@ Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentLis
 
 //mail test
 Route::get('/mail-me', function () {
-    for ($id=2;$id<=3;$id++) {
+    for ($id=1;$id<=3;$id++) {
         dispatch(new  BusinessTaxNoticeJob($id));
     }
     dd('hi');
@@ -103,3 +106,33 @@ Route::get('/my-notification', function () {
         echo $notification->data['data'];
     }
 });
+
+
+Route::get('/restart', function () {
+    \Artisan::call('queue:restart');
+    dd('done');
+});
+
+
+Route::get('/retry', function () {
+    Artisan::call('queue:retry all');
+    dd('done');
+});
+
+Route::get('/retry/{$id}', function () {
+    Artisan::call("queue:retry $id");
+    dd('done');
+});
+
+// use Carbon\Carbon;
+// use App\Business_tax_payment;
+
+// Route::get('/testing', function () {
+//     $currentDate = Carbon::now()->toArray();
+//     $year = $currentDate['year'];
+    
+//     foreach (Business_tax_payment::distinct()->get('shop_id') as $BusinessTaxShop) {
+//         //echo Business_tax_payment::where('shop_id', $BusinessTaxShop->id)->where('created_at', 'like', "%$year%")->first()->id;
+//         dd($BusinessTaxShop->shop_id);
+//     }
+// });

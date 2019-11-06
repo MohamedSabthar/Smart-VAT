@@ -15,7 +15,8 @@ class VatsTableSeeder extends Seeder
             'name' => 'Business Tax',
             'vat_percentage' => 15,
             //vat and fine refered on seperate table
-            'route'=> 'business'
+            'route'=> 'business',
+            'due_date' => '0004-02-29',
         ]);
 
         DB::table('vats')->insert([
