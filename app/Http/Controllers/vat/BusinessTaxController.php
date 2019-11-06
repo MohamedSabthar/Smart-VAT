@@ -38,7 +38,7 @@ class BusinessTaxController extends Controller
     public function businessPayments($shop_id)
     {
         $businessTaxShop = Business_tax_shop::findOrFail($shop_id);
-        $businessTax = Vat::where('name', 'Business Tax')->get();
+        $businessTax = Vat::where('name', 'Business Tax')->firstOrFail();
         $currentDate = now()->toArray();    // get the currrent date properties
         $lastPaymentDate = $businessTaxShop->payments->pluck('created_at')->last(); // get the last payment date
         $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
@@ -83,14 +83,16 @@ class BusinessTaxController extends Controller
     }
 
     //soft delete business payment
-    public function removePayment($id){
+    public function removePayment($id)
+    {
         $businessTaxPyament = Business_tax_payment::find($id);
         $businessTaxPyament -> delete();
-        return redirect()->back()->with('status','Delete Successful');
+        return redirect()->back()->with('status', 'Delete Successful');
     }
 
     //restore payment
-    public function restorePayment(){
+    public function restorePayment()
+    {
         return view('vat.business.restorePayment');
     }
 
