@@ -24,6 +24,7 @@ class CreateBusinessTaxPaymentsTable extends Migration
             $table->foreign('payer_id')->references('id')->on('vat_payers');    // a tax payment by a vat payer
             $table->foreign('user_id')->references('id')->on('users');          // an employee enteres the record
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
