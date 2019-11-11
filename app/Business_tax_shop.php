@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Business_tax_shop extends Model
 {
     protected $table = 'business_tax_shops';
+    use SoftDeletes;
 
     public function payer()
     {

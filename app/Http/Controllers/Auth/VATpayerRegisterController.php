@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DB;
 use App\Vat_payer;
 use App\Business_type;
 use App\Business_tax_shop;
@@ -18,8 +19,8 @@ class VATpayerRegisterController extends Controller
 {
     public function viewFrom()
     {
-        $businessTypes = Business_type::all();
-        return view('vatPayer.registerPayer', ['businessTypes'=>$businessTypes]);
+        //$vatPayer = Vat_payer::find($id);
+        return view('vatPayer.registerPayer');
     }
 
     public function register(VATpayerRegisterRequest $request)
@@ -30,15 +31,18 @@ class VATpayerRegisterController extends Controller
         $vatPayer->first_name= $request->first_name;
         $vatPayer->middle_name = $request->middle_name;
         $vatPayer->last_name = $request->last_name;
-        $vatPayer->door_no = $request->door_no;
+        $vatPayer->email = $request->email ;
+        $vatPayer->nic = $request->nic;
+        $vatPayer->phone = $request->phone;
+        $vatPayer->door_no = $request->doorNo;
         $vatPayer->street = $request->street;
         $vatPayer->city = $request->city;
         $vatPayer->employee_id = Auth::user()->id;
         
         $vatPayer-> save();
 
-        // redirecting to BUsiness VAT payers' page with success notification
-        return redirect()->route('vat-payer-registration')->with('status', ' New Payer registerd successfully');
+        // redirecting to add a business for the registered VAT Payer with success notification
+        return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', ' New Payer registerd successfully');
     }
 
     /**
@@ -62,6 +66,34 @@ class VATpayerRegisterController extends Controller
             'phone' => ['required','regex:/[+94|0][0-9]{9}$/'],
         ]
         );
+    }
+
+    /*
+    * Checking the Ajax requesst
+    */
+    public function check(Request $request){
+        if($request->get('nic'))
+        {
+            $nic = $request->get('nic');
+            // $data = DB::table("Vat_payers")
+            //     ->where('nic', $nic)
+            //     ->count();    
+                 /* return number of raws affected which 
+                                *we have store under $data */
+      $data = Vat_payer::where('nic',$nic)->first();
+            if($data!=null)
+            {
+                // nic is registered in the database
+                return response()->json(array('data'=>'not_unique','id'=>$data->id));
+                
+            }   
+            else{
+                return response()->json(array('data'=>'unique'));           // not registered into the vatPayer db
+            }           
+        }
+
+       
+
     }
 
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Business Tax')
+@section('title','Business Payment')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -120,28 +120,36 @@
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
                         <a href="{{route('business-profile',['id'=>$businessTaxShop->payer->id])}}"
-                            class="btn btn-sm btn-default float-right">view owner</a>
+                            class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
                     <div class="test-left pt-5">
-                        <h3 class="d-inline">Business Name : </h3> {{$businessTaxShop->shop_name}}
+                        <h3 class="d-inline">{{__('menu.Business Name')}} : </h3> {{ucwords($businessTaxShop->shop_name)}}
                         <div class="pt-1">
-                            <h3 class="d-inline">Address : </h3> {{$businessTaxShop->address}}
+                            <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{ucwords($businessTaxShop->address)}}
                         </div>
 
                         <div class="pt-1">
-                            <h3 class="d-inline"> Registration No. : </h3> {{$businessTaxShop->registration_no}}
+                            <h3 class="d-inline">{{__('menu.Assesment No.')}} : </h3> {{$businessTaxShop->registration_no}}
                         </div>
 
                         <hr>
+
                         <div class="pt-1">
-                            <h3 class="d-inline"> Anual worth : </h3> {{number_format($businessTaxShop->anual_worth,2)}}
+                            <h3 class="d-inline"> {{__('menu.Annual worth')}} : </h3> {{number_format($businessTaxShop->anual_worth,2)}}
                         </div>
                         <hr>
 
                         <div class="pt-1">
-                            <h3 class="d-inline"> Phone No : </h3> {{$businessTaxShop->phone}}
+                            <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$businessTaxShop->phone}}
+                        </div>
+
+                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                             <div class="d-flex justify-content-between">
+                                 <a href="{{route('restore-payment',['id'=>$businessTaxShop->payer->id])}}"
+                                 class="btn btn-sm btn-default float-right">{{__('menu.Restore Payment')}}</a>
+                            </div>
                         </div>
 
                     </div>
@@ -154,10 +162,10 @@
             @if (!$paid)
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
-                    <h1 style="font-weight: 400;">Due Payment : Rs. {{number_format($duePayment,2)}}</h1>
+                    <h1 style="font-weight: 400;">{{__('menu.Due Payment : Rs.')}} {{number_format($duePayment,2)}}</h1>
                     <button class="btn btn-success mx-auto my-1"
-                        onclick="javascript:document.getElementById('accept-payment').submit()">Accept Payment</button>
-                    <button class="btn btn-danger mx-auto my-1">Assign to Court</button>
+                        onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
+                    <button class="btn btn-danger mx-auto my-1">{{__('menu.Assign to Court')}}</button>
                 </div>
             </div>
             {{-- payment form --}}
@@ -169,7 +177,7 @@
             @else
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
-                    <h1 style="font-weight: 400;">No Due payments</h1>
+                    <h1 style="font-weight: 400;">{{__('menu.No Due payments')}}</h1>
 
                 </div>
             </div>
@@ -181,7 +189,7 @@
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">Payment History</h3>
+                            <h3 class="mb-0">{{__('menu.Payment History')}}</h3>
                         </div>
                     </div>
                 </div>
@@ -207,9 +215,9 @@
                                 <th></th>
                                 <th>
                                     <select class="form-control form-control-sm" id="selectCourt">
-                                        <option value="">All</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
+                                        <option value="">{{__('menu.All')}}</option>
+                                        <option value="Yes">{{__('menu.Yes')}}</option>
+                                        <option value="No">{{__('menu.No')}}</option>
                                     </select>
 
                                 </th>
@@ -225,6 +233,21 @@
                                 <td>{{ number_format($payments->payment,2)}}</td>
 
                                 <td>{!! $payments->assinged_to_court ? "Yes" : "No" !!}</td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            
+                                            <a class="dropdown-item"
+                                                href="{{route('remove-payment',['id'=>$payments->id])}}">
+                                                {{__('menu.Remove Payment')}}</a>
+                                        </div>
+
+                                    </div>
+                                </td>
 
 
                             </tr>
