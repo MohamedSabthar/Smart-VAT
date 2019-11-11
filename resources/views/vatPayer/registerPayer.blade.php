@@ -331,10 +331,11 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-link"
 										onclick="javascript:location.reload()">Cancel</button>
-									<button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal" onclick="javascript:event.preventDefault()" 
+									{{-- <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal" onclick="javascript:event.preventDefault()" 
 									data-target="#confirm-register-business"
-										onclick="javascript:location.replace('{{route('business-profile',['id'=>'$vatPayer->id'])}}').submit();">
-										{{__('menu.Add Business')}}</button>
+										onclick="javascript:location.replace('{{route('business-profile',['id'=>'$vatPayer->nic'])}}').submit();">
+										{{__('menu.Add Business')}}</button> --}}
+									<a href="" id="redirect" class="btn  btn-primary ml-auto">{{__('menu.Add Business')}}</a>
 								</div>
 
 							</div>
@@ -382,12 +383,13 @@
 				data: formdata,
 				success:function(result)
 				{
-					console.log(result.data);
+					console.log(result);
 					
 					if(result.data == 'not_unique')
 					{
 						$('#nic').addClass('is-invalid');
 						$('#error_nic').html('<strong>NIC already available</strong>');
+						$('#redirect').attr("href","/business/profile/"+result.id);
 						$('#confirm-register-business').modal('show');
 						$('#register').attr('disabled', true);
 					}

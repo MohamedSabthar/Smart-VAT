@@ -75,16 +75,17 @@ class VATpayerRegisterController extends Controller
         if($request->get('nic'))
         {
             $nic = $request->get('nic');
-            $data = DB::table("Vat_payers")
-                ->where('nic', $nic)
-                ->count();     /* return number of raws affected which 
+            // $data = DB::table("Vat_payers")
+            //     ->where('nic', $nic)
+            //     ->count();    
+                 /* return number of raws affected which 
                                 *we have store under $data */
-      
-            if($data >0)
+      $data = Vat_payer::where('nic',$nic)->first();
+            if($data!=null)
             {
                 // nic is registered in the database
-                return response()->json(array('data'=>'not_unique'));
-
+                return response()->json(array('data'=>'not_unique','id'=>$data->id));
+                
             }   
             else{
                 return response()->json(array('data'=>'unique'));           // not registered into the vatPayer db
