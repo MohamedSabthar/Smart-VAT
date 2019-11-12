@@ -84,7 +84,8 @@ class BusinessTaxController extends Controller
 
     public function GenerateReport(BusinessTaxReportRequest $request)
     {
-        dd($request->startDate,$request->endDate);
+       // dd($request->startDate,$request->endDate);
+        return view('vat.business.businessReportView');
         
     }
 
