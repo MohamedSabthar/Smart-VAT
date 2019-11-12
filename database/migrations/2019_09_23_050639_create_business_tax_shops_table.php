@@ -32,6 +32,7 @@ class CreateBusinessTaxShopsTable extends Migration
             $table->foreign('type')->references('id')->on('business_types');
         
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
