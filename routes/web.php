@@ -66,9 +66,12 @@ Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@regis
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBusinessPayments')->name('receive-business-payments');
 Route::get('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
-Route::get('/business/payment-remove/{id}','vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
-Route::get('/business/payment-restore/{shop_id}','vat\BusinessTaxController@restorePayment')->name('restore-payment');//restore payment
+Route::get('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
+Route::get('/business/payment-restore/{shop_id}', 'vat\BusinessTaxController@restorePayment')->name('restore-payment');//restore payment
 Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
+Route::get('/business/quick-payments', function () {
+    return view('vat.business.buisnessQuickPayments');
+});
 //all business tax related tax routes should starts with "/buisness"
 
 
