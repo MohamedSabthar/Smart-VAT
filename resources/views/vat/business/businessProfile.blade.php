@@ -104,32 +104,6 @@
 </div>
 
 <div class="container-fluid d-flex align-items-center">
-	{{-- Alert notifications --}}
-	<div class="col mt-5">
-		@if (session('status'))
-		<div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
-			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-            <span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}
-                <a href="#" class="btn btn-sm btn-primary mx-3 add-buissness">{{__('menu.Add Business')}}</span>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		@elseif($errors->any())
-		<div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
-			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-			<span class="alert-inner--text mx-2">
-				<strong class="mx-1">{{__('menu.Error!')}}</strong>
-				{{__('menu.Data you entered is/are incorrect')}}
-				<a href="#" class="btn btn-sm btn-primary mx-3 update-info">{{__('menu.view')}}</a>
-			</span>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		@endif
-	</div>
-	{{-- end of Alert notifications --}}
     {{-- Alert notifications --}}
     <div class="col mt-5">
         @if (session('status'))
@@ -210,37 +184,7 @@
                     </div>
 
                 </div>
-                <div class="card-body">
-                    {{-- Buisness registration form --}}
-                    <form method="POST" id="business-registration-form" action="{{route('business-register',['id'=> $vatPayer->id])}}">
-                        @csrf
-                        <div class="form-group row pt-3">
-                            <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
-                            <div class="col-md-10 ">
-                                <input class="form-control @error('assesmentNo') is-invalid  @enderror" type="text"
-                                    value="{{old('assesmentNo')}}" id="assesmentNo" name="assesmentNo" autofocus>
-                                @error('assesmentNo')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
-                            <div class="col-md-10 ">
-                                <input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
-                                    type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
-                                    name="annualAssesmentAmount">
-                                @error('annualAssesmentAmount')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
+            </div>
             <div class="card-body">
                 {{-- Buisness registration form --}}
                 <form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
@@ -463,7 +407,6 @@
 <script src="{{asset('js/select2.js')}}"></script>
 <script>
     $(document).ready(function() {
-
         var id = '#business_shops_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
@@ -488,52 +431,39 @@
                 .search( this.value )
                 .draw();
         });
-
         $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
         });
-
         $('#searchPhone').on( 'keyup', function () { 
             table
                 .columns( 2 )
                 .search( this.value )
                 .draw();
         });
-
-
         //toggle transition for buisness registration form
         $("#business-registration").hide();
         $(".add-buissness").on('click',function(){
             $("#business-registration").slideToggle("slow");
         });
-
-
         $('#type').select2({
             placeholder: "Select business type here",
             allowClear: true,
         });
-
         $('#annualAssesmentAmount').blur(function(){
             var assessmentAmmount = $(this).val()
            if(!$.isNumeric(assessmentAmmount)){
             $(this).addClass('is-invalid')
             $('#invalidAnnualAssesmentAmount').removeClass('d-none')
             $('#invalidAnnualAssesmentAmount>strong').text("{{__('menu.Invalid Assesment Amount')}}")
-
             
-
            }else{
                $(this).removeClass('is-invalid')
-
                $.ajaxSetup({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             });
-
-
-
             $('#type').select2({
                 placeholder: "Select business type here",
             allowClear: true,
@@ -559,11 +489,9 @@
                 },
                 cache: true
             },
-
             // minimumInputLength: 1,
         
             });
-
             // $.ajax({
             //     url: "{{route('get-business-types')}}",
             //     type:"POST",
@@ -576,12 +504,9 @@
             //                 alert("error!!!!");
             //             }
             // });
-
-
            }
         })
             
     } );
-
 </script>
 @endpush
