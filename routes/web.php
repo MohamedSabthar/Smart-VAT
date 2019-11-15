@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 use App\Vat;
 use App\Vat_payer;
@@ -64,6 +65,10 @@ try {
 Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
 Route::get('/business/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
+
+/**
+ * Routes related to VAT Payer
+ */
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBusinessPayments')->name('receive-business-payments');
 Route::get('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
@@ -77,7 +82,32 @@ Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments
 //all business tax related tax routes should starts with "/buisness"
 
 
-Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+// Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+/*
+*VAT Payer registration
+*/
+Route::get('/vat-payer', 'Auth\VATpayerRegisterController@viewFrom')->name('payer-registration');
+Route::post('/vat-payer/Payer-Register', 'Auth\VATpayerRegisterController@register')->name('vat-payer-registration');
+//Ajax url option
+Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->name('nic_available.check');
+
+Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
+
+
+
+Route::post(
+    '/t',
+// function(Request $request){
+//     $msg = array(
+//         'status' => 'success',
+//         'msg'    => 'Setting created successfully',
+//     );
+
+//     return response()->json(array('msg'=> $msg), 200);}
+'VATpayerRegisterController@t'
+);
+
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
@@ -129,3 +159,16 @@ Route::get('/retry/{$id}', function () {
     Artisan::call("queue:retry $id");
     dd('done');
 });
+
+// use Carbon\Carbon;
+// use App\Business_tax_payment;
+
+// Route::get('/testing', function () {
+//     $currentDate = Carbon::now()->toArray();
+//     $year = $currentDate['year'];
+    
+//     foreach (Business_tax_payment::distinct()->get('shop_id') as $BusinessTaxShop) {
+//         //echo Business_tax_payment::where('shop_id', $BusinessTaxShop->id)->where('created_at', 'like', "%$year%")->first()->id;
+//         dd($BusinessTaxShop->shop_id);
+//     }
+// });

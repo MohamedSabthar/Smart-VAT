@@ -7,9 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Vat;
 use App\Vat_payer;
 use App\Business_type;
-use App\Business_tax_shop;
+
 use App\Http\Requests\AddBusinessRequest;
 use App\Business_tax_payment;
+use App\Business_tax_shop;
 use Auth;
 use App\Assessment_range;
 use Illuminate\Database\Eloquent\Builder;

@@ -18,7 +18,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h5 class="card-title text-uppercase text-muted mb-0">Buisness Tax payers</h5>
+					<h5 class="card-title text-uppercase text-muted mb-0">Payment List</h5>
 					<span class=" font-weight-bold mb-0">924</span>
 				</div>
 				<div class="col-auto">
@@ -56,7 +56,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -78,7 +77,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -104,110 +102,110 @@
 @endsection
 
 @section('pageContent')
-<div class="row">
-	<div class="col">
-
-		<div class="card shadow">
-			<div class="card-header bg-white border-0">
-				<div class="row align-items-center">
-					<div class="col-6 card-header">
-						<h3 class="mb-0 d-inline pr-2">Business Tax Payers</h3>
-					</div>
-					<div class="col-6 text-right">
-						<button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
-							data-placement="right" title="Click to register new VAT Payer"
-							onclick="javascript:window.open('{{route('payer-registration')}}','_self')">
-							<span><i class="fas fa-user-plus"></i></span>
-							<span class="btn-inner--text">Register</span>
-						</button>
+<div class="pt-5">
+	<div class="row">
+		<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+			<div class="card card-profile shadow">
+				<div class="row justify-content-center">
+					<div class="col-lg-3 order-lg-2">
+						<div class="card-profile-image">
+							<a href="#">
+								<img src="../assets/img/theme/business.jpg" class="rounded-circle">
+							</a>
+						</div>
 					</div>
 				</div>
+				<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+					<div class="d-flex justify-content-between">
+						<a href="#" class="btn btn-sm btn-default float-right">Message</a>
+					</div>
+				</div>
+				<div class="card-body pt-0 pt-md-4">
+					<div class="test-left pt-5">
+						<h3 class="d-inline">Business Name : </h3> {{$businessTaxShop->shop_name}}
+						<div class="pt-1">
+							<h3 class="d-inline">Address : </h3> {{$businessTaxShop->address}}
+						</div>
+
+						<div class="pt-1">
+							<h3 class="d-inline"> Registration No. : </h3> {{$businessTaxShop->registration_no}}
+						</div>
+
+						<div class="pt-1">
+							<h3 class="d-inline"> Phone No : </h3> {{$businessTaxShop->phone}}
+						</div>
+
+
+					</div>
+
+				</div>
 			</div>
-
-			<div class="table-responsive py-4">
-				{{-- Business VAT payers table --}}
-				<table id="business_payer_table" class="table  px-5">
-					<thead class="thead-light">
-						<tr>
-							<th>{{__('menu.User ID')}}</th>
-							<th>{{__('menu.VAT Payer Name')}}</th>
-							<th>{{__('menu.Address')}}</th>
-							<th>{{__('menu.Email')}}</th>
-							@if (Auth::user()->role=='admin')
-							<th>{{__('menu.Registerd By')}}</th>
-							@endif
-							<th></th>
-
-						</tr>
-					</thead>
-					<thead id="search_inputs">
-						<tr>
-							<th><input type="text" class="form-control form-control-sm" id="searchId"
-									placeholder="{{__('menu.Search User ID')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchName"
-									placeholder="{{__('menu.Search Name')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchAddress"
-									placeholder="{{__('menu.Search Address')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchEmail"
-									placeholder="{{__('menu.Search Email')}}" /></th>
-							@if (Auth::user()->role=='admin')
-							<th><input type="text" class="form-control form-control-sm" id="searchAdmin"
-									placeholder="{{__('menu.Search Admin')}}" /></th>
-							@endif
+		</div>
 
 
-						</tr>
-					</thead>
-					<tbody>
 
-						@foreach ($payers as $payer)
-						<tr>
-							<td>{{$payer->nic}}</th>
-							<td>{{$payer->full_name}}</td>
-							<td>{{$payer->address}}</td>
-							<td>{{$payer->email}}</td>
-							@if (Auth::user()->role=='admin')
-							<td>{{$payer->user->name}}</td>
-							@endif
-							<td class="text-right">
-								<div class="dropdown">
-									<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<i class="fas fa-ellipsis-v"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-										<a class="dropdown-item"
-											href="{{route('business-profile',['id'=>$payer->id])}}">View profile</a>
-									</div>
+		<div class="col">
 
-								</div>
-							</td>
+			<div class="card shadow">
+				<div class="card-header bg-white border-0">
+					<div class="row align-items-center">
+						<div class="col-8">
+							<h3 class="mb-0">Payment List</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="table-responsive py-4">
+					<table id="example" class="table  px-5">
+						<thead class="thead-light">
+							<tr>
+								<th>{{__('menu.Assesment No.')}}</th>
+								<th>{{__('menu.Payment Date')}}</th>
+								<th>{{__('menu.Annual Amount')}}</th>
+								<th>{{__('menu.Arrears')}}</th>
+
+							</tr>
+						</thead>
+						<thead id="search_inputs">
+							<tr>
+								<th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
+										placeholder="{{__('menu.Search Assesment No.')}}" /></th>
+								<th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
+										placeholder="{{__('menu.Search Payment date')}}" /></th>
+
+							</tr>
+						</thead>
+						<tbody>
+
+							{{-- @foreach ($businessTaxPayments as $businessTaxPayment)
+							<tr>
+								<td>{{$businessTaxPayment->assesmentNo}}</th>
+							<td>{{$businessTaxPayment->payment_Date}}</td>
+							<td>{{$businessTaxPayment->amount}}</td>
+							<td>{{$businessTaxPayment->arrears}}</td>
 
 
-						</tr>
-						@endforeach
+							</tr>
+							@endforeach --}}
 
 
-					</tbody>
-					<thead class="thead-light">
-						<tr>
-							<th>{{__('menu.User ID')}}</th>
-							<th>{{__('menu.VAT Payer Name')}}</th>
-							<th>{{__('menu.Address')}}</th>
-							<th>{{__('menu.Email')}}</th>
-							@if (Auth::user()->role=='admin')
-							<th>{{__('menu.Registerd By')}}</th>
-							@endif
-							<th></th>
-						</tr>
-					</thead>
+						</tbody>
+						<thead class="thead-light">
+							<tr>
+								<th>{{__('menu.Assesment No.')}}</th>
+								<th>{{__('menu.Payment Date')}}</th>
+								<th>{{__('menu.Annual Amount')}}</th>
+								<th>{{__('menu.Arrears')}}</th>
+							</tr>
+						</thead>
 
-				</table>
-				{{-- end of Business VAT payers table --}}
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 @endsection
 
 @push('script')
@@ -216,7 +214,7 @@
 <script>
 	$(document).ready(function() {
 
-        var id = '#business_payer_table';                      //data table id
+        var id = '#example';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -234,42 +232,19 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchName').on( 'keyup', function () { 
+        $('#searchAssesmentNo').on( 'keyup', function () { 
+            table
+                .columns( 0 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchPaymentDate').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
-		});
-
-		$('#searchId').on( 'keyup', function () { 
-		table
-			.columns( 0 )
-			.search( this.value )
-			.draw();
-		});
-
-		$('#searchAddress').on( 'keyup', function () { 
-		table
-			.columns( 2 )
-			.search( this.value )
-			.draw();
-		});
-
-		$('#searchEmail').on( 'keyup', function () { 
-		table
-			.columns( 3 )
-			.search( this.value )
-			.draw();
-		});
-
-		$('#searchAdmin').on( 'keyup', function () { 
-		table
-			.columns( 4 )
-			.search( this.value )
-			.draw();
-		});
-
-	} );
+            });
+      } );
 
 </script>
 @endpush
