@@ -26,7 +26,7 @@
 		<nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
 			<div class="container px-4">
 				<a class="navbar-brand" href="#">
-					<img src="{{ asset('assets/img/brand/white.png')}}" />
+					<img src="{{ asset('assets/img/brand/white.png')}}" style="width: auto; height:2.5rem;" />
 				</a>
 			</div>
 		</nav>
@@ -35,11 +35,11 @@
 		{{-- Header  --}}
 		<div class="header bg-gradient-primary py-7 py-lg-8">
 			<div class="container">
-				<div class="header-body text-center mb-7">
+				<div class="header-body text-center mb-5">
 					<div class="row justify-content-center">
 						<div class="col-lg-5 col-md-6">
-							<h1 class="text-white">Welcome to Smart-VAT!</h1>
-							<p class="text-lead text-light">VAT automation.</p>
+							<h1 class="text-white">Welcome to</h1>
+							<img src="{{ asset('assets/img/brand/white.png')}}" style="width: auto; height:5rem;" />
 						</div>
 					</div>
 				</div>

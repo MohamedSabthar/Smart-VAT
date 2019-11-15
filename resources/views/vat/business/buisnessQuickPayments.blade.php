@@ -113,7 +113,7 @@
             </div>
 
             <div class="card-body">
-                {{-- Employee registration form --}}
+
                 <form method="POST" action="{{route('register')}}">
                     @csrf
                     <div class="form-group row pt-3">
@@ -121,17 +121,19 @@
                         <div class="col-md-10">
                             <input class="form-control @error('nic') is-invalid @enderror" type="text"
                                 value="{{old('nic')}}" id="nic" name="nic" placeholder="Enter vat payer's NIC">
-                            @error('nic')
-                            <span class="invalid-feedback" role="alert">
+
+                            <span id="error_nic" class="invalid-feedback" role="alert">
+                                @error('nic')
                                 <strong>{{ $message }}</strong>
+                                @enderror
                             </span>
-                            @enderror
+
                         </div>
                     </div>
 
 
                 </form>
-                {{-- end of Employee registration form --}}
+
             </div>
 
         </div>
@@ -142,10 +144,43 @@
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-<script>
-    $(document).ready(function() {
 
-        
-      });
+<script>
+    $(document).ready(function(){
+
+		var _token = $('meta[name="csrf-token"]').attr('content');
+
+		$('#nic').blur(function(){
+			var nic = $('#nic').val();
+			
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': _token,
+                }
+            });
+				
+            $.ajax({
+            url:"{{ route('check-business-payments') }}", 
+            method:"POST",
+            data: {'nic':nic},
+            success:function(result){
+                console.log(result);
+				
+                if(result.payerDetails==null){
+                    $('#nic').addClass('is-invalid');
+                    $('#error_nic').html('<strong>NIC not mached</strong>');
+                }
+                else{
+                    $('#nic').removeClass('is-invalid');
+                    $('#error_nic').html('');
+                    console.log('test')
+                    $('#redirect').attr("href","/business/profile/"+result.id);
+                    $('#confirm-register-business').modal('show');
+                    $('#register').attr('disabled', true);
+                    }
+                }
+		    });
+	    });
+	});
 </script>
 @endpush

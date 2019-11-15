@@ -1,6 +1,7 @@
 <?php
 
 use App\Vat;
+use App\Vat_payer;
 use App\Jobs\BusinessTaxNoticeJob;
 use App\Mail\BusinessTaxNotice;
 
@@ -72,6 +73,7 @@ Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusine
 Route::get('/business/quick-payments', function () {
     return view('vat.business.buisnessQuickPayments');
 });
+Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments');
 //all business tax related tax routes should starts with "/buisness"
 
 

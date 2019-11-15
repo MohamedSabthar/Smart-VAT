@@ -13,6 +13,7 @@ use App\Business_tax_payment;
 use Auth;
 use App\Assessment_range;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 
 class BusinessTaxController extends Controller
 {
@@ -20,6 +21,23 @@ class BusinessTaxController extends Controller
     {
         //$this->middleware(['auth'=>'verified']);
         //$this->middleware('vat');
+    }
+
+    public function checkPayments(Request $request)
+    {
+        $data['payerDetails'] = Vat_payer::where('nic', $request->nic)->first();
+        if ($data['payerDetails'] != null) {
+            $data['payerShops'] = $data['payerDetails']->buisness;
+            $data['duePayments']=[];
+            $currentDate = now()->toArray();    // get the currrent date properties
+            $year = $currentDate['year'];
+            $i =0;
+            foreach ($data['payerShops'] as $shop) {
+                $data['duePayments'][$i]=  Business_tax_payment::where('shop_id', $shop->id)->where('created_at', 'like', "%$year%")->first();
+                $i++;
+            }
+        }
+        return response()->json($data, 200);
     }
 
     public function latestPayment()
