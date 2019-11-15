@@ -7,6 +7,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Vat;
 use Carbon\Carbon;
 use App\Business_tax_payment;
+use App\Business_tax_shop;
 use App\Vat_payer;
 
 use App\Jobs\BusinessTaxNoticeJob;
@@ -37,13 +38,15 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             $currentDate = Carbon::now()->toArray();
             $year = $currentDate['year'];
-            foreach (Business_tax_payment::distinct()->get() as $BusinessTaxShop) {
-                $taxPayment=Business_tax_payment::where('shop_id', $BusinessTaxShop->shop_id)->where('created_at', 'like', "%$year%")->first();
+            foreach (Business_tax_shop::all() as $BusinessTaxShop) {
+                $taxPayment=Business_tax_payment::where('shop_id', $BusinessTaxShop->id)->where('created_at', 'like', "%$year%")->first();
                 if ($taxPayment==null) {
-                    dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->vatPayer->email));
+                    dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->payer->email));
                 }
             }
-        })->when(function () {
+        })
+        // ->everyMinute();
+        ->when(function () {
             $businessTaxDueDate = Carbon::parse(Vat::where('route', '=', 'business')->firstOrFail()->due_date)->toArray();
             $currentDate = Carbon::now()->toArray();
             if ($currentDate['month']==$businessTaxDueDate['month'] && $currentDate['day']==$businessTaxDueDate['day']) {
