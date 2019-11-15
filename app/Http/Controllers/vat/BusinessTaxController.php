@@ -14,6 +14,7 @@ use App\Business_tax_shop;
 use Auth;
 use App\Assessment_range;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 
 class BusinessTaxController extends Controller
 {
@@ -21,6 +22,23 @@ class BusinessTaxController extends Controller
     {
         //$this->middleware(['auth'=>'verified']);
         //$this->middleware('vat');
+    }
+
+    public function checkPayments(Request $request)
+    {
+        $data['payerDetails'] = Vat_payer::where('nic', $request->nic)->first();
+        if ($data['payerDetails'] != null) {
+            $data['payerShops'] = $data['payerDetails']->buisness;
+            $data['duePayments']=[];
+            $currentDate = now()->toArray();    // get the currrent date properties
+            $year = $currentDate['year'];
+            $i =0;
+            foreach ($data['payerShops'] as $shop) {
+                $data['duePayments'][$i]=  Business_tax_payment::where('shop_id', $shop->id)->where('created_at', 'like', "%$year%")->first();
+                $i++;
+            }
+        }
+        return response()->json($data, 200);
     }
 
     public function latestPayment()
@@ -39,7 +57,7 @@ class BusinessTaxController extends Controller
     public function businessPayments($shop_id)
     {
         $businessTaxShop = Business_tax_shop::findOrFail($shop_id);
-        $businessTax = Vat::where('name', 'Business Tax')->get();
+        $businessTax = Vat::where('name', 'Business Tax')->firstOrFail();
         $currentDate = now()->toArray();    // get the currrent date properties
         $lastPaymentDate = $businessTaxShop->payments->pluck('created_at')->last(); // get the last payment date
         $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
@@ -84,14 +102,16 @@ class BusinessTaxController extends Controller
     }
 
     //soft delete business payment
-    public function removePayment($id){
+    public function removePayment($id)
+    {
         $businessTaxPyament = Business_tax_payment::find($id);
         $businessTaxPyament -> delete();
-        return redirect()->back()->with('status','Delete Successful');
+        return redirect()->back()->with('status', 'Delete Successful');
     }
 
     //restore payment
-    public function restorePayment(){
+    public function restorePayment()
+    {
         return view('vat.business.restorePayment');
     }
 

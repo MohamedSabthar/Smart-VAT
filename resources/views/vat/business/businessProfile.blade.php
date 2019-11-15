@@ -240,7 +240,7 @@
                                 </span>
                                 @enderror
                             </div>
-            </div>
+                        </div>
             <div class="card-body">
                 {{-- Buisness registration form --}}
                 <form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
