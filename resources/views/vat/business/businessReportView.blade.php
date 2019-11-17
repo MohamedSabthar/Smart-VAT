@@ -21,16 +21,33 @@
     <div class="col">
         <div class="card shadow">
             <div class="card-header bg-transparent">
-                <h3 class="mb-0"><span class="text-uppercase">Businness Report from Date-to date from</span></h3>
+                <h3 class="mb-0 text-center"><span class="text-uppercase">Businness Tax Report from {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
-        
-        <div class="card-body">
+
+            <table id="business_tax_report" class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th style="width:250px;">{{__('menu.Payment')}}</th>
+                        <th style="width:300px;">{{ __('menu.ShopID')}}</th>
+                        <th style="width:300px;">{{ __('menu.Vat Payer ID')}}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($records as $records)
+                    <tr>
+                        <td class="text-center">{{$records->payment}}</td>
+                        <td>{{$records->shop_id}}</td>
+                        <td>{{$records->payer_id}}</td>
+                        
+                    </tr>
+                    @endforeach
+                </tbody>
+               
+            </table>
+
             
-        </div>    
 
-
-
-            
         </div>
     </div>
 </div>

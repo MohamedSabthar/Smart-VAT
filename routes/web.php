@@ -65,7 +65,7 @@ Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest')
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::get('/business/generate-report','vat\BusinessTaxController@businessReportGeneration')->name('business-generate-report');
-Route::post('/business/generation','vat\BusinessTaxController@GenerateReport')->name('business-report-view');
+Route::post('/business/generation','vat\BusinessTaxController@generateReport')->name('business-report-view');
 Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBusinessPayments')->name('receive-business-payments');
 Route::get('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
 Route::get('/business/payment-remove/{id}','vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment

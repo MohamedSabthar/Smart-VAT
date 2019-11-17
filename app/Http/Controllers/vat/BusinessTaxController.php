@@ -82,10 +82,13 @@ class BusinessTaxController extends Controller
     }
 
 
-    public function GenerateReport(BusinessTaxReportRequest $request)
-    {
-       // dd($request->startDate,$request->endDate);
-        return view('vat.business.businessReportView');
+    public function generateReport(BusinessTaxReportRequest $request)
+    {   
+        $dates = (object)$request->only(["startDate","endDate"]);
+        // dd((object)$request->only(["startDate","endDate"])));
+        $records=\App\Business_tax_Report::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates  
+    
+       return view('vat.business.businessReportView',['dates'=>$dates,'records'=>$records]);
         
     }
 
