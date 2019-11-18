@@ -79,12 +79,13 @@
     </div>
 </div>
 
-<div class="col-xl-3 col-lg-6">
+
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('trash-payment',['id'=>$businessTaxShop->payer->id])}}`,'_self')" style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                    <h3 class="card-title text-uppercase text-muted mb-0"><center>Restore Pyament</center></h3>
                     <span class="h2 font-weight-bold mb-0">2,356</span>
                 </div>
                 <div class="col-auto">
@@ -93,10 +94,7 @@
                     </div>
                 </div>
             </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-            </p>
+            
         </div>
     </div>
 </div>
@@ -147,7 +145,7 @@
 
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                              <div class="d-flex justify-content-between">
-                                 <a href="{{route('restore-payment',['id'=>$businessTaxShop->payer->id])}}"
+                                 <a href="{{route('trash-payment',['id'=>$businessTaxShop->payer->id])}}"
                                  class="btn btn-sm btn-default float-right">{{__('menu.Restore Payment')}}</a>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Trash Payments')
+@section('title','Trash Business')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
@@ -141,7 +141,7 @@
                 <div class ="row align-item-center">
                     <div class ="col">
                         <h3 class="mb-0">
-                            <span class="text-uppercase">{{__('menu.Trash Payments')}}</span>
+                            <span class="text-uppercase">{{__('menu.Trash Business')}}</span>
                         </h3>
                         <hr class="mt-4 mb-0">   
                     </div>
@@ -149,16 +149,14 @@
             </div>
         <div class = "card-body">
             <div class = "table-responsive">
-            <table id="trash_payment" class="table">
+            <table id="trash_business" class="table">
                 <thead class="thead-light">
                      <tr>
                                
-                                <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
+                                <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Shop Name')}}</th>
+                                <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-                               
                                 <th></th>
                     </tr>
                 </thead>
@@ -178,14 +176,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                            @foreach ($businessTaxPyament as $payment)
+                            @foreach ($businessTaxShop as $business)
                             <tr>
-                                <td>{{$payment->id}}</td>
-                                <td>{{$payment->created_at}}</td>
-                                <td>{{$payment->payment}}</td>
-                                <td>{!!$payment->assinged_to_court ? "Yes" : "No" !!}</td>
+                                <td>{{$business->id}}</td>
+                                <td>{{$business->shop_name}}</td>
+                                <td>{{$business->phone}}</td>
+                               
                                 <td>
-                                <a class= "btn btn-dark " href="{{route('restore-payment',['id'=>$payment->id])}}" >
+                                <a class= "btn btn-dark " href="{{route('restore-business',['id'=>$business->id])}}" >
                                                 {{__('menu.Restore')}}</a> 
                                 </td>
                                 
@@ -196,12 +194,10 @@
                         <thead class="thead-light">
                             <tr>
                                 
-                                <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
+                            <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Shop Name')}}</th>
+                                <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-                                
                                 <th></th>
                             </tr>
                         </thead>
@@ -225,7 +221,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#trash_payment';                      //data table id
+        var id = '#trash_business';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+

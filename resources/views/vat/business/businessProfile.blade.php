@@ -80,25 +80,21 @@
         </div>
     </div>
 </div>
-
-<div class="col-xl-3 col-lg-6">
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('trash-business',['id'=>$vatPayer->id])}}`,'_self')" style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                    <span class="h2 font-weight-bold mb-0">49,65%</span>
+                    <h3 class="card-title text-uppercase text-muted mb-0"><center>Restore Business</center></h3>
+                    <span class="h2 font-weight-bold mb-0">2,356</span>
                 </div>
                 <div class="col-auto">
-                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                        <i class="fas fa-percent"></i>
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
                     </div>
                 </div>
             </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
-            </p>
+            
         </div>
     </div>
 </div>
@@ -170,6 +166,7 @@
                     <div class="pt-1">
                         <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
                     </div>
+                    
 
                 </div>
             </div>

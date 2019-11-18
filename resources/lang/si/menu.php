@@ -141,6 +141,9 @@ return [
      'No' => 'නැත',
      'Remove Payment' => 'ගෙවීම ඉවත් කරන්න',
      'Restore Payment'=> 'ගෙවීම ප්‍රතිස්ථාපනය කරන්න',
+
+     //trash payment
+     'Restore'=> 'ප්‍රතිස්ථාපනය කරන්න',
   
      // massage
      'Error!' => 'දෝෂයකි!',

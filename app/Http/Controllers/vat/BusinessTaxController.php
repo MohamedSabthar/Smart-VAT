@@ -82,17 +82,36 @@ class BusinessTaxController extends Controller
         $businessTaxShop-> delete();
         return redirect()->back()->with('status', 'Delete Successful');
     }
-
-    //soft delete business payment
-    public function removePayment($id){
-        $businessTaxPyament = Business_tax_payment::find($id);
-        $businessTaxPyament -> delete();
-        return redirect()->back()->with('status','Delete Successful');
+    //trash business
+    public function trashBusiness(){
+        $businessTaxShop = Business_tax_shop::onlyTrashed()->get(); 
+        return view('vat.business.trashBusiness',['businessTaxShop'=>$businessTaxShop]);
+       
+    }
+    // restore business
+    public function restoreBusiness($id){
+        $businessTaxShop = Business_tax_shop::onlyTrashed()->where('id', $id)->restore($id);
+        return redirect()->route('trash-business', ['businessTaxShop'=>$businessTaxShop])->with('status','Business restore successful');
     }
 
+    //soft delete business payment
+    public function removePayment($id)
+    {
+        $businessTaxPyament = Business_tax_payment::find($id);
+        $businessTaxPyament -> delete();
+        return redirect()->back()->with('status', 'Delete Successful');
+    }
+
+    //trash payment
+    public function trashPayment($id){
+        $businessTaxPyament = Business_tax_payment::onlyTrashed()->where('payer_id', $id)->get(); 
+        return view('vat.business.trashPayment',['businessTaxPyament'=>$businessTaxPyament]);
+       
+    }
     //restore payment
-    public function restorePayment(){
-        return view('vat.business.trashPayment');
+    public function restorePayment($id){
+        $businessTaxPyament = Business_tax_payment::onlyTrashed()->where('id', $id)->restore($id);
+        return redirect()->route('trash-payment', ['businessTaxPyament'=>$businessTaxPyament])->with('status','Payment restore successful');
     }
 
     public function reciveBusinessPayments($shop_id, Request $request)
