@@ -31,9 +31,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-
         //sending business tax overdue notification
         $schedule->call(function () {
             $currentDate = Carbon::now()->toArray();

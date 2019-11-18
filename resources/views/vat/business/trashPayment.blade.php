@@ -154,6 +154,7 @@
                      <tr>
                                
                                 <th>{{__('menu.Receipt No.')}}</th>
+                                <th>{{__('menu.Business Name')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
                                 <th>{{__('menu.Assigned To Court')}}</th>
@@ -164,6 +165,9 @@
                 </thead>
                     <thead id="search_inputs">
                         <tr>
+                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                        placeholder="{{__('menu.Search Assesment No.')}}" />
+                            </th>
                             <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                             </th>
@@ -181,12 +185,28 @@
                             @foreach ($businessTaxPyament as $payment)
                             <tr>
                                 <td>{{$payment->id}}</td>
+                                <td>{{$payment->businessTaxShop->shop_name}}</td>
                                 <td>{{$payment->created_at}}</td>
                                 <td>{{$payment->payment}}</td>
                                 <td>{!!$payment->assinged_to_court ? "Yes" : "No" !!}</td>
                                 <td>
                                 <a class= "btn btn-dark " href="{{route('restore-payment',['id'=>$payment->id])}}" >
                                                 {{__('menu.Restore')}}</a> 
+                                </td>
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+
+                                            <a class="dropdown-item"
+                                                href="{{route('remove-payment-permanent',['id'=>$payment->id])}}">
+                                                {{__('menu.Delete permenent')}}</a>
+                                        </div>
+
+                                    </div>
                                 </td>
                                 
                             </tr>
@@ -197,6 +217,7 @@
                             <tr>
                                 
                                 <th>{{__('menu.Receipt No.')}}</th>
+                                <th>{{__('menu.Business Name')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
                                 <th>{{__('menu.Assigned To Court')}}</th>
@@ -243,7 +264,14 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchAssesmentNo').on( 'keyup', function () { 
+            $('#searchAssesmentNo').on( 'keyup', function () { 
+            table
+                .columns( 0 )
+                .search( this.value )
+                .draw();
+            });
+
+            $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )

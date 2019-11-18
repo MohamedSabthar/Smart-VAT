@@ -80,6 +80,22 @@ return [
     'VAT Payer Name'=> 'VAT Payer Name',
     'Address' =>'Address',
     'Search Address' => 'Search Address',
+    
+    'First Name' => 'First Name',
+    'Middle Name'=> 'Middle Name',
+    'Last Name'  => 'Last Name',
+    'Door No.' => 'Door No',
+    'Street'  => 'Street',
+    'City'  =>  'City',
+    'NIC' =>    'NIC',
+    'Phone No' => 'Phone No',
+    'Business Categories' => 'Business Categories',
+    'Registration' => 'Registration',
+    'Add Business' => 'Add Business',
+
+    'Arrears' => 'Arrears',
+    'Payment Date' => 'Payment Date',
+    'Annual Amount' =>  'Annual Amount',
 
     //employee profile
     'Update employee information' => 'Update employee information',

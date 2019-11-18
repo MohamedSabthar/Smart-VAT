@@ -37,7 +37,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -59,7 +58,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -103,9 +101,51 @@
 		</div>
 	</div>
 </div>
-@endsection
 
+<div class="container-fluid d-flex align-items-center">
+	{{-- Alert notifications --}}
+	<div class="col">
+		@if (session('status'))
+		<div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}
+				<a href="#" class="btn btn-sm btn-primary mr-4 add-buissness">{{__('menu.Add Buissness')}}</a>
+			</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		{{-- alert only displayed; if the page redirected by registration request --}}
+		@if (url()->previous()==route('vat-payer-registration'))
+		<div class="alert alert-info alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2"><strong class="mx-1">Need to Assign-vat categories!</strong><a
+					href="#registerPayer" class="btn btn-sm btn-primary mx-3">Click me</a></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+		@elseif($errors->any())
+		<div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2">
+				<strong class="mx-1">Error!</strong>
+				Data you entered is/are incorrect
+				{{-- <a href="#" class="btn btn-sm btn-primary mx-3 update-info">view</a> --}}
+			</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+	</div>
+	{{-- end of Alert notifications --}}
+</div>
+
+@endsection
 @section('pageContent')
+
 <div class="row">
 	<div class="col">
 
@@ -113,154 +153,257 @@
 			<div class="card-header bg-transparent">
 				<h3 class="mb-0"><span class="text-uppercase">Register Payer</span></h3>
 			</div>
-
-
+			
 			<div class="card-body ">
-
-				@if (session('status'))
-				<div class="alert alert-success alert-dismissible fade show" role="alert">
-					<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-					<span class="alert-inner--text"><strong>Success!</strong>{{session('status')}}</span>
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+			
+			{{--VAT payers Registration form  --}}
+			<form method="POST" action="{{route('vat-payer-registration')}}" onsubmit="return confirm-register-business(this)">
+				@csrf
+				<div class="form-group row pt-3">
+					<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
+						{{__('menu.First Name')}}</label>
+					<div class="col-md-10 ">
+						<input class="form-control @error('first_name') is-invalid  @enderror" type="text"
+							value="{{old('first_name')}}" id="first_name" name="first_name">
+						@error('first_name')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+						@enderror
+					</div>
 				</div>
-				@endif
 
-				<form method="POST" action="{{route('register')}}">
-					@csrf
+				<div class="form-group row">
+						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
+							{{__('menu.Middle Name')}}</label>
+						<div class="col-md-10">
+							<input class="form-control @error('middle_name') is-invalid @enderror" type="text"
+								value="{{old('middle_name')}}" id="middle_name" name="middle_name">
+							@error('middle_name')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group row">
+							<label for="example-search-input" class="col-md-2 col-form-label form-control-label">
+								{{__('menu.Last Name')}}</label>
+							<div class="col-md-10">
+								<input class="form-control @error('last_name') is-invalid @enderror" type="text"
+									value="{{old('last_name')}}" id="last_name" name="last_name">
+								@error('last_name')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+					</div>
+					
+					<div class="form-group row">
+							<label for="example-email-input"
+								class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
+							<div class="col-md-10">
+								<input class="form-control @error('email') is-invalid @enderror" type="email"
+									value="{{old('email')}}" id="email" name="email">  
+								@error('email')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+					</div>
+
+					<div class="form-group row">
+							<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
+							<div class="col-md-10">
+								<input class="form-control @error('nic') is-invalid @enderror" type="text"
+									value="{{old('nic')}}" id="nic" name="nic">
+									<span id="error_nic" class="invalid-feedback" role="alert">
+											
+										</span>
+								@error('nic')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+					</div>
+
+					<div class="form-group row">
+							<label for="example-time-input" class="col-md-2 col-form-label form-control-label">
+									{{__('menu.Phone No')}}</label>
+							<div class="col-md-10">
+								<input class="form-control @error('phone') is-invalid @enderror" type="text"
+									value="{{old('phone')}}" id="phone" name="phone">
+								@error('phone')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+					</div>
+
 					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">First
-							Name</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('f_name') is-invalid  @enderror" type="text"
-								value="{{old('f_name')}}" id="f_name" name="f_name">
-							@error('name')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
+							<label for="example-text-input"
+								class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
+								
+							<div class="col-md-10 ">
+								<input class="form-control @error('doorNo') is-invalid  @enderror" type="text"
+									value="{{old('doorNo')}}" id="doorNo" name="doorNo">
+								@error('doorNo')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
 					</div>
-					<div class="form-group row">
-						<label for="example-search-input" class="col-md-2 col-form-label form-control-label">Last
-							Name</label>
-						<div class="col-md-10">
-							<input class="form-control @error('L_name') is-invalid @enderror" type="text"
-								value="{{old('L_name')}}" id="L_name" name="L_name">
-							@error('L_name')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-email-input"
-							class="col-md-2 col-form-label form-control-label">Email</label>
-						<div class="col-md-10">
-							<input class="form-control @error('email') is-invalid @enderror" type="email"
-								value="{{old('email')}}" id="email" name="email">
-							@error('email')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
-						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text"
-								value="{{old('nic')}}" id="nic" name="nic">
-							@error('nic')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">Phone
-							No</label>
-						<div class="col-md-10">
-							<input class="form-control @error('phone') is-invalid @enderror" type="text"
-								value="{{old('phone')}}" id="phone" name="phone">
-							@error('phone')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
+
 					<div class="form-group row pt-3">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">Address</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('address') is-invalid  @enderror" type="text"
-								value="{{old('adress')}}" id="address" name="address">
-							@error('address')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
+							<label for="example-text-input"
+								class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
+							<div class="col-md-10 ">
+								<input class="form-control @error('street') is-invalid  @enderror" type="text"
+									value="{{old('street')}}" id="street" name="street">
+								@error('street')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
 					</div>
+
 					<div class="form-group row pt-3">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">Regitered
-							by</label>
-						<div class="col-md-10 ">
-							<input class="form-control @error('Reg') is-invalid  @enderror" type="text"
-								value="{{old('Reg')}}" id="Reg" name="Reg">
-							@error('Reg')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
+							<label for="example-text-input"
+								class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
+							<div class="col-md-10 ">
+								<input class="form-control @error('city') is-invalid  @enderror" type="text"
+									value="{{old('city')}}" id="city" name="city">
+								@error('city')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
 					</div>
+
+					{{-- Button --}}
+					{{-- <div class="form-group">
+						<input class=" btn btn-primary float-right" value="{{__('menu.Registration')}}" 
+						id="registration" name="registration" type="submit" data-toggle="modal" data-target="#confirm-register-business">
+					</div>
+
 					<div class="form-group">
-						<input class=" btn btn-primary float-right" type="submit">
+						<button class="btn btn-primary float-right" data-toggle="modal"
+							onclick="javascript:event.preventDefault()"
+							data-target="#confirm-register-business">{{__('menu.Registration')}}</button>
+					</div> --}}
+
+					<!-- button with onclick event that triggers the form validation. If the form is valid, triggers click of second button -->
+					<div class="form-group">
+						<button type="submit" id="register" value="Submit" class="btn btn-primary float-right" 
+						   onclick="if(formIsValid() $('#triggerModal').click();)">Register</button>
+					</div>
+					
+					<!-- hidden submit button -->
+					<div class="form-group">
+							<button type="submit" id="triggerModal" hidden value="Submit" 
+							    class="btn btn-info btn-lg" data-toggle="modal" data-target="#confirm-register-business">Submit2</button>
 					</div>
 
-				</form>
-			</div>
+					{{-- Confirmation modal for adding business for the registered VAT payer--}}
+					<div class="modal fade" id="confirm-register-business" tabindex="-1" role="dialog"
+						aria-labelledby="modal-default" aria-hidden="true">
+						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+							<div class="modal-content">
 
+								<div class="modal-header">
+									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<strong>This VAT payer is alredy registered</strong>
+									<p>Are you wish to a add business ? </p>
+								</div>
 
+								<div class="modal-footer">
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
+									{{-- <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal" onclick="javascript:event.preventDefault()" 
+									data-target="#confirm-register-business"
+										onclick="javascript:location.replace('{{route('business-profile',['id'=>'$vatPayer->nic'])}}').submit();">
+										{{__('menu.Add Business')}}</button> --}}
+									<a href="" id="redirect" class="btn  btn-primary ml-auto">{{__('menu.Add Business')}}</a>
+								</div>
 
+							</div>
+						</div>
+					</div>
+					{{-- End of confirmation modal --}}
+				</form>		
+
+			</div>	
 		</div>
 	</div>
 </div>
+
 @endsection
 
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+
+
 <script>
-	$(document).ready(function() {
+	$(document).ready(function(){
+		
+		$('#nic').blur(function(){
+			var error_nic = '';
+			var nic = " ";
+			var nic = $('#nic').val();       //geting nic textbox value (id=nic) to nic variable
+			var _token = $('input[name="_token"]').val();
 
-        var id = '#example';                      //data table id
-        var table = $(id).DataTable({
-          "pagingType": "full_numbers"
+			if(nic)
+			{
 
-        });            //table object
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+	
+				});
+			var formdata = {'nic':nic}
+				console.log(formdata);
+				
+				$.ajax({
+				url:"{{ route('nic_available.check') }}", 
+				method:"POST",
+				data: formdata,
+				success:function(result)
+				{
+					console.log(result);
+					
+					if(result.data == 'not_unique')
+					{
+						$('#nic').addClass('is-invalid');
+						$('#error_nic').html('<strong>NIC already available</strong>');
+						$('#redirect').attr("href","/business/profile/"+result.id);
+						$('#confirm-register-business').modal('show');
+						$('#register').attr('disabled', true);
+					}
+				}
+			});
+			}
+			else{
+				// disabling registration 
+				$('#error').addClass('has-error');
+				$('#register').attr('disabled', 'disabled');  
+			}
 
-        $(id+'_filter').addClass('pr-5');         //adding padding to table elements
-        $(id+'_info').addClass('pl-5');
-        $(id+'_paginate').addClass('pr-5');
-        $(id+'_length').addClass('pl-5')
-
-
-        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
-        
-        $('#searchName').on( 'keyup', function () { //individulat column search
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-            });
-
-      } );
-
+		});
+	});
 </script>
+
 @endpush

@@ -86,7 +86,6 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0"><center>Restore Pyament</center></h3>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
                 </div>
                 <div class="col-auto">
                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -123,19 +122,22 @@
                 </div>
                 <div class="card-body pt-0 pt-md-4">
                     <div class="test-left pt-5">
-                        <h3 class="d-inline">{{__('menu.Business Name')}} : </h3> {{ucwords($businessTaxShop->shop_name)}}
+                        <h3 class="d-inline">{{__('menu.Business Name')}} : </h3>
+                        {{ucwords($businessTaxShop->shop_name)}}
                         <div class="pt-1">
                             <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{ucwords($businessTaxShop->address)}}
                         </div>
 
                         <div class="pt-1">
-                            <h3 class="d-inline">{{__('menu.Assesment No.')}} : </h3> {{$businessTaxShop->registration_no}}
+                            <h3 class="d-inline">{{__('menu.Assesment No.')}} : </h3>
+                            {{$businessTaxShop->registration_no}}
                         </div>
 
                         <hr>
 
                         <div class="pt-1">
-                            <h3 class="d-inline"> {{__('menu.Annual worth')}} : </h3> {{number_format($businessTaxShop->anual_worth,2)}}
+                            <h3 class="d-inline"> {{__('menu.Annual worth')}} : </h3>
+                            {{number_format($businessTaxShop->anual_worth,2)}}
                         </div>
                         <hr>
 
@@ -143,12 +145,7 @@
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$businessTaxShop->phone}}
                         </div>
 
-                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                             <div class="d-flex justify-content-between">
-                                 <a href="{{route('trash-payment',['id'=>$businessTaxShop->payer->id])}}"
-                                 class="btn btn-sm btn-default float-right">{{__('menu.Restore Payment')}}</a>
-                            </div>
-                        </div>
+                       
 
                     </div>
                 </div>
@@ -201,6 +198,7 @@
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
                                 <th>{{__('menu.Assigned To Court')}}</th>
+                                <th></th>
 
                             </tr>
                         </thead>
@@ -238,7 +236,7 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            
+
                                             <a class="dropdown-item"
                                                 href="{{route('remove-payment',['id'=>$payments->id])}}">
                                                 {{__('menu.Remove Payment')}}</a>
@@ -259,6 +257,7 @@
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
                                 <th>{{__('menu.Assigned To Court')}}</th>
+                                <th></th>
                             </tr>
                         </thead>
 

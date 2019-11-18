@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0"><center>Restore Business</center></h3>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                   
                 </div>
                 <div class="col-auto">
                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -404,7 +404,6 @@
 <script src="{{asset('js/select2.js')}}"></script>
 <script>
     $(document).ready(function() {
-
         var id = '#business_shops_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
@@ -429,52 +428,39 @@
                 .search( this.value )
                 .draw();
         });
-
         $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
         });
-
         $('#searchPhone').on( 'keyup', function () { 
             table
                 .columns( 2 )
                 .search( this.value )
                 .draw();
         });
-
-
         //toggle transition for buisness registration form
         $("#business-registration").hide();
         $(".add-buissness").on('click',function(){
             $("#business-registration").slideToggle("slow");
         });
-
-
         $('#type').select2({
             placeholder: "Select business type here",
             allowClear: true,
         });
-
         $('#annualAssesmentAmount').blur(function(){
             var assessmentAmmount = $(this).val()
            if(!$.isNumeric(assessmentAmmount)){
             $(this).addClass('is-invalid')
             $('#invalidAnnualAssesmentAmount').removeClass('d-none')
             $('#invalidAnnualAssesmentAmount>strong').text("{{__('menu.Invalid Assesment Amount')}}")
-
             
-
            }else{
                $(this).removeClass('is-invalid')
-
                $.ajaxSetup({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             });
-
-
-
             $('#type').select2({
                 placeholder: "Select business type here",
             allowClear: true,
@@ -500,11 +486,9 @@
                 },
                 cache: true
             },
-
             // minimumInputLength: 1,
         
             });
-
             // $.ajax({
             //     url: "{{route('get-business-types')}}",
             //     type:"POST",
@@ -517,12 +501,9 @@
             //                 alert("error!!!!");
             //             }
             // });
-
-
            }
         })
             
     } );
-
 </script>
 @endpush

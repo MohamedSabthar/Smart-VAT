@@ -1,6 +1,8 @@
 <?php
+use Illuminate\Http\Request;
 
 use App\Vat;
+use App\Vat_payer;
 use App\Jobs\BusinessTaxNoticeJob;
 use App\Mail\BusinessTaxNotice;
 
@@ -51,26 +53,40 @@ Route::get('/mark-notification', function () {   //marking notification as read
 */
 try {
     foreach (Vat::all() as $vat) {      //routes for all vat categories, VatPagesController contains methodes which show the forms
-        Route::get('/'.$vat->route, 'VatPagesController@'.$vat->route)->name($vat->route);
+        Route::get("/$vat->route", 'VatPagesController@'.$vat->route)->name($vat->route);
     }
 } catch (Exception $e) {
-    echo "dynamic routes will only work after migration \n";
+    echo "dynamic routes will only work after migration";
 }
 
 /**
  * Routes related to buisness tax
  */
-Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');//
-Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
+Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
+Route::get('/business/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
+
+/**
+ * Routes related to VAT Payer
+ */
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBusinessPayments')->name('receive-business-payments');
 Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
+Route::get('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
+Route::get('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
+Route::get('/business/payment-restore/{shop_id}', 'vat\BusinessTaxController@restorePayment')->name('restore-payment');//restore payment
+Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
+Route::get('/business/quick-payments', function () {
+    return view('vat.business.buisnessQuickPayments');
+});
+Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments');
+//all business tax related tax routes should starts with "/buisness"
 
 //business payment remove 
 Route::get('/business/payment-remove/{id}','vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
 Route::get('/business/payment-trash/{id}','vat\BusinessTaxController@trashPayment')->name('trash-payment');//trash business payment
 Route::get('/business/payment-restore/{id}','vat\BusinessTaxController@restorePayment')->name('restore-payment');// restore business
+Route::get('/business/payment-remove-permanent/{id}','vat\BusinessTaxController@destory')->name('remove-payment-permanent');// permanent delete
 
 //business remove 
 Route::get('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
@@ -79,12 +95,40 @@ Route::get('/business/business-restore/{id}','vat\BusinessTaxController@restoreB
 
 //all business tax related tax routes should starts with "/buisness"
 Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+// Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+/*
+*VAT Payer registration
+*/
+Route::get('/vat-payer', 'Auth\VATpayerRegisterController@viewFrom')->name('payer-registration');
+Route::post('/vat-payer/Payer-Register', 'Auth\VATpayerRegisterController@register')->name('vat-payer-registration');
+//Ajax url option
+Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->name('nic_available.check');
+
+Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
+
+
+
+Route::post(
+    '/t',
+// function(Request $request){
+//     $msg = array(
+//         'status' => 'success',
+//         'msg'    => 'Setting created successfully',
+//     );
+
+//     return response()->json(array('msg'=> $msg), 200);}
+'VATpayerRegisterController@t'
+);
+
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 
 
-//mail test
+/**
+ * temperory testing routes
+ */
 Route::get('/mail-me', function () {
     for ($id=1;$id<=3;$id++) {
         dispatch(new  BusinessTaxNoticeJob($id));
@@ -96,7 +140,6 @@ Route::get('/notify', function () {
     Illuminate\Support\Facades\Notification::send(App\User::find(1), new App\Notifications\BusinessTaxNoticeJobFailedNotification(20));
     dd('done');
 });
-
 
 Route::get('/my-notification', function () {
     $user = App\User::find(1);
@@ -115,7 +158,7 @@ Route::get('/my-notification', function () {
 
 
 Route::get('/restart', function () {
-    \Artisan::call('queue:restart');
+    Artisan::call('queue:restart');
     dd('done');
 });
 
