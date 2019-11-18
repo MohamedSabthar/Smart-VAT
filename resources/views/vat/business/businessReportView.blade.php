@@ -23,13 +23,12 @@
             <div class="card-header bg-transparent">
                 <h3 class="mb-0 text-center"><span class="text-uppercase">Businness Tax Report from {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
-
             <table id="business_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th style="width:250px;">{{__('menu.Payment')}}</th>
-                        <th style="width:300px;">{{ __('menu.ShopID')}}</th>
-                        <th style="width:300px;">{{ __('menu.Vat Payer ID')}}</th>
+                        <th style="width:250px;" class="text-center">{{__('menu.Payment')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.Shop ID')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.VAT Payer ID')}}</th>
                     </tr>
                 </thead>
 
@@ -37,17 +36,27 @@
                     @foreach ($records as $records)
                     <tr>
                         <td class="text-center">{{$records->payment}}</td>
-                        <td>{{$records->shop_id}}</td>
-                        <td>{{$records->payer_id}}</td>
+                        <td class="text-center">{{$records->shop_id}}</td>
+                        <td class="text-center">{{$records->payer_id}}</td>
                         
                     </tr>
                     @endforeach
                 </tbody>
                
             </table>
-
+        
             
 
+            <form method="POST" action="{{route('business-report-pdf')}}" class="d-none" id="dates">
+                @csrf
+                        <input name="startDate" value="{{ $dates->startDate }}">
+                        <input  name ="endDate" value="{{ $dates->endDate }}">
+            
+            </form>
+        </div>
+        <br>
+        <div class="col" align="right">
+            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert into PDF</button>
         </div>
     </div>
 </div>

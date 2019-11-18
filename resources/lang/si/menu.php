@@ -53,6 +53,8 @@ return [
     'Annual Assesment Amount' => 'වාර්ෂික තක්සේරු මුදල',
     'Total amount payable'=> 'ගෙවිය යුතු මුළු මුදල',
     'Option' => 'විකල්පය',
+    'VAT Payer ID' => 'බදු ගෙවන්නාගේ අංකය',
+    'Shop ID'=>'කඩ අංකය ',
 
     'VAT Payer Business List' => 'බදු ගෙවන්නගේ ව්‍යාපාර ලැයිස්තුව ',
     'Business Name' => '‍ව්‍යාපාර නාමය',
@@ -77,8 +79,20 @@ return [
     'VAT Payer Name'=> 'බදු ගෙවන්නාගේ නම',
     'Address' => 'ලිපිනය',
     'Search Address' => 'ලිපිනය සෙවීම',
-    
 
+    'First Name' => 'මුල් නම',
+    'Middle Name'=> 'මැද නම',
+    'Last Name'  => 'අවසන් නම',
+    'Street'  => 'වීදිය',
+    'City'  =>  'නගරය',
+    'NIC' =>    'ජාතික හැඳුනුම්පත් අංකය',
+    'Phone No' => 'දුරකතන අංකය',
+    'Business Categories' => 'ව්‍යාපාර කාණ්ඩ',
+    'Door No.' => 'දොර අංකය',
+    'Registration' => 'ලියාපදිංචි කිරීම',
+    'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
+    
+    
     //employee profile
     'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',
     'Name' => 'නම',
@@ -123,18 +137,9 @@ return [
      'Search start value' =>'ආරම්භක අගය සෙවීම',
      'Search end value'=> 'අවසාන අගය සෙවීම',
 
-      //Report Generation
-    'Start Date'=>'ආරම්භක දිනය',
-    'End Date'=>'අවසන් දිනය',
-
-    //employee Update
-    'Name'=>'නම',
-    'Address'=>'ලිපිනය',
-    'NIC'=>'ජාතික හැන්දුමුපත් අංකය',
-    'Phone No'=>'දුරකථන අංකය',
-    'Update Profile'=>'යාවත්කාලීන කිරීම',
-
-
+    'Arrears' => 'හිඟ මුදල',
+    'Payment Date' => 'ගෙවීම් දිනය',
+    'Annual Amount' =>  'වාර්ෂික මුදල',
      //business payment
      'view owner' => 'අයිතිකරුව බලන්න',
      'Annual worth' => 'වාර්ෂික වටිනාකම',
