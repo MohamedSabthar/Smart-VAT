@@ -158,6 +158,12 @@ return [
     'Remove Payment'=> 'Remove Payment',
     'Restore Payment' =>'Restore Payment',
 
+    //trash payment
+    'Trash Payments'=>'Trash Payments',
+    'Restore' => 'Restore',
+    'Action' => 'Action',
+    
+
     //massage
 
     'Error!' => 'Error!',
