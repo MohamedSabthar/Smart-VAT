@@ -128,11 +128,18 @@
                                 @enderror
                             </span>
 
+
+
                         </div>
                     </div>
 
 
                 </form>
+
+                <div id="payer-details"></div> {{-- dynamicaly adding payer details --}}
+                <div id="shop-details">
+
+                </div> {{-- dynamicaly adding payer details --}}
 
             </div>
 
@@ -150,8 +157,14 @@
 
 		var _token = $('meta[name="csrf-token"]').attr('content');
 
-		$('#nic').blur(function(){
+		$('#nic').keyup(function(e){
+            if (e.keyCode != 16){
+        
 			var nic = $('#nic').val();
+
+            $('#payer-details').html('')
+            $('#shop-details').html('')
+                
 			
             $.ajaxSetup({
                 headers: {
@@ -166,21 +179,72 @@
             success:function(result){
                 console.log(result);
 				
-                if(result.payerDetails==null){
+                if(result.payerDetails==null ){
                     $('#nic').addClass('is-invalid');
-                    $('#error_nic').html('<strong>NIC not mached</strong>');
+
+                    nic!='' ? $('#error_nic').html('<strong>NIC not mached</strong>') : $('#error_nic').html('<strong>Please enter the NIC</strong>');
+            ;
+                    $('#payer-details').html('')
+              
                 }
                 else{
                     $('#nic').removeClass('is-invalid');
                     $('#error_nic').html('');
-                    console.log('test')
-                    $('#redirect').attr("href","/business/profile/"+result.id);
-                    $('#confirm-register-business').modal('show');
-                    $('#register').attr('disabled', true);
+                    // console.log(result.payerDetails)
+                    $('#payer-details')
+                        .html(`
+                        <div class='pt-3'><h3 class='d-inline'>Name :</h3> ${result.payerDetails.full_name} </div>
+                        <div class='pt-1'><h3 class='d-inline'>Address :</h3> ${result.payerDetails.address} </div>
+                        <div class='pt-1'><h3 class='d-inline'>Phone No :</h3> ${result.payerDetails.phone} </div>
+                        <div class='pt-1'><h3 class='d-inline'>E-mail :</h3> ${result.payerDetails.email} </div>
+                        `)
+                        var i = 0
+                        $('#shop-details').append(`<div class="table-responsive">
+    <div>
+            <form method='POST' action="{{route('test')}}">
+            @csrf
+    <table class="mt-3 table align-items-center">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    Shop Name
+                </th>
+                <th scope="col">
+                    ammount
+                </th>
+                <th scope="col">
+                    status
+                </th>
+                
+            </tr>
+        </thead>
+       
+        <tbody class="list">
+        </tbody>
+        <input type="submit" value="Pay" class="btn btn-primary">
+        </form>`);
+                        result.payerShops.forEach(element => {
+                            // console.log(element)
+                            // $('#shop-details').append(`${element.shop_name} ${result.duePayments[i]==null ? 'not paid' : 'paid' } </br>`)
+                            $('#shop-details tbody').append(`<tr>
+                               <td scope="row"> ${element.shop_name} </td>
+                               <td> 890 </td>
+                                 <td class='d-flex px-3'> 
+									
+                                                            <input  name=${element.id} type="checkbox" ${ result.duePayments[i]!=null ? 'checked disabled' :'' } >
+									
+								</label>
+                                ${ result.duePayments[i]==null ? '' :'paid' } 
+                                 </td>
+                                </tr>`)
+                            
+                            i++
+
+                        });
                     }
                 }
 		    });
-	    });
+     } });
 	});
 </script>
 @endpush

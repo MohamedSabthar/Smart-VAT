@@ -168,7 +168,7 @@
                     <h1 style="font-weight: 400;">{{__('menu.Due Payment : Rs.')}} {{number_format($duePayment,2)}}</h1>
                     <button class="btn btn-success mx-auto my-1"
                         onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
-                    <button class="btn btn-danger mx-auto my-1">{{__('menu.Assign to Court')}}</button>
+
                 </div>
             </div>
             {{-- payment form --}}
