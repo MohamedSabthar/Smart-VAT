@@ -74,6 +74,7 @@ Route::post('/business/report-pdf','vat\BusinessTaxController@pdf')->name('busin
  */
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBusinessPayments')->name('receive-business-payments');
+Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
 Route::get('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
 Route::get('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
 Route::get('/business/payment-restore/{shop_id}', 'vat\BusinessTaxController@restorePayment')->name('restore-payment');//restore payment
@@ -84,7 +85,19 @@ Route::get('/business/quick-payments', function () {
 Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments');
 //all business tax related tax routes should starts with "/buisness"
 
+//business payment remove 
+Route::get('/business/payment-remove/{id}','vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
+Route::get('/business/payment-trash/{id}','vat\BusinessTaxController@trashPayment')->name('trash-payment');//trash business payment
+Route::get('/business/payment-restore/{id}','vat\BusinessTaxController@restorePayment')->name('restore-payment');// restore business
+Route::get('/business/payment-remove-permanent/{id}','vat\BusinessTaxController@destory')->name('remove-payment-permanent');// permanent delete
 
+//business remove 
+Route::get('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
+Route::get('/business/business-trash','vat\BusinessTaxController@trashBusiness')->name('trash-business');// trash business
+Route::get('/business/business-restore/{id}','vat\BusinessTaxController@restoreBusiness')->name('restore-business'); // restore business
+
+//all business tax related tax routes should starts with "/buisness"
+Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
 // Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 /*
