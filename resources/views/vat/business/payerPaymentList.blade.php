@@ -104,13 +104,13 @@
 @section('pageContent')
 <div class="pt-5">
 	<div class="row">
-		 <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+		<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
 			<div class="card card-profile shadow">
 				<div class="row justify-content-center">
 					<div class="col-lg-3 order-lg-2">
 						<div class="card-profile-image">
 							<a href="#">
-								<img src="../assets/img/theme/girl.png" class="rounded-circle">
+								<img src="../assets/img/theme/business.jpg" class="rounded-circle">
 							</a>
 						</div>
 					</div>
@@ -122,26 +122,25 @@
 				</div>
 				<div class="card-body pt-0 pt-md-4">
 					<div class="test-left pt-5">
-							<h3 class="d-inline">Business Name : </h3> {{$businessTaxShop->shop_name}}
-							<div class="pt-1">
-								<h3 class="d-inline">Address : </h3> {{$businessTaxShop->address}}
-							</div>
-							
-							<hr class="my-4">
-							<div class="pt-1">
-								<h3 class="d-inline"> Registration No. : </h3> {{$businessTaxShop->registration_no}}
-							</div>
-	
-							<div class="pt-1">
-								<h3 class="d-inline"> Phone No : </h3> {{$businessTaxShop->phone}}
-							</div>
+						<h3 class="d-inline">Business Name : </h3> {{$businessTaxShop->shop_name}}
+						<div class="pt-1">
+							<h3 class="d-inline">Address : </h3> {{$businessTaxShop->address}}
+						</div>
+
+						<div class="pt-1">
+							<h3 class="d-inline"> Registration No. : </h3> {{$businessTaxShop->registration_no}}
+						</div>
+
+						<div class="pt-1">
+							<h3 class="d-inline"> Phone No : </h3> {{$businessTaxShop->phone}}
+						</div>
 
 
 					</div>
 
 				</div>
 			</div>
-		</div> 
+		</div>
 
 
 
@@ -164,7 +163,7 @@
 								<th>{{__('menu.Payment Date')}}</th>
 								<th>{{__('menu.Annual Amount')}}</th>
 								<th>{{__('menu.Arrears')}}</th>
-								
+
 							</tr>
 						</thead>
 						<thead id="search_inputs">
@@ -181,10 +180,10 @@
 							{{-- @foreach ($businessTaxPayments as $businessTaxPayment)
 							<tr>
 								<td>{{$businessTaxPayment->assesmentNo}}</th>
-								<td>{{$businessTaxPayment->payment_Date}}</td>
-								<td>{{$businessTaxPayment->amount}}</td>
-								<td>{{$businessTaxPayment->arrears}}</td>
-								
+							<td>{{$businessTaxPayment->payment_Date}}</td>
+							<td>{{$businessTaxPayment->amount}}</td>
+							<td>{{$businessTaxPayment->arrears}}</td>
+
 
 							</tr>
 							@endforeach --}}

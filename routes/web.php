@@ -53,17 +53,17 @@ Route::get('/mark-notification', function () {   //marking notification as read
 */
 try {
     foreach (Vat::all() as $vat) {      //routes for all vat categories, VatPagesController contains methodes which show the forms
-        Route::get('/'.$vat->route, 'VatPagesController@'.$vat->route)->name($vat->route);
+        Route::get("/$vat->route", 'VatPagesController@'.$vat->route)->name($vat->route);
     }
 } catch (Exception $e) {
-    echo "dynamic routes will only work after migration \n";
+    echo "dynamic routes will only work after migration";
 }
 
 /**
  * Routes related to buisness tax
  */
 Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
-Route::get('/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
+Route::get('/business/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 
 /**
@@ -96,7 +96,8 @@ Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->n
 
 
 
-Route::post('/t',
+Route::post(
+    '/t',
 // function(Request $request){
 //     $msg = array(
 //         'status' => 'success',
@@ -112,7 +113,9 @@ Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-pro
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 
 
-//mail test
+/**
+ * temperory testing routes
+ */
 Route::get('/mail-me', function () {
     for ($id=1;$id<=3;$id++) {
         dispatch(new  BusinessTaxNoticeJob($id));
@@ -124,7 +127,6 @@ Route::get('/notify', function () {
     Illuminate\Support\Facades\Notification::send(App\User::find(1), new App\Notifications\BusinessTaxNoticeJobFailedNotification(20));
     dd('done');
 });
-
 
 Route::get('/my-notification', function () {
     $user = App\User::find(1);
@@ -143,7 +145,7 @@ Route::get('/my-notification', function () {
 
 
 Route::get('/restart', function () {
-    \Artisan::call('queue:restart');
+    Artisan::call('queue:restart');
     dd('done');
 });
 
