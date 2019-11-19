@@ -159,6 +159,21 @@
 			{{--VAT payers Registration form  --}}
 			<form method="POST" action="{{route('vat-payer-registration')}}" onsubmit="return confirm-register-business(this)">
 				@csrf
+				<div class="form-group row">
+					<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
+					<div class="col-md-10">
+						<input class="form-control @error('nic') is-invalid @enderror" type="text"
+							value="{{old('nic')}}" id="nic" name="nic">
+							<span id="error_nic" class="invalid-feedback" role="alert">
+									
+								</span>
+						@error('nic')
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $message }}</strong>
+						</span>
+						@enderror
+					</div>
+				</div>
 				<div class="form-group row pt-3">
 					<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
 						{{__('menu.First Name')}}</label>
@@ -207,22 +222,6 @@
 								<input class="form-control @error('email') is-invalid @enderror" type="email"
 									value="{{old('email')}}" id="email" name="email">  
 								@error('email')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
-					</div>
-
-					<div class="form-group row">
-							<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
-							<div class="col-md-10">
-								<input class="form-control @error('nic') is-invalid @enderror" type="text"
-									value="{{old('nic')}}" id="nic" name="nic">
-									<span id="error_nic" class="invalid-feedback" role="alert">
-											
-										</span>
-								@error('nic')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
 								</span>

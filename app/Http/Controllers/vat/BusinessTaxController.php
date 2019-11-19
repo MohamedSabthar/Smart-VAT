@@ -43,7 +43,9 @@ class BusinessTaxController extends Controller
 
     public function latestPayment()
     {
-        return view('vat.business.latestPayments');
+        $payments = Business_tax_payment::all();
+        // $payerName = Business_tax_payment::findOrFail(payer_id)->vatPayer->full_name;
+        return view('vat.business.latestPayments', ['payments'=>$payments]);
     }
     
     public function buisnessProfile($id)
