@@ -183,7 +183,7 @@
                                 <td>{{$business->phone}}</td>
                                
                                 <td>
-                                <a class= "btn btn-dark " href="{{route('restore-business',['id'=>$business->id])}}" >
+                                <a class= "btn btn-outline-success btn-sm " href="{{route('restore-business',['id'=>$business->id])}}" >
                                                 {{__('menu.Restore')}}</a> 
                                 </td>
                                 

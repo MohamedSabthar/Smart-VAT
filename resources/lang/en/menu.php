@@ -161,6 +161,8 @@ return [
     //trash payment
     'Trash Payments'=>'Trash Payments',
     'Restore' => 'Restore',
+    'Action' => 'Action',
+    
 
     //massage
 

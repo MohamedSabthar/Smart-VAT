@@ -132,7 +132,7 @@ class BusinessTaxController extends Controller
         $businessTaxPyament = Business_tax_payment::onlyTrashed()->where('id', $id)->restore($id);
         return redirect()->route('trash-payment', ['businessTaxPyament'=>$businessTaxPyament])->with('status','Payment restore successful');
     }
-
+    // premanent delete payment
     public function destory($id){
         
         $businessTaxPyament = Business_tax_payment::onlyTrashed()->where('id', $id)->get();

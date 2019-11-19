@@ -190,7 +190,7 @@
                                 <td>{{$payment->payment}}</td>
                                 <td>{!!$payment->assinged_to_court ? "Yes" : "No" !!}</td>
                                 <td>
-                                <a class= "btn btn-dark " href="{{route('restore-payment',['id'=>$payment->id])}}" >
+                                <a class= "btn btn-outline-success btn-sm " href="{{route('restore-payment',['id'=>$payment->id])}}" >
                                                 {{__('menu.Restore')}}</a> 
                                 </td>
                                 <td class="text-right">

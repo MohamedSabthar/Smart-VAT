@@ -157,7 +157,8 @@ return [
      'Restore Payment'=> 'ගෙවීම ප්‍රතිස්ථාපනය කරන්න',
 
      //trash payment
-     'Restore'=> 'ප්‍රතිස්ථාපනය කරන්න',
+     'Restore'=> 'ප්‍රතිස්ථාපනය',
+     'Action' =>'',
   
      // massage
      'Error!' => 'දෝෂයකි!',
