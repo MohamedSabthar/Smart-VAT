@@ -159,7 +159,7 @@
                                 <th>{{__('menu.Action')}}</th>
                                 <th></th>
                     </tr>
-                </thead>
+                    </thead>
                     <thead id="search_inputs">
                         <tr>
                             <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
@@ -171,6 +171,7 @@
                             <th><input type="text" class="form-control form-control-sm" id="searchPhone"
                                         placeholder="{{__('menu.Search Phone')}}" />
                             </th>
+                            
 
 
                         </tr>
@@ -194,7 +195,7 @@
                         <thead class="thead-light">
                             <tr>
                                 
-                            <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
@@ -239,24 +240,26 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchAssesmentNo').on( 'keyup', function () { 
+            $('#searchaAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+
+            $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#selectCourt').on( 'change', function () { 
+            $('#searchPhone').on( 'keyup', function () { 
             table
-                .columns( 3 )
+                .columns( 2 )
                 .search( this.value )
                 .draw();
             });
+            
       } );
 
 </script>
