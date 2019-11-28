@@ -134,6 +134,7 @@
                             <th></th>
                         </tr>
                     </thead>
+                            {{-- Column wise searching --}}
                     <thead id="search_inputs">
                         <tr>
                             <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
@@ -147,6 +148,7 @@
                                     placeholder="{{__('menu.Date')}}" /></th>
                         </tr>
                     </thead>
+                         {{-- End of seaching --}}
                     <tbody>
                        
                         @foreach ($payments as $payment)
@@ -156,8 +158,8 @@
                         <td>{{$payment->payment}}</td>
                         <td>{{$payment->businessTaxShop->shop_name}}</td>
                         <td>{{$payment->created_at->format('Y-m-d')}}</td>
-                        @if (Auth::user()->role=='employee')
-						<td>{{$payment->employee->name}}</td>
+                        @if (Auth::user()->role=='admin')
+                        <td>{{$payment->user->name}}</td>
 						@endif
                         </tr>
                         @endforeach
@@ -187,7 +189,7 @@
 <script>
 	$(document).ready(function() {
 
-        var id = '#business_payments_table';                      //data table id
+        var id = '#business_payments_table';                  //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -204,7 +206,7 @@
  
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
-        //individulat column search
+        //individulate column search
         $('#searchOwnerName').on( 'keyup', function () { 
             table
                 .columns( 1 )

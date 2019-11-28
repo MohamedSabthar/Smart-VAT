@@ -136,7 +136,8 @@
 
 						</tr>
 					</thead>
-					<thead id="search_inputs">
+							{{-- Column wise searching --}}
+					<thead id="search_inputs">   
 						<tr>
 							<th><input type="text" class="form-control form-control-sm" id="searchId"
 									placeholder="{{__('menu.Search User ID')}}" /></th>
@@ -154,6 +155,7 @@
 
 						</tr>
 					</thead>
+							{{-- End of seaching --}}
 					<tbody>
 
 						@foreach ($payers as $payer)

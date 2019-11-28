@@ -185,7 +185,7 @@
                 </div>
             </div>
             @endif
-            {{-- end of Pyament Notice --}}
+            {{-- end of Payment Notice --}}
 
 
             <div class="card shadow">
@@ -289,7 +289,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#business_payments_table';                      //data table id
+        var id = '#business_payments_table';            //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -306,7 +306,7 @@
  
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
-        //individulat column search
+        //individulate column search
         $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
