@@ -80,13 +80,17 @@
         </div>
     </div>
 </div>
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('trash-business',['id'=>$vatPayer->id])}}`,'_self')" style="cursor:pointer">
+<div class="col-xl-3 col-lg-6"
+    onclick="javascript:window.open(`{{route('trash-business',['id'=>$vatPayer->id])}}`,'_self')"
+    style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h3 class="card-title text-uppercase text-muted mb-0"><center>Restore Business</center></h3>
-                   
+                    <h3 class="card-title text-uppercase text-muted mb-0">
+                        <center>Restore Business</center>
+                    </h3>
+
                 </div>
                 <div class="col-auto">
                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -94,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -166,7 +170,7 @@
                     <div class="pt-1">
                         <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
                     </div>
-                    
+
 
                 </div>
             </div>
@@ -308,6 +312,8 @@
                     <div class="form-group">
                         <input class=" btn btn-primary float-right" value="{{__('menu.Submit')}}" type="submit">
                     </div>
+
+
                 </form>
                 {{-- end of Buisness registration form --}}
             </div>
@@ -404,6 +410,12 @@
 <script src="{{asset('js/select2.js')}}"></script>
 <script>
     $(document).ready(function() {
+
+
+      
+
+
+
         var id = '#business_shops_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
