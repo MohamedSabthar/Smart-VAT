@@ -122,7 +122,7 @@
 					<!-- punsara edits-->
                         @csrf
 						<div class="form-group row">
-                            <label for="example-text-input"
+                            <label for="example-text-input"	
                                 class="col-md-3 col-form-label form-control-label ">{{__('menu.Name')}}</label>
                             <div class="col-md-7 ">
                                 <input class="form-control @error('name') is-invalid  @enderror" type="text"

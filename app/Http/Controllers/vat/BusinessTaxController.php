@@ -45,14 +45,14 @@ class BusinessTaxController extends Controller
         return response()->json($data, 200);
     }
 
-    public function latestPayment()
+    public function latestPayment()                                             
     {
         return view('vat.business.latestPayments');
     }
     
-    public function buisnessProfile($id)
+    public function buisnessProfile($id)                            
     {
-        $vatPayer = Vat_payer::find($id);
+        $vatPayer = Vat_payer::find($id);                          
         $businessTypes = Business_type::all();
 
         return view('vat.business.businessProfile', ['vatPayer'=>$vatPayer,'businessTypes'=>$businessTypes]);
@@ -100,24 +100,41 @@ class BusinessTaxController extends Controller
     }
 
 //Report Generation 
-    public function businessReportGeneration()
+    public function businessReportGeneration()                                                                       //directs the report genaration view
     {
         return view('vat.business.businessReportGeneration');
     }
 
 
-    public function generateReport(BusinessTaxReportRequest $request)
+    public function generateReport(BusinessTaxReportRequest $request)                                              //get the star date and the end date for the report generation
     {   
         $dates = (object)$request->only(["startDate","endDate"]);
         // dd((object)$request->only(["startDate","endDate"])));
-       
         $records = Business_tax_Report::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates  
+    
+        // switch($request->input('action')){
+        //     case 'TaxReport' :
+        //         return view('vat.business.businessReportView',['dates'=>$dates,'records'=>$records]);
         
-       return view('vat.business.businessReportView',['dates'=>$dates,'records'=>$records]);
+        //     break;
+
+        //     case 'SummaryReport' :
+        //         return view('vat.business.test0',['dates'=>$dates,'records'=>$records]);
+        // }
+       
+       if($request->has('TaxReport'))
+        {
+            return view('vat.business.businessReportView',['dates'=>$dates,'records'=>$records]);
+        }
+        else if($request->has('SummaryReport'))
+        {
+            return view('vat.business.test0',['dates'=>$dates,'records'=>$records]);
+        }
+      
         
     }
 
-    public function pdf(BusinessTaxReportRequest $request)
+    public function pdf(BusinessTaxReportRequest $request)                                                      //pdf generation library function
     {
         $pdf = \App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
@@ -128,7 +145,7 @@ class BusinessTaxController extends Controller
         return $pdf->stream();
     }
 
-    public function convertToHtml($records,$dates,$sum)
+    public function convertToHtml($records,$dates,$sum)                                                         //HTML script for the report pdfp
     { 
     
      $output = "

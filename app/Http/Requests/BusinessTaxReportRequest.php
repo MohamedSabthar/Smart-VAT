@@ -21,7 +21,7 @@ class BusinessTaxReportRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules()                     //Validate the start Date and the end date of the report submission.
     {
         return [
              'startDate'=>['required','date'],
