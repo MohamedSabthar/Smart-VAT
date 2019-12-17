@@ -43,6 +43,7 @@ class Kernel extends ConsoleKernel
             }
         })
         // ->everyMinute();
+
         ->when(function () {
             $businessTaxDueDate = Carbon::parse(Vat::where('route', '=', 'business')->firstOrFail()->due_date)->toArray();
             $currentDate = Carbon::now()->toArray();
