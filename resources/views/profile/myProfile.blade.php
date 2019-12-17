@@ -123,8 +123,8 @@
                         @csrf
 						<div class="form-group row">
                             <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Name')}}</label>
-                            <div class="col-md-10 ">
+                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Name')}}</label>
+                            <div class="col-md-7 ">
                                 <input class="form-control @error('name') is-invalid  @enderror" type="text"
                                     value="{{old('name')}}" id="name" name="name">
                                 @error('name')
@@ -136,8 +136,8 @@
                         </div>
                         <div class="form-group row pt-3">
                             <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Address')}}</label>
-                            <div class="col-md-10 ">
+                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Address')}}</label>
+                            <div class="col-md-7 ">
                                 <input class="form-control @error('name') is-invalid  @enderror" type="text"
                                     value="{{old('name')}}" id="name" name="name" autofocus>
                                 @error('name')
@@ -150,8 +150,8 @@
                         
                         <div class="form-group row">
                             <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Email')}}</label>
-                            <div class="col-md-10 ">
+                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Email')}}</label>
+                            <div class="col-md-7 ">
                                 <input class="form-control @error('name') is-invalid  @enderror" type="text"
                                     value="{{old('name')}}" id="name" name="name">
                                 @error('name')
@@ -165,8 +165,8 @@
 						
                         <div class="form-group row">
                             <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
-                            <div class="col-md-10 ">
+                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
+                            <div class="col-md-7 ">
                                 <input class="form-control @error('name') is-invalid  @enderror" type="text"
                                     value="{{old('name')}}" id="name" name="name">
                                 @error('name')

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Vat_payer;
 use App\Business_tax_shop;
 use App\Business_type;
-use App\Business_tax_shop;
 use App\Http\Request\UpdateVATpayerProfileRequest;
 
 class PayerController extends Controller
