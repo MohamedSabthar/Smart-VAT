@@ -70,7 +70,8 @@ return [
     '[+] Buissness' => '[+] ව්‍යාපාරය',
     'View Payments' => 'ගෙවීම් බලන්න',
     'Remove Buisness' => ' ව්‍යාපාරය‍ ඉවත් කරන්න',
-    
+    'Payment received by' => 'ලැබුනු ගෙවීම',
+    'Shop Name' => 'සාප්පු නම',
     
     //VAT PAyer
     'User ID' => 'පරිශීලක අංකය',
@@ -155,6 +156,10 @@ return [
      'No' => 'නැත',
      'Remove Payment' => 'ගෙවීම ඉවත් කරන්න',
      'Restore Payment'=> 'ගෙවීම ප්‍රතිස්ථාපනය කරන්න',
+
+     //trash payment
+     'Restore'=> 'ප්‍රතිස්ථාපනය',
+     'Action' =>'',
   
      // massage
      'Error!' => 'දෝෂයකි!',

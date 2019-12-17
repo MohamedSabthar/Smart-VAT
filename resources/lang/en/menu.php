@@ -42,7 +42,8 @@ return [
     'Owner Name' => 'Owner Name',
     'Payment(LRK)' => 'Payment(LRK)',
     'Date' => 'Date',
-     
+    'Payment received by' => 'Payment received by',
+    'Shop Name' => 'Shop Name',
     'Search Assesment No.' => 'Search Assesment No.',
     'Search Owner Name' => 'Search Owner Name',
     
@@ -157,6 +158,12 @@ return [
     'No' => 'No',
     'Remove Payment'=> 'Remove Payment',
     'Restore Payment' =>'Restore Payment',
+
+    //trash payment
+    'Trash Payments'=>'Trash Payments',
+    'Restore' => 'Restore',
+    'Action' => 'Action',
+    
 
     //massage
 
