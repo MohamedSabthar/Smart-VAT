@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
             foreach (Business_tax_shop::all() as $BusinessTaxShop) {
                 $taxPayment=Business_tax_payment::where('shop_id', $BusinessTaxShop->id)->where('created_at', 'like', "%$year%")->first();
                 if ($taxPayment==null) {
-                    dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->payer->email));
+                    dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->payer->email, $BusinessTaxShop->payer->id));
                 }
             }
         })

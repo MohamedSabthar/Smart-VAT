@@ -158,7 +158,7 @@
 		var _token = $('meta[name="csrf-token"]').attr('content');
 
 		$('#nic').keyup(function(e){
-            if (e.keyCode != 16){
+            if (e.keyCode != 16 && e.keyCode != 32){
         
 			var nic = $('#nic').val();
 
@@ -223,12 +223,13 @@
         </tbody>
         <input type="submit" value="Pay" class="btn btn-primary">
         </form>`);
-                        result.payerShops.forEach(element => {
+        ('#shop-details tbody').html('');
+                        result.payerDetails.buisness.forEach(element => {
                             // console.log(element)
                             // $('#shop-details').append(`${element.shop_name} ${result.duePayments[i]==null ? 'not paid' : 'paid' } </br>`)
                             $('#shop-details tbody').append(`<tr>
                                <td scope="row"> ${element.shop_name} </td>
-                               <td> 890 </td>
+                               <td> ${result.duePaymentValue[i]} </td>
                                  <td class='d-flex px-3'> 
 									
                                                             <input  name=${element.id} type="checkbox" ${ result.duePayments[i]!=null ? 'checked disabled' :'' } >
