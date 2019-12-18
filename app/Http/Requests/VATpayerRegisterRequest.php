@@ -29,7 +29,7 @@ class VATPayerRegisterRequest extends FormRequest
             'first_name' => ['required','alpha', 'string', 'max:255'],
             'last_name' => ['required','alpha', 'string', 'max:255'],
             'doorNo' => ['required','alpha_num','max:255'],
-            'street' => ['required','alpha','string','max:255'],
+            'street' => ['required','string','max:255'],
             'city' => ['required','string','max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('vat_payers')->ignore($this->id)],    //   Validate to be a unique email
             'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/',Rule::unique('vat_payers')->ignore($this->id)],  // validation for nic

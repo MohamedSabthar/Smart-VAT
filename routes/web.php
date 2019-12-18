@@ -82,6 +82,26 @@ Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusine
 Route::get('/business/quick-payments', function () {
     return view('vat.business.buisnessQuickPayments');
 });
+Route::post('/tester', function (Request $request) {
+    $shop_ids = $request->except(['_token']);
+    $businessTax = Vat::where('name', 'Business Tax')->firstOrFail();
+  
+    foreach ($shop_ids as $shop_id => $val) {
+        $businessTaxShop=App\Business_tax_shop::findOrFail($shop_id);  //get the VAT payer id
+        $payerId = $businessTaxShop->payer->id;
+        $businessTaxPyament = new App\Business_tax_payment;
+        $businessTaxPyament->payment = $businessTaxShop->anual_worth * ($businessTax->vat_percentage/100);
+        $businessTaxPyament->shop_id = $shop_id;
+        $businessTaxPyament->payer_id =$payerId;
+        $businessTaxPyament->user_id = Auth::user()->id;
+
+        $businessTaxPyament->save();
+    }
+
+    dd('done');
+})->name('test');
+
+
 Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments');
 //all business tax related tax routes should starts with "/buisness"
 
@@ -175,6 +195,8 @@ Route::get('/retry/{$id}', function () {
     Artisan::call("queue:retry $id");
     dd('done');
 });
+
+
 
 // use Carbon\Carbon;
 // use App\Business_tax_payment;
