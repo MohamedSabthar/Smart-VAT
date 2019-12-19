@@ -20,7 +20,7 @@ System to automate the VAT process of municipal council of Gale
 
 ## Laravel .evn setup
 
-<code>
+<pre>
 MAIL_DRIVER=smtp<br>
 MAIL_HOST=smtp.gmail.com<br>
 MAIL_PORT=465<br>
@@ -29,7 +29,7 @@ MAIL_PASSWORD=yourpassword<br>
 MAIL_ENCRYPTION=ssl<br>
 MAIL_FROM_NAME="Municipal-Council Gale"<br>
 MAIL_FROM_ADDRESS=municipal@gmail.com <br>
-</code>
+</pre>
 
 ## External package dependencies
 
