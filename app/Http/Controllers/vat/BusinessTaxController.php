@@ -25,8 +25,8 @@ class BusinessTaxController extends Controller
     private $records;
     public function __construct()
     {
-        //$this->middleware(['auth'=>'verified']);
-        //$this->middleware('vat');
+        $this->middleware(['auth'=>'verified']);
+        $this->middleware('vat');
     }
     
     public function checkPayments(Request $request)
@@ -145,15 +145,17 @@ class BusinessTaxController extends Controller
 
     public function acceptQuickPayments(Request $request)
     {
-        $shop_ids = $request->except(['_token']);
+        $shopIds = $request->except(['_token']);
         $businessTax = Vat::where('name', 'Business Tax')->firstOrFail();
-      
-        foreach ($shop_ids as $shop_id => $val) {
-            $businessTaxShop=Business_tax_shop::findOrFail($shop_id);  //get the VAT payer id
+        if (count($shopIds)==0) {
+            return redirect()->back()->with('error', 'No payments selected');
+        }
+        foreach ($shopIds as $shopId => $val) {
+            $businessTaxShop=Business_tax_shop::findOrFail($shopId);  //get the VAT payer id
             $payerId = $businessTaxShop->payer->id;
             $businessTaxPyament = new Business_tax_payment;
             $businessTaxPyament->payment = $businessTaxShop->anual_worth * ($businessTax->vat_percentage/100);
-            $businessTaxPyament->shop_id = $shop_id;
+            $businessTaxPyament->shop_id = $shopId;
             $businessTaxPyament->payer_id =$payerId;
             $businessTaxPyament->user_id = Auth::user()->id;
     

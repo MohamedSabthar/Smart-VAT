@@ -81,8 +81,8 @@ Route::get('/business/payment-restore/{shop_id}', 'vat\BusinessTaxController@res
 Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
 Route::get('/business/quick-payments', function () {
     return view('vat.business.buisnessQuickPayments');
-});
-Route::post('/business/accept-quick-payments', 'vat\BusinessTaxController@acceptQuickPayments')->name('accept-quick-payments');
+})->name('get-business-quick-payments');
+Route::post('/business/accept-quick-payments', 'vat\BusinessTaxController@acceptQuickPayments')->name('business-quick-payments');
 
 
 Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments');

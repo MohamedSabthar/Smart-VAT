@@ -112,6 +112,14 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
+		@elseif(session('error'))
+		<div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2"><strong class="mx-1">Error!</strong>{{session('error')}}</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 		@endif
 	</div>
 	{{-- end of Alert notifications --}}
@@ -225,7 +233,7 @@
                         $('#shop-details').append(
                             `<div class="table-responsive">
                                 <div class="card px-3">
-                                    <form method='POST' action="{{route('accept-quick-payments')}}">
+                                    <form method='POST' action="{{route('business-quick-payments')}}">
                                         @csrf
                                         <table class="my-3 table align-items-center  ">
                                             <thead class="thead-light">
