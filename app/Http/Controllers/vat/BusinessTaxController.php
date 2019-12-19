@@ -12,18 +12,22 @@ use App\Http\Requests\AddBusinessRequest;
 use App\Business_tax_payment;
 use App\Business_tax_shop;
 use Auth;
+use App\Http\Requests\BusinessTaxReportRequest;
 use App\Assessment_range;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+//report Generation
+use App\Business_tax_Report;
+use PDF;
 
 class BusinessTaxController extends Controller
-{
+{   private $records;
     public function __construct()
     {
         //$this->middleware(['auth'=>'verified']);
         //$this->middleware('vat');
     }
-
+    
     public function checkPayments(Request $request)
     {
         $data['payerDetails'] = Vat_payer::where('nic', $request->nic)->first();
@@ -43,18 +47,19 @@ class BusinessTaxController extends Controller
         return response()->json($data, 200);
     }
 
-    public function latestPayment()
+    public function latestPayment()                                             
     {
         return view('vat.business.latestPayments');
     }
     
-    public function buisnessProfile($id)
+    public function buisnessProfile($id)                            
     {
-        $vatPayer = Vat_payer::find($id);
+        $vatPayer = Vat_payer::find($id);                          
         $businessTypes = Business_type::all();
 
         return view('vat.business.businessProfile', ['vatPayer'=>$vatPayer,'businessTypes'=>$businessTypes]);
     }
+
 
     public function businessPayments($shop_id)
     {
@@ -96,6 +101,80 @@ class BusinessTaxController extends Controller
         return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', 'New Business Added successfully');
     }
 
+//Report Generation 
+    public function businessReportGeneration()                                                                       //directs the report genaration view
+    {
+        return view('vat.business.businessReportGeneration');
+    }
+
+
+    public function generateReport(BusinessTaxReportRequest $request)                                              //get the star date and the end date for the report generation
+    {   
+        $dates = (object)$request->only(["startDate","endDate"]);
+        // dd((object)$request->only(["startDate","endDate"])));
+        $records = Business_tax_Report::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates  
+    
+        // switch($request->input('action')){
+        //     case 'TaxReport' :
+        //         return view('vat.business.businessReportView',['dates'=>$dates,'records'=>$records]);
+        
+        //     break;
+
+        //     case 'SummaryReport' :
+        //         return view('vat.business.test0',['dates'=>$dates,'records'=>$records]);
+        // }
+       
+       if($request->has('TaxReport'))
+        {
+            return view('vat.business.businessReportView',['dates'=>$dates,'records'=>$records]);
+        }
+        else if($request->has('SummaryReport'))
+        {
+            return view('vat.business.test0',['dates'=>$dates,'records'=>$records]);
+        }
+      
+        
+    }
+
+    public function pdf(BusinessTaxReportRequest $request)                                                      //pdf generation library function
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Business_tax_Report::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates  
+        $sum=Business_tax_Report::whereBetween('created_at',[$dates->startDate,$dates->endDate])->sum('payment');
+        $pdf->loadHTML($this->convertToHtml($records,$dates,$sum));
+        return $pdf->stream();
+    }
+
+    public function convertToHtml($records,$dates,$sum)                                                         //HTML script for the report pdfp
+    { 
+    
+     $output = "
+     <h3 align='center'>Businness Tax Report from $dates->startDate to $dates->endDate </h3>
+     <table width='100%' style='border-collapse: collapse; border: 0px;'>
+      <tr>
+    <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT</th>
+    <th style='border: 1px solid; padding:12px;' width='30%'>SHOP ID</th>
+    <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER ID</th>
+   </tr>
+     ";  
+     foreach($records as $record)
+     {
+      $output .= '
+      <tr>
+       <td style="border: 1px solid; padding:12px;">'.$record->payment.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$record->shop_id.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$record->payer_id.'</td>
+      </tr>
+      ';
+     }
+     
+     $output .= '</table>';
+     $output .= "<br>Total Payements : Rs.$sum.00/=";
+     return $output;
+    }
+       
     //delete business
     public function removeBusiness($shop_id)
     {
@@ -154,7 +233,6 @@ class BusinessTaxController extends Controller
         $businessTaxPyament->shop_id = $shop_id;
         $businessTaxPyament->payer_id =$payerId;
         $businessTaxPyament->user_id = Auth::user()->id;
-
         $businessTaxPyament->save();
 
         return redirect()->back()->with('sucess', 'Payment added successfuly');
