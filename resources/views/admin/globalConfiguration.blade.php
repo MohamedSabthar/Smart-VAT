@@ -193,7 +193,8 @@
                         <tr>
                             <td class="text-center">{{$assessment_range->vat->name}}</td>
                             <td>{{  number_format( $assessment_range->start_value,2)}}</td>
-                            <td>{{ number_format($assessment_range->end_value,2)}}</td>
+                            <td>{{ $assessment_range->end_value!=null ? number_format($assessment_range->end_value,2) : 'Above'}}
+                            </td>
 
 
                             <td class="text-right">
