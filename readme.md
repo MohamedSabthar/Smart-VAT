@@ -21,14 +21,14 @@ System to automate the VAT process of municipal council of Gale
 ## Laravel .evn setup
 
 <pre>
-MAIL_DRIVER=smtp<br>
-MAIL_HOST=smtp.gmail.com<br>
-MAIL_PORT=465<br>
-MAIL_USERNAME=municipal@gmail.com #need to allow permissions<br>
-MAIL_PASSWORD=yourpassword<br>
-MAIL_ENCRYPTION=ssl<br>
-MAIL_FROM_NAME="Municipal-Council Gale"<br>
-MAIL_FROM_ADDRESS=municipal@gmail.com <br>
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=465
+MAIL_USERNAME=municipal@gmail.com #need to allow permissions
+MAIL_PASSWORD=yourpassword
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_NAME="Municipal-Council Gale"
+MAIL_FROM_ADDRESS=municipal@gmail.com 
 </pre>
 
 ## External package dependencies

@@ -4,8 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Vat;
 use Carbon\Carbon;
+
+use App\Vat;
 use App\Business_tax_payment;
 use App\Business_tax_shop;
 use App\Vat_payer;
@@ -43,7 +44,6 @@ class Kernel extends ConsoleKernel
             }
         })
         // ->everyMinute();
-
         ->when(function () {
             $businessTaxDueDate = Carbon::parse(Vat::where('route', '=', 'business')->firstOrFail()->due_date)->toArray();
             $currentDate = Carbon::now()->toArray();
