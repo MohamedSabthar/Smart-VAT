@@ -239,7 +239,7 @@
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col">Shop Name</th>
-                                                    <th scope="col">Ammount</th>
+                                                    <th scope="col">Due Ammount</th>
                                                     <th scope="col">Status</th>  
                                                 </tr>
                                             </thead>
