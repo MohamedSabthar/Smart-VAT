@@ -19,6 +19,7 @@ use Illuminate\Support\Arr;
 //report Generation
 use App\Business_tax_Report;
 use PDF;
+use Illuminate\Support\Facades\DB;
 
 class BusinessTaxController extends Controller
 {   private $records;
@@ -109,18 +110,8 @@ class BusinessTaxController extends Controller
     public function generateReport(BusinessTaxReportRequest $request)                                              //get the star date and the end date for the report generation
     {   
         $dates = (object)$request->only(["startDate","endDate"]);
-        // dd((object)$request->only(["startDate","endDate"])));
-        $records = Business_tax_Report::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates  
-    
-        // switch($request->input('action')){
-        //     case 'TaxReport' :
-        //         return view('vat.business.businessReportView',['dates'=>$dates,'records'=>$records]);
-        
-        //     break;
-
-        //     case 'SummaryReport' :
-        //         return view('vat.business.test0',['dates'=>$dates,'records'=>$records]);
-        // }
+          
+        $records=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();
        
        if($request->has('TaxReport'))
         {
@@ -139,8 +130,8 @@ class BusinessTaxController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
-        $records = Business_tax_Report::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates  
-        $sum=Business_tax_Report::whereBetween('created_at',[$dates->startDate,$dates->endDate])->sum('payment');
+        $records = Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates  
+        $sum=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->sum('payment');
         $pdf->loadHTML($this->convertToHtml($records,$dates,$sum));
         return $pdf->stream();
     }
@@ -155,6 +146,8 @@ class BusinessTaxController extends Controller
     <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT</th>
     <th style='border: 1px solid; padding:12px;' width='30%'>SHOP ID</th>
     <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER ID</th>
+    <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER'S NAME</th>
+    <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER'S NIC</th>
    </tr>
      ";  
      foreach($records as $record)
@@ -164,6 +157,9 @@ class BusinessTaxController extends Controller
        <td style="border: 1px solid; padding:12px;">'.$record->payment.'</td>
        <td style="border: 1px solid; padding:12px;">'.$record->shop_id.'</td>
        <td style="border: 1px solid; padding:12px;">'.$record->payer_id.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->first_name.'</td>
+        <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->nic.'</td>
+        
       </tr>
       ';
      }

@@ -31,4 +31,6 @@ class Business_tax_shop extends Model
     {
         return $this->hasMany('App\Business_tax_payment', 'shop_id');   //a shop has many payments
     }
+
+    
 }
