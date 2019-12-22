@@ -65,14 +65,25 @@ class BusinessTaxController extends Controller
     {
         $shopIds = $request->except(['_token']);
         $businessTax = Vat::where('name', 'Business Tax')->firstOrFail();
+        $currentDate = now()->toArray();    // get the currrent date properties
+
         if (count($shopIds)==0) {
             return redirect()->back()->with('error', 'No payments selected');
         }
         foreach ($shopIds as $shopId => $val) {
             $businessTaxShop=Business_tax_shop::findOrFail($shopId);  //get the VAT payer id
             $payerId = $businessTaxShop->payer->id;
+            $lastPaymentDate = $businessTaxShop->payments->pluck('created_at')->last(); // get the last payment date
+            $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
+            $assessmentAmmount = $businessTaxShop->businessType->assessment_ammount;
+            if ($lastPaymentDate!=null) {
+                $duePayment = ($businessTaxShop->anual_worth * ($businessTax->vat_percentage/100)+$assessmentAmmount)*($currentDate['year']-$lastPaymentDate['year']);
+            }   //Tax due payment ammount
+            else {
+                $duePayment = ($businessTaxShop->anual_worth * ($businessTax->vat_percentage/100)+$assessmentAmmount);
+            }
             $businessTaxPyament = new Business_tax_payment;
-            $businessTaxPyament->payment = $businessTaxShop->anual_worth * ($businessTax->vat_percentage/100);
+            $businessTaxPyament->payment = $duePayment;
             $businessTaxPyament->shop_id = $shopId;
             $businessTaxPyament->payer_id =$payerId;
             $businessTaxPyament->user_id = Auth::user()->id;
