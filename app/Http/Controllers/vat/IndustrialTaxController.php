@@ -129,4 +129,60 @@ class IndustrialTaxController extends Controller
         $industrialTaxShop-> delete();
         return redirect()->back()->with('status', 'Delete Successful');
     }
+
+    public function viewQuickPayments()
+    {
+        return view('vat.industrial.industrialQuickPayments');
+    }
+
+    public function checkPayments(Request $request)
+    {
+        $data['payerDetails'] = Vat_payer::where('nic', $request->nic)->first();
+        if ($data['payerDetails'] != null) {
+            $data['duePaymentValue'] = [];
+            $data['duePayments']=[];
+            $currentDate = now()->toArray();    // get the currrent date properties
+            $year = $currentDate['year'];
+            $i =0;
+            
+            foreach ($data['payerDetails']->industrial as $shop) {
+                $lastPaymentDate = $shop->payments->pluck('created_at')->last(); // get the last payment date
+                $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
+                $assessmentAmmount = $shop->industrialType->assessment_ammount;
+                $data['duePaymentValue'][$i] = $this->calculateTax($shop->anual_worth, $assessmentAmmount, $lastPaymentDate);
+                $data['duePayments'][$i]=  Industrial_tax_payment::where('shop_id', $shop->id)->where('created_at', 'like', "%$year%")->first(); //getting the latest payment if paid else null
+                $i++;
+            }
+        }
+        return response()->json($data, 200);
+    }
+
+
+    public function acceptQuickPayments(Request $request)
+    {
+        $shopIds = $request->except(['_token']);
+        
+        if (count($shopIds)==0) {
+            return redirect()->back()->with('error', 'No payments selected');
+        }
+        
+        foreach ($shopIds as $shopId => $val) {
+            $industrialTaxShop=Industrial_tax_shop::findOrFail($shopId);  //get the VAT payer id
+            $payerId = $industrialTaxShop->payer->id;
+            $lastPaymentDate = $industrialTaxShop->payments->pluck('created_at')->last(); // get the last payment date
+            $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
+            $assessmentAmmount = $industrialTaxShop->industrialType->assessment_ammount;
+            
+            $duePayment = $this->calculateTax($industrialTaxShop->anual_worth, $assessmentAmmount, $lastPaymentDate);
+            $industrialTaxPyament = new Industrial_tax_payment;
+            $industrialTaxPyament->payment = $duePayment;
+            $industrialTaxPyament->shop_id = $shopId;
+            $industrialTaxPyament->payer_id =$payerId;
+            $industrialTaxPyament->user_id = Auth::user()->id;
+    
+            $industrialTaxPyament->save();
+        }
+    
+        return redirect()->back()->with('status', 'Payments successfully accepted');
+    }
 }

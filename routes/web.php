@@ -70,12 +70,12 @@ Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBus
 Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
 Route::get('/business/payment-restore/{shop_id}', 'vat\BusinessTaxController@restorePayment')->name('restore-payment');//restore payment
 Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
+Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments'); //check all business payments for a given vat payer for quick payment option
 Route::get('/business/quick-payments', 'vat\BusinessTaxController@viewQuickPayments')->name('get-business-quick-payments');
 Route::post('/business/accept-quick-payments', 'vat\BusinessTaxController@acceptQuickPayments')->name('business-quick-payments');
 Route::get('/business/generate-report', 'vat\BusinessTaxController@businessReportGeneration')->name('business-generate-report');
 Route::post('/business/generation', 'vat\BusinessTaxController@generateReport')->name('business-report-view');
 Route::post('/business/report-pdf', 'vat\BusinessTaxController@pdf')->name('business-report-pdf');
-Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments');
 //business payment remove
 Route::delete('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
 Route::get('/business/payment-trash/{id}', 'vat\BusinessTaxController@trashPayment')->name('trash-payment');//trash business payment
@@ -99,6 +99,8 @@ Route::post('/vat-payer/Payer-Register/{requestFrom}', 'Auth\VATpayerRegisterCon
 Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->name('nic_available.check'); //Ajax url option
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
+// Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments'); //check all business payments for a given vat payer for quick payment option
+
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 
 /**
@@ -114,6 +116,9 @@ Route::post('/industrial/payments/{shop_id}', 'vat\IndustrialTaxController@reciv
 Route::post('/industrial/get-industrial-types', 'vat\IndustrialTaxController@getIndustrialtypes')->name('get-industrial-types');
 Route::delete('/industrial/payment-remove/{id}', 'vat\IndustrialTaxController@removePayment')->name('remove-industrial-payment');//soft delete business payment
 Route::delete('/industrial/industrial-remove/{shop_id}', 'vat\IndustrialTaxController@removeIndustrialShop')->name('remove-inudstrial-shop'); // soft delete business route
+Route::get('/industrial/quick-payments', 'vat\IndustrialTaxController@viewQuickPayments')->name('get-industrial-quick-payments');
+Route::post('/industrial/check-payments', 'vat\IndustrialTaxController@checkPayments')->name('check-industrial-payments'); //check all business payments for a given vat payer for quick payment option
+Route::post('/industrial/accept-quick-payments', 'vat\IndustrialTaxController@acceptQuickPayments')->name('industrial-quick-payments');
 
 
 /**
