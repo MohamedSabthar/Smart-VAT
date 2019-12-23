@@ -21,27 +21,25 @@
     <div class="col">
         <div class="card shadow">
             <div class="card-header bg-transparent">
-                <h3 class="mb-0 text-center"><span class="text-uppercase">Businness Tax Report from {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
+                <h3 class="mb-0 text-center"><span class="text-uppercase">Businness Summary Report from {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
             <table id="business_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th style="width:250px;" class="text-center">{{__('menu.Payment')}}</th>
+                        <th style="width:250px;" class="text-center">{{__('menu.Business Type')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.Shop ID')}}</th>
-                        <th style="width:300px;"class="text-center">{{ __('menu.VAT Payer ID')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.VAT Payer Name')}}</th>
-                        <th style="width:300px;"class="text-center">{{ __("menu.VAT Payer's NIC")}}</th>
+                        <th style="width:300px;"class="text-center">{{ __("menu.Payment")}}</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach ($records as $records)
                     <tr>
-                        <td class="text-center">{{$records->payment}}</td>
+                        <td class="text-center">{{$records->businessTaxShop->businessType->description}}</td>
                         <td class="text-center">{{$records->shop_id}}</td>
-                        <td class="text-center">{{$records->payer_id}}</td>
                         <td class="text-center">{{$records->vatPayer->first_name}}</td>
-                        <td class="text-center">{{$records->vatPayer->nic}}</td>
+                        <td class="text-center">{{$records->Payment}}</td>
                     </tr>
                     @endforeach
                     

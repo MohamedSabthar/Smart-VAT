@@ -80,12 +80,16 @@
 </div>
 
 
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('trash-payment',['id'=>$businessTaxShop->payer->id])}}`,'_self')" style="cursor:pointer">
+<div class="col-xl-3 col-lg-6"
+    onclick="javascript:window.open(`{{route('trash-payment',['id'=>$businessTaxShop->payer->id])}}`,'_self')"
+    style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h3 class="card-title text-uppercase text-muted mb-0"><center>Restore Pyament</center></h3>
+                    <h3 class="card-title text-uppercase text-muted mb-0">
+                        <center>Restore Pyament</center>
+                    </h3>
                 </div>
                 <div class="col-auto">
                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -93,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -145,7 +149,7 @@
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$businessTaxShop->phone}}
                         </div>
 
-                       
+
 
                     </div>
                 </div>
