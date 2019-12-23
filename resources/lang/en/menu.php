@@ -74,6 +74,13 @@ return [
     '[+] Buissness' =>'[+] Buissness',
     'View Payments' => 'View Payments',
     'Remove Buisness' => 'Remove Buisness',
+
+    //Business Report Generation
+    'Start Date'=>'Start Date',
+    'End Date'=>'End Date',
+    'Shop ID'=>'Shop ID',
+    'VAT Payer ID'=>'VAT Payer ID',
+    
    
     
     //VAT Payer
@@ -139,6 +146,14 @@ return [
     'End Value (LKR)' => 'End Value (LKR)',
     'Search start value'=> 'Search start value',
     'Search end value'=> 'Search end value',
+
+
+    //update Employee
+    'Update Profile'=>'Update Profile',
+    'Name'=>'Name',
+    'Address'=>'Address',
+    'Phone No'=>'Phone No',
+
 
     //business payment
     'view owner'=> 'view owner',

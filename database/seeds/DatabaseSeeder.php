@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AssessmentRangesTableSeeder::class);
         $this->call(BusinessTypesTableSeeder::class);
         $this->call(BusinessTaxShopsTableSeeder::class);
+        $this->call(IndustrialTypesTableSeeder::class);
     }
 }

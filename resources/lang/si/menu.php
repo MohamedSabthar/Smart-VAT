@@ -53,6 +53,8 @@ return [
     'Annual Assesment Amount' => 'වාර්ෂික තක්සේරු මුදල',
     'Total amount payable'=> 'ගෙවිය යුතු මුළු මුදල',
     'Option' => 'විකල්පය',
+    'VAT Payer ID' => 'බදු ගෙවන්නාගේ අංකය',
+    'Shop ID'=>'කඩ අංකය ',
 
     'VAT Payer Business List' => 'බදු ගෙවන්නගේ ව්‍යාපාර ලැයිස්තුව ',
     'Business Name' => '‍ව්‍යාපාර නාමය',
@@ -90,6 +92,7 @@ return [
     'Door No.' => 'දොර අංකය',
     'Registration' => 'ලියාපදිංචි කිරීම',
     'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
+    
     
     //employee profile
     'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',
@@ -165,7 +168,7 @@ return [
      'Error!' => 'දෝෂයකි!',
      'Data you entered is/are incorrect' => 'ඇතුළත් කළ දත්ත වැරදිය',
      'view' => 'දැක්ම',
-     'Invalid Assesment Amount'=>'ලබා දී ඇති තක්සේරු මුදල අවලංගුය',
+     'Invalid Assesment Amount'=>'ලබා දී ඇති තක්සේරු මුදල අවලංගුය'
      
     
      
