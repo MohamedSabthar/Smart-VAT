@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Business Profile')
+@section('title','Industrial Profile')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
@@ -12,6 +12,7 @@
 @endsection
 
 @section('header')
+
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		{{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
@@ -80,7 +81,8 @@
 	</div>
 </div>
 <div class="col-xl-3 col-lg-6"
-	onclick="javascript:window.open(`{{route('trash-business',['id'=>$vatPayer->id])}}`,'_self')" style="cursor:pointer">
+	{{-- onclick="javascript:window.open(`{{route('trash-business',['id'=>$vatPayer->id])}}`,'_self')" --}}
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
@@ -112,11 +114,11 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		@if(url()->previous()==route('payer-registration',['requestFrom'=>'business']))
+		@if(url()->previous()==route('payer-registration',['requestFrom'=>'industrial']))
 		<div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
-				Click here to add new business
+				Click here to add new Industrial shop
 				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -180,23 +182,25 @@
 					<div class="pt-1">
 						<h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
 					</div>
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="col-xl-8 order-xl-1">
-		<div class="card bg-secondary shadow mb-5 hide" id="business-registration">
+		<div class="card bg-secondary shadow mb-5 hide" id="industrial-registration">
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Business')}}</span></h3>
+						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add Industrial shop')}}</span></h3>
 					</div>
 
 				</div>
 			</div>
 			<div class="card-body">
 				{{-- Industrial shop registration form --}}
-				<form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
+				<form method="POST" action="{{route('industrial-shop-register',['id'=> $vatPayer->id])}}">
 					@csrf
 					<div class="form-group row pt-3">
 						<label for="example-text-input"
@@ -215,8 +219,9 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror" type="text"
-								value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount" name="annualAssesmentAmount">
+							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
+								type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
+								name="annualAssesmentAmount">
 
 							<span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
 								<strong>dfafjkladfj</strong>
@@ -230,7 +235,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Shop Name')}}</label>
 						<div class="col-md-10 ">
 							<input class="form-control @error('businessName') is-invalid  @enderror" type="text"
 								value="{{old('businessName')}}" id="businessName" name="businessName">
@@ -242,14 +247,14 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="business-type"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Business type')}}</label>
+						<label for="industrial-type"
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Industrial type')}}</label>
 						<div class="col-md-10">
 
 							<select id="type" name="type" class="form-control @error('type') is-invalid  @enderror">
 								<option value=""></option>
 								{{-- only for testing need to implement Ajax searchBuisness --}}
-								@foreach ($businessTypes as $type)
+								@foreach ($industrialTypes as $type)
 								<option value="{{$type->id}}">{{$type->description}}
 									{{'('.$type->ranges->start_value .'-'. $type->ranges->end_value .')'}}
 								</option>
@@ -268,8 +273,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('phoneno') is-invalid  @enderror" type="text" value="{{old('phoneno')}}"
-								id="phoneno" name="phoneno">
+							<input class="form-control @error('phoneno') is-invalid  @enderror" type="text"
+								value="{{old('phoneno')}}" id="phoneno" name="phoneno">
 							@error('phoneno')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -281,8 +286,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('doorno') is-invalid  @enderror" type="text" value="{{old('doorno')}}"
-								id="doorno" name="doorno">
+							<input class="form-control @error('doorno') is-invalid  @enderror" type="text"
+								value="{{old('doorno')}}" id="doorno" name="doorno">
 							@error('doorno')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -294,8 +299,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('street') is-invalid  @enderror" type="text" value="{{old('street')}}"
-								id="street" name="street">
+							<input class="form-control @error('street') is-invalid  @enderror" type="text"
+								value="{{old('street')}}" id="street" name="street">
 							@error('street')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -307,8 +312,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('city') is-invalid  @enderror" type="text" value="{{old('city')}}"
-								id="city" name="city">
+							<input class="form-control @error('city') is-invalid  @enderror" type="text"
+								value="{{old('city')}}" id="city" name="city">
 							@error('city')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -331,7 +336,8 @@
 				<div class="row align-items-center">
 					<div class="col">
 						<h3 class="mb-0">
-							<span class="text-uppercase">{{$vatPayer->first_name}} '{{__('menu.s businesses')}}</span>
+							<span class="text-uppercase">{{$vatPayer->first_name}}
+								'{{__('menu.s industrial shops')}}</span>
 						</h3>
 						<hr class="mt-4 mb-0">
 					</div>
@@ -344,7 +350,7 @@
 						<thead class="thead-light">
 							<tr>
 								<th style="width:250px;">{{__('menu.Assesment No.')}}</th>
-								<th style="width:300px;">{{__('menu.Business Name')}}</th>
+								<th style="width:300px;">{{__('menu.Shop Name')}}</th>
 								<th>{{__('menu.Shop Phone')}}</th>
 								<th></th>
 							</tr>
@@ -355,7 +361,7 @@
 										placeholder="{{__('menu.Search Assesment No.')}}" />
 								</th>
 								<th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-										placeholder="{{__('menu.Search Business Name')}}" />
+										placeholder="{{__('menu.Search Shop Name')}}" />
 								</th>
 								<th><input type="text" class="form-control form-control-sm" id="searchPhone"
 										placeholder="{{__('menu.Search Phone')}}" />
@@ -365,26 +371,31 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($vatPayer->buisness as $buisness)
+							@foreach ($vatPayer->industrial as $industrial)
 							<tr>
-								<td class="text-center">{{$buisness->id}}</td>
-								<td>{{$buisness->shop_name}}</td>
-								<td>{{$buisness->phone}}</td>
+								<td class="text-center">{{$industrial->id}}</td>
+								<td>{{$industrial->shop_name}}</td>
+								<td>{{$industrial->phone}}</td>
 								<td class="text-right">
 									<div class="dropdown">
-										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
+										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<i class="fas fa-ellipsis-v"></i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item" href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
+											<a class="dropdown-item"
+												href="{{route('industrial-payments',['shop_id'=>$industrial->id])}}">
 												{{__('menu.View Payments')}}</a>
-
-											<form action="{{route('remove-business',['shop_id'=>$buisness->id])}}" method="POST">
+											{{-- <a class="dropdown-item"
+												href="{{route('remove-business',['shop_id'=>$industrial->id])}}">
+											{{__('menu.Remove Buisness')}}</a> --}}
+											<form
+												action="{{route('remove-inudstrial-shop',['shop_id'=>$industrial->id])}}"
+												method="POST">
 												@csrf
 												@method('delete')
-												<input type="submit" value="{{__('menu.Remove Buisness')}}" class="dropdown-item">
-
+												<input type="submit" value="{{__('menu.Remove Buisness')}}"
+													class="dropdown-item">
 											</form>
 										</div>
 
@@ -396,7 +407,7 @@
 						<thead class="thead-light">
 							<tr>
 								<th>{{__('menu.Assesment No.')}}</th>
-								<th>{{__('menu.Business Name')}}</th>
+								<th>{{__('menu.Shop Name')}}</th>
 								<th>{{__('menu.Shop Phone')}}</th>
 								<th></th>
 							</tr>
@@ -463,12 +474,12 @@
                 .draw();
         });
         //toggle transition for buisness registration form
-        $("#business-registration").hide();
+        $("#industrial-registration").hide();
         $(".add-buissness").on('click',function(){
-            $("#business-registration").slideToggle("slow");
+            $("#industrial-registration").slideToggle("slow");
         });
         $('#type').select2({
-            placeholder: "Select business type here",
+            placeholder: "Select industrial type here",
             allowClear: true,
         });
         $('#annualAssesmentAmount').blur(function(){
@@ -484,10 +495,10 @@
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             });
             $('#type').select2({
-                placeholder: "Select business type here",
+                placeholder: "Select industrial type here",
             allowClear: true,
             ajax: {
-                url: "{{route('get-business-types')}}",
+                url: "{{route('get-industrial-types')}}",
                 dataType: 'json',
                 type:"POST",
                 delay: 250,
@@ -499,6 +510,7 @@
                         };
                 },
                 processResults: function (data) {
+                    
                      return {
                          results:$.map(data.results, function (obj) {
                             return {id:obj.id,text:obj.description}
@@ -507,22 +519,8 @@
                      
                 },
                 cache: true
-            },
-            // minimumInputLength: 1,
-        
+            },        
             });
-            // $.ajax({
-            //     url: "{{route('get-business-types')}}",
-            //     type:"POST",
-            //     data: { assessmentAmmount : assessmentAmmount },
-            //     success:function(data){
-            //                 // alert(data);
-            //                 console.log(data);
-            //                 $('ul#select2-type-results').empty()
-            //     },error:function(){ 
-            //                 alert("error!!!!");
-            //             }
-            // });
            }
         })
             

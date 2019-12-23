@@ -143,8 +143,8 @@
 					<div class="form-group row pt-3">
 						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
 						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text" value="{{old('nic')}}" id="nic"
-								name="nic" placeholder="Enter vat payer's NIC">
+							<input class="form-control @error('nic') is-invalid @enderror" type="text"
+								value="{{old('nic')}}" id="nic" name="nic" placeholder="Enter vat payer's NIC">
 							<span id="error_nic" class="invalid-feedback" role="alert">
 								@error('nic')
 								<strong>{{ $message }}</strong>
@@ -157,7 +157,8 @@
 				<div class="row">
 					<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 mt-md-5" id="payer-details"></div>
 					{{-- dynamicaly adding payer details --}}
-					<div class="col-lg-8 col-12 mt-md-5" id="shop-details"></div> {{-- dynamicaly adding payer details --}}
+					<div class="col-lg-8 col-12 mt-md-5" id="shop-details"></div>
+					{{-- dynamicaly adding payer details --}}
 				</div>
 			</div>
 

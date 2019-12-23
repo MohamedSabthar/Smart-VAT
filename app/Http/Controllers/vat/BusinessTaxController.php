@@ -68,6 +68,11 @@ class BusinessTaxController extends Controller
         return response()->json($data, 200);
     }
 
+    public function viewQuickPayments()
+    {
+        return view('vat.business.buisnessQuickPayments');
+    }
+
     
     public function acceptQuickPayments(Request $request)
     {
