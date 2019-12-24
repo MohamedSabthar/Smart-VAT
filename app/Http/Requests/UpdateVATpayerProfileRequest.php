@@ -34,6 +34,7 @@ class UpdateVATpayerProfileRequest extends FormRequest
             'city'  =>['required','alpha', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('vat_payers')->ignore($this->id)],            //   Validate to be a unique email
             'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/',Rule::unique('vat_payers')->ignore($this->id)],     //   validation for nic
+            'phone' => ['required','regex:/[+94|0][0-9]{9}$/','min:10','max:12'],
         ];
     }
 }

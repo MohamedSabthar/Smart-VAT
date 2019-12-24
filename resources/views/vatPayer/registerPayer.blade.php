@@ -371,13 +371,6 @@
 
 
 
-
-
-
-
-
-
-
 		
 		$('#nic').blur(function(){
 			var error_nic = '';

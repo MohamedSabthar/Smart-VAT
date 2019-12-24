@@ -63,6 +63,7 @@ try {
  * Routes related to buisness tax
  */
 Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
+Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');  //update VAT payer profile
 Route::get('/business/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 Route::get('/business/generate-report', 'vat\BusinessTaxController@businessReportGeneration')->name('business-generate-report');
@@ -100,8 +101,7 @@ Route::get('/business/business-trash', 'vat\BusinessTaxController@trashBusiness'
 Route::get('/business/business-restore/{id}', 'vat\BusinessTaxController@restoreBusiness')->name('restore-business'); // restore business
 
 //all business tax related tax routes should starts with "/buisness"
-Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
-// Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); 
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 /*
 *VAT Payer registration
@@ -111,7 +111,6 @@ Route::post('/vat-payer/Payer-Register', 'Auth\VATpayerRegisterController@regist
 //Ajax url option
 Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->name('nic_available.check');
 
-Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
 
 
