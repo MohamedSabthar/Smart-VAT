@@ -235,9 +235,9 @@ class BusinessTaxController extends Controller
         return redirect()->back()->with('status', 'Delete Successful');
     }
     //trash business
-    public function trashBusiness()
+    public function trashBusiness($payer_id)
     {
-        $businessTaxShop = Business_tax_shop::onlyTrashed()->get();
+        $businessTaxShop = Business_tax_shop::onlyTrashed()->where('payer_id', $payer_id)->get();
         return view('vat.business.trashBusiness', ['businessTaxShop'=>$businessTaxShop]);
     }
     // restore business
