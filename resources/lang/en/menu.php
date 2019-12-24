@@ -73,6 +73,13 @@ return [
     '[+] Buissness' =>'[+] Buissness',
     'View Payments' => 'View Payments',
     'Remove Buisness' => 'Remove Buisness',
+
+    //Business Report Generation
+    'Start Date'=>'Start Date',
+    'End Date'=>'End Date',
+    'Shop ID'=>'Shop ID',
+    'VAT Payer ID'=>'VAT Payer ID',
+    
    
     
     //VAT Payer
@@ -139,6 +146,14 @@ return [
     'Search start value'=> 'Search start value',
     'Search end value'=> 'Search end value',
 
+
+    //update Employee
+    'Update Profile'=>'Update Profile',
+    'Name'=>'Name',
+    'Address'=>'Address',
+    'Phone No'=>'Phone No',
+
+
     //business payment
     'view owner'=> 'view owner',
     'Annual worth' => 'Annual worth',
@@ -169,7 +184,10 @@ return [
     'Error!' => 'Error!',
     'Data you entered is/are incorrect' => 'Data you entered is/are incorrect',
     'view' => 'view',
-    'Invalid Assesment Amount' => 'The assessment amount provided is invalid'
+    'Invalid Assesment Amount' => 'The assessment amount provided is invalid',
     
-
+    //industrial profile
+    's industrial shops' =>'s industrial shops',
+    'Shop Name' => 'Shop Name',
+    'Add Industrial shop'=>'Add Industrial shop'
 ];

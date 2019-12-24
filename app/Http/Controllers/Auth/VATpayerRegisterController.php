@@ -17,15 +17,15 @@ use Auth;
 
 class VATpayerRegisterController extends Controller
 {
-    public function viewFrom()
+    public function viewFrom($requestFrom)
     {
         //$vatPayer = Vat_payer::find($id);
-        return view('vatPayer.registerPayer');
+        return view('vatPayer.registerPayer', ['requestFrom'=>$requestFrom]);
     }
 
-    public function register(VATpayerRegisterRequest $request)
-    {   
-        $this->validator($request->all())->validate();
+    public function register(VATpayerRegisterRequest $request, $requestFrom)
+    {
+        // $this->validator($request->all())->validate();
 
         $vatPayer = new Vat_payer();
         $vatPayer->first_name= $request->first_name;
@@ -41,8 +41,13 @@ class VATpayerRegisterController extends Controller
         
         $vatPayer-> save();
 
-        // redirecting to add a business for the registered VAT Payer with success notification
-        return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', ' New Payer registerd successfully');
+        if ($requestFrom=='business') {
+            // redirecting to add a business for the registered VAT Payer with success notification
+            return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', ' New Payer registerd successfully');
+        } elseif ($requestFrom=='industrial') {
+            // redirecting to add a industrial shop for the registered VAT Payer with success notification
+            return redirect()->route('industrial-profile', ['id'=>$vatPayer->id])->with('status', ' New Payer registerd successfully');
+        }
     }
 
     /**
@@ -50,15 +55,15 @@ class VATpayerRegisterController extends Controller
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
-     */ 
+     */
     public function validator(array $data)
-    { 
+    {
         return Validator::make(
             $data,
             [
             'first_name' => ['required','alpha', 'string', 'max:255'],
             'last_name' => ['required','alpha', 'string', 'max:255'],
-            'doorNo' =>['required','alpha_num','max:100'],                              
+            'doorNo' =>['required','alpha_num','max:100'],
             'street'=>['required','alpha_num', 'max:255'],
             'city'  =>['required','alpha', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:vat_payers'],        //   Validate to be a unique email
@@ -71,29 +76,22 @@ class VATpayerRegisterController extends Controller
     /*
     * Checking the Ajax requesst
     */
-    public function check(Request $request){
-        if($request->get('nic'))
-        {
+    public function check(Request $request)
+    {
+        if ($request->get('nic')) {
             $nic = $request->get('nic');
             // $data = DB::table("Vat_payers")
             //     ->where('nic', $nic)
-            //     ->count();    
-                 /* return number of raws affected which 
-                                *we have store under $data */
-      $data = Vat_payer::where('nic',$nic)->first();
-            if($data!=null)
-            {
+            //     ->count();
+            /* return number of raws affected which
+                           *we have store under $data */
+            $data = Vat_payer::where('nic', $nic)->first();
+            if ($data!=null) {
                 // nic is registered in the database
                 return response()->json(array('data'=>'not_unique','id'=>$data->id));
-                
-            }   
-            else{
+            } else {
                 return response()->json(array('data'=>'unique'));           // not registered into the vatPayer db
-            }           
+            }
         }
-
-       
-
     }
-
 }
