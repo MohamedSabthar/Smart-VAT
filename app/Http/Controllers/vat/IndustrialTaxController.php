@@ -185,4 +185,33 @@ class IndustrialTaxController extends Controller
     
         return redirect()->back()->with('status', 'Payments successfully accepted');
     }
+
+    public function trashPayment($id)
+    {
+        $industrialTaxPyament = Industrial_tax_payment::onlyTrashed()->where('payer_id', $id)->get();
+        return view('vat.industrial.trashPayment', ['industrialTaxPyament'=>$industrialTaxPyament]);
+    }
+
+    //restore payment
+    public function restorePayment($id)
+    {
+        $industrialTaxPyament = Industrial_tax_payment::onlyTrashed()->where('id', $id);
+        $shopId = $industrialTaxPyament->first()->shop_id;
+        $industrialTaxPyament->restore();
+        return redirect()->route('industrial-payments', ['shop_id'=>$shopId])->with('status', 'Payment restored successfully');
+    }
+
+    public function trashIndustrialShop($payer_id)
+    {
+        $industrialTaxShop = Industrial_tax_shop::onlyTrashed()->where('payer_id', $payer_id)->get();
+        return view('vat.industrial.trashIndustrialShop', ['industrialTaxShop'=>$industrialTaxShop]);
+    }
+
+    public function restoreIndustrialShop($id)
+    {
+        $industrialTaxShop = Industrial_tax_shop::onlyTrashed()->where('id', $id);
+        $payerId = $industrialTaxShop->first()->payer_id;
+        $industrialTaxShop->restore();
+        return redirect()->route('industrial-profile', ['id'=>$payerId])->with('status', 'Industrial shop restored successfully');
+    }
 }

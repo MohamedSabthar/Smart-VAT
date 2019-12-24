@@ -83,8 +83,11 @@ Route::get('/business/payment-restore/{id}', 'vat\BusinessTaxController@restoreP
 Route::get('/business/payment-remove-permanent/{id}', 'vat\BusinessTaxController@destory')->name('remove-payment-permanent');// permanent delete
 //business remove
 Route::delete('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
-Route::get('/business/business-trash', 'vat\BusinessTaxController@trashBusiness')->name('trash-business');// trash business
+Route::get('/business/business-trash/{payer_id}', 'vat\BusinessTaxController@trashBusiness')->name('trash-business');// trash business
 Route::get('/business/business-restore/{id}', 'vat\BusinessTaxController@restoreBusiness')->name('restore-business'); // restore business
+
+
+
 Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
 
@@ -92,15 +95,13 @@ Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->n
  * Routes related to VAT Payer
  */
 
-Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); //
+Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 Route::get('/vat-payer/{requestFrom}', 'Auth\VATpayerRegisterController@viewFrom')->name('payer-registration');
 Route::post('/vat-payer/Payer-Register/{requestFrom}', 'Auth\VATpayerRegisterController@register')->name('vat-payer-registration');
 Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->name('nic_available.check'); //Ajax url option
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
-// Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments'); //check all business payments for a given vat payer for quick payment option
-
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 
 /**
@@ -114,12 +115,16 @@ Route::post('/industrial/industrial-register/{id}', 'vat\IndustrialTaxController
 Route::get('/industrial/payments/{shop_id}', 'vat\IndustrialTaxController@industrialPayments')->name('industrial-payments');
 Route::post('/industrial/payments/{shop_id}', 'vat\IndustrialTaxController@reciveIndustrialPayments')->name('receive-industrial-payments');
 Route::post('/industrial/get-industrial-types', 'vat\IndustrialTaxController@getIndustrialtypes')->name('get-industrial-types');
-Route::delete('/industrial/payment-remove/{id}', 'vat\IndustrialTaxController@removePayment')->name('remove-industrial-payment');//soft delete business payment
-Route::delete('/industrial/industrial-remove/{shop_id}', 'vat\IndustrialTaxController@removeIndustrialShop')->name('remove-inudstrial-shop'); // soft delete business route
 Route::get('/industrial/quick-payments', 'vat\IndustrialTaxController@viewQuickPayments')->name('get-industrial-quick-payments');
 Route::post('/industrial/check-payments', 'vat\IndustrialTaxController@checkPayments')->name('check-industrial-payments'); //check all business payments for a given vat payer for quick payment option
 Route::post('/industrial/accept-quick-payments', 'vat\IndustrialTaxController@acceptQuickPayments')->name('industrial-quick-payments');
+Route::delete('/industrial/payment-remove/{id}', 'vat\IndustrialTaxController@removePayment')->name('remove-industrial-payment');//soft delete business payment
+Route::get('/industrial/payment-trash/{id}', 'vat\IndustrialTaxController@trashPayment')->name('industrial-trash-payment');//trash business payment
+Route::get('/industrial/payment-restore/{id}', 'vat\IndustrialTaxController@restorePayment')->name('restore-industrial-payment');// restore business
 
+Route::delete('/industrial/industrial-remove/{shop_id}', 'vat\IndustrialTaxController@removeIndustrialShop')->name('remove-inudstrial-shop'); // soft delete business route
+Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxController@trashIndustrialShop')->name('trash-industrial-shop');// trash business
+Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore business
 
 /**
  * temperory testing routes
@@ -162,17 +167,3 @@ Route::get('/retry/{$id}', function () {
     Artisan::call("queue:retry $id");
     dd('done');
 });
-
-
-
-Route::post(
-    '/t',
-// function(Request $request){
-//     $msg = array(
-//         'status' => 'success',
-//         'msg'    => 'Setting created successfully',
-//     );
-
-//     return response()->json(array('msg'=> $msg), 200);}
-'VATpayerRegisterController@t'
-);

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Business Payment')
+@section('title','Industrial Payment')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -81,8 +81,8 @@
 
 
 <div class="col-xl-3 col-lg-6"
-    {{-- onclick="javascript:window.open(`{{route('trash-payment',['id'=>$industrialTaxShop->payer->id])}}`,'_self')"
-    --}} style="cursor:pointer">
+    onclick="javascript:window.open(`{{route('industrial-trash-payment',['id'=>$industrialTaxShop->payer->id])}}`,'_self')"
+    style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
             <div class="row">
@@ -100,6 +100,34 @@
 
         </div>
     </div>
+</div>
+
+<div class="container-fluid d-flex align-items-center">
+    {{-- Alert notifications --}}
+    <div class="col mt-5">
+        @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                <strong class="mx-1">{{__('menu.Error!')}}</strong>
+                {{__('menu.Data you entered is/are incorrect')}}
+                <a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
+            </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+    </div>
+    {{-- end of Alert notifications --}}
 </div>
 
 @endsection
@@ -126,7 +154,7 @@
                 </div>
                 <div class="card-body pt-0 pt-md-4">
                     <div class="test-left pt-5">
-                        <h3 class="d-inline">{{__('menu.Business Name')}} : </h3>
+                        <h3 class="d-inline">{{__('menu.industrial Name')}} : </h3>
                         {{ucwords($industrialTaxShop->shop_name)}}
                         <div class="pt-1">
                             <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{ucwords($industrialTaxShop->address)}}
@@ -195,14 +223,13 @@
                 </div>
 
                 <div class="table-responsive py-4">
-                    {{-- Business TAX payments table --}}
-                    <table id="business_payments_table" class="table  px-5">
+                    {{-- Industrial TAX payments table --}}
+                    <table id="industrial_payments_table" class="table  px-5">
                         <thead class="thead-light">
                             <tr>
                                 <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
                                 <th></th>
 
                             </tr>
@@ -214,14 +241,7 @@
                                 <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
                                         placeholder="{{__('menu.Search Payment date')}}" /></th>
                                 <th></th>
-                                <th>
-                                    <select class="form-control form-control-sm" id="selectCourt">
-                                        <option value="">{{__('menu.All')}}</option>
-                                        <option value="Yes">{{__('menu.Yes')}}</option>
-                                        <option value="No">{{__('menu.No')}}</option>
-                                    </select>
 
-                                </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -233,7 +253,7 @@
                                 <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
                                 <td>{{ number_format($payments->payment,2)}}</td>
 
-                                <td>{!! $payments->assinged_to_court ? "Yes" : "No" !!}</td>
+
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -268,13 +288,13 @@
                                 <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
+
                                 <th></th>
                             </tr>
                         </thead>
 
                     </table>
-                    {{-- end of Business TAX payments table --}}
+                    {{-- end of Industrial TAX payments table --}}
                 </div>
             </div>
 
@@ -293,7 +313,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#business_payments_table';                      //data table id
+        var id = '#industrial_payments_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
