@@ -157,7 +157,7 @@
 			<div class="card-body ">
 
 				{{--VAT payers Registration form  --}}
-				<form method="POST" action="{{route('vat-payer-registration')}}"
+				<form method="POST" action="{{route('vat-payer-registration',['requestFrom'=>$requestFrom])}}"
 					onsubmit="return confirm-register-business(this)">
 					@csrf
 
