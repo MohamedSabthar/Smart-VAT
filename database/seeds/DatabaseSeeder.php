@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BusinessTypesTableSeeder::class);
         $this->call(BusinessTaxShopsTableSeeder::class);
         $this->call(IndustrialTypesTableSeeder::class);
+        $this->call(EntertainmentTypesTableSeeder::class);
     }
 }
