@@ -257,19 +257,9 @@
 							</div>
 						</div>
 					</div>
-            
-            
-
-
-
-
-
-
-
-
-
+		
 					
-				
+					
 				<form method="POST" action="{{ route('password.change',['userId'=>Auth::user()->id]) }}">
 					@csrf
 					<hr class="my-4">
