@@ -169,12 +169,8 @@ class BusinessTaxController extends Controller
     public function generateReport(BusinessTaxReportRequest $request)                                              //get the star date and the end date for the report generation
     {
         $dates = (object)$request->only(["startDate","endDate"]);
-<<<<<<< HEAD
-          
-        $records=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();
-=======
         // dd((object)$request->only(["startDate","endDate"])));
-        $records = Business_tax_Report::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
     
         // switch($request->input('action')){
         //     case 'TaxReport' :
@@ -185,7 +181,6 @@ class BusinessTaxController extends Controller
         //     case 'SummaryReport' :
         //         return view('vat.business.test0',['dates'=>$dates,'records'=>$records]);
         // }
->>>>>>> 7b38b2f043ef45fffd9246c4bffa357050959214
        
         if ($request->has('TaxReport')) {
             return view('vat.business.businessReportView', ['dates'=>$dates,'records'=>$records]);
@@ -200,15 +195,9 @@ class BusinessTaxController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
-<<<<<<< HEAD
-        $records = Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates  
-        $sum=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->sum('payment');
-        $pdf->loadHTML($this->convertToHtml($records,$dates,$sum));
-=======
-        $records = Business_tax_Report::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
-        $sum=Business_tax_Report::whereBetween('created_at', [$dates->startDate,$dates->endDate])->sum('payment');
+        $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        $sum=Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->sum('payment');
         $pdf->loadHTML($this->convertToHtml($records, $dates, $sum));
->>>>>>> 7b38b2f043ef45fffd9246c4bffa357050959214
         return $pdf->stream();
     }
 
