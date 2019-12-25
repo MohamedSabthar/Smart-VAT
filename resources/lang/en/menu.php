@@ -184,7 +184,10 @@ return [
     'Error!' => 'Error!',
     'Data you entered is/are incorrect' => 'Data you entered is/are incorrect',
     'view' => 'view',
-    'Invalid Assesment Amount' => 'The assessment amount provided is invalid'
+    'Invalid Assesment Amount' => 'The assessment amount provided is invalid',
     
-
+    //industrial profile
+    's industrial shops' =>'s industrial shops',
+    'Shop Name' => 'Shop Name',
+    'Add Industrial shop'=>'Add Industrial shop'
 ];

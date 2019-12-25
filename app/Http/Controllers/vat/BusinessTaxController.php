@@ -45,7 +45,42 @@ class BusinessTaxController extends Controller
         return response()->json($data, 200);
     }
 
-    public function latestPayment()                                             
+    public function viewQuickPayments()
+    {
+        return view('vat.business.buisnessQuickPayments');
+    }
+
+    
+    public function acceptQuickPayments(Request $request)
+    {
+        $shopIds = $request->except(['_token']);
+        
+        if (count($shopIds)==0) {
+            return redirect()->back()->with('error', 'No payments selected');
+        }
+        
+        foreach ($shopIds as $shopId => $val) {
+            $businessTaxShop=Business_tax_shop::findOrFail($shopId);  //get the VAT payer id
+            $payerId = $businessTaxShop->payer->id;
+            $lastPaymentDate = $businessTaxShop->payments->pluck('created_at')->last(); // get the last payment date
+            $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
+            $assessmentAmmount = $businessTaxShop->businessType->assessment_ammount;
+            
+            $duePayment = $this->calculateTax($businessTaxShop->anual_worth, $assessmentAmmount, $lastPaymentDate);
+            $businessTaxPyament = new Business_tax_payment;
+            $businessTaxPyament->payment = $duePayment;
+            $businessTaxPyament->shop_id = $shopId;
+            $businessTaxPyament->payer_id =$payerId;
+            $businessTaxPyament->user_id = Auth::user()->id;
+    
+            $businessTaxPyament->save();
+        }
+    
+        return redirect()->back()->with('status', 'Payments successfully accepted');
+    }
+
+
+    public function latestPayment()
     {
         return view('vat.business.latestPayments');
     }
@@ -220,10 +255,12 @@ class BusinessTaxController extends Controller
         return redirect()->back()->with('status', 'Delete Successful');
     }
     //trash business
-    public function trashBusiness(){
-        $businessTaxShop = Business_tax_shop::onlyTrashed()->get(); 
-        return view('vat.business.trashBusiness',['businessTaxShop'=>$businessTaxShop]);
-       
+
+ 
+    public function trashBusiness($payer_id)
+    {
+        $businessTaxShop = Business_tax_shop::onlyTrashed()->where('payer_id', $payer_id)->get();
+        return view('vat.business.trashBusiness', ['businessTaxShop'=>$businessTaxShop]);
     }
     // restore business
     public function restoreBusiness($id){
