@@ -67,7 +67,8 @@ Route::get('/business/latest', 'vat\BusinessTaxController@latestPayment')->name(
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 Route::get('/business/generate-report', 'vat\BusinessTaxController@businessReportGeneration')->name('business-generate-report');
 Route::post('/business/generation', 'vat\BusinessTaxController@generateReport')->name('business-report-view');
-Route::post('/business/report-pdf', 'vat\BusinessTaxController@pdf')->name('business-report-pdf');
+Route::post('/business/Tax-report-pdf', 'vat\BusinessTaxController@TaxPdf')->name('business-tax-report-pdf');
+Route::post('/business/Summary-report-pdf', 'vat\BusinessTaxController@summaryPdf')->name('business-summary-report-pdf');
 
 /**
  * Routes related to VAT Payer
