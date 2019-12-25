@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Business_tax_shop extends Model
+class Industrial_tax_shop extends Model
 {
-    protected $table = 'business_tax_shops';
+    protected $table = 'industrial_tax_shops';
     use SoftDeletes;
 
     public function payer()
@@ -20,20 +20,21 @@ class Business_tax_shop extends Model
         return $this->belongsTo('App\User', 'employee_id'); // a shop registered by an employee
     }
 
-    public static function businessTaxPayers()    // return vat payers; only related to buisness tax
+    public static function industrialTaxPayers()    // return vat payers; only related to industrial tax
     {
-        return Business_tax_shop::all()->map(function ($tax) {
+        return Industrial_tax_shop::all()->map(function ($tax) {
             return $tax->payer;
         })->unique('id');   //collection filtered using unique id
     }
 
     public function payments()
     {
-        return $this->hasMany('App\Business_tax_payment', 'shop_id');   //a shop has many payments
+        return $this->hasMany('App\Industrial_tax_payment', 'shop_id');   //a shop has many payments
     }
 
-    public function businessType()
+    public function industrialType()
     {
-        return $this->belongsTo('App\Business_type', 'type');   //a shop belongs to a business type
+        return $this->belongsTo('App\Industrial_type', 'type');   //a shop belongs to a industrial type
     }
+
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Business Payment')
+@section('title','Industrial Payment')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -143,8 +143,8 @@
 					<div class="form-group row pt-3">
 						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
 						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text"
-								value="{{old('nic')}}" id="nic" name="nic" placeholder="Enter vat payer's NIC">
+							<input class="form-control @error('nic') is-invalid @enderror" type="text" value="{{old('nic')}}" id="nic"
+								name="nic" placeholder="Enter vat payer's NIC">
 							<span id="error_nic" class="invalid-feedback" role="alert">
 								@error('nic')
 								<strong>{{ $message }}</strong>
@@ -192,7 +192,7 @@
             });
 				
             $.ajax({
-                url:"{{ route('check-business-payments') }}", 
+                url:"{{ route('check-industrial-payments') }}", 
                 method:"POST",
                 data: {'nic':nic},
                 success:function(result){
@@ -221,20 +221,21 @@
 			</div>
 			<div class="card-body pt-0 pt-md-4">
 				<div class="pt-7">
-					<div class='pt-3'><h3 class='d-inline'>Name :</h3> ${result.payerDetails.full_name} </div>
-                            <div class='pt-1'><h3 class='d-inline'>Address :</h3> ${result.payerDetails.address} </div>
-                            <div class='pt-1'><h3 class='d-inline'>Phone No :</h3> ${result.payerDetails.phone} </div>
-                            <div class='pt-1'><h3 class='d-inline'>E-mail :</h3> ${result.payerDetails.email} </div>
-                           
-		</div>
-	</div>
-                            `);
+					<div class='pt-3'>
+					<h3 class='d-inline'>Name :</h3> 
+					${result.payerDetails.full_name} 
+					</div>
+					<div class='pt-1'><h3 class='d-inline'>Address :</h3> ${result.payerDetails.address} </div>
+					<div class='pt-1'><h3 class='d-inline'>Phone No :</h3> ${result.payerDetails.phone} </div>
+					<div class='pt-1'><h3 class='d-inline'>E-mail :</h3> ${result.payerDetails.email} </div>
+			</div>
+		</div>`);
 
                         var i = 0
                         $('#shop-details').append(
                             `<div class="table-responsive">
                                 <div class="card px-3">
-                                    <form method='POST' action="{{route('business-quick-payments')}}">
+                                    <form method='POST' action="{{route('industrial-quick-payments')}}">
                                         @csrf
                                         <table class="my-3 table align-items-center  ">
                                             <thead class="thead-light">
@@ -253,7 +254,7 @@
 																</div>`
 																);
 												var nullToken = 0;
-                        result.payerDetails.buisness.forEach(element => {
+                        result.payerDetails.industrial.forEach(element => {
                             // console.log(element)
                             // $('#shop-details').append(`${element.shop_name} ${result.duePayments[i]==null ? 'not paid' : 'paid' } </br>`)
 														

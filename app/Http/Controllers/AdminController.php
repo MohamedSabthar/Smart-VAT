@@ -26,8 +26,8 @@ class AdminController extends Controller
 
     public function employeeProfile($id)
     {
-        $employee = User::where('id', $id)->firstOrFail();      //returning paticular user's data
-        $vats = Vat::all();                                     //returning all vat categories
+        $employee = User::where('id', $id)->firstOrFail();                                      //returning paticular user's data
+        $vats = Vat::all();                                                                     //returning all vat categories
         $assingedVats = User_vat::all()->where('user_id', $id)->pluck('vat_id')->all();         //returning all assigned vat categories for the user
         
         // dd($assingedVats);
@@ -70,7 +70,6 @@ class AdminController extends Controller
 
         return redirect()->back()->with('status', 'Categories assigned successfully');  //redirecting back to employee-profile page with success message
     }
-
 
     public function globalConfiguration()
     {

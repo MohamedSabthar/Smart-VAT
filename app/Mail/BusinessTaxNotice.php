@@ -6,19 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Vat_payer;
 
 class BusinessTaxNotice extends Mailable
 {
     use Queueable, SerializesModels;
+    private $id;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id)
     {
-        //
+        $this->id=$id;
     }
 
     /**
@@ -28,7 +30,7 @@ class BusinessTaxNotice extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.businessTaxNotice')
-                ->subject("Business-Tax Red Notice");
+        $vatPayer = Vat_payer::find($this->id);
+        return $this->markdown('mail.businessTaxNotice', ['vatPayer'=>$vatPayer]);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Business_tax_shop;
+use App\Industrial_tax_shop;
+use App\Shop_rent_tax;
 
 class VatPagesController extends Controller
 {
@@ -19,13 +21,14 @@ class VatPagesController extends Controller
 
     public function business()
     {
-        $payers = Business_tax_shop::business_tax_payers(); //get all vat_payers who pay buisness tax
+        $payers = Business_tax_shop::businessTaxPayers(); //get all vat_payers who pay buisness tax
         return view('vat.business.buisness', ['payers' => $payers]);
     }
 
     public function industrial()
     {
-        return view('vat.industrial');
+        $payers = Industrial_tax_shop::industrialTaxPayers(); //get all vat_payers who pay industrial tax
+        return view('vat.industrial.industrial', ['payers' => $payers]);
     }
 
     public function licence()
@@ -60,7 +63,9 @@ class VatPagesController extends Controller
     }
     public function shoprent()
     {
-        return view('vat.shopRent');
+        $payers = Shop_rent_tax::shopRentTaxPayers(); //get all vat_payers who pay industrial tax
+        return view('vat.shopRent.shopRent', ['payers' => $payers]);
+        
     }
     public function threewheelpark()
     {
@@ -74,6 +79,4 @@ class VatPagesController extends Controller
     {
         return view('vat.slaughtering');
     }
-    
-    
 }

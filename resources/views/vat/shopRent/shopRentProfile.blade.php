@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Business Profile')
+@section('title','Shop Rent Profile')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
@@ -12,6 +12,7 @@
 @endsection
 
 @section('header')
+
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		{{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
@@ -79,15 +80,17 @@
 		</div>
 	</div>
 </div>
+
+
 <div class="col-xl-3 col-lg-6"
-	onclick="javascript:window.open(`{{route('trash-business',['payer_id'=>$vatPayer->id])}}`,'_self')"
+	onclick="javascript:window.open(`{{route('trash-industrial-shop',['id'=>$vatPayer->id])}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						<center>Restore Business</center>
+						<center>Restore Shop</center>
 					</h3>
 
 				</div>
@@ -113,11 +116,11 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		@if(url()->previous()==route('payer-registration',['requestFrom'=>'business']))
+		@if(url()->previous()==route('payer-registration',['requestFrom'=>'shoprent']))
 		<div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
-				Click here to add new business
+				Click here to add new Shop Rent
 				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -181,23 +184,25 @@
 					<div class="pt-1">
 						<h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
 					</div>
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="col-xl-8 order-xl-1">
-		<div class="card bg-secondary shadow mb-5 hide" id="business-registration">
+		<div class="card bg-secondary shadow mb-5 hide" id="shop-rent-registration">
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Business')}}</span></h3>
+						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add Shop')}}</span></h3>
 					</div>
 
 				</div>
 			</div>
 			<div class="card-body">
-				{{-- Industrial shop registration form --}}
-				<form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
+				{{--Shop rent registration form --}}
+				<form method="POST" action="{{route('shop-rent-register',['id'=> $vatPayer->id])}}">
 					@csrf
 					<div class="form-group row pt-3">
 						<label for="example-text-input"
@@ -232,7 +237,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Shop Name')}}</label>
 						<div class="col-md-10 ">
 							<input class="form-control @error('businessName') is-invalid  @enderror" type="text"
 								value="{{old('businessName')}}" id="businessName" name="businessName">
@@ -243,29 +248,7 @@
 							@enderror
 						</div>
 					</div>
-					<div class="form-group row">
-						<label for="business-type"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Business type')}}</label>
-						<div class="col-md-10">
-
-							<select id="type" name="type" class="form-control @error('type') is-invalid  @enderror">
-								<option value=""></option>
-								{{-- only for testing need to implement Ajax searchBuisness --}}
-								@foreach ($businessTypes as $type)
-								<option value="{{$type->id}}">{{$type->description}}
-									{{'('.$type->ranges->start_value .'-'. $type->ranges->end_value .')'}}
-								</option>
-								@endforeach
-
-
-							</select>
-							@error('type')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
+					
 					<div class="form-group row">
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
@@ -324,7 +307,7 @@
 
 
 				</form>
-				{{-- end of Industrial shop registration form --}}
+				{{-- end of shop registration form --}}
 			</div>
 		</div>
 
@@ -333,7 +316,8 @@
 				<div class="row align-items-center">
 					<div class="col">
 						<h3 class="mb-0">
-							<span class="text-uppercase">{{$vatPayer->first_name}} '{{__('menu.s businesses')}}</span>
+							<span class="text-uppercase">{{$vatPayer->first_name}}
+								'{{__('menu.s shops')}}</span>
 						</h3>
 						<hr class="mt-4 mb-0">
 					</div>
@@ -341,12 +325,12 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					{{-- Business shops table --}}
-					<table id="business_shops_table" class="table">
+					{{-- shops table --}}
+					<table id="shop_rent_table" class="table">
 						<thead class="thead-light">
 							<tr>
 								<th style="width:250px;">{{__('menu.Assesment No.')}}</th>
-								<th style="width:300px;">{{__('menu.Business Name')}}</th>
+								<th style="width:300px;">{{__('menu.Shop Name')}}</th>
 								<th>{{__('menu.Shop Phone')}}</th>
 								<th></th>
 							</tr>
@@ -357,7 +341,7 @@
 										placeholder="{{__('menu.Search Assesment No.')}}" />
 								</th>
 								<th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-										placeholder="{{__('menu.Search Business Name')}}" />
+										placeholder="{{__('menu.Search Shop Name')}}" />
 								</th>
 								<th><input type="text" class="form-control form-control-sm" id="searchPhone"
 										placeholder="{{__('menu.Search Phone')}}" />
@@ -365,13 +349,13 @@
 
 
 							</tr>
-						</thead>
-						<tbody>
-							@foreach ($vatPayer->buisness as $buisness)
+                        </thead>
+                        <tbody>
+							@foreach ($vatPayer->shoprent as $shoprent)
 							<tr>
-								<td class="text-center">{{$buisness->id}}</td>
-								<td>{{$buisness->shop_name}}</td>
-								<td>{{$buisness->phone}}</td>
+								<td class="text-center">{{$shoprent->id}}</td>
+								<td>{{$shoprent->shop_name}}</td>
+								<td>{{$shoprent->phone}}</td>
 								<td class="text-right">
 									<div class="dropdown">
 										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -380,16 +364,18 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											<a class="dropdown-item"
-												href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
+												href="{{route('industrial-payments',['shop_id'=>$shoprent->id])}}">
 												{{__('menu.View Payments')}}</a>
-
-											<form action="{{route('remove-business',['shop_id'=>$buisness->id])}}"
+											{{-- <a class="dropdown-item"
+												href="{{route('remove-business',['shop_id'=>$shoprent->id])}}">
+											{{__('menu.Remove Buisness')}}</a> --}}
+											<form
+												action="{{route('remove-inudstrial-shop',['shop_id'=>$shoprent->id])}}"
 												method="POST">
 												@csrf
 												@method('delete')
 												<input type="submit" value="{{__('menu.Remove Buisness')}}"
 													class="dropdown-item">
-
 											</form>
 										</div>
 
@@ -398,10 +384,11 @@
 							</tr>
 							@endforeach
 						</tbody>
+					 
 						<thead class="thead-light">
 							<tr>
 								<th>{{__('menu.Assesment No.')}}</th>
-								<th>{{__('menu.Business Name')}}</th>
+								<th>{{__('menu.Shop Name')}}</th>
 								<th>{{__('menu.Shop Phone')}}</th>
 								<th></th>
 							</tr>
@@ -431,7 +418,7 @@
 
 
 
-        var id = '#business_shops_table';                      //data table id
+        var id = '#shop_rent_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -468,12 +455,12 @@
                 .draw();
         });
         //toggle transition for buisness registration form
-        $("#business-registration").hide();
+        $("#shop-rent-registration").hide();
         $(".add-buissness").on('click',function(){
-            $("#business-registration").slideToggle("slow");
+            $("#shop-rent-registration").slideToggle("slow");
         });
         $('#type').select2({
-            placeholder: "Select business type here",
+            placeholder: "Select industrial type here",
             allowClear: true,
         });
         $('#annualAssesmentAmount').blur(function(){
@@ -489,10 +476,10 @@
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             });
             $('#type').select2({
-                placeholder: "Select business type here",
+                placeholder: "Select industrial type here",
             allowClear: true,
             ajax: {
-                url: "{{route('get-business-types')}}",
+                url: "{{route('get-industrial-types')}}",
                 dataType: 'json',
                 type:"POST",
                 delay: 250,
@@ -504,6 +491,7 @@
                         };
                 },
                 processResults: function (data) {
+                    
                      return {
                          results:$.map(data.results, function (obj) {
                             return {id:obj.id,text:obj.description}
@@ -512,22 +500,8 @@
                      
                 },
                 cache: true
-            },
-            // minimumInputLength: 1,
-        
+            },        
             });
-            // $.ajax({
-            //     url: "{{route('get-business-types')}}",
-            //     type:"POST",
-            //     data: { assessmentAmmount : assessmentAmmount },
-            //     success:function(data){
-            //                 // alert(data);
-            //                 console.log(data);
-            //                 $('ul#select2-type-results').empty()
-            //     },error:function(){ 
-            //                 alert("error!!!!");
-            //             }
-            // });
            }
         })
             

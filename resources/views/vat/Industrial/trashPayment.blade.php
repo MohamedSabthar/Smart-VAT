@@ -135,61 +135,63 @@
 
 @section('pageContent')
 <div class="row ">
-    <div class = "col-xl-12 order-xl-1">
-        <div class = "card shadow">
-            <div class ="card-header bg-white border-0">
-                <div class ="row align-item-center">
-                    <div class ="col">
+    <div class="col-xl-12 order-xl-1">
+        <div class="card shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-item-center">
+                    <div class="col">
                         <h3 class="mb-0">
                             <span class="text-uppercase">{{__('menu.Trash Payments')}}</span>
                         </h3>
-                        <hr class="mt-4 mb-0">   
+                        <hr class="mt-4 mb-0">
                     </div>
                 </div>
             </div>
-        <div class = "card-body">
-            <div class = "table-responsive">
-            <table id="trash_payment" class="table">
-                <thead class="thead-light">
-                     <tr>
-                               
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="trash_payment" class="table">
+                        <thead class="thead-light">
+                            <tr>
+
                                 <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Business Name')}}</th>
+                                <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-                               
+
                                 <th></th>
-                    </tr>
-                </thead>
-                    <thead id="search_inputs">
-                        <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                            </tr>
+                        </thead>
+                        <thead id="search_inputs">
+                            <tr>
+                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
-                            </th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                        placeholder="{{__('menu.Search Business Name')}}" />
-                            </th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
-                                        placeholder="{{__('menu.Search Payment date')}}" />
-                            </th>
-                            
+                                </th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                        placeholder="{{__('menu.Search Assesment No.')}}" />
+                                </th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
+                                        placeholder="{{__('menu.Search Shop ')}}" />
+                                </th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchPhone"
+                                        placeholder="{{__('menu.Search Phone')}}" />
+                                </th>
 
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                            @foreach ($businessTaxPyament as $payment)
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($industrialTaxPyament as $payment)
                             <tr>
                                 <td>{{$payment->id}}</td>
-                                <td>{{$payment->businessTaxShop->shop_name}}</td>
+                                <td>{{$payment->industrialTaxShop->shop_name}}</td>
                                 <td>{{$payment->created_at}}</td>
-                                <td>{{$payment->payment}}</td>
-                                <td>{!!$payment->assinged_to_court ? "Yes" : "No" !!}</td>
+                                <td>{{number_format($payment->payment,2)}}</td>
+
                                 <td>
-                                <a class= "btn btn-outline-success btn-sm " href="{{route('restore-payment',['id'=>$payment->id])}}" >
-                                                {{__('menu.Restore')}}</a> 
+                                    <a class="btn btn-outline-success btn-sm "
+                                        href="{{route('restore-industrial-payment',['id'=>$payment->id])}}">
+                                        {{__('menu.Restore')}}</a>
                                 </td>
                                 <td class="text-right">
                                     <div class="dropdown">
@@ -206,30 +208,29 @@
 
                                     </div>
                                 </td>
-                                
+
                             </tr>
                             @endforeach
                         </tbody>
-                        
+
                         <thead class="thead-light">
                             <tr>
-                                
+
                                 <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Business Name')}}</th>
+                                <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-                                
+
                                 <th></th>
                             </tr>
                         </thead>
-                    </table> 
+                    </table>
+
+                </div>
 
             </div>
-
-        </div>    
-        </div>    
+        </div>
     </div>
 </div>
 
@@ -262,26 +263,31 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-            $('#searchaAssesmentNo').on( 'keyup', function () { 
+            $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
 
-            $('#searchBuisness').on( 'keyup', function () { 
+            $('#searchAssesmentNo').on( 'keyup', function () { 
             table
-                .columns( 1 )
+                .columns( 0 )
                 .search( this.value )
                 .draw();
             });
             $('#searchPaymentDate').on( 'keyup', function () { 
             table
-                .columns( 2 )
+                .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            
+            $('#selectCourt').on( 'change', function () { 
+            table
+                .columns( 3 )
+                .search( this.value )
+                .draw();
+            });
       } );
 
 </script>
