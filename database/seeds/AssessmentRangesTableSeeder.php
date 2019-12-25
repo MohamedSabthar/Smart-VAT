@@ -47,5 +47,23 @@ class AssessmentRangesTableSeeder extends Seeder
             [ 'start_value' => 15000,
             'vat_id' => 1]
         );
+
+        // //Industrial tax ranges vat_id=2
+        DB::table('assessment_ranges')->insert(
+            ['start_value' => 0,
+            'end_value' => 1500,
+            'vat_id' => 2]
+        );
+
+        DB::table('assessment_ranges')->insert(
+            ['start_value' => 1500,
+            'end_value' => 2500,
+            'vat_id' => 2]
+        );
+
+        DB::table('assessment_ranges')->insert(
+            ['start_value' => 2500,
+            'vat_id' => 2]
+        );
     }
 }

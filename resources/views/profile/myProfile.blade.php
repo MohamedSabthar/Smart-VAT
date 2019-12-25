@@ -45,9 +45,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+				<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 				<div class="d-flex justify-content-between">
-					<a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+					<a href="#" class="btn btn-sm btn-info mr-4" id="update-employee"><span class="d-block">Update</span> Profile</a>
 					<a href="#" class="btn btn-sm btn-default float-right">Message</a>
 				</div>
 			</div>
@@ -105,6 +105,82 @@
 				</div>
 			</div>
 			<div class="card-body">
+			
+					
+<div class="col-xl-8 order-xl-1">
+		
+            
+                   
+                
+            <div class="card-body">
+			<div id="Employee-Update">
+                    <form method="POST" action="#">
+					<h6 class="heading-small text-muted mb-4">User information</h6>
+					
+		
+					<!-- popup update -->
+					<!-- punsara edits-->
+                        @csrf
+						<div class="form-group row">
+                            <label for="example-text-input"	
+                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Name')}}</label>
+                            <div class="col-md-7 ">
+                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
+                                    value="{{old('name')}}" id="name" name="name">
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row pt-3">
+                            <label for="example-text-input"
+                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Address')}}</label>
+                            <div class="col-md-7 ">
+                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
+                                    value="{{old('name')}}" id="name" name="name" autofocus>
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Email')}}</label>
+                            <div class="col-md-7 ">
+                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
+                                    value="{{old('name')}}" id="name" name="name">
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+						
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
+                            <div class="col-md-7 ">
+                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
+                                    value="{{old('name')}}" id="name" name="name">
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class=" btn btn-primary float-right" value="Submit" type="submit">
+                        </div>
+                    </form>
+
 				<form>
 					<h6 class="heading-small text-muted mb-4">{{__('menu.User information')}}</h6>
 					<div class="pl-lg-4">
@@ -181,7 +257,19 @@
 							</div>
 						</div>
 					</div>
-				</form>
+            
+            
+
+
+
+
+
+
+
+
+
+					
+				
 				<form method="POST" action="{{ route('password.change',['userId'=>Auth::user()->id]) }}">
 					@csrf
 					<hr class="my-4">
@@ -245,7 +333,7 @@
 				</form>
 			</div>
 
-		</div>
+		
 
 
 	</div>
@@ -253,4 +341,35 @@
 </div>
 </div>
 
+
+
+
 @endsection
+
+
+@push('script')
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('js/select2.js')}}"></script>
+
+<script>
+    $(document).ready(function() {
+
+        
+
+
+            //toggle transition for Update Employee form
+            $("#Employee-Update").hide();
+            $("#update-employee").on('click',function(){
+                $("#Employee-Update").slideToggle("slow");
+            });
+
+
+            $('#type').select2();
+            
+      } );
+
+      
+
+</script>
+@endpush

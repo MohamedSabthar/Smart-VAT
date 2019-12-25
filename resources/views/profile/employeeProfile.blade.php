@@ -12,7 +12,8 @@
 	{{-- Alert notifications --}}
 	<div class="col">
 		<h1 class="display-2 text-white text-uppercase">{{$employee->name}}'{{__('menu.s Profile')}}</h1>
-		<p class="text-white mt-0 mb-5">{{__('menu.Role')}} : <span class="text-uppercase">{{$employee->role}}</span></p>
+		<p class="text-white mt-0 mb-5">{{__('menu.Role')}} : <span class="text-uppercase">{{$employee->role}}</span>
+		</p>
 		@if (session('status'))
 		<div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
@@ -168,7 +169,8 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="example-time-input" class="col-md-2 col-form-label form-control-label">{{__('menu.Phone No')}}</label>
+							<label for="example-time-input"
+								class="col-md-2 col-form-label form-control-label">{{__('menu.Phone No')}}</label>
 							<div class="col-md-10">
 								<input class="form-control @error('phone') is-invalid @enderror" type="text"
 									value="{{old('phone',$employee->phone)}}" id="phone" name="phone">
@@ -182,7 +184,7 @@
 						<div class="form-group">
 							<button class="btn btn-primary float-right" data-toggle="modal"
 								onclick="javascript:event.preventDefault()"
-								data-target="#confirm-update-employee">{{__('menu.Assign')}}</button>
+								data-target="#confirm-update-employee">{{__('menu.Update')}}</button>
 						</div>
 
 						{{-- Confirmation modal --}}
