@@ -186,7 +186,7 @@
                                 <td>{{$payment->id}}</td>
                                 <td>{{$payment->industrialTaxShop->shop_name}}</td>
                                 <td>{{$payment->created_at}}</td>
-                                <td>{{$payment->payment}}</td>
+                                <td>{{number_format($payment->payment,2)}}</td>
 
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
