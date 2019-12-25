@@ -21,7 +21,7 @@ class CreateVatPayersTable extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->string('full_name')->virtualAs('concat_ws(first_name," ", middle_name, " ", last_name)');  //virutal(derived) attribulte full_name
+            $table->string('full_name')->virtualAs('concat_ws(" ",first_name,middle_name,last_name)');  //virutal(derived) attribulte full_name
             $table->string('door_no');
             $table->string('street');
             $table->string('city');
