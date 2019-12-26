@@ -155,36 +155,37 @@
 					</thead>
 					<tbody>
 
-						{{-- @foreach ($payers as $payer)
+						@foreach ($ticketPayers as $payer)
 						<tr>
 							<td>{{$payer->nic}}</th>
-						<td>{{$payer->full_name}}</td>
-						<td>{{$payer->address}}</td>
-						<td>{{$payer->email}}</td>
-						@if (Auth::user()->role=='admin')
-						<td>{{$payer->user->name}}</td>
-						@endif
-						<td class="text-right">
-							<div class="dropdown">
-								<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<i class="fas fa-ellipsis-v"></i>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-									<a class="dropdown-item"
-										href="{{route('entertainment-profile',['id'=>$payer->id])}}">View profile</a>
-								</div>
+							<td>{{$payer->full_name}}</td>
+							<td>{{$payer->address}}</td>
+							<td>{{$payer->email}}</td>
+							@if (Auth::user()->role=='admin')
+							<td>{{$payer->user->name}}</td>
+							@endif
+							<td class="text-right">
+								<div class="dropdown">
+									<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class="fas fa-ellipsis-v"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+										<a class="dropdown-item"
+											href="{{route('entertainment-profile',['id'=>$payer->id])}} ">View
+											profile</a>
+									</div>
 
-							</div>
-						</td>
+								</div>
+							</td>
 
 
 						</tr>
-						@endforeach --}}
+						@endforeach
 
 
 					</tbody>
-					<thead class="thead-light">
+					<thead class=" thead-light">
 						<tr>
 							<th>{{__('menu.User ID')}}</th>
 							<th>{{__('menu.VAT Payer Name')}}</th>

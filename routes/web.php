@@ -127,8 +127,15 @@ Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@r
 
 
 //shop rent tax
-Route::get('/shop-rent/profile/{id}','vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
-Route::post('/shop-rent/shop-register/{id}','vat\ShopRentTaxController@registerShopRent')->name('shop-rent-register');
+Route::get('/shop-rent/profile/{id}', 'vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
+Route::post('/shop-rent/shop-register/{id}', 'vat\ShopRentTaxController@registerShopRent')->name('shop-rent-register');
+
+/**
+ * Routes related to entertainment tax
+ *
+ * all entertainment tax related tax routes should starts with "/entertainment"
+ */
+Route::get('/entertainment/profile/{id}', 'vat\EntertainmentTaxController@entertainmentProfile')->name('entertainment-profile');
 
 /**
  * temperory testing routes

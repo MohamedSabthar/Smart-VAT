@@ -189,5 +189,8 @@ return [
     //industrial profile
     's industrial shops' =>'s industrial shops',
     'Shop Name' => 'Shop Name',
-    'Add Industrial shop'=>'Add Industrial shop'
+    'Add Industrial shop'=>'Add Industrial shop',
+
+    //entertainment profile
+    'View history'=>'View history'
 ];
