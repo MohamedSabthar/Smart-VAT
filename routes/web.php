@@ -125,6 +125,11 @@ Route::delete('/industrial/industrial-remove/{shop_id}', 'vat\IndustrialTaxContr
 Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxController@trashIndustrialShop')->name('trash-industrial-shop');// trash business
 Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore business
 
+
+//shop rent tax
+Route::get('/shop-rent/profile/{id}','vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
+Route::post('/shop-rent/shop-register/{id}','vat\ShopRentTaxController@registerShopRent')->name('shop-rent-register');
+
 /**
  * temperory testing routes
  */
