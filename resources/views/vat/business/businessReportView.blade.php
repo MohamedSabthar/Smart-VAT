@@ -37,7 +37,7 @@
                 <tbody>
                     @foreach ($records as $records)
                     <tr>
-                        <td class="text-center">{{$records->payment}}</td>
+                        <td class="text-center">Rs. {{$records->payment}}.00</td>
                         <td class="text-center">{{$records->shop_id}}</td>
                         <td class="text-center">{{$records->payer_id}}</td>
                         <td class="text-center">{{$records->vatPayer->first_name}}</td>

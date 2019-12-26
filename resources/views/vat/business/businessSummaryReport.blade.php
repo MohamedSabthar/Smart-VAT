@@ -39,7 +39,7 @@
                         <td class="text-center">{{$records->businessTaxShop->businessType->description}}</td>
                         <td class="text-center">{{ $records->shop_id }}</td>
                         <td class="text-center">{{ $records->vatPayer->first_name }}</td>
-                        <td class="text-center">{{ $records->payment }}</td>
+                        <td class="text-center">Rs. {{ $records->payment }}.00</td>
                     </tr>
                     @endforeach
                     
