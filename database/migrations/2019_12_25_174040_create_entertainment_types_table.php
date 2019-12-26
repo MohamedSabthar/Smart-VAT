@@ -15,9 +15,8 @@ class CreateEntertainmentTypesTable extends Migration
     {
         Schema::create('entertainment_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->double('assessment_ammount');
-            $table->bigInteger('assessment_range_id')->unsigned();
-            $table->foreign('assessment_range_id')->references('id')->on('assessment_ranges');
+            $table->string('description');
+            $table->double('vat_percentage');
             $table->timestamps();
         });
     }
