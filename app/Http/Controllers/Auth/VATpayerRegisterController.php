@@ -17,6 +17,12 @@ use Auth;
 
 class VATpayerRegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'=>'verified']);  //checking for email verification
+    }
+
+    
     public function viewFrom($requestFrom)
     {
         //$vatPayer = Vat_payer::find($id);
