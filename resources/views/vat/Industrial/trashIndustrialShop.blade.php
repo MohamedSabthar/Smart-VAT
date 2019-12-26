@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Trash Business')
+@section('title','Trash Industrial Shop')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -142,7 +142,7 @@
                 <div class="row align-item-center">
                     <div class="col">
                         <h3 class="mb-0">
-                            <span class="text-uppercase">{{__('menu.Trash Business')}}</span>
+                            <span class="text-uppercase">{{__('menu.Trash Industrial Shop')}}</span>
                         </h3>
                         <hr class="mt-4 mb-0">
                     </div>
@@ -150,10 +150,9 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="trash_business" class="table">
+                    <table id="trash_industrial" class="table">
                         <thead class="thead-light">
                             <tr>
-
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
@@ -167,7 +166,7 @@
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                        placeholder="{{__('menu.Search Business Name')}}" />
+                                        placeholder="{{__('menu.Search Industrial Shop')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPhone"
                                         placeholder="{{__('menu.Search Phone')}}" />
@@ -177,15 +176,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($businessTaxShop as $business)
+                            @foreach ($industrialTaxShop as $industrial)
                             <tr>
-                                <td>{{$business->id}}</td>
-                                <td>{{$business->shop_name}}</td>
-                                <td>{{$business->phone}}</td>
+                                <td>{{$industrial->id}}</td>
+                                <td>{{$industrial->shop_name}}</td>
+                                <td>{{$industrial->phone}}</td>
 
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-business',['id'=>$business->id])}}">
+                                        href="{{route('restore-industrial-shop',['id'=>$industrial->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
 
@@ -223,7 +222,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#trash_business';                      //data table id
+        var id = '#trash_industrial';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
