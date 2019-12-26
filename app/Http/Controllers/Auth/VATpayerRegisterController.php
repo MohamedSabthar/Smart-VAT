@@ -53,6 +53,8 @@ class VATpayerRegisterController extends Controller
         } elseif ($requestFrom=='industrial') {
             // redirecting to add a industrial shop for the registered VAT Payer with success notification
             return redirect()->route('industrial-profile', ['id'=>$vatPayer->id])->with('status', ' New Payer registerd successfully');
+        } elseif ($requestFrom == 'shoprent'){
+            return redirect()->route('shop-rent-profile',['id'=>$vatPayer->id])->with('status','New Payer registerd successfully');
         }
     }
 

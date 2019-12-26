@@ -17,7 +17,10 @@ class Vat_payer extends Model
     {
         return $this->hasMany('App\Industrial_tax_shop', 'payer_id'); //one VAT payer may have many industrial shops
     }
-
+    public function shoprent()
+    {
+        return $this->hasMany('App\Shop_rent_tax', 'payer_id'); //one VAT payer may have many shop rent 
+    }
     public function user()
     {
         return $this->belongsTo('App\User', 'employee_id'); // a vat payer registered by an employee
