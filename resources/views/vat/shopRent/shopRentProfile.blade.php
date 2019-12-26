@@ -364,13 +364,11 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											<a class="dropdown-item"
-												href="{{route('industrial-payments',['shop_id'=>$shoprent->id])}}">
+												href="{{route('shop-rent-payments',['shop_id'=>$shoprent->id])}}">
 												{{__('menu.View Payments')}}</a>
-											{{-- <a class="dropdown-item"
-												href="{{route('remove-business',['shop_id'=>$shoprent->id])}}">
-											{{__('menu.Remove Buisness')}}</a> --}}
+											
 											<form
-												action="{{route('remove-inudstrial-shop',['shop_id'=>$shoprent->id])}}"
+												action="{{route('remove-shop-rent',['shop_id'=>$shoprent->id])}}"
 												method="POST">
 												@csrf
 												@method('delete')

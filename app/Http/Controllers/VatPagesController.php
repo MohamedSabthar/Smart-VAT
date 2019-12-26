@@ -57,9 +57,9 @@ class VatPagesController extends Controller
     {
         return view('vat.landAuction');
     }
-    public function entertancementandperformance()
+    public function entertainment()
     {
-        return view('vat.entertainmentPerformance');
+        return view('vat.entertainment.entertainment');
     }
     public function shoprent()
     {

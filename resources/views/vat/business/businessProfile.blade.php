@@ -3,6 +3,7 @@
 @section('title','Business Profile')
 
 @push('css')
+<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
 @endpush
 
@@ -216,9 +217,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
-								type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
-								name="annualAssesmentAmount">
+							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror" type="text"
+								value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount" name="annualAssesmentAmount">
 
 							<span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
 								<strong>dfafjkladfj</strong>
@@ -270,8 +270,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('phoneno') is-invalid  @enderror" type="text"
-								value="{{old('phoneno')}}" id="phoneno" name="phoneno">
+							<input class="form-control @error('phoneno') is-invalid  @enderror" type="text" value="{{old('phoneno')}}"
+								id="phoneno" name="phoneno">
 							@error('phoneno')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -283,8 +283,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('doorno') is-invalid  @enderror" type="text"
-								value="{{old('doorno')}}" id="doorno" name="doorno">
+							<input class="form-control @error('doorno') is-invalid  @enderror" type="text" value="{{old('doorno')}}"
+								id="doorno" name="doorno">
 							@error('doorno')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -296,8 +296,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('street') is-invalid  @enderror" type="text"
-								value="{{old('street')}}" id="street" name="street">
+							<input class="form-control @error('street') is-invalid  @enderror" type="text" value="{{old('street')}}"
+								id="street" name="street">
 							@error('street')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -309,8 +309,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('city') is-invalid  @enderror" type="text"
-								value="{{old('city')}}" id="city" name="city">
+							<input class="form-control @error('city') is-invalid  @enderror" type="text" value="{{old('city')}}"
+								id="city" name="city">
 							@error('city')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -374,21 +374,18 @@
 								<td>{{$buisness->phone}}</td>
 								<td class="text-right">
 									<div class="dropdown">
-										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
 											<i class="fas fa-ellipsis-v"></i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item"
-												href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
+											<a class="dropdown-item" href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
 												{{__('menu.View Payments')}}</a>
 
-											<form action="{{route('remove-business',['shop_id'=>$buisness->id])}}"
-												method="POST">
+											<form action="{{route('remove-business',['shop_id'=>$buisness->id])}}" method="POST">
 												@csrf
 												@method('delete')
-												<input type="submit" value="{{__('menu.Remove Buisness')}}"
-													class="dropdown-item">
+												<input type="submit" value="{{__('menu.Remove Buisness')}}" class="dropdown-item">
 
 											</form>
 										</div>

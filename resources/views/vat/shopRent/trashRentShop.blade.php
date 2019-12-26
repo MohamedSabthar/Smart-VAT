@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Trash Industrial Shop')
+@section('title','Trash Shop Rent')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -142,7 +142,7 @@
                 <div class="row align-item-center">
                     <div class="col">
                         <h3 class="mb-0">
-                            <span class="text-uppercase">{{__('menu.Trash Industrial Shop')}}</span>
+                            <span class="text-uppercase">{{__('menu.Trash Shop Rent')}}</span>
                         </h3>
                         <hr class="mt-4 mb-0">
                     </div>
@@ -176,15 +176,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($industrialTaxShop as $industrial)
+                            @foreach ($shopRentTax as $shoprent)
                             <tr>
-                                <td>{{$industrial->id}}</td>
-                                <td>{{$industrial->shop_name}}</td>
-                                <td>{{$industrial->phone}}</td>
+                                <td>{{$shoprent->id}}</td>
+                                <td>{{$shoprent->shop_name}}</td>
+                                <td>{{$shoprent->phone}}</td>
 
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-industrial-shop',['id'=>$industrial->id])}}">
+                                        href="{{route('restore-shop-rent',['id'=>$shoprent->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
 

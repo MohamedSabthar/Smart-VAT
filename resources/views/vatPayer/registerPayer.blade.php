@@ -165,8 +165,8 @@
 						<label for="example-week-input"
 							class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
 						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text"
-								value="{{old('nic')}}" id="nic" name="nic">
+							<input class="form-control @error('nic') is-invalid @enderror" type="text" value="{{old('nic')}}" id="nic"
+								name="nic">
 							<span id="error_nic" class="invalid-feedback" role="alert">
 
 							</span>
@@ -223,8 +223,8 @@
 						<label for="example-email-input"
 							class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
 						<div class="col-md-10">
-							<input class="form-control @error('email') is-invalid @enderror" type="email"
-								value="{{old('email')}}" id="email" name="email">
+							<input class="form-control @error('email') is-invalid @enderror" type="email" value="{{old('email')}}"
+								id="email" name="email">
 							@error('email')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -233,14 +233,12 @@
 						</div>
 					</div>
 
-
-
 					<div class="form-group row">
 						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">
 							{{__('menu.Phone No')}}</label>
 						<div class="col-md-10">
-							<input class="form-control @error('phone') is-invalid @enderror" type="text"
-								value="{{old('phone')}}" id="phone" name="phone">
+							<input class="form-control @error('phone') is-invalid @enderror" type="text" value="{{old('phone')}}"
+								id="phone" name="phone">
 							@error('phone')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -254,8 +252,8 @@
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
 
 						<div class="col-md-10 ">
-							<input class="form-control @error('doorNo') is-invalid  @enderror" type="text"
-								value="{{old('doorNo')}}" id="doorNo" name="doorNo">
+							<input class="form-control @error('doorNo') is-invalid  @enderror" type="text" value="{{old('doorNo')}}"
+								id="doorNo" name="doorNo">
 							@error('doorNo')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -268,8 +266,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('street') is-invalid  @enderror" type="text"
-								value="{{old('street')}}" id="street" name="street">
+							<input class="form-control @error('street') is-invalid  @enderror" type="text" value="{{old('street')}}"
+								id="street" name="street">
 							@error('street')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -282,8 +280,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('city') is-invalid  @enderror" type="text"
-								value="{{old('city')}}" id="city" name="city">
+							<input class="form-control @error('city') is-invalid  @enderror" type="text" value="{{old('city')}}"
+								id="city" name="city">
 							@error('city')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -292,69 +290,52 @@
 						</div>
 					</div>
 
-					{{-- Button --}}
-					{{-- <div class="form-group">
-						<input class=" btn btn-primary float-right" value="{{__('menu.Registration')}}"
-					id="registration" name="registration" type="submit" data-toggle="modal"
-					data-target="#confirm-register-business">
-			</div>
 
-			<div class="form-group">
-				<button class="btn btn-primary float-right" data-toggle="modal"
-					onclick="javascript:event.preventDefault()"
-					data-target="#confirm-register-business">{{__('menu.Registration')}}</button>
-			</div> --}}
-
-			<!-- button with onclick event that triggers the form validation. If the form is valid, triggers click of second button -->
-			<div class="form-group">
-				<button type="submit" id="register" value="Submit" class="btn btn-primary float-right"
-					onclick="if(formIsValid() $('#triggerModal').click();)">Register</button>
-			</div>
-
-			<!-- hidden submit button -->
-			<div class="form-group">
-				<button type="submit" id="triggerModal" hidden value="Submit" class="btn btn-info btn-lg"
-					data-toggle="modal" data-target="#confirm-register-business">Submit2</button>
-			</div>
-
-			{{-- Confirmation modal for adding business for the registered VAT payer--}}
-			<div class="modal fade" id="confirm-register-business" tabindex="-1" role="dialog"
-				aria-labelledby="modal-default" aria-hidden="true">
-				<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-					<div class="modal-content">
-
-						<div class="modal-header">
-							<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">×</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<strong>This VAT payer is alredy registered</strong>
-							<p>Are you wish to a add business ? </p>
-						</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-link"
-								onclick="javascript:location.reload()">Cancel</button>
-							{{-- <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal" onclick="javascript:event.preventDefault()" 
-									data-target="#confirm-register-business"
-										onclick="javascript:location.replace('{{route('business-profile',['id'=>'$vatPayer->nic'])}}').submit();">
-							{{__('menu.Add Business')}}</button> --}}
-							<a href="" id="redirect" class="btn  btn-primary ml-auto">{{__('menu.Add Business')}}</a>
-						</div>
-
+					<!-- button with onclick event that triggers the form validation. If the form is valid, triggers click of second button -->
+					<div class="form-group">
+						<button type="submit" id="register" value="Submit" class="btn btn-primary float-right"
+							onclick="if(formIsValid() $('#triggerModal').click();)">Register</button>
 					</div>
-				</div>
+
+					<!-- hidden submit button -->
+					<div class="form-group">
+						<button type="submit" id="triggerModal" hidden value="Submit" class="btn btn-info btn-lg"
+							data-toggle="modal" data-target="#confirm-register-business">Submit2</button>
+					</div>
+
+					{{-- Confirmation modal for adding business for the registered VAT payer--}}
+					<div class="modal fade" id="confirm-register-business" tabindex="-1" role="dialog"
+						aria-labelledby="modal-default" aria-hidden="true">
+						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<strong>This VAT payer is alredy registered</strong>
+									<p>Are you wish to add a New Business/Shop ? </p>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-link" onclick="javascript:location.reload()">Cancel</button>
+									<a href="" id="redirect" class="btn  btn-primary ml-auto">{{__('menu.Add Business')}}</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					{{-- End of confirmation modal --}}
+				</form>
+
 			</div>
-			{{-- End of confirmation modal --}}
-			</form>
+
 
 		</div>
-
-
 	</div>
-</div>
 </div>
 
 @endsection
@@ -367,18 +348,6 @@
 <script>
 	$(document).ready(function(){
 
-
-
-
-
-
-
-
-
-
-
-
-		
 		$('#nic').blur(function(){
 			var error_nic = '';
 			var nic = " ";
@@ -409,7 +378,7 @@
 					{
 						$('#nic').addClass('is-invalid');
 						$('#error_nic').html('<strong>NIC already available</strong>');
-						$('#redirect').attr("href","/business/profile/"+result.id);
+						$('#redirect').attr("href","/{{ app('request')->requestFrom }}/profile/"+result.id);
 						$('#confirm-register-business').modal('show');
 						$('#register').attr('disabled', true);
 					}
