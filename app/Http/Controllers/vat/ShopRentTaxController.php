@@ -18,7 +18,6 @@ class ShopRentTaxController extends Controller
     public function shoprentProfile($id)
     {
         $vatPayer = Vat_payer::find($id);
-        //$industrialTypes = Industrial_type::all();
 
         return view('vat.shopRent.shopRentProfile', ['vatPayer'=>$vatPayer]);
     }
