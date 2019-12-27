@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Business_tax_shop;
 use App\Industrial_tax_shop;
+use App\Land_tax;
+use App\Shop_rent_tax;
+use App\Entertainment_tax_tickets_payment;
 
 class VatPagesController extends Controller
 {
@@ -37,7 +40,8 @@ class VatPagesController extends Controller
 
     public function land()
     {
-        return view('vat.land');
+        $payers = Land_tax::landTaxPayers();  //get all the vat_payers who pay Land tax
+        return view('vat.land.land',['payers'=>$payers]);
     }
 
     public function advertizement()
@@ -56,13 +60,15 @@ class VatPagesController extends Controller
     {
         return view('vat.landAuction');
     }
-    public function entertancementandperformance()
+    public function entertainment()
     {
-        return view('vat.entertainmentPerformance');
+        $ticketPayers = Entertainment_tax_tickets_payment::entertainmentTicketPayers(); //get all vat_payers who paid ticket taxes
+        return view('vat.entertainment.entertainment', ['ticketPayers' => $ticketPayers]);
     }
     public function shoprent()
     {
-        return view('vat.shopRent');
+        $payers = Shop_rent_tax::shopRentTaxPayers(); //get all vat_payers who pay industrial tax
+        return view('vat.shopRent.shopRent', ['payers' => $payers]);
     }
     public function threewheelpark()
     {

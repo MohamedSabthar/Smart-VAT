@@ -29,7 +29,7 @@ class UpdateVATpayerProfileRequest extends FormRequest
             // "full_name" and address instead
             'first_name' => ['required','alpha', 'string', 'max:255', Rule::unique('vat_payers')->ignore($this->id)],
             'Last_name' => ['required','alpha', 'string', 'max:255',Rule::unique('vat_payers')->ignore($this->id)],
-            'doorNo' =>['required','varchar','max:100'],                              
+            'doorNo' =>['required','numeric','max:100'],                              
             'street'=>['required','alpha', 'string', 'max:255'],
             'city'  =>['required','alpha', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('vat_payers')->ignore($this->id)],            //   Validate to be a unique email

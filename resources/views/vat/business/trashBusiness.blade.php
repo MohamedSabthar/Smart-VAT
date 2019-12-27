@@ -3,6 +3,7 @@
 @section('title','Trash Business')
 
 @push('css')
+<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
 @endpush
 
@@ -135,78 +136,78 @@
 
 @section('pageContent')
 <div class="row ">
-    <div class = "col-xl-12 order-xl-1">
-        <div class = "card shadow">
-            <div class ="card-header bg-white border-0">
-                <div class ="row align-item-center">
-                    <div class ="col">
+    <div class="col-xl-12 order-xl-1">
+        <div class="card shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-item-center">
+                    <div class="col">
                         <h3 class="mb-0">
                             <span class="text-uppercase">{{__('menu.Trash Business')}}</span>
                         </h3>
-                        <hr class="mt-4 mb-0">   
+                        <hr class="mt-4 mb-0">
                     </div>
                 </div>
             </div>
-        <div class = "card-body">
-            <div class = "table-responsive">
-            <table id="trash_business" class="table">
-                <thead class="thead-light">
-                     <tr>
-                               
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="trash_business" class="table">
+                        <thead class="thead-light">
+                            <tr>
+
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-                                <th></th>
-                    </tr>
-                </thead>
-                    <thead id="search_inputs">
-                        <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+
+                            </tr>
+                        </thead>
+                        <thead id="search_inputs">
+                            <tr>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
-                            </th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
+                                </th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
                                         placeholder="{{__('menu.Search Business Name')}}" />
-                            </th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchPhone"
+                                </th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchPhone"
                                         placeholder="{{__('menu.Search Phone')}}" />
-                            </th>
+                                </th>
 
 
-                        </tr>
-                    </thead>
-                    <tbody>
+                            </tr>
+                        </thead>
+                        <tbody>
                             @foreach ($businessTaxShop as $business)
                             <tr>
                                 <td>{{$business->id}}</td>
                                 <td>{{$business->shop_name}}</td>
                                 <td>{{$business->phone}}</td>
-                               
+
                                 <td>
-                                <a class= "btn btn-outline-success btn-sm " href="{{route('restore-business',['id'=>$business->id])}}" >
-                                                {{__('menu.Restore')}}</a> 
+                                    <a class="btn btn-outline-success btn-sm "
+                                        href="{{route('restore-business',['id'=>$business->id])}}">
+                                        {{__('menu.Restore')}}</a>
                                 </td>
-                                
+
                             </tr>
                             @endforeach
                         </tbody>
-                        
+
                         <thead class="thead-light">
                             <tr>
-                                
-                            <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-                                <th></th>
+
                             </tr>
                         </thead>
-                    </table> 
+                    </table>
+
+                </div>
 
             </div>
-
-        </div>    
-        </div>    
+        </div>
     </div>
 </div>
 
@@ -239,24 +240,25 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchAssesmentNo').on( 'keyup', function () { 
+            $('#searchaAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+            $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#selectCourt').on( 'change', function () { 
+            $('#searchPhone').on( 'keyup', function () { 
             table
-                .columns( 3 )
+                .columns( 2 )
                 .search( this.value )
                 .draw();
             });
+            
       } );
 
 </script>

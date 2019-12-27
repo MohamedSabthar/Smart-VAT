@@ -69,7 +69,6 @@ Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@regis
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
 Route::post('/business/payments/{shop_id}', 'vat\BusinessTaxController@reciveBusinessPayments')->name('receive-business-payments');
 Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
-Route::get('/business/payment-restore/{shop_id}', 'vat\BusinessTaxController@restorePayment')->name('restore-payment');//restore payment
 Route::post('/business/get-business-types', 'vat\BusinessTaxController@getBusinestypes')->name('get-business-types');
 Route::post('/business/check-payments', 'vat\BusinessTaxController@checkPayments')->name('check-business-payments'); //check all business payments for a given vat payer for quick payment option
 Route::get('/business/quick-payments', 'vat\BusinessTaxController@viewQuickPayments')->name('get-business-quick-payments');
@@ -80,7 +79,7 @@ Route::post('/business/report-pdf', 'vat\BusinessTaxController@pdf')->name('busi
 //business payment remove
 Route::delete('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
 Route::get('/business/payment-trash/{id}', 'vat\BusinessTaxController@trashPayment')->name('trash-payment');//trash business payment
-Route::get('/business/payment-restore/{id}', 'vat\BusinessTaxController@restorePayment')->name('restore-payment');// restore business
+Route::get('/business/payment-restore/{shop_id}', 'vat\BusinessTaxController@restorePayment')->name('restore-payment');//restore payment
 Route::get('/business/payment-remove-permanent/{id}', 'vat\BusinessTaxController@destory')->name('remove-payment-permanent');// permanent delete
 //business remove
 Route::delete('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
@@ -90,17 +89,6 @@ Route::get('/business/business-restore/{id}', 'vat\BusinessTaxController@restore
 //all business tax related tax routes should starts with "/buisness"
 Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); 
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
-/*
-*VAT Payer registration
-*/
-Route::get('/vat-payer', 'Auth\VATpayerRegisterController@viewFrom')->name('payer-registration');
-Route::post('/vat-payer/Payer-Register', 'Auth\VATpayerRegisterController@register')->name('vat-payer-registration');
-//Ajax url option
-Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->name('nic_available.check');
-
-
-
-Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
 
 /**
@@ -137,6 +125,30 @@ Route::get('/industrial/payment-restore/{id}', 'vat\IndustrialTaxController@rest
 Route::delete('/industrial/industrial-remove/{shop_id}', 'vat\IndustrialTaxController@removeIndustrialShop')->name('remove-inudstrial-shop'); // soft delete business route
 Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxController@trashIndustrialShop')->name('trash-industrial-shop');// trash business
 Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore business
+
+
+//shop rent tax
+Route::get('/shop-rent/profile/{id}', 'vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
+Route::post('/shop-rent/shop-register/{id}', 'vat\ShopRentTaxController@registerShopRent')->name('shop-rent-register');
+
+/**
+ * Routes related to entertainment tax
+ *
+ * all entertainment tax related tax routes should starts with "/entertainment"
+ */
+Route::get('/entertainment/payments/{id}', 'vat\EntertainmentTaxController@entertainmentPayments')->name('entertainment-payments');
+Route::post('/entertainment/payments/{id}', 'vat\EntertainmentTaxController@reciveEntertainmentPayments')->name('receive-entertainment-payments');
+
+/**
+ * Routes related to Land tax
+ * 
+ * all taxes related to land tax should starts with "/land"
+ */
+//Route::get('/land','vat\LandTaxController@veiwLandTax')->name('land');
+
+
+
+
 
 /**
  * temperory testing routes

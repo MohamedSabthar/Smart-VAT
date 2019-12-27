@@ -3,7 +3,6 @@
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
-
 @endpush
 
 @section('title','Dashboard')

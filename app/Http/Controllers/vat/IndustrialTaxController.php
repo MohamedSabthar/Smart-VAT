@@ -17,6 +17,13 @@ use App\Http\Requests\AddBusinessRequest;
 
 class IndustrialTaxController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'=>'verified']);
+        $this->middleware('vat');
+    }
+
+    
     private function calculateTax($anualWorth, $assessmentAmmount, $lastPaymentDate)
     {
         $currentDate = now()->toArray();

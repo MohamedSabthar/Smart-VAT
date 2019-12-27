@@ -168,15 +168,13 @@
                             <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                             </th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
-                                        placeholder="{{__('menu.Search Assesment No.')}}" />
-                            </th>
                             <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
                                         placeholder="{{__('menu.Search Business Name')}}" />
                             </th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchPhone"
-                                        placeholder="{{__('menu.Search Phone')}}" />
+                            <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
+                                        placeholder="{{__('menu.Search Payment date')}}" />
                             </th>
+                            
 
 
                         </tr>
@@ -264,31 +262,26 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-            $('#searchAssesmentNo').on( 'keyup', function () { 
+            $('#searchaAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
 
-            $('#searchAssesmentNo').on( 'keyup', function () { 
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-            });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+            $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#selectCourt').on( 'change', function () { 
+            $('#searchPaymentDate').on( 'keyup', function () { 
             table
-                .columns( 3 )
+                .columns( 2 )
                 .search( this.value )
                 .draw();
             });
+            
       } );
 
 </script>

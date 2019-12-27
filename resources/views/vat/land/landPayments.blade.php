@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Business Payment')
+@section('title','Land Payments')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -81,7 +81,7 @@
 
 
 <div class="col-xl-3 col-lg-6"
-    onclick="javascript:window.open(`{{route('trash-payment',['id'=>$businessTaxShop->payer->id])}}`,'_self')"
+    onclick="javascript:window.open(`{{route('trash-payment',['id'=>$landTaxShop->payer->id])}}`,'_self')"
     style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -120,7 +120,7 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="{{route('business-profile',['id'=>$businessTaxShop->payer->id])}}"
+                        <a href="{{route('business-profile',['id'=>$landTaxShop->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
                     </div>
                 </div>
@@ -162,9 +162,8 @@
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
                     <h1 style="font-weight: 400;">{{__('menu.Due Payment : Rs.')}} {{number_format($duePayment,2)}}</h1>
-                    <button class="btn btn-success mx-auto my-1" data-toggle="modal"
-                        onclick="javascript:event.preventDefault()"
-                        data-target="#confirm-business-payment">{{__('menu.Accept Payment')}}</button>
+                    <button class="btn btn-success mx-auto my-1"
+                        onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
 
                 </div>
             </div>
@@ -175,36 +174,6 @@
                 <input type="text" name="payment" value="{{$duePayment}}">
             </form>
             {{-- end of payment form --}}
-            {{-- Confirmation modal for adding business for the registered VAT payer--}}
-            <div class=" modal fade" id="confirm-business-payment" tabindex="-1" role="dialog"
-                aria-labelledby="modal-default" aria-hidden="true">
-                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                    <div class="modal-content">
-
-                        <div class="modal-header">
-                            <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-
-                            <p>Confirmation needed to add payment for <br>
-                                shop : {{$businessTaxShop->shop_name}} </p>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link"
-                                onclick="javascript:location.reload()">Cancel</button>
-                            <button type="button" id="redirect" class="btn  btn-primary ml-auto"
-                                onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            {{-- End of confirmation modal --}}
-
             @else
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
@@ -221,7 +190,6 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-0">{{__('menu.Payment History')}}</h3>
-                            <hr class="mt-4 mb-0">
                         </div>
                     </div>
                 </div>

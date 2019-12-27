@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVatPayersTable extends Migration
+class CreateLandTaxesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,25 @@ class CreateVatPayersTable extends Migration
      */
     public function up()
     {
-        Schema::create('vat_payers', function (Blueprint $table) {
+        Schema::create('land_taxes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('email')->unique();                              //vat_payers email address
-            $table->string('nic', 12);                                      //nic of vat_payer
-            $table->string('phone', 12);                                    //vat_payers's telephone number
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
-            $table->string('last_name');
-            $table->string('full_name')->virtualAs('concat_ws(" ",first_name,middle_name,last_name)');  //virutal(derived) attribulte full_name
+            /**
+             * enter the  correct streams
+             */
+            $table->string('registration_no');             // shop/buisness registration no
             $table->string('door_no');
             $table->string('street');
             $table->string('city');
             $table->string('address')->virtualAs('concat(door_no,", ",street,", ",city)');    //derived attribute Addrerss
+            $table->bigInteger('payer_id')->unsigned();                         // buisness/Shop owner
             $table->bigInteger('employee_id')->unsigned();
+            $table->foreign('payer_id')->references('id')->on('vat_payers');                    //payer id is FK of vat_payers table
             $table->foreign('employee_id')->references('id')->on('users');                    //employee id is FK of users table
-
-
+            
 
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
@@ -42,6 +42,6 @@ class CreateVatPayersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vat_payers');
+        Schema::dropIfExists('land_taxes');
     }
 }

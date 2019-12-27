@@ -3,6 +3,7 @@
 @section('title','Trash Payments')
 
 @push('css')
+<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
 @endpush
 
@@ -186,7 +187,7 @@
                                 <td>{{$payment->id}}</td>
                                 <td>{{$payment->industrialTaxShop->shop_name}}</td>
                                 <td>{{$payment->created_at}}</td>
-                                <td>{{$payment->payment}}</td>
+                                <td>{{number_format($payment->payment,2)}}</td>
 
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
