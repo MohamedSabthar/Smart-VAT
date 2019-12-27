@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Business_tax_shop;
 use App\Industrial_tax_shop;
+use App\Land_tax;
 
 class VatPagesController extends Controller
 {
@@ -37,7 +38,8 @@ class VatPagesController extends Controller
 
     public function land()
     {
-        return view('vat.land');
+        $payers = Land_tax::landTaxPayers();  //get all the vat_payers who pay Land tax
+        return view('vat.land.land',['payers'=>$payers]);
     }
 
     public function advertizement()

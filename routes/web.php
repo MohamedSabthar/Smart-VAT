@@ -90,17 +90,6 @@ Route::get('/business/business-restore/{id}', 'vat\BusinessTaxController@restore
 //all business tax related tax routes should starts with "/buisness"
 Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); 
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
-/*
-*VAT Payer registration
-*/
-Route::get('/vat-payer', 'Auth\VATpayerRegisterController@viewFrom')->name('payer-registration');
-Route::post('/vat-payer/Payer-Register', 'Auth\VATpayerRegisterController@register')->name('vat-payer-registration');
-//Ajax url option
-Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->name('nic_available.check');
-
-
-
-Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
 
 /**
@@ -137,6 +126,17 @@ Route::get('/industrial/payment-restore/{id}', 'vat\IndustrialTaxController@rest
 Route::delete('/industrial/industrial-remove/{shop_id}', 'vat\IndustrialTaxController@removeIndustrialShop')->name('remove-inudstrial-shop'); // soft delete business route
 Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxController@trashIndustrialShop')->name('trash-industrial-shop');// trash business
 Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore business
+
+/**
+ * Routes related to Land tax
+ * 
+ * all taxes related to land tax should starts with "/land"
+ */
+//Route::get('/land','vat\LandTaxController@veiwLandTax')->name('land');
+
+
+
+
 
 /**
  * temperory testing routes
