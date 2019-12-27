@@ -143,8 +143,8 @@
 					<div class="form-group row pt-3">
 						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
 						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text" value="{{old('nic')}}" id="nic"
-								name="nic" placeholder="Enter vat payer's NIC">
+							<input class="form-control @error('nic') is-invalid @enderror" type="text"
+								value="{{old('nic')}}" id="nic" name="nic" placeholder="Enter vat payer's NIC">
 							<span id="error_nic" class="invalid-feedback" role="alert">
 								@error('nic')
 								<strong>{{ $message }}</strong>
@@ -155,8 +155,8 @@
 				</form>
 
 				{{-- Confirmation modal for adding business for the registered VAT payer--}}
-				<div class=" modal fade" id="confirm-quick-payments" tabindex="-1" role="dialog" aria-labelledby="modal-default"
-					aria-hidden="true">
+				<div class=" modal fade" id="confirm-quick-payments" tabindex="-1" role="dialog"
+					aria-labelledby="modal-default" aria-hidden="true">
 					<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
 						<div class="modal-content">
 
@@ -172,7 +172,8 @@
 							</div>
 
 							<div class="modal-footer">
-								<button type="button" class="btn btn-link" onclick="javascript:location.reload()">Cancel</button>
+								<button type="button" class="btn btn-link"
+									onclick="javascript:location.reload()">Cancel</button>
 								<button type="button" id="redirect" class="btn  btn-primary ml-auto"
 									onclick="javascript:document.getElementById('business-quick-payments').submit();">{{__('menu.Confirm')}}</button>
 							</div>
@@ -289,7 +290,7 @@
 														$('#shop-details tbody').append(`
                                 <tr>
                                     <td scope="row"> ${element.shop_name} </td>
-                                    <td> ${result.duePaymentValue[i]} </td>
+                                    <td> ${result.duePaymentValue[i].toLocaleString('en',{ minimumFractionDigits: 2 })} </td>
                                     <td class='d-flex px-3'> 
                                         <input  name=${element.id} type="checkbox" ${ result.duePayments[i]!=null ? 'checked disabled' :'' } 
                                         <label>${ result.duePayments[i]==null ? '' :'paid' }</label>

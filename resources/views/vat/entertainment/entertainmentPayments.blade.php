@@ -251,6 +251,8 @@
                                                     class="dropdown-item">
 
                                             </form>
+                                            <a class="dropdown-item" href="">
+                                                Update payment</a>
                                         </div>
 
                                     </div>
@@ -301,10 +303,12 @@
 
                                 <select id="ticketType" name="ticketType"
                                     class="form-control @error('ticketType') is-invalid  @enderror">
+
                                     <option value="" disabled selected>Select a ticket type</option>
 
                                     @foreach ($ticketTypes as $type)
-                                    <option value="{{$type->id}}">{{$type->description}} -
+                                    <option value="{{$type->id}}" @if(old('ticketType')==$type->id) selected
+                                        @endif>{{$type->description}} -
                                         {{$type->vat_percentage.'%'}}
                                     </option>
                                     @endforeach
