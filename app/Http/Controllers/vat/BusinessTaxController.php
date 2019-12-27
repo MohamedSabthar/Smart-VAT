@@ -147,7 +147,8 @@ class BusinessTaxController extends Controller
         $dates = (object)$request->only(["startDate","endDate"]);
           
         $records=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();
-       
+    
+        $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates       
        if($request->has('TaxReport'))
         {
             return view('vat.business.businessReportView',['dates'=>$dates,'records'=>$records]);
@@ -170,6 +171,7 @@ class BusinessTaxController extends Controller
         $pdf->loadHTML($this->TaxReportHTML($records,$dates,$sum));
         
 
+       
         return $pdf->stream();
     }
 

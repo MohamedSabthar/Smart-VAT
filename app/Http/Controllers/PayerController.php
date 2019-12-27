@@ -10,6 +10,12 @@ use App\Http\Request\UpdateVATpayerProfileRequest;
 
 class PayerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'=>'verified']);
+        $this->middleware('vat');
+    }
+    
     public function payer()
     {
         return view('vatPayer.payerDashboard');

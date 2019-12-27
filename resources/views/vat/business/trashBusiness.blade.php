@@ -195,7 +195,6 @@
 
                         <thead class="thead-light">
                             <tr>
-
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
@@ -241,7 +240,7 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchAssesmentNo').on( 'keyup', function () { 
+            $('#searchaAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
@@ -259,6 +258,7 @@
                 .search( this.value )
                 .draw();
             });
+            
       } );
 
 </script>
