@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Trash Business')
+@section('title','Trash Shop Rent')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -142,7 +142,7 @@
                 <div class="row align-item-center">
                     <div class="col">
                         <h3 class="mb-0">
-                            <span class="text-uppercase">{{__('menu.Trash Business')}}</span>
+                            <span class="text-uppercase">{{__('menu.Trash Shop Rent')}}</span>
                         </h3>
                         <hr class="mt-4 mb-0">
                     </div>
@@ -150,66 +150,41 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="trash_business" class="table">
+                    <table id="trash_industrial" class="table">
                         <thead class="thead-light">
                             <tr>
-
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                <th></th>
-                    </tr>
-                    </thead>
-                    <thead id="search_inputs">
-                        <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
-=======
-=======
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
 
                             </tr>
                         </thead>
                         <thead id="search_inputs">
                             <tr>
                                 <th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
-<<<<<<< HEAD
->>>>>>> 45b72aec08f1ef8c28217af58124433559cef2a6
-=======
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                        placeholder="{{__('menu.Search Business Name')}}" />
+                                        placeholder="{{__('menu.Search Industrial Shop')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPhone"
                                         placeholder="{{__('menu.Search Phone')}}" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            </th>
-                            
-=======
                                 </th>
->>>>>>> 45b72aec08f1ef8c28217af58124433559cef2a6
-=======
-                                </th>
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
 
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($businessTaxShop as $business)
+                            @foreach ($shopRentTax as $shoprent)
                             <tr>
-                                <td>{{$business->id}}</td>
-                                <td>{{$business->shop_name}}</td>
-                                <td>{{$business->phone}}</td>
+                                <td>{{$shoprent->id}}</td>
+                                <td>{{$shoprent->shop_name}}</td>
+                                <td>{{$shoprent->phone}}</td>
 
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-business',['id'=>$business->id])}}">
+                                        href="{{route('restore-shop-rent',['id'=>$shoprent->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
 
@@ -219,14 +194,7 @@
 
                         <thead class="thead-light">
                             <tr>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                
-=======
 
->>>>>>> 45b72aec08f1ef8c28217af58124433559cef2a6
-=======
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
@@ -254,7 +222,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#trash_business';                      //data table id
+        var id = '#trash_industrial';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -272,19 +240,12 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-            $('#searchaAssesmentNo').on( 'keyup', function () { 
+        $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 45b72aec08f1ef8c28217af58124433559cef2a6
-=======
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
             $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
@@ -297,7 +258,6 @@
                 .search( this.value )
                 .draw();
             });
-            
       } );
 
 </script>
