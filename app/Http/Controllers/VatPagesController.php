@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Business_tax_shop;
 use App\Industrial_tax_shop;
 use App\Shop_rent_tax;
+use App\Entertainment_tax_tickets_payment;
 
 class VatPagesController extends Controller
 {
@@ -59,13 +60,13 @@ class VatPagesController extends Controller
     }
     public function entertainment()
     {
-        return view('vat.entertainment.entertainment');
+        $ticketPayers = Entertainment_tax_tickets_payment::entertainmentTicketPayers(); //get all vat_payers who paid ticket taxes
+        return view('vat.entertainment.entertainment', ['ticketPayers' => $ticketPayers]);
     }
     public function shoprent()
     {
         $payers = Shop_rent_tax::shopRentTaxPayers(); //get all vat_payers who pay industrial tax
         return view('vat.shopRent.shopRent', ['payers' => $payers]);
-        
     }
     public function threewheelpark()
     {

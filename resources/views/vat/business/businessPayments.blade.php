@@ -190,6 +190,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-0">{{__('menu.Payment History')}}</h3>
+                            <hr class="mt-4 mb-0">
                         </div>
                     </div>
                 </div>
