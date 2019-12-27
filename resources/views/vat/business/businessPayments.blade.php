@@ -162,8 +162,9 @@
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
                     <h1 style="font-weight: 400;">{{__('menu.Due Payment : Rs.')}} {{number_format($duePayment,2)}}</h1>
-                    <button class="btn btn-success mx-auto my-1"
-                        onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
+                    <button class="btn btn-success mx-auto my-1" data-toggle="modal"
+                        onclick="javascript:event.preventDefault()"
+                        data-target="#confirm-business-payment">{{__('menu.Accept Payment')}}</button>
 
                 </div>
             </div>
@@ -174,6 +175,36 @@
                 <input type="text" name="payment" value="{{$duePayment}}">
             </form>
             {{-- end of payment form --}}
+            {{-- Confirmation modal for adding business for the registered VAT payer--}}
+            <div class=" modal fade" id="confirm-business-payment" tabindex="-1" role="dialog"
+                aria-labelledby="modal-default" aria-hidden="true">
+                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <p>Confirmation needed to add payment for <br>
+                                shop : {{$businessTaxShop->shop_name}} </p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link"
+                                onclick="javascript:location.reload()">Cancel</button>
+                            <button type="button" id="redirect" class="btn  btn-primary ml-auto"
+                                onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {{-- End of confirmation modal --}}
+
             @else
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">

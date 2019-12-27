@@ -198,7 +198,8 @@
 			</div>
 			<div class="card-body">
 				{{-- Industrial shop registration form --}}
-				<form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
+				<form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}"
+					id="business-shop-register">
 					@csrf
 					<div class="form-group row pt-3">
 						<label for="example-text-input"
@@ -217,11 +218,12 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror" type="text"
-								value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount" name="annualAssesmentAmount">
+							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
+								type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
+								name="annualAssesmentAmount">
 
 							<span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
-								<strong>dfafjkladfj</strong>
+								<strong></strong>
 							</span>
 							@error('annualAssesmentAmount')
 							<span class="invalid-feedback" role="alert">
@@ -270,8 +272,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('phoneno') is-invalid  @enderror" type="text" value="{{old('phoneno')}}"
-								id="phoneno" name="phoneno">
+							<input class="form-control @error('phoneno') is-invalid  @enderror" type="text"
+								value="{{old('phoneno')}}" id="phoneno" name="phoneno">
 							@error('phoneno')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -283,8 +285,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('doorno') is-invalid  @enderror" type="text" value="{{old('doorno')}}"
-								id="doorno" name="doorno">
+							<input class="form-control @error('doorno') is-invalid  @enderror" type="text"
+								value="{{old('doorno')}}" id="doorno" name="doorno">
 							@error('doorno')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -296,8 +298,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('street') is-invalid  @enderror" type="text" value="{{old('street')}}"
-								id="street" name="street">
+							<input class="form-control @error('street') is-invalid  @enderror" type="text"
+								value="{{old('street')}}" id="street" name="street">
 							@error('street')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -309,8 +311,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('city') is-invalid  @enderror" type="text" value="{{old('city')}}"
-								id="city" name="city">
+							<input class="form-control @error('city') is-invalid  @enderror" type="text"
+								value="{{old('city')}}" id="city" name="city">
 							@error('city')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -319,9 +321,41 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<input class=" btn btn-primary float-right" value="{{__('menu.Submit')}}" type="submit">
+						<button class="btn btn-primary float-right" data-toggle="modal"
+							onclick="javascript:event.preventDefault()"
+							data-target="#confirm-register-business">{{__('menu.Add')}}</button>
 					</div>
 
+
+					{{-- Confirmation modal for adding business for the registered VAT payer--}}
+					<div class=" modal fade" id="confirm-register-business" tabindex="-1" role="dialog"
+						aria-labelledby="modal-default" aria-hidden="true">
+						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+
+									<p>Confirmation needed to add a business for <br>
+										{{$vatPayer->full_name}}-{{$vatPayer->nic}} </p>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
+									<button type="button" id="redirect" class="btn  btn-primary ml-auto"
+										onclick="javascript:document.getElementById('business-shop-register').submit();">{{__('menu.Confirm')}}</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					{{-- End of confirmation modal --}}
 
 				</form>
 				{{-- end of Industrial shop registration form --}}
@@ -374,18 +408,21 @@
 								<td>{{$buisness->phone}}</td>
 								<td class="text-right">
 									<div class="dropdown">
-										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
+										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<i class="fas fa-ellipsis-v"></i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item" href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
+											<a class="dropdown-item"
+												href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
 												{{__('menu.View Payments')}}</a>
 
-											<form action="{{route('remove-business',['shop_id'=>$buisness->id])}}" method="POST">
+											<form action="{{route('remove-business',['shop_id'=>$buisness->id])}}"
+												method="POST">
 												@csrf
 												@method('delete')
-												<input type="submit" value="{{__('menu.Remove Buisness')}}" class="dropdown-item">
+												<input type="submit" value="{{__('menu.Remove Buisness')}}"
+													class="dropdown-item">
 
 											</form>
 										</div>

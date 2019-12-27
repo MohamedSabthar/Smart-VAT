@@ -169,6 +169,10 @@ return [
      'view' => 'දැක්ම',
      'Invalid Assesment Amount'=>'ලබා දී ඇති තක්සේරු මුදල අවලංගුය',
      
+     //industrail profile
+     'Add' => 'Add',
+     'Confirm' => 'Confirm',
+
     
      //entertainment payment
     'View history'=>'ඉතිහාසය බලන්න',
