@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
-@section('title','Industrial Profile')
+@section('title','Shop Rent Profile')
 
 @push('css')
-<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
 @endpush
 
@@ -117,11 +116,11 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		@if(url()->previous()==route('payer-registration',['requestFrom'=>'industrial']))
+		@if(url()->previous()==route('payer-registration',['requestFrom'=>'shoprent']))
 		<div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
-				Click here to add new Industrial shop
+				Click here to add new Shop Rent
 				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -192,19 +191,18 @@
 		</div>
 	</div>
 	<div class="col-xl-8 order-xl-1">
-		<div class="card bg-secondary shadow mb-5 hide" id="industrial-registration">
+		<div class="card bg-secondary shadow mb-5 hide" id="shop-rent-registration">
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add Industrial shop')}}</span></h3>
+						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add Shop')}}</span></h3>
 					</div>
 
 				</div>
 			</div>
 			<div class="card-body">
-				{{-- Industrial shop registration form --}}
-				<form method="POST" action="{{route('industrial-shop-register',['id'=> $vatPayer->id])}}"
-					id="industrial-shop-register">
+				{{--Shop rent registration form --}}
+				<form method="POST" action="{{route('shop-rent-register',['id'=> $vatPayer->id])}}">
 					@csrf
 					<div class="form-group row pt-3">
 						<label for="example-text-input"
@@ -228,7 +226,7 @@
 								name="annualAssesmentAmount">
 
 							<span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
-								<strong></strong>
+								<strong>dfafjkladfj</strong>
 							</span>
 							@error('annualAssesmentAmount')
 							<span class="invalid-feedback" role="alert">
@@ -250,29 +248,7 @@
 							@enderror
 						</div>
 					</div>
-					<div class="form-group row">
-						<label for="industrial-type"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Industrial type')}}</label>
-						<div class="col-md-10">
-
-							<select id="type" name="type" class="form-control @error('type') is-invalid  @enderror">
-								<option value=""></option>
-								{{-- only for testing need to implement Ajax searchBuisness --}}
-								@foreach ($industrialTypes as $type)
-								<option value="{{$type->id}}">{{$type->description}}
-									{{'('.$type->ranges->start_value .'-'. $type->ranges->end_value .')'}}
-								</option>
-								@endforeach
-
-
-							</select>
-							@error('type')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
+					
 					<div class="form-group row">
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
@@ -325,42 +301,13 @@
 							@enderror
 						</div>
 					</div>
-					<button class="btn btn-primary float-right" data-toggle="modal"
-						onclick="javascript:event.preventDefault()"
-						data-target="#confirm-register-business">{{__('menu.Add')}}</button>
-
-					{{-- Confirmation modal for adding business for the registered VAT payer--}}
-					<div class=" modal fade" id="confirm-register-business" tabindex="-1" role="dialog"
-						aria-labelledby="modal-default" aria-hidden="true">
-						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">×</span>
-									</button>
-								</div>
-								<div class="modal-body">
-
-									<p>Confirmation needed to add a business for <br>
-										{{$vatPayer->full_name}}-{{$vatPayer->nic}} </p>
-								</div>
-
-								<div class="modal-footer">
-									<button type="button" class="btn btn-link"
-										onclick="javascript:location.reload()">Cancel</button>
-									<button type="button" id="redirect" class="btn  btn-primary ml-auto"
-										onclick="javascript:document.getElementById('industrial-shop-register').submit();">{{__('menu.Confirm')}}</button>
-								</div>
-
-							</div>
-						</div>
+					<div class="form-group">
+						<input class=" btn btn-primary float-right" value="{{__('menu.Submit')}}" type="submit">
 					</div>
-					{{-- End of confirmation modal --}}
+
 
 				</form>
-				{{-- end of Industrial shop registration form --}}
+				{{-- end of shop registration form --}}
 			</div>
 		</div>
 
@@ -370,7 +317,7 @@
 					<div class="col">
 						<h3 class="mb-0">
 							<span class="text-uppercase">{{$vatPayer->first_name}}
-								'{{__('menu.s industrial shops')}}</span>
+								'{{__('menu.s shops')}}</span>
 						</h3>
 						<hr class="mt-4 mb-0">
 					</div>
@@ -378,8 +325,8 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					{{-- Business shops table --}}
-					<table id="business_shops_table" class="table">
+					{{-- shops table --}}
+					<table id="shop_rent_table" class="table">
 						<thead class="thead-light">
 							<tr>
 								<th style="width:250px;">{{__('menu.Assesment No.')}}</th>
@@ -402,13 +349,13 @@
 
 
 							</tr>
-						</thead>
-						<tbody>
-							@foreach ($vatPayer->industrial as $industrial)
+                        </thead>
+                        <tbody>
+							@foreach ($vatPayer->shoprent as $shoprent)
 							<tr>
-								<td class="text-center">{{$industrial->id}}</td>
-								<td>{{$industrial->shop_name}}</td>
-								<td>{{$industrial->phone}}</td>
+								<td class="text-center">{{$shoprent->id}}</td>
+								<td>{{$shoprent->shop_name}}</td>
+								<td>{{$shoprent->phone}}</td>
 								<td class="text-right">
 									<div class="dropdown">
 										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -417,13 +364,13 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											<a class="dropdown-item"
-												href="{{route('industrial-payments',['shop_id'=>$industrial->id])}}">
+												href="{{route('industrial-payments',['shop_id'=>$shoprent->id])}}">
 												{{__('menu.View Payments')}}</a>
 											{{-- <a class="dropdown-item"
-												href="{{route('remove-business',['shop_id'=>$industrial->id])}}">
+												href="{{route('remove-business',['shop_id'=>$shoprent->id])}}">
 											{{__('menu.Remove Buisness')}}</a> --}}
 											<form
-												action="{{route('remove-inudstrial-shop',['shop_id'=>$industrial->id])}}"
+												action="{{route('remove-inudstrial-shop',['shop_id'=>$shoprent->id])}}"
 												method="POST">
 												@csrf
 												@method('delete')
@@ -437,6 +384,7 @@
 							</tr>
 							@endforeach
 						</tbody>
+					 
 						<thead class="thead-light">
 							<tr>
 								<th>{{__('menu.Assesment No.')}}</th>
@@ -470,7 +418,7 @@
 
 
 
-        var id = '#business_shops_table';                      //data table id
+        var id = '#shop_rent_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -507,9 +455,9 @@
                 .draw();
         });
         //toggle transition for buisness registration form
-        $("#industrial-registration").hide();
+        $("#shop-rent-registration").hide();
         $(".add-buissness").on('click',function(){
-            $("#industrial-registration").slideToggle("slow");
+            $("#shop-rent-registration").slideToggle("slow");
         });
         $('#type').select2({
             placeholder: "Select industrial type here",

@@ -3,6 +3,7 @@
 @section('title','Trash Industrial Shop')
 
 @push('css')
+<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
 @endpush
 
@@ -152,17 +153,16 @@
                     <table id="trash_industrial" class="table">
                         <thead class="thead-light">
                             <tr>
-
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-                                <th></th>
+
                             </tr>
                         </thead>
                         <thead id="search_inputs">
                             <tr>
-                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                <th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
@@ -199,7 +199,7 @@
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-                                <th></th>
+
                             </tr>
                         </thead>
                     </table>
@@ -246,15 +246,15 @@
                 .search( this.value )
                 .draw();
             });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+            $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#selectCourt').on( 'change', function () { 
+            $('#searchPhone').on( 'keyup', function () { 
             table
-                .columns( 3 )
+                .columns( 2 )
                 .search( this.value )
                 .draw();
             });

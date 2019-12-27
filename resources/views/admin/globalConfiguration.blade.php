@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
-@section('title','Industrial Tax')
+@push('css')
+<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
+@endpush
+
+@section('title','Global configuration')
 
 @section('sidebar')
 @includeWhen(Auth::user()->role=='admin','admin.include.sidebar')

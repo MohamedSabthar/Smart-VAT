@@ -143,8 +143,8 @@
 					<div class="form-group row pt-3">
 						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
 						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text"
-								value="{{old('nic')}}" id="nic" name="nic" placeholder="Enter vat payer's NIC">
+							<input class="form-control @error('nic') is-invalid @enderror" type="text" value="{{old('nic')}}" id="nic"
+								name="nic" placeholder="Enter vat payer's NIC">
 							<span id="error_nic" class="invalid-feedback" role="alert">
 								@error('nic')
 								<strong>{{ $message }}</strong>
@@ -153,6 +153,34 @@
 						</div>
 					</div>
 				</form>
+
+				{{-- Confirmation modal for adding business for the registered VAT payer--}}
+				<div class=" modal fade" id="confirm-quick-payments" tabindex="-1" role="dialog" aria-labelledby="modal-default"
+					aria-hidden="true">
+					<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
+							</div>
+							<div class="modal-body">
+
+								<p>Confirmation needed to accept payments!</p>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-link" onclick="javascript:location.reload()">Cancel</button>
+								<button type="button" id="redirect" class="btn  btn-primary ml-auto"
+									onclick="javascript:document.getElementById('business-quick-payments').submit();">{{__('menu.Confirm')}}</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				{{-- End of confirmation modal --}}
 
 				<div class="row">
 					<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 mt-md-5" id="payer-details"></div>
@@ -234,7 +262,7 @@
                         $('#shop-details').append(
                             `<div class="table-responsive">
                                 <div class="card px-3">
-                                    <form method='POST' action="{{route('business-quick-payments')}}">
+                                    <form method='POST' action="{{route('business-quick-payments')}}" id="business-quick-payments">
                                         @csrf
                                         <table class="my-3 table align-items-center  ">
                                             <thead class="thead-light">
@@ -246,8 +274,9 @@
                                             </thead>
 																				<tbody class="list"></tbody>
 																				</table>
-                                        <input type="submit" id="accept-btn" value="Accept payment" class="btn btn-primary btn-lg btn-block mb-3 accept-btn">
-																		</form>
+																				<button class="btn btn-primary btn-lg btn-block mb-3 accept-btn"" data-toggle="modal"
+						onclick="javascript:event.preventDefault()"
+						data-target="#confirm-quick-payments">{{__('menu.Add')}}</button>								</form>
 																		
 																	</div>
 																</div>`
