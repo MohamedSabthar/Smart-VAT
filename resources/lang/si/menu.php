@@ -167,9 +167,20 @@ return [
      'Error!' => 'දෝෂයකි!',
      'Data you entered is/are incorrect' => 'ඇතුළත් කළ දත්ත වැරදිය',
      'view' => 'දැක්ම',
-     'Invalid Assesment Amount'=>'ලබා දී ඇති තක්සේරු මුදල අවලංගුය'
+     'Invalid Assesment Amount'=>'ලබා දී ඇති තක්සේරු මුදල අවලංගුය',
      
     
-     
+     //entertainment payment
+    'View history'=>'ඉතිහාසය බලන්න',
+    'Place Addr' => 'Place Addr',
+    'Returned Payment' => 'Returned Payment',
+    'Ticket type' => 'Ticket type',
+    'Quoted Ticket' => 'Quoted Ticket',
+    'Ticket Price'=>'Ticket Price',
+    'Event Venue'=>'Event Venue',
+    'Add payment' => 'Add payment',
+
+
+
 
 ];

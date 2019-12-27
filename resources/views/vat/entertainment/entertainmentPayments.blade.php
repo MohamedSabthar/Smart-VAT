@@ -119,7 +119,6 @@
             <span class="alert-inner--text mx-2">
                 <strong class="mx-1">{{__('menu.Error!')}}</strong>
                 {{__('menu.Data you entered is/are incorrect')}}
-                <a href="#" class="btn btn-sm btn-primary mx-3 update-info veiw-history">{{__('menu.view')}}</a>
             </span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -177,11 +176,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-8 order-xl-1" id="payment-history">
+        <div class="col-xl-8 order-xl-1">
 
 
-
-            <div class="card shadow">
+            {{-- payment history card --}}
+            <div class="card shadow mb-5" id="payment-history">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
@@ -199,7 +198,9 @@
                             <tr>
                                 <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
+                                <th>{{__('menu.Place Addr')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
+                                <th>{{__('menu.Returned Payment')}}</th>
                                 <th></th>
 
                             </tr>
@@ -210,7 +211,12 @@
                                         placeholder="{{__('menu.Search Assesment No.')}}" /></th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
                                         placeholder="{{__('menu.Search Payment date')}}" /></th>
-                                <th></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAddress"
+                                        placeholder="{{__('menu.Search Address')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchPayment"
+                                        placeholder="{{__('menu.Search Payment')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchReturnedPayment"
+                                        placeholder="{{__('menu.Search Returnded Payments')}}" /></th>
 
                                 <th></th>
                             </tr>
@@ -221,7 +227,10 @@
                             <tr>
                                 <td>{{$payments->id}}</td>
                                 <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
+                                <td class="text-center">{{$payments->place_address}}</th>
+
                                 <td>{{ number_format($payments->payment,2)}}</td>
+                                <td>{{ number_format($payments->returned_payment,2)}}</th>
 
 
                                 <td class="text-right">
@@ -257,9 +266,11 @@
                             <tr>
                                 <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
+                                <th>{{__('menu.Place Addr')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
-
+                                <th>{{__('menu.Returned Payment')}}</th>
                                 <th></th>
+
                             </tr>
                         </thead>
 
@@ -267,6 +278,100 @@
                     {{-- end of entertainment TAX payments table --}}
                 </div>
             </div>
+            {{-- end of payment history card --}}
+
+
+            <div class="card bg-secondary shadow mb-5 hide" id="business-registration">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Business')}}</span></h3>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{-- Entertainment payment form --}}
+                    <form method="POST" action="{{route('receive-entertainment-payments',['id'=> $vatPayer->id])}}">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="ticket-type"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket type')}}</label>
+                            <div class="col-md-10">
+
+                                <select id="ticketType" name="ticketType"
+                                    class="form-control @error('ticketType') is-invalid  @enderror">
+                                    <option value="" disabled selected>Select a ticket type</option>
+
+                                    @foreach ($ticketTypes as $type)
+                                    <option value="{{$type->id}}">{{$type->description}} -
+                                        {{$type->vat_percentage.'%'}}
+                                    </option>
+                                    @endforeach
+
+
+                                </select>
+                                @error('ticketType')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Event Venue')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('placeAddress') is-invalid  @enderror" type="text"
+                                    value="{{old('placeAddress')}}" id="placeAddress" name="placeAddress">
+                                @error('placeAddress')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Quoted Ticket')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('quotedTickets') is-invalid  @enderror" type="number"
+                                    value="{{old('quotedTickets')}}" id="quotedTickets" name="quotedTickets">
+                                @error('quotedTickets')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket Price')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('ticketPrice') is-invalid  @enderror" type="number"
+                                    step="0.01" value="{{old('ticketPrice')}}" id="ticketPrice" name="ticketPrice">
+                                @error('ticketPrice')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input class=" btn btn-primary float-right" value="{{__('menu.Add payment')}}"
+                                type="submit">
+                        </div>
+
+
+                    </form>
+                    {{-- end of Entertainment payment form --}}
+                </div>
+            </div>
+
+
 
 
         </div>
@@ -312,15 +417,27 @@
                 .columns( 1 )
                 .search( this.value )
                 .draw();
+            }); 
+            $('#searchAddress').on( 'keyup', function () { 
+            table
+                .columns( 2 )
+                .search( this.value )
+                .draw();
             });
-            $('#selectCourt').on( 'change', function () { 
+            $('#searchPayment').on( 'keyup', function () { 
             table
                 .columns( 3 )
                 .search( this.value )
                 .draw();
             });
+            $('#searchReturnedPayment').on( 'keyup', function () { 
+            table
+                .columns( 4 )
+                .search( this.value )
+                .draw();
+            });
 
-            //toggle transition for buisness registration form
+            //toggle transition for history card
         $("#payment-history").hide();
         $(".veiw-history").on('click',function(){
             $("#payment-history").slideToggle("slow");

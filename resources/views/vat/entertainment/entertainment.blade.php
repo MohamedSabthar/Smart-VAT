@@ -172,8 +172,8 @@
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<a class="dropdown-item"
-											href="{{route('entertainment-profile',['id'=>$payer->id])}} ">View
-											profile</a>
+											href="{{route('entertainment-payments',['id'=>$payer->id])}} ">View
+											payments</a>
 									</div>
 
 								</div>

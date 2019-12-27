@@ -120,6 +120,7 @@ return [
     // custom
     'PasswordConfirmation' => 'Invalid password provided',
     'PasswordDistinct'=>'Can\'t use current password again',
+    'PositiveValue' => 'Invalid value provided shoud be a positive value',
 
     /*
     |--------------------------------------------------------------------------

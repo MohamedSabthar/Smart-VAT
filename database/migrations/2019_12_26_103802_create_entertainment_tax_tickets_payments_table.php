@@ -16,10 +16,11 @@ class CreateEntertainmentTaxTicketsPaymentsTable extends Migration
         Schema::create('entertainment_tax_tickets_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('quoted_tickets')->unsigned();   // expected number of tickets
-            $table->bigInteger('returned_tickets', 0)->unsigned();   // number of tickets returned
+            $table->bigInteger('returned_tickets')->unsigned()->default(0);   // number of tickets returned
             $table->double('ticket_price');
             $table->double('payment');  // payment recived from the client
-            $table->double('returned_payment')->nullable(); // payment returned to client
+            $table->double('returned_payment')->nullable()->default(0);
+            ; // payment returned to client
             $table->string('place_address');    //storing the address of the place where the etertainment event is happening
             $table->bigInteger('type_id')->unsigned();
             $table->bigInteger('payer_id')->unsigned();
