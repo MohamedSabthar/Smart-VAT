@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\AddEntertainmentTicketPaymentRequest;
+use App\Http\Requests\UpdateEntertainmentTicketPaymentRequest;
 
 use Auth;
 
@@ -45,14 +46,14 @@ class EntertainmentTaxController extends Controller
     }
 
     //softdelete ticket payments
-    public function removePayment($id)
+    public function removeTicketPayment($id)
     {
         $entertainmentTicketPayment = Entertainment_tax_tickets_payment::find($id);
         $entertainmentTicketPayment -> delete();
         return redirect()->back()->with('status', 'Delete Successful');
     }
 
-    public function trashPayment($id)
+    public function trashTicketPayment($id)
     {
         $entertainmentTicketPayment = Entertainment_tax_tickets_payment::onlyTrashed()->where('payer_id', $id)->get();
         // dd($entertainmentTicketPayment);
@@ -60,11 +61,32 @@ class EntertainmentTaxController extends Controller
     }
 
     //restore payment
-    public function restorePayment($id)
+    public function restoreTicketPayment($id)
     {
         $entertainmentTicketPayment = Entertainment_tax_tickets_payment::onlyTrashed()->where('id', $id)->first();
         $payerId = $entertainmentTicketPayment->payer_id;
         $entertainmentTicketPayment->restore();
         return redirect()->route('entertainment-profile', ['id'=>$payerId])->with('status', 'Payment restored successfully');
+    }
+
+    public function updateTicketPayment($id, UpdateEntertainmentTicketPaymentRequest $request)
+    {
+        $entertainmentTicketPayment= Entertainment_tax_tickets_payment::find($request->paymentId);
+
+        $entertainmentTicketPayment->type_id = $request->updateTicketType;
+        $entertainmentTicketPayment->payer_id = $id;
+        $entertainmentTicketPayment->user_id = Auth::user()->id;
+        $entertainmentTicketPayment->place_address =   $request->updatePlaceAddress;
+        $entertainmentTicketPayment->ticket_price = $request->updateTicketPrice;
+        $entertainmentTicketPayment->returned_tickets =  $request->updateReturnedTickets;
+        $entertainmentTicketPayment->quoted_tickets = $request->updateQuotedTickets;
+        $effectiveTickets = $request->updateQuotedTickets - $request->updateReturnedTickets;
+        $retunTaxPayment = $this->calculateTicketTax($request->updateTicketType, $request->updateTicketPrice, $request->updateReturnedTickets);
+        $taxPayment = $this->calculateTicketTax($request->updateTicketType, $request->updateTicketPrice, $effectiveTickets);
+        $entertainmentTicketPayment->payment = $taxPayment;
+        $entertainmentTicketPayment->returned_payment = $retunTaxPayment;
+        $entertainmentTicketPayment->save();
+
+        return redirect()->back()->with('status', 'Payments successfully accepted')->with('taxPayment', $taxPayment)->with('retunTaxPayment', $retunTaxPayment);
     }
 }

@@ -207,5 +207,7 @@ return [
     'Returned Tickets' => 'Returned Tickets',
     'Final Payment' => 'Final Payment',
     'Payment Date' =>'Payment Date',
+    'Update payment' => 'Update payment',
+
 
 ];

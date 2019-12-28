@@ -294,8 +294,7 @@
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
 
-                                            <form id="remove-payment"
-                                                action="{{route('remove-industrial-payment',['id'=>$payments->id])}}"
+                                            <form action="{{route('remove-industrial-payment',['id'=>$payments->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')

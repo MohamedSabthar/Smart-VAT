@@ -137,10 +137,10 @@ Route::post('/shop-rent/shop-register/{id}', 'vat\ShopRentTaxController@register
  */
 Route::get('/entertainment/profile/{id}', 'vat\EntertainmentTaxController@entertainmentPayments')->name('entertainment-profile'); //profile only cosit of payments
 Route::post('/entertainment/profile/{id}', 'vat\EntertainmentTaxController@reciveEntertainmentPayments')->name('receive-entertainment-payments');
-Route::delete('/entertainment/payment-remove/{id}', 'vat\EntertainmentTaxController@removePayment')->name('remove-entertainment-payment');//soft delete entertainment payment
-Route::get('/entertainment/ticket-payment-trash/{id}', 'vat\EntertainmentTaxController@trashPayment')->name('entertainment-ticket-trash-payment');//trash entertainment payment
-Route::get('/entertainment/payment-restore/{id}', 'vat\EntertainmentTaxController@restorePayment')->name('restore-entertainment-payment');// restore entertainment
-
+Route::delete('/entertainment/ticket-payment-remove/{id}', 'vat\EntertainmentTaxController@removeTicketPayment')->name('remove-entertainment-payment');//soft delete entertainment payment
+Route::get('/entertainment/ticket-payment-trash/{id}', 'vat\EntertainmentTaxController@trashTicketPayment')->name('entertainment-ticket-trash-payment');//trash entertainment payment
+Route::get('/entertainment/ticket-payment-restore/{id}', 'vat\EntertainmentTaxController@restoreTicketPayment')->name('restore-entertainment-payment');// restore entertainment
+Route::put('/entertainment/ticket-payment-update/{id}', 'vat\EntertainmentTaxController@updateTicketPayment')->name('update-entertainment-ticket-payments');
 
 /**
  * temperory testing routes
