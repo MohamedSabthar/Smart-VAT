@@ -37,9 +37,34 @@ class EntertainmentTaxController extends Controller
         $entertainmentTicketPayment->place_address = $request->placeAddress;
         $entertainmentTicketPayment->ticket_price = $request->ticketPrice;
         $entertainmentTicketPayment->quoted_tickets = $request->quotedTickets;
-        $entertainmentTicketPayment->payment = $this->calculateTicketTax($request->ticketType, $request->ticketPrice, $request->quotedTickets);
+        $taxPayment = $this->calculateTicketTax($request->ticketType, $request->ticketPrice, $request->quotedTickets);
+        $entertainmentTicketPayment->payment = $taxPayment;
         $entertainmentTicketPayment->save();
 
-        return redirect()->back()->with('status', 'Payments successfully accepted');
+        return redirect()->back()->with('status', 'Payments successfully accepted')->with('taxPayment', $taxPayment);
+    }
+
+    //softdelete ticket payments
+    public function removePayment($id)
+    {
+        $entertainmentTicketPayment = Entertainment_tax_tickets_payment::find($id);
+        $entertainmentTicketPayment -> delete();
+        return redirect()->back()->with('status', 'Delete Successful');
+    }
+
+    public function trashPayment($id)
+    {
+        $entertainmentTicketPayment = Entertainment_tax_tickets_payment::onlyTrashed()->where('payer_id', $id)->get();
+        // dd($entertainmentTicketPayment);
+        return view('vat.entertainment.trashTicketPayments', ['entertainmentTicketPayment'=>$entertainmentTicketPayment]);
+    }
+
+    //restore payment
+    public function restorePayment($id)
+    {
+        $entertainmentTicketPayment = Entertainment_tax_tickets_payment::onlyTrashed()->where('id', $id)->first();
+        $payerId = $entertainmentTicketPayment->payer_id;
+        $entertainmentTicketPayment->restore();
+        return redirect()->route('entertainment-profile', ['id'=>$payerId])->with('status', 'Payment restored successfully');
     }
 }

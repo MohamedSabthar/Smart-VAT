@@ -150,47 +150,62 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="trash_payment" class="table">
+                    <table id="trash_ticket_payment" class="table">
                         <thead class="thead-light">
                             <tr>
-
                                 <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Business Name')}}</th>
+                                <th>{{__('menu.Place Addr')}}</th>
+                                <th>{{__('menu.Quoted Tickets')}}</th>
+                                <th>{{__('menu.Ticket Price')}}</th>
+                                <th>{{__('menu.Returned Tickets')}}</th>
+                                <th>{{__('menu.Returned Payment')}}</th>
+                                <th>{{__('menu.Final Payment')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
-                                <th>{{__('menu.Action')}}</th>
-
                                 <th></th>
+                                <th></th>
+
                             </tr>
                         </thead>
                         <thead id="search_inputs">
                             <tr>
-                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
-                                        placeholder="{{__('menu.Search Assesment No.')}}" />
-                                </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                        placeholder="{{__('menu.Search Business Name')}}" />
-                                </th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
+                                        placeholder="{{__('menu.Search Assesment No.')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAddress"
+                                        placeholder="{{__('menu.Search Address')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAddress"
+                                        placeholder="{{__('menu.Quoted Tickets')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAddress"
+                                        placeholder="{{__('menu.Ticket Price')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAddress"
+                                        placeholder="{{__('menu.Returned Tickets')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchReturnedPayment"
+                                        placeholder="{{__('menu.Search Returnded Payments')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchPayment"
+                                        placeholder="{{__('menu.Search Payment')}}" /></th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
-                                        placeholder="{{__('menu.Search Payment date')}}" />
-                                </th>
-
-
-
+                                        placeholder="{{__('menu.Search Payment date')}}" /></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($businessTaxPyament as $payment)
+
+                            @foreach ($entertainmentTicketPayment as $payments)
                             <tr>
-                                <td>{{$payment->id}}</td>
-                                <td>{{$payment->businessTaxShop->shop_name}}</td>
-                                <td>{{$payment->created_at}}</td>
-                                <td>{{$payment->payment}}</td>
-                                <td>{!!$payment->assinged_to_court ? "Yes" : "No" !!}</td>
+                                <td>{{$payments->id}}</td>
+                                <td class="text-center">{{$payments->place_address}}</th>
+
+                                <td>{{ $payments->quoted_tickets}}</td>
+                                <td>{{ $payments->ticket_price}}</td>
+                                <td>{{ $payments->treturned_tickets==null ? 'N/A' : $payments->treturned_tickets}}</td>
+                                <td>{{ number_format($payments->returned_payment,2)}}</th>
+                                <td>{{ number_format($payments->payment,2)}}</td>
+
+                                <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
+
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-payment',['id'=>$payment->id])}}">
+                                        href="{{route('restore-entertainment-payment',['id'=>$payments->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
                                 <td class="text-right">
@@ -201,31 +216,45 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
-                                            <a class="dropdown-item"
-                                                href="{{route('remove-payment-permanent',['id'=>$payment->id])}}">
-                                                {{__('menu.Delete permenent')}}</a>
+
+                                            <form id="remove-payment"
+                                                action="{{route('remove-entertainment-payment',['id'=>$payments->id])}}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="submit" value="{{__('menu.Remove Payment')}}"
+                                                    class="dropdown-item">
+
+                                            </form>
+                                            <a class="dropdown-item" href="">
+                                                Update payment</a>
                                         </div>
 
                                     </div>
                                 </td>
 
+
                             </tr>
                             @endforeach
-                        </tbody>
 
+
+                        </tbody>
                         <thead class="thead-light">
                             <tr>
-
                                 <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Business Name')}}</th>
+                                <th>{{__('menu.Place Addr')}}</th>
+                                <th>{{__('menu.Quoted Tickets')}}</th>
+                                <th>{{__('menu.Ticket Price')}}</th>
+                                <th>{{__('menu.Returned Tickets')}}</th>
+                                <th>{{__('menu.Returned Payment')}}</th>
+                                <th>{{__('menu.Final Payment')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
-                                <th>{{__('menu.Action')}}</th>
-
                                 <th></th>
+                                <th></th>
+
                             </tr>
                         </thead>
+
                     </table>
 
                 </div>
@@ -246,7 +275,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#trash_payment';                      //data table id
+        var id = '#trash_ticket_payment';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -264,25 +293,61 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-            $('#searchaAssesmentNo').on( 'keyup', function () { 
+          //individulat column search
+        $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-
-            $('#searchBuisness').on( 'keyup', function () { 
+            
+            $('#searchAddress').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+
+            $('#searchQuotedTickets').on( 'keyup', function () { 
             table
                 .columns( 2 )
                 .search( this.value )
                 .draw();
             });
+
+            $('#searchTicketPrice').on( 'keyup', function () { 
+            table
+                .columns( 3 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchReturnTickets').on( 'keyup', function () { 
+            table
+                .columns( 4 )
+                .search( this.value )
+                .draw();
+            });
+            
+
+           
+            $('#searchReturnedPayment').on( 'keyup', function () { 
+            table
+                .columns( 5 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchPayment').on( 'keyup', function () { 
+            table
+                .columns( 6 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchPaymentDate').on( 'keyup', function () { 
+            table
+                .columns( 7 )
+                .search( this.value )
+                .draw();
+            }); 
             
       } );
 

@@ -115,15 +115,15 @@ Route::get('/industrial/payments/{shop_id}', 'vat\IndustrialTaxController@indust
 Route::post('/industrial/payments/{shop_id}', 'vat\IndustrialTaxController@reciveIndustrialPayments')->name('receive-industrial-payments');
 Route::post('/industrial/get-industrial-types', 'vat\IndustrialTaxController@getIndustrialtypes')->name('get-industrial-types');
 Route::get('/industrial/quick-payments', 'vat\IndustrialTaxController@viewQuickPayments')->name('get-industrial-quick-payments');
-Route::post('/industrial/check-payments', 'vat\IndustrialTaxController@checkPayments')->name('check-industrial-payments'); //check all business payments for a given vat payer for quick payment option
+Route::post('/industrial/check-payments', 'vat\IndustrialTaxController@checkPayments')->name('check-industrial-payments'); //check all industrial payments for a given vat payer for quick payment option
 Route::post('/industrial/accept-quick-payments', 'vat\IndustrialTaxController@acceptQuickPayments')->name('industrial-quick-payments');
-Route::delete('/industrial/payment-remove/{id}', 'vat\IndustrialTaxController@removePayment')->name('remove-industrial-payment');//soft delete business payment
-Route::get('/industrial/payment-trash/{id}', 'vat\IndustrialTaxController@trashPayment')->name('industrial-trash-payment');//trash business payment
-Route::get('/industrial/payment-restore/{id}', 'vat\IndustrialTaxController@restorePayment')->name('restore-industrial-payment');// restore business
+Route::delete('/industrial/payment-remove/{id}', 'vat\IndustrialTaxController@removePayment')->name('remove-industrial-payment');//soft delete industrial payment
+Route::get('/industrial/payment-trash/{id}', 'vat\IndustrialTaxController@trashPayment')->name('industrial-trash-payment');//trash industrial payment
+Route::get('/industrial/payment-restore/{id}', 'vat\IndustrialTaxController@restorePayment')->name('restore-industrial-payment');// restore industrial
 
-Route::delete('/industrial/industrial-remove/{shop_id}', 'vat\IndustrialTaxController@removeIndustrialShop')->name('remove-inudstrial-shop'); // soft delete business route
-Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxController@trashIndustrialShop')->name('trash-industrial-shop');// trash business
-Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore business
+Route::delete('/industrial/industrial-remove/{shop_id}', 'vat\IndustrialTaxController@removeIndustrialShop')->name('remove-inudstrial-shop'); // soft delete industrial route
+Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxController@trashIndustrialShop')->name('trash-industrial-shop');// trash industrial
+Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore industrial
 
 
 //shop rent tax
@@ -137,6 +137,10 @@ Route::post('/shop-rent/shop-register/{id}', 'vat\ShopRentTaxController@register
  */
 Route::get('/entertainment/profile/{id}', 'vat\EntertainmentTaxController@entertainmentPayments')->name('entertainment-profile'); //profile only cosit of payments
 Route::post('/entertainment/profile/{id}', 'vat\EntertainmentTaxController@reciveEntertainmentPayments')->name('receive-entertainment-payments');
+Route::delete('/entertainment/payment-remove/{id}', 'vat\EntertainmentTaxController@removePayment')->name('remove-entertainment-payment');//soft delete entertainment payment
+Route::get('/entertainment/ticket-payment-trash/{id}', 'vat\EntertainmentTaxController@trashPayment')->name('entertainment-ticket-trash-payment');//trash entertainment payment
+Route::get('/entertainment/payment-restore/{id}', 'vat\EntertainmentTaxController@restorePayment')->name('restore-entertainment-payment');// restore entertainment
+
 
 /**
  * temperory testing routes

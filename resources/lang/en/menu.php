@@ -202,6 +202,10 @@ return [
     'Ticket Price' => 'Ticket Price',
     'Event Venue'=>'Event Venue',
     'Add payment' => 'Add payment',
-
+    'Add new event payment'=>'Add new event payment',
+    'Quoted Tickets' => 'Quoted Tickets',
+    'Returned Tickets' => 'Returned Tickets',
+    'Final Payment' => 'Final Payment',
+    'Payment Date' =>'Payment Date',
 
 ];
