@@ -48,7 +48,6 @@ class ShopRentTaxController extends Controller
         $currentDate = now()->toArray();
         $shopRentTax = Vat::where('route', 'shoprent')->firstOrFail();
 
-        // dd($anualWorth*($industrialTax->vat_percentage/100)+$assessmentAmmount);
         if ($lastPaymentDate!=null) {
             return ($anualWorth*($shopRentTax->vat_percentage/100)+$assessmentAmmount)*($currentDate['year']-$lastPaymentDate['year']);
         }
@@ -145,11 +144,18 @@ class ShopRentTaxController extends Controller
         return redirect()->back()->with('status', 'Payments successfully accepted');
     }
 
+    public function removePayment($id)
+    {
+        $shoprentTaxpayment =  Shop_rent_tax_payment::find($id);
+        $shoprentTaxpayment->delete();
+        return redirect()->back()->with('status', 'Delete Successful');
+    }
+
     
     public function trashPayment($id)
     {
         $shoprentTaxpayment = Shop_rent_tax_payment::onlyTrashed()->where('payer_id', $id)->get();
-        return view('vat.shopRent.trashPayment', ['industrialTaxPyament'=>$shoprentTaxpayment]);
+        return view('vat.shopRent.trashPayment', ['shoprentTaxpayment'=>$shoprentTaxpayment]);
     }
 
     //restore payment
@@ -160,6 +166,7 @@ class ShopRentTaxController extends Controller
         $shoprentTaxpayment->restore();
         return redirect()->route('shop-rent-payments', ['shop_id'=>$shopId])->with('status', 'Payment restored successfully');
     }
+
 
     public function removeShopRent($shop_id)
     {
