@@ -135,8 +135,8 @@ Route::post('/shop-rent/shop-register/{id}', 'vat\ShopRentTaxController@register
  *
  * all entertainment tax related tax routes should starts with "/entertainment"
  */
-Route::get('/entertainment/payments/{id}', 'vat\EntertainmentTaxController@entertainmentPayments')->name('entertainment-payments');
-Route::post('/entertainment/payments/{id}', 'vat\EntertainmentTaxController@reciveEntertainmentPayments')->name('receive-entertainment-payments');
+Route::get('/entertainment/profile/{id}', 'vat\EntertainmentTaxController@entertainmentPayments')->name('entertainment-profile'); //profile only cosit of payments
+Route::post('/entertainment/profile/{id}', 'vat\EntertainmentTaxController@reciveEntertainmentPayments')->name('receive-entertainment-payments');
 
 /**
  * temperory testing routes
