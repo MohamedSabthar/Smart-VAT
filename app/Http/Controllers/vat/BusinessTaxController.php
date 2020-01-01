@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vat;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Carbon\Carbon;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddBusinessRequest;
@@ -315,6 +316,14 @@ class BusinessTaxController extends Controller
 
     public function sendNotice($id)
     {
+        $currentDate = Carbon::now()->toArray();
+        $year = $currentDate['year'];
+        $taxPayment=Business_tax_payment::where('shop_id', $id)->where('created_at', 'like', "%$year%")->first();
+
+        if ($taxPayment!=null) {
+            return redirect()->back()->with('warning', "Tax already paid for this year for this business");
+        }
+
         $vatPayerMail = Business_tax_shop::find($id)->payer->email;
         //pushing mail to the queue
         dispatch(new  BusinessTaxNoticeJob($vatPayerMail, $id));
