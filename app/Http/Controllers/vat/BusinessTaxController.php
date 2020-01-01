@@ -17,6 +17,7 @@ use App\Business_tax_payment;
 use App\Business_tax_shop;
 use App\Assessment_range;
 
+use App\Jobs\BusinessTaxNoticeJob;
 
 use Auth;
 use PDF;
@@ -290,7 +291,7 @@ class BusinessTaxController extends Controller
         $businessTaxPyament->user_id = Auth::user()->id;
         $businessTaxPyament->save();
 
-        return redirect()->back()->with('sucess', 'Payment added successfuly');
+        return redirect()->back()->with('status', 'Payment added successfuly');
     }
 
 
@@ -310,5 +311,13 @@ class BusinessTaxController extends Controller
         $data = $businessTypes->get(['id','description']);
         return response()->json(array("results"=>$data
        ), 200);
+    }
+
+    public function sendNotice($id)
+    {
+        $vatPayerMail = Business_tax_shop::find($id)->payer->email;
+        //pushing mail to the queue
+        dispatch(new  BusinessTaxNoticeJob($vatPayerMail, $id));
+        return redirect()->back()->with('status', 'Mail queued successfully');
     }
 }

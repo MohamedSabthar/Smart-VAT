@@ -128,10 +128,10 @@ Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@r
 
 //shop rent tax
 
-Route::get('/shop-rent/profile/{id}','vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
-Route::post('/shop-rent/shop-register/{id}','vat\ShopRentTaxController@registerShopRent')->name('shop-rent-register');
-Route::get('/shop-rent/payments/{shop_id}','vat\ShopRentTaxController@shopRentPayments')->name('shop-rent-payments');
-Route::post('/shop-rent/payments{shop_id}','vat\ShopRentTaxController@reciveshopRentPayments')->name('receive-shop-rent-payments');
+Route::get('/shop-rent/profile/{id}', 'vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
+Route::post('/shop-rent/shop-register/{id}', 'vat\ShopRentTaxController@registerShopRent')->name('shop-rent-register');
+Route::get('/shop-rent/payments/{shop_id}', 'vat\ShopRentTaxController@shopRentPayments')->name('shop-rent-payments');
+Route::post('/shop-rent/payments{shop_id}', 'vat\ShopRentTaxController@reciveshopRentPayments')->name('receive-shop-rent-payments');
 Route::get('/shop-rent/quick-payments', 'vat\ShopRentTaxController@viewQuickPayments')->name('get-shop-rent-quick-payments');
 Route::post('/shop-rent/check-payments', 'vat\ShopRentTaxController@checkPayments')->name('check-shop-rent-payments'); //check all business payments for a given vat payer for quick payment option
 Route::post('/shop-rent/accept-quick-payments', 'vat\ShopRentTaxController@acceptQuickPayments')->name('shop-rent-quick-payments');
@@ -158,6 +158,11 @@ Route::delete('/entertainment/ticket-payment-remove/{id}', 'vat\EntertainmentTax
 Route::get('/entertainment/ticket-payment-trash/{id}', 'vat\EntertainmentTaxController@trashTicketPayment')->name('entertainment-ticket-trash-payment');//trash entertainment payment
 Route::get('/entertainment/ticket-payment-restore/{id}', 'vat\EntertainmentTaxController@restoreTicketPayment')->name('restore-entertainment-payment');// restore entertainment
 Route::put('/entertainment/ticket-payment-update/{id}', 'vat\EntertainmentTaxController@updateTicketPayment')->name('update-entertainment-ticket-payments');
+
+/**
+ * mailing routes
+ */
+Route::get('/business/business-notice/{id}', 'vat\BusinessTaxController@sendNotice')->name('business-send-notice');
 
 
 /**
