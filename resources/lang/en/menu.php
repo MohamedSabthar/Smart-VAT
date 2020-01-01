@@ -189,5 +189,25 @@ return [
     //industrial profile
     's industrial shops' =>'s industrial shops',
     'Shop Name' => 'Shop Name',
-    'Add Industrial shop'=>'Add Industrial shop'
+    'Add Industrial shop'=>'Add Industrial shop',
+    'Add' => 'Add',
+    'Confirm' => 'Confirm',
+
+    //entertainment payment
+    'View history'=>'View history',
+    'Place Addr' => 'Place Addr',
+    'Returned Payment' => 'Returned Payment',
+    'Ticket type' => 'Ticket type',
+    'Quoted Ticket' => 'Quoted Ticket',
+    'Ticket Price' => 'Ticket Price',
+    'Event Venue'=>'Event Venue',
+    'Add payment' => 'Add payment',
+    'Add new event payment'=>'Add new event payment',
+    'Quoted Tickets' => 'Quoted Tickets',
+    'Returned Tickets' => 'Returned Tickets',
+    'Final Payment' => 'Final Payment',
+    'Payment Date' =>'Payment Date',
+    'Update payment' => 'Update payment',
+
+
 ];

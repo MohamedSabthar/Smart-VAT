@@ -73,7 +73,7 @@ class AdminController extends Controller
 
     public function globalConfiguration()
     {
-        $vats = Vat::all();
+        $vats = Vat::whereNotNull('vat_percentage')->get();
         $assessment_ranges = Assessment_range::all();
         return view('admin.globalConfiguration', ['vats'=>$vats , 'assessment_ranges'=>$assessment_ranges]);
     }
