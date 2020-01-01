@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('phone', 12);                                    //user's telephone number
             $table->string('userName')->unique();                           //user-name for login purpose
             $table->string('role')->default('employee');                    //employee role admin or employee
-            $table->boolean('status')->default(1);                          //status to block and unblock account
             $table->bigInteger('adminId')->unsigned()->nullable();          //which admin added the employee?
             $table->timestamp('email_verified_at')->nullable();             //is email verified time
             $table->rememberToken();                                        //remembertoken for remember while the login
