@@ -81,7 +81,7 @@
 
 
 <div class="col-xl-3 col-lg-6"
-    onclick="javascript:window.open(`{{route('industrial-trash-payment',['id'=>$shopRentTax->payer->id])}}`,'_self')"
+    onclick="javascript:window.open(`{{route('shop-rent-trash-payment',['id'=>$shopRentTax->payer->id])}}`,'_self')"
     style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -264,7 +264,7 @@
 
 
                                             <form id="remove-payment"
-                                                action="{{route('remove-industrial-payment',['id'=>$payments->id])}}"
+                                                action="{{route('remove-shop-rent-payment',['id'=>$payments->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')

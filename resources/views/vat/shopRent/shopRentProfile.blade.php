@@ -83,7 +83,7 @@
 
 
 <div class="col-xl-3 col-lg-6"
-	onclick="javascript:window.open(`{{route('trash-industrial-shop',['id'=>$vatPayer->id])}}`,'_self')"
+	onclick="javascript:window.open(`{{route('trash-shop-rent',['id'=>$vatPayer->id])}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -219,7 +219,23 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Key Money')}}</label>
+						<div class="col-md-10 ">
+							<input class="form-control @error('keymoney') is-invalid  @enderror"
+								type="text" value="{{old('keymoney')}}" id="keymoney"
+								name="keymoney">
+							@error('keymoney')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<label for="example-text-input"
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Month Assesment Amount')}}</label>
 						<div class="col-md-10 ">
 							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
 								type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"

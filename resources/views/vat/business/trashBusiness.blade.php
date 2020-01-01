@@ -158,27 +158,11 @@
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                <th></th>
-                    </tr>
-                    </thead>
-                    <thead id="search_inputs">
-                        <tr>
-                            <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
-=======
-=======
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
-
                             </tr>
                         </thead>
                         <thead id="search_inputs">
                             <tr>
                                 <th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
-<<<<<<< HEAD
->>>>>>> 45b72aec08f1ef8c28217af58124433559cef2a6
-=======
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
@@ -186,16 +170,9 @@
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPhone"
                                         placeholder="{{__('menu.Search Phone')}}" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            </th>
-                            
-=======
+
                                 </th>
->>>>>>> 45b72aec08f1ef8c28217af58124433559cef2a6
-=======
-                                </th>
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
+
 
 
                             </tr>
@@ -219,14 +196,6 @@
 
                         <thead class="thead-light">
                             <tr>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                
-=======
-
->>>>>>> 45b72aec08f1ef8c28217af58124433559cef2a6
-=======
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
@@ -272,19 +241,13 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-            $('#searchaAssesmentNo').on( 'keyup', function () { 
+            $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 45b72aec08f1ef8c28217af58124433559cef2a6
-=======
->>>>>>> be5f15b1acae5c0dbc0c2e67a091386c139820c8
             $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
