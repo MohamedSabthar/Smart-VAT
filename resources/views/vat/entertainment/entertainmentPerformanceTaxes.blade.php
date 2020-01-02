@@ -81,7 +81,7 @@
 
 
 <div class="col-xl-3 col-lg-6"
-    onclick="javascript:window.open(`{{route('entertainment-ticket-trash-payment',['id'=>app('request')->id])}}`,'_self')"
+    onclick="javascript:window.open(`{{route('entertainment-performance-trash-payment',['id'=>app('request')->id])}}`,'_self')"
     style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -214,10 +214,7 @@
                             <tr>
                                 <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Place Addr')}}</th>
-                                <th>{{__('menu.Quoted Tickets')}}</th>
-                                <th>{{__('menu.Ticket Price')}}</th>
-                                <th>{{__('menu.Returned Tickets')}}</th>
-                                <th>{{__('menu.Returned Payment')}}</th>
+                                <th>{{__('menu.Number of Days')}}</th>
                                 <th>{{__('menu.Final Payment')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th></th>
@@ -230,14 +227,8 @@
                                         placeholder="{{__('menu.Search Assesment No.')}}" /></th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchAddress"
                                         placeholder="{{__('menu.Search Address')}}" /></th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchQuotedTickets"
-                                        placeholder="{{__('menu.Quoted Tickets')}}" /></th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchTicketPrice"
-                                        placeholder="{{__('menu.Ticket Price')}}" /></th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchReturnTickets"
-                                        placeholder="{{__('menu.Returned Tickets')}}" /></th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchReturnedPayment"
-                                        placeholder="{{__('menu.Search Returnded Payments')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="seachDays"
+                                        placeholder="{{__('menu.Search Number of Days')}}" /></th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPayment"
                                         placeholder="{{__('menu.Search Payment')}}" /></th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
@@ -247,17 +238,13 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($vatPayer->entertainmentTicketPayments as $payments)
+                            @foreach ($vatPayer->entertainmentPerformancePayments as $payments)
                             <tr>
                                 <td>{{$payments->id}}</td>
                                 <td class="text-center">{{$payments->place_address}}</th>
 
-                                <td>{{ $payments->quoted_tickets}}</td>
-                                <td>{{ number_format($payments->ticket_price,2)}}</td>
-                                <td>{{ $payments->returned_tickets==null ? 'N/A' : $payments->returned_tickets}}</td>
-                                <td>{{ number_format($payments->returned_payment,2)}}</th>
+                                <td>{{ $payments->days}}</td>
                                 <td>{{ number_format($payments->payment,2)}}</td>
-
                                 <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
 
 
@@ -271,7 +258,7 @@
 
 
                                             <form
-                                                action="{{route('remove-entertainment-payment',['id'=>$payments->id])}}"
+                                                action="{{route('remove-entertainment-performance-payment',['id'=>$payments->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -296,14 +283,11 @@
                             <tr>
                                 <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Place Addr')}}</th>
-                                <th>{{__('menu.Quoted Tickets')}}</th>
-                                <th>{{__('menu.Ticket Price')}}</th>
-                                <th>{{__('menu.Returned Tickets')}}</th>
-                                <th>{{__('menu.Returned Payment')}}</th>
+                                <th>{{__('menu.Number of Days')}}</th>
                                 <th>{{__('menu.Final Payment')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
-
                                 <th></th>
+
 
                             </tr>
                         </thead>
@@ -481,7 +465,8 @@
                 </div>
                 <div class="card-body">
                     {{-- Entertainment payment form --}}
-                    <form method="POST" action="{{route('receive-entertainment-payments',['id'=> $vatPayer->id])}}"
+                    <form method="POST"
+                        action="{{route('receive-performance-entertainment-payments',['id'=> $vatPayer->id])}}"
                         id="ticket-payment-form">
                         @csrf
                         <div class="form-group row">
@@ -489,13 +474,13 @@
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Payment type')}}</label>
                             <div class="col-md-10">
 
-                                <select id="ticketType" name="ticketType"
-                                    class="form-control @error('ticketType') is-invalid  @enderror">
+                                <select id="paymentType" name="paymentType"
+                                    class="form-control @error('paymentType') is-invalid  @enderror">
 
                                     <option value="" disabled selected>Select a ticket type</option>
 
                                     @foreach ($performanceTypes as $type)
-                                    <option value="{{$type->id}}" @if(old('ticketType')==$type->id) selected
+                                    <option value="{{$type->id}}" @if(old('paymentType')==$type->id) selected
                                         @endif>{{$type->description}} -
                                         ({{number_format($type->amount,2)}}LKR |
                                         {{number_format($type->additional_amount,2)}}LKR)
@@ -504,7 +489,7 @@
 
 
                                 </select>
-                                @error('ticketType')
+                                @error('paymentType')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -528,9 +513,9 @@
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Number of days')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('quotedTickets') is-invalid  @enderror" type="number"
-                                    value="{{old('quotedTickets')}}" id="quotedTickets" name="quotedTickets">
-                                @error('quotedTickets')
+                                <input class="form-control @error('noOfDays') is-invalid  @enderror" type="number"
+                                    value="{{old('noOfDays')}}" id="noOfDays" name="noOfDays">
+                                @error('noOfDays')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -538,19 +523,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket Price')}}</label>
-                            <div class="col-md-10 ">
-                                <input class="form-control @error('ticketPrice') is-invalid  @enderror" type="number"
-                                    step="0.01" value="{{old('ticketPrice')}}" id="ticketPrice" name="ticketPrice">
-                                @error('ticketPrice')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
 
 
                         <div class="form-group">
@@ -649,43 +621,22 @@
                 .draw();
             });
 
-            $('#searchQuotedTickets').on( 'keyup', function () { 
+            $('#seachDays').on( 'keyup', function () { 
             table
                 .columns( 2 )
                 .search( this.value )
                 .draw();
             });
 
-            $('#searchTicketPrice').on( 'keyup', function () { 
+            $('#searchPayment').on( 'keyup', function () { 
             table
                 .columns( 3 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchReturnTickets').on( 'keyup', function () { 
-            table
-                .columns( 4 )
-                .search( this.value )
-                .draw();
-            });
-            
-
-           
-            $('#searchReturnedPayment').on( 'keyup', function () { 
-            table
-                .columns( 5 )
-                .search( this.value )
-                .draw();
-            });
-            $('#searchPayment').on( 'keyup', function () { 
-            table
-                .columns( 6 )
-                .search( this.value )
-                .draw();
-            });
             $('#searchPaymentDate').on( 'keyup', function () { 
             table
-                .columns( 7 )
+                .columns( 4 )
                 .search( this.value )
                 .draw();
             }); 

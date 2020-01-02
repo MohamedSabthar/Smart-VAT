@@ -160,7 +160,13 @@ Route::delete('/entertainment/ticket-payment-remove/{id}', 'vat\EntertainmentTax
 Route::get('/entertainment/ticket-payment-trash/{id}', 'vat\EntertainmentTaxController@trashTicketPayment')->name('entertainment-ticket-trash-payment');//trash entertainment payment
 Route::get('/entertainment/ticket-payment-restore/{id}', 'vat\EntertainmentTaxController@restoreTicketPayment')->name('restore-entertainment-payment');// restore entertainment
 Route::put('/entertainment/ticket-payment-update/{id}', 'vat\EntertainmentTaxController@updateTicketPayment')->name('update-entertainment-ticket-payments');
-Route::get('/entertainment/other-tax/{id}', 'vat\EntertainmentTaxController@showOtherTaxForm')->name('entertainment-other-tax'); // restore industrial
+
+Route::get('/entertainment/performance-tax/{id}', 'vat\EntertainmentTaxController@showPerformanceTaxForm')->name('entertainment-performance-tax'); // restore industrial
+Route::post('/entertainment/performance-payments/{id}', 'vat\EntertainmentTaxController@recievePerformancePayments')->name('receive-performance-entertainment-payments');
+Route::delete('/entertainment/performance-payment-remove/{id}', 'vat\EntertainmentTaxController@removePerformancePayment')->name('remove-entertainment-performance-payment');//soft delete performance payment
+Route::get('/entertainment/performance-payment-trash/{id}', 'vat\EntertainmentTaxController@trashPerformancePayment')->name('entertainment-performance-trash-payment');//trash performance payment
+Route::get('/entertainment/performance-payment-restore/{id}', 'vat\EntertainmentTaxController@restorePerformancePayment')->name('restore-entertainment-performance-payment');// restore entertainment
+
 
 /**
  * mailing routes

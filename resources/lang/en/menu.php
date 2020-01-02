@@ -208,6 +208,16 @@ return [
     'Final Payment' => 'Final Payment',
     'Payment Date' =>'Payment Date',
     'Update payment' => 'Update payment',
+    'Tax payment : Rs.' => 'Tax payment : Rs.',
+    'Returned tax payment : Rs.' => 'Returned tax payment : Rs.',
+
+
+    //entertainment other paymentes
+    'Payment type'=>'Payment type',
+    'Number of days' => 'Number of days',
+    'Add new performance payment' => 'Add new performance payment',
+
+
 
 
 ];
