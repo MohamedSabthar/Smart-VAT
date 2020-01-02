@@ -13,6 +13,7 @@ use Auth;
 use App\Vat_payer;
 use App\Entertainment_type;
 use App\Entertainment_tax_tickets_payment;
+use App\Entertainment_performance_type;
 
 class EntertainmentTaxController extends Controller
 {
@@ -88,5 +89,12 @@ class EntertainmentTaxController extends Controller
         $entertainmentTicketPayment->save();
 
         return redirect()->back()->with('status', 'Payments successfully accepted')->with('taxPayment', $taxPayment)->with('retunTaxPayment', $retunTaxPayment);
+    }
+
+    public function showOtherTaxForm($id)
+    {
+        $vatPayer = Vat_payer::find($id);
+        $performanceTypes = Entertainment_performance_type::all();
+        return view('vat.entertainment.entertainmentOtherTaxes', ['vatPayer'=>$vatPayer,'performanceTypes'=>$performanceTypes]);
     }
 }

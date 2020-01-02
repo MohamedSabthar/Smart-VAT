@@ -126,6 +126,8 @@ Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxControll
 Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore industrial
 
 
+
+
 //shop rent tax
 
 Route::get('/shop-rent/profile/{id}', 'vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
@@ -158,6 +160,7 @@ Route::delete('/entertainment/ticket-payment-remove/{id}', 'vat\EntertainmentTax
 Route::get('/entertainment/ticket-payment-trash/{id}', 'vat\EntertainmentTaxController@trashTicketPayment')->name('entertainment-ticket-trash-payment');//trash entertainment payment
 Route::get('/entertainment/ticket-payment-restore/{id}', 'vat\EntertainmentTaxController@restoreTicketPayment')->name('restore-entertainment-payment');// restore entertainment
 Route::put('/entertainment/ticket-payment-update/{id}', 'vat\EntertainmentTaxController@updateTicketPayment')->name('update-entertainment-ticket-payments');
+Route::get('/entertainment/other-tax/{id}', 'vat\EntertainmentTaxController@showOtherTaxForm')->name('entertainment-other-tax'); // restore industrial
 
 /**
  * mailing routes
