@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
 @endpush
 
-@section('title','Industrial Tax')
+@section('title','Global configuration')
 
 @section('sidebar')
 @includeWhen(Auth::user()->role=='admin','admin.include.sidebar')

@@ -71,38 +71,5 @@ class AssessmentRangesTableSeeder extends Seeder
             ['start_value' => 2500,
             'vat_id' => $industrialTaxId]
         );
-
-        // Entertainment tax permited place dimension ranges
-        // ranges are Sqr.mtr
-        $entertainmentTaxId = Vat::where('route', 'entertainment')->first()->id;
-
-        DB::table('assessment_ranges')->insert(
-            ['start_value' => 0,
-            'end_value' => 93,
-            'vat_id' => $entertainmentTaxId]
-        );
-
-        DB::table('assessment_ranges')->insert(
-            ['start_value' => 93,
-            'end_value' => 186,
-            'vat_id' => $entertainmentTaxId]
-        );
-
-        DB::table('assessment_ranges')->insert(
-            ['start_value' => 186,
-            'end_value' => 279,
-            'vat_id' => $entertainmentTaxId]
-        );
-
-        DB::table('assessment_ranges')->insert(
-            ['start_value' => 279,
-            'end_value' => 465,
-            'vat_id' => $entertainmentTaxId]
-        );
-
-        DB::table('assessment_ranges')->insert(
-            ['start_value' => 465,
-            'vat_id' => $entertainmentTaxId]
-        );
     }
 }

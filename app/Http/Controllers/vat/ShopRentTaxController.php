@@ -30,7 +30,8 @@ class ShopRentTaxController extends Controller
         $vatPayer = Vat_payer :: find($id); // get vat payer id
         $shopRentTax = new Shop_rent_tax();
         $shopRentTax->registration_no = $request->assesmentNo;
-        $shopRentTax->anual_worth = $request->annualAssesmentAmount;
+        $shopRentTax->key_money =$request->keyMoney;
+        $shopRentTax->month_worth = $request->annualAssesmentAmount;
         $shopRentTax->shop_name = $request->businessName;
         $shopRentTax->phone = $request->phoneno;
         $shopRentTax->door_no = $request->doorno;

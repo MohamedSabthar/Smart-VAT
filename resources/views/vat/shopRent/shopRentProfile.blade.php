@@ -116,7 +116,7 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		@if(url()->previous()==route('payer-registration',['requestFrom'=>'shoprent']))
+		@if(url()->previous()==route('payer-registration',['requestFrom'=>'shop-rent']))
 		<div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
@@ -221,10 +221,10 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Key Money')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('keymoney') is-invalid  @enderror"
-								type="text" value="{{old('keymoney')}}" id="keymoney"
-								name="keymoney">
-							@error('keymoney')
+							<input class="form-control @error('keyMoney') is-invalid  @enderror"
+								type="text" value="{{old('keyMoney')}}" id="keyMoney"
+								name="keyMoney">
+							@error('keyMoney')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
