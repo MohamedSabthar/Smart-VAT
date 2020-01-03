@@ -31,4 +31,9 @@ class Vat_payer extends Model
     {
         return $this->belongsTo('App\User', 'employee_id'); // a vat payer registered by an employee
     }
+
+    public function entertainmentPerformancePayments()
+    {
+        return $this->hasMany('App\Entertainment_tax_performance_payment', 'payer_id'); //one VAT payer may have many entertainment performance payments
+    }
 }

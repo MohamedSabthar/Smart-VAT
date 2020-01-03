@@ -101,11 +101,6 @@
 					<div class="col-8">
 						<h3 class="mb-0 text-uppercase">{{$employee->name}} '{{__('menu.s details')}}</h3>
 					</div>
-					<div class="col-4 text-right">
-						<a href="#" class="btn btn-sm {!! $employee->status ? 'btn-danger' : 'btn-success' !!}">
-							{!! $employee->status ? 'Block' : 'Unblock' !!}
-						</a>
-					</div>
 				</div>
 			</div>
 			<div class="card-body">

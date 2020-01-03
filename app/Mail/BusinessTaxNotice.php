@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Vat_payer;
+use App\Business_tax_shop;
 
 class BusinessTaxNotice extends Mailable
 {
@@ -30,7 +30,7 @@ class BusinessTaxNotice extends Mailable
      */
     public function build()
     {
-        $vatPayer = Vat_payer::find($this->id);
+        $vatPayer = Business_tax_shop::find($this->id)->payer;
         return $this->markdown('mail.businessTaxNotice', ['vatPayer'=>$vatPayer]);
     }
 }

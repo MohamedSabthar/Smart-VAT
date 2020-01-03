@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title','Trash Payments')
+@section('title','Trash Shop Rent')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
 @endpush
 
 @section('sidebar')
@@ -142,7 +142,7 @@
                 <div class="row align-item-center">
                     <div class="col">
                         <h3 class="mb-0">
-                            <span class="text-uppercase">{{__('menu.Trash Payments')}}</span>
+                            <span class="text-uppercase">{{__('menu.Trash Shop Rent')}}</span>
                         </h3>
                         <hr class="mt-4 mb-0">
                     </div>
@@ -150,63 +150,42 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="trash_payment" class="table">
+                    <table id="trash_industrial" class="table">
                         <thead class="thead-light">
                             <tr>
-
-                                <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Business Name')}}</th>
-                                <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
+                                <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Shop Name')}}</th>
+                                <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
 
-                                <th></th>
                             </tr>
                         </thead>
                         <thead id="search_inputs">
                             <tr>
-                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                <th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                        placeholder="{{__('menu.Search Business Name')}}" />
+                                        placeholder="{{__('menu.Search Industrial Shop')}}" />
                                 </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
-                                        placeholder="{{__('menu.Search Payment date')}}" />
+                                <th><input type="text" class="form-control form-control-sm" id="searchPhone"
+                                        placeholder="{{__('menu.Search Phone')}}" />
                                 </th>
-
 
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($businessTaxPyament as $payment)
+                            @foreach ($shopRentTax as $shoprent)
                             <tr>
-                                <td>{{$payment->id}}</td>
-                                <td>{{$payment->businessTaxShop->shop_name}}</td>
-                                <td>{{$payment->created_at}}</td>
-                                <td>{{$payment->payment}}</td>
-                                <td>{!!$payment->assinged_to_court ? "Yes" : "No" !!}</td>
+                                <td>{{$shoprent->id}}</td>
+                                <td>{{$shoprent->shop_name}}</td>
+                                <td>{{$shoprent->phone}}</td>
+
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-payment',['id'=>$payment->id])}}">
+                                        href="{{route('restore-shop-rent',['id'=>$shoprent->id])}}">
                                         {{__('menu.Restore')}}</a>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown">
-                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-
-                                            <a class="dropdown-item"
-                                                href="{{route('remove-payment-permanent',['id'=>$payment->id])}}">
-                                                {{__('menu.Delete permenent')}}</a>
-                                        </div>
-
-                                    </div>
                                 </td>
 
                             </tr>
@@ -216,14 +195,11 @@
                         <thead class="thead-light">
                             <tr>
 
-                                <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Business Name')}}</th>
-                                <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
+                                <th>{{__('menu.Assesment No.')}}</th>
+                                <th>{{__('menu.Shop Name')}}</th>
+                                <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
 
-                                <th></th>
                             </tr>
                         </thead>
                     </table>
@@ -246,7 +222,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#trash_payment';                      //data table id
+        var id = '#trash_industrial';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -264,26 +240,24 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-            $('#searchaAssesmentNo').on( 'keyup', function () { 
+        $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-
             $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+            $('#searchPhone').on( 'keyup', function () { 
             table
                 .columns( 2 )
                 .search( this.value )
                 .draw();
             });
-            
       } );
 
 </script>

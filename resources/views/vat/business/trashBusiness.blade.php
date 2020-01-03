@@ -158,7 +158,6 @@
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
                                 <th>{{__('menu.Action')}}</th>
-
                             </tr>
                         </thead>
                         <thead id="search_inputs">
@@ -171,7 +170,9 @@
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPhone"
                                         placeholder="{{__('menu.Search Phone')}}" />
+
                                 </th>
+
 
 
                             </tr>
@@ -240,12 +241,13 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-            $('#searchaAssesmentNo').on( 'keyup', function () { 
+            $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
+
             $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )

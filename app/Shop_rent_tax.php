@@ -3,11 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Shop_rent_tax extends Model
 {
     //
     protected $table = 'shop_rent_tax';
+    use SoftDeletes;
 
     public function payer()
     {
@@ -25,4 +27,9 @@ class Shop_rent_tax extends Model
             return $tax->payer;
         })->unique('id');   //collection filtered using unique id
     }
+    public function payments()
+    {
+        return $this->hasMany('App\Shop_rent_tax_payment', 'shop_id');   //a shop has many payments
+    }
+
 }

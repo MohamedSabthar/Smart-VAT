@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Entertainment_tax_tickets_payment extends Model
 {
     protected $table = 'entertainment_tax_tickets_payments';
+    use SoftDeletes;
 
     public function vatPayer()
     {

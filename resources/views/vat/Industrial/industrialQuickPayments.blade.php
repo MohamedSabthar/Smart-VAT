@@ -293,7 +293,7 @@
 														$('#shop-details tbody').append(`
                                 <tr>
                                     <td scope="row"> ${element.shop_name} </td>
-                                    <td> ${result.duePaymentValue[i]} </td>
+                                    <td> ${result.duePaymentValue[i].toLocaleString('en',{ minimumFractionDigits: 2 })} </td>
                                     <td class='d-flex px-3'> 
                                         <input  name=${element.id} type="checkbox" ${ result.duePayments[i]!=null ? 'checked disabled' :'' } 
                                         <label>${ result.duePayments[i]==null ? '' :'paid' }</label>
