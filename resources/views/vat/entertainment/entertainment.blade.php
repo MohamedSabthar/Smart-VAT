@@ -34,6 +34,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -155,7 +156,7 @@
 					</thead>
 					<tbody>
 
-						@foreach ($ticketPayers as $payer)
+						@foreach ($entertainmentPayers as $payer)
 						<tr>
 							<td>{{$payer->nic}}</th>
 							<td>{{$payer->full_name}}</td>

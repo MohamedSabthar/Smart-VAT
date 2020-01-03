@@ -151,10 +151,10 @@
 
 		<div class="card shadow">
 			<div class="card-header bg-transparent">
-				<h3 class="mb-0"><span class="text-uppercase">Register Payer</span></h3>
+				<h3 class="mb-0"><span class="text-uppercase">Register VAT Payer</span></h3>
 			</div>
 
-			<div class="card-body ">
+			<div class="card-body bg-secondary ">
 
 				{{--VAT payers Registration form  --}}
 				<form method="POST" action="{{route('vat-payer-registration',['requestFrom'=>$requestFrom])}}"
