@@ -91,6 +91,8 @@ return [
     'Door No.' => 'දොර අංකය',
     'Registration' => 'ලියාපදිංචි කිරීම',
     'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
+    'Yes' => 'ඔව්',
+
     
     
     //employee profile

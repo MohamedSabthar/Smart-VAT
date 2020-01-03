@@ -323,8 +323,7 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-link"
 										onclick="javascript:location.reload()">Cancel</button>
-									<a href="" id="redirect"
-										class="btn  btn-primary ml-auto">{{__('menu.Add Business')}}</a>
+									<a href="" id="redirect" class="btn  btn-primary ml-auto">{{__('menu.Yes')}}</a>
 								</div>
 
 							</div>

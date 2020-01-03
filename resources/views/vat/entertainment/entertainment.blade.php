@@ -13,12 +13,13 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6">
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('entertainment')}}`,'_self')"
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">
+					<h3 class="card-title text-uppercase text-center text-muted mb-0">
 						Entertainment Tax payers
 					</h3>
 					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
@@ -33,13 +34,12 @@
 		</div>
 	</div>
 </div>
-
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">
+					<h3 class="card-title text-uppercase text-center text-muted mb-0">
 						Latest Payments
 					</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
@@ -62,7 +62,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">Report Generation</h3>
+					<h3 class="card-title text-uppercase text-center text-muted mb-0">Report Generation</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -83,7 +83,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">Quick payments</h5>
+					<h3 class="card-title text-uppercase text-center text-muted mb-0">xyz</h5>
 						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -172,9 +172,14 @@
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<a class="dropdown-item"
-											href="{{route('entertainment-profile',['id'=>$payer->id])}} ">View
+											href="{{route('entertainment-profile',['id'=>$payer->id])}} ">Ticket
 											payments</a>
+										<a class="dropdown-item"
+											href="{{route('entertainment-performance-tax',['id'=>$payer->id])}} ">Performance
+											payments</a>
+
 									</div>
+
 
 								</div>
 							</td>
