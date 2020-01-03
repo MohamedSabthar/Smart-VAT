@@ -144,7 +144,9 @@ Route::post('/entertainment/payments/{id}', 'vat\EntertainmentTaxController@reci
  * 
  * all taxes related to land tax should starts with "/land"
  */
-//Route::get('/land','vat\LandTaxController@veiwLandTax')->name('land');
+Route::get('/land/profile/{id}', 'vat\LandTaxController@landProfile')->name('land-profile');
+Route::post('/land/land-register/{id}', 'vat\LandTaxController@registerLand')->name('land-register');
+Route::get('/land/payments/{land_id}', 'vat\LandTaxController@landPayments')->name('land-payments');
 
 
 

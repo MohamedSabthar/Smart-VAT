@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Land Payments')
+@section('title','Land Payment')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -81,7 +81,7 @@
 
 
 <div class="col-xl-3 col-lg-6"
-    onclick="javascript:window.open(`{{route('trash-payment',['id'=>$landTaxShop->payer->id])}}`,'_self')"
+    onclick="javascript:window.open(`{{route('land-trash-payment',['id'=>$landTaxPremises->payer->id])}}`,'_self')"
     style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -102,6 +102,34 @@
     </div>
 </div>
 
+<div class="container-fluid d-flex align-items-center">
+    {{-- Alert notifications --}}
+    <div class="col mt-5">
+        @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                <strong class="mx-1">{{__('menu.Error!')}}</strong>
+                {{__('menu.Data you entered is/are incorrect')}}
+                <a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
+            </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+    </div>
+    {{-- end of Alert notifications --}}
+</div>
+
 @endsection
 
 @section('pageContent')
@@ -120,33 +148,33 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="{{route('business-profile',['id'=>$landTaxShop->payer->id])}}"
+                        <a href="{{route('land-profile',['id'=>$landTaxPremises->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
                     <div class="test-left pt-5">
-                        <h3 class="d-inline">{{__('menu.Business Name')}} : </h3>
-                        {{ucwords($businessTaxShop->shop_name)}}
+                        <h3 class="d-inline">{{__('menu.Premises Name')}} : </h3>
+                        {{ucwords($landTaxPremises->land_name)}}
                         <div class="pt-1">
-                            <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{ucwords($businessTaxShop->address)}}
+                            <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{ucwords($landTaxPremises->address)}}
                         </div>
 
                         <div class="pt-1">
                             <h3 class="d-inline">{{__('menu.Assesment No.')}} : </h3>
-                            {{$businessTaxShop->registration_no}}
+                            {{$landTaxPremises->registration_no}}
                         </div>
 
                         <hr>
 
                         <div class="pt-1">
                             <h3 class="d-inline"> {{__('menu.Annual worth')}} : </h3>
-                            {{number_format($businessTaxShop->anual_worth,2)}}
+                            {{number_format($landTaxPremises->worth,2)}}  
                         </div>
                         <hr>
 
                         <div class="pt-1">
-                            <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$businessTaxShop->phone}}
+                            <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$landTaxPremises->phone}}
                         </div>
 
 
@@ -162,18 +190,49 @@
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
                     <h1 style="font-weight: 400;">{{__('menu.Due Payment : Rs.')}} {{number_format($duePayment,2)}}</h1>
-                    <button class="btn btn-success mx-auto my-1"
-                        onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
+                    <button class="btn btn-success mx-auto my-1" data-toggle="modal"
+                        onclick="javascript:event.preventDefault()"
+                        data-target="#confirm-land-payment">{{__('menu.Accept Payment')}}</button>
 
                 </div>
             </div>
             {{-- payment form --}}
-            <form action="{{route('receive-business-payments',['shop_id'=>$businessTaxShop->id])}}" id="accept-payment"
-                method="POST" hidden>
+            <form action="{{route('receive-land-payments',['shop_id'=>$landTaxPremises->id])}}"
+                id="accept-payment" method="POST" hidden>
                 @csrf
                 <input type="text" name="payment" value="{{$duePayment}}">
             </form>
             {{-- end of payment form --}}
+            {{-- Confirmation modal for adding business for the registered VAT payer--}}
+            <div class=" modal fade" id="confirm-land-payment" tabindex="-1" role="dialog"
+                aria-labelledby="modal-default" aria-hidden="true">
+                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <p>Confirmation needed to add payment for <br>
+                                shop : {{$landTaxPremises->land_name}} </p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link"
+                                onclick="javascript:location.reload()">Cancel</button>
+                            <button type="button" id="redirect" class="btn  btn-primary ml-auto"
+                                onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {{-- End of confirmation modal --}}
+
             @else
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
@@ -182,7 +241,7 @@
                 </div>
             </div>
             @endif
-            {{-- end of Payment Notice --}}
+            {{-- end of Pyament Notice --}}
 
 
             <div class="card shadow">
@@ -195,14 +254,13 @@
                 </div>
 
                 <div class="table-responsive py-4">
-                    {{-- Business TAX payments table --}}
-                    <table id="business_payments_table" class="table  px-5">
+                    {{-- Industrial TAX payments table --}}
+                    <table id="land_payments_table" class="table  px-5">
                         <thead class="thead-light">
                             <tr>
                                 <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
                                 <th></th>
 
                             </tr>
@@ -214,26 +272,19 @@
                                 <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
                                         placeholder="{{__('menu.Search Payment date')}}" /></th>
                                 <th></th>
-                                <th>
-                                    <select class="form-control form-control-sm" id="selectCourt">
-                                        <option value="">{{__('menu.All')}}</option>
-                                        <option value="Yes">{{__('menu.Yes')}}</option>
-                                        <option value="No">{{__('menu.No')}}</option>
-                                    </select>
 
-                                </th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach ($businessTaxShop->payments as $payments)
+                            @foreach ($landTaxPremises->payments as $payments)
                             <tr>
                                 <td>{{$payments->id}}</td>
                                 <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
                                 <td>{{ number_format($payments->payment,2)}}</td>
 
-                                <td>{!! $payments->assinged_to_court ? "Yes" : "No" !!}</td>
+
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -244,7 +295,7 @@
 
 
                                             <form id="remove-payment"
-                                                action="{{route('remove-payment',['id'=>$payments->id])}}"
+                                                action="{{route('remove-land-payment',['id'=>$payments->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -268,13 +319,13 @@
                                 <th>{{__('menu.Receipt No.')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
-                                <th>{{__('menu.Assigned To Court')}}</th>
+
                                 <th></th>
                             </tr>
                         </thead>
 
                     </table>
-                    {{-- end of Business TAX payments table --}}
+                    {{-- end of Industrial TAX payments table --}}
                 </div>
             </div>
 
@@ -293,7 +344,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#business_payments_table';            //data table id
+        var id = '#land_payments_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -310,7 +361,7 @@
  
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
-        //individulate column search
+        //individulat column search
         $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
@@ -320,12 +371,6 @@
             $('#searchPaymentDate').on( 'keyup', function () { 
             table
                 .columns( 1 )
-                .search( this.value )
-                .draw();
-            });
-            $('#selectCourt').on( 'change', function () { 
-            table
-                .columns( 3 )
                 .search( this.value )
                 .draw();
             });

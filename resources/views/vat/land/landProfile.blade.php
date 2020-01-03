@@ -83,7 +83,7 @@
 
 
 <div class="col-xl-3 col-lg-6"
-	onclick="javascript:window.open(`{{route('trash-industrial-shop',['id'=>$vatPayer->id])}}`,'_self')"
+	onclick="javascript:window.open(`{{route('trash-land-shop',['id'=>$vatPayer->id])}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -116,11 +116,11 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		@if(url()->previous()==route('payer-registration',['requestFrom'=>'industrial']))
+		@if(url()->previous()==route('payer-registration',['requestFrom'=>'land']))
 		<div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
-				Click here to add new Industrial shop
+				Click here to add new premises
 				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -191,18 +191,18 @@
 		</div>
 	</div>
 	<div class="col-xl-8 order-xl-1">
-		<div class="card bg-secondary shadow mb-5 hide" id="industrial-registration">
+		<div class="card bg-secondary shadow mb-5 hide" id="land-registration">
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add Industrial shop')}}</span></h3>
+						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new premises')}}</span></h3>
 					</div>
 
 				</div>
 			</div>
 			<div class="card-body">
 				{{-- Land registration form ############### --}}
-				<form method="POST" action="{{route('industrial-shop-register',['id'=> $vatPayer->id])}}">
+				<form method="POST" action="{{route('land-premises-register',['id'=> $vatPayer->id])}}">
 					@csrf
 					<div class="form-group row pt-3">
 						<label for="example-text-input"
@@ -221,14 +221,14 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
-								type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
-								name="annualAssesmentAmount">
+							<input class="form-control @error('assesmentAmount') is-invalid  @enderror"
+								type="text" value="{{old('assesmentAmount')}}" id="assesmentAmount"
+								name="assesmentAmount">
 
 							<span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
 								<strong>dfafjkladfj</strong>
 							</span>
-							@error('annualAssesmentAmount')
+							@error('assesmentAmount')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -237,18 +237,20 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Shop Name')}}</label>
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Premises Name')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('businessName') is-invalid  @enderror" type="text"
-								value="{{old('businessName')}}" id="businessName" name="businessName">
-							@error('businessName')
+							<input class="form-control @error('landName') is-invalid  @enderror" type="text"
+								value="{{old('landName')}}" id="landName" name="landName">
+							@error('landName')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
 							@enderror
 						</div>
 					</div>
-					<div class="form-group row">
+
+					{{-- Change or remove as necessary --}}
+					{{-- <div class="form-group row">
 						<label for="industrial-type"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Industrial type')}}</label>
 						<div class="col-md-10">
@@ -256,28 +258,28 @@
 							<select id="type" name="type" class="form-control @error('type') is-invalid  @enderror">
 								<option value=""></option>
 								{{-- only for testing need to implement Ajax searchBuisness --}}
-								@foreach ($industrialTypes as $type)
+								{{-- @foreach ($industrialTypes as $type)
 								<option value="{{$type->id}}">{{$type->description}}
 									{{'('.$type->ranges->start_value .'-'. $type->ranges->end_value .')'}}
 								</option>
-								@endforeach
+								@endforeach --}}
 
 
-							</select>
+							{{-- </select>
 							@error('type')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
 							@enderror
-						</div>
-					</div>
+						</div> --}}
+					{{-- </div> --}} 
 					<div class="form-group row">
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('phoneno') is-invalid  @enderror" type="text"
-								value="{{old('phoneno')}}" id="phoneno" name="phoneno">
-							@error('phoneno')
+							<input class="form-control @error('phoneNo') is-invalid  @enderror" type="text"
+								value="{{old('phoneNo')}}" id="phoneNo" name="phoneNo">
+							@error('phoneNo')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -288,9 +290,9 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('doorno') is-invalid  @enderror" type="text"
-								value="{{old('doorno')}}" id="doorno" name="doorno">
-							@error('doorno')
+							<input class="form-control @error('doorNo') is-invalid  @enderror" type="text"
+								value="{{old('doorNo')}}" id="doorNo" name="doorNo">
+							@error('doorNo')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -329,7 +331,7 @@
 
 
 				</form>
-				{{-- end of Industrial shop registration form --}}
+				{{-- end of Land registration form --}}
 			</div>
 		</div>
 
@@ -339,7 +341,7 @@
 					<div class="col">
 						<h3 class="mb-0">
 							<span class="text-uppercase">{{$vatPayer->first_name}}
-								'{{__('menu.s industrial shops')}}</span>
+								'{{__('menu.s premises hired')}}</span>
 						</h3>
 						<hr class="mt-4 mb-0">
 					</div>
@@ -347,13 +349,13 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					{{-- Business shops table --}}
+					{{-- table of Lands that rented  --}}
 					<table id="business_shops_table" class="table">
 						<thead class="thead-light">
 							<tr>
 								<th style="width:250px;">{{__('menu.Assesment No.')}}</th>
-								<th style="width:300px;">{{__('menu.Shop Name')}}</th>
-								<th>{{__('menu.Shop Phone')}}</th>
+								<th style="width:300px;">{{__('menu.Premises Name')}}</th>
+								<th>{{__('menu.Payer Phone')}}</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -363,7 +365,7 @@
 										placeholder="{{__('menu.Search Assesment No.')}}" />
 								</th>
 								<th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-										placeholder="{{__('menu.Search Shop Name')}}" />
+										placeholder="{{__('menu.Search Premises Name')}}" />
 								</th>
 								<th><input type="text" class="form-control form-control-sm" id="searchPhone"
 										placeholder="{{__('menu.Search Phone')}}" />
@@ -373,11 +375,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($vatPayer->industrial as $industrial)
+							@foreach ($vatPayer->land as $land)
 							<tr>
-								<td class="text-center">{{$industrial->id}}</td>
-								<td>{{$industrial->shop_name}}</td>
-								<td>{{$industrial->phone}}</td>
+								<td class="text-center">{{$land->id}}</td>
+								<td>{{$land->land_name}}</td>
+								<td>{{$land->phone}}</td>
 								<td class="text-right">
 									<div class="dropdown">
 										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -386,13 +388,13 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											<a class="dropdown-item"
-												href="{{route('industrial-payments',['shop_id'=>$industrial->id])}}">
+												href="{{route('land-payments',['shop_id'=>$land->id])}}">
 												{{__('menu.View Payments')}}</a>
 											{{-- <a class="dropdown-item"
 												href="{{route('remove-business',['shop_id'=>$industrial->id])}}">
 											{{__('menu.Remove Buisness')}}</a> --}}
 											<form
-												action="{{route('remove-inudstrial-shop',['shop_id'=>$industrial->id])}}"
+												action="{{route('remove-land-premises',['shop_id'=>$land->id])}}"
 												method="POST">
 												@csrf
 												@method('delete')
@@ -409,13 +411,13 @@
 						<thead class="thead-light">
 							<tr>
 								<th>{{__('menu.Assesment No.')}}</th>
-								<th>{{__('menu.Shop Name')}}</th>
-								<th>{{__('menu.Shop Phone')}}</th>
+								<th>{{__('menu.Premises Name')}}</th>
+								<th>{{__('menu.Payer Phone')}}</th>
 								<th></th>
 							</tr>
 						</thead>
 					</table>
-					{{-- end of Business shops table --}}
+					{{-- end of table of Lands that rented --}}
 				</div>
 			</div>
 		</div>
@@ -476,15 +478,15 @@
                 .draw();
         });
         //toggle transition for buisness registration form
-        $("#industrial-registration").hide();
+        $("#land-registration").hide();
         $(".add-buissness").on('click',function(){
-            $("#industrial-registration").slideToggle("slow");
+            $("#land-registration").slideToggle("slow");
         });
-        $('#type').select2({
-            placeholder: "Select industrial type here",
-            allowClear: true,
-        });
-        $('#annualAssesmentAmount').blur(function(){
+        // $('#type').select2({
+        //     placeholder: "Select industrial type here",    //
+        //     allowClear: true,
+        // });
+        $('#assesmentAmount').blur(function(){
             var assessmentAmmount = $(this).val()
            if(!$.isNumeric(assessmentAmmount)){
             $(this).addClass('is-invalid')
@@ -496,33 +498,33 @@
                $.ajaxSetup({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             });
-            $('#type').select2({
-                placeholder: "Select industrial type here",
-            allowClear: true,
-            ajax: {
-                url: "{{route('get-industrial-types')}}",
-                dataType: 'json',
-                type:"POST",
-                delay: 250,
-                data: function (params) {
-                        return {
-                            assessmentAmmount : assessmentAmmount,
-                            search: params.term,
+            // $('#type').select2({
+            //     placeholder: "Select industrial type here",
+            // allowClear: true,
+            // ajax: {
+            //     url: "{{route('get-industrial-types')}}",
+            //     dataType: 'json',
+            //     type:"POST",
+            //     delay: 250,
+            //     data: function (params) {
+            //             return {
+            //                 assessmentAmmount : assessmentAmmount,
+            //                 search: params.term,
                             
-                        };
-                },
-                processResults: function (data) {
+            //             };
+            //     },
+            //     processResults: function (data) {
                     
-                     return {
-                         results:$.map(data.results, function (obj) {
-                            return {id:obj.id,text:obj.description}
-                    })
-                    }
+            //          return {
+            //              results:$.map(data.results, function (obj) {
+            //                 return {id:obj.id,text:obj.description}
+            //         })
+            //         }
                      
-                },
-                cache: true
-            },        
-            });
+            //     },
+            //     cache: true
+            // },        
+            // });
            }
         })
             

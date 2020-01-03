@@ -35,6 +35,7 @@ class VatPagesController extends Controller
 
     public function licence()
     {
+        $payers = License_tax_shop::licenseTaxPayers();  // #### not completed the model
         return view('vat.licence');
     }
 
