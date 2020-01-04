@@ -35,8 +35,7 @@ class LandTaxController extends Controller
     public function landProfile($id)
     {
         $vatPayer = Vat_payer::find($id);
-        // include if the types of lans available
-        return veiw('vat.land.landProfile', ['vatPayer'=>$vatPayer]);
+        return view('vat.land.landProfile', ['vatPayer'=>$vatPayer]);
     }
 
     public function landPayments($land_id)
@@ -48,7 +47,7 @@ class LandTaxController extends Controller
         $duePayment = 0.0;
         $duePayment = $this->calculateTax($landTax->worth, $assessmentAmmount);
 
-         return veiw('vat.land.landPayments', ['landTax'=>$landTax, 'duePayment'=>$duePayment]);  
+         return view('vat.land.landPayments', ['landTax'=>$landTax, 'duePayment'=>$duePayment]);  
     }
 
     // register new Premises for Land tax
@@ -70,6 +69,14 @@ class LandTaxController extends Controller
         
         return redirect()->route('land-profile', ['id'=>$vatPayer->id])->with('status', 'New Premises Added successfully');
     }
+
+    //Report Generation
+    public function landReportGeneration()                                                                       //directs the report genaration view
+    {
+        return view('vat.business.landReportGeneration');
+    }
+
+    
 
     public function receiveLandPayments($land_id, Request $request)
     {
@@ -93,22 +100,7 @@ class LandTaxController extends Controller
         return redirect()->back()->with('status', 'Deleted Successfully');
     }
 
-     //soft delete Lands(premises)
-    public function removeLandPremises($land_id)
-    {
-        $landTaxPremises = Land_tax::find($land_id);
-        $landTaxPremises->delete();
-        return redirect()->back()->with('status','Deleted Successfully');
-
-    }
-
-    public function veiwQuickPayments()
-    {
-        return veiw('vat.land.landQuickPayments');
-    }
-
-    // check payments
-    // accept quick payments  ($)
+    //check payments land payments for a given vat payer for quick payment option
 
     public function trashPayment()
     {
@@ -124,10 +116,28 @@ class LandTaxController extends Controller
         return redirect()->route('land-payment', ['land_id'=>$landId])->with('status', 'Payment restored successfully');
     }
 
+    // premanent delete payment
+    public function destory($id)
+    {
+        $landTaxPayment = Land_tax_payment::onlyTrashed()->where('id',$id)->get();
+        //dd($businessTaxPyament);
+        $landTaxPayment->forceDelete();
+        return redirect()->back()->with('status', ' Permanent Delete Successful');
+    }
+
+    //soft delete Lands(premises)
+    public function removeLandPremises($land_id)
+    {
+        $landTaxPremises = Land_tax::find($land_id);
+        $landTaxPremises->delete();
+        return redirect()->back()->with('status','Deleted Successfully');
+
+    }
+
     public function trashLandPremises($payer_id)
     {
         $landTaxPremises = Land_tax::onlyTrashed()->where('payer_id',$payer_id)->get();
-        return veiw('vat.land.trashLandPremises', ['landTaxPremises'=>$landTaxPremises]);
+        return view('vat.land.trashLandPremises', ['landTaxPremises'=>$landTaxPremises]);
     }
 
     public function restoreLandPremises($id)

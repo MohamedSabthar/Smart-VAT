@@ -183,7 +183,19 @@ Route::get('/business/business-notice/{id}', 'vat\BusinessTaxController@sendNoti
 Route::get('/land/profile/{id}', 'vat\LandTaxController@landProfile')->name('land-profile');
 Route::post('/land/land-register/{id}', 'vat\LandTaxController@registerLand')->name('land-register');
 Route::get('/land/payments/{land_id}', 'vat\LandTaxController@landPayments')->name('land-payments');
+Route::post('/land/payments/{land_id}', 'vat\LandTaxController@receiveLandPayments')->name('receive-land-payments');
+ROute::post('land');
 
+Route::delete('/land/payment-remove/{id}', 'vat\LandTaxController@removePayment')->name('remove-land-payment');//soft delete land payment
+Route::get('/land/payment-trash/{id}', 'vat\LandTaxController@trashPayment')->name('land-trash-payment');//trash land payments
+Route::get('/land/payment-restore/{id}', 'vat\LandTaxController@restorePayment')->name('restore-land-payment');// restore land payments
+
+Route::delete('/land/land-remove/{land_id}', 'vat\LandTaxController@removeLandPremises')->name('remove-land-premises'); // soft delete land route
+Route::get('/land/land-trash/{payer_id}', 'vat\LandTaxController@trashLandPremises')->name('trash-land-premises');// trash land
+Route::get('/land/land-restore/{id}', 'vat\LandTaxController@restoreLandPremises')->name('restore-land-premises'); // restore land
+
+Route::get('/land/generate-report', 'vat\LandTaxController@landReportGeneration')->name('land-generate-report'); // Summary report generation
+Route::post('/land/generation', 'vat\LandTaxController@generateReport')->name('land-report-view');
 
 
 
