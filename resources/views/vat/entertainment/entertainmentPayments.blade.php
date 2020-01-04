@@ -13,13 +13,16 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6">
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('entertainment')}}`,'_self')"
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h5 class="card-title text-uppercase text-muted mb-0">Payment List</h5>
-					<span class=" font-weight-bold mb-0">924</span>
+					<h3 class="card-title text-uppercase text-center text-muted mb-0">
+						Entertainment Tax payers
+					</h3>
+					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
 				<div class="col-auto">
 					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -27,10 +30,7 @@
 					</div>
 				</div>
 			</div>
-			<p class="mt-3 mb-0 text-muted text-sm">
-				<span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-				<span class="text-nowrap">Since yesterday</span>
-			</p>
+
 		</div>
 	</div>
 </div>
@@ -57,13 +57,16 @@
 	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6">
+<div class="col-xl-3 col-lg-6"
+	onclick="javascript:window.open(`{{route('entertainment-performance-tax',['id'=>app('request')->id])}}`,'_self')"
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-					<span class="h2 font-weight-bold mb-0">2,356</span>
+					<h4 class="card-title text-uppercase text-muted mb-0">
+						Performance payments
+					</h4>
 				</div>
 				<div class="col-auto">
 					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -71,10 +74,7 @@
 					</div>
 				</div>
 			</div>
-			<p class="mt-3 mb-0 text-muted text-sm">
-				<span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-				<span class="text-nowrap">Since last week</span>
-			</p>
+
 		</div>
 	</div>
 </div>
@@ -88,7 +88,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						<center>Restore Pyament</center>
+						Restore Pyament
 					</h3>
 				</div>
 				<div class="col-auto">
@@ -263,17 +263,20 @@
 
 								<td class="text-right">
 									<div class="dropdown">
-										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
+										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<i class="fas fa-ellipsis-v"></i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
 
-											<form action="{{route('remove-entertainment-payment',['id'=>$payments->id])}}" method="POST">
+											<form
+												action="{{route('remove-entertainment-payment',['id'=>$payments->id])}}"
+												method="POST">
 												@csrf
 												@method('delete')
-												<input type="submit" value="{{__('menu.Remove Payment')}}" class="dropdown-item">
+												<input type="submit" value="{{__('menu.Remove Payment')}}"
+													class="dropdown-item">
 
 											</form>
 											<a class="dropdown-item toggle-update" data-value="{{$payments}}">
@@ -324,7 +327,8 @@
 				</div>
 				<div class="card-body">
 					{{-- Entertainment payment update form --}}
-					<form method="POST" action="{{route('update-entertainment-ticket-payments',['id'=> $vatPayer->id])}}"
+					<form method="POST"
+						action="{{route('update-entertainment-ticket-payments',['id'=> $vatPayer->id])}}"
 						id="ticket-update-payment-form">
 						@csrf
 						@method('put')
@@ -361,8 +365,9 @@
 							<label for="example-text-input"
 								class="col-md-2 col-form-label form-control-label ">{{__('menu.Event Venue')}}</label>
 							<div class="col-md-10 ">
-								<input class="form-control @error('updatePlaceAddress') is-invalid  @enderror" type="text"
-									value="{{old('updatePlaceAddress')}}" id="updatePlaceAddress" name="updatePlaceAddress">
+								<input class="form-control @error('updatePlaceAddress') is-invalid  @enderror"
+									type="text" value="{{old('updatePlaceAddress')}}" id="updatePlaceAddress"
+									name="updatePlaceAddress">
 								@error('updatePlaceAddress')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
@@ -374,8 +379,9 @@
 							<label for="example-text-input"
 								class="col-md-2 col-form-label form-control-label ">{{__('menu.Quoted Ticket')}}</label>
 							<div class="col-md-10 ">
-								<input class="form-control @error('updateQuotedTickets') is-invalid  @enderror" type="number"
-									value="{{old('updateQuotedTickets')}}" id="updateQuotedTickets" name="updateQuotedTickets">
+								<input class="form-control @error('updateQuotedTickets') is-invalid  @enderror"
+									type="number" value="{{old('updateQuotedTickets')}}" id="updateQuotedTickets"
+									name="updateQuotedTickets">
 								@error('updateQuotedTickets')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
@@ -387,8 +393,9 @@
 							<label for="example-text-input"
 								class="col-md-2 col-form-label form-control-label ">{{__('menu.Returned Tickets')}}</label>
 							<div class="col-md-10 ">
-								<input class="form-control @error('updateReturnedTickets') is-invalid  @enderror" type="number"
-									value="{{old('updateReturnedTickets')}}" id="updateReturnedTickets" name="updateReturnedTickets">
+								<input class="form-control @error('updateReturnedTickets') is-invalid  @enderror"
+									type="number" value="{{old('updateReturnedTickets')}}" id="updateReturnedTickets"
+									name="updateReturnedTickets">
 								@error('updateReturnedTickets')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
@@ -400,8 +407,9 @@
 							<label for="example-text-input"
 								class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket Price')}}</label>
 							<div class="col-md-10 ">
-								<input class="form-control @error('updateTicketPrice') is-invalid  @enderror" type="number" step="0.01"
-									value="{{old('updateTicketPrice')}}" id="updateTicketPrice" name="updateTicketPrice">
+								<input class="form-control @error('updateTicketPrice') is-invalid  @enderror"
+									type="number" step="0.01" value="{{old('updateTicketPrice')}}"
+									id="updateTicketPrice" name="updateTicketPrice">
 								@error('updateTicketPrice')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
@@ -443,7 +451,8 @@
 								</div>
 
 								<div class="modal-footer">
-									<button type="button" class="btn btn-link" onclick="javascript:location.reload()">Cancel</button>
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
 									<button type="button" id="redirect" class="btn  btn-primary ml-auto"
 										onclick="javascript:document.getElementById('ticket-update-payment-form').submit();">{{__('menu.Confirm')}}</button>
 								</div>
@@ -531,8 +540,8 @@
 							<label for="example-text-input"
 								class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket Price')}}</label>
 							<div class="col-md-10 ">
-								<input class="form-control @error('ticketPrice') is-invalid  @enderror" type="number" step="0.01"
-									value="{{old('ticketPrice')}}" id="ticketPrice" name="ticketPrice">
+								<input class="form-control @error('ticketPrice') is-invalid  @enderror" type="number"
+									step="0.01" value="{{old('ticketPrice')}}" id="ticketPrice" name="ticketPrice">
 								@error('ticketPrice')
 								<span class="invalid-feedback" role="alert">
 									<strong>{{ $message }}</strong>
@@ -574,7 +583,8 @@
 								</div>
 
 								<div class="modal-footer">
-									<button type="button" class="btn btn-link" onclick="javascript:location.reload()">Cancel</button>
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
 									<button type="button" id="redirect" class="btn  btn-primary ml-auto"
 										onclick="javascript:document.getElementById('ticket-payment-form').submit();">{{__('menu.Confirm')}}</button>
 								</div>

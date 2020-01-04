@@ -105,6 +105,7 @@ return [
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',
     'Annual Amount' =>  'Annual Amount',
+    'Yes' => 'Yes',
 
     //employee profile
     'Update employee information' => 'Update employee information',

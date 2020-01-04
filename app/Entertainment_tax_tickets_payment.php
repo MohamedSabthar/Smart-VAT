@@ -21,4 +21,9 @@ class Entertainment_tax_tickets_payment extends Model
             return $payment->vatPayer;
         })->unique('id'); //collection filtered using unique id
     }
+
+    public static function getEntertainmentPayers()
+    {
+        return Entertainment_tax_performance_payment::entertainmentPerformancePayers()->merge(Entertainment_tax_tickets_payment::entertainmentTicketPayers())->unique();
+    }
 }

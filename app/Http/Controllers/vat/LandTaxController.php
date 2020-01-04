@@ -76,8 +76,6 @@ class LandTaxController extends Controller
         return view('vat.business.landReportGeneration');
     }
 
-    
-
     public function receiveLandPayments($land_id, Request $request)
     {
         $payerId = Land_tax::findOrFail($land_id)->payer->id;   // getting vat payer Id

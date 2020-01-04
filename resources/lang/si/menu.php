@@ -92,7 +92,13 @@ return [
     'Door No.' => 'දොර අංකය',
     'Registration' => 'ලියාපදිංචි කිරීම',
     'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
+<<<<<<< HEAD
     'Update Details' => 'විස්තර යාවත්කාලීන කරන්න',
+=======
+    'Yes' => 'ඔව්',
+
+    
+>>>>>>> 94d2783e225768fc56811d419d2818b549b68102
     
     //employee profile
     'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',

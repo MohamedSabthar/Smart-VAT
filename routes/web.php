@@ -89,6 +89,7 @@ Route::get('/business/business-restore/{id}', 'vat\BusinessTaxController@restore
 //all business tax related tax routes should starts with "/buisness"
 Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); 
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
 
 /**
