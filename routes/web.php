@@ -35,8 +35,13 @@ Route::get('/employee-profile/{id}', 'AdminController@employeeProfile')->name('e
 Route::put('/employee-profile/{id}', 'AdminController@updateEmployeeProfile')->name('update-employee');
 Route::get('/mangae-employee', 'AdminController@manageEmployee')->name('manage-employee');
 Route::post('/assign-vat', 'AdminController@assignVatCategories')->name('assign-vat');
-Route::get('/gloabl-conf', 'AdminController@globalConfiguration')->name('global-conf');
-
+Route::get('/gloabl-conf', 'GlobalConfigurationController@globalConfiguration')->name('global-conf');
+Route::get('/global-conf/business', 'GlobalConfigurationController@updateBusinessTaxForm')->name('global-conf-business-update');
+Route::put('/global-conf/business/update-percentage', 'GlobalConfigurationController@updateBusinessPercentage')->name('update-business-percentage');
+Route::put('/global-conf/business/update-assement-ranges', 'GlobalConfigurationController@updateBusinessAssessmentRanges')->name('update-business-assessment-range');
+Route::get('/global-conf/business/types/{id}', 'GlobalConfigurationController@viewBusinessRangeTypes')->name('view-business-range-types');
+Route::post('/global-conf/business/add-type/{id}', 'GlobalConfigurationController@addBusinessType')->name('add-business-type');
+Route::put('/global-conf/business/update-type', 'GlobalConfigurationController@updateBusinessType')->name('update-business-type');
 /**
  * Routes common to admin and employee
 */

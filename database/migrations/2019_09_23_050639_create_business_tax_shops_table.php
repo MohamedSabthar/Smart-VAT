@@ -15,11 +15,11 @@ class CreateBusinessTaxShopsTable extends Migration
     {
         Schema::create('business_tax_shops', function (Blueprint $table) {
             $table->bigIncrements('id');
-           // $table->string('assesment_no')->nullable();
+            // $table->string('assesment_no')->nullable();
             $table->string('shop_name');                                    // shop/buisness name
             $table->double('anual_worth');                                  // anual worth of the shop
             $table->string('phone', 12);                                    // user's telephone number
-            $table->string('registration_no');                              // shop/buisness registration no
+            $table->string('registration_no')->unique();                              // shop/buisness registration no
             $table->string('door_no');
             $table->string('street');
             $table->string('city');

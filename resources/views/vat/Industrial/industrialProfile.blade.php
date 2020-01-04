@@ -258,8 +258,10 @@
 								<option value=""></option>
 								{{-- only for testing need to implement Ajax searchBuisness --}}
 								@foreach ($industrialTypes as $type)
-								<option value="{{$type->id}}">{{$type->description}}
+								<option value="{{$type->id}}" @if(old('type')==$type->id) selected
+									@endif >{{$type->description}}
 									{{'('.$type->ranges->start_value .'-'. $type->ranges->end_value .')'}}
+
 								</option>
 								@endforeach
 
