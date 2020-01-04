@@ -205,6 +205,7 @@ return [
      //globla configuration
      'Assessment Ranges of Business Tax' => 'Assessment Ranges of Business Tax',
      'Business Range Types'=>'Business Range Types',
- 
+     'Assessment Ranges of Industrial Tax' => 'Assessment Ranges of Industrial Tax',
+     'Industrial Range Types'=>'Industrial Range Types',
 
 ];

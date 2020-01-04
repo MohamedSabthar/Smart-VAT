@@ -43,11 +43,12 @@
 
 <div class="col-11 m-3 card shadow">
     <div class="card-header bg-transparent">
-        <h3 class="mb-0"><span class="text-uppercase">Add new Business Type</span></h3>
+        <h3 class="mb-0"><span class="text-uppercase">Add new Industrial Type</span></h3>
     </div>
 
     <div class="card-body bg-secondary ">
-        <form method="POST" action="{{route('add-business-type',['id'=>$assessmentRange->id])}}" id="add-business-type">
+        <form method="POST" action="{{route('add-industrial-type',['id'=>$assessmentRange->id])}}"
+            id="add-industrial-type">
             @csrf
 
             <div class="row">
@@ -58,7 +59,7 @@
 
                         <input type="text" class="form-control  d-inline @error('description') is-invalid @enderror"
                             id="description" name="description" value="{{old('description')}}"
-                            placeholder="Enter business type description">
+                            placeholder="Enter industrial type description">
                         @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -84,7 +85,7 @@
 
 
                     <input type="submit" value="Add" class="btn btn-primary col-md-2 mx-3 mt-3 mt-md-0"
-                        onclick="javascript:event.preventDefault()" data-target="#confirm-add-business-type"
+                        onclick="javascript:event.preventDefault()" data-target="#confirm-add-industrial-type"
                         data-toggle="modal">
                 </div>
 
@@ -93,8 +94,8 @@
             </div>
 
 
-            {{-- Confirmation modal for update business details--}}
-            <div class=" modal fade" id="confirm-add-business-type" tabindex="-1" role="dialog"
+            {{-- Confirmation modal for update industrial details--}}
+            <div class=" modal fade" id="confirm-add-industrial-type" tabindex="-1" role="dialog"
                 aria-labelledby="modal-default" aria-hidden="true">
                 <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                     <div class="modal-content">
@@ -107,14 +108,14 @@
                         </div>
                         <div class="modal-body">
 
-                            <p>Are you sure? Do you wish to Add this Business type?<br></p>
+                            <p>Are you sure? Do you wish to Add this Industrial type?<br></p>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link"
                                 onclick="javascript:location.reload()">Cancel</button>
                             <button type="button" class="btn  btn-primary ml-auto"
-                                onclick="javascript:document.getElementById('add-business-type').submit();">{{__('menu.Yes')}}</button>
+                                onclick="javascript:document.getElementById('add-industrial-type').submit();">{{__('menu.Yes')}}</button>
                         </div>
 
                     </div>
@@ -133,11 +134,11 @@
 
 <div class="col-11 m-3 card shadow" id="update-type-card">
     <div class="card-header bg-transparent">
-        <h3 class="mb-0"><span class="text-uppercase">Update Business Type</span></h3>
+        <h3 class="mb-0"><span class="text-uppercase">Update Industrial Type</span></h3>
     </div>
 
     <div class="card-body bg-secondary ">
-        <form method="POST" action="{{route('update-business-type')}}" id="update-business-type">
+        <form method="POST" action="{{route('update-industrial-type')}}" id="update-industrial-type">
             @csrf
             @method('put')
             <input type="hidden" value="{{old('updateId')}}" id="update-id" name="updateId">
@@ -151,7 +152,7 @@
                         <input type="text"
                             class="form-control  d-inline @error('updatedDescription') is-invalid @enderror"
                             id="update-description" name="updatedDescription" value="{{old('updatedDescription')}}"
-                            placeholder="Enter business type description">
+                            placeholder="Enter industrial type description">
                         @error('updatedDescription')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -178,7 +179,7 @@
 
 
                     <input type="submit" value="Update" class="btn btn-primary col-md-2 mx-3 mt-3 mt-md-0"
-                        onclick="javascript:event.preventDefault()" data-target="#confirm-update-business-type"
+                        onclick="javascript:event.preventDefault()" data-target="#confirm-update-industrial-type"
                         data-toggle="modal">
                 </div>
 
@@ -187,8 +188,8 @@
             </div>
 
 
-            {{-- Confirmation modal for update business details--}}
-            <div class=" modal fade" id="confirm-update-business-type" tabindex="-1" role="dialog"
+            {{-- Confirmation modal for update industrial details--}}
+            <div class=" modal fade" id="confirm-update-industrial-type" tabindex="-1" role="dialog"
                 aria-labelledby="modal-default" aria-hidden="true">
                 <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                     <div class="modal-content">
@@ -201,14 +202,14 @@
                         </div>
                         <div class="modal-body">
 
-                            <p>Are you sure? Do you wish to update this Business type?<br></p>
+                            <p>Are you sure? Do you wish to update this Industrial type?<br></p>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link"
                                 onclick="javascript:location.reload()">Cancel</button>
                             <button type="button" class="btn  btn-primary ml-auto"
-                                onclick="javascript:document.getElementById('update-business-type').submit();">{{__('menu.Yes')}}</button>
+                                onclick="javascript:document.getElementById('update-industrial-type').submit();">{{__('menu.Yes')}}</button>
                         </div>
 
                     </div>
@@ -234,7 +235,7 @@
                 <div class="row align-item-center">
                     <div class="col">
                         <h3 class="mb-0">
-                            <span class="text-uppercase">{{__('menu.Business Range Types')}}</span>
+                            <span class="text-uppercase">{{__('menu.Industrial Range Types')}}</span>
                         </h3>
                         <hr class="mt-4 mb-0">
                     </div>
@@ -271,7 +272,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($assessmentRange->businessRangeTypes as $type)
+                            @foreach ($assessmentRange->industrialRangeTypes as $type)
                             <tr>
                                 <td>{{$type->id}}</td>
                                 <td>{{$type->description}}</td>

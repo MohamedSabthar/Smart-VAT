@@ -53,24 +53,24 @@
 
 <div class="col-11 m-3 card shadow ">
     <div class="card-header bg-transparent">
-        <h3 class="mb-0"><span class="text-uppercase">Update Business Tax</span></h3>
+        <h3 class="mb-0"><span class="text-uppercase">Update Industrial Tax</span></h3>
     </div>
 
     <div class="card-body bg-secondary ">
 
 
-        <form method="POST" action="{{route('update-business-percentage')}}" id="update-business-details">
+        <form method="POST" action="{{route('update-industrial-percentage')}}" id="update-industrial-details">
             @csrf
             @method('put')
             <div class="row">
                 <div class="form-group row col-12 ">
                     <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
-                        Business Tax percentage </label>
+                        Industrial Tax percentage </label>
                     <div class="col-md-7">
 
                         <input type="text" class="form-control  d-inline @error('vatPercentage') is-invalid @enderror"
                             id="vatPercentage" name="vatPercentage"
-                            value="{{old('vatPercentage',number_format($business->vat_percentage,2))}}"
+                            value="{{old('vatPercentage',number_format($industrial->vat_percentage,2))}}"
                             placeholder="Enter vat percentage">
                         @error('vatPercentage')
                         <span class="invalid-feedback" role="alert">
@@ -82,11 +82,11 @@
 
                 <div class="form-group row col-12 ">
                     <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
-                        Business Tax Due date </label>
+                        Industrial Tax Due date </label>
                     <div class="col-md-7">
 
                         <input type="date" class="form-control  d-inline @error('dueDate') is-invalid @enderror"
-                            id="dueDate" name="dueDate" value="{{old('dueDate',$business->due_date)}}"
+                            id="dueDate" name="dueDate" value="{{old('dueDate',$industrial->due_date)}}"
                             placeholder="Enter The Due date month/date/0004">
                         @error('dueDate')
                         <span class="invalid-feedback" role="alert">
@@ -97,7 +97,7 @@
 
 
                     <input type="submit" id="register" value="Update" class="btn btn-primary col-md-2 mx-3 mt-3 mt-md-0"
-                        onclick="javascript:event.preventDefault()" data-target="#confirm-update-business"
+                        onclick="javascript:event.preventDefault()" data-target="#confirm-update-industrial"
                         data-toggle="modal">
                 </div>
 
@@ -106,8 +106,8 @@
             </div>
 
 
-            {{-- Confirmation modal for update business details--}}
-            <div class=" modal fade" id="confirm-update-business" tabindex="-1" role="dialog"
+            {{-- Confirmation modal for update industrial details--}}
+            <div class=" modal fade" id="confirm-update-industrial" tabindex="-1" role="dialog"
                 aria-labelledby="modal-default" aria-hidden="true">
                 <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                     <div class="modal-content">
@@ -120,14 +120,14 @@
                         </div>
                         <div class="modal-body">
 
-                            <p>Are you sure you wish to update Business Tax details ?<br></p>
+                            <p>Are you sure you wish to update Industrial Tax details ?<br></p>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link"
                                 onclick="javascript:location.reload()">Cancel</button>
                             <button type="button" id="redirect" class="btn  btn-primary ml-auto"
-                                onclick="javascript:document.getElementById('update-business-details').submit();">{{__('menu.Yes')}}</button>
+                                onclick="javascript:document.getElementById('update-industrial-details').submit();">{{__('menu.Yes')}}</button>
                         </div>
 
                     </div>
@@ -153,7 +153,7 @@
     <div class="mb-4 col-lg-10 col-sm-12">
         <div class="card shadow">
             <div class="card-header bg-white border-0">
-                <h3 class="mb-0">{{__('menu.Assessment Ranges of Business Tax')}}</h3>
+                <h3 class="mb-0">{{__('menu.Assessment Ranges of Industrial Tax')}}</h3>
                 <hr class="mt-4 mb-0">
             </div>
             <div class="table-responsive px-5" style="width:100%">
@@ -178,7 +178,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($business->assessmentRanges as $range)
+                        @foreach ($industrial->assessmentRanges as $range)
                         <tr>
 
                             <td>{{  number_format( $range->start_value,2)}}</td>
@@ -194,7 +194,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                         <a class="dropdown-item"
-                                            href="{{route('view-business-range-types',['id'=>$range->id])}}">view
+                                            href="{{route('view-industrial-range-types',['id'=>$range->id])}}">view
                                             types</a>
                                     </div>
                                 </div>

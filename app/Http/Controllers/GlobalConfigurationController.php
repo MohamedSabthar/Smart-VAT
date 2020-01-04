@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Vat;
 use App\Assessment_range;
 use App\Business_type;
+use App\Industrial_type;
 use App\Vats_old_percentage;
 
+use App\Http\Requests\AddIndustrialTypeRequest;
+use App\Http\Requests\UpdateIndustrialTypeRequest;
 use App\Http\Requests\UpdateBusinessTaxPercentageRequest;
+use App\Http\Requests\UpdateIndustrialTaxPercentageRequest;
 use App\Http\Requests\AddBusinessTypeRequest;
 use App\Http\Requests\UpdateBusinessTypeRequest;
 use Carbon\Carbon;
@@ -84,7 +88,6 @@ class GlobalConfigurationController extends Controller
         return redirect()->back()->with('status', 'New Business Tax type added successfully');
     }
 
-
     public function updateBusinessType(UpdateBusinessTypeRequest $request)
     {
         $businessType = Business_type::find($request->updateId);
@@ -95,11 +98,88 @@ class GlobalConfigurationController extends Controller
         return redirect()->back()->with('status', ' Business Tax type updated successfully');
     }
 
+
+
+    /**
+     *
+     *
+     *
+     *
+     */
+
+    public function updateIndustrialTaxForm()
+    {
+        $industrial = Vat::where('route', 'industrial')->first();
+        return view('admin.globalConfigurationIndustrial', ['industrial'=>$industrial]);
+    }
+
+    public function updateIndustrialPercentage(UpdateIndustrialTaxPercentageRequest $request)
+    {
+        $industrial = Vat::where('route', 'industrial')->first();
+        //moving the old data to Vats_old_percentages table
+        if ($industrial->vat_percentage==$request->vatPercentage && $industrial->due_date==$request->dueDate) {
+            return redirect()->back()->with('error', 'Details entered are not updated');
+        }
+
+        $oldIndustrial = new Vats_old_percentage;
+        $oldIndustrial->name = $industrial->name;
+        $oldIndustrial->vat_percentage = $industrial->vat_percentage;
+        $oldIndustrial->created_at = $industrial->created_at;
+        $oldIndustrial->due_date = $industrial->due_date;
+        $oldIndustrial->updated_at = Carbon::now();
+
+        
+        $oldIndustrial->save();
+      
+
+        //updating the new vat percentage and due date
+        $industrial->vat_percentage = $request->vatPercentage;
+        $industrial->due_date=$request->dueDate;
+        $industrial->save();
+
+        return redirect()->back()->with('status', 'Industrial Tax Details updated successfully');
+    }
+
+    public function updateIndustrialAssessmentRanges()
+    {
+        dd('test');
+    }
+
+    public function viewIndustrialRangeTypes($id)
+    {
+        $assessmentRange = Assessment_range::find($id);
+        return view('admin.globalConfigurationIndustrialTypes', ['assessmentRange'=>$assessmentRange]);
+    }
+
+    public function addIndustrialType($id, AddIndustrialTypeRequest $request)
+    {
+        $industrialType = new Industrial_type;
+        $industrialType->description = $request->description;
+        $industrialType->assessment_ammount = $request->amount;
+        $industrialType->assessment_range_id = $id;
+        $industrialType->save();
+
+        return redirect()->back()->with('status', 'New Industrial Tax type added successfully');
+    }
+
+    public function updateIndustrialType(UpdateIndustrialTypeRequest $request)
+    {
+        $industrialType = Industrial_type::find($request->updateId);
+        $industrialType->assessment_ammount = $request->updatedAmount;
+        $industrialType->description = $request->updatedDescription;
+
+        $industrialType->save();
+        return redirect()->back()->with('status', ' Industrial Tax type updated successfully');
+    }
+
+
+
+
     private function getVatDetails()
     {
         $vatDetails = new VatDetails;
         $vatDetails->business = Vat::where('route', 'business')->first();
-        
+        $vatDetails->industrial = Vat::where('route', 'industrial')->first();
         return $vatDetails;
     }
 }
