@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddEntertainmentTicketPaymentRequest;
 use App\Http\Requests\UpdateEntertainmentTicketPaymentRequest;
 use App\Http\Requests\AddEntertainmentPerformancePaymentRequest;
+use App\Http\Requests\UpdateEntertainmentPerformancePaymentRequest;
 
 
 use Auth;
@@ -153,5 +154,37 @@ class EntertainmentTaxController extends Controller
         $payerId = $entertainmentTicketPayment->payer_id;
         $entertainmentTicketPayment->restore();
         return redirect()->route('entertainment-performance-tax', ['id'=>$payerId])->with('status', 'Payment restored successfully');
+    }
+
+    // premanent delete payment
+    public function destoryTicket($id)
+    {
+        $entertainmentTaxPyament = Entertainment_tax_tickets_payment::onlyTrashed()->where('id', $id)->first();
+        //dd($entertainmentTaxPyament);
+        $entertainmentTaxPyament->forceDelete();
+        return redirect()->back()->with('status', ' Permanent Delete Successful');
+    }
+
+    // premanent delete payment
+    public function destoryPerformance($id)
+    {
+        $entertainmentTaxPyament = Entertainment_tax_performance_payment::onlyTrashed()->where('id', $id)->first();
+        //dd($entertainmentTaxPyament);
+        $entertainmentTaxPyament->forceDelete();
+        return redirect()->back()->with('status', ' Permanent Delete Successful');
+    }
+
+    public function updatePerformancePayment($id, UpdateEntertainmentPerformancePaymentRequest $request)
+    {
+        $performancePayment = Entertainment_tax_performance_payment::find($request->paymentId);
+        
+        $performancePayment->type_id   = $request->updatedPerformanceType;
+        $performancePayment->place_address   = $request->updatedPlaceAddress;
+        $performancePayment->days   = $request->updatedDays;
+        $taxPayment =$this->calculatePerformaceTax($request->updatedDays, $request->updatedPerformanceType);
+        $performancePayment->payment = $taxPayment;
+        $performancePayment->save();
+
+        return redirect()->back()->with('status', 'Payments successfully updated')->with('taxPayment', $taxPayment);
     }
 }

@@ -8,6 +8,8 @@ use App\Vat;
 
 use Auth;
 
+
+use App\User_vat;
 use App\Business_tax_shop;
 use App\Industrial_tax_shop;
 use App\Entertainment_tax_tickets_payment;
@@ -36,13 +38,22 @@ class HomeController extends Controller
         if (Auth::user()->role === 'admin') {
             return view('admin.adminDashboard', ['vatPayerCount'=>$this->getPayerCount()]);            //returning adminDashboard if user is an Admin
         } elseif (Auth::user()->role === 'employee') {
-            return view('employee.employeeDashboard');      //returning employeeDashobard if user is an Employee
+            $authorizedVat = User_vat::where('user_id', Auth::user()->id)->get()->map->vat;
+            $authorizedVat = $authorizedVat->mapWithKeys(function ($o) {
+                return [$o->route => $o];
+            })->all();
+            return view(
+                'employee.employeeDashboard',
+                ['vatPayerCount'=>$this->getPayerCount(),
+                'authorizedVat'=>$authorizedVat]
+            );      //returning employeeDashobard if user is an Employee
         }
     }
 
     private function getPayerCount()
     {
-        $vatPayerCounts = new VatPayerCount;
+        $vatPayerCounts = new class {
+        };
         $vatPayerCounts->business = Business_tax_shop::businessTaxPayers()->count();
         $vatPayerCounts->industrial = Industrial_tax_shop::industrialTaxPayers()->count();
         $vatPayerCounts->entertainment = Entertainment_tax_performance_payment::entertainmentPerformancePayers()->merge(Entertainment_tax_tickets_payment::entertainmentTicketPayers())->unique()->count();
@@ -50,7 +61,3 @@ class HomeController extends Controller
         return $vatPayerCounts;
     }
 }
-
-class VatPayerCount
-{
-};
