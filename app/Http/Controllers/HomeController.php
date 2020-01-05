@@ -12,6 +12,7 @@ use App\Business_tax_shop;
 use App\Industrial_tax_shop;
 use App\Entertainment_tax_tickets_payment;
 use App\Entertainment_tax_performance_payment;
+use App\Land_tax;
 
 class HomeController extends Controller
 {

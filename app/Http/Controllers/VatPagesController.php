@@ -8,6 +8,7 @@ use App\Industrial_tax_shop;
 use App\Land_tax;
 use App\Shop_rent_tax;
 use App\Entertainment_tax_tickets_payment;
+use App\Club_licence_tax;
 
 class VatPagesController extends Controller
 {
@@ -55,7 +56,8 @@ class VatPagesController extends Controller
     }
     public function clubhouselicence()
     {
-        return view('vat.clubHouseLicence');
+        $payers = Club_licence_tax::clubLicenceTaxPayers();
+        return view('vat.clubLicence.clubLicence',['payers'=>$payers]);
     }
     public function landauction()
     {

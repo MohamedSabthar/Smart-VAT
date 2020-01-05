@@ -25,7 +25,7 @@ class LandTaxController extends Controller
     private function calculateTax($landWorth, $assessmentAmmount)
     {
         $currentDate = now()->toArray();
-        $landTax = Vat::where('route', 'land')->firstOrFail();
+        $landTax = Vat::where('name', 'Land Tax')->firstOrFail();
         
         // Payments have to made on renting day itself, no amounts fines taken forward
         return $landWorth*($landTax->vat_percentage/100)+$assessmentAmmount;

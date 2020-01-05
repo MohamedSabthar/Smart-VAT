@@ -198,6 +198,14 @@ Route::get('/land/land-restore/{id}', 'vat\LandTaxController@restoreLandPremises
 Route::get('/land/generate-report', 'vat\LandTaxController@landReportGeneration')->name('land-generate-report'); // Summary report generation
 Route::post('/land/generation', 'vat\LandTaxController@generateReport')->name('land-report-view');
 
+/**
+ * Routes related to Club Licece tax
+ * 
+ * all taxes related to land tax should starts with "/club-licence"
+ */
+Route::get('/club-licence/profile/{id}', 'vat\ClubLicenceTaxController@clubLicenceProfile')->name('club-licence-profile');
+
+
 
 
 

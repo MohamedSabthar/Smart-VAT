@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title','Club License Tax')
-
+@section('title','Club Licence Tax')
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
+
 @endpush
 
 @section('sidebar')
@@ -19,7 +19,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						Club License Tax payers
+						Club Licence holders
 					</h3>
 					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
@@ -55,8 +55,8 @@
 	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6" {{-- onclick="javascript:window.open(`{{route('industrial-generate-report')}}`,'_self')
-	--}} style="cursor:pointer">
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('club-licence-generate-report')}}`,'_self')"
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
@@ -75,7 +75,7 @@
 	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6" {{--onclick="javascript:window.open(`{{route('get-industrial-quick-payments')}}`,'_self')" --}}
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('get-club-licence-quick-payments')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -94,6 +94,7 @@
 		</div>
 	</div>
 </div>
+
 @endsection
 
 @section('pageContent')
@@ -104,12 +105,12 @@
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-6 card-header">
-						<h3 class="mb-0 d-inline pr-2">License Tax Payers</h3>
+						<h3 class="mb-0 d-inline pr-2">Club House Licence Holders</h3>
 					</div>
 					<div class="col-6 text-right">
 						<button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
 							data-placement="right" title="Click to register new VAT Payer"
-							onclick="javascript:window.open('{{route('payer-registration',['requestFrom'=>'licence'])}}','_self')">
+							onclick="javascript:window.open('{{route('payer-registration',['requestFrom'=>'club-licence'])}}','_self')">
 							<span><i class="fas fa-user-plus"></i></span>
 							<span class="btn-inner--text">Register</span>
 						</button>
@@ -118,8 +119,8 @@
 			</div>
 
 			<div class="table-responsive py-4">
-				{{-- Industrial VAT payers table --}}
-				<table id="industrial_payer_table" class="table  px-5">
+				{{-- club Licence holders table --}}
+				<table id="clubLicence_payer_table" class="table  px-5">
 					<thead class="thead-light">
 						<tr>
 							<th>{{__('menu.User ID')}}</th>
@@ -133,7 +134,8 @@
 
 						</tr>
 					</thead>
-					<thead id="search_inputs">
+							{{-- Column wise searching --}}
+					<thead id="search_inputs">   
 						<tr>
 							<th><input type="text" class="form-control form-control-sm" id="searchId"
 									placeholder="{{__('menu.Search User ID')}}" /></th>
@@ -151,6 +153,7 @@
 
 						</tr>
 					</thead>
+							{{-- End of seaching --}}
 					<tbody>
 
 						@foreach ($payers as $payer)
@@ -170,7 +173,7 @@
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<a class="dropdown-item"
-											href="{{route('industrial-profile',['id'=>$payer->id])}}">View profile</a>
+											href="{{route('club-licence-profile',['id'=>$payer->id])}}">View profile</a>
 									</div>
 
 								</div>
@@ -196,7 +199,7 @@
 					</thead>
 
 				</table>
-				{{-- end of Industrial VAT payers table --}}
+				{{-- end of Business VAT payers table --}}
 			</div>
 		</div>
 	</div>
@@ -209,7 +212,7 @@
 <script>
 	$(document).ready(function() {
 
-        var id = '#industrial_payer_table';                      //data table id
+        var id = '#clubLicence_payer_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
