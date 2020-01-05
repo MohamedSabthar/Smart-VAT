@@ -94,7 +94,10 @@ Route::get('/business/quick-payments', 'vat\BusinessTaxController@viewQuickPayme
 Route::post('/business/accept-quick-payments', 'vat\BusinessTaxController@acceptQuickPayments')->name('business-quick-payments');
 Route::get('/business/generate-report', 'vat\BusinessTaxController@businessReportGeneration')->name('business-generate-report');
 Route::post('/business/generation', 'vat\BusinessTaxController@generateReport')->name('business-report-view');
-Route::post('/business/report-pdf', 'vat\BusinessTaxController@pdf')->name('business-report-pdf');
+Route::post('/business/Tax-report-pdf', 'vat\BusinessTaxController@TaxPdf')->name('business-tax-report-pdf');
+Route::post('/business/Summary-report-pdf', 'vat\BusinessTaxController@summaryPdf')->name('business-summary-report-pdf');
+
+
 //business payment remove
 Route::delete('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
 Route::get('/business/payment-trash/{id}', 'vat\BusinessTaxController@trashPayment')->name('trash-payment');//trash business payment
@@ -147,7 +150,11 @@ Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxControll
 Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore industrial
 Route::delete('/industrial/payment-remove-permanent/{id}', 'vat\IndustrialTaxController@destory')->name('industrial-remove-payment-permanent');// permanent delete
 
+Route::get('/industrial/generate-report', 'vat\IndustrialTaxController@industrialReportGeneration')->name('industrial-generate-report');
+Route::post('/industrial/generation', 'vat\IndustrialTaxController@generateReport')->name('industrial-report-view');
 
+Route::post('/industrial/tax-report-pdf', 'vat\IndustrialTaxController@taxPdf')->name('industrial-tax-report-pdf');
+Route::post('/industrial/summary-report-pdf', 'vat\IndustrialTaxController@summaryPdf')->name('industrial-summary-report-pdf');
 
 
 //shop rent tax
