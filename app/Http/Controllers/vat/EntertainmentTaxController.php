@@ -19,6 +19,12 @@ use App\Entertainment_tax_tickets_payment;
 use App\Entertainment_performance_type;
 use App\Entertainment_tax_performance_payment;
 
+use App\Http\Requests\IndustrialTaxReportRequest;
+
+
+use App\Reports\EntertainmentTaxTicketReport;
+use App\Reports\EntertainmentTaxPerformanceReport;
+
 class EntertainmentTaxController extends Controller
 {
     public function __construct()
@@ -186,5 +192,205 @@ class EntertainmentTaxController extends Controller
         $performancePayment->save();
 
         return redirect()->back()->with('status', 'Payments successfully updated')->with('taxPayment', $taxPayment);
+    }
+
+    //-----------------------------------
+
+    public function generateTicketReport(IndustrialTaxReportRequest $request)
+    {
+        $reportData = EntertainmentTaxTicketReport::generateEntertainmentTaxTicketReport();
+        $dates = (object)$request->only(["startDate","endDate"]);
+    
+        $records = Entertainment_tax_tickets_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        if ($request->has('TaxReport')) {
+            return view('vat.entertainment.entertainmentTicketReportView', ['dates'=>$dates,'records'=>$records]);
+        } elseif ($request->has('SummaryReport')) {
+            return view('vat.entertainment.entertainmentTicketSummaryReport', ['dates'=>$dates,'records'=>$records,'reportData'=>$reportData]);
+        }
+    }
+
+    public function entertainmentTicketReportGeneration()
+    {
+        return view('vat.entertainment.entertainmentTicketReportGeneration');
+    }
+
+    public function ticketTaxPdf(IndustrialTaxReportRequest $request)                                                      //pdf generation library function
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Entertainment_tax_tickets_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
+        $Paymentsum=Entertainment_tax_tickets_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->sum('payment');
+        $pdf->loadHTML($this->ticketTaxReportHTML($records, $dates, $Paymentsum));
+        
+        return $pdf->stream();
+    }
+
+
+    public function ticketSummaryPdf(IndustrialTaxReportRequest $request)                         //Summary Report PDF
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Entertainment_tax_tickets_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        $sum=$records->sum('payment');
+        $pdf->loadHTML($this->ticketSummaryReportHTML($records, $dates, $sum));
+        
+
+        return $pdf->stream();
+    }
+
+    public function ticketSummaryReportHTML($records, $dates, $sum)
+    {
+        $reportData = EntertainmentTaxTicketReport::generateEntertainmentTaxTicketReport();
+        $output = "
+        <h3 align='center'>
+            Industrial Summary Report from $dates->startDate to $dates->endDate
+        </h3>
+        <table width='100%' style='border-collapse: collapse; border: 0px;'>
+        <tr>
+            <th style='border: 1px solid; padding:12px;' width='20%'>Industrial Type</th>
+            <th style='border: 1px solid; padding:12px;' width='10%'>Total Payments</th>
+       </tr>";
+
+        foreach ($reportData as $description => $total) {
+            $output .= "
+        <tr>
+           <td style='border: 1px solid; padding:12px;'>".$description."</td>
+           <td style='border: 1px solid; padding:12px;'>".'Rs.' .number_format($total, 2)."</td>
+        </tr>
+          ";
+        }
+        $output .= '</table>';
+        $output .= "<br>Total Payements : Rs. ".number_format($sum, 2)."/=";
+        return $output;
+    }
+
+
+    public function ticketTaxReportHTML($records, $dates, $Paymentsum)
+    {
+        $output = "
+    <h3 align='center'>Industrial Tax Report from $dates->startDate to $dates->endDate </h3>
+    <table width='100%' style='border-collapse: collapse; border: 0px;' class='table'>
+    <tr>
+       <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER'S NIC</th>
+       <th style='border: 1px solid; padding:12px;' width='25%'>VAT PAYER'S NAME</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>TICKET TYPE</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT DATE</th>
+    </tr>";
+        foreach ($records as $record) {
+            $output .= "
+    <tr>
+        <td style='border: 1px solid; padding:12px;'>".$record->vatPayer->nic."</td>
+        <td style='border: 1px solid; padding:12px;'>".$record->vatPayer->full_name."</td>
+        <td style='border: 1px solid; padding:12px;'>".$record->type->description."</td>
+        <td style='border: 1px solid; padding:12px;'>".'Rs. '.number_format($record->payment, 2)."</td>
+        <td style='border: 1px solid; padding:12px;'>".$record->updated_at."</td> 
+    </tr>";
+        }
+        $output .= "</table>";
+        $output .= "<br>Total Payements : Rs.".number_format($Paymentsum, 2)."/=";
+        return $output;
+    }
+
+    //----------------------------------------------------------------
+
+    public function generatePerformanceReport(IndustrialTaxReportRequest $request)
+    {
+        $reportData = EntertainmentTaxPerformanceReport::generateEntertainmentTaxPerformanceReport();
+        $dates = (object)$request->only(["startDate","endDate"]);
+    
+        $records = Entertainment_tax_performance_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        if ($request->has('TaxReport')) {
+            return view('vat.entertainment.entertainmentPerformanceReportView', ['dates'=>$dates,'records'=>$records]);
+        } elseif ($request->has('SummaryReport')) {
+            return view('vat.entertainment.entertainmentPerformanceSummaryReport', ['dates'=>$dates,'records'=>$records,'reportData'=>$reportData]);
+        }
+    }
+
+    public function entertainmentPerformanceReportGeneration()
+    {
+        return view('vat.entertainment.entertainmentPerformanceReportGeneration');
+    }
+
+    public function performanceTaxPdf(IndustrialTaxReportRequest $request)                                                      //pdf generation library function
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Entertainment_tax_performance_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
+        $Paymentsum=Entertainment_tax_performance_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->sum('payment');
+        $pdf->loadHTML($this->performanceTaxReportHTML($records, $dates, $Paymentsum));
+        
+        return $pdf->stream();
+    }
+
+
+    public function performanceSummaryPdf(IndustrialTaxReportRequest $request)                         //Summary Report PDF
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Entertainment_tax_performance_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        $sum=$records->sum('payment');
+        $pdf->loadHTML($this->performanceSummaryReportHTML($records, $dates, $sum));
+        
+
+        return $pdf->stream();
+    }
+
+    public function performanceSummaryReportHTML($records, $dates, $sum)
+    {
+        $reportData = EntertainmentTaxPerformanceReport::generateEntertainmentTaxPerformanceReport();
+        $output = "
+        <h3 align='center'>
+            Industrial Summary Report from $dates->startDate to $dates->endDate
+        </h3>
+        <table width='100%' style='border-collapse: collapse; border: 0px;'>
+        <tr>
+            <th style='border: 1px solid; padding:12px;' width='20%'>Industrial Type</th>
+            <th style='border: 1px solid; padding:12px;' width='10%'>Total Payments</th>
+       </tr>";
+
+        foreach ($reportData as $description => $total) {
+            $output .= "
+        <tr>
+           <td style='border: 1px solid; padding:12px;'>".$description."</td>
+           <td style='border: 1px solid; padding:12px;'>".'Rs.' .number_format($total, 2)."</td>
+        </tr>
+          ";
+        }
+        $output .= '</table>';
+        $output .= "<br>Total Payements : Rs. ".number_format($sum, 2)."/=";
+        return $output;
+    }
+
+
+    public function performanceTaxReportHTML($records, $dates, $Paymentsum)
+    {
+        $output = "
+    <h3 align='center'>Industrial Tax Report from $dates->startDate to $dates->endDate </h3>
+    <table width='100%' style='border-collapse: collapse; border: 0px;' class='table'>
+    <tr>
+       <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER'S NIC</th>
+       <th style='border: 1px solid; padding:12px;' width='25%'>VAT PAYER'S NAME</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>TICKET TYPE</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT DATE</th>
+    </tr>";
+        foreach ($records as $record) {
+            $output .= "
+    <tr>
+        <td style='border: 1px solid; padding:12px;'>".$record->vatPayer->nic."</td>
+        <td style='border: 1px solid; padding:12px;'>".$record->vatPayer->full_name."</td>
+        <td style='border: 1px solid; padding:12px;'>".$record->type->description."</td>
+        <td style='border: 1px solid; padding:12px;'>".'Rs. '.number_format($record->payment, 2)."</td>
+        <td style='border: 1px solid; padding:12px;'>".$record->updated_at."</td> 
+    </tr>";
+        }
+        $output .= "</table>";
+        $output .= "<br>Total Payements : Rs.".number_format($Paymentsum, 2)."/=";
+        return $output;
     }
 }
