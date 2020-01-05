@@ -204,7 +204,7 @@
 
 
                                             <form id="remove-payment"
-                                                action="{{route('remove-entertainment-payment',['id'=>$payments->id])}}"
+                                                action="{{route('entertainment-remove-ticket-performance-permanent',['id'=>$payments->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -212,8 +212,7 @@
                                                     class="dropdown-item">
 
                                             </form>
-                                            <a class="dropdown-item" href="">
-                                                Update payment</a>
+
                                         </div>
 
                                     </div>

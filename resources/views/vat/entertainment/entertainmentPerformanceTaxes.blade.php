@@ -298,7 +298,7 @@
             </div>
             {{-- end of payment history card --}}
 
-            {{-- update ticket payment card --}}
+            {{-- update performance payment card --}}
             <div class="card bg-secondary shadow mb-5 " id="update-payment-card">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
@@ -312,33 +312,33 @@
                 <div class="card-body">
                     {{-- Entertainment payment update form --}}
                     <form method="POST"
-                        action="{{route('update-entertainment-ticket-payments',['id'=> $vatPayer->id])}}"
-                        id="ticket-update-payment-form">
+                        action="{{route('update-entertainment-performance-payments',['id'=> $vatPayer->id])}}"
+                        id="performance-update-payment-form">
                         @csrf
                         @method('put')
 
                         <input type="text" value="{{old('paymentId')}}" id="paymentId" name="paymentId" hidden>
 
                         <div class="form-group row">
-                            <label for="ticket-type"
+                            <label for="updatedPerformanceType"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket type')}}</label>
                             <div class="col-md-10">
 
-                                <select id="updateTicketType" name="updateTicketType"
-                                    class="form-control @error('updateTicketType') is-invalid  @enderror">
+                                <select id="updatedPerformanceType" name="updatedPerformanceType"
+                                    class="form-control @error('updatedPerformanceType') is-invalid  @enderror">
 
-                                    <option value="" disabled selected>Select a ticket type</option>
+                                    <option value="" disabled selected>Select a performance type</option>
 
                                     @foreach ($performanceTypes as $type)
-                                    <option value="{{$type->id}}" @if(old('updateTicketType')==$type->id) selected
+                                    <option value="{{$type->id}}" @if(old('paymentType')==$type->id) selected
                                         @endif>{{$type->description}} -
-                                        {{$type->vat_percentage.'%'}}
+                                        ({{number_format($type->amount,2)}}LKR |
+                                        {{number_format($type->additional_amount,2)}}LKR)
                                     </option>
                                     @endforeach
 
-
                                 </select>
-                                @error('updateTicketType')
+                                @error('updatedPerformanceType')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -349,52 +349,25 @@
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Event Venue')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('updatePlaceAddress') is-invalid  @enderror"
-                                    type="text" value="{{old('updatePlaceAddress')}}" id="updatePlaceAddress"
-                                    name="updatePlaceAddress">
-                                @error('updatePlaceAddress')
+                                <input class="form-control @error('updatedPlaceAddress') is-invalid  @enderror"
+                                    type="text" value="{{old('updatedPlaceAddress')}}" id="updatedPlaceAddress"
+                                    name="updatedPlaceAddress">
+                                @error('updatedPlaceAddress')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
                         </div>
+
+
                         <div class="form-group row">
                             <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Quoted Ticket')}}</label>
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Number of days')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('updateQuotedTickets') is-invalid  @enderror"
-                                    type="number" value="{{old('updateQuotedTickets')}}" id="updateQuotedTickets"
-                                    name="updateQuotedTickets">
-                                @error('updateQuotedTickets')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Returned Tickets')}}</label>
-                            <div class="col-md-10 ">
-                                <input class="form-control @error('updateReturnedTickets') is-invalid  @enderror"
-                                    type="number" value="{{old('updateReturnedTickets')}}" id="updateReturnedTickets"
-                                    name="updateReturnedTickets">
-                                @error('updateReturnedTickets')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket Price')}}</label>
-                            <div class="col-md-10 ">
-                                <input class="form-control @error('updateTicketPrice') is-invalid  @enderror"
-                                    type="number" step="0.01" value="{{old('updateTicketPrice')}}"
-                                    id="updateTicketPrice" name="updateTicketPrice">
-                                @error('updateTicketPrice')
+                                <input class="form-control @error('updatedDays') is-invalid  @enderror" type="number"
+                                    step="0.01" value="{{old('updatedDays')}}" id="updatedDays" name="updatedDays">
+                                @error('updatedDays')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -416,7 +389,7 @@
                     </form>
                     {{-- end of Entertainment update payment form --}}
 
-                    {{-- Confirmation modal for update ticket payments--}}
+                    {{-- Confirmation modal for update performance payments--}}
                     <div class=" modal fade" id="confirm-update-ticket-payment" tabindex="-1" role="dialog"
                         aria-labelledby="modal-default" aria-hidden="true">
                         <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
@@ -430,7 +403,7 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <p>Confirmation needed to update ticket payment for <br>
+                                    <p>Confirmation needed to update performance payment for <br>
                                         {{$vatPayer->full_name}}-{{$vatPayer->nic}} </p>
                                 </div>
 
@@ -438,7 +411,7 @@
                                     <button type="button" class="btn btn-link"
                                         onclick="javascript:location.reload()">Cancel</button>
                                     <button type="button" id="redirect" class="btn  btn-primary ml-auto"
-                                        onclick="javascript:document.getElementById('ticket-update-payment-form').submit();">{{__('menu.Confirm')}}</button>
+                                        onclick="javascript:document.getElementById('performance-update-payment-form').submit();">{{__('menu.Confirm')}}</button>
                                 </div>
 
                             </div>
@@ -451,7 +424,7 @@
             {{-- end of update ticket payment card --}}
 
 
-            {{-- Recevie ticket payment card --}}
+            {{-- Recevie performance payment card --}}
             <div class="card bg-secondary shadow mb-5 hide">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
@@ -467,10 +440,10 @@
                     {{-- Entertainment payment form --}}
                     <form method="POST"
                         action="{{route('receive-performance-entertainment-payments',['id'=> $vatPayer->id])}}"
-                        id="ticket-payment-form">
+                        id="performance-payment-form">
                         @csrf
                         <div class="form-group row">
-                            <label for="ticket-type"
+                            <label for="paymentType"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Payment type')}}</label>
                             <div class="col-md-10">
 
@@ -560,7 +533,7 @@
                                     <button type="button" class="btn btn-link"
                                         onclick="javascript:location.reload()">Cancel</button>
                                     <button type="button" id="redirect" class="btn  btn-primary ml-auto"
-                                        onclick="javascript:document.getElementById('ticket-payment-form').submit();">{{__('menu.Confirm')}}</button>
+                                        onclick="javascript:document.getElementById('performance-payment-form').submit();">{{__('menu.Confirm')}}</button>
                                 </div>
 
                             </div>
@@ -660,11 +633,9 @@
 					var payment = $(this).data('value');
 					console.log(payment);
 					$("#paymentId").val(payment.id);
-					$("#updateTicketType").val(payment.type_id);
-					$("#updatePlaceAddress").val(payment.place_address);
-					$("#updateQuotedTickets").val(payment.quoted_tickets);
-					$("#updateReturnedTickets").val(payment.returned_tickets);
-					$("#updateTicketPrice").val(payment.ticket_price);
+					$("#updatedPerformanceType").val(payment.type_id);
+					$("#updatedPlaceAddress").val(payment.place_address);
+				    $("#updatedDays").val(payment.days);
 
 
 				});

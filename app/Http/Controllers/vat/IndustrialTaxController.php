@@ -214,11 +214,21 @@ class IndustrialTaxController extends Controller
         return view('vat.industrial.trashIndustrialShop', ['industrialTaxShop'=>$industrialTaxShop]);
     }
 
+
     public function restoreIndustrialShop($id)
     {
         $industrialTaxShop = Industrial_tax_shop::onlyTrashed()->where('id', $id);
         $payerId = $industrialTaxShop->first()->payer_id;
         $industrialTaxShop->restore();
         return redirect()->route('industrial-profile', ['id'=>$payerId])->with('status', 'Industrial shop restored successfully');
+    }
+
+    // premanent delete payment
+    public function destory($id)
+    {
+        $indusrtialTaxPyament = Industrial_tax_payment::onlyTrashed()->where('id', $id)->first();
+        //dd($indusrtialTaxPyament);
+        $indusrtialTaxPyament->forceDelete();
+        return redirect()->back()->with('status', ' Permanent Delete Successful');
     }
 }
