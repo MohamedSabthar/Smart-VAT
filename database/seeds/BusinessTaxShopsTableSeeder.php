@@ -43,7 +43,7 @@ class BusinessTaxShopsTableSeeder extends Seeder
             'shop_name' => 'punsaray',
             'anual_worth' => '1500000',
              'phone' => '0776534678',
-             'registration_no' =>' NPH907' ,
+             'registration_no' =>' NPH407' ,
              'door_no' => '9',
              'street' => 'dickson street',
              'city' => 'gale 07',

@@ -62,8 +62,8 @@ class VatPagesController extends Controller
     }
     public function entertainment()
     {
-        $ticketPayers = Entertainment_tax_tickets_payment::entertainmentTicketPayers(); //get all vat_payers who paid ticket taxes
-        return view('vat.entertainment.entertainment', ['ticketPayers' => $ticketPayers]);
+        $entertainmentPayers = Entertainment_tax_tickets_payment::getEntertainmentPayers(); //get all vat_payers who paid ticket taxes
+        return view('vat.entertainment.entertainment', ['entertainmentPayers' => $entertainmentPayers]);
     }
     public function shoprent()
     {

@@ -16,10 +16,10 @@ class CreateShopRentTable extends Migration
         Schema::create('shop_rent_tax', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('shop_name');                                   // shop/buisness name
-            $table->double('key_money');                                  
+            $table->double('key_money');
             $table->double('month_worth');                                  // anual worth of the shop
             $table->string('phone', 12);                                    // user's telephone number
-            $table->string('registration_no');                              // shop/buisness registration no
+            $table->string('registration_no')->unique();                              // shop/buisness registration no
             $table->string('door_no');
             $table->string('street');
             $table->string('city');

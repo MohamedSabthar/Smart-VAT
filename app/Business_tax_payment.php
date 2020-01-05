@@ -9,7 +9,7 @@ class Business_tax_payment extends Model
 {
     protected $table = 'business_tax_payments';
     use SoftDeletes;
-   // use forceDeletes;
+    // use forceDeletes;
 
     public function vatPayer()
     {
