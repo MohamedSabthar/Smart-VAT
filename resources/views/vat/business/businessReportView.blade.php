@@ -49,7 +49,30 @@
                
             </table>
         
-           
+
+            {{-- <table id="business_tax_report_VAt" class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th style="width:250px;" class="text-center">{{__('menu.First Name')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.NIC')}}</th>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($recordsVat_Payer as $records1)
+                    <tr>
+                        <td class="text-center">{{$records1->first_name}}</td>
+                        <td class="text-center">{{$records1->nic}}</td>
+                        
+                    </tr>
+                    @endforeach
+                    
+                </tbody>
+               
+            </table> --}}
+        
+
 
             <form method="POST" action="{{route('business-tax-report-pdf')}}" class="d-none" id="dates">
                 @csrf

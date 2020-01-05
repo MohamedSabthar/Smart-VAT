@@ -26,6 +26,7 @@ use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Reports\BusinessReport;
 
+
 class BusinessTaxController extends Controller
 {   private $records;
     public function __construct()
@@ -151,8 +152,10 @@ class BusinessTaxController extends Controller
     public function generateReport(BusinessTaxReportRequest $request)                                              //get the star date and the end date for the report generation
     {   $reportData = BusinessReport::generateBusinessReport();
         $dates = (object)$request->only(["startDate","endDate"]);
-          
-        $records=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();
+
+        // dd((object)$request->only(["startDate","endDate"])));
+        $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+
     
         $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates       
        if($request->has('TaxReport'))
@@ -172,12 +175,11 @@ class BusinessTaxController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
-        $records = Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates  
-        $sum=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->sum('payment');
-        $pdf->loadHTML($this->TaxReportHTML($records,$dates,$sum));
-        
 
-       
+        $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        $sum=Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->sum('payment');
+        $pdf->loadHTML($this->convertToHtml($records, $dates, $sum));
+
         return $pdf->stream();
     }
 

@@ -27,17 +27,21 @@
                 <thead class="thead-light">
                     <tr>
                         <th style="width:250px;" class="text-center">{{__('menu.Business Type')}}</th>
+
                         <th style="width:300px;"class="text-center">{{ __('menu.Total Payments')}}</th>
                        
+
                     </tr>
                 </thead>
 
                 <tbody>
+
                     @foreach ($reportData as $discription=>$total)
                     <tr>
                         <td class="text-center">{{ $discription }}</td>
                         <td class="text-center">{{ $total }}</td>
                        
+
                     </tr>
                     @endforeach
                     
@@ -46,7 +50,9 @@
             </table>
         
            
+
             <form method="POST" action="{{route('business-summary-report-pdf')}}" class="d-none" id="dates">
+
                 @csrf
                         <input name="startDate" value="{{ $dates->startDate }}">
                         <input  name ="endDate" value="{{ $dates->endDate }}">
