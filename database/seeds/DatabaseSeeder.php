@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BusinessTaxShopsTableSeeder::class);
         $this->call(IndustrialTypesTableSeeder::class);
         $this->call(EntertainmentTypesTableSeeder::class);
+        $this->call(EntertainmentPerfomanceTypesTableSeeder::class);
     }
 }

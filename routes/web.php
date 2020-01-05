@@ -139,10 +139,27 @@ Route::delete('/shop-rent/payment-remove/{id}', 'vat\ShopRentTaxController@remov
 Route::get('/shop-rent/payment-trash/{id}', 'vat\ShopRentTaxController@trashPayment')->name('shop-rent-trash-payment');//trash business payment
 Route::get('/shop-rent/payment-restore/{id}', 'vat\ShopRentTaxController@restorePayment')->name('restore-shop-rent-payment');// restore business
 
-Route::delete('/shop-rent/industrial-remove/{shop_id}', 'vat\ShopRentTaxController@removeShopRent')->name('remove-shop-rent'); // soft delete business route
-Route::get('/shop-rent/industrial-trash/{payer_id}', 'vat\ShopRentTaxController@trashShopRent')->name('trash-shop-rent');// trash business
-Route::get('/shop-rent/industrial-restore/{id}', 'vat\ShopRentTaxController@restoreShopRent')->name('restore-shop-rent'); // restore business
+Route::delete('/shop-rent/shop-rent-remove/{shop_id}', 'vat\ShopRentTaxController@removeShopRent')->name('remove-shop-rent'); // soft delete business route
+Route::get('/shop-rent/shop-rent-trash/{payer_id}', 'vat\ShopRentTaxController@trashShopRent')->name('trash-shop-rent');// trash business
+Route::get('/shop-rent/shop-rent-restore/{id}', 'vat\ShopRentTaxController@restoreShopRent')->name('restore-shop-rent'); // restore business
 
+
+//booking tax
+Route::get('/booking/profile/{id}','vat\BookingTaxController@bookingprofile')->name('booking-profile');
+Route::post('/booking/booking-register/{id}','vat\BookingTaxController@registerBooking')->name('booking-register');
+Route::get('/booking/payments/{shop_id}','vat\BookingTaxController@bookingPayments')->name('booking-payments');
+Route::post('/booking/payments{shop_id}','vat\BookingTaxController@recivebookingPayments')->name('receive-booking-payments');
+Route::get('/booking/quick-payments', 'vat\BookingTaxController@viewQuickPayments')->name('get-booking-quick-payments');
+Route::post('/booking/check-payments', 'vat\BookingTaxController@checkPayments')->name('check-booking-payments'); //check all business payments for a given vat payer for quick payment option
+Route::post('/booking/accept-quick-payments', 'vat\BookingTaxController@acceptQuickPayments')->name('booking-quick-payments');
+
+Route::delete('/booking/payment-remove/{id}', 'vat\BookingTaxController@removePayment')->name('remove-booking-payment');//soft delete business payment
+Route::get('/booking/payment-trash/{id}', 'vat\BookingTaxController@trashPayment')->name('booking-trash-payment');//trash business payment
+Route::get('/booking/payment-restore/{id}', 'vat\BookingTaxController@restorePayment')->name('restore-booking-payment');// restore business
+
+Route::delete('/booking/booking-remove/{shop_id}', 'vat\BookingTaxController@removeBooking')->name('remove-booking'); // soft delete business route
+Route::get('/booking/booking-trash/{payer_id}', 'vat\BookingTaxController@trashBooking')->name('trash-booking');// trash business
+Route::get('/booking/booking-restore/{id}', 'vat\BookingTaxController@restoreBooking')->name('restore-booking'); // restore business
 
 
 /**
