@@ -93,7 +93,10 @@ Route::get('/business/quick-payments', 'vat\BusinessTaxController@viewQuickPayme
 Route::post('/business/accept-quick-payments', 'vat\BusinessTaxController@acceptQuickPayments')->name('business-quick-payments');
 Route::get('/business/generate-report', 'vat\BusinessTaxController@businessReportGeneration')->name('business-generate-report');
 Route::post('/business/generation', 'vat\BusinessTaxController@generateReport')->name('business-report-view');
-Route::post('/business/report-pdf', 'vat\BusinessTaxController@pdf')->name('business-report-pdf');
+Route::post('/business/Tax-report-pdf', 'vat\BusinessTaxController@TaxPdf')->name('business-tax-report-pdf');
+Route::post('/business/Summary-report-pdf', 'vat\BusinessTaxController@summaryPdf')->name('business-summary-report-pdf');
+
+
 //business payment remove
 Route::delete('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
 Route::get('/business/payment-trash/{id}', 'vat\BusinessTaxController@trashPayment')->name('trash-payment');//trash business payment
