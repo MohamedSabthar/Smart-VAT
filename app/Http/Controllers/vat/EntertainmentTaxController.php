@@ -20,6 +20,12 @@ use App\Entertainment_tax_performance_payment;
 
 class EntertainmentTaxController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'=>'verified']);
+        $this->middleware('vat');
+    }
+    
     private function calculateTicketTax($id, $ticketAmmout, $effectiveTickets)
     {
         $entertainmentType = Entertainment_type::find($id);

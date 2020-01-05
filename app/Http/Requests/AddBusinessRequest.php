@@ -26,7 +26,7 @@ class AddBusinessRequest extends FormRequest
     public function rules()
     {
         return[
-            'assesmentNo' =>['required', 'string', 'max:255', 'unique:business_tax_shops,registration_no'],
+            'assesmentNo' =>['required', 'string', 'max:255', Rule::unique('business_tax_shops', 'registration_no')],
             'annualAssesmentAmount' => ['required','numeric'],
             'businessName' => ['required','string','max:255'],
             'phoneno' =>  ['required','regex:/[+94|0][0-9]{9}$/','min:10','max:12'],
@@ -34,7 +34,6 @@ class AddBusinessRequest extends FormRequest
             'street' => ['required','string','max:255'],
             'city' => ['required','string','max:255'],
             'type' =>['required'],
-            
         ];
     }
 }

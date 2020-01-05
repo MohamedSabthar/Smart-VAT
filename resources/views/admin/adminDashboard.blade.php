@@ -33,7 +33,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item"
                             href="{{route('payer-registration',['requestFrom'=>'business'])}}">Register payer</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="{{route('get-business-quick-payments')}}">Quick payments</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item"
                             href="{{route('payer-registration',['requestFrom'=>'industrial'])}}">Register payer</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="{{route('get-industrial-quick-payments')}}">Quick payments</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </div>
