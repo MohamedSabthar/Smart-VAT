@@ -169,6 +169,10 @@ return [
      'view' => 'දැක්ම',
      'Invalid Assesment Amount'=>'ලබා දී ඇති තක්සේරු මුදල අවලංගුය',
      
+     //industrail profile
+     'Add' => 'Add',
+     'Confirm' => 'Confirm',
+
     
      //entertainment payment
     'View history'=>'ඉතිහාසය බලන්න',
@@ -179,6 +183,12 @@ return [
     'Ticket Price'=>'Ticket Price',
     'Event Venue'=>'Event Venue',
     'Add payment' => 'Add payment',
+    'Add new event payment'=>'Add new event payment',
+    'Quoted Tickets' => 'Quoted Tickets',
+    'Returned Tickets' => 'Returned Tickets',
+    'Final Payment' => 'Final Payment',
+    'Payment Date' =>'Payment Date',
+    'Update payment' => 'Update payment',
 
 
 

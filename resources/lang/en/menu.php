@@ -190,6 +190,8 @@ return [
     's industrial shops' =>'s industrial shops',
     'Shop Name' => 'Shop Name',
     'Add Industrial shop'=>'Add Industrial shop',
+    'Add' => 'Add',
+    'Confirm' => 'Confirm',
 
     //entertainment payment
     'View history'=>'View history',
@@ -200,6 +202,12 @@ return [
     'Ticket Price' => 'Ticket Price',
     'Event Venue'=>'Event Venue',
     'Add payment' => 'Add payment',
+    'Add new event payment'=>'Add new event payment',
+    'Quoted Tickets' => 'Quoted Tickets',
+    'Returned Tickets' => 'Returned Tickets',
+    'Final Payment' => 'Final Payment',
+    'Payment Date' =>'Payment Date',
+    'Update payment' => 'Update payment',
 
 
 ];

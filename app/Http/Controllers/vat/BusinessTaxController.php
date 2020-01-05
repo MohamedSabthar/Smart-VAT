@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\vat;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
+use Carbon\Carbon;
+
 use App\Http\Controllers\Controller;
 use App\Vat;
 use App\Vat_payer;
@@ -11,11 +15,12 @@ use App\Business_type;
 use App\Http\Requests\AddBusinessRequest;
 use App\Business_tax_payment;
 use App\Business_tax_shop;
+use App\Assessment_range;
+
+use App\Jobs\BusinessTaxNoticeJob;
+
 use Auth;
 use App\Http\Requests\BusinessTaxReportRequest;
-use App\Assessment_range;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Arr;
 //report Generation
 use PDF;
 use Illuminate\Support\Facades\DB;
@@ -214,7 +219,7 @@ class BusinessTaxController extends Controller
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates  
-        $sum=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->sum('payment');
+        $sum=$records->sum('payment');
         $pdf->loadHTML($this->summaryReportHTML($records,$dates,$sum));
         
 
@@ -309,7 +314,7 @@ class BusinessTaxController extends Controller
         $businessTaxPyament->user_id = Auth::user()->id;
         $businessTaxPyament->save();
 
-        return redirect()->back()->with('sucess', 'Payment added successfuly');
+        return redirect()->back()->with('status', 'Payment added successfuly');
     }
 
     public function getBusinestypes(Request $request)
@@ -328,5 +333,21 @@ class BusinessTaxController extends Controller
         $data = $businessTypes->get(['id','description']);
         return response()->json(array("results"=>$data
        ), 200);
+    }
+
+    public function sendNotice($id)
+    {
+        $currentDate = Carbon::now()->toArray();
+        $year = $currentDate['year'];
+        $taxPayment=Business_tax_payment::where('shop_id', $id)->where('created_at', 'like', "%$year%")->first();
+
+        if ($taxPayment!=null) {
+            return redirect()->back()->with('warning', "Tax already paid for this year for this business");
+        }
+
+        $vatPayerMail = Business_tax_shop::find($id)->payer->email;
+        //pushing mail to the queue
+        dispatch(new  BusinessTaxNoticeJob($vatPayerMail, $id));
+        return redirect()->back()->with('status', 'Mail queued successfully');
     }
 }

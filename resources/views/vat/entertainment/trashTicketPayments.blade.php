@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Industrial Payment')
+@section('title','Trash Payments')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -13,13 +13,60 @@
 @endsection
 
 @section('header')
+
+<div class="col-xl-3 col-lg-6">
+    <div class="card card-stats mb-4 mb-xl-0">
+        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
+        <div id="#card" class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h5 cla ss="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                    <span class="h2 font-weight-bold mb-0">350,897</span>
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
+            </p>
+        </div>
+    </div>
+</div>
+
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Payment List</h5>
-                    <span class=" font-weight-bold mb-0">924</span>
+                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                <span class="text-nowrap">Since last week</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-lg-6">
+    <div class="card card-stats mb-4 mb-xl-0">
+        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                    <span class="h2 font-weight-bold mb-0">924</span>
                 </div>
                 <div class="col-auto">
                     <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -40,64 +87,19 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                    <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                    <span class="h2 font-weight-bold mb-0">49,65%</span>
                 </div>
                 <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
+                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                        <i class="fas fa-percent"></i>
                     </div>
                 </div>
             </div>
             <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
+                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                <span class="text-nowrap">Since last month</span>
             </p>
-        </div>
-    </div>
-</div>
-
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-            </p>
-        </div>
-    </div>
-</div>
-
-
-<div class="col-xl-3 col-lg-6"
-    onclick="javascript:window.open(`{{route('industrial-trash-payment',['id'=>$industrialTaxShop->payer->id])}}`,'_self')"
-    style="cursor:pointer">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Pyament</center>
-                    </h3>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
@@ -133,134 +135,33 @@
 @endsection
 
 @section('pageContent')
-<div class="pt-5">
-    <div class="row">
-        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-            <div class="card card-profile shadow">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 order-lg-2">
-                        <div class="card-profile-image">
-                            <a href="#">
-                                <img src="{{asset('assets/img/theme/business.jpg')}}" class="rounded-circle">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                    <div class="d-flex justify-content-between">
-                        <a href="{{route('industrial-profile',['id'=>$industrialTaxShop->payer->id])}}"
-                            class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
-                    </div>
-                </div>
-                <div class="card-body pt-0 pt-md-4">
-                    <div class="test-left pt-5">
-                        <h3 class="d-inline">{{__('menu.industrial Name')}} : </h3>
-                        {{ucwords($industrialTaxShop->shop_name)}}
-                        <div class="pt-1">
-                            <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{ucwords($industrialTaxShop->address)}}
-                        </div>
-
-                        <div class="pt-1">
-                            <h3 class="d-inline">{{__('menu.Assesment No.')}} : </h3>
-                            {{$industrialTaxShop->registration_no}}
-                        </div>
-
-                        <hr>
-
-                        <div class="pt-1">
-                            <h3 class="d-inline"> {{__('menu.Annual worth')}} : </h3>
-                            {{number_format($industrialTaxShop->anual_worth,2)}}
-                        </div>
-                        <hr>
-
-                        <div class="pt-1">
-                            <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$industrialTaxShop->phone}}
-                        </div>
-
-
-
+<div class="row ">
+    <div class="col-xl-12 order-xl-1">
+        <div class="card shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-item-center">
+                    <div class="col">
+                        <h3 class="mb-0">
+                            <span class="text-uppercase">{{__('menu.Trash Payments')}}</span>
+                        </h3>
+                        <hr class="mt-4 mb-0">
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-xl-8 order-xl-1">
-            {{-- Payment Notice --}}
-            @if (!$paid)
-            <div class="card shadow text-center mb-3 p-4">
-                <div class="card-body bg-white border-0">
-                    <h1 style="font-weight: 400;">{{__('menu.Due Payment : Rs.')}} {{number_format($duePayment,2)}}</h1>
-                    <button class="btn btn-success mx-auto my-1" data-toggle="modal"
-                        onclick="javascript:event.preventDefault()"
-                        data-target="#confirm-industrial-payment">{{__('menu.Accept Payment')}}</button>
-
-                </div>
-            </div>
-            {{-- payment form --}}
-            <form action="{{route('receive-industrial-payments',['shop_id'=>$industrialTaxShop->id])}}"
-                id="accept-payment" method="POST" hidden>
-                @csrf
-                <input type="text" name="payment" value="{{$duePayment}}">
-            </form>
-            {{-- end of payment form --}}
-            {{-- Confirmation modal for adding business for the registered VAT payer--}}
-            <div class=" modal fade" id="confirm-industrial-payment" tabindex="-1" role="dialog"
-                aria-labelledby="modal-default" aria-hidden="true">
-                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                    <div class="modal-content">
-
-                        <div class="modal-header">
-                            <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-
-                            <p>Confirmation needed to add payment for <br>
-                                shop : {{$industrialTaxShop->shop_name}} </p>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link"
-                                onclick="javascript:location.reload()">Cancel</button>
-                            <button type="button" id="redirect" class="btn  btn-primary ml-auto"
-                                onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            {{-- End of confirmation modal --}}
-
-            @else
-            <div class="card shadow text-center mb-3 p-4">
-                <div class="card-body bg-white border-0">
-                    <h1 style="font-weight: 400;">{{__('menu.No Due payments')}}</h1>
-
-                </div>
-            </div>
-            @endif
-            {{-- end of Pyament Notice --}}
-
-
-            <div class="card shadow">
-                <div class="card-header bg-white border-0">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-0">{{__('menu.Payment History')}}</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="table-responsive py-4">
-                    {{-- Industrial TAX payments table --}}
-                    <table id="industrial_payments_table" class="table  px-5">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="trash_ticket_payment" class="table">
                         <thead class="thead-light">
                             <tr>
                                 <th>{{__('menu.Receipt No.')}}</th>
+                                <th>{{__('menu.Place Addr')}}</th>
+                                <th>{{__('menu.Quoted Tickets')}}</th>
+                                <th>{{__('menu.Ticket Price')}}</th>
+                                <th>{{__('menu.Returned Tickets')}}</th>
+                                <th>{{__('menu.Returned Payment')}}</th>
+                                <th>{{__('menu.Final Payment')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Payment')}}</th>
+                                <th></th>
                                 <th></th>
 
                             </tr>
@@ -269,22 +170,44 @@
                             <tr>
                                 <th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAddress"
+                                        placeholder="{{__('menu.Search Address')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAddress"
+                                        placeholder="{{__('menu.Quoted Tickets')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAddress"
+                                        placeholder="{{__('menu.Ticket Price')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchAddress"
+                                        placeholder="{{__('menu.Returned Tickets')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchReturnedPayment"
+                                        placeholder="{{__('menu.Search Returnded Payments')}}" /></th>
+                                <th><input type="text" class="form-control form-control-sm" id="searchPayment"
+                                        placeholder="{{__('menu.Search Payment')}}" /></th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
                                         placeholder="{{__('menu.Search Payment date')}}" /></th>
                                 <th></th>
-
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach ($industrialTaxShop->payments as $payments)
+                            @foreach ($entertainmentTicketPayment as $payments)
                             <tr>
                                 <td>{{$payments->id}}</td>
-                                <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
+                                <td class="text-center">{{$payments->place_address}}</th>
+
+                                <td>{{ $payments->quoted_tickets}}</td>
+                                <td>{{ $payments->ticket_price}}</td>
+                                <td>{{ $payments->treturned_tickets==null ? 'N/A' : $payments->treturned_tickets}}</td>
+                                <td>{{ number_format($payments->returned_payment,2)}}</th>
                                 <td>{{ number_format($payments->payment,2)}}</td>
 
+                                <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
 
+                                <td>
+                                    <a class="btn btn-outline-success btn-sm "
+                                        href="{{route('restore-entertainment-payment',['id'=>$payments->id])}}">
+                                        {{__('menu.Restore')}}</a>
+                                </td>
                                 <td class="text-right">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -294,7 +217,8 @@
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
 
-                                            <form action="{{route('remove-industrial-payment',['id'=>$payments->id])}}"
+                                            <form id="remove-payment"
+                                                action="{{route('remove-entertainment-payment',['id'=>$payments->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -302,6 +226,8 @@
                                                     class="dropdown-item">
 
                                             </form>
+                                            <a class="dropdown-item" href="">
+                                                Update payment</a>
                                         </div>
 
                                     </div>
@@ -316,22 +242,28 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>{{__('menu.Receipt No.')}}</th>
+                                <th>{{__('menu.Place Addr')}}</th>
+                                <th>{{__('menu.Quoted Tickets')}}</th>
+                                <th>{{__('menu.Ticket Price')}}</th>
+                                <th>{{__('menu.Returned Tickets')}}</th>
+                                <th>{{__('menu.Returned Payment')}}</th>
+                                <th>{{__('menu.Final Payment')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
-                                <th>{{__('menu.Payment')}}</th>
-
                                 <th></th>
+                                <th></th>
+
                             </tr>
                         </thead>
 
                     </table>
-                    {{-- end of Industrial TAX payments table --}}
+
                 </div>
+
             </div>
-
-
         </div>
     </div>
 </div>
+
 
 
 
@@ -343,7 +275,7 @@
 <script>
     $(document).ready(function() {
 
-        var id = '#industrial_payments_table';                      //data table id
+        var id = '#trash_ticket_payment';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -361,24 +293,62 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
+          //individulat column search
         $('#searchAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+            
+            $('#searchAddress').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#selectCourt').on( 'change', function () { 
+
+            $('#searchQuotedTickets').on( 'keyup', function () { 
+            table
+                .columns( 2 )
+                .search( this.value )
+                .draw();
+            });
+
+            $('#searchTicketPrice').on( 'keyup', function () { 
             table
                 .columns( 3 )
                 .search( this.value )
                 .draw();
             });
+            $('#searchReturnTickets').on( 'keyup', function () { 
+            table
+                .columns( 4 )
+                .search( this.value )
+                .draw();
+            });
+            
+
+           
+            $('#searchReturnedPayment').on( 'keyup', function () { 
+            table
+                .columns( 5 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchPayment').on( 'keyup', function () { 
+            table
+                .columns( 6 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchPaymentDate').on( 'keyup', function () { 
+            table
+                .columns( 7 )
+                .search( this.value )
+                .draw();
+            }); 
+            
       } );
 
 </script>

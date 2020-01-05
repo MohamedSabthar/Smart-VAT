@@ -165,8 +165,8 @@
 						<label for="example-week-input"
 							class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
 						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text" value="{{old('nic')}}" id="nic"
-								name="nic">
+							<input class="form-control @error('nic') is-invalid @enderror" type="text"
+								value="{{old('nic')}}" id="nic" name="nic">
 							<span id="error_nic" class="invalid-feedback" role="alert">
 
 							</span>
@@ -223,8 +223,8 @@
 						<label for="example-email-input"
 							class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
 						<div class="col-md-10">
-							<input class="form-control @error('email') is-invalid @enderror" type="email" value="{{old('email')}}"
-								id="email" name="email">
+							<input class="form-control @error('email') is-invalid @enderror" type="email"
+								value="{{old('email')}}" id="email" name="email">
 							@error('email')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -237,8 +237,8 @@
 						<label for="example-time-input" class="col-md-2 col-form-label form-control-label">
 							{{__('menu.Phone No')}}</label>
 						<div class="col-md-10">
-							<input class="form-control @error('phone') is-invalid @enderror" type="text" value="{{old('phone')}}"
-								id="phone" name="phone">
+							<input class="form-control @error('phone') is-invalid @enderror" type="text"
+								value="{{old('phone')}}" id="phone" name="phone">
 							@error('phone')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -252,8 +252,8 @@
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
 
 						<div class="col-md-10 ">
-							<input class="form-control @error('doorNo') is-invalid  @enderror" type="text" value="{{old('doorNo')}}"
-								id="doorNo" name="doorNo">
+							<input class="form-control @error('doorNo') is-invalid  @enderror" type="text"
+								value="{{old('doorNo')}}" id="doorNo" name="doorNo">
 							@error('doorNo')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -266,8 +266,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('street') is-invalid  @enderror" type="text" value="{{old('street')}}"
-								id="street" name="street">
+							<input class="form-control @error('street') is-invalid  @enderror" type="text"
+								value="{{old('street')}}" id="street" name="street">
 							@error('street')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -280,8 +280,8 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('city') is-invalid  @enderror" type="text" value="{{old('city')}}"
-								id="city" name="city">
+							<input class="form-control @error('city') is-invalid  @enderror" type="text"
+								value="{{old('city')}}" id="city" name="city">
 							@error('city')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -317,12 +317,14 @@
 								</div>
 								<div class="modal-body">
 									<strong>This VAT payer is alredy registered</strong>
-									<p>Are you wish to add a New Business/Shop ? </p>
+									<p>Are you wish to add a New Business/Payment ? </p>
 								</div>
 
 								<div class="modal-footer">
-									<button type="button" class="btn btn-link" onclick="javascript:location.reload()">Cancel</button>
-									<a href="" id="redirect" class="btn  btn-primary ml-auto">{{__('menu.Add Business')}}</a>
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
+									<a href="" id="redirect"
+										class="btn  btn-primary ml-auto">{{__('menu.Add Business')}}</a>
 								</div>
 
 							</div>
