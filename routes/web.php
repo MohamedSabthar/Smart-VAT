@@ -35,7 +35,26 @@ Route::get('/employee-profile/{id}', 'AdminController@employeeProfile')->name('e
 Route::put('/employee-profile/{id}', 'AdminController@updateEmployeeProfile')->name('update-employee');
 Route::get('/mangae-employee', 'AdminController@manageEmployee')->name('manage-employee');
 Route::post('/assign-vat', 'AdminController@assignVatCategories')->name('assign-vat');
-Route::get('/gloabl-conf', 'AdminController@globalConfiguration')->name('global-conf');
+Route::get('/gloabl-conf', 'GlobalConfigurationController@globalConfiguration')->name('global-conf');
+Route::get('/global-conf/business', 'GlobalConfigurationController@updateBusinessTaxForm')->name('global-conf-business-update');
+Route::put('/global-conf/business/update-percentage', 'GlobalConfigurationController@updateBusinessPercentage')->name('update-business-percentage');
+Route::put('/global-conf/business/update-assement-ranges', 'GlobalConfigurationController@updateBusinessAssessmentRanges')->name('update-business-assessment-range');
+Route::get('/global-conf/business/types/{id}', 'GlobalConfigurationController@viewBusinessRangeTypes')->name('view-business-range-types');
+Route::post('/global-conf/business/add-type/{id}', 'GlobalConfigurationController@addBusinessType')->name('add-business-type');
+Route::put('/global-conf/business/update-type', 'GlobalConfigurationController@updateBusinessType')->name('update-business-type');
+
+Route::get('/global-conf/industrial', 'GlobalConfigurationController@updateIndustrialTaxForm')->name('global-conf-industrial-update');
+Route::put('/global-conf/industrial/update-percentage', 'GlobalConfigurationController@updateIndustrialPercentage')->name('update-industrial-percentage');
+Route::put('/global-conf/industrial/update-assement-ranges', 'GlobalConfigurationController@updateIndustrialAssessmentRanges')->name('update-industrial-assessment-range');
+Route::get('/global-conf/industrial/types/{id}', 'GlobalConfigurationController@viewIndustrialRangeTypes')->name('view-industrial-range-types');
+Route::post('/global-conf/industrial/add-type/{id}', 'GlobalConfigurationController@addIndustrialType')->name('add-industrial-type');
+Route::put('/global-conf/industrial/update-type', 'GlobalConfigurationController@updateIndustrialType')->name('update-industrial-type');
+
+
+
+
+
+
 
 /**
  * Routes common to admin and employee
@@ -87,14 +106,11 @@ Route::post('/business/report-pdf', 'vat\BusinessTaxController@pdf')->name('busi
 Route::delete('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
 Route::get('/business/payment-trash/{id}', 'vat\BusinessTaxController@trashPayment')->name('trash-payment');//trash business payment
 Route::get('/business/payment-restore/{shop_id}', 'vat\BusinessTaxController@restorePayment')->name('restore-payment');//restore payment
-Route::get('/business/payment-remove-permanent/{id}', 'vat\BusinessTaxController@destory')->name('remove-payment-permanent');// permanent delete
+Route::delete('/business/payment-remove-permanent/{id}', 'vat\BusinessTaxController@destory')->name('remove-payment-permanent');// permanent delete
 //business remove
 Route::delete('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
 Route::get('/business/business-trash/{payer_id}', 'vat\BusinessTaxController@trashBusiness')->name('trash-business');// trash business
 Route::get('/business/business-restore/{id}', 'vat\BusinessTaxController@restoreBusiness')->name('restore-business'); // restore business
-
-
-
 Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
 
@@ -132,6 +148,9 @@ Route::get('/industrial/payment-restore/{id}', 'vat\IndustrialTaxController@rest
 Route::delete('/industrial/industrial-remove/{shop_id}', 'vat\IndustrialTaxController@removeIndustrialShop')->name('remove-inudstrial-shop'); // soft delete industrial route
 Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxController@trashIndustrialShop')->name('trash-industrial-shop');// trash industrial
 Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore industrial
+Route::delete('/industrial/payment-remove-permanent/{id}', 'vat\IndustrialTaxController@destory')->name('industrial-remove-payment-permanent');// permanent delete
+
+
 
 
 //shop rent tax
@@ -166,6 +185,16 @@ Route::delete('/entertainment/ticket-payment-remove/{id}', 'vat\EntertainmentTax
 Route::get('/entertainment/ticket-payment-trash/{id}', 'vat\EntertainmentTaxController@trashTicketPayment')->name('entertainment-ticket-trash-payment');//trash entertainment payment
 Route::get('/entertainment/ticket-payment-restore/{id}', 'vat\EntertainmentTaxController@restoreTicketPayment')->name('restore-entertainment-payment');// restore entertainment
 Route::put('/entertainment/ticket-payment-update/{id}', 'vat\EntertainmentTaxController@updateTicketPayment')->name('update-entertainment-ticket-payments');
+
+Route::get('/entertainment/performance-tax/{id}', 'vat\EntertainmentTaxController@showPerformanceTaxForm')->name('entertainment-performance-tax'); // restore industrial
+Route::post('/entertainment/performance-payments/{id}', 'vat\EntertainmentTaxController@recievePerformancePayments')->name('receive-performance-entertainment-payments');
+Route::delete('/entertainment/performance-payment-remove/{id}', 'vat\EntertainmentTaxController@removePerformancePayment')->name('remove-entertainment-performance-payment');//soft delete performance payment
+Route::get('/entertainment/performance-payment-trash/{id}', 'vat\EntertainmentTaxController@trashPerformancePayment')->name('entertainment-performance-trash-payment');//trash performance payment
+Route::get('/entertainment/performance-payment-restore/{id}', 'vat\EntertainmentTaxController@restorePerformancePayment')->name('restore-entertainment-performance-payment');// restore entertainment
+Route::delete('/entertainment/payment-ticket-remove-permanent/{id}', 'vat\EntertainmentTaxController@destoryTicket')->name('entertainment-remove-ticket-payment-permanent');// permanent delete
+Route::delete('/entertainment/payment-performance-remove-permanent/{id}', 'vat\EntertainmentTaxController@destoryPerformance')->name('entertainment-remove-ticket-performance-permanent');// permanent delete
+Route::put('/entertainment/performance-payment-update/{id}', 'vat\EntertainmentTaxController@updatePerformancePayment')->name('update-entertainment-performance-payments');
+
 
 /**
  * mailing routes

@@ -27,19 +27,17 @@
                 <thead class="thead-light">
                     <tr>
                         <th style="width:250px;" class="text-center">{{__('menu.Business Type')}}</th>
-                        <th style="width:300px;"class="text-center">{{ __('menu.Shop ID')}}</th>
-                        <th style="width:300px;"class="text-center">{{ __("menu.VAT Payer's Name")}}</th>
-                        <th style="width:300px;"class="text-center">{{ __("menu.Payment")}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.Total Payments')}}</th>
+                       
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($records as $records)
+                    @foreach ($reportData as $discription=>$total)
                     <tr>
-                        <td class="text-center">{{$records->businessTaxShop->businessType->description}}</td>
-                        <td class="text-center">{{ $records->shop_id }}</td>
-                        <td class="text-center">{{ $records->vatPayer->first_name }}</td>
-                        <td class="text-center">Rs. {{ $records->payment }}.00</td>
+                        <td class="text-center">{{ $discription }}</td>
+                        <td class="text-center">{{ $total }}</td>
+                       
                     </tr>
                     @endforeach
                     

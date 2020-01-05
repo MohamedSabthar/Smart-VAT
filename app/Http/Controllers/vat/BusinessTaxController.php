@@ -24,6 +24,7 @@ use App\Http\Requests\BusinessTaxReportRequest;
 //report Generation
 use PDF;
 use Illuminate\Support\Facades\DB;
+use App\Reports\BusinessReport;
 
 class BusinessTaxController extends Controller
 {   private $records;
@@ -148,7 +149,7 @@ class BusinessTaxController extends Controller
 
 
     public function generateReport(BusinessTaxReportRequest $request)                                              //get the star date and the end date for the report generation
-    {   
+    {   $reportData = BusinessReport::generateBusinessReport();
         $dates = (object)$request->only(["startDate","endDate"]);
           
         $records=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();
@@ -160,7 +161,7 @@ class BusinessTaxController extends Controller
         }
         else if($request->has('SummaryReport'))
         {
-            return view('vat.business.businessSummaryReport',['dates'=>$dates,'records'=>$records]);
+            return view('vat.business.businessSummaryReport',['dates'=>$dates,'records'=>$records,'reportData'=>$reportData]);
         }
       
         
@@ -226,25 +227,24 @@ class BusinessTaxController extends Controller
         return $pdf->stream();
     }
     public function summaryReportHTML($records,$dates,$sum)
-    {
+    {   $reportData = BusinessReport::generateBusinessReport();
         $output = "
          <h3 align='center'>Businness Summary Report from $dates->startDate to $dates->endDate </h3>
          <table width='100%' style='border-collapse: collapse; border: 0px;'>
           <tr>
         <th style='border: 1px solid; padding:12px;' width='20%'>Business Type</th>
-        <th style='border: 1px solid; padding:12px;' width='10%'>SHOP ID</th>
-        <th style='border: 1px solid; padding:12px;' width='20%'>VAT Payer's Name</th>
-        <th style='border: 1px solid; padding:12px;' width='15%'>Payment</th>
+        <th style='border: 1px solid; padding:12px;' width='10%'>Total Payments</th>
+    
+    
        </tr>
          ";  
-         foreach($records as $record)
+         foreach($reportData as $description => $total)
          {
           $output .= '
           <tr>
-           <td style="border: 1px solid; padding:12px;">'.$record->businessTaxShop->businessType->description.'</td>
-           <td style="border: 1px solid; padding:12px;">'.$record->shop_id.'</td>
-           <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->first_name.'</td>
-           <td style="border: 1px solid; padding:12px;">'.'Rs. '.$record->payment.'.00</td>
+           <td style="border: 1px solid; padding:12px;">'.$description.'</td>
+           <td style="border: 1px solid; padding:12px;">'.'Rs.' .$total.'.00</td>
+           
           </tr>
           ';
          }
@@ -295,9 +295,9 @@ class BusinessTaxController extends Controller
         return redirect()->route('trash-payment', ['businessTaxPyament'=>$businessTaxPyament])->with('status','Payment restore successful');
     }
     // premanent delete payment
-    public function destory($id){
-        
-        $businessTaxPyament = Business_tax_payment::onlyTrashed()->where('id', $id)->get();
+    public function destory($id)
+    {
+        $businessTaxPyament = Business_tax_payment::onlyTrashed()->where('id', $id)->first();
         //dd($businessTaxPyament);
         $businessTaxPyament->forceDelete();
         return redirect()->back()->with('status', ' Permanent Delete Successful'); 

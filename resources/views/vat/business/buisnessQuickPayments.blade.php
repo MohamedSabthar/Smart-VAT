@@ -231,10 +231,12 @@
                         nic!='' ? $('#error_nic').html('<strong>NIC not mached</strong>') 
                                 : $('#error_nic').html('<strong>Please enter the NIC</strong>');
                         $('#payer-details').html('');
+						$('#shop-details').html('')
                     }
                     else{
                         $('#nic').removeClass('is-invalid');
                         $('#error_nic').html('');
+						$('#shop-details').html('')
                         // console.log(result.payerDetails)
 												$('#payer-details').html(`
 												

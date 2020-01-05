@@ -13,4 +13,14 @@ class Assessment_range extends Model
     {
         return $this->belongsTo('App\Vat', 'vat_id');       // an assessment range belongs to a VAT
     }
+
+    public function businessRangeTypes()
+    {
+        return $this->hasMany('App\Business_type', 'assessment_range_id');
+    }
+
+    public function industrialRangeTypes()
+    {
+        return $this->hasMany('App\Industrial_type', 'assessment_range_id');
+    }
 }

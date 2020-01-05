@@ -47,7 +47,7 @@ class AssessmentRangesTableSeeder extends Seeder
         );
 
         DB::table('assessment_ranges')->insert(
-            [ 'start_value' => 15000,
+            [ 'start_value' => 150000,
             'vat_id' => $businessTaxId]
         );
 

@@ -166,18 +166,18 @@
                         </thead>
                         <thead id="search_inputs">
                             <tr>
-                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                <th><input type="text" class="form-control form-control-sm" id="searchReciptNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                        placeholder="{{__('menu.Search Business Name')}}" />
+                                <th><input type="text" class="form-control form-control-sm" id="searchName"
+                                        placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
-                                        placeholder="{{__('menu.Search Payment date')}}" />
+                                <th><input type="text" class="form-control form-control-sm" id="searchDate"
+                                        placeholder="{{__('menu.Search Shop ')}}" />
                                 </th>
-
-
-
+                                <th><input type="text" class="form-control form-control-sm" id="searchPayment"
+                                        placeholder="{{__('menu.Search Phone')}}" />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -201,9 +201,13 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
-                                            <a class="dropdown-item"
-                                                href="{{route('remove-payment-permanent',['id'=>$payment->id])}}">
-                                                {{__('menu.Delete permenent')}}</a>
+                                            <form action="{{route('remove-payment-permanent',['id'=>$payment->id])}}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <input class="dropdown-item" type="submit"
+                                                    value="{{__('menu.Delete permenent')}}">
+                                            </form>
                                         </div>
 
                                     </div>
@@ -263,23 +267,29 @@
  
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
-        //individulat column search
-            $('#searchaAssesmentNo').on( 'keyup', function () { 
+      //individulat column search
+      $('#searchReciptNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
 
-            $('#searchBuisness').on( 'keyup', function () { 
+            $('#searchName').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+            $('#searchDate').on( 'keyup', function () { 
             table
                 .columns( 2 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchPayment').on( 'keyup', function () { 
+            table
+                .columns( 3 )
                 .search( this.value )
                 .draw();
             });
