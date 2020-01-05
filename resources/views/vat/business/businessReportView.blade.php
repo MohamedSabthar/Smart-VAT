@@ -26,22 +26,22 @@
             <table id="business_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th style="width:250px;" class="text-center">{{__('menu.Payment')}}</th>
-                        <th style="width:300px;"class="text-center">{{ __('menu.Shop ID')}}</th>
-                        <th style="width:300px;"class="text-center">{{ __('menu.VAT Payer ID')}}</th>
+                        <th style="width:250px;"class="text-center">{{__('menu.VAT Payers NIC')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.VAT Payer Name')}}</th>
-                        <th style="width:300px;"class="text-center">{{ __("menu.VAT Payer's NIC")}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.Shop')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.Payment')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __("menu.Payment Date")}}</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($records as $records)
+                    @foreach ($records as $record)
                     <tr>
-                        <td class="text-center">Rs. {{$records->payment}}.00</td>
-                        <td class="text-center">{{$records->shop_id}}</td>
-                        <td class="text-center">{{$records->payer_id}}</td>
-                        <td class="text-center">{{$records->vatPayer->first_name}}</td>
-                        <td class="text-center">{{$records->vatPayer->nic}}</td>
+                        <td class="text-center">{{ $record->vatPayer->nic }}</td>
+                        <td >{{ $record->vatPayer->full_name }}</td>
+                        <td >{{ $record->shop_id."-".$record->businessTaxShop->shop_name }}</td>
+                        <td class="text-center">Rs. {{ number_format($record->payment, 2) }}</td>
+                        <td class="text-center">{{ $record->updated_at }}</td>
                     </tr>
                     @endforeach
                     

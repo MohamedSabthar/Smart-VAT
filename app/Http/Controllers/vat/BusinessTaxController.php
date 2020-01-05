@@ -186,24 +186,27 @@ class BusinessTaxController extends Controller
     
      $output = "
      <h3 align='center'>Businness Tax Report from $dates->startDate to $dates->endDate </h3>
-     <table width='100%' style='border-collapse: collapse; border: 0px;'>
+     <table width='100%' style='border-collapse: collapse; border: 0px;' class='table'>
       <tr>
-    <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT</th>
-    <th style='border: 1px solid; padding:12px;' width='10%'>SHOP ID</th>
-    <th style='border: 1px solid; padding:12px;' width='20%'>VAT PAYER'S ID</th>
-    <th style='border: 1px solid; padding:12px;' width='20%'>VAT PAYER'S NAME</th>
     <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER'S NIC</th>
+    <th style='border: 1px solid; padding:12px;' width='25%'>VAT PAYER'S NAME</th>
+    <th style='border: 1px solid; padding:12px;' width='20%'>SHOP</th>
+    <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT</th>
+    <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT DATE</th>
+
+    
+    
    </tr>
      ";  
      foreach($records as $record)
      {
       $output .= '
       <tr>
-       <td style="border: 1px solid; padding:12px;">'.'Rs. '.$record->payment.'</td>
-       <td style="border: 1px solid; padding:12px;">'.$record->shop_id.'</td>
-       <td style="border: 1px solid; padding:12px;">'.$record->payer_id.'</td>
-       <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->first_name.'</td>
-        <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->nic.'</td>
+      <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->nic.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->full_name.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$record->shop_id.' - '.$record->businessTaxShop->shop_name.'</td>
+       <td style="border: 1px solid; padding:12px;">'.'Rs. '.number_format($record->payment,2).'</td>
+       <td style="border: 1px solid; padding:12px;">'.$record->updated_at.'</td>
         
       </tr>
       ';
