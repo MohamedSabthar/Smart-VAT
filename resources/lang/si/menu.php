@@ -93,6 +93,9 @@ return [
     'Registration' => 'ලියාපදිංචි කිරීම',
     'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
     'Update Details' => 'විස්තර යාවත්කාලීන කරන්න',
+    'Yes' => 'ඔව්',
+
+    
     
     //employee profile
     'Update employee information' => 'සේවක තොරතුරු යාවත්කාලීන කරන්න',
@@ -184,8 +187,30 @@ return [
     'Ticket Price'=>'Ticket Price',
     'Event Venue'=>'Event Venue',
     'Add payment' => 'Add payment',
+    'Add new event payment'=>'Add new event payment',
+    'Quoted Tickets' => 'Quoted Tickets',
+    'Returned Tickets' => 'Returned Tickets',
+    'Final Payment' => 'Final Payment',
+    'Payment Date' =>'Payment Date',
+    'Update payment' => 'Update payment',
+    'Tax payment : Rs.' => 'Tax payment : Rs.',
+    'Returned tax payment : Rs.' => 'Returned tax payment : Rs.',
 
 
+    //entertainment other paymentes
+    'Payment type'=>'Payment type',
+    'Number of days' => 'Number of days',
+    'Add new performance payment' => 'Add new performance payment',
+    'Assessment Ranges of Business Tax' => 'Assessment Ranges of Business Tax',
 
+
+     //globla configuration
+     'Assessment Ranges of Business Tax' => 'Assessment Ranges of Business Tax',
+     'Business Range Types'=>'Business Range Types',
+     'Assessment Ranges of Industrial Tax' => 'Assessment Ranges of Industrial Tax',
+     'Industrial Range Types'=>'Industrial Range Types',
+
+    // Club license tax
+    'Club licence'=> 'සමාජ ශාලා බලපත්‍රය'
 
 ];

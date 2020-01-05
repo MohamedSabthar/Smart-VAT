@@ -8,6 +8,7 @@ use App\Industrial_tax_shop;
 use App\Land_tax;
 use App\Shop_rent_tax;
 use App\Entertainment_tax_tickets_payment;
+use App\Club_licence_tax;
 
 class VatPagesController extends Controller
 {
@@ -33,9 +34,16 @@ class VatPagesController extends Controller
         return view('vat.industrial.industrial', ['payers' => $payers]);
     }
 
-    public function licence()
+    public function license()
     {
+<<<<<<< HEAD
+        $payers = License_tax_shop::licenseTaxPayers();  // #### not completed the model
+=======
+        //$payers=License_tax_shop::liceseTaxPayers();    //all the vat payers who pays the license tax 
+        //return view('vat.license.license',['payers'=>$payers]);
+>>>>>>> a7f204ba7350801849d016001a96674345fcf4ba
         return view('vat.licence');
+
     }
 
     public function land()
@@ -50,11 +58,12 @@ class VatPagesController extends Controller
     }
     public function booking()
     {
-        return view('vat.booking');
+        return view('vat.booking.booking');
     }
     public function clubhouselicence()
     {
-        return view('vat.clubHouseLicence');
+        $payers = Club_licence_tax::clubLicenceTaxPayers();
+        return view('vat.clubLicence.clubLicence',['payers'=>$payers]);
     }
     public function landauction()
     {
@@ -62,8 +71,8 @@ class VatPagesController extends Controller
     }
     public function entertainment()
     {
-        $ticketPayers = Entertainment_tax_tickets_payment::entertainmentTicketPayers(); //get all vat_payers who paid ticket taxes
-        return view('vat.entertainment.entertainment', ['ticketPayers' => $ticketPayers]);
+        $entertainmentPayers = Entertainment_tax_tickets_payment::getEntertainmentPayers(); //get all vat_payers who paid ticket taxes
+        return view('vat.entertainment.entertainment', ['entertainmentPayers' => $entertainmentPayers]);
     }
     public function shoprent()
     {

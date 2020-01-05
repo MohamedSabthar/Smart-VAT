@@ -25,7 +25,7 @@ class PositiveValue implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $value>0 ?  true :  false;
+        return $value>=0 ?  true :  false;
     }
 
     /**

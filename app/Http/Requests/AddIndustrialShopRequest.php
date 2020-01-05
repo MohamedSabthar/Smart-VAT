@@ -24,7 +24,7 @@ class AddIndustrialShopRequest extends FormRequest
     public function rules()
     {
         return[
-            'assesmentNo' =>['required', 'string', 'max:255', 'unique:industrial_tax_shops,registration_no'],
+            'assesmentNo' =>['required', 'string', 'max:255',  Rule::unique('industrial_tax_shops', 'registration_no')],
             'annualAssesmentAmount' => ['required','numeric'],
             'businessName' => ['required','string','max:255'],
             'phoneno' =>  ['required','regex:/[+94|0][0-9]{9}$/','min:10','max:12'],

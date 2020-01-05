@@ -13,7 +13,7 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6">
+{{-- <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
             <div class="row">
@@ -99,11 +99,76 @@
             </p>
         </div>
     </div>
+</div> --}}
+
+<div class="col-xl-3 col-md-6">
+    <div class="card bg-gradient-secondary border-0 my-2">
+        <!-- Card body -->
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase  mb-2 text-default">Business Tax</h3>
+                    <h5 class="h5 font-weight-bold mb-1 text-gray display-block">Vat percentage :
+                        {{number_format($vatDetails->business->vat_percentage,2)}}%
+                    </h5>
+                    <h5 class="h5 font-weight-bold mb-1 text-secondary display-block">Fine percentage : N/A
+                    </h5>
+
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-sm btn-neutral mr-0" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{{route('global-conf-business-update')}}">Update Vat
+                            percentage</a>
+                        <a class="dropdown-item" href="{{route('get-business-quick-payments')}}">View Business types</a>
+                        {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-md-6">
+    <div class="card bg-gradient-secondary border-0 my-2">
+        <!-- Card body -->
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase  mb-2 text-default">Industrial Tax</h3>
+                    <h5 class="h5 font-weight-bold mb-1 text-gray display-block">Vat percentage :
+                        {{number_format($vatDetails->industrial->vat_percentage,2)}}%
+                    </h5>
+                    <h5 class="h5 font-weight-bold mb-1 text-secondary display-block">Fine percentage : N/A
+                    </h5>
+
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-sm btn-neutral mr-0" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{{route('global-conf-industrial-update')}}">Update Vat
+                            percentage</a>
+                        <a class="dropdown-item" href="{{route('get-industrial-quick-payments')}}">View Industial
+                            types</a>
+                        {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 @endsection
 
 @section('pageContent')
-<div class="row">
+<!-- <div class="row">
     <div class="mb-4 col-lg-6 col-sm-12">
         <div class="card shadow">
             <div class="card-header bg-white border-0">
@@ -230,7 +295,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+
+
 @endsection
 
 @push('script')

@@ -102,6 +102,58 @@
     </div>
 </div>
 
+<div class="container-fluid d-flex align-items-center">
+    {{-- Alert notifications --}}
+    <div class="col mt-5">
+        @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @if(url()->previous()==route('payer-registration',['requestFrom'=>'business']))
+        <div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                Click here to add new business
+                <a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        @endif
+        @elseif($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                <strong class="mx-1">{{__('menu.Error!')}}</strong>
+                {{__('menu.Data you entered is/are incorrect')}}
+                <a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
+            </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif(session('warning'))
+        <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                <strong class="mx-1">{{__('menu.Error!')}}</strong>
+                {{session('warning')}}
+            </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+    </div>
+    {{-- end of Alert notifications --}}
+</div>
+
+
 @endsection
 
 @section('pageContent')
@@ -149,7 +201,10 @@
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$businessTaxShop->phone}}
                         </div>
 
-
+                        <div class="pt-2 text-center">
+                            <a href="{{route('business-send-notice',['id'=>$businessTaxShop->id])}}"
+                                class="btn btn-sm btn-danger">Send Notice</a>
+                        </div>
 
                     </div>
                 </div>

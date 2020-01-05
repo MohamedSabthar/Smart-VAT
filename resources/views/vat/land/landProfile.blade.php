@@ -83,14 +83,14 @@
 
 
 <div class="col-xl-3 col-lg-6"
-	onclick="javascript:window.open(`{{route('trash-industrial-shop',['id'=>$vatPayer->id])}}`,'_self')"
+	onclick="javascript:window.open(`{{route('trash-land-premises',['id'=>$vatPayer->id])}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						<center>Restore Shop</center>
+						<center>Restore Premises</center>
 					</h3>
 
 				</div>
@@ -116,11 +116,11 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		@if(url()->previous()==route('payer-registration',['requestFrom'=>'industrial']))
+		@if(url()->previous()==route('payer-registration',['requestFrom'=>'land']))
 		<div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
-				Click here to add new Industrial shop
+				Click here to add new premises
 				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -135,6 +135,8 @@
 				<strong class="mx-1">{{__('menu.Error!')}}</strong>
 				{{__('menu.Data you entered is/are incorrect')}}
 				<a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
+				{{-- error display of update vat payer Profile form --}}
+                <a href="#" class="btn btn-sm btn-primary mx-3 update-info update-profile">{{__('menu.view')}}</a>
 			</span>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
@@ -185,24 +187,26 @@
 						<h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
 					</div>
 
-
+					<div class="text-center">
+						<a href="#" class="btn btn-sm btn-primary mr-4 update-profile">{{__('menu.Update Details')}}</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="col-xl-8 order-xl-1">
-		<div class="card bg-secondary shadow mb-5 hide" id="industrial-registration">
+		<div class="card bg-secondary shadow mb-5 hide" id="land-registration">
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add Industrial shop')}}</span></h3>
+						<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new premises')}}</span></h3>
 					</div>
 
 				</div>
 			</div>
 			<div class="card-body">
 				{{-- Land registration form ############### --}}
-				<form method="POST" action="{{route('industrial-shop-register',['id'=> $vatPayer->id])}}">
+				<form method="POST" action="{{route('land-register',['id'=> $vatPayer->id])}}">
 					@csrf
 					<div class="form-group row pt-3">
 						<label for="example-text-input"
@@ -221,14 +225,14 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
-								type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
-								name="annualAssesmentAmount">
+							<input class="form-control @error('assesmentAmount') is-invalid  @enderror"
+								type="text" value="{{old('assesmentAmount')}}" id="assesmentAmount"
+								name="assesmentAmount">
 
 							<span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
 								<strong>dfafjkladfj</strong>
 							</span>
-							@error('annualAssesmentAmount')
+							@error('assesmentAmount')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -237,47 +241,25 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Shop Name')}}</label>
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Premises Name')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('businessName') is-invalid  @enderror" type="text"
-								value="{{old('businessName')}}" id="businessName" name="businessName">
-							@error('businessName')
+							<input class="form-control @error('landName') is-invalid  @enderror" type="text"
+								value="{{old('landName')}}" id="landName" name="landName">
+							@error('landName')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
 							@enderror
 						</div>
 					</div>
-					<div class="form-group row">
-						<label for="industrial-type"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Industrial type')}}</label>
-						<div class="col-md-10">
-
-							<select id="type" name="type" class="form-control @error('type') is-invalid  @enderror">
-								<option value=""></option>
-								{{-- only for testing need to implement Ajax searchBuisness --}}
-								@foreach ($industrialTypes as $type)
-								<option value="{{$type->id}}">{{$type->description}}
-									{{'('.$type->ranges->start_value .'-'. $type->ranges->end_value .')'}}
-								</option>
-								@endforeach
-
-
-							</select>
-							@error('type')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
+ 
 					<div class="form-group row">
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('phoneno') is-invalid  @enderror" type="text"
-								value="{{old('phoneno')}}" id="phoneno" name="phoneno">
-							@error('phoneno')
+							<input class="form-control @error('phoneNo') is-invalid  @enderror" type="text"
+								value="{{old('phoneNo')}}" id="phoneNo" name="phoneNo">
+							@error('phoneNo')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -288,9 +270,9 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('doorno') is-invalid  @enderror" type="text"
-								value="{{old('doorno')}}" id="doorno" name="doorno">
-							@error('doorno')
+							<input class="form-control @error('doorNo') is-invalid  @enderror" type="text"
+								value="{{old('doorNo')}}" id="doorNo" name="doorNo">
+							@error('doorNo')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -329,9 +311,185 @@
 
 
 				</form>
-				{{-- end of Industrial shop registration form --}}
+				{{-- end of Land registration form --}}
 			</div>
 		</div>
+
+		{{-- Update profile card --}}
+        <div class="card bg-secondary shadow mb-5 hide" id="Update-VATpayer-Info">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Profile')}}</span></h3>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body">
+                {{-- Update VAT payer profile form --}}
+                <form method="POST" id="VATpayer-details-form"
+                    action="{{route('update-vat-payer',['id'=> $vatPayer->id])}}">
+                    @csrf
+                    @method('put')
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
+                            {{__('menu.First Name')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('first_name') is-invalid  @enderror" type="text"
+                                value="{{old('first_name',$vatPayer->first_name)}}" id="first_name" name="first_name">
+                            @error('first_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-search-input" class="col-md-2 col-form-label form-control-label">
+                            {{__('menu.Middle Name')}}</label>
+                        <div class="col-md-10">
+                            <input class="form-control @error('middle_name') is-invalid @enderror" type="text"
+                                value="{{old('middle_name',$vatPayer->middle_name)}}" id="middle_name" name="middle_name">
+                            @error('middle_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-search-input" class="col-md-2 col-form-label form-control-label">
+                            {{__('menu.Last Name')}}</label>
+                        <div class="col-md-10">
+                            <input class="form-control @error('last_name') is-invalid @enderror" type="text"
+                                value="{{old('last_name',$vatPayer->last_name)}}" id="last_name" name="last_name">
+                            @error('last_name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-email-input"
+                            class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
+                        <div class="col-md-10">
+                            <input class="form-control @error('email') is-invalid @enderror" type="email"
+                                value="{{old('email',$vatPayer->email)}}" id="email" name="email">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
+                            {{__('menu.Phone No')}}</label>
+                        <div class="col-md-10">
+                            <input class="form-control @error('phone') is-invalid @enderror" type="text"
+                                value="{{old('phone',$vatPayer->phone)}}" id="phone" name="phone">
+                            @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row  pt-3">
+                            <label for="example-week-input"
+                                class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
+                            <div class="col-md-10">
+                                <input class="form-control @error('nic') is-invalid @enderror" type="text"
+                                    value="{{old('nic',$vatPayer->nic)}}" id="nic" name="nic">
+                                <span id="error_nic" class="invalid-feedback" role="alert">
+    
+                                </span>
+                                @error('nic')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                    <div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('doorNo') is-invalid  @enderror" type="text"
+                                value="{{old('doorNo',$vatPayer->door_no)}}" id="doorNo" name="doorNo">
+                            @error('doorNo')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('street') is-invalid  @enderror" type="text"
+                                value="{{old('street',$vatPayer->street)}}" id="street" name="street">
+                            @error('street')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('city') is-invalid  @enderror" type="text"
+                                value="{{old('city',$vatPayer->city)}}" id="city" name="city">
+                            @error('city')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary float-right" data-toggle="modal"
+                            onclick="javascript:event.preventDefault()"
+                            data-target="#confirm-update-VATpayer">{{__('menu.Update')}}</button>
+                    </div>
+
+                    {{-- Confirmation modal --}}
+                    <div class="modal fade" id="confirm-update-VATpayer" tabindex="-1" role="dialog"
+                        aria-labelledby="modal-default" aria-hidden="true">
+                        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you wish to Update the details of {{$vatPayer->full_name}} ?
+                                    </p>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-link"
+                                        onclick="javascript:location.reload()">Cancel</button>
+                                    <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
+                                        onclick="javascript:document.getElementById('VATpayer-details-form').submit();">Confirm</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {{-- end of Confirmation modal --}}
+
+                </form>
+                {{-- end of Update VAT payer profile form  --}}
+            </div>
+        </div>
 
 		<div class="card shadow">
 			<div class="card-header bg-white border-0">
@@ -339,7 +497,7 @@
 					<div class="col">
 						<h3 class="mb-0">
 							<span class="text-uppercase">{{$vatPayer->first_name}}
-								'{{__('menu.s industrial shops')}}</span>
+								'{{__('menu.s premises hired')}}</span>
 						</h3>
 						<hr class="mt-4 mb-0">
 					</div>
@@ -347,13 +505,13 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					{{-- Business shops table --}}
+					{{-- table of Lands that rented  --}}
 					<table id="business_shops_table" class="table">
 						<thead class="thead-light">
 							<tr>
 								<th style="width:250px;">{{__('menu.Assesment No.')}}</th>
-								<th style="width:300px;">{{__('menu.Shop Name')}}</th>
-								<th>{{__('menu.Shop Phone')}}</th>
+								<th style="width:300px;">{{__('menu.Premises ')}}</th>
+								<th>{{__('menu.Payer Phone')}}</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -363,7 +521,7 @@
 										placeholder="{{__('menu.Search Assesment No.')}}" />
 								</th>
 								<th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-										placeholder="{{__('menu.Search Shop Name')}}" />
+										placeholder="{{__('menu.Search Premises Name')}}" />
 								</th>
 								<th><input type="text" class="form-control form-control-sm" id="searchPhone"
 										placeholder="{{__('menu.Search Phone')}}" />
@@ -373,11 +531,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($vatPayer->industrial as $industrial)
+							{{-- @foreach ($vatPayer->land as $land)
 							<tr>
-								<td class="text-center">{{$industrial->id}}</td>
-								<td>{{$industrial->shop_name}}</td>
-								<td>{{$industrial->phone}}</td>
+								<td class="text-center">{{$land->id}}</td>
+								<td>{{$land->land_name}}</td>
+								<td>{{$land->phone}}</td>
 								<td class="text-right">
 									<div class="dropdown">
 										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
@@ -386,17 +544,15 @@
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											<a class="dropdown-item"
-												href="{{route('industrial-payments',['shop_id'=>$industrial->id])}}">
+												href="{{route('land-payments',['land_id'=>$land->id])}}">
 												{{__('menu.View Payments')}}</a>
-											{{-- <a class="dropdown-item"
-												href="{{route('remove-business',['shop_id'=>$industrial->id])}}">
-											{{__('menu.Remove Buisness')}}</a> --}}
+
 											<form
-												action="{{route('remove-inudstrial-shop',['shop_id'=>$industrial->id])}}"
+												action="{{route('remove-land-premises',['land_id'=>$land->id])}}"
 												method="POST">
 												@csrf
 												@method('delete')
-												<input type="submit" value="{{__('menu.Remove Buisness')}}"
+												<input type="submit" value="{{__('menu.Remove Premises')}}"
 													class="dropdown-item">
 											</form>
 										</div>
@@ -404,18 +560,18 @@
 									</div>
 								</td>
 							</tr>
-							@endforeach
+							@endforeach --}}
 						</tbody>
 						<thead class="thead-light">
 							<tr>
 								<th>{{__('menu.Assesment No.')}}</th>
-								<th>{{__('menu.Shop Name')}}</th>
-								<th>{{__('menu.Shop Phone')}}</th>
+								<th>{{__('menu.Premises Name')}}</th>
+								<th>{{__('menu.Payer Phone')}}</th>
 								<th></th>
 							</tr>
 						</thead>
 					</table>
-					{{-- end of Business shops table --}}
+					{{-- end of table of Lands that rented --}}
 				</div>
 			</div>
 		</div>
@@ -475,16 +631,19 @@
                 .search( this.value )
                 .draw();
         });
+		
+		//toggle transition for update profile
+		$("#Update-VATpayer-Info").hide();
+		$(".update-profile").on('click',function(){
+		$("#Update-VATpayer-Info").slideToggle("slow");
+		});
+
         //toggle transition for buisness registration form
-        $("#industrial-registration").hide();
+        $("#land-registration").hide();
         $(".add-buissness").on('click',function(){
-            $("#industrial-registration").slideToggle("slow");
+            $("#land-registration").slideToggle("slow");
         });
-        $('#type').select2({
-            placeholder: "Select industrial type here",
-            allowClear: true,
-        });
-        $('#annualAssesmentAmount').blur(function(){
+        $('#assesmentAmount').blur(function(){
             var assessmentAmmount = $(this).val()
            if(!$.isNumeric(assessmentAmmount)){
             $(this).addClass('is-invalid')
@@ -496,33 +655,7 @@
                $.ajaxSetup({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             });
-            $('#type').select2({
-                placeholder: "Select industrial type here",
-            allowClear: true,
-            ajax: {
-                url: "{{route('get-industrial-types')}}",
-                dataType: 'json',
-                type:"POST",
-                delay: 250,
-                data: function (params) {
-                        return {
-                            assessmentAmmount : assessmentAmmount,
-                            search: params.term,
-                            
-                        };
-                },
-                processResults: function (data) {
-                    
-                     return {
-                         results:$.map(data.results, function (obj) {
-                            return {id:obj.id,text:obj.description}
-                    })
-                    }
-                     
-                },
-                cache: true
-            },        
-            });
+            
            }
         })
             

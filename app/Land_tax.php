@@ -20,12 +20,16 @@ class Land_tax extends Model
         return $this->belongsTo('App\User', 'employee_id'); // employee that registered the land tax
     }
 
-    public function landTaxPayers()  // return tax payers only related to Land tax
+    public static function landTaxPayers()  // return tax payers only related to Land tax
     {
         return Land_tax::all()->map(function ($tax) {
             return $tax->payer;
         })->unique('id');   //collection filtered using unique id
     }
 
-    //a Land has many payments
+    // public function payments()
+    // {
+    //     return $this->hasMany('App\Land_tax_payment', 'land_id');
+    // }
+
 }

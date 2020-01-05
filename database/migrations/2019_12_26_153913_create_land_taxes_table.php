@@ -18,7 +18,10 @@ class CreateLandTaxesTable extends Migration
             /**
              * enter the  correct streams
              */
-            $table->string('registration_no');             // shop/buisness registration no
+            $table->string('land_name');           // land name
+            $table->double('worth');               // value of the land/Premises
+            $table->string('phone', 12);           // user's telephone number
+            $table->string('registration_no');     // shop/buisness registration no
             $table->string('door_no');
             $table->string('street');
             $table->string('city');
