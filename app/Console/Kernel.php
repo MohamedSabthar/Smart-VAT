@@ -37,25 +37,25 @@ class Kernel extends ConsoleKernel
         /**
          * sending business tax overdue notification
          */
-        // $schedule->call(function () {
-        //     $currentDate = Carbon::now()->toArray();
-        //     $year = $currentDate['year'];
-        //     foreach (Business_tax_shop::all() as $BusinessTaxShop) {
-        //         $taxPayment=Business_tax_payment::where('shop_id', $BusinessTaxShop->id)->where('created_at', 'like', "%$year%")->first();
-        //         if ($taxPayment==null) {
-        //             // dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->payer->email, $BusinessTaxShop->payer->id));
-        //             dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->payer->email, $BusinessTaxShop->id));
-        //         }
-        //     }
-        // })
-        // // ->everyMinute();
-        // ->when(function () {
-        //     $businessTaxDueDate = Carbon::parse(Vat::where('route', '=', 'business')->firstOrFail()->due_date)->toArray();
-        //     $currentDate = Carbon::now()->toArray();
-        //     if ($currentDate['month']==$businessTaxDueDate['month'] && $currentDate['day']==$businessTaxDueDate['day']) {
-        //         return true;
-        //     }
-        // });
+        $schedule->call(function () {
+            $currentDate = Carbon::now()->toArray();
+            $year = $currentDate['year'];
+            foreach (Business_tax_shop::all() as $BusinessTaxShop) {
+                $taxPayment=Business_tax_payment::where('shop_id', $BusinessTaxShop->id)->where('created_at', 'like', "%$year%")->first();
+                if ($taxPayment==null) {
+                    // dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->payer->email, $BusinessTaxShop->payer->id));
+                    dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->payer->email, $BusinessTaxShop->id));
+                }
+            }
+        })
+        // ->everyMinute();
+        ->when(function () {
+            $businessTaxDueDate = Carbon::parse(Vat::where('route', '=', 'business')->firstOrFail()->due_date)->toArray();
+            $currentDate = Carbon::now()->toArray();
+            if ($currentDate['month']==$businessTaxDueDate['month'] && $currentDate['day']==$businessTaxDueDate['day']) {
+                return true;
+            }
+        });
 
         /**
          * sending industrial tax overdue notification
@@ -70,14 +70,14 @@ class Kernel extends ConsoleKernel
                 }
             }
         })
-        ->everyMinute();
-        // ->when(function () {
-        //     $industrialTaxDueDate = Carbon::parse(Vat::where('route', '=', 'industrial')->firstOrFail()->due_date)->toArray();
-        //     $currentDate = Carbon::now()->toArray();
-        //     if ($currentDate['month']==$industrialTaxDueDate['month'] && $currentDate['day']==$industrialTaxDueDate['day']) {
-        //         return true;
-        //     }
-        // });
+        // ->everyMinute();
+        ->when(function () {
+            $industrialTaxDueDate = Carbon::parse(Vat::where('route', '=', 'industrial')->firstOrFail()->due_date)->toArray();
+            $currentDate = Carbon::now()->toArray();
+            if ($currentDate['month']==$industrialTaxDueDate['month'] && $currentDate['day']==$industrialTaxDueDate['day']) {
+                return true;
+            }
+        });
     }
 
     /**

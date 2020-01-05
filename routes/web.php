@@ -145,7 +145,11 @@ Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxControll
 Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore industrial
 Route::delete('/industrial/payment-remove-permanent/{id}', 'vat\IndustrialTaxController@destory')->name('industrial-remove-payment-permanent');// permanent delete
 
+Route::get('/industrial/generate-report', 'vat\IndustrialTaxController@industrialReportGeneration')->name('industrial-generate-report');
+Route::post('/industrial/generation', 'vat\IndustrialTaxController@generateReport')->name('industrial-report-view');
 
+Route::post('/industrial/tax-report-pdf', 'vat\IndustrialTaxController@taxPdf')->name('industrial-tax-report-pdf');
+Route::post('/industrial/summary-report-pdf', 'vat\IndustrialTaxController@summaryPdf')->name('industrial-summary-report-pdf');
 
 
 //shop rent tax

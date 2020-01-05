@@ -56,8 +56,8 @@
 	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6" {{-- onclick="javascript:window.open(`{{route('industrial-generate-report')}}`,'_self')
-	--}} style="cursor:pointer">
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('industrial-generate-report')}}`,'_self')"
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
