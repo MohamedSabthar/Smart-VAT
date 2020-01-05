@@ -1,22 +1,18 @@
 @extends('layouts.app')
 
-@section('title','Dashboard')
+@section('title','Employee Profile')
 
 @section('sidebar')
-@if (Auth::user()->role=='admin')
 @include('admin.include.sidebar')
-@else
-@include('employee.include.sidebar')
-@endif
 @endsection
 
 @section('header')
 
 <div class="container-fluid d-flex align-items-center">
-
+	{{-- Alert notifications --}}
 	<div class="col">
-		<h1 class="display-2 text-white">{{__('menu.Welcome')}} {{Auth::user()->name}}</h1>
-		<p class="text-white mt-0 mb-5">{{__('menu.Access level')}}: <span class="text-uppercase">{{Auth::user()->role}}</span>
+		<h1 class="display-2 text-white text-uppercase">{{$employee->name}}'{{__('menu.s Profile')}}</h1>
+		<p class="text-white mt-0 mb-5">{{__('menu.Role')}} : <span class="text-uppercase">{{$employee->role}}</span>
 		</p>
 		@if (session('status'))
 		<div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
@@ -26,9 +22,32 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
+		{{-- alert only displayed; if the page redirected by registration request --}}
+		@if (url()->previous()==route('register'))
+		<div class="alert alert-info alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2"><strong class="mx-1">Need to Assign-vat categories!</strong><a
+					href="#assignVat" class="btn btn-sm btn-primary mx-3">Click me</a></span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+		@elseif($errors->any())
+		<div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+			<span class="alert-inner--text mx-2">
+				<strong class="mx-1">Error!</strong>
+				Data you entered is/are incorrect
+				<a href="#" class="btn btn-sm btn-primary mx-3 update-info">view</a>
+			</span>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 		@endif
 	</div>
-
+	{{-- end of Alert notifications --}}
 </div>
 @endsection
 
@@ -39,55 +58,38 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-3 order-lg-2">
 					<div class="card-profile-image">
+
 						<a href="#">
-							<img src="../assets/img/theme/girl.png" class="rounded-circle">
+							<img src="{{asset('assets/img/theme/girl.png')}}" class="rounded-circle">
 						</a>
 					</div>
 				</div>
 			</div>
-				<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+			<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 				<div class="d-flex justify-content-between">
-					<a href="#" class="btn btn-sm btn-info mr-4" id="update-employee"><span class="d-block">Update</span> Profile</a>
-					<a href="#" class="btn btn-sm btn-default float-right">Message</a>
+					<a href="#" class="btn btn-sm btn-success mr-4 update-info">Update info</a>
+
 				</div>
 			</div>
 			<div class="card-body pt-0 pt-md-4">
-				<div class="row">
-					<div class="col">
-						<div class="card-profile-stats d-flex justify-content-center mt-md-5">
-							<div>
-								<span class="heading">22</span>
-								<span class="description">Friends</span>
-							</div>
-							<div>
-								<span class="heading">10</span>
-								<span class="description">Photos</span>
-							</div>
-							<div>
-								<span class="heading">89</span>
-								<span class="description">Comments</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="text-center">
-					<h3>
-						Jessica Jones<span class="font-weight-light">, 27</span>
-					</h3>
+				<div class="text-center pt-9">
+					<h3>{{__('menu.Name')}} : {{$employee->name}}</h3>
 					<div class="h5 font-weight-300">
-						<i class="ni location_pin mr-2"></i>Bucharest, Romania
+						<i class="far fa-user"></i>{{__('menu.Username')}} : {{$employee->userName}}
 					</div>
+
+					<div>
+						<i class="far fa-id-card"></i>{{__('menu.NIC')}} : {{$employee->nic}}
+					</div>
+
+					<hr class="my-4">
+
 					<div class="h5 mt-4">
-						<i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+						<i class="fas fa-at"></i> {{__('menu.E-Mail')}} : <a href="#">{{$employee->email}}</a>
 					</div>
 					<div>
-						<i class="ni education_hat mr-2"></i>University of Computer Science
+						<i class="fas fa-phone"></i> {{__('menu.Phone No')}} : {{$employee->phone}}
 					</div>
-					<hr class="my-4">
-					<p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and
-						records all
-						of his own music.</p>
-					<a href="#">Show more</a>
 				</div>
 			</div>
 		</div>
@@ -97,278 +99,193 @@
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-8">
-						<h3 class="mb-0">{{__('menu.My account')}}</h3>
-					</div>
-					<div class="col-4 text-right">
-						<a href="#!" class="btn btn-sm btn-primary">Settings</a>
+						<h3 class="mb-0 text-uppercase">{{$employee->name}} '{{__('menu.s details')}}</h3>
 					</div>
 				</div>
 			</div>
 			<div class="card-body">
-			
-					
-<div class="col-xl-8 order-xl-1">
-		
-            
-                   
-                
-            <div class="card-body">
-			<div id="Employee-Update">
-                    <form method="POST" action="#">
-					<h6 class="heading-small text-muted mb-4">User information</h6>
-					
-		
-					<!-- popup update -->
-					<!-- punsara edits-->
-                        @csrf
+				<div id="update-data">
+					{{-- Employee details form --}}
+					<form method="POST" id="employee-details-form"
+						action="{{route('update-employee',['id'=>$employee->id])}}">
+						<h6 class="heading-small text-muted mb-4">{{__('menu.Update employee information')}}</h6>
+						@csrf
+						@method('put')
+						<div class="form-group row pt-3">
+							<label for="example-text-input"
+								class="col-md-2 col-form-label form-control-label ">{{__('menu.Name')}}</label>
+							<div class="col-md-10 ">
+								<input class="form-control @error('name') is-invalid  @enderror" type="text"
+									value="{{old('name',$employee->name)}}" id="name" name="name">
+								@error('name')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
 						<div class="form-group row">
-                            <label for="example-text-input"	
-                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Name')}}</label>
-                            <div class="col-md-7 ">
-                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
-                                    value="{{old('name')}}" id="name" name="name">
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row pt-3">
-                            <label for="example-text-input"
-                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Address')}}</label>
-                            <div class="col-md-7 ">
-                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
-                                    value="{{old('name')}}" id="name" name="name" autofocus>
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label for="example-text-input"
-                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Email')}}</label>
-                            <div class="col-md-7 ">
-                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
-                                    value="{{old('name')}}" id="name" name="name">
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        
-						
-                        <div class="form-group row">
-                            <label for="example-text-input"
-                                class="col-md-3 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
-                            <div class="col-md-7 ">
-                                <input class="form-control @error('name') is-invalid  @enderror" type="text"
-                                    value="{{old('name')}}" id="name" name="name">
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input class=" btn btn-primary float-right" value="Submit" type="submit">
-                        </div>
-                    </form>
+							<label for="example-search-input"
+								class="col-md-2 col-form-label form-control-label">{{__('menu.Username')}}</label>
+							<div class="col-md-10">
+								<input class="form-control @error('userName') is-invalid @enderror" type="text"
+									value="{{old('userName',$employee->userName)}}" id="userName" name="userName">
+								@error('userName')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="example-email-input"
+								class="col-md-2 col-form-label form-control-label">{{__('menu.Email')}}</label>
+							<div class="col-md-10">
+								<input class="form-control @error('email') is-invalid @enderror" type="email"
+									value="{{old('email',$employee->email)}}" id="email" name="email">
+								@error('email')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="example-week-input"
+								class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
+							<div class="col-md-10">
+								<input class="form-control @error('nic') is-invalid @enderror" type="text"
+									value="{{old('nic',$employee->nic)}}" id="nic" name="nic">
+								@error('nic')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="example-time-input"
+								class="col-md-2 col-form-label form-control-label">{{__('menu.Phone No')}}</label>
+							<div class="col-md-10">
+								<input class="form-control @error('phone') is-invalid @enderror" type="text"
+									value="{{old('phone',$employee->phone)}}" id="phone" name="phone">
+								@error('phone')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+								@enderror
+							</div>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary float-right" data-toggle="modal"
+								onclick="javascript:event.preventDefault()"
+								data-target="#confirm-update-employee">{{__('menu.Update')}}</button>
+						</div>
 
-				<form>
-					<h6 class="heading-small text-muted mb-4">{{__('menu.User information')}}</h6>
-					<div class="pl-lg-4">
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="form-group focused">
-									<label class="form-control-label" for="input-username">{{__('menu.Username')}}</label>
-									<input type="text" id="input-username" class="form-control form-control-alternative"
-										placeholder="Username" value="lucky.jesse">
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="form-group">
-									<label class="form-control-label" for="input-email">{{__('menu.Email address')}}</label>
-									<input type="email" id="input-email" class="form-control form-control-alternative"
-										placeholder="jesse@example.com">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="form-group focused">
-									<label class="form-control-label" for="input-first-name">{{__('menu.First name')}}</label>
-									<input type="text" id="input-first-name"
-										class="form-control form-control-alternative" placeholder="First name"
-										value="Lucky">
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="form-group focused">
-									<label class="form-control-label" for="input-last-name">{{__('menu.Last name')}}</label>
-									<input type="text" id="input-last-name"
-										class="form-control form-control-alternative" placeholder="Last name"
-										value="Jesse">
+						{{-- Confirmation modal --}}
+						<div class="modal fade" id="confirm-update-employee" tabindex="-1" role="dialog"
+							aria-labelledby="modal-default" aria-hidden="true">
+							<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+								<div class="modal-content">
+
+									<div class="modal-header">
+										<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">×</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p>Are you sure you wish to Update the details of {{$employee->name}} ?
+										</p>
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-link"
+											onclick="javascript:location.reload()">Cancel</button>
+										<button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
+											onclick="javascript:document.getElementById('employee-details-form').submit();">Confirm</button>
+									</div>
+
 								</div>
 							</div>
 						</div>
-					</div>
-					<hr class="my-4">
-					<!-- Address -->
-					<h6 class="heading-small text-muted mb-4">{{__('menu.Contact information')}}</h6>
-					<div class="pl-lg-4">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group focused">
-									<label class="form-control-label" for="input-address">{{__('menu.Address')}}</label>
-									<input id="input-address" class="form-control form-control-alternative"
-										placeholder="Home Address"
-										value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-4">
-								<div class="form-group focused">
-									<label class="form-control-label" for="input-city">{{__('menu.City')}}</label>
-									<input type="text" id="input-city" class="form-control form-control-alternative"
-										placeholder="City" value="New York">
-								</div>
-							</div>
-							<div class="col-lg-4">
-								<div class="form-group focused">
-									<label class="form-control-label" for="input-country">{{__('menu.Country')}}</label>
-									<input type="text" id="input-country" class="form-control form-control-alternative"
-										placeholder="Country" value="United States">
-								</div>
-							</div>
-							<div class="col-lg-4">
-								<div class="form-group">
-									<label class="form-control-label" for="input-country">{{__('menu.Postal code')}}</label>
-									<input type="number" id="input-postal-code"
-										class="form-control form-control-alternative" placeholder="Postal code">
-								</div>
-							</div>
-						</div>
-					</div>
-		
-					
-					
-				<form method="POST" action="{{ route('password.change',['userId'=>Auth::user()->id]) }}">
+						{{-- end of Confirmation modal --}}
+					</form>
+					{{-- end of Employee details form --}}
+					<hr class="my-4 mt-7">
+				</div>
+
+				<h6 class="heading-small text-muted mb-4">{{__('menu.Assigned VAT categories')}}</h6>
+				{{-- Assign VAT categories form --}}
+				<form id="assign-vat-categories-form" action="{{route('assign-vat')}}" method="POST">
 					@csrf
-					<hr class="my-4">
-					<!-- Description -->
-					<h6 class="heading-small text-muted mb-4">{{__('menu.Change Password')}}</h6>
-					<!-- Description -->
-					<div class="pl-lg-4">
+					<input name="id" id="id" value="{{$employee->id}}" hidden>
+					<div class="row">
+						@foreach ($vats as $vat)
+						<div class="col-lg-5 d-flex">
+							<div class="ml-4 d-inline-block">
+								<label class="custom-toggle">
+									{{-- if vat is already assigned to employee then mark it as checked --}}
+									<input id="{{$vat->id}}" name="{{$vat->id}}" type="checkbox"
+										{!!in_array($vat->id,$assignedVats) ? 'checked':'' !!} value="{{$vat->id}}">
+									<span class="custom-toggle-slider rounded-circle"></span>
+								</label>
+							</div>
+							<div class="px-2 d-inline-block">{{$vat->name}}</div>
+						</div>
+						@endforeach
+					</div>
+					<div class="form" form-group>
+						<button class="btn btn-primary float-right" data-toggle="modal"
+							onclick="javascript:event.preventDefault()"
+							data-target="#confirm-assign-vat">{{__('menu.Assign')}}</button>
+					</div>
 
-						<div class=" form-group row">
-							<label for="password"
-								class="col-md-3 col-form-label form-control-label">{{ __('menu.Current Password') }}</label>
+					{{-- Confirmation modal --}}
+					<div class="modal fade" id="confirm-assign-vat" tabindex="-1" role="dialog"
+						aria-labelledby="modal-default" aria-hidden="true">
+						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+							<div class="modal-content">
 
-							<div class="col-md-9">
-								<input id="password" type="password"
-									class="form-control @error('password') is-invalid @enderror" name="password"
-									required>
+								<div class="modal-header">
+									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p>Are you sure you wish to reassign new Vat categories to {{$employee->name}} ?
+									</p>
+								</div>
 
-								@error('password')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
+								<div class="modal-footer">
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
+									<button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
+										onclick="javascript:document.getElementById('assign-vat-categories-form').submit();">Confirm</button>
+								</div>
+
 							</div>
 						</div>
-
-
-						<div class="form-group row">
-							<label for="new_password"
-								class="col-md-3 col-form-label form-control-label">{{ __('menu.New Password') }}</label>
-
-							<div class="col-md-9">
-								<input id="new_password" type="password"
-									class="form-control @error('new_password') is-invalid @enderror" name="new_password"
-									required>
-
-								@error('new_password')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="new_password-confirm"
-								class="col-md-3 col-form-label form-control-label">{{ __('menu.Confirm Password') }}</label>
-
-							<div class="col-md-9">
-								<input id="new_password-confirm" type="password" class="form-control"
-									name="new_password_confirmation" required>
-							</div>
-						</div>
-
-
-						<div class="form-group  ">
-							<button type="submit" class="btn btn-primary float-right">
-								{{ __('menu.Reset Password') }}
-							</button>
-
-						</div>
+					</div>
+					{{-- end of Confirmation modal --}}
 				</form>
+				{{-- end of Assign VAT categories form --}}
 			</div>
-
-		
-
-
+		</div>
 	</div>
-
 </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 @endsection
 
-
 @push('script')
-<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('js/select2.js')}}"></script>
-
 <script>
-    $(document).ready(function() {
-
-        
-
-
-            //toggle transition for Update Employee form
-            $("#Employee-Update").hide();
-            $("#update-employee").on('click',function(){
-                $("#Employee-Update").slideToggle("slow");
-            });
-
-
-            $('#type').select2();
-            
+	$(document).ready(function() {
+		$("#update-data").hide();
+		$(".update-info").click(function(){
+			$("#update-data").slideToggle();
+			$("#name").focus();
+		})
       } );
-
-      
-
 </script>
 @endpush

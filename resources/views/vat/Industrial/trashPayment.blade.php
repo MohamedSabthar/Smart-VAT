@@ -3,6 +3,7 @@
 @section('title','Trash Payments')
 
 @push('css')
+<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
 @endpush
 
@@ -13,25 +14,24 @@
 
 @section('header')
 
-<div class="col-xl-3 col-lg-6">
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('industrial')}}`,'_self')"
+    style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
-        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
-        <div id="#card" class="card-body">
+        <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 cla ss="card-title text-uppercase text-muted mb-0">Traffic</h5>
-                    <span class="h2 font-weight-bold mb-0">350,897</span>
+                    <h3 class="card-title text-uppercase text-muted mb-0">
+                        Industrial payers
+                    </h3>
+                    {{-- <span class=" font-weight-bold mb-0">924</span> --}}
                 </div>
                 <div class="col-auto">
-                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                        <i class="fas fa-chart-bar"></i>
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                        <i class="fas fa-users"></i>
                     </div>
                 </div>
             </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
-            </p>
+
         </div>
     </div>
 </div>
@@ -164,16 +164,16 @@
                         </thead>
                         <thead id="search_inputs">
                             <tr>
-                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                <th><input type="text" class="form-control form-control-sm" id="searchReciptNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                <th><input type="text" class="form-control form-control-sm" id="searchName"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
+                                <th><input type="text" class="form-control form-control-sm" id="searchDate"
                                         placeholder="{{__('menu.Search Shop ')}}" />
                                 </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchPhone"
+                                <th><input type="text" class="form-control form-control-sm" id="searchPayment"
                                         placeholder="{{__('menu.Search Phone')}}" />
                                 </th>
 
@@ -201,9 +201,14 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
-                                            <a class="dropdown-item"
-                                                href="{{route('remove-payment-permanent',['id'=>$payment->id])}}">
-                                                {{__('menu.Delete permenent')}}</a>
+                                            <form
+                                                action="{{route('industrial-remove-payment-permanent',['id'=>$payment->id])}}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <input class="dropdown-item" type="submit"
+                                                    value="{{__('menu.Delete permenent')}}">
+                                            </form>
                                         </div>
 
                                     </div>
@@ -263,26 +268,26 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-            $('#searchAssesmentNo').on( 'keyup', function () { 
+            $('#searchReciptNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
 
-            $('#searchAssesmentNo').on( 'keyup', function () { 
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-            });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+            $('#searchName').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#selectCourt').on( 'change', function () { 
+            $('#searchDate').on( 'keyup', function () { 
+            table
+                .columns( 2 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchPayment').on( 'keyup', function () { 
             table
                 .columns( 3 )
                 .search( this.value )

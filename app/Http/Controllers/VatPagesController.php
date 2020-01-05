@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Business_tax_shop;
 use App\Industrial_tax_shop;
+use App\Shop_rent_tax;
+use App\Entertainment_tax_tickets_payment;
+use App\License_tax_shop;
+
 
 class VatPagesController extends Controller
 {
@@ -30,9 +34,10 @@ class VatPagesController extends Controller
         return view('vat.industrial.industrial', ['payers' => $payers]);
     }
 
-    public function licence()
-    {
-        return view('vat.licence');
+    public function license()
+    {   $payers=License_tax_shop::liceseTaxPayers();    //all the vat payers who pays the license tax 
+        return view('vat.license.license',['payers'=>$payers]);
+    
     }
 
     public function land()
@@ -46,7 +51,7 @@ class VatPagesController extends Controller
     }
     public function booking()
     {
-        return view('vat.booking');
+        return view('vat.booking.booking');
     }
     public function clubhouselicence()
     {
@@ -56,13 +61,15 @@ class VatPagesController extends Controller
     {
         return view('vat.landAuction');
     }
-    public function entertancementandperformance()
+    public function entertainment()
     {
-        return view('vat.entertainmentPerformance');
+        $entertainmentPayers = Entertainment_tax_tickets_payment::getEntertainmentPayers(); //get all vat_payers who paid ticket taxes
+        return view('vat.entertainment.entertainment', ['entertainmentPayers' => $entertainmentPayers]);
     }
     public function shoprent()
     {
-        return view('vat.shopRent');
+        $payers = Shop_rent_tax::shopRentTaxPayers(); //get all vat_payers who pay industrial tax
+        return view('vat.shopRent.shopRent', ['payers' => $payers]);
     }
     public function threewheelpark()
     {

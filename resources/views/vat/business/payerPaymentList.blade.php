@@ -179,7 +179,7 @@
 
 							{{-- @foreach ($businessTaxPayments as $businessTaxPayment)
 							<tr>
-								<td>{{$businessTaxPayment->assesmentNo}}</th>
+							<td>{{$businessTaxPayment->assesmentNo}}</th>
 							<td>{{$businessTaxPayment->payment_Date}}</td>
 							<td>{{$businessTaxPayment->amount}}</td>
 							<td>{{$businessTaxPayment->arrears}}</td>

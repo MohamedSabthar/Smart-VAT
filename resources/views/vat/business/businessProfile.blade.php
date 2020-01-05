@@ -3,6 +3,7 @@
 @section('title','Business Profile')
 
 @push('css')
+<link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
 @endpush
 
@@ -197,7 +198,8 @@
 			</div>
 			<div class="card-body">
 				{{-- Industrial shop registration form --}}
-				<form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}">
+				<form method="POST" action="{{route('business-register',['id'=> $vatPayer->id])}}"
+					id="business-shop-register">
 					@csrf
 					<div class="form-group row pt-3">
 						<label for="example-text-input"
@@ -221,7 +223,7 @@
 								name="annualAssesmentAmount">
 
 							<span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
-								<strong>dfafjkladfj</strong>
+								<strong></strong>
 							</span>
 							@error('annualAssesmentAmount')
 							<span class="invalid-feedback" role="alert">
@@ -252,7 +254,8 @@
 								<option value=""></option>
 								{{-- only for testing need to implement Ajax searchBuisness --}}
 								@foreach ($businessTypes as $type)
-								<option value="{{$type->id}}">{{$type->description}}
+								<option value="{{$type->id}}" @if(old('type')==$type->id) selected
+									@endif>{{$type->description}}
 									{{'('.$type->ranges->start_value .'-'. $type->ranges->end_value .')'}}
 								</option>
 								@endforeach
@@ -319,9 +322,41 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<input class=" btn btn-primary float-right" value="{{__('menu.Submit')}}" type="submit">
+						<button class="btn btn-primary float-right" data-toggle="modal"
+							onclick="javascript:event.preventDefault()"
+							data-target="#confirm-register-business">{{__('menu.Add')}}</button>
 					</div>
 
+
+					{{-- Confirmation modal for adding business for the registered VAT payer--}}
+					<div class=" modal fade" id="confirm-register-business" tabindex="-1" role="dialog"
+						aria-labelledby="modal-default" aria-hidden="true">
+						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+
+									<p>Confirmation needed to add a business for <br>
+										{{$vatPayer->full_name}}-{{$vatPayer->nic}} </p>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
+									<button type="button" id="redirect" class="btn  btn-primary ml-auto"
+										onclick="javascript:document.getElementById('business-shop-register').submit();">{{__('menu.Confirm')}}</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					{{-- End of confirmation modal --}}
 
 				</form>
 				{{-- end of Industrial shop registration form --}}

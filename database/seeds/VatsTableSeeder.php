@@ -27,10 +27,10 @@ class VatsTableSeeder extends Seeder
         ]);
 
         DB::table('vats')->insert([
-            'name' => 'Licence Tax',
+            'name' => 'license Tax',
             'vat_percentage' => 15,
             'fine_percentage'=> 10,
-            'route'=> 'licence'
+            'route'=> 'license'
         ]);
 
         DB::table('vats')->insert([
@@ -65,9 +65,8 @@ class VatsTableSeeder extends Seeder
             'route'=> 'vehicalpark'
         ]);
         DB::table('vats')->insert([
-            'name' => 'Entertancement Tax',
-            'vat_percentage' => 15,
-            'route'=> 'entertancementandperformance'
+            'name' => 'Entertainment Tax',
+            'route'=> 'entertainment'
         ]);
         DB:: table('vats')->insert([
             'name' => 'Club Licence Tax',

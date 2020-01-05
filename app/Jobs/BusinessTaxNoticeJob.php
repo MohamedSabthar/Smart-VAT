@@ -19,7 +19,7 @@ class BusinessTaxNoticeJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $mail;
-    public $id;
+    public $id; //business
     /**
      * Create a new job instance.
      *
@@ -39,8 +39,6 @@ class BusinessTaxNoticeJob implements ShouldQueue
      */
     public function handle()
     {
-        // $mail =  $this->id!=2 ?$this->id.'@yopmail.com' : $this->id;
-        
         Mail::to($this->mail)->send(new BusinessTaxNotice($this->id)); // Sending vatpayer notification mail to Queue process
     }
 

@@ -37,7 +37,7 @@
                 <tbody>
                     @foreach ($records as $records)
                     <tr>
-                        <td class="text-center">{{$records->payment}}</td>
+                        <td class="text-center">Rs. {{$records->payment}}.00</td>
                         <td class="text-center">{{$records->shop_id}}</td>
                         <td class="text-center">{{$records->payer_id}}</td>
                         <td class="text-center">{{$records->vatPayer->first_name}}</td>
@@ -49,6 +49,7 @@
                
             </table>
         
+
             {{-- <table id="business_tax_report_VAt" class="table">
                 <thead class="thead-light">
                     <tr>
@@ -72,7 +73,8 @@
             </table> --}}
         
 
-            <form method="POST" action="{{route('business-report-pdf')}}" class="d-none" id="dates">
+
+            <form method="POST" action="{{route('business-tax-report-pdf')}}" class="d-none" id="dates">
                 @csrf
                         <input name="startDate" value="{{ $dates->startDate }}">
                         <input  name ="endDate" value="{{ $dates->endDate }}">
@@ -81,7 +83,7 @@
         </div>
         <br>
         <div class="col" align="right">
-            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert into PDF</button>
+            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert to PDF</button>
         </div>
     </div>
 </div>

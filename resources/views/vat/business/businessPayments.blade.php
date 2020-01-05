@@ -102,6 +102,58 @@
     </div>
 </div>
 
+<div class="container-fluid d-flex align-items-center">
+    {{-- Alert notifications --}}
+    <div class="col mt-5">
+        @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @if(url()->previous()==route('payer-registration',['requestFrom'=>'business']))
+        <div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                Click here to add new business
+                <a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        @endif
+        @elseif($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                <strong class="mx-1">{{__('menu.Error!')}}</strong>
+                {{__('menu.Data you entered is/are incorrect')}}
+                <a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
+            </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif(session('warning'))
+        <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                <strong class="mx-1">{{__('menu.Error!')}}</strong>
+                {{session('warning')}}
+            </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+    </div>
+    {{-- end of Alert notifications --}}
+</div>
+
+
 @endsection
 
 @section('pageContent')
@@ -149,7 +201,10 @@
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$businessTaxShop->phone}}
                         </div>
 
-
+                        <div class="pt-2 text-center">
+                            <a href="{{route('business-send-notice',['id'=>$businessTaxShop->id])}}"
+                                class="btn btn-sm btn-danger">Send Notice</a>
+                        </div>
 
                     </div>
                 </div>
@@ -162,8 +217,9 @@
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
                     <h1 style="font-weight: 400;">{{__('menu.Due Payment : Rs.')}} {{number_format($duePayment,2)}}</h1>
-                    <button class="btn btn-success mx-auto my-1"
-                        onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
+                    <button class="btn btn-success mx-auto my-1" data-toggle="modal"
+                        onclick="javascript:event.preventDefault()"
+                        data-target="#confirm-business-payment">{{__('menu.Accept Payment')}}</button>
 
                 </div>
             </div>
@@ -174,6 +230,36 @@
                 <input type="text" name="payment" value="{{$duePayment}}">
             </form>
             {{-- end of payment form --}}
+            {{-- Confirmation modal for adding business for the registered VAT payer--}}
+            <div class=" modal fade" id="confirm-business-payment" tabindex="-1" role="dialog"
+                aria-labelledby="modal-default" aria-hidden="true">
+                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <p>Confirmation needed to add payment for <br>
+                                shop : {{$businessTaxShop->shop_name}} </p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link"
+                                onclick="javascript:location.reload()">Cancel</button>
+                            <button type="button" id="redirect" class="btn  btn-primary ml-auto"
+                                onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {{-- End of confirmation modal --}}
+
             @else
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
@@ -190,6 +276,7 @@
                     <div class="row align-items-center">
                         <div class="col-8">
                             <h3 class="mb-0">{{__('menu.Payment History')}}</h3>
+                            <hr class="mt-4 mb-0">
                         </div>
                     </div>
                 </div>

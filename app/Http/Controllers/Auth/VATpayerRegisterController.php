@@ -17,6 +17,12 @@ use Auth;
 
 class VATpayerRegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'=>'verified']);  //checking for email verification
+    }
+
+    
     public function viewFrom($requestFrom)
     {
         //$vatPayer = Vat_payer::find($id);
@@ -41,13 +47,8 @@ class VATpayerRegisterController extends Controller
         
         $vatPayer-> save();
 
-        if ($requestFrom=='business') {
-            // redirecting to add a business for the registered VAT Payer with success notification
-            return redirect()->route('business-profile', ['id'=>$vatPayer->id])->with('status', ' New Payer registerd successfully');
-        } elseif ($requestFrom=='industrial') {
-            // redirecting to add a industrial shop for the registered VAT Payer with success notification
-            return redirect()->route('industrial-profile', ['id'=>$vatPayer->id])->with('status', ' New Payer registerd successfully');
-        }
+        
+        return redirect()->route($requestFrom.'-profile', ['id'=>$vatPayer->id])->with('status', ' New Payer registerd successfully');
     }
 
     /**
