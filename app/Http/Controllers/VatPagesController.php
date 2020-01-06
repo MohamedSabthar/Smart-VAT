@@ -33,9 +33,12 @@ class VatPagesController extends Controller
         return view('vat.industrial.industrial', ['payers' => $payers]);
     }
 
-    public function licence()
+    public function license()
     {
+        //$payers=License_tax_shop::liceseTaxPayers();    //all the vat payers who pays the license tax 
+        //return view('vat.license.license',['payers'=>$payers]);
         return view('vat.licence');
+
     }
 
     public function land()
