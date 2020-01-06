@@ -34,6 +34,7 @@ Route::name('password.')->group(
 Route::get('/employee-profile/{id}', 'AdminController@employeeProfile')->name('employee-profile');
 Route::put('/employee-profile/{id}', 'AdminController@updateEmployeeProfile')->name('update-employee');
 Route::get('/mangae-employee', 'AdminController@manageEmployee')->name('manage-employee');
+Route::put('/mangae-employee/promote', 'AdminController@promoteAsAdmin')->name('promote-to-admin');
 Route::post('/assign-vat', 'AdminController@assignVatCategories')->name('assign-vat');
 Route::get('/gloabl-conf', 'GlobalConfigurationController@globalConfiguration')->name('global-conf');
 Route::get('/global-conf/business', 'GlobalConfigurationController@updateBusinessTaxForm')->name('global-conf-business-update');

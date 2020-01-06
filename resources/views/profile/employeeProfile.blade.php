@@ -72,7 +72,18 @@
 				</div>
 			</div>
 			<div class="card-body pt-0 pt-md-4">
-				<div class="text-center pt-9">
+				<div class="text-center pt-6">
+					<form action="{{route('promote-to-admin')}}" method="POST" id="promote">
+						@csrf
+						@method('put')
+						<input hidden name="id" value="{{$employee->id}}">
+					</form>
+
+					<div class="h5 font-weight-300">
+						<button class="btn btn-default" data-toggle="modal" onclick="javascript:event.preventDefault()"
+							data-target="#confirm-promotion">PROMOTE AS ADMIN</button>
+					</div>
+
 					<h3>{{__('menu.Name')}} : {{$employee->name}}</h3>
 					<div class="h5 font-weight-300">
 						<i class="far fa-user"></i>{{__('menu.Username')}} : {{$employee->userName}}
@@ -94,6 +105,34 @@
 			</div>
 		</div>
 	</div>
+	{{-- Confirmation modal --}}
+	<div class="modal fade" id="confirm-promotion" tabindex="-1" role="dialog" aria-labelledby="modal-default"
+		aria-hidden="true">
+		<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you wish promote {{$employee->name}} as Admin?
+					</p>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-link" onclick="javascript:location.reload()">Cancel</button>
+					<button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
+						onclick="javascript:document.getElementById('promote').submit();">Confirm</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	{{-- end of Confirmation modal --}}
+
 	<div class="col-xl-8 order-xl-1">
 		<div class="card bg-secondary shadow">
 			<div class="card-header bg-white border-0">
