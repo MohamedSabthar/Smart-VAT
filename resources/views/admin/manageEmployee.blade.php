@@ -12,7 +12,7 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6">
+<!--div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
         <div id="#card" class="card-body">
@@ -99,11 +99,51 @@
             </p>
         </div>
     </div>
+</div>-->
+
+<div class="container-fluid d-flex align-items-center">
+    {{-- Alert notifications --}}
+    <div class="col">
+
+        @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2"><strong class="mx-1">Success!</strong>{{session('status')}}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {{-- alert only displayed; if the page redirected by registration request --}}
+        @if (url()->previous()==route('register'))
+        <div class="alert alert-info alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2"><strong class="mx-1">Need to Assign-vat categories!</strong><a
+                    href="#assignVat" class="btn btn-sm btn-primary mx-3">Click me</a></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+        @elseif($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                <strong class="mx-1">Error!</strong>
+                Data you entered is/are incorrect
+                <a href="#" class="btn btn-sm btn-primary mx-3 update-info">view</a>
+            </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+    </div>
+    {{-- end of Alert notifications --}}
 </div>
 @endsection
 
 @section('pageContent')
-<div class="row">
+<div class="row px--9">
     <div class="col">
 
         <div class="card shadow ">

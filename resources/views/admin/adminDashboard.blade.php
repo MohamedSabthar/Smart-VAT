@@ -34,7 +34,7 @@
                         <a class="dropdown-item"
                             href="{{route('payer-registration',['requestFrom'=>'business'])}}">Register payer</a>
                         <a class="dropdown-item" href="{{route('get-business-quick-payments')}}">Quick payments</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="{{route('business-generate-report')}}">Generate report</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,8 @@
                         <a class="dropdown-item"
                             href="{{route('payer-registration',['requestFrom'=>'industrial'])}}">Register payer</a>
                         <a class="dropdown-item" href="{{route('get-industrial-quick-payments')}}">Quick payments</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="{{route('industrial-generate-report')}}">Generate report</a>
+
                     </div>
                 </div>
             </div>
@@ -104,7 +105,13 @@
                         <a class="dropdown-item"
                             href="{{route('payer-registration',['requestFrom'=>'entertainment'])}}">Register payer</a>
                         <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+
+                        <a class="dropdown-item" href="{{route('entertainment-generate-ticket-report')}}">Ticket payment
+                            report</a>
+                        <a class="dropdown-item"
+                            href="{{route('entertainment-generate-performance-report')}}">Performance payment
+                            report</a>
+
                     </div>
                 </div>
             </div>

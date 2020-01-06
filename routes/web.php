@@ -34,6 +34,7 @@ Route::name('password.')->group(
 Route::get('/employee-profile/{id}', 'AdminController@employeeProfile')->name('employee-profile');
 Route::put('/employee-profile/{id}', 'AdminController@updateEmployeeProfile')->name('update-employee');
 Route::get('/mangae-employee', 'AdminController@manageEmployee')->name('manage-employee');
+Route::put('/mangae-employee/promote', 'AdminController@promoteAsAdmin')->name('promote-to-admin');
 Route::post('/assign-vat', 'AdminController@assignVatCategories')->name('assign-vat');
 Route::get('/gloabl-conf', 'GlobalConfigurationController@globalConfiguration')->name('global-conf');
 Route::get('/global-conf/business', 'GlobalConfigurationController@updateBusinessTaxForm')->name('global-conf-business-update');
@@ -145,6 +146,12 @@ Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxControll
 Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore industrial
 Route::delete('/industrial/payment-remove-permanent/{id}', 'vat\IndustrialTaxController@destory')->name('industrial-remove-payment-permanent');// permanent delete
 
+Route::get('/industrial/generate-report', 'vat\IndustrialTaxController@industrialReportGeneration')->name('industrial-generate-report');
+Route::post('/industrial/generation', 'vat\IndustrialTaxController@generateReport')->name('industrial-report-view');
+
+Route::post('/industrial/tax-report-pdf', 'vat\IndustrialTaxController@taxPdf')->name('industrial-tax-report-pdf');
+Route::post('/industrial/summary-report-pdf', 'vat\IndustrialTaxController@summaryPdf')->name('industrial-summary-report-pdf');
+
 
 //shop rent tax
 Route::get('/shop-rent/profile/{id}','vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
@@ -202,6 +209,19 @@ Route::get('/entertainment/performance-payment-restore/{id}', 'vat\Entertainment
 Route::delete('/entertainment/payment-ticket-remove-permanent/{id}', 'vat\EntertainmentTaxController@destoryTicket')->name('entertainment-remove-ticket-payment-permanent');// permanent delete
 Route::delete('/entertainment/payment-performance-remove-permanent/{id}', 'vat\EntertainmentTaxController@destoryPerformance')->name('entertainment-remove-ticket-performance-permanent');// permanent delete
 Route::put('/entertainment/performance-payment-update/{id}', 'vat\EntertainmentTaxController@updatePerformancePayment')->name('update-entertainment-performance-payments');
+
+Route::get('/entertainment/generate-ticket-report', 'vat\EntertainmentTaxController@entertainmentTicketReportGeneration')->name('entertainment-generate-ticket-report');
+Route::post('/entertainment/ticket/generation', 'vat\EntertainmentTaxController@generateTicketReport')->name('entertainment-ticket-report-view');
+
+Route::post('/entertainment/ticket-tax-report-pdf', 'vat\EntertainmentTaxController@ticketTaxPdf')->name('entertainment-ticket-tax-report-pdf');
+Route::post('/entertainment/ticket-summary-report-pdf', 'vat\EntertainmentTaxController@ticketSummaryPdf')->name('entertainment-ticket-summary-report-pdf');
+
+
+Route::get('/entertainment/generate-performance-report', 'vat\EntertainmentTaxController@entertainmentPerformanceReportGeneration')->name('entertainment-generate-performance-report');
+Route::post('/entertainment/performance/generation', 'vat\EntertainmentTaxController@generatePerformanceReport')->name('entertainment-performance-report-view');
+
+Route::post('/entertainment/performance-tax-report-pdf', 'vat\EntertainmentTaxController@performanceTaxPdf')->name('entertainment-performance-tax-report-pdf');
+Route::post('/entertainment/performance-summary-report-pdf', 'vat\EntertainmentTaxController@performanceSummaryPdf')->name('entertainment-performance-summary-report-pdf');
 
 
 /**
