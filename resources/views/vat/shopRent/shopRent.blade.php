@@ -115,7 +115,7 @@
 					<div class="col-6 text-right">
 						<button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
 							data-placement="right" title="Click to register new VAT Payer"
-							onclick="javascript:window.open('{{route('payer-registration',['requestFrom'=>'shoprent'])}}','_self')">
+							onclick="javascript:window.open('{{route('payer-registration',['requestFrom'=>'shop-rent'])}}','_self')">
 							<span><i class="fas fa-user-plus"></i></span>
 							<span class="btn-inner--text">Register</span>
 						</button>
@@ -170,12 +170,13 @@
 							@endif
 							<td class="text-right">
 								<div class="dropdown">
-									<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
-										aria-haspopup="true" aria-expanded="false">
+									<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<i class="fas fa-ellipsis-v"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-										<a class="dropdown-item" href="{{route('shop-rent-profile',['id'=>$payer->id])}}">View profile</a>
+										<a class="dropdown-item"
+											href="{{route('shop-rent-profile',['id'=>$payer->id])}}">View profile</a>
 									</div>
 
 								</div>
