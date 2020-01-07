@@ -36,4 +36,9 @@ class Business_tax_shop extends Model
     {
         return $this->belongsTo('App\Business_type', 'type');   //a shop belongs to a business type
     }
+
+    public function due()
+    {
+        return $this->hasOne('App\Business_tax_due_payment', 'shop_id'); //a shop can have duepayment
+    }
 }
