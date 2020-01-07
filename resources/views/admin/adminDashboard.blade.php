@@ -104,7 +104,6 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item"
                             href="{{route('payer-registration',['requestFrom'=>'entertainment'])}}">Register payer</a>
-                        <a class="dropdown-item" href="#">Another action</a>
 
                         <a class="dropdown-item" href="{{route('entertainment-generate-ticket-report')}}">Ticket payment
                             report</a>
