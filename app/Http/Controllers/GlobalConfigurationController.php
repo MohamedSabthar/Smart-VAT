@@ -173,6 +173,12 @@ class GlobalConfigurationController extends Controller
     }
 
 
+    public function updateEntertainmentTaxForm()
+    {
+        $entertainment = Vat::where('route', 'entertainment')->first();
+        return view('admin.globalConfigurationEntertainment', ['entertainment'=>$entertainment]);
+    }
+
 
 
     private function getVatDetails()
@@ -180,6 +186,7 @@ class GlobalConfigurationController extends Controller
         $vatDetails = new VatDetails;
         $vatDetails->business = Vat::where('route', 'business')->first();
         $vatDetails->industrial = Vat::where('route', 'industrial')->first();
+        $vatDetails->entertainment = Vat::where('route', 'entertainment')->first();
         return $vatDetails;
     }
 }
