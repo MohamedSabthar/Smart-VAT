@@ -11,6 +11,7 @@ use App\Industrial_tax_payment;
 use App\Industrial_tax_shop;
 use App\Vat_payer;
 use App\Business_tax_due_payment;
+use App\Industrial_tax_due_payment;
 
 use App\Jobs\BusinessTaxNoticeJob;
 
@@ -89,6 +90,38 @@ class Timer
                         }
                         // if not paid for this month add due payment
                         $duePayment->due_ammount+=$BusinessTaxShop->anual_worth*($businessTax->vat_percentage/100)+$BusinessTaxShop->businessType->assessment_ammount;
+                    } else {
+                        $duePayment->due_ammount = 0;
+                    }
+                    $duePayment->save();
+                }
+            });
+        };
+    }
+
+
+
+
+    public static function trigerIndustrialDueTransaction()
+    {
+        return function () {
+            DB::transaction(function () {
+                $industrialTax = Vat::where('name', 'Industrial Tax')->firstOrFail();
+                $currentDate = Carbon::now()->toArray();
+                $year = $currentDate['year'];
+                
+                foreach (Industrial_tax_shop::all() as $industrialTaxShop) {
+                    $taxPayment=Industrial_tax_payment::where('shop_id', $industrialTaxShop->id)->where('created_at', 'like', "%$year%")->first();
+                    $duePayment =Industrial_tax_due_payment::where('shop_id', $industrialTaxShop->id)->first();
+                    if ($taxPayment==null) {
+                        if ($duePayment==null) {
+                            $duePayment = new Industrial_tax_due_payment;
+                            $duePayment->shop_id = $industrialTaxShop->id;
+                            $duePayment->payer_id = $industrialTaxShop->payer->id;
+                            $duePayment->due_ammount = 0;
+                        }
+                        // if not paid for this month add due payment
+                        $duePayment->due_ammount+=$industrialTaxShop->anual_worth*($industrialTax->vat_percentage/100)+$industrialTaxShop->industrialType->assessment_ammount;
                     } else {
                         $duePayment->due_ammount = 0;
                     }
