@@ -22,4 +22,9 @@ class Entertainment_tax_performance_payment extends Model
             return $payment->vatPayer;
         })->unique('id'); //collection filtered using unique id
     }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Entertainment_performance_type', 'type_id');
+    }
 }
