@@ -82,9 +82,7 @@
 </div>
 
 
-<div class="col-xl-3 col-lg-6"
-	onclick="javascript:window.open(`{{route('trash-booking',['id'=>$vatPayer->id])}}`,'_self')"
-	style="cursor:pointer">
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('trash-booking',['id'=>$vatPayer->id])}}`,'_self')" style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
@@ -205,11 +203,9 @@
 				<form method="POST" action="{{route('booking-register',['id'=> $vatPayer->id])}}">
 					@csrf
 					<div class="form-group row pt-3">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Booking Place')}}</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Booking Place')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('bookingPlace') is-invalid  @enderror" type="text"
-								value="{{old('bookingPlace')}}" id="bookingPlace" name="bookingPlace" autofocus>
+							<input class="form-control @error('bookingPlace') is-invalid  @enderror" type="text" value="{{old('bookingPlace')}}" id="bookingPlace" name="bookingPlace" autofocus>
 							@error('bookingPlace')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -218,12 +214,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Event')}}</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Event')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('event') is-invalid  @enderror"
-								type="text" value="{{old('event')}}" id="event"
-								name="event">
+							<input class="form-control @error('event') is-invalid  @enderror" type="text" value="{{old('event')}}" id="event" name="event">
 							@error('event')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -232,12 +225,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Booking Date')}}</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Booking Date')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('date') is-invalid  @enderror"
-								type="text" value="{{old('date')}}" id="date"
-								name="date">
+							<input class="form-control @error('date') is-invalid  @enderror" type="text" value="{{old('date')}}" id="date" name="date">
 							@error('date')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -246,12 +236,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Key Money')}}</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Key Money')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('keyMoney') is-invalid  @enderror"
-								type="text" value="{{old('keyMoney')}}" id="keyMoney"
-								name="keyMoney">
+							<input class="form-control @error('keyMoney') is-invalid  @enderror" type="text" value="{{old('keyMoney')}}" id="keyMoney" name="keyMoney">
 							@error('keyMoney')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -259,16 +246,13 @@
 							@enderror
 						</div>
 					</div>
-				   
+
 
 
 					<div class="form-group row">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Time Duration')}}</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Time Duration')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('time') is-invalid  @enderror"
-								type="text" value="{{old('time')}}" id="time"
-								name="time">
+							<input class="form-control @error('time') is-invalid  @enderror" type="text" value="{{old('time')}}" id="time" name="time">
 
 							<span class="invalid-feedback" id="invalidtime" role="alert">
 							</span>
@@ -280,11 +264,9 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Additional Time')}}</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label ">{{__('menu.Additional Time')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('addtTime') is-invalid  @enderror" type="text"
-								value="{{old('addtTime')}}" id="addtTime" name="addtTime">
+							<input class="form-control @error('addtTime') is-invalid  @enderror" type="text" value="{{old('addtTime')}}" id="addtTime" name="addtTime">
 							@error('addtTime')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -292,7 +274,7 @@
 							@enderror
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<input class=" btn btn-primary float-right" value="{{__('menu.Submit')}}" type="submit">
 					</div>
@@ -329,20 +311,17 @@
 						</thead>
 						<thead id="search_inputs">
 							<tr>
-								<th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
-										placeholder="{{__('menu.Search Assesment No.')}}" />
+								<th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo" placeholder="{{__('menu.Search Assesment No.')}}" />
 								</th>
-								<th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-										placeholder="{{__('menu.Search Shop Name')}}" />
+								<th><input type="text" class="form-control form-control-sm" id="searchBuisness" placeholder="{{__('menu.Search Shop Name')}}" />
 								</th>
-								<th><input type="text" class="form-control form-control-sm" id="searchPhone"
-										placeholder="{{__('menu.Search Phone')}}" />
+								<th><input type="text" class="form-control form-control-sm" id="searchPhone" placeholder="{{__('menu.Search Phone')}}" />
 								</th>
 
 
 							</tr>
-                        </thead>
-                        <tbody>
+						</thead>
+						<tbody>
 							@foreach ($vatPayer->booking as $booking)
 							<tr>
 								<td class="text-center">{{$booking->id}}</td>
@@ -350,22 +329,17 @@
 								<td>{{$booking->phone}}</td>
 								<td class="text-right">
 									<div class="dropdown">
-										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<i class="fas fa-ellipsis-v"></i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<a class="dropdown-item"
-												href="{{route('booking-payments',['shop_id'=>$booking->id])}}">
+											<a class="dropdown-item" href="{{route('booking-payments',['shop_id'=>$booking->id])}}">
 												{{__('menu.View Payments')}}</a>
-											
-											<form
-												action="{{route('remove-booking',['shop_id'=>$booking->id])}}"
-												method="POST">
+
+											<form action="{{route('remove-booking',['shop_id'=>$booking->id])}}" method="POST">
 												@csrf
 												@method('delete')
-												<input type="submit" value="{{__('menu.Remove Buisness')}}"
-													class="dropdown-item">
+												<input type="submit" value="{{__('menu.Remove Buisness')}}" class="dropdown-item">
 											</form>
 										</div>
 
@@ -374,7 +348,7 @@
 							</tr>
 							@endforeach
 						</tbody>
-					 
+
 						<thead class="thead-light">
 							<tr>
 								<th>{{__('menu.Assesment No.')}}</th>
@@ -404,97 +378,102 @@
 	$(document).ready(function() {
 
 
-      
 
 
 
-        var id = '#shop_rent_table';                      //data table id
-        var table = $(id).DataTable({
-          "pagingType": "full_numbers",
-          "sDom": '<'+
-          '<"row"'+
-          '<"col-sm-12 col-md-6 px-md-5"l>'+
-          '<"col-sm-12 col-md-6 px-md-5"f>'+
-          '>'+
-          '<"py-2"t>'+
-          '<"row"'+
-          '<"py-3 col-sm-12 col-md-6 px-md-5"i>'+
-          '<"py-3 col-sm-12 col-md-6 px-md-5 px-sm-3"p>>'+
-          '>'
-        });            //table object
- 
-        $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
-        
-        //individulat column search
-        $('#searchaAssesmentNo').on( 'keyup', function () { 
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-        });
-        $('#searchBuisness').on( 'keyup', function () { 
-            table
-                .columns( 1 )
-                .search( this.value )
-                .draw();
-        });
-        $('#searchPhone').on( 'keyup', function () { 
-            table
-                .columns( 2 )
-                .search( this.value )
-                .draw();
-        });
-        //toggle transition for buisness registration form
-        $("#shop-rent-registration").hide();
-        $(".add-buissness").on('click',function(){
-            $("#shop-rent-registration").slideToggle("slow");
-        });
-        $('#type').select2({
-            placeholder: "Select industrial type here",
-            allowClear: true,
-        });
-        $('#annualAssesmentAmount').blur(function(){
-            var assessmentAmmount = $(this).val()
-           if(!$.isNumeric(assessmentAmmount)){
-            $(this).addClass('is-invalid')
-            $('#invalidAnnualAssesmentAmount').removeClass('d-none')
-            $('#invalidAnnualAssesmentAmount>strong').text("{{__('menu.Invalid Assesment Amount')}}")
-            
-           }else{
-               $(this).removeClass('is-invalid')
-               $.ajaxSetup({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-            });
-            $('#type').select2({
-                placeholder: "Select industrial type here",
-            allowClear: true,
-            ajax: {
-                url: "{{route('get-industrial-types')}}",
-                dataType: 'json',
-                type:"POST",
-                delay: 250,
-                data: function (params) {
-                        return {
-                            assessmentAmmount : assessmentAmmount,
-                            search: params.term,
-                            
-                        };
-                },
-                processResults: function (data) {
-                    
-                     return {
-                         results:$.map(data.results, function (obj) {
-                            return {id:obj.id,text:obj.description}
-                    })
-                    }
-                     
-                },
-                cache: true
-            },        
-            });
-           }
-        })
-            
-    } );
+
+		var id = '#shop_rent_table'; //data table id
+		var table = $(id).DataTable({
+			"pagingType": "full_numbers",
+			"sDom": '<' +
+				'<"row"' +
+				'<"col-sm-12 col-md-6 px-md-5"l>' +
+				'<"col-sm-12 col-md-6 px-md-5"f>' +
+				'>' +
+				'<"py-2"t>' +
+				'<"row"' +
+				'<"py-3 col-sm-12 col-md-6 px-md-5"i>' +
+				'<"py-3 col-sm-12 col-md-6 px-md-5 px-sm-3"p>>' +
+				'>'
+		}); //table object
+
+		$(id + '_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
+
+		//individulat column search
+		$('#searchaAssesmentNo').on('keyup', function() {
+			table
+				.columns(0)
+				.search(this.value)
+				.draw();
+		});
+		$('#searchBuisness').on('keyup', function() {
+			table
+				.columns(1)
+				.search(this.value)
+				.draw();
+		});
+		$('#searchPhone').on('keyup', function() {
+			table
+				.columns(2)
+				.search(this.value)
+				.draw();
+		});
+		//toggle transition for buisness registration form
+		$("#shop-rent-registration").hide();
+		$(".add-buissness").on('click', function() {
+			$("#shop-rent-registration").slideToggle("slow");
+		});
+		$('#type').select2({
+			placeholder: "Select industrial type here",
+			allowClear: true,
+		});
+		$('#annualAssesmentAmount').blur(function() {
+			var assessmentAmmount = $(this).val()
+			if (!$.isNumeric(assessmentAmmount)) {
+				$(this).addClass('is-invalid')
+				$('#invalidAnnualAssesmentAmount').removeClass('d-none')
+				$('#invalidAnnualAssesmentAmount>strong').text("{{__('menu.Invalid Assesment Amount')}}")
+
+			} else {
+				$(this).removeClass('is-invalid')
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+				$('#type').select2({
+					placeholder: "Select industrial type here",
+					allowClear: true,
+					ajax: {
+						url: "{{route('get-industrial-types')}}",
+						dataType: 'json',
+						type: "POST",
+						delay: 250,
+						data: function(params) {
+							return {
+								assessmentAmmount: assessmentAmmount,
+								search: params.term,
+
+							};
+						},
+						processResults: function(data) {
+
+							return {
+								results: $.map(data.results, function(obj) {
+									return {
+										id: obj.id,
+										text: obj.description
+									}
+								})
+							}
+
+						},
+						cache: true
+					},
+				});
+			}
+		})
+
+	});
 </script>
 @endpush

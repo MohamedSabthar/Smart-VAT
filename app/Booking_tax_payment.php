@@ -3,13 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking_tax_payment extends Model
 {
-    protected $table = 'booking_tax_payment';
-    use SoftDeletes;
-   
+    protected $table = "booking_tax_payments";
 
     public function vatPayer()
     {
@@ -20,4 +17,7 @@ class Booking_tax_payment extends Model
     {
         return $this->belongsTo('App\booking_tax', 'shop_id');    // a payment belogns to a industrial tax shop
     }
+   
+
+
 }
