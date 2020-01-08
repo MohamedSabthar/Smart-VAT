@@ -37,4 +37,8 @@ class Industrial_tax_shop extends Model
         return $this->belongsTo('App\Industrial_type', 'type');   //a shop belongs to a industrial type
     }
 
+    public function due()
+    {
+        return $this->hasOne('App\Industrial_tax_due_payment', 'shop_id'); //a shop can have duepayment
+    }
 }

@@ -44,16 +44,12 @@ class BusinessTaxNotice extends Mailable
     {
         $businessTaxShop=Business_tax_shop::findOrFail($shopId);  //get the VAT payer id
         // $payerId = $businessTaxShop->payer->id;
-        $lastPaymentDate = $businessTaxShop->payments->pluck('created_at')->last(); // get the last payment date
-            $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
-            $assessmentAmmount = $businessTaxShop->businessType->assessment_ammount;
+       
+        $assessmentAmmount = $businessTaxShop->businessType->assessment_ammount;
             
-        $currentDate = now()->toArray();
+       
         $businessTax = Vat::where('name', 'Business Tax')->firstOrFail();
-        if ($lastPaymentDate!=null) {
-            return ($businessTaxShop->anual_worth*($businessTax->vat_percentage/100)+$assessmentAmmount)*($currentDate['year']-$lastPaymentDate['year']);
-        }
-        
-        return $businessTaxShop->anual_worth*($businessTax->vat_percentage/100)+$assessmentAmmount;
+        $dueAmmount = $businessTaxShop->due==null ? 0 : $businessTaxShop->due->due_ammount;
+        return $businessTaxShop->anual_worth*($businessTax->vat_percentage/100)+$assessmentAmmount+$dueAmmount;
     }
 }

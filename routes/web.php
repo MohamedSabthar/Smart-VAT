@@ -52,6 +52,7 @@ Route::get('/global-conf/industrial/types/{id}', 'GlobalConfigurationController@
 Route::post('/global-conf/industrial/add-type/{id}', 'GlobalConfigurationController@addIndustrialType')->name('add-industrial-type');
 Route::put('/global-conf/industrial/update-type', 'GlobalConfigurationController@updateIndustrialType')->name('update-industrial-type');
 
+Route::get('/global-conf/entertainment', 'GlobalConfigurationController@updateEntertainmentTaxForm')->name('global-conf-entertainment-update');
 
 
 
