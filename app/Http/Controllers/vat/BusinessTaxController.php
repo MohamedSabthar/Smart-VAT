@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddBusinessRequest;
 use App\Http\Requests\BusinessTaxReportRequest;
+use App\Http\Requests\UpdateBusinessProfileRequest;
 
 use App\Vat;
 use App\Vat_payer;
@@ -409,5 +410,22 @@ class BusinessTaxController extends Controller
         //pushing mail to the queue
         dispatch(new  BusinessTaxNoticeJob($vatPayerMail, $id));
         return redirect()->back()->with('status', 'Mail queued successfully');
+    }
+
+    public function updateBusinessProfile($id, UpdateBusinessProfileRequest $request)
+    {
+        $businessTaxShop = Business_tax_shop::findOrFail($id);
+
+        //update business details
+        $businessTaxShop->registration_no = $request->assesmentNo;
+        $businessTaxShop->anual_worth = $request->annualAssesmentAmount;
+        $businessTaxShop->shop_name = $request->businessName;
+        $businessTaxShop->phone = $request->phoneno;
+        $businessTaxShop->door_no = $request->doorno;
+        $businessTaxShop->street = $request->street;
+        $businessTaxShop->city = $request->city;
+             
+        $vatPayer->save();
+        return redirect()->back()->with('status', 'Business details updated successful');
     }
 }

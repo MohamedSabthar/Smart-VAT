@@ -84,7 +84,7 @@ try {
  */
 
 Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
-Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');  //update VAT payer profile
+Route::put('/business-profile/{id}', 'vat\BusinessTaxController@updateBusinessProfile')->name('update-business');  //update VAT payer profile
 Route::get('/business/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
@@ -113,7 +113,7 @@ Route::get('/business/business-restore/{id}', 'vat\BusinessTaxController@restore
 //all business tax related tax routes should starts with "/buisness"
 Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); 
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
-Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
+Route::put('/business-profile/{id}', 'vat\BusinessTaxController@updateBusinessProfile')->name('update-business');
 
 
 /**
@@ -267,7 +267,7 @@ Route::get('/club-licence/clubLicence-trash/{payer_id}', 'vat\LandTaxController@
 Route::get('/club-licence/clubLicence-restore/{id}', 'vat\LandTaxController@restoreClubLicence')->name('restore-club-licence-premises'); // restore land
 
 Route::get('/club-licence/generate-report', 'vat\ClubLicenceTaxController@clubLicenceReportGeneration')->name('club-licence-generate-report');
-
+Route::post('/club-licence/generation', 'vat\ClubLicenceTaxController@generateReport')->name('club-licence-report-view');
 
 
 

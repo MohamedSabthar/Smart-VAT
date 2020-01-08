@@ -73,7 +73,7 @@ class LandTaxController extends Controller
     //Report Generation
     public function landReportGeneration()                                                                       //directs the report genaration view
     {
-        return view('vat.business.landReportGeneration');
+        return view('vat.land.landReportGeneration');
     }
 
     public function receiveLandPayments($land_id, Request $request)

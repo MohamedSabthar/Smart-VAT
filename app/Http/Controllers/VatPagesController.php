@@ -58,7 +58,7 @@ class VatPagesController extends Controller
     }
     public function clubhouselicence()
     {
-        $payers = Club_licence_tax::clubLicenceTaxPayers();
+        $payers = Club_licence_tax::clubLicenceTaxPayers();  //get all the vat_payers who club licence tax
         return view('vat.clubLicence.clubLicence',['payers'=>$payers]);
     }
     public function landauction()

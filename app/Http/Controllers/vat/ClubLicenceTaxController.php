@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+//report Generation
+use PDF;
+
 use App\Vat;
 use App\Vat_payer;
 use App\Club_licence_tax;
@@ -123,6 +126,29 @@ class ClubLicenceTaxController extends Controller
     public function clubLicenceReportGeneration()
     {
         return view('vat.clubLicence.clubLicenceReportGeneration');
+    }
+
+
+    // HAVA TO CORRECT WHEN REPORT IS GENERATED
+    public function generateReport(BusinessTaxReportRequest $request)                                              //get the star date and the end date for the report generation
+    {
+        $reportData = BusinessReport::generateBusinessReport();
+        $dates = (object)$request->only(["startDate","endDate"]);
+          
+        // $records = Club_licence_tax_payment::
+        $records=Business_tax_payment::whereBetween('created_at',[$dates->startDate,$dates->endDate])->get();
+    
+        $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates       
+    //    if($request->has('TaxReport'))
+        {
+            return view('vat.land.clubLicenceReportView',['dates'=>$dates,'records'=>$records]);
+        }
+        // else if($request->has('SummaryReport'))
+        // {
+        //     return view('vat.business.businessSummaryReport',['dates'=>$dates,'records'=>$records,'reportData'=>$reportData]);
+        // }
+      
+        
     }
 
     //soft delete a club licence
