@@ -270,6 +270,14 @@ Route::get('/club-licence/generate-report', 'vat\ClubLicenceTaxController@clubLi
 Route::post('/club-licence/generation', 'vat\ClubLicenceTaxController@generateReport')->name('club-licence-report-view');
 
 
+/**
+ * Routes related to Vehicle Park tax
+ * 
+ * all taxes related to Vehicle Park tax should starts with "/vehicle-park"
+ */
+Route::get('/vehicle-park/officers','vat\VehicleParkTaxController@ticketingOfficers')->name('vehicle-park-ticketing-officers');
+Route::get('/vehicle-park/payments','vat\VehicleParkTaxController@vehicleParkPayments')->name('vehicle-park-vehicleParkPayments');
+
 
 
 /**

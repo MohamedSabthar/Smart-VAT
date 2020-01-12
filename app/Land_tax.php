@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Land_tax extends Model
 {
-    protected $table = 'Land_taxes';
+    protected $table = 'land_taxes';
     use SoftDeletes;
 
     public function payer()
