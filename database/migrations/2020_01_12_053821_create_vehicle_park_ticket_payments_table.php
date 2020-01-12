@@ -21,8 +21,7 @@ class CreateVehicleParkTicketPaymentsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('park_id')->references('id')->on('vehicle_park_tax_parks'); // a tax payment for a buisness
             $table->foreign('user_id')->references('id')->on('users');          // an employee enteres the record
-            $table->timestamps();
-            $table->softDeletes();
+            
             $table->timestamps();
             $table->softDeletes();
         });
