@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IndustrialTypesTableSeeder::class);
         $this->call(EntertainmentTypesTableSeeder::class);
         $this->call(EntertainmentPerfomanceTypesTableSeeder::class);
+        $this->call(BookingTypesTableSeeder::class);
+        $this->call(BookingSubTypesTableSeeder::class);
     }
 }

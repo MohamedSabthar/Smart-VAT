@@ -40,4 +40,9 @@ class Vat_payer extends Model
     {
         return $this->hasMany('App\Entertainment_tax_performance_payment', 'payer_id'); //one VAT payer may have many entertainment performance payments
     }
+
+    public function bookingPayment()
+    {
+        return $this->hasMany('App\Booking_tax_payments_type','payer_id');
+    }
 }

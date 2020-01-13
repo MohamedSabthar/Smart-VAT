@@ -12,7 +12,7 @@ class BookingTypesTableSeeder extends Seeder
     public function run()
     {
         //town hall NO 1
-        DB::table('booking_tax_type')->insert([
+        DB::table('booking_tax_types')->insert([
             ['place' => 'Town Hall No 1', 'event' => 'Weeding Function', 'parent_id' => 1],
             ['place' => 'Town Hall NO 1', 'event' => 'Musical shows, Dramas, Circus and karata shows', 'parent_id' => 2],
             ['place' => 'Town Hall NO 1', 'event' => 'If no entertainment tax is charged above shows', 'parent_id' => 3],
@@ -24,8 +24,8 @@ class BookingTypesTableSeeder extends Seeder
             ['place' => 'Town Hall NO 1', 'event' => 'Holding Classes, Training programmers and Educational Seminars', 'parent_id' => 9],
             ['place' => 'Town Hall NO 1', 'event' => 'Public Lectures, Political Seminars Religious Festivals, School Prize giving functions', 'parent_id' => 10],
             ['place' => 'Town Hall NO 1', 'event' => 'Religious Festivals, School Prize giving functions, religious interviews, School Children sport training and Variety entertainment', 'parent_id' => 11],
-            ['place' => 'Town Hall NO 1', 'event' => 'Any other free charging Services not herein mentioned', 'assign_id' => 12],
-            ['place' => 'Town Hall NO 1', 'event' => 'For preschool festival', 'assign_id' => 13],
+            ['place' => 'Town Hall NO 1', 'event' => 'Any other free charging Services not herein mentioned', 'parent_id' => 12],
+            ['place' => 'Town Hall NO 1', 'event' => 'For preschool festival', 'parent_id' => 13],
             ['place' => 'Town Hall NO 1', 'event' => 'For free charging Exhibition of Footwear and Apparels', 'parent_id' => 14],
             ['place' => 'Town Hall NO 1', 'event' => 'For Literary Festivals', 'parent_id' => 15],
             ['place' => 'Town Hall NO 1', 'event' => 'For International Pre School, International School', 'parent_id' => 16],
@@ -35,7 +35,7 @@ class BookingTypesTableSeeder extends Seeder
 
         ]);
          //Town hall No 2
-        DB::table('booking_tax_type')->insert([
+        DB::table('booking_tax_types')->insert([
             ['place' => 'Town Hall No 2', 'event' => 'Weeding Function', 'parent_id' => 20],
             ['place' => 'Town Hall No 2', 'event' => 'For meetings, Displays, Discussion, Exhibition, Seminars', 'parent_id' => 21],
             ['place' => 'Town Hall No 2', 'event' => 'Display of sales and fairs (Finished Garments and Footwear Etc,)', 'parent_id' => 22],
@@ -47,7 +47,7 @@ class BookingTypesTableSeeder extends Seeder
 
         ]);
           // stadium
-        DB::table('booking_tax_type')->insert([
+        DB::table('booking_tax_types')->insert([
             ['place' => 'Stadium', 'event' => 'Weeding Function', 'parent_id' => 28],
             ['place' => 'Stadium', 'event' => 'Functions of Entertainment Any other functions, organized Function of Local or Foreign Dancing', 'parent_id' => 29],
             ['place' => 'Stadium', 'event' => 'Exhibitions, Displays, or Functions based on cash transactions, of books, Magazines  and Plastic Goods, and Sale of Flowers and Furniture', 'parent_id' => 30],
@@ -67,9 +67,9 @@ class BookingTypesTableSeeder extends Seeder
             ['place' => 'Stadium', 'event' => 'other event', 'parent_id' => 44],
         ]);
          //samanala Ground
-        DB::table('booking_tax_type')->insert([
+        DB::table('booking_tax_types')->insert([
             ['place' => 'Samanala Ground', 'event' => 'For Meetings of political, Trade union and others', 'parent_id' => 45],
-            ['place' => 'Samanala Ground', 'event' => 'For Musical shows ', 'parent_id' => 46],
+            ['place' => 'Samanala Ground', 'event' => 'For Musical shows +', 'parent_id' => 46],
             ['place' => 'Samanala Ground', 'event' => 'Non chargeable  Musical show ', 'parent_id' => 47],
             ['place' => 'Samanala Ground', 'event' => 'For any Sport Event-For School Children', 'parent_id' => 48],
             ['place' => 'Samanala Ground', 'event' => 'For any Sport Event - other', 'parent_id' => 49],
@@ -86,12 +86,12 @@ class BookingTypesTableSeeder extends Seeder
 
         ]);
           //Hiyare tank
-        DB::table('booking_tax_type')->insert([
+        DB::table('booking_tax_types')->insert([
             ['place' => 'Hiyare Tank Ground', 'event' => 'for the reservation of the ground', 'parent_id' => 60],
             ['place' => 'Hiyare Tank Ground', 'event' => 'Other event', 'parent_id' => 61],
         ]);
          //dharmapala graden
-        DB::table('booking_tax_type')->insert([
+        DB::table('booking_tax_types')->insert([
             ['place' => 'Dharmapala Garden', 'event' => 'For a Festival day', 'parent_id' => 62],
             ['place' => 'Dharmapala Garden', 'event' => 'charge for decorations and display of Notice of publicity ', 'parent_id' => 63],
             ['place' => 'Dharmapala Garden', 'event' => 'For a Monthly Festival day', 'parent_id' => 64],
@@ -99,10 +99,10 @@ class BookingTypesTableSeeder extends Seeder
 
         ]);
 
-        DB::table('booking_tax_type')->insert([
+        DB::table('booking_tax_types')->insert([
             ['place' => 'Central Bus stand open air in uppermost Floor', 'event' => 'for a single night Banquet', 'parent_id' => 66],
         ]);
-        DB::table('booking_tax_type')->insert([
+        DB::table('booking_tax_types')->insert([
             ['place' => 'Other Places', 'event' => 'Milidduwa Sports Ground', 'parent_id' => 67],
             ['place' => 'Other Places', 'event' => 'For Festivals and Meetings on any road within Municipal Area  not obstructing free transport', 'parent_id' => 68],
             ['place' => 'Other Places', 'event' => 'other event', 'parent_id' => 69],

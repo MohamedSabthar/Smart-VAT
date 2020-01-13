@@ -10,6 +10,6 @@ class Booking_tax_type extends Model
 
     public function subTypes()
     {
-        return $this->hasMany('App\BookingTaxSubType', 'parent_id');
+        return $this->hasMany('App\Booking_tax_sub_type', 'parent_id');
     }
 }

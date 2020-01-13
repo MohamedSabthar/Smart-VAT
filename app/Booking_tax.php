@@ -35,6 +35,8 @@ class Booking_tax extends Model
     {
         return $this->hasMany('App\Booking_tax_payment', 'shop_id');   //a shop has many payments
     }
+
+    
     
 
 }
