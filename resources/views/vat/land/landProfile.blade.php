@@ -350,7 +350,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							{{-- @foreach ($vatPayer->land as $land)
+							@foreach ($vatPayer->land as $land)
 							<tr>
 								<td class="text-center">{{$land->id}}</td>
 								<td>{{$land->land_name}}</td>
@@ -379,7 +379,7 @@
 									</div>
 								</td>
 							</tr>
-							@endforeach --}}
+							@endforeach
 						</tbody>
 						<thead class="thead-light">
 							<tr>

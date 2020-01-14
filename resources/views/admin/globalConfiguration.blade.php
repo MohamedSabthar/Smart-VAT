@@ -148,6 +148,28 @@
 <div class="col-xl-3 col-md-6">
     <div class="card bg-gradient-secondary border-0 my-2">
         <!-- Card body -->
+        <div class="card-body" onclick="javascript:window.open(`{{route('global-conf-land-update')}}`,'_self')"
+            style="cursor:pointer">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase  mb-2 text-default">Land Tax</h3>
+                    <h5 class="h5 font-weight-bold mb-1 text-gray display-block">Vat percentage :
+                        {{number_format($vatDetails->land->vat_percentage,2)}}%
+                    </h5>
+                    <h5 class="h5 font-weight-bold mb-1 text-secondary display-block">Fine percentage : N/A
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-md-6">
+    <div class="card bg-gradient-secondary border-0 my-2">
+        <!-- Card body -->
         <div class="card-body" onclick="javascript:window.open(`{{route('global-conf-entertainment-update')}}`,'_self')"
             style="cursor:pointer">
             <div class="row">
@@ -155,6 +177,28 @@
                     <h3 class="card-title text-uppercase  mb-2 text-default">Entertainment Tax</h3>
                     <h5 class="h5 font-weight-bold mb-1 text-gray display-block">Vat percentage :
                         Multiple
+                    </h5>
+                    <h5 class="h5 font-weight-bold mb-1 text-secondary display-block">Fine percentage : N/A
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-md-6">
+    <div class="card bg-gradient-secondary border-0 my-2">
+        <!-- Card body -->
+        <div class="card-body" onclick="javascript:window.open(`{{route('global-conf-club-licence-update')}}`,'_self')"
+            style="cursor:pointer">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase  mb-2 text-default">Club Licence Tax</h3>
+                    <h5 class="h5 font-weight-bold mb-1 text-gray display-block">Vat percentage :
+                        {{number_format($vatDetails->clubLicence->vat_percentage,2)}}%
                     </h5>
                     <h5 class="h5 font-weight-bold mb-1 text-secondary display-block">Fine percentage : N/A
                     </h5>

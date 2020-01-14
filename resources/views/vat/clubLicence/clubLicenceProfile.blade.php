@@ -400,7 +400,7 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
-                                                <input type="submit" value="{{__('menu.Remove Buisness')}}"
+                                                <input type="submit" value="{{__('menu.Remove Club')}}"
                                                     class="dropdown-item">
 
                                             </form>

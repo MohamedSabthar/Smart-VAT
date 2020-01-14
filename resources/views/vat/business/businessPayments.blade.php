@@ -261,9 +261,9 @@
                         <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
                             {{__('menu.Anual worth')}}</label>
                         <div class="col-md-10">
-                            <input class="form-control @error('anual_worth') is-invalid @enderror" type="text"
-                                value="{{old('anual_worth',$businessTaxShop->anual_worth)}}" id="anual_worth" name="anual_worth">
-                            @error('anual_worth')
+                            <input class="form-control @error('annualAssesmentAmount') is-invalid @enderror" type="text"
+                                value="{{old('annualAssesmentAmount',$businessTaxShop->anual_worth)}}" id="annualAssesmentAmount" name="anual_worth">
+                            @error('annualAssesmentAmount')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -275,9 +275,9 @@
                         <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
                             {{__('menu.Phone No')}}</label>
                         <div class="col-md-10">
-                            <input class="form-control @error('phone') is-invalid @enderror" type="text"
-                                value="{{old('phone',$businessTaxShop->phone)}}" id="phone" name="phone">
-                            @error('phone')
+                            <input class="form-control @error('phoneno') is-invalid @enderror" type="text"
+                                value="{{old('phoneno',$businessTaxShop->phone)}}" id="phoneno" name="phoneno">
+                            @error('phoneno')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -288,9 +288,9 @@
                         <label for="example-text-input"
                             class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
                         <div class="col-md-10 ">
-                            <input class="form-control @error('door_no') is-invalid  @enderror" type="text"
-                                value="{{old('door_no',$businessTaxShop->door_no)}}" id="door_no" name="door_no">
-                            @error('door_no')
+                            <input class="form-control @error('doorno') is-invalid  @enderror" type="text"
+                                value="{{old('doorno',$businessTaxShop->door_no)}}" id="doorno" name="doorno">
+                            @error('doorno')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -326,11 +326,11 @@
                     <div class="form-group">
                         <button class="btn btn-primary float-right" data-toggle="modal"
                             onclick="javascript:event.preventDefault()"
-                            data-target="#confirm-update-VATpayer">{{__('menu.Update')}}</button>
+                            data-target="#confirm-update-businessProfile">{{__('menu.Update')}}</button>
                     </div>
 
                     {{-- Confirmation modal --}}
-                    <div class="modal fade" id="confirm-update-VATpayer" tabindex="-1" role="dialog"
+                    <div class="modal fade" id="confirm-update-businessProfile" tabindex="-1" role="dialog"
                         aria-labelledby="modal-default" aria-hidden="true">
                         <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                             <div class="modal-content">
@@ -560,6 +560,8 @@
         $("#Update-business-info").hide();
         $(".update-profile").on('click',function(){
         $("#Update-business-info").slideToggle("slow");
+        $("#businessName").focus();
+
         });
       } );
 

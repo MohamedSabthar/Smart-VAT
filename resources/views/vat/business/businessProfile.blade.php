@@ -133,8 +133,6 @@
                 <strong class="mx-1">{{__('menu.Error!')}}</strong>
                 {{__('menu.Data you entered is/are incorrect')}}
                 <a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
-                {{-- error display of update vat payer Profile form --}}
-                <a href="#" class="btn btn-sm btn-primary mx-3 update-info update-profile">{{__('menu.view')}}</a>
             </span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -186,9 +184,6 @@
                     </div>
                 </div>
 
-                <div class="text-center">
-                    <a href="#" class="btn btn-sm btn-primary mr-4 update-profile">{{__('menu.Update Details')}}</a>
-                </div>
             </div>
         </div>
     </div>
@@ -500,12 +495,6 @@
                 .columns( 2 )
                 .search( this.value )
                 .draw();
-        });
-
-        //toggle transition for update profile
-        $("#Update-business-info").hide();
-        $(".update-profile").on('click',function(){
-            $("#Update-business-info").slideToggle("slow");
         });
 
         //toggle transition for buisness registration form

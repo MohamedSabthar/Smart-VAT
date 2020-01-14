@@ -53,6 +53,12 @@ Route::put('/global-conf/industrial/update-type', 'GlobalConfigurationController
 
 Route::get('/global-conf/entertainment', 'GlobalConfigurationController@updateEntertainmentTaxForm')->name('global-conf-entertainment-update');
 
+Route::get('/global-conf/land', 'GlobalConfigurationController@updateLandTaxForm')->name('global-conf-land-update');
+Route::put('/global-conf/land/update-percentage', 'GlobalConfigurationController@updateLandPercentage')->name('update-land-percentage');
+
+Route::get('/global-conf/club-licence', 'GlobalConfigurationController@updateClubLicenceTaxForm')->name('global-conf-club-licence-update');
+Route::put('/global-conf/club-licence/update-percentage', 'GlobalConfigurationController@updateClubLicencePercentage')->name('update-club-licence-percentage');
+
 
 
 
