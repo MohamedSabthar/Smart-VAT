@@ -196,6 +196,17 @@ Route::put('/entertainment/performance-payment-update/{id}', 'vat\EntertainmentT
  */
 Route::get('/business/business-notice/{id}', 'vat\BusinessTaxController@sendNotice')->name('business-send-notice');
 
+/**
+ * Routes related to license tax
+ *
+ * all license tax related tax routes should starts with "/license"
+ */
+Route::get('/license/profile/{id}', 'vat\LicenseTaxController@licenseProfile')->name('license-profile');
+
+Route::post('/license/license-register/{id}', 'vat\LicenseTaxController@registerLisenceDuty')->name('license-duty-register');
+
+
+
 
 /**
  * temperory testing routes

@@ -23,4 +23,9 @@ class Assessment_range extends Model
     {
         return $this->hasMany('App\Industrial_type', 'assessment_range_id');
     }
+
+    public function licenseRangeTypes()
+    {
+        return $this->hasMany('App\License_type','assessment_range_id');
+    }
 }
