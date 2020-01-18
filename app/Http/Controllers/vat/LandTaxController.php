@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers\vat;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
+
 use App\Vat;
 use App\Vat_payer;
-use App\Assessment_range;  // #check this is the same and chnge if necessary
 use App\Land_tax;
 use App\Land_tax_payment;
-use App\Http\Requests\AddLandRequest; 
+use App\Http\Requests\AddLandRequest;
+use App\Http\Requests\LandTaxReportRequest;
+ 
 
+use Auth;
+use Carbon\Carbon;
+
+//report Generation
+use PDF;
+use Illuminate\Support\Facades\DB;
+use App\Reports\LandReport;
 
 class LandTaxController extends Controller
 {
@@ -22,14 +31,72 @@ class LandTaxController extends Controller
         $this->middleware(['vat']);
     }
 
-    private function calculateTax($landWorth, $assessmentAmmount)
+    private function calculateTax($landWorth, $dueAmount)
     {
         $currentDate = now()->toArray();
         $landTax = Vat::where('name', 'Land Tax')->firstOrFail();
         
-        // Payments have to made on renting day itself, no amounts fines taken forward
-        return $landWorth*($landTax->vat_percentage/100)+$assessmentAmmount;
+        // Payments have to made yearly, no amounts fines taken forward
+        return $landWorth*($landTax->vat_percentage/100)+ $dueAmount;
 
+    }
+
+    public function checkPayments(Request $request)
+    {
+        $data['payerDetails'] = Vat_payer::where('nic', $request->nic)->first();
+        if ($data['payerDetails'] !=null) {
+            $data['duePaymentValue'] = [];
+            $data['duePayments'] = [];
+            $currentDate = now()->toArray();
+            $year = $currentDate['year'];
+            $i = 0;
+
+            foreach ($data['payerDetails']->land as $premises) {
+                $dueAmount = $premises->due == null ? 0 : $premises->due->due_amount;    //last due ammount which is not yet paid
+                $data['duePaymentValue'][$i] = $this->calculateTax($premises->worth, $dueAmount);
+                $data['duePayments'][$i] = Land_tax_payment::where('land_id', $land_id)->where('created_at', 'like',"%$year%")->first();  //getting the latest payment if paid else null
+                $i++;
+            }
+        }
+        return response()->json($data, 200);
+    }
+
+    public function viewQuickPayments()
+    {
+        return view('vat.land.landQuickPayments');
+    }
+
+    public function acceptQuickPayments(Request $request)
+    {
+        $landIds = $request->except(['_token']);
+
+        if (count($landIds)==0) {
+            return redirect()->back()->with('error', 'No payments selected');
+        }
+
+        foreach ($landIds as $landId => $val) {
+            $landTaxPremises = Land_tax::findOrFail($landId);
+            $payerId = $landTaxPremises->payer->id;
+            $dueAmount = $landTaxPremises->due == null ? 0 : $landTaxPremises->due->due_amount;
+            $duePayment = $this->calculateTax($landTaxPremises->worth, $dueAmount);
+
+            $landTaxPayment = new Land_tax_payment;
+            $landTaxPayment->payment = $request->payment;
+            $landTaxPayment->land_id = $land_id;
+            $landTaxPayment->payment = $payerId;
+            $landTaxPayment->payment = Auth::user()->id;
+
+            // if there was a duepayment update it to zero
+            if ($landTaxPremises->due != null && $landTaxPremises->due->due_amount!=0) {
+                $lastDue = Land_tax_due_payment::where('land_id', $landTaxPremises->id)->first();
+                $lastDue->due_amount = 0;
+                $lastDue->save();
+            }
+
+            $landTaxPayment->save();
+        }
+
+        return redirect()->back()->with('status', 'Payments successfully accepted');
     }
 
     public function landProfile($id)
@@ -43,11 +110,19 @@ class LandTaxController extends Controller
         $landTax = Land_tax::findOrFail($land_id);
         $currentDate = now()->toArray();  // get the current date propoties
         $lastPaymentDate = $landTax->payments->pluck('created_at')->last();  // get the last payment date
-        
+        $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
+        $paid = false;
         $duePayment = 0.0;
-        $duePayment = $this->calculateTax($landTax->worth, $assessmentAmmount);
 
-         return view('vat.land.landPayments', ['landTax'=>$landTax, 'duePayment'=>$duePayment]);  
+        if ($lastPaymentDate!=null && $currentDate['year'] == $lastPaymentDate['year']) { //if last_payment year matchess current year
+            $paid=true; // then this year has no due
+        } else {
+            $dueAmount = $landTax->due == null ? 0 : $landTax->due->due_amount;   //last due ammount which is not yet paid
+            $duePayment = $this->calculateTax($landTax->worth, $dueAmount);
+        }
+
+
+         return view('vat.land.landPayments', ['landTax'=>$landTax, 'paid'=>$paid,'duePayment'=>$duePayment]);  
     }
 
     // register new Premises for Land tax
@@ -70,12 +145,6 @@ class LandTaxController extends Controller
         return redirect()->route('land-profile', ['id'=>$vatPayer->id])->with('status', 'New Premises Added successfully');
     }
 
-    //Report Generation
-    public function landReportGeneration()                                                                       //directs the report genaration view
-    {
-        return view('vat.land.landReportGeneration');
-    }
-
     public function receiveLandPayments($land_id, Request $request)
     {
         $payerId = Land_tax::findOrFail($land_id)->payer->id;   // getting vat payer Id
@@ -89,6 +158,121 @@ class LandTaxController extends Controller
 
         return redirect('status','Payment added Successfully'); 
     }
+
+    //Report Generation
+    public function landReportGeneration()                                                                       //directs the report genaration view
+    {
+        return view('vat.land.landReportGeneration');
+    }
+
+    public function generateReport(LandTaxReportRequest $request)
+    {
+        $reportData = LandReport::generateLandReport();
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Land_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        if ($request->has('TaxReport')) {
+            return view('vat.land.landReportView', ['dates'=>$dates, 'records'=>$records]);
+        } elseif ($request->has(SummaryReport)) {
+            return view('vat.land.landSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);
+        }
+
+    }
+
+    public function TaxPdf(LandTaxReportRequest $request)
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Land_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
+        $Paymentsum=Land_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->sum('payment');
+        $PremisesCount=Land_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->count('land_id');
+        $pdf->loadHTML($this->TaxReportHTML($records, $dates, $Paymentsum, $PremisesCount));
+        
+        return $pdf->stream();
+    }
+
+    public function TaxReportHTML($records, $dates, $Paymentsum, $PremisesCount)
+    {
+        $output = "
+        <h3 align='center'>Land Tax Report from $dates->startDate to $dates->endDate </h3>
+        <table width='100%' style='border-collapse: collapse; border: 0px;' class='table'>
+         <tr>
+       <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER'S NIC</th>
+       <th style='border: 1px solid; padding:12px;' width='25%'>VAT PAYER'S NAME</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PREMISES</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>ADDRESS</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT DATE</th>
+   
+       
+       
+      </tr>
+        ";
+        foreach ($records as $record) {
+            $output .= '
+         <tr>
+         <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->nic.'</td>
+          <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->full_name.'</td>
+          <td style="border: 1px solid; padding:12px;">'.$record->land_id.' - '.$record->landTax->land_name.'</td>
+          <td style="border: 1px solid; padding:12px;">'.$record->land_id.' - '.$record->landTax->address.'</td>
+          <td style="border: 1px solid; padding:12px;">'.'Rs. '.number_format($record->payment, 2).'</td>
+          <td style="border: 1px solid; padding:12px;">'.$record->updated_at.'</td>
+           
+         </tr>
+         ';
+        }
+        
+        $output .= '</table>';
+        $output .= "<br>Total Premises hired : ".$PremisesCount;
+        $output .= "<br>Total Payements : Rs.".number_format($Paymentsum, 2)."/=";
+        return $output;
+    }
+
+    public function summaryPdf(LandTaxReportRequest $request)
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Land_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        $sum=$records->sum('payment');
+        $pdf->loadHTML($this->summaryReportHTML($records, $dates, $sum));
+        
+
+        return $pdf->stream();
+
+    }
+
+    public function summaryReportHTML($records, $dates, $sum)
+    {
+        $reportData = LandReport::generateLandReport();
+        $output = "
+         <h3 align='center'>Land Tax Summary Report from $dates->startDate to $dates->endDate </h3>
+         <table width='100%' style='border-collapse: collapse; border: 0px;'>
+          <tr>
+        <th style='border: 1px solid; padding:12px;' width='20%'>Premises Name</th>
+        <th style='border: 1px solid; padding:12px;' width='20%'>Premises Address</th>
+        <th style='border: 1px solid; padding:12px;' width='10%'>Total Payments</th>
+    
+    
+       </tr>
+         ";
+        foreach ($reportData as $description => $total) {
+            $output .= '
+          <tr>
+           <td style="border: 1px solid; padding:12px;">'.$description.'</td>
+           <td style="border: 1px solid; padding:12px;">'.'Rs.' .number_format($total, 2).'.00</td>
+           
+          </tr>
+          ';
+        }
+       
+        
+        $output .= '</table>';
+        $output .= "<br>Total Payements : Rs. ".number_format($sum, 2)."/=";
+        return $output;
+    }
+
 
      //soft delete land payments
     public function removePayment($id)

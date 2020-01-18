@@ -189,7 +189,9 @@
     </div>
 </div>
 
-<div class="col-xl-3 col-md-6">
+{{-- Club licence tax --}}
+
+{{-- <div class="col-xl-3 col-md-6">
     <div class="card bg-gradient-secondary border-0 my-2">
         <!-- Card body -->
         <div class="card-body" onclick="javascript:window.open(`{{route('global-conf-club-licence-update')}}`,'_self')"
@@ -209,7 +211,7 @@
 
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
 
 @section('pageContent')

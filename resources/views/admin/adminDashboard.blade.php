@@ -103,7 +103,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item"
                             href="{{route('payer-registration',['requestFrom'=>'land'])}}">Register payer</a>
-                        <a class="dropdown-item" href="{{route('get-industrial-quick-payments')}}">Quick payments</a>
+                        <a class="dropdown-item" href="{{route('get-land-quick-payments')}}">Quick payments</a>
                         <a class="dropdown-item" href="{{route('land-generate-report')}}">Generate report</a>
 
                     </div>

@@ -21,13 +21,14 @@
     <div class="col">
         <div class="card shadow">
             <div class="card-header bg-transparent">
-                <h3 class="mb-0 text-center"><span class="text-uppercase">Businness Tax Report from {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
+                <h3 class="mb-0 text-center"><span class="text-uppercase">Land Tax Report from {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
             <table id="business_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
                         <th style="width:250px;" class="text-center">{{__('menu.Payment')}}</th>
-                        <th style="width:300px;"class="text-center">{{ __('menu.Shop ID')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.Premises ID')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.Address')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.VAT Payer ID')}}</th>
                     </tr>
                 </thead>
@@ -37,6 +38,7 @@
                     <tr>
                         <td class="text-center">{{$records->payment}}</td>
                         <td class="text-center">{{$records->land_id}}</td>
+                        <td class="text-center">{{$records->landTax->address}}</td>
                         <td class="text-center">{{$records->payer_id}}</td>
                         
                     </tr>
@@ -47,7 +49,7 @@
         
             
 
-            <form method="POST" action="{{route('land-report-pdf')}}" class="d-none" id="dates">
+            <form method="POST" action="{{route('land-tax-report-pdf')}}" class="d-none" id="dates">
                 @csrf
                         <input name="startDate" value="{{ $dates->startDate }}">
                         <input  name ="endDate" value="{{ $dates->endDate }}">

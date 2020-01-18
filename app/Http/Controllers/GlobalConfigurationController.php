@@ -221,7 +221,7 @@ class GlobalConfigurationController extends Controller
         $vatDetails->industrial = Vat::where('route', 'industrial')->first();
         $vatDetails->entertainment = Vat::where('route', 'entertainment')->first();
         $vatDetails->land = Vat::where('route', 'land')->first();
-        // $vatDetails->clubLicence = Vat::where('route', 'club-licence')->first();
+        $vatDetails->clubLicence = Vat::where('route', 'club-licence')->first();
         return $vatDetails;
     }
 }

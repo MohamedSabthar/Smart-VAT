@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Land_tax_payment extends Model
 {
-    protected $table = 'Land_taxe_payments';
+    protected $table = 'land_tax_payments';
     use SoftDeletes;
 
     public function vatPayer()
@@ -18,5 +18,9 @@ class Land_tax_payment extends Model
     public function landTax()
     {
         return $this->belogsTo('App\Land_tax', 'land_id'); //a payment belongs to a separate Land
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id');  // payment belongs to a user
     }
 }
