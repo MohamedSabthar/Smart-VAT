@@ -237,14 +237,14 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Month Assesment Amount')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
-								type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
-								name="annualAssesmentAmount">
+							<input class="form-control @error('monthAssesmentAmount') is-invalid  @enderror"
+								type="text" value="{{old('monthAssesmentAmount')}}" id="monthAssesmentAmount"
+								name="monthAssesmentAmount">
 
-							<span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
+							<span class="invalid-feedback" id="invalidMonthAssesmentAmount" role="alert">
 								<strong>dfafjkladfj</strong>
 							</span>
-							@error('annualAssesmentAmount')
+							@error('monthAssesmentAmount')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>

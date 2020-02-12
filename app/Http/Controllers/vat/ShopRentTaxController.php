@@ -31,7 +31,7 @@ class ShopRentTaxController extends Controller
         $shopRentTax = new Shop_rent_tax();
         $shopRentTax->registration_no = $request->assesmentNo;
         $shopRentTax->key_money =$request->keyMoney;
-        $shopRentTax->month_worth = $request->annualAssesmentAmount;
+        $shopRentTax->month_worth = $request->monthAssesmentAmount;
         $shopRentTax->shop_name = $request->businessName;
         $shopRentTax->phone = $request->phoneno;
         $shopRentTax->door_no = $request->doorno;
@@ -41,19 +41,20 @@ class ShopRentTaxController extends Controller
         $shopRentTax->payer_id =$id;
  
         $shopRentTax ->save();
+
          
         return redirect()->route('shop-rent-profile', ['id'=>$vatPayer->id])->with('status', 'New shop Rent Added successfully');
     }
-    private function calculateTax($anualWorth, $assessmentAmmount, $lastPaymentDate)
+    private function calculateTax($monthWorth, $assessmentAmmount, $lastPaymentDate)
     {
         $currentDate = now()->toArray();
-        $shopRentTax = Vat::where('route', 'shoprent')->firstOrFail();
+        $shopRentTax = Vat::where('route','shoprent')->firstOrFail();
 
         if ($lastPaymentDate!=null) {
-            return ($anualWorth*($shopRentTax->vat_percentage/100)+$assessmentAmmount)*($currentDate['year']-$lastPaymentDate['year']);
+            return ($monthWorth*($shopRentTax->vat_percentage/100)+$assessmentAmmount)*($currentDate['year']-$lastPaymentDate['year']);
         }
         
-        return $anualWorth*($shopRentTax->vat_percentage/100)+$assessmentAmmount;
+        return $monthWorth*($shopRentTax->vat_percentage/100)+$assessmentAmmount;
     }
 
     public function shopRentPayments($shop_id)

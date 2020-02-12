@@ -13,14 +13,14 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('entertainment')}}`,'_self')"
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('booking')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-center text-muted mb-0">
-						Entertainment Tax payers
+						Booking Tax payers
 					</h3>
 					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
@@ -239,42 +239,8 @@
 							</tr>
 						</thead>
 						<tbody>
-
-							@foreach ($vatPayer->bookingPayment as $payments)
-							<tr>
-								
-
-								<td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
-
-
-								<td class="text-right">
-									<div class="dropdown">
-										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<i class="fas fa-ellipsis-v"></i>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-
-
-											<form
-												action="{{route('remove-entertainment-payment',['id'=>$payments->id])}}"
-												method="POST">
-												@csrf
-												@method('delete')
-												<input type="submit" value="{{__('menu.Remove Payment')}}"
-													class="dropdown-item">
-
-											</form>
-											<a class="dropdown-item toggle-update" data-value="{{$payments}}">
-												Update payment</a>
-										</div>
-
-									</div>
-								</td>
-
-
-							</tr>
-							@endforeach
+                       
+							
 
 
 						</tbody>
@@ -294,12 +260,12 @@
 						</thead>
 
 					</table>
-					{{-- end of entertainment TAX payments table --}}
+					{{-- end of booking TAX payments table --}}
 				</div>
 			</div>
 			{{-- end of payment history card --}}
 
-			{{-- update ticket payment card --}}
+			{{-- update security deposit payment card --}}
 			<div class="card bg-secondary shadow mb-5 " id="update-payment-card">
 				<div class="card-header bg-white border-0">
 					<div class="row align-items-center">
@@ -311,7 +277,7 @@
 					</div>
 				</div>
 				<div class="card-body">
-					{{-- Entertainment payment update form --}}
+					{{-- booking payment update form --}}
 					<form method="POST"
 						action="{{route('update-entertainment-ticket-payments',['id'=> $vatPayer->id])}}"
 						id="ticket-update-payment-form">
@@ -432,95 +398,67 @@
 				<div class="card-header bg-white border-0">
 					<div class="row align-items-center">
 						<div class="col-8">
-							<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new event payment')}}</span>
+							<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new booking payment')}}</span>
 							</h3>
 						</div>
 
 					</div>
 				</div>
 				<div class="card-body">
-					{{-- Entertainment payment form --}}
+					{{-- Booking payment form --}}
 					<form method="POST" action="{{route('receive-entertainment-payments',['id'=> $vatPayer->id])}}"
 						id="ticket-payment-form">
 						@csrf
-						<div class="form-group row">
-							<label for="ticket-type"
-								class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket type')}}</label>
-							<div class="col-md-10">
+					<div class="form-group row">
+						<label for="business-type"
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Event Venue')}}</label>
+						<div class="col-md-10">
 
-								<select id="ticketType" name="ticketType"
-									class="form-control @error('ticketType') is-invalid  @enderror">
-
-									<option value="" disabled selected>Select a ticket type</option>
-
-									@foreach ($ticketTypes as $type)
-									<option value="{{$type->id}}" @if(old('ticketType')==$type->id) selected
-										@endif>{{$type->description}} -
-										{{$type->vat_percentage.'%'}}
-									</option>
-									@endforeach
-
-
-								</select>
-								@error('ticketType')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
+							<select id="place" name="place" class="form-control @error('place') is-invalid  @enderror">
+								<option value=""></option>
+								{{-- only for testing need to implement Ajax searchBuisness --}}
+								@foreach ($bookingTaxType as $place)
+								<option value="{{$place->id}}" @if(old('place')==$place->id) selected
+									@endif>{{$place->place_description}}
+								</option>
+								@endforeach
+							</select>
+							@error('place')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
 						</div>
-						<div class="form-group row">
-							<label for="example-text-input"
-								class="col-md-2 col-form-label form-control-label ">{{__('menu.Event Venue')}}</label>
-							<div class="col-md-10 ">
-								<input class="form-control @error('placeAddress') is-invalid  @enderror" type="text"
-									value="{{old('placeAddress')}}" id="placeAddress" name="placeAddress">
-								@error('placeAddress')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="example-text-input"
-								class="col-md-2 col-form-label form-control-label ">{{__('menu.Quoted Ticket')}}</label>
-							<div class="col-md-10 ">
-								<input class="form-control @error('quotedTickets') is-invalid  @enderror" type="number"
-									value="{{old('quotedTickets')}}" id="quotedTickets" name="quotedTickets">
-								@error('quotedTickets')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
-						</div>
+					</div>
+					<div class="form-group row">
+						<label for="business-type"
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Event')}}</label>
+						<div class="col-md-10">
 
-						<div class="form-group row">
-							<label for="example-text-input"
-								class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket Price')}}</label>
-							<div class="col-md-10 ">
-								<input class="form-control @error('ticketPrice') is-invalid  @enderror" type="number"
-									step="0.01" value="{{old('ticketPrice')}}" id="ticketPrice" name="ticketPrice">
-								@error('ticketPrice')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
+							<select id="event" name="event" class="form-control @error('event') is-invalid  @enderror">
+								<option value=""></option>
+								{{-- only for testing need to implement Ajax searchBuisness --}}
+								@foreach ($bookingTaxType as $event)
+								<option value="{{$event->id}}" @if(old('event')==$event->id) selected
+									@endif>{{$event->event_description}}
+								</option>
+								@endforeach
+							</select>
+							@error('event')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
 						</div>
-
-
+					</div>
 						<div class="form-group">
 							{{-- <input class=" btn btn-primary float-right" value="{{__('menu.Add payment')}}"
+							
 							type="submit"> --}}
 							<button class="btn btn-primary float-right" data-toggle="modal"
 								onclick="javascript:event.preventDefault()"
 								data-target="#confirm-ticket-payment">{{__('menu.Add payment')}}</button>
-
 						</div>
-
-
 					</form>
 					{{-- end of Entertainment payment form --}}
 

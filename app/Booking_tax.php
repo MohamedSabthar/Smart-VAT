@@ -31,10 +31,17 @@ class Booking_tax extends Model
             return $tax->payer;
         })->unique('id');   //collection filtered using unique id
     }
+
+    public function bookingTaxType()
+    {
+        return $this->belongsTo('App\Booking_tax_type', 'parent_id');   //a shop belongs to a business type
+    }
     public function payments()
     {
         return $this->hasMany('App\Booking_tax_payment', 'shop_id');   //a shop has many payments
     }
+
+    
 
     
     

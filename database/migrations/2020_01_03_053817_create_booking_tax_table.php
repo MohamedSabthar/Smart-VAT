@@ -16,16 +16,13 @@ class CreateBookingTaxTable extends Migration
         Schema::create('booking_tax', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('place'); 
-            $table->string('date');
-            $table->string('event');                                
-            $table->String('key_money');
-            $table->string('time');
-            $table->string('additional_time');                           
+            $table->string('event');                                                          
             $table->bigInteger('payer_id')->unsigned();                         // buisness/Shop owner
             $table->bigInteger('employee_id')->unsigned();
             $table->foreign('payer_id')->references('id')->on('vat_payers');                    //payer id is FK of vat_payers table
             $table->foreign('employee_id')->references('id')->on('users');                    //employee id is FK of users table
-           
+            $table->foreign('place')->references('id')->on('booking_tax_types');
+            $table->foreign('event')->references('id')->on('booking_tax_types');
         
             $table->timestamps();
             $table->softDeletes();
