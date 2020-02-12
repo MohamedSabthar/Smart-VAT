@@ -215,6 +215,7 @@ Route::post('/entertainment/performance-summary-report-pdf', 'vat\EntertainmentT
  */
 Route::get('/business/business-notice/{id}', 'vat\BusinessTaxController@sendNotice')->name('business-send-notice');
 Route::get('/retry-business-notification/{id}/{notify}', 'RetryNoticeController@retryBusinessNotice')->name('retry-business-notice');
+Route::get('/retry-industrial-notification/{id}/{notify}', 'RetryNoticeController@retryIndustrialNotice')->name('retry-industrial-notice');
 
 
 /**
