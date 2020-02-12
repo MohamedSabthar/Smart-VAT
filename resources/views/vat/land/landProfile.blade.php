@@ -121,7 +121,7 @@
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
 				Click here to add new premises
-				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Premise')}}</a>
+				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Premises')}}</a>
 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -218,7 +218,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment Amount')}}</label>
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Assessment Amount')}}</label>
 						<div class="col-md-10 ">
 							<input class="form-control @error('assesmentAmount') is-invalid  @enderror"
 								type="text" value="{{old('assesmentAmount')}}" id="assesmentAmount"
@@ -329,7 +329,7 @@
 						<thead class="thead-light">
 							<tr>
 								<th style="width:250px;">{{__('menu.Assesment No.')}}</th>
-								<th style="width:300px;">{{__('menu.Premises ')}}</th>
+								<th style="width:300px;">{{__('menu.Premises Name')}}</th>
 								<th>{{__('menu.Payer Phone')}}</th>
 								<th></th>
 							</tr>
@@ -461,7 +461,7 @@
            if(!$.isNumeric(assessmentAmmount)){
             $(this).addClass('is-invalid')
             $('#invalidAnnualAssesmentAmount').removeClass('d-none')
-            $('#invalidAnnualAssesmentAmount>strong').text("{{__('menu.Invalid Assesment Amount')}}")
+            $('#invalidAnnualAssesmentAmount>strong').text("{{__('menu.Invalid Assessment Amount')}}")
             
            }else{
                $(this).removeClass('is-invalid')

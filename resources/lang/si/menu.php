@@ -212,7 +212,14 @@ return [
 
 
     //Land tax 
-    'Premise' => 'පරිශ්‍රය',
+    '[+] Premises' => '[+] පරිශ්‍රය',
+    's premises hired'=>'ගේ පරිශ්‍ර කුලියට',
+    'Premises Name' => 'පරිශ්‍රයේ නම',
+    'Payer Phone' => 'ගෙවන්නාගේ දුරකථනය',
+    'Add new premises' => 'නව පරිශ්‍රයන් එක් කරන්න',
+    'Assesment Amount' => 'තක්සේරු මුදල',
+
+    'Search Premises Name'=> 'පරිශ්‍රයේ නම සොයන්න',
 
 
 

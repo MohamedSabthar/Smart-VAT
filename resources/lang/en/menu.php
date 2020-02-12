@@ -228,6 +228,13 @@ return [
     'Industrial Range Types'=>'Industrial Range Types',
 
 
-    
+    //Land tax
+    '[+] Premises' => '[+] Premises',
+    's premises hired' => 's premises hired',
+    'Premises Name' => 'Premises Name',
+    'Payer Phone' => 'Payer Phone',
+    'Add new premises'=> 'Add new premises',
+    'Assessment Amount' => 'Assessment Amount',
+    'Search Premises Name'=> 'Search Premises Name'
 
 ];
