@@ -51,6 +51,8 @@
 			</a>
 
 
+
+
 			<ul class="nav align-items-center d-md-none">
 				{{-- Notification --}}
 				<li class="nav-item dropdown">
@@ -65,9 +67,14 @@
 							<h6 class="text-overflow m-0 notification-title">Unread Notifications</h6>
 						</div>
 						@foreach (Auth::user()->unreadNotifications as $notification)
-						<a class="dropdown-item">
+						<a class="dropdown-item"
+							href="{{route('retry-business-notice', ['id'=>$notification->data['id'],'notify'=>$notification->id ] )}}">
+
 							<i class="far fa-dot-circle"></i>
-							<span style="width: 50px;">{{$notification->data['data']}}</span>
+							<span style="width: 50px;">{{$notification->data['data']}}
+
+							</span>
+
 						</a>
 						@endforeach
 						<div class="dropdown-divider mx-3"></div>
@@ -198,6 +205,19 @@
 
 
 				<ul class="navbar-nav align-items-center d-none d-md-flex">
+					{{-- retry Notification status --}}
+					@if (session('notice-status'))
+					<div class="alert alert-success alert-dismissible fade show in-line" role="alert">
+						<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+						<span class="alert-inner--text mx-2"><strong
+								class="mx-1">Success!</strong>{{session('notice-status')}}</span>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					@endif
+					{{-- end of retry Notification status --}}
+
 					{{-- Notification --}}
 					<li class="nav-item dropdown">
 						<a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -211,7 +231,9 @@
 								<h6 class="text-overflow m-0 notification-title">Unread Notifications</h6>
 							</div>
 							@foreach (Auth::user()->unreadNotifications as $notification)
-							<a class="dropdown-item">
+							<a class="dropdown-item"
+								href="{{route('retry-'.$notification->data['vat'].'-notice', ['id'=>$notification->data['id'],'notify'=>$notification->id ] )}}">
+
 								<i class="far fa-dot-circle"></i>
 								<span>{{$notification->data['data']}}</span>
 							</a>

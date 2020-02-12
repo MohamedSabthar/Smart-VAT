@@ -40,9 +40,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-      /**
+    /**
      * overriding login username to userName from email
-     * override file evendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php
+     * override file vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php
      *
      * @return string
      */
