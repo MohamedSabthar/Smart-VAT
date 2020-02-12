@@ -263,8 +263,8 @@ class IndustrialTaxController extends Controller
 
     public function generateReport(IndustrialTaxReportRequest $request)
     {
-        $reportData = IndustrialReport::generateIndustrialReport();
         $dates = (object)$request->only(["startDate","endDate"]);
+        $reportData = IndustrialReport::generateIndustrialReport($dates);
     
         $records = Industrial_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {
@@ -300,15 +300,15 @@ class IndustrialTaxController extends Controller
 
         $records = Industrial_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         $sum=$records->sum('payment');
-        $pdf->loadHTML($this->summaryReportHTML($records, $dates, $sum));
+        $pdf->loadHTML($this->summaryReportHTML($dates, $sum));
         
 
         return $pdf->stream();
     }
 
-    public function summaryReportHTML($records, $dates, $sum)
+    public function summaryReportHTML($dates, $sum)
     {
-        $reportData = IndustrialReport::generateIndustrialReport();
+        $reportData = IndustrialReport::generateIndustrialReport($dates);
         $output = "
         <h3 align='center'>
             Industrial Summary Report from $dates->startDate to $dates->endDate

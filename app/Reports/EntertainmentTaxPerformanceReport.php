@@ -16,9 +16,9 @@ class EntertainmentTaxPerformanceReport
         $this->payments = $payments;
     }
 
-    public static function generateEntertainmentTaxPerformanceReport()
+    public static function generateEntertainmentTaxPerformanceReport($dates)
     {
-        $records = Entertainment_tax_performance_payment::all()->map(function ($obj) {
+        $records = Entertainment_tax_performance_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get()->map(function ($obj) {
             return new EntertainmentTaxPerformanceReport($obj->type->description, $obj->payment);
         });
 
