@@ -198,9 +198,8 @@ class EntertainmentTaxController extends Controller
 
     public function generateTicketReport(IndustrialTaxReportRequest $request)
     {
-        $reportData = EntertainmentTaxTicketReport::generateEntertainmentTaxTicketReport();
         $dates = (object)$request->only(["startDate","endDate"]);
-    
+        $reportData = EntertainmentTaxTicketReport::generateEntertainmentTaxTicketReport($dates);
         $records = Entertainment_tax_tickets_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {
             return view('vat.entertainment.entertainmentTicketReportView', ['dates'=>$dates,'records'=>$records]);
@@ -234,15 +233,15 @@ class EntertainmentTaxController extends Controller
 
         $records = Entertainment_tax_tickets_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         $sum=$records->sum('payment');
-        $pdf->loadHTML($this->ticketSummaryReportHTML($records, $dates, $sum));
+        $pdf->loadHTML($this->ticketSummaryReportHTML($dates, $sum));
         
 
         return $pdf->stream();
     }
 
-    public function ticketSummaryReportHTML($records, $dates, $sum)
+    public function ticketSummaryReportHTML($dates, $sum)
     {
-        $reportData = EntertainmentTaxTicketReport::generateEntertainmentTaxTicketReport();
+        $reportData = EntertainmentTaxTicketReport::generateEntertainmentTaxTicketReport($dates);
         $output = "
         <h3 align='center'>
             Industrial Summary Report from $dates->startDate to $dates->endDate
@@ -298,8 +297,8 @@ class EntertainmentTaxController extends Controller
 
     public function generatePerformanceReport(IndustrialTaxReportRequest $request)
     {
-        $reportData = EntertainmentTaxPerformanceReport::generateEntertainmentTaxPerformanceReport();
         $dates = (object)$request->only(["startDate","endDate"]);
+        $reportData = EntertainmentTaxPerformanceReport::generateEntertainmentTaxPerformanceReport($dates);
     
         $records = Entertainment_tax_performance_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {
@@ -334,15 +333,15 @@ class EntertainmentTaxController extends Controller
 
         $records = Entertainment_tax_performance_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         $sum=$records->sum('payment');
-        $pdf->loadHTML($this->performanceSummaryReportHTML($records, $dates, $sum));
+        $pdf->loadHTML($this->performanceSummaryReportHTML($dates, $sum));
         
 
         return $pdf->stream();
     }
 
-    public function performanceSummaryReportHTML($records, $dates, $sum)
+    public function performanceSummaryReportHTML($dates, $sum)
     {
-        $reportData = EntertainmentTaxPerformanceReport::generateEntertainmentTaxPerformanceReport();
+        $reportData = EntertainmentTaxPerformanceReport::generateEntertainmentTaxPerformanceReport($dates);
         $output = "
         <h3 align='center'>
             Industrial Summary Report from $dates->startDate to $dates->endDate

@@ -176,11 +176,8 @@ class BusinessTaxController extends Controller
 
     public function generateReport(BusinessTaxReportRequest $request)                                              //get the star date and the end date for the report generation
     {
-        $reportData = BusinessReport::generateBusinessReport();
         $dates = (object)$request->only(["startDate","endDate"]);
-          
-        $records=Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();
-    
+        $reportData = BusinessReport::generateBusinessReport($dates);
         $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {
             return view('vat.business.businessReportView', ['dates'=>$dates,'records'=>$records]);
@@ -247,14 +244,14 @@ class BusinessTaxController extends Controller
 
         $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         $sum=$records->sum('payment');
-        $pdf->loadHTML($this->summaryReportHTML($records, $dates, $sum));
+        $pdf->loadHTML($this->summaryReportHTML($dates, $sum));
         
 
         return $pdf->stream();
     }
-    public function summaryReportHTML($records, $dates, $sum)
+    public function summaryReportHTML($dates, $sum)
     {
-        $reportData = BusinessReport::generateBusinessReport();
+        $reportData = BusinessReport::generateBusinessReport($dates);
         $output = "
          <h3 align='center'>Businness Summary Report from $dates->startDate to $dates->endDate </h3>
          <table width='100%' style='border-collapse: collapse; border: 0px;'>
