@@ -49,12 +49,23 @@ class Timer
 
     public static function triger($tax)
     {
-        return function () {
+        $dueDate = Carbon::parse(Vat::where('route', '=', $tax)->firstOrFail()->due_date)->toArray();
+            
+        $currentDate = Carbon::now()->toArray();
+        echo $tax;
+        echo " ";
+        echo$currentDate['day'];
+        echo "-";
+        echo$dueDate['day'];
+        echo "\n";
+        return function () use ($tax) {
             $dueDate = Carbon::parse(Vat::where('route', '=', $tax)->firstOrFail()->due_date)->toArray();
+            
             $currentDate = Carbon::now()->toArray();
             if ($currentDate['month']==$dueDate['month'] && $currentDate['day']==$dueDate['day']) {
                 return true;
             }
+            return false;
         };
     }
 

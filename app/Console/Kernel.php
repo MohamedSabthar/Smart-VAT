@@ -39,7 +39,8 @@ class Kernel extends ConsoleKernel
     {
         
         //sending business tax overdue notification
-        $schedule->call(Timer::trigerBusinessDue())->when(Timer::triger('business'));// ->everyMinute();
+        $schedule->call(Timer::trigerBusinessDue())->when(Timer::triger('business'));
+        // ->everyMinute();
         
         // sending industrial tax overdue notification
         $schedule->call(Timer::trigerBusinessDue())->when(Timer::triger('industrial'));
