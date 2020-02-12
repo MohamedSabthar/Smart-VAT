@@ -57,7 +57,7 @@ class VatPagesController extends Controller
     {
         return view('vat.booking.booking');
     }
-    public function clubhouselicence()
+    public function clubLicence()
     {
         $payers = Club_licence_tax::clubLicenceTaxPayers();  //get all the vat_payers who club licence tax
         return view('vat.clubLicence.clubLicence',['payers'=>$payers]);

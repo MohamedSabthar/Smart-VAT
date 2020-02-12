@@ -210,6 +210,13 @@ return [
      'Assessment Ranges of Industrial Tax' => 'Assessment Ranges of Industrial Tax',
      'Industrial Range Types'=>'Industrial Range Types',
 
+
+    //Land tax 
+    'Premise' => 'පරිශ්‍රය',
+
+
+
+
     // Club license tax
     'Club licence'=> 'සමාජ ශාලා බලපත්‍රය'
 

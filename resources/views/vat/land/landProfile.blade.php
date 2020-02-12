@@ -121,7 +121,7 @@
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
 				Click here to add new premises
-				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Premises')}}</a>
+				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Premise')}}</a>
 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>

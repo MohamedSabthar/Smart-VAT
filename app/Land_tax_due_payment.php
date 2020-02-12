@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Land_tax_due_payment extends Model
 {
-    protected $table = 'business_tax_due_payments';
+    protected $table = 'land_tax_due_payments';
     protected $primaryKey = ['payer_id','land_id'];
     public $incrementing = false;
     public $timestamps = false;

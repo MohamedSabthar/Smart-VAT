@@ -6,13 +6,15 @@ use Illuminate\Support\Arr;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddLandRequest;
+use App\Http\Requests\LandTaxReportRequest;
+use App\Http\Requests\UpdateLandProfileRequest;
 
 use App\Vat;
 use App\Vat_payer;
 use App\Land_tax;
 use App\Land_tax_payment;
-use App\Http\Requests\AddLandRequest;
-use App\Http\Requests\LandTaxReportRequest;
+use App\Land_tax_due_payment;
  
 
 use Auth;
@@ -107,9 +109,10 @@ class LandTaxController extends Controller
 
     public function landPayments($land_id)
     {
-        $landTax = Land_tax::findOrFail($land_id);
+        $landTaxPremises = Land_tax::findOrFail($land_id);
+        
         $currentDate = now()->toArray();  // get the current date propoties
-        $lastPaymentDate = $landTax->payments->pluck('created_at')->last();  // get the last payment date
+        $lastPaymentDate = $landTaxPremises->payments->pluck('created_at')->last();  // get the last payment date
         $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
         $paid = false;
         $duePayment = 0.0;
@@ -117,12 +120,11 @@ class LandTaxController extends Controller
         if ($lastPaymentDate!=null && $currentDate['year'] == $lastPaymentDate['year']) { //if last_payment year matchess current year
             $paid=true; // then this year has no due
         } else {
-            $dueAmount = $landTax->due == null ? 0 : $landTax->due->due_amount;   //last due ammount which is not yet paid
-            $duePayment = $this->calculateTax($landTax->worth, $dueAmount);
+            $dueAmount = $landTaxPremises->due == null ? 0 : $landTaxPremises->due->due_amount;   //last due ammount which is not yet paid
+            $duePayment = $this->calculateTax($landTaxPremises->worth, $dueAmount);
         }
 
-
-         return view('vat.land.landPayments', ['landTax'=>$landTax, 'paid'=>$paid,'duePayment'=>$duePayment]);  
+         return view('vat.land.landPayments', ['landTaxPremises'=>$landTaxPremises, 'paid'=>$paid,'duePayment'=>$duePayment]);  
     }
 
     // register new Premises for Land tax
@@ -148,15 +150,15 @@ class LandTaxController extends Controller
     public function receiveLandPayments($land_id, Request $request)
     {
         $payerId = Land_tax::findOrFail($land_id)->payer->id;   // getting vat payer Id
-
-        $landTaxPayment = new Land_tax_payment;
+        
+        $landTaxPayment = new Land_tax_payment();
         $landTaxPayment->payment = $request->payment;
         $landTaxPayment->land_id = $land_id;
-        $landTaxPayment->payment = $payerId;
-        $landTaxPayment->payment = Auth::user()->id;
+        $landTaxPayment->payer_id = $payerId;
+        $landTaxPayment->user_id = Auth::user()->id;
         $landTaxPayment->save();
 
-        return redirect('status','Payment added Successfully'); 
+        return redirect()->back()->with('status','Payment added Successfully'); 
     }
 
     //Report Generation

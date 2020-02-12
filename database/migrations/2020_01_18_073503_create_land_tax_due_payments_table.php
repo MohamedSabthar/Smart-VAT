@@ -18,10 +18,8 @@ class CreateLandTaxDuePaymentsTable extends Migration
             $table->bigInteger('land_id')->unsigned();
             $table->double('due_amount')->default(0);
             $table->primary(['payer_id','land_id']);
-            $table->foreign('payer_id')->reference('id')->on('land_taxes');  //tax payment for a land
-            $table->foreign('user_id')->reference('id')->on('vat_payers');  //tax payment by a vatpayer
-
-            $table->timestamps();
+            $table->foreign('land_id')->references('id')->on('land_taxes');  //tax payment for a land
+            $table->foreign('payer_id')->references('id')->on('vat_payers');  //tax payment by a vatpayer
         });
     }
 
