@@ -159,20 +159,18 @@ Route::post('/industrial/summary-report-pdf', 'vat\IndustrialTaxController@summa
 Route::get('/shop-rent/profile/{id}', 'vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
 Route::post('/shop-rent/shop-register/{id}', 'vat\ShopRentTaxController@registerShopRent')->name('shop-rent-register');
 Route::get('/shop-rent/payments/{shop_id}', 'vat\ShopRentTaxController@shopRentPayments')->name('shop-rent-payments');
-Route::post('/shop-rent/payments{shop_id}', 'vat\ShopRentTaxController@reciveshopRentPayments')->name('receive-shop-rent-payments');
+Route::post('/shop-rent/payments/{shop_id}', 'vat\ShopRentTaxController@reciveshopRentPayments')->name('receive-shop-rent-payments');
 Route::get('/shop-rent/quick-payments', 'vat\ShopRentTaxController@viewQuickPayments')->name('get-shop-rent-quick-payments');
 Route::post('/shop-rent/check-payments', 'vat\ShopRentTaxController@checkPayments')->name('check-shop-rent-payments'); //check all business payments for a given vat payer for quick payment option
 Route::post('/shop-rent/accept-quick-payments', 'vat\ShopRentTaxController@acceptQuickPayments')->name('shop-rent-quick-payments');
-
 Route::delete('/shop-rent/payment-remove/{id}', 'vat\ShopRentTaxController@removePayment')->name('remove-shop-rent-payment'); //soft delete business payment
 Route::get('/shop-rent/payment-trash/{id}', 'vat\ShopRentTaxController@trashPayment')->name('shop-rent-trash-payment'); //trash business payment
 Route::get('/shop-rent/payment-restore/{id}', 'vat\ShopRentTaxController@restorePayment')->name('restore-shop-rent-payment'); // restore business
-
 Route::delete('/shop-rent/shop-rent-remove/{shop_id}', 'vat\ShopRentTaxController@removeShopRent')->name('remove-shop-rent'); // soft delete business route
 Route::get('/shop-rent/shop-rent-trash/{payer_id}', 'vat\ShopRentTaxController@trashShopRent')->name('trash-shop-rent'); // trash business
 Route::get('/shop-rent/shop-rent-restore/{id}', 'vat\ShopRentTaxController@restoreShopRent')->name('restore-shop-rent'); // restore business
-
-
+Route::get('/shop-rent/generate-report', 'vat\ShopRentTaxController@shopRentReportGeneration')->name('shop-rent-generate-report');
+Route::post('/shop-rent/generation', 'vat\ShopRentTaxController@generateReport')->name('shop-rent-report-view');
 //booking tax
 Route::get('/booking/profile/{id}', 'vat\BookingTaxController@bookingprofile')->name('booking-profile');
 Route::post('/booking/booking-register/{id}', 'vat\BookingTaxController@registerBooking')->name('booking-register');

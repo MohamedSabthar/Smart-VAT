@@ -145,8 +145,8 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item"
                             href="{{route('payer-registration',['requestFrom'=>'shop-rent'])}}">Register payer</a>
-                        <a class="dropdown-item" href="{{route('get-industrial-quick-payments')}}">Quick payments</a>
-                        <a class="dropdown-item" href="{{route('industrial-generate-report')}}">Generate report</a>
+                        <a class="dropdown-item" href="{{route('get-shop-rent-quick-payments')}}">Quick payments</a>
+                        <a class="dropdown-item" href="{{route('shop-rent-generate-report')}}">Generate report</a>
 
                     </div>
                 </div>
