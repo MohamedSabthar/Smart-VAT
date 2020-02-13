@@ -98,7 +98,6 @@
             </div>
             <p class="mt-3 mb-0 text-muted text-sm">
                 <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
             </p>
         </div>
     </div>
@@ -120,46 +119,61 @@
             </div>
 
             <div class="table-responsive">
-                <table id="example" class="table">
+                {{-- Business Tax Latest Payments table--}}
+                <table id="business_payments_table" class="table px--5">
                     <thead class="thead-light">
                         <tr>
                             <th>{{__('menu.Assesment No.')}}</th>
                             <th>{{__('menu.Owner Name')}}</th>
                             <th>{{__('menu.Payment(LRK)')}}</th>
+                            <td>{{__('menu.Shop Name')}}</td>
                             <th>{{__('menu.Date')}}</th>
-                            <th>{{__('menu.Registerd By')}}</th>
+                            @if (Auth::user()->role=='admin')
+                            <th>{{__('menu.Payment received by')}}</th>
+                            @endif
+                            <th></th>
                         </tr>
                     </thead>
+                            {{-- Column wise searching --}}
                     <thead id="search_inputs">
                         <tr>
                             <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
                                     placeholder="{{__('menu.Assesment No.')}}" /></th>
                             <th><input type="text" class="form-control form-control-sm" id="searchOwnerName"
                                     placeholder="{{__('menu.Owner Name')}}" /></th>
+                            <th></th>
+                            <th><input type="text" class="form-control form-control-sm" id="searchShopName"
+                                    placeholder="{{__('menu.Shop Name')}}" /></th>
+                            <th><input type="date" class="form-control form-control-sm" id="searchDate"
+                                    placeholder="{{__('menu.Date')}}" /></th>
                         </tr>
                     </thead>
+                         {{-- End of seaching --}}
                     <tbody>
+                       
+                        @foreach ($payments as $payment)
                         <tr>
-                            <td>02</td>
-                            <td>perera</td>
-                            <td>2p0</td>
-                            <td>9/18/2019</td>
-                            <td>john</td>
+                        <td>{{$payment->id}}</td>
+                        <td>{{$payment->vatPayer->full_name}}</td>
+                        <td>{{$payment->payment}}</td>
+                        <td>{{$payment->businessTaxShop->shop_name}}</td>
+                        <td>{{$payment->created_at->format('Y-m-d')}}</td>
+                        @if (Auth::user()->role=='admin')
+                        <td>{{$payment->user->name}}</td>
+						@endif
                         </tr>
-                        <tr>
-                            <td>01</td>
-                            <td>perera</td>
-                            <td>2000</td>
-                            <td>9/18/2019</td>
-                            <td>john</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                     <thead class="thead-light">
                         <th>{{__('menu.Assesment No.')}}</th>
                         <th>{{__('menu.Owner Name')}}</th>
                         <th>{{__('menu.Payment(LRK)')}}</th>
+                        <td>{{__('menu.Shop Name')}}</td>
                         <th>{{__('menu.Date')}}</th>
-                        <th>{{__('menu.Registerd By')}}</th>
+                        @if (Auth::user()->role=='admin')
+                        <th>{{__('menu.Payment received by')}}</th>
+                        @endif
+
                     </thead>
 
                 </table>
@@ -173,9 +187,9 @@
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script>
-    $(document).ready(function() {
+	$(document).ready(function() {
 
-        var id = '#example';                      //data table id
+        var id = '#business_payments_table';                  //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -192,22 +206,36 @@
  
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
-        //individulat column search
-        $('#searchaAssesmentNo').on( 'keyup', function () { 
+        //individulate column search
+        $('#searchOwnerName').on( 'keyup', function () { 
             table
-                .columns( 0 )
+                .columns( 1 )
                 .search( this.value )
                 .draw();
-        });
+		});
 
-        $('#searchOwnerName').on( 'keyup', function () { 
-        table
-            .columns( 1 )
-            .search( this.value )
-            .draw();
-        });
-           
-    } );
+		$('#searchaAssesmentNo').on( 'keyup', function () { 
+		table
+			.columns( 0 )
+			.search( this.value )
+			.draw();
+		});
+
+		$('#searchShopName').on( 'keyup', function () { 
+		table
+			.columns( 3 )
+			.search( this.value )
+			.draw();
+		});
+
+		$('#searchDate').on( 'keyup', function () { 
+		table
+			.columns( 4 )
+			.search( this.value )
+			.draw();
+		});
+
+	} );
 
 </script>
 @endpush
