@@ -77,7 +77,8 @@
 	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('vehicle-park-generate-report')}}`,'_self')"
+<div class="col-xl-3 col-lg-6" 
+    {{-- onclick="javascript:window.open(`{{route('vehicle-park-generate-report')}}`,'_self')" --}}
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -99,109 +100,174 @@
 @endsection
 
 @section('pageContent')
-<div class="row">
-	<div class="col">
+  {{-- Tables --}}
 
-		<div class="card shadow">
-			<div class="card-header bg-white border-0">
-				<div class="row align-items-center">
-					<div class="col-6 card-header">
-						<h3 class="mb-0 d-inline pr-2">Vehicle Park Tax Payers</h3>
-					</div>
-					<div class="col-6 text-right">
-						<button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
-							data-placement="right" title="Click to register new VAT Payer"
-							onclick="javascript:window.open('{{route('payer-registration',['requestFrom'=>'vehicle-park'])}}','_self')">
-							<span><i class="fas fa-user-plus"></i></span>
-							<span class="btn-inner--text">Register</span>
-						</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="table-responsive py-4">
-				{{-- Land VAT payers table --}}
-				<table id="industrial_payer_table" class="table  px-5">
-					<thead class="thead-light">
-						<tr>
-							<th>{{__('menu.User ID')}}</th>
-							<th>{{__('menu.VAT Payer Name')}}</th>
-							<th>{{__('menu.Address')}}</th>
-							<th>{{__('menu.Email')}}</th>
-							@if (Auth::user()->role=='admin')
-							<th>{{__('menu.Registerd By')}}</th>
-							@endif
-							<th></th>
-
-						</tr>
-					</thead>
-					<thead id="search_inputs">
-						<tr>
-							<th><input type="text" class="form-control form-control-sm" id="searchId"
-									placeholder="{{__('menu.Search User ID')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchName"
-									placeholder="{{__('menu.Search Name')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchAddress"
-									placeholder="{{__('menu.Search Address')}}" /></th>
-							<th><input type="text" class="form-control form-control-sm" id="searchEmail"
-									placeholder="{{__('menu.Search Email')}}" /></th>
-							@if (Auth::user()->role=='admin')
-							<th><input type="text" class="form-control form-control-sm" id="searchAdmin"
-									placeholder="{{__('menu.Search Admin')}}" /></th>
-							@endif
-
-
-						</tr>
-					</thead>
-					<tbody>
-
-						@foreach ($payers as $payer)
-						<tr>
-							<td>{{$payer->nic}}</th>
-							<td>{{$payer->full_name}}</td>
-							<td>{{$payer->address}}</td>
-							<td>{{$payer->email}}</td>
-							@if (Auth::user()->role=='admin')
-							<td>{{$payer->user->name}}</td>
-							@endif
-							<td class="text-right">
-								<div class="dropdown">
-									<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
-										aria-haspopup="true" aria-expanded="false">
-										<i class="fas fa-ellipsis-v"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-										<a class="dropdown-item" href="{{route('land-profile',['id'=>$payer->id])}}">View profile</a>
-									</div>
-
-								</div>
-							</td>
-
-
-						</tr>
-						@endforeach
-
-
-					</tbody>
-					<thead class="thead-light">
-						<tr>
-							<th>{{__('menu.User ID')}}</th>
-							<th>{{__('menu.VAT Payer Name')}}</th>
-							<th>{{__('menu.Address')}}</th>
-							<th>{{__('menu.Email')}}</th>
-							@if (Auth::user()->role=='admin')
-							<th>{{__('menu.Registerd By')}}</th>
-							@endif
-							<th></th>
-						</tr>
-					</thead>
-
-				</table>
-				{{-- end of Land VAT payers table --}}
+<div class="row mt-5">
+  <div class="col-xl-6 mb-5 mb-xl-0">
+	<div class="card shadow">
+	  <div class="card-header border-0">
+		<div class="row align-items-center">
+		  <div class="col">
+			<h3 class="mb-0">Amounts allocated for parks Inside Fort</h3>
+		  </div>
+			<div class="col-6 text-right">
+				<button class="btn btn-sm btn-primary text-white" data-toggle="tooltip"
+					data-placement="right" title="Click to view assigned ticketing officers"
+					onclick="javascript:window.open('{{route('vehicle-park-ticketing-officers')}}','_self')">
+					{{-- <span><i class="fas fa-user-plus"></i></span> --}}
+					<span class="btn-inner--text">Officers Assigned</span>
+				</button>
 			</div>
 		</div>
+	  </div>
+	  <div class="card-header border-0">
+		<div class="row align-items-center">
+			<div class="col-7 text-right">
+				<button class="btn btn-sm btn-success text-white" data-toggle="tooltip"
+					data-placement="right" title="Click to view payments"
+					onclick="javascript:window.open('{{route('vehicle-park-vehicleParkPayments')}}','_self')">
+					{{-- <span><i class="fas fa-user-plus"></i></span> --}}
+					<span class="btn-inner--text">View Payments</span>
+				</button>
+			</div>
+		</div>
+	  </div>
+	  <div class="table-responsive">
+		<!-- table for vahicle park inside Fort -->
+		<table class="table align-items-center table-flush">
+		  <thead class="thead-light">
+			<tr>
+			  <th scope="col">vehicle</th>
+			  <th scope="col">01 Hour</th>
+			  <th scope="col">1-6 Hours</th>
+			  <th scope="col">Day</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <th scope="row">Bicycle</th>
+			  <td>5/=</td>
+			  <td>10/=</td>
+			  <td>50/=</td>
+			</tr>
+			<tr>
+			  <td>Motor Bike</td>
+			  <td>10/=</td>
+			  <td>50/=</td>
+			  <td>150/=</td>
+			</tr>
+			<tr>
+			  <td>Three Wheel</td>
+			  <td>20/=</td>
+			  <td>100/=</td>
+			  <td>250/=</td>
+			</tr>
+			<tr>
+			  <td>Van and Car</td>
+			  <td>30/=</td>
+			  <td>250/=</td>
+			  <td>500/=</td>
+			</tr>
+			<tr>
+			  <td>Lorry, Truck and Other</td>
+			  <td>200/=</td>
+			  <td>500/=</td>
+			  <td>1,500/=</td>
+			</tr>
+			<tr>
+				<td>School Van</td>
+				<td>100/=</td>
+				<td>200/=</td>
+				<td>500/=</td>
+			  </tr>
+		  </tbody>
+		</table>
+	  </div>
 	</div>
-</div>
+  </div>
+
+	<div class="col-xl-6 mb-5 mb-xl-0">
+	  <div class="card shadow">
+		<div class="card-header border-0">
+		  <div class="row align-items-center">
+			<div class="col">
+			  <h3 class="mb-0">Amounts allocated for parks outside Fort</h3>
+			</div>
+			<div class="col-6 text-right">
+			  <button class="btn btn-sm btn-primary text-white" data-toggle="tooltip"
+				  data-placement="right" title="Click to view assigned ticketing officers"
+				  onclick="javascript:window.open('{{route('vehicle-park-ticketing-officers')}}','_self')">
+				  {{-- <span><i class="fas fa-user-plus"></i></span> --}}
+				  <span class="btn-inner--text">Officers Assigned</span>
+			  </button>
+		  </div>
+		  </div>
+		</div>
+		<div class="card-header border-0">
+			<div class="row align-items-center">
+				<div class="col-7 text-right">
+					<button class="btn btn-sm btn-success text-white" data-toggle="tooltip"
+						data-placement="right" title="Click to view payments"
+						onclick="javascript:window.open('{{route('vehicle-park-vehicleParkPayments')}}','_self')">
+						{{-- <span><i class="fas fa-user-plus"></i></span> --}}
+						<span class="btn-inner--text">View Payments</span>
+					</button>
+				</div>
+			</div>
+		  </div>
+		<div class="table-responsive">
+		  <!-- table for vahicle park inside Fort -->
+		  <table class="table align-items-center table-flush">
+			<thead class="thead-light">
+			  <tr>
+				<th scope="col">vehicle</th>
+				<th scope="col">01 Hour</th>
+				<th scope="col">1-6 Hours</th>
+				<th scope="col">Day</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">Bicycle</th>
+				<td>5/=</td>
+				<td>10/=</td>
+				<td>15/=</td>
+			  </tr>
+			  <tr>
+				<td>Motor Bike</td>
+				<td>10/=</td>
+				<td>50/=</td>
+				<td>20/=</td>
+			  </tr>
+			  <tr>
+				<td>Three Wheel</td>
+				<td>15/=</td>
+				<td>25/=</td>
+				<td>35/=</td>
+			  </tr>
+			  <tr>
+				<td>Van and Car</td>
+				<td>20/=</td>
+				<td>40/=</td>
+				<td>70/=</td>
+			  </tr>
+			  <tr>
+				<td>Lorry, Truck and Other</td>
+				<td>40/=</td>
+				<td>80/=</td>
+				<td>140/=</td>
+			  </tr>
+			  <tr>
+				  <td>School Van</td>
+				  <td>100/=</td>
+				  <td>200/=</td>
+				  <td>500/=</td>
+				</tr>
+			</tbody>
+		  </table>
+		</div>
+	  </div>
+	</div>
 @endsection
 
 @push('script')
@@ -227,43 +293,6 @@
  
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
-        //individulat column search
-        $('#searchName').on( 'keyup', function () { 
-            table
-                .columns( 1 )
-                .search( this.value )
-                .draw();
-		});
-
-		$('#searchId').on( 'keyup', function () { 
-		table
-			.columns( 0 )
-			.search( this.value )
-			.draw();
-		});
-
-		$('#searchAddress').on( 'keyup', function () { 
-		table
-			.columns( 2 )
-			.search( this.value )
-			.draw();
-		});
-
-		$('#searchEmail').on( 'keyup', function () { 
-		table
-			.columns( 3 )
-			.search( this.value )
-			.draw();
-		});
-
-		$('#searchAdmin').on( 'keyup', function () { 
-		table
-			.columns( 4 )
-			.search( this.value )
-			.draw();
-		});
-
-	} );
 
 </script>
 @endpush

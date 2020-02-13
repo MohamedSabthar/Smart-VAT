@@ -13,6 +13,7 @@ use App\Http\Requests\AddIndustrialTypeRequest;
 use App\Http\Requests\UpdateIndustrialTypeRequest;
 use App\Http\Requests\UpdateBusinessTaxPercentageRequest;
 use App\Http\Requests\UpdateIndustrialTaxPercentageRequest;
+use App\Http\Requests\UpdateLandTaxPercentageRequest;
 use App\Http\Requests\AddBusinessTypeRequest;
 use App\Http\Requests\UpdateBusinessTypeRequest;
 use Carbon\Carbon;
@@ -173,6 +174,44 @@ class GlobalConfigurationController extends Controller
     }
 
 
+    public function updateEntertainmentTaxForm()
+    {
+        $entertainment = Vat::where('route', 'entertainment')->first();
+        return view('admin.globalConfigurationEntertainment', ['entertainment'=>$entertainment]);
+    }
+
+    /*
+    * Land tax details update
+    */
+    public function updateLandTaxForm()
+    {
+        $land = Vat::where('route', 'land')->first();
+        return view('admin.globalConfigurationLand', ['land'=>$land]);
+    }
+
+    public function updateLandPercentage(UpdateLandTaxPercentageRequest $request)
+    {
+        $land = Vat::where('route', 'land')->first();
+        //moving the old data to Vats_old_percentages table
+        if ($land->vat_percentage==$request->vatPercentage && $land->due_date==$request->dueDate) {
+            return redirect()->back()->with('error', 'Details sre not updated');
+        }
+
+        $oldLand = new Vats_old_percentage;
+        $oldLand->name = $land->name;
+        $oldLand->created_at= $land->created_at;
+        $oldLand->due_date = $land->due_date;
+        $oldLand->updated_at = Carbon::now();
+
+        $oldLand->save();
+
+        //updating the new vat percentage and due date
+        $land->vat_percentage = $request->vatPercentage;
+        $land->due_date = $request->dueDate;
+        $land->save();
+
+        return redirect()->back()->with('status', 'Land tax details updated successfully');
+    }
 
 
     private function getVatDetails()
@@ -180,6 +219,9 @@ class GlobalConfigurationController extends Controller
         $vatDetails = new VatDetails;
         $vatDetails->business = Vat::where('route', 'business')->first();
         $vatDetails->industrial = Vat::where('route', 'industrial')->first();
+        $vatDetails->entertainment = Vat::where('route', 'entertainment')->first();
+        $vatDetails->land = Vat::where('route', 'land')->first();
+        $vatDetails->clubLicence = Vat::where('route', 'club-licence')->first();
         return $vatDetails;
     }
 }

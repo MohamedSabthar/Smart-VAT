@@ -42,7 +42,7 @@
                         <td>{{ $record->vatPayer->full_name }}</td>
                         <td>{{ $record->shop_id."-".$record->industrialTaxShop->shop_name }}</td>
                         <td>Rs. {{ number_format($record->payment, 2) }}</td>
-                        <td class="text-center">{{ $record->updated_at }}</td>
+                        <td class="text-center">{{ $record->created_at }}</td>
                     </tr>
                     @endforeach
 

@@ -17,7 +17,7 @@ class Club_licence_tax_payment extends Model
 
     public function clubLicenceTaxClub()
     {
-        return $this->belongsTo('App\Club_licence_tax', 'club_id');  // a payment belogns to a Club house
+        return $this->belongsTo('App\Club_licence_tax', 'club_id');  // a payment belogns to a Club 
     }
 
     public function user()

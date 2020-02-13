@@ -169,7 +169,7 @@
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPremises"
-                                        placeholder="{{__('menu.Search Premises ')}}" />
+                                        placeholder="{{__('menu.Search Premises Name')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
                                         placeholder="{{__('menu.Search Payment Date')}}" />
@@ -182,7 +182,7 @@
                             @foreach ($landTaxPayment as $payment)
                             <tr>
                                 <td>{{$payment->id}}</td>
-                                <td>{{$payment->landTaxPremises->land_name}}</td>
+                                <td>{{$payment->landTax->land_name}}</td>
                                 <td>{{$payment->created_at}}</td>
                                 <td>{{number_format($payment->payment,2)}}</td>
 

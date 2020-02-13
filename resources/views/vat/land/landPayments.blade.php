@@ -197,7 +197,7 @@
                 </div>
             </div>
             {{-- payment form --}}
-            <form action="{{route('receive-land-payments',['shop_id'=>$landTaxPremises->id])}}"
+            <form action="{{route('receive-land-payments',['land_id'=>$landTaxPremises->id])}}"
                 id="accept-payment" method="POST" hidden>
                 @csrf
                 <input type="text" name="payment" value="{{$duePayment}}">

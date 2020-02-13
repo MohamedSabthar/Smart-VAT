@@ -9,6 +9,7 @@ use App\Land_tax;
 use App\Shop_rent_tax;
 use App\Entertainment_tax_tickets_payment;
 use App\Club_licence_tax;
+use App\Vehicle_park_tax;
 
 class VatPagesController extends Controller
 {
@@ -36,12 +37,8 @@ class VatPagesController extends Controller
 
     public function license()
     {
-<<<<<<< HEAD
-        $payers = License_tax_shop::licenseTaxPayers();  // #### not completed the model
-=======
         //$payers=License_tax_shop::liceseTaxPayers();    //all the vat payers who pays the license tax 
         //return view('vat.license.license',['payers'=>$payers]);
->>>>>>> a7f204ba7350801849d016001a96674345fcf4ba
         return view('vat.licence');
 
     }
@@ -60,9 +57,9 @@ class VatPagesController extends Controller
     {
         return view('vat.booking.booking');
     }
-    public function clubhouselicence()
+    public function clubLicence()
     {
-        $payers = Club_licence_tax::clubLicenceTaxPayers();
+        $payers = Club_licence_tax::clubLicenceTaxPayers();  //get all the vat_payers who club licence tax
         return view('vat.clubLicence.clubLicence',['payers'=>$payers]);
     }
     public function landauction()
@@ -85,7 +82,8 @@ class VatPagesController extends Controller
     }
     public function vehicalpark()
     {
-        return view('vat.vehicalPark');
+        // $payers = Vehicle_park_tax::vehicleParkTaxPayers(); //get all vat_payers who pay vehicle park tax
+        return view('vat.vehiclePark.vehiclePark');
     }
     public function slaughtering()
     {

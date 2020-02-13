@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Land_tax extends Model
 {
-    protected $table = 'Land_taxes';
+    protected $table = 'land_taxes';
     use SoftDeletes;
 
     public function payer()
@@ -27,9 +27,14 @@ class Land_tax extends Model
         })->unique('id');   //collection filtered using unique id
     }
 
-    // public function payments()
-    // {
-    //     return $this->hasMany('App\Land_tax_payment', 'land_id');
-    // }
+    public function payments()
+    {
+        return $this->hasMany('App\Land_tax_payment', 'land_id');
+    }
+
+    public function due()
+    {
+        return $this->hasOne('App\Land_tax_due_payment', 'land_id');  //Premises can have due payment
+    }
 
 }

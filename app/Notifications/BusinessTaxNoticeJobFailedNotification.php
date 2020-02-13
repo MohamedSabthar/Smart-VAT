@@ -52,7 +52,9 @@ class BusinessTaxNoticeJobFailedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => "Buisness Tax Notification sending failed for business id : ".$this->shopId,
+            'data' => "Buisness Tax Notification Mail failed for business id : ".$this->shopId,
+            'id' => $this->shopId,
+            'vat' => 'business',
         ];
     }
 }
