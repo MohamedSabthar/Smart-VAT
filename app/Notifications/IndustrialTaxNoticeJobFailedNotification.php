@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class BusinessTaxNoticeJobFailedNotification extends Notification
+class IndustrialTaxNoticeJobFailedNotification extends Notification
 {
     use Queueable;
     public $shopId;
@@ -52,9 +52,9 @@ class BusinessTaxNoticeJobFailedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => "Buisness Tax Notification Mail failed for business id : ".$this->shopId,
+            'data' => "Industrial Tax Notification Mail failed for business id : ".$this->shopId,
             'id' => $this->shopId,
-            'vat' => 'business',
+            'vat' => 'industrial',
         ];
     }
 }

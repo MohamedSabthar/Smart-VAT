@@ -228,6 +228,8 @@ Route::post('/entertainment/performance-summary-report-pdf', 'vat\EntertainmentT
  * mailing routes
  */
 Route::get('/business/business-notice/{id}', 'vat\BusinessTaxController@sendNotice')->name('business-send-notice');
+Route::get('/retry-business-notification/{id}/{notify}', 'RetryNoticeController@retryBusinessNotice')->name('retry-business-notice');
+Route::get('/retry-industrial-notification/{id}/{notify}', 'RetryNoticeController@retryIndustrialNotice')->name('retry-industrial-notice');
 
 
 /**
@@ -270,4 +272,4 @@ Route::get('/retry', function () {
 Route::get('/retry/{$id}', function () {
     Artisan::call("queue:retry $id");
     dd('done');
-});
+})->name('retry-mail');

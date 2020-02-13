@@ -16,9 +16,9 @@ class IndustrialReport
         $this->payments = $payments;
     }
 
-    public static function generateIndustrialReport()
+    public static function generateIndustrialReport($dates)
     {
-        $records = Industrial_tax_payment::all()->map(function ($obj) {
+        $records = Industrial_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get()->map(function ($obj) {
             return new IndustrialReport($obj->industrialTaxShop->industrialType->description, $obj->payment, $obj->industrialTaxShop->industrialType->id);
         });
 

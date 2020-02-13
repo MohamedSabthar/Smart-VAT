@@ -16,10 +16,10 @@ class BusinessReport
         $this->payments = $payments;
     }
 
-    public static function generateBusinessReport()
+    public static function generateBusinessReport($dates)
     {
-        $records = Business_tax_payment::all()->map(function ($obj) {
-            return new BusinessReport($obj->businessTaxShop->businessType->description, $obj->payment, $obj->businessTaxShop->businessType->id);
+        $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get()->map(function ($obj) {
+            return new BusinessReport($obj->businessTaxShop->businessType->description, $obj->payment);
         });
 
         $table =  $records->groupBy(function ($obj) {
