@@ -14,6 +14,7 @@ use App\Business_tax_due_payment;
 use App\Industrial_tax_due_payment;
 
 use App\Jobs\BusinessTaxNoticeJob;
+use App\Jobs\IndustrialTaxNoticeJob;
 
 use Illuminate\Support\Facades\DB;
 
@@ -41,7 +42,7 @@ class Timer
             foreach (Industrial_tax_shop::all() as $industrialTaxShop) {
                 $taxPayment=Industrial_tax_payment::where('shop_id', $industrialTaxShop->id)->where('created_at', 'like', "%$year%")->first();
                 if ($taxPayment==null) {
-                    dispatch(new  BusinessTaxNoticeJob($industrialTaxShop->payer->email, $industrialTaxShop->payer->id));
+                    dispatch(new  IndustrialTaxNoticeJob($industrialTaxShop->payer->email, $industrialTaxShop->payer->id));
                 }
             }
         };
