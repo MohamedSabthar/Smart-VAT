@@ -17,4 +17,11 @@ class Booking_tax_payments_type extends Model
     {
         return $this->belongsTo('App\booking_tax', 'shop_id');    // a payment belogns to a industrial tax shop
     }
+    public static function bookingTaxPayers()    // return vat payers; only related to buisness tax
+    {
+        return Booking_tax_payments_type::all()->map(function ($tax) {
+            return $tax->payer;
+        })->unique('id');   //collection filtered using unique id
+    }
+    
 }

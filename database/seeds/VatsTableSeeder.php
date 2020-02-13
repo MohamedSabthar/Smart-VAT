@@ -41,10 +41,10 @@ class VatsTableSeeder extends Seeder
         ]);
 
         DB::table('vats')->insert([
-            'name' => 'Advertizement Tax',
+            'name' => 'Advertisement Tax',
             //vat and fine refered on sperate table
             'vat_percentage' => 15,
-            'route'=> 'advertizement'
+            'route'=> 'advertisement'
         ]);
 
         DB::table('vats')->insert([

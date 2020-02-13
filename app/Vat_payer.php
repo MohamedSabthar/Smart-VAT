@@ -23,7 +23,7 @@ class Vat_payer extends Model
     }
     public function booking()
     {
-        return $this->hasMany('App\Booking_tax','payer_id');
+        return $this->hasMany('App\Booking_tax_payment','payer_id');
     }
  
     public function entertainmentTicketPayments()

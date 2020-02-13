@@ -17,11 +17,17 @@ use App\Shop_rent_tax_due_payment;
 class ShopRentTaxController extends Controller
 {
     //
+    private $records;
+
+    public function __construct()
+    {
+        $this->middleware(['auth'=>'verified']);
+        $this->middleware('vat');
+    }
 
     public function shoprentProfile($id)
     {
         $vatPayer = Vat_payer::find($id);
-
         return view('vat.shopRent.shopRentProfile', ['vatPayer'=>$vatPayer]);
     }
 

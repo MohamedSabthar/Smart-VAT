@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Business_tax_shop;
 use App\Industrial_tax_shop;
 use App\Shop_rent_tax;
-use App\Booking_tax;
+use App\Advertisement_tax;
+use App\Booking_tax_payments_type;
 use App\Entertainment_tax_tickets_payment;
 
 class VatPagesController extends Controller
@@ -46,13 +47,14 @@ class VatPagesController extends Controller
         return view('vat.land');
     }
 
-    public function advertizement()
-    {
-        return view('vat.advertizement');
+    public function advertisement()
+    {  
+        $payers = Advertisement_tax::advertisementTaxPayers();
+        return view('vat.advertisement.advertisement',['payers'=>$payers]);
     }
     public function booking()
     {
-        $payers = Booking_tax::bookingTaxPayers(); //get all vat_payers who pay booking tax
+        $payers = Booking_tax_payments_type::bookingTaxPayers(); //get all vat_payers who pay booking tax
         return view('vat.booking.booking', ['payers' => $payers]);
     }
     public function clubhouselicence()

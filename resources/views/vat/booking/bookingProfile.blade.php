@@ -178,22 +178,6 @@
 
 		<div class="col-xl-8 order-xl-1">
 
-			@if(session('taxPayment'))
-			<div class="card shadow text-justify mb-3 p-4">
-				<div class="card-body bg-white border-0">
-					<h1 style="font-weight: 400;">{{__('menu.Tax payment : Rs.')}}
-						{{number_format(session('taxPayment'),2)}}
-					</h1>
-					@if (session('retunTaxPayment'))
-					<h1 style="font-weight: 400;">{{__('menu.Returned tax payment : Rs.')}}
-						{{number_format(session('retunTaxPayment'),2)}}
-					</h1>
-					@endif
-				</div>
-			</div>
-			@endif
-
-
 			{{-- payment history card --}}
 			<div class="card shadow mb-5" id="payment-history">
 				<div class="card-header bg-white border-0">
@@ -239,9 +223,6 @@
 							</tr>
 						</thead>
 						<tbody>
-                       
-							
-
 
 						</tbody>
 						<thead class="thead-light">
@@ -252,8 +233,6 @@
 								<th>{{__('menu.Returned Payment')}}</th>
 								<th>{{__('menu.Final Payment')}}</th>
 								<th>{{__('menu.Payment Date')}}</th>
-								
-
 								<th></th>
 
 							</tr>
@@ -265,136 +244,8 @@
 			</div>
 			{{-- end of payment history card --}}
 
-			{{-- update security deposit payment card --}}
-			<div class="card bg-secondary shadow mb-5 " id="update-payment-card">
-				<div class="card-header bg-white border-0">
-					<div class="row align-items-center">
-						<div class="col-8">
-							<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update payment')}}</span>
-							</h3>
-						</div>
-
-					</div>
-				</div>
-				<div class="card-body">
-					{{-- booking payment update form --}}
-					<form method="POST"
-						action="{{route('update-entertainment-ticket-payments',['id'=> $vatPayer->id])}}"
-						id="ticket-update-payment-form">
-						@csrf
-						@method('put')
-
-						<input type="text" value="{{old('paymentId')}}" id="paymentId" name="paymentId" hidden>
-
-						
-						<div class="form-group row">
-							<label for="example-text-input"
-								class="col-md-2 col-form-label form-control-label ">{{__('menu.Event Venue')}}</label>
-							<div class="col-md-10 ">
-								<input class="form-control @error('updatePlaceAddress') is-invalid  @enderror"
-									type="text" value="{{old('updatePlaceAddress')}}" id="updatePlaceAddress"
-									name="updatePlaceAddress">
-								@error('updatePlaceAddress')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="example-text-input"
-								class="col-md-2 col-form-label form-control-label ">{{__('menu.Quoted Ticket')}}</label>
-							<div class="col-md-10 ">
-								<input class="form-control @error('updateQuotedTickets') is-invalid  @enderror"
-									type="number" value="{{old('updateQuotedTickets')}}" id="updateQuotedTickets"
-									name="updateQuotedTickets">
-								@error('updateQuotedTickets')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="example-text-input"
-								class="col-md-2 col-form-label form-control-label ">{{__('menu.Returned Tickets')}}</label>
-							<div class="col-md-10 ">
-								<input class="form-control @error('updateReturnedTickets') is-invalid  @enderror"
-									type="number" value="{{old('updateReturnedTickets')}}" id="updateReturnedTickets"
-									name="updateReturnedTickets">
-								@error('updateReturnedTickets')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="example-text-input"
-								class="col-md-2 col-form-label form-control-label ">{{__('menu.Ticket Price')}}</label>
-							<div class="col-md-10 ">
-								<input class="form-control @error('updateTicketPrice') is-invalid  @enderror"
-									type="number" step="0.01" value="{{old('updateTicketPrice')}}"
-									id="updateTicketPrice" name="updateTicketPrice">
-								@error('updateTicketPrice')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-								@enderror
-							</div>
-						</div>
-
-
-						<div class="form-group">
-							{{-- <input class=" btn btn-primary float-right" value="{{__('menu.Add payment')}}"
-							type="submit"> --}}
-							<button class="btn btn-primary float-right" data-toggle="modal"
-								onclick="javascript:event.preventDefault()"
-								data-target="#confirm-update-ticket-payment">{{__('menu.Update payment')}}</button>
-
-						</div>
-
-
-					</form>
-					{{-- end of Entertainment update payment form --}}
-
-					{{-- Confirmation modal for update ticket payments--}}
-					<div class=" modal fade" id="confirm-update-ticket-payment" tabindex="-1" role="dialog"
-						aria-labelledby="modal-default" aria-hidden="true">
-						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">×</span>
-									</button>
-								</div>
-								<div class="modal-body">
-
-									<p>Confirmation needed to update ticket payment for <br>
-										{{$vatPayer->full_name}}-{{$vatPayer->nic}} </p>
-								</div>
-
-								<div class="modal-footer">
-									<button type="button" class="btn btn-link"
-										onclick="javascript:location.reload()">Cancel</button>
-									<button type="button" id="redirect" class="btn  btn-primary ml-auto"
-										onclick="javascript:document.getElementById('ticket-update-payment-form').submit();">{{__('menu.Confirm')}}</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					{{-- End of confirmation modal --}}
-
-				</div>
-			</div>
-			{{-- end of update ticket payment card --}}
-
-
-			{{-- Recevie ticket payment card --}}
-			<div class="card bg-secondary shadow mb-5 hide">
+			{{-- Add new booking --}}
+	  	<div class="card bg-secondary shadow mb-5 hide">	
 				<div class="card-header bg-white border-0">
 					<div class="row align-items-center">
 						<div class="col-8">
@@ -402,11 +253,10 @@
 							</h3>
 						</div>
 
-					</div>
 				</div>
-				<div class="card-body">
-					{{-- Booking payment form --}}
-					<form method="POST" action="{{route('receive-entertainment-payments',['id'=> $vatPayer->id])}}"
+	   	</div>		
+        <div class="card-body">
+			<form method="POST" action="{{route('receive-entertainment-payments',['id'=> $vatPayer->id])}}"
 						id="ticket-payment-form">
 						@csrf
 					<div class="form-group row">
@@ -414,90 +264,64 @@
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Event Venue')}}</label>
 						<div class="col-md-10">
 
-							<select id="place" name="place" class="form-control @error('place') is-invalid  @enderror">
+							<select id="type" name="type" class="form-control @error('type') is-invalid  @enderror">
 								<option value=""></option>
 								{{-- only for testing need to implement Ajax searchBuisness --}}
-								@foreach ($bookingTaxType as $place)
-								<option value="{{$place->id}}" @if(old('place')==$place->id) selected
-									@endif>{{$place->place_description}}
-								</option>
-								@endforeach
+								@foreach ($bookingTaxType as $type)
+									<option value="{{$type->id}}" @if(old('type')==$type->id) selected
+										@endif>{{$type->description}} 
+									</option>
+									@endforeach
 							</select>
-							@error('place')
+							@error('type')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
 							@enderror
 						</div>
 					</div>
-					<div class="form-group row">
-						<label for="business-type"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Event')}}</label>
-						<div class="col-md-10">
 
-							<select id="event" name="event" class="form-control @error('event') is-invalid  @enderror">
-								<option value=""></option>
-								{{-- only for testing need to implement Ajax searchBuisness --}}
-								@foreach ($bookingTaxType as $event)
-								<option value="{{$event->id}}" @if(old('event')==$event->id) selected
-									@endif>{{$event->event_description}}
-								</option>
-								@endforeach
-							</select>
-							@error('event')
-							<span class="invalid-feedback" role="alert">
-								<strong>{{ $message }}</strong>
-							</span>
-							@enderror
-						</div>
-					</div>
-						<div class="form-group">
-							{{-- <input class=" btn btn-primary float-right" value="{{__('menu.Add payment')}}"
-							
-							type="submit"> --}}
-							<button class="btn btn-primary float-right" data-toggle="modal"
-								onclick="javascript:event.preventDefault()"
-								data-target="#confirm-ticket-payment">{{__('menu.Add payment')}}</button>
-						</div>
-					</form>
-					{{-- end of Entertainment payment form --}}
+					{{-- Confirmation modal for adding business for the registered VAT payer--}}
+				<div class=" modal fade" id="confirm-quick-payments" tabindex="-1" role="dialog"
+					aria-labelledby="modal-default" aria-hidden="true">
+					<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+						<div class="modal-content">
 
-					{{-- Confirmation modal for adding ticket payments--}}
-					<div class=" modal fade" id="confirm-ticket-payment" tabindex="-1" role="dialog"
-						aria-labelledby="modal-default" aria-hidden="true">
-						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-							<div class="modal-content">
-
-								<div class="modal-header">
-									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">×</span>
-									</button>
-								</div>
-								<div class="modal-body">
-
-									<p>Confirmation needed to add a ticket payment for <br>
-										{{$vatPayer->full_name}}-{{$vatPayer->nic}} </p>
-								</div>
-
-								<div class="modal-footer">
-									<button type="button" class="btn btn-link"
-										onclick="javascript:location.reload()">Cancel</button>
-									<button type="button" id="redirect" class="btn  btn-primary ml-auto"
-										onclick="javascript:document.getElementById('ticket-payment-form').submit();">{{__('menu.Confirm')}}</button>
-								</div>
-
+							<div class="modal-header">
+								<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
 							</div>
+							<div class="modal-body">
+
+								<p>Confirmation needed to accept payments!</p>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-link"
+									onclick="javascript:location.reload()">Cancel</button>
+								<button type="button" id="redirect" class="btn  btn-primary ml-auto"
+									onclick="javascript:document.getElementById('booking-profile').submit();">{{__('menu.Confirm')}}</button>
+							</div>
+
 						</div>
 					</div>
-					{{-- End of confirmation modal --}}
-
 				</div>
+				{{-- End of confirmation modal --}}
+
+				
+				<div class="row">
+					<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 mt-md-5" id="payer-details"></div>
+					{{-- dynamicaly adding payer details --}}
+					<div class="col-lg-8 col-12 mt-md-5" id="shop-details"></div>
+					{{-- dynamicaly adding payer details --}}
+				</div>
+					
+			</form>
 			</div>
-			{{-- end of Receive payment card --}}
-
-
-
+	    </div>	
+			{{--end of add new booking --}}
 
 		</div>
 	</div>
@@ -585,35 +409,141 @@
                 .search( this.value )
                 .draw();
             }); 
+        
+        $('#type').select({
+                placeholder: "Select booking type here",
+                allowClear: true,
+            ajax: {
+                url: "{{route('get-booking-types')}}",
+                dataType: 'json',
+                type:"POST",
+                delay: 250,
+                data: function (params) {
+                        return {
+                            
+                            search: params.term,
+                            
+                        };
+                },
+                processResults: function (data) {
+                     return {
+                         results:$.map(data.results, function (obj) {
+                            return {id:obj.id,text:obj.description}
+                    })
+                    }
+                     
+                },
+                cache: true
+            },
+            
+        
+            });
 
-            //toggle transition for history card
-        $("#payment-history").hide();
+			var _token = $('meta[name="csrf-token"]').attr('content');
 
-				@if(!$errors->any())
-				$("#update-payment-card").hide();
-				@endif
+		$('#type').keyup(function(e){
+            if (e.keyCode != 16 && e.keyCode != 32){
+							$('#shop-details tbody').html('');
+        
+			var nic = $('#type').val();
 
-        $(".veiw-history").on('click',function(){
-						$("#update-payment-card").hide();
-            $("#payment-history").slideToggle("slow");
+            $('#payer-details').html('')
+            $('#shop-details').html('')
+                			
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': _token,
+                }
+            });
+				
+            $.ajax({
+                url:"{{ route('check-business-payments') }}", 
+                method:"POST",
+                data: {'type':type},
+                success:function(result){
+                    console.log(result);
+                    if(result.payerDetails==null ){
+                        $('#type').addClass('is-invalid');
+                        type!='' ? $('#error_nic').html('<strong>NIC not mached</strong>') 
+                                : $('#error_nic').html('<strong>Please enter the NIC</strong>');
+                        $('#payer-details').html('');
+						$('#shop-details').html('')
+                    }
+                    else{
+                        $('#type').removeClass('is-invalid');
+                        $('#error_nic').html('');
+						$('#shop-details').html('')
+                        // console.log(result.payerDetails)
+												$('#payer-details').html(`
+												
+		<div class="card card-profile shadow">
+			<div class="row justify-content-center">
+				<div class="col-lg-3 order-lg-2">
+					<div class="card-profile-image">
+						<a href="#">
+							<img src="{{asset('assets/img/theme/girl.png')}}" class="rounded-circle">
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="card-body pt-0 pt-md-4">
+				<div class="pt-7">
+					<div class='pt-3'><h3 class='d-inline'>Name :</h3> ${result.payerDetails.full_name} </div>
+                            <div class='pt-1'><h3 class='d-inline'>Address :</h3> ${result.payerDetails.address} </div>
+                            <div class='pt-1'><h3 class='d-inline'>Phone No :</h3> ${result.payerDetails.phone} </div>
+                            <div class='pt-1'><h3 class='d-inline'>E-mail :</h3> ${result.payerDetails.email} </div>
+                           
+		</div>
+	</div>
+                            `);
+
+                        var i = 0
+                        $('#shop-details').append(
+                            `<div class="table-responsive">
+                                <div class="card px-3">
+                                    <form method='POST' action="{{route('business-quick-payments')}}" id="business-quick-payments">
+                                        @csrf
+                                        <table class="my-3 table align-items-center  ">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Shop Name</th>
+                                                    <th scope="col">Due Ammount</th>
+                                                    <th scope="col">Status</th>  
+                                                </tr>
+                                            </thead>
+																				<tbody class="list"></tbody>
+																				</table>
+																				<button class="btn btn-primary btn-lg btn-block mb-3 accept-btn"" data-toggle="modal"
+						onclick="javascript:event.preventDefault()"
+						data-target="#confirm-quick-payments">{{__('menu.Add')}}</button>								</form>
+																		
+																	</div>
+																</div>`
+																);
+												var nullToken = 0;
+                        result.payerDetails.buisness.forEach(element => {
+                            // console.log(element)
+                            // $('#shop-details').append(`${element.shop_name} ${result.duePayments[i]==null ? 'not paid' : 'paid' } </br>`)
+														
+														$('#shop-details tbody').append(`
+                                <tr>
+                                    <td scope="row"> ${element.shop_name} </td>
+                                    <td> ${result.duePaymentValue[i].toLocaleString('en',{ minimumFractionDigits: 2 })} </td>
+                                    <td class='d-flex px-3'> 
+                                        <input  name=${element.id} type="checkbox" ${ result.duePayments[i]!=null ? 'checked disabled' :'' } 
+                                        <label>${ result.duePayments[i]==null ? '' :'paid' }</label>
+                                    </td>
+																</tr>`);
+																if(result.duePayments[i]==null) nullToken=1;
+                            i++;
+												});
+												// console.log(nullToken)
+												if(nullToken==0) $('.accept-btn').attr("disabled", true);
+                    }
+                }
+		    });
+            } 
         });
-
-				$('.toggle-update').on('click',function(){
-					$("#payment-history").hide();
-					$("#update-payment-card").slideToggle("slow");
-					// setting form values
-					var payment = $(this).data('value');
-					console.log(payment);
-					$("#paymentId").val(payment.id);
-					$("#updateTicketType").val(payment.type_id);
-					$("#updatePlaceAddress").val(payment.place_address);
-					$("#updateQuotedTickets").val(payment.quoted_tickets);
-					$("#updateReturnedTickets").val(payment.returned_tickets);
-					$("#updateTicketPrice").val(payment.ticket_price);
-
-
-				});
-
 
       } );
 
