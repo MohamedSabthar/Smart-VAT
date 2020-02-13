@@ -1,4 +1,4 @@
-@extends('layouts.app')
+	@extends('layouts.app')
 
 @section('title','License Tax Profile')
 
@@ -407,7 +407,7 @@ style="cursor:pointer">
 						<tbody>
 							@foreach ($vatPayer->license as $license)
 							<tr>
-								<td class="text-center">{{$license->id}}</td>
+								<td>{{$license->registration_no}}</td>
 								<td>{{$license->shop_name}}</td>
 								<td>{{$license->phone}}</td>
 								<td class="text-right">
@@ -418,7 +418,7 @@ style="cursor:pointer">
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 											<a class="dropdown-item"
-												href="{{route('industrial-payments',['shop_id'=>$license->id])}}">
+												href="{{route('license-payments',['shop_id'=>$license->id])}}">
 												{{__('menu.View Payments')}}</a>
 											{{-- <a class="dropdown-item"
 												href="{{route('remove-business',['shop_id'=>$industrial->id])}}">
@@ -447,7 +447,7 @@ style="cursor:pointer">
 							</tr>
 						</thead>
 					</table>
-					{{-- end of Business shops table --}}
+					{{-- end of License shops table --}}
 				</div>
 			</div>
 		</div>

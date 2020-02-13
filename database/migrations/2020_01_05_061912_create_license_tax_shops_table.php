@@ -15,6 +15,8 @@ class CreateLicenseTaxShopsTable extends Migration
     {
         Schema::create('license_tax_shops', function (Blueprint $table) {
              // $table->string('assesment_no')->nullable();
+             $table->bigIncrements('id');
+
              $table->string('shop_name');                                    // shop/ name
              $table->double('anual_worth');                                  // anual worth of the shop
              $table->string('phone', 12);                                    // user's telephone number

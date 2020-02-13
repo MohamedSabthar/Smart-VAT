@@ -4,10 +4,11 @@ namespace App\Http\Controllers\vat;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Vat;
 use App\Vat_payer;
 use App\License_type;
 use App\License_tax_shop;
+use App\License_tax_payment;
 use App\Http\Requests\AddLicenseRequest;
 
 class LicenseTaxController extends Controller
@@ -16,6 +17,20 @@ class LicenseTaxController extends Controller
     {
         $this->middleware(['auth'=>'verified']);
         $this->middleware('vat');
+    }
+
+
+    private function calculateTax($anualWorth, $assessmentAmmount, $lastPaymentDate)
+    {
+        $currentDate = now()->toArray();
+        $licenseTax = Vat::where('route', 'license')->firstOrFail();     //something to clarify
+
+        // dd($anualWorth*($industrialTax->vat_percentage/100)+$assessmentAmmount);
+        if ($lastPaymentDate!=null) {
+            return ($anualWorth*($licenseTax->vat_percentage/100)+$assessmentAmmount)*($currentDate['year']-$lastPaymentDate['year']);
+        }
+        
+        return $anualWorth*($licenseTax->vat_percentage/100)+$assessmentAmmount;
     }
 
     public function licenseProfile($id)
@@ -47,4 +62,45 @@ class LicenseTaxController extends Controller
 
 
     }
+
+    public function licensePayments($shop_id)
+    {
+        $licenseTaxShop = License_tax_shop::findOrFail($shop_id);
+        $currentDate = now()->toArray();    // get the currrent date properties
+        $lastPaymentDate = $licenseTaxShop->payments->pluck('created_at')->last(); // get the last payment date
+        $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
+        $paid=false;
+        $duePayment = 0.0;
+        
+        if ($lastPaymentDate!=null && $currentDate['year'] == $lastPaymentDate['year']) { //if last_payment year matchess current year
+            $paid=true; // then this year has no due
+        } else {
+            $assessmentAmmount = $licenseTaxShop->assessment_ammount;
+            $duePayment = $this->calculateTax($licenseTaxShop->anual_worth, $assessmentAmmount, $lastPaymentDate);
+        }
+       
+        return view('vat.license.licensePayments', ['licenseTaxShop'=>$licenseTaxShop,'paid'=>$paid,'duePayment'=>$duePayment]);
+    }
+
+
+    public function reciveLicensePayments($shop_id,Request $request)
+    {
+        $payerId=License_tax_shop::findOrFail($shop_id)->payer->id;  //get the VAT payer id
+        
+        $licenseTaxPyament = new License_tax_payment;
+
+        $licenseTaxPyament->payment = $request->payment;
+        $licenseTaxPyament->shop_id = $shop_id;
+        $licenseTaxPyament->payer_id =$payerId;
+        $licenseTaxPyament->user_id = Auth::user()->id;
+
+        $licenseTaxPyament->save();
+    
+
+        return redirect()->back()->with('sucess', 'Payment added successfuly');
+    }
+
+
+
+    
 }

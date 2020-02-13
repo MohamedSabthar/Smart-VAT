@@ -6,6 +6,8 @@ use App\Vat_payer;
 use App\Jobs\BusinessTaxNoticeJob;
 use App\Mail\BusinessTaxNotice;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -202,8 +204,9 @@ Route::get('/business/business-notice/{id}', 'vat\BusinessTaxController@sendNoti
  * all license tax related tax routes should starts with "/license"
  */
 Route::get('/license/profile/{id}', 'vat\LicenseTaxController@licenseProfile')->name('license-profile');
-
-Route::post('/license/license-register/{id}', 'vat\LicenseTaxController@registerLisenceDuty')->name('license-duty-register');
+Route::post('/license/licenfse-register/{id}', 'vat\LicenseTaxController@registerLisenceDuty')->name('license-duty-register');
+Route::get('/license/payments/{shop_id}','vat\LicenseTaxController@licensePayments')->name('license-payments');
+Route::post('/license/payments/{shop_id}', 'vat\LicenseTaxController@reciveLicensePayments')->name('receive-license-payments');
 
 
 
