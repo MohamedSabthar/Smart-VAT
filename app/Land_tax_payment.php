@@ -17,7 +17,7 @@ class Land_tax_payment extends Model
 
     public function landTax()
     {
-        return $this->belogsTo('App\Land_tax', 'land_id'); //a payment belongs to a separate Land
+        return $this->belongsTo('App\Land_tax', 'land_id'); //a payment belongs to a separate Land
     }
 
     public function user(){

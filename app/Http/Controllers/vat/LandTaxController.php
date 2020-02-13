@@ -83,10 +83,10 @@ class LandTaxController extends Controller
             $duePayment = $this->calculateTax($landTaxPremises->worth, $dueAmount);
 
             $landTaxPayment = new Land_tax_payment;
-            $landTaxPayment->payment = $request->payment;
-            $landTaxPayment->land_id = $land_id;
-            $landTaxPayment->payment = $payerId;
-            $landTaxPayment->payment = Auth::user()->id;
+            $landTaxPayment->payment = $duePayment;
+            $landTaxPayment->land_id = $landId;
+            $landTaxPayment->payer_id = $payerId;
+            $landTaxPayment->user_id = Auth::user()->id;
 
             // if there was a duepayment update it to zero
             if ($landTaxPremises->due != null && $landTaxPremises->due->due_amount!=0) {
@@ -279,14 +279,30 @@ class LandTaxController extends Controller
      //soft delete land payments
     public function removePayment($id)
     {
-        $landTaxPayment = Land_tax_payment::find($land_id);
-        $landTaxPayment = delete();
+        $landTaxPayment = Land_tax_payment::find($id);
+        $landTaxPremises = $landTaxPayment->landTax;
+
+        //restore the dueAmount
+        $restoreDue = Land_tax_due_payment::where('land_id',$landTaxPayment->landTax->id)->first();
+        $recalculateDue = $this->calculateTax(-$landTaxPremises->worth, -$landTaxPayment->payment);
+        if($restoreDue==null) {
+           $restoreDue = new Land_tax_due_payment;
+           $restoreDue->land_id = $landTaxPayment->land_id;
+           $restoreDue->payer_id = $landTaxPayment->payer_id;
+        }
+
+        if ($recalculateDue!=0) {
+            $restoreDue->due_amount = $recalculateDue;
+            $restoreDue->save();
+        }
+        
+        $landTaxPayment -> delete();
         return redirect()->back()->with('status', 'Deleted Successfully');
     }
 
     //check payments land payments for a given vat payer for quick payment option
 
-    public function trashPayment()
+    public function trashPayment($id)
     {
         $landTaxPayment = Land_tax_payment::onlyTrashed()->where('payer_id',$id)->get();
         return view('vat.land.trashPayment', ['landTaxPayment'=>$landTaxPayment]);
@@ -294,10 +310,8 @@ class LandTaxController extends Controller
 
     public function restorePayment($id)
     {
-        $landTaxPayment = Land_tax_payment::onlyTrashed()->where('id',$id);
-        $shopId = $landTaxPayment->first()->land_id;
-        $landTaxPayment->restore();
-        return redirect()->route('land-payment', ['land_id'=>$landId])->with('status', 'Payment restored successfully');
+        $landTaxPayment = Land_tax_payment::onlyTrashed()->where('id',$id)->restore($id);
+        return redirect()->route('land-trash-payment', ['landTaxPayment'=>$landTaxPayment])->with('status', 'Payment restored successfully');
     }
 
     // premanent delete payment
