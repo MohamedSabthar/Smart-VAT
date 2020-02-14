@@ -203,6 +203,11 @@ class BusinessTaxController extends Controller
 
        
         return $pdf->stream();
+        // $reportData = BusinessReport::generateBusinessReport($dates);
+        // $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        // $pdf->loadView('vat.business.ab', ['dates'=>$dates,'records'=>$records,'reportData'=>$reportData]);
+   
+        // return $pdf->stream();
     }
 
 

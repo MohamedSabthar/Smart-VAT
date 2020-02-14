@@ -11,6 +11,7 @@ use App\Vats_old_percentage;
 
 use App\Http\Requests\AddIndustrialTypeRequest;
 use App\Http\Requests\UpdateIndustrialTypeRequest;
+use App\Http\Requests\AddAssessmentRangeRequest;
 use App\Http\Requests\UpdateBusinessTaxPercentageRequest;
 use App\Http\Requests\UpdateIndustrialTaxPercentageRequest;
 use App\Http\Requests\UpdateLandTaxPercentageRequest;
@@ -223,6 +224,40 @@ class GlobalConfigurationController extends Controller
         $vatDetails->land = Vat::where('route', 'land')->first();
         $vatDetails->clubLicence = Vat::where('route', 'clubLicence')->first();
         return $vatDetails;
+    }
+
+
+    public function addIndustrialRange(AddAssessmentRangeRequest $request)
+    {
+        $industrialId = Vat::where('route', 'industrial')->first()->id;
+        $assessmentRange = Assessment_range::where('vat_id', $industrialId)->where('start_value', $request->oldLimit)->first();
+        $assessmentRange->end_value = $request->newLimit;
+     
+        $assessmentRange->save();
+       
+        $assessmentRange = new Assessment_range;
+        $assessmentRange->start_value = $request->newLimit;
+        $assessmentRange->vat_id = $industrialId;
+        $assessmentRange->save();
+
+        return redirect()->back()->with('status', 'Assessment range added successfully');
+    }
+
+
+    public function addBusinessRange(AddAssessmentRangeRequest $request)
+    {
+        $businessId = Vat::where('route', 'business')->first()->id;
+        $assessmentRange = Assessment_range::where('vat_id', $businessId)->where('start_value', $request->oldLimit)->first();
+        $assessmentRange->end_value = $request->newLimit;
+     
+        $assessmentRange->save();
+       
+        $assessmentRange = new Assessment_range;
+        $assessmentRange->start_value = $request->newLimit;
+        $assessmentRange->vat_id = $businessId;
+        $assessmentRange->save();
+
+        return redirect()->back()->with('status', 'Assessment range added successfully');
     }
 }
 

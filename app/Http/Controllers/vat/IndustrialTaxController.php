@@ -13,7 +13,7 @@ use App\Industrial_type;
 use App\Assessment_range;
 use App\Industrial_tax_shop;
 use App\Industrial_tax_payment;
-use App\Http\Requests\AddBusinessRequest;
+use App\Http\Requests\AddIndustrialShopRequest;
 use App\Reports\IndustrialReport;
 use App\Http\Requests\IndustrialTaxReportRequest;
 
@@ -86,7 +86,7 @@ class IndustrialTaxController extends Controller
     }
 
     // register new industrial shop
-    public function registerIndustrialShop($id, AddBusinessRequest $request)
+    public function registerIndustrialShop($id, AddIndustrialShopRequest $request)
     {
         // dd('indus');
         $vatPayer = Vat_payer :: find($id); // get vat payer id

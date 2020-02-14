@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\PositiveValue; //custom validation rules
+use App\Rules\CheckAssessmentRangeLimit;
 
-class AddIndustrialTypeRequest extends FormRequest
+class AddAssessmentRangeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,7 @@ class AddIndustrialTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            "description" => ['required','string'],
-            "amount" => ['required','numeric',new PositiveValue],
+            'newLimit' => ['required',new CheckAssessmentRangeLimit($this->request->get('oldLimit'))],
         ];
     }
 }
