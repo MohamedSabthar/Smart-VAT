@@ -15,7 +15,10 @@
 @section('header')
 
 
+
 <div class="mt--6 container-fluid d-flex align-items-center">
+
+
     {{-- Alert notifications --}}
     <div class="col mt-5">
         @if (session('status'))
@@ -41,6 +44,9 @@
     </div>
     {{-- end of Alert notifications --}}
 </div>
+
+<a href="{{route('global-conf-entertainment-performance-update')}}" class="m-3 btn btn-secondary"> Go to Entertainment
+    perfomance configuration </a>
 
 <div class="col-11 m-3 card shadow">
     <div class="card-header bg-transparent">
@@ -70,13 +76,12 @@
 
                 <div class="form-group row col-12 ">
                     <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
-                        Assessment Amount </label>
+                        Vat percentage </label>
                     <div class="col-md-7">
 
                         <input type="number" step="0.01"
                             class="form-control  d-inline @error('percentage') is-invalid @enderror" id="percentage"
-                            name="percentage" value="{{old('percentage')}}"
-                            placeholder="Enter The assessment percentage">
+                            name="percentage" value="{{old('percentage')}}" placeholder="Enter The vat percentage">
                         @error('percentage')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -164,13 +169,13 @@
 
                 <div class="form-group row col-12 ">
                     <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
-                        Assessment Amount </label>
+                        Vat percentage </label>
                     <div class="col-md-7">
 
                         <input type="number" step="0.01"
                             class="form-control  d-inline @error('updatePercentage') is-invalid @enderror"
                             id="update-percentage" name="updatePercentage" value="{{old('updatePercentage')}}"
-                            placeholder="Enter The assessment updatePercentage">
+                            placeholder="Enter The vat percentage">
                         @error('updatePercentage')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -306,7 +311,7 @@
                         <thead class="thead-light">
                             <tr>
 
-                                <th>{{__('menu.Id')}}</th>
+
                                 <th>{{__('menu.Type')}}</th>
                                 <th>{{__('menu.Amount (LKR)')}} </th>
 
@@ -369,22 +374,17 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-            $('#searchId').on( 'keyup', function () { 
+            $('#searchType').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
 
-            $('#searchType').on( 'keyup', function () { 
-            table
-                .columns( 1 )
-                .search( this.value )
-                .draw();
-            });
+           
             $('#searchAmount').on( 'keyup', function () { 
             table
-                .columns( 2 )
+                .columns( 1 )
                 .search( this.value )
                 .draw();
             });

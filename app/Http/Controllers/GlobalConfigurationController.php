@@ -8,7 +8,10 @@ use App\Assessment_range;
 use App\Business_type;
 use App\Industrial_type;
 use App\Vats_old_percentage;
+use App\Entertainment_performance_type;
 
+use App\Http\Requests\UpdateEntertainmentPerformanceTypeRequest;
+use App\Http\Requests\AddEntertainmentPerformanceTypeRequest;
 use App\Http\Requests\AddIndustrialTypeRequest;
 use App\Http\Requests\AddEntertainmentTicketTypeRequest;
 use App\Http\Requests\UpdateIndustrialTypeRequest;
@@ -178,7 +181,35 @@ class GlobalConfigurationController extends Controller
     public function viewEntertainmentTicketTax()
     {
         $entertainmentTypes = Entertainment_type::all();
-        return view('admin.globalConfigurationEntertainment', ['entertainmentTypes'=>$entertainmentTypes]);
+        return view('admin.globalConfigurationEntertainmentTicket', ['entertainmentTypes'=>$entertainmentTypes]);
+    }
+
+    public function viewEntertainmentPerformanceTax()
+    {
+        $entertainmentTypes = Entertainment_performance_type::all();
+        return view('admin.globalConfigurationEntertainmentPerformance', ['entertainmentTypes'=>$entertainmentTypes]);
+    }
+
+    public function addEnterainmentPerformanceType(AddEntertainmentPerformanceTypeRequest $request)
+    {
+        $entertainmentTicketType = new Entertainment_performance_type;
+        $entertainmentTicketType->description = $request->description;
+        $entertainmentTicketType->amount  = $request->amount;
+        $entertainmentTicketType->additional_amount  = $request->additionalAmmount;
+        $entertainmentTicketType->save();
+
+        return redirect()->back()->with('status', 'New Perfomance Tax type added successfully');
+    }
+
+    public function updateEntertainmentPerformanceTaxDetails(UpdateEntertainmentPerformanceTypeRequest $request)
+    {
+        $entertainmentTicketType = Entertainment_performance_type::findOrFail($request->updateId);
+        $entertainmentTicketType->description = $request->updateDescription;
+        $entertainmentTicketType->amount  = $request->updateAmount;
+        $entertainmentTicketType->additional_amount  = $request->updateAdditionalAmount;
+        $entertainmentTicketType->save();
+
+        return redirect()->back()->with('status', 'Ticket Tax updated successfully');
     }
 
     public function addEnterainmentTicketType(AddEntertainmentTicketTypeRequest $request)

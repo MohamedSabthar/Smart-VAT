@@ -64,6 +64,11 @@ Route::post('/global-conf/business/add-range', 'GlobalConfigurationController@ad
 Route::post('/global-conf/entertainment/add-ticket-type', 'GlobalConfigurationController@addEnterainmentTicketType')->name('add-entertainment-ticket-type');
 Route::put('/global-conf/entertainment/update-ticket-type', 'GlobalConfigurationController@updateEntertainmentTicketPercentage')->name('update-entertainment-ticket-type');
 
+Route::get('/global-conf/entertainment-performance', 'GlobalConfigurationController@viewEntertainmentPerformanceTax')->name('global-conf-entertainment-performance-update');
+Route::post('/global-conf/entertainment/add-performance-type', 'GlobalConfigurationController@addEnterainmentPerformanceType')->name('add-entertainment-performance-type');
+Route::put('/global-conf/entertainment/update-performance-type', 'GlobalConfigurationController@updateEntertainmentPerformanceTaxDetails')->name('update-entertainment-performance-type');
+
+
 
 
 
