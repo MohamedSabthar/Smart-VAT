@@ -74,6 +74,8 @@ return [
     'Remove Buisness' => ' ව්‍යාපාරය‍ ඉවත් කරන්න',
     'Payment received by' => 'ලැබුනු ගෙවීම',
     'Shop Name' => 'සාප්පු නම',
+    'Annual worth' => 'වාර්ෂික වටිනාකම',
+    'Update Business details'=> 'ව්‍යාපාර විස්තර යාවත්කාලීන කරන්න',
     
     //VAT PAyer
     'User ID' => 'පරිශීලක අංකය',
@@ -94,6 +96,7 @@ return [
     'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
     'Update Details' => 'විස්තර යාවත්කාලීන කරන්න',
     'Yes' => 'ඔව්',
+    's profile'=> 'පැතිකඩ',
 
     
     
@@ -225,6 +228,10 @@ return [
 
 
     // Club license tax
-    'Club licence'=> 'සමාජ ශාලා බලපත්‍රය'
+    'Club licence'=> 'සමාජ ශාලා බලපත්‍රය',
+    '[+] Club' => 'සමාජ ශාලා',
+    's clubs' => 'ගේ සමාජ ශාලා' ,
+    'Add new Club' => 'නව සමාජ ශාලාවක් එක් කරන්න',
+    'Club name' => 'සමාජ ශාලා නාමය'
 
 ];

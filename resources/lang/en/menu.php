@@ -74,6 +74,8 @@ return [
     '[+] Buissness' =>'[+] Buissness',
     'View Payments' => 'View Payments',
     'Remove Buisness' => 'Remove Buisness',
+    'Annual worth' => 'Annual worth',
+    'Update Business details'=> 'Update Business details',
 
     //Business Report Generation
     'Start Date'=>'Start Date',
@@ -101,6 +103,7 @@ return [
     'Registration' => 'Registration',
     'Add Business' => 'Add Business',
     'Update Details' => 'Update Details',
+    's profile'=> 's profile',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',
@@ -235,6 +238,13 @@ return [
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
     'Assessment Amount' => 'Assessment Amount',
-    'Search Premises Name'=> 'Search Premises Name'
+    'Search Premises Name'=> 'Search Premises Name',
+
+    // Club licence tax
+    'Club licence'=> 'Club licence',
+    '[+] Club' => '[+] Club',
+    's clubs' => 's clubs' ,
+    'Add new Club' => 'Add new Club',
+    'Club Name' => 'Club Name'
 
 ];

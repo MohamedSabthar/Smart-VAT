@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vat;
 use Illuminate\Database\Eloquent\Builder;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\AddClubLicenceRequest;
 use App\Http\Controllers\Controller;
 use Auth;
 //report Generation
@@ -14,7 +15,6 @@ use App\Vat;
 use App\Vat_payer;
 use App\Club_licence_tax;
 use App\Club_licence_tax_payment;
-use App\AddClubLicenceRequest;
 
 class ClubLicenceTaxController extends Controller
 {
@@ -28,13 +28,13 @@ class ClubLicenceTaxController extends Controller
     }
 
     
-    //funtion to calculate business tax
-    public function calculateTax($anualWorth, $assessmentAmmount)
+    //funtion to calculate Club licence tax
+    public function calculateTax($anualWorth, $dueAmount)
     {
         $currentDate = now()->toArray();
         $clubLicenceTax = Vat::where('name', 'Club Licence Tax')->firstOrFail();
 
-        return $anualWorth*($clubLicenceTax->vat_percentage/100)+$assessmentAmmount;
+        return $anualWorth*($clubLicenceTax->vat_percentage/100)+$dueAmount;
     }
     
     public function checkPayments(Request $request)
@@ -100,6 +100,11 @@ class ClubLicenceTaxController extends Controller
     {
         $vatPayer = Vat_payer::find($id);
         return view('vat.clubLicence.clubLicenceProfile', ['vatPayer'=>$vatPayer]);
+    }
+
+    public function clubLicencePayments($club_id)
+    {
+        //
     }
 
     // register new club

@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Pyament</center>
+                        <center>Restore Payment</center>
                     </h3>
                 </div>
                 <div class="col-auto">
@@ -233,7 +233,7 @@
             <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Business')}}</span></h3>
+                        <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Business details')}}</span></h3>
                     </div>
 
                 </div>
@@ -244,6 +244,19 @@
                     action="{{route('update-business',['id'=>$businessTaxShop->id])}}">
                     @csrf
                     @method('put')
+                    <div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('assesmentNo') is-invalid  @enderror" type="text"
+                                value="{{old('assesmentNo',$businessTaxShop->registration_no)}}" id="assesmentNo" name="assesmentNo">
+                            @error('assesmentNo')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="example-text-input"
                             class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
@@ -259,10 +272,10 @@
                     </div>
                     <div class="form-group row">
                         <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
-                            {{__('menu.Anual worth')}}</label>
+                            {{__('menu.Annual worth')}}</label>
                         <div class="col-md-10">
                             <input class="form-control @error('annualAssesmentAmount') is-invalid @enderror" type="text"
-                                value="{{old('annualAssesmentAmount',$businessTaxShop->anual_worth)}}" id="annualAssesmentAmount" name="anual_worth">
+                                value="{{old('annualAssesmentAmount',$businessTaxShop->anual_worth)}}" id="annualAssesmentAmount" name="annualAssesmentAmount">
                             @error('annualAssesmentAmount')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -422,7 +422,7 @@ class BusinessTaxController extends Controller
         $businessTaxShop->street = $request->street;
         $businessTaxShop->city = $request->city;
              
-        $vatPayer->save();
+        $businessTaxShop->save();
         return redirect()->back()->with('status', 'Business details updated successful');
     }
 }

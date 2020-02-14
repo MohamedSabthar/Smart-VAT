@@ -27,6 +27,7 @@ class UpdateBusinessProfileRequest extends FormRequest
     {
         return [
             // "full_name" and address instead
+            'assesmentNo'=>['required', 'string', 'max:255', Rule::unique('business_tax_shops', 'registration_no')],
             'businessName' => ['required','alpha', 'string', 'max:255', Rule::unique('business_tax_shops','shop_name')->ignore($this->id)],
             'annualAssesmentAmount' => ['required','numeric'],
             'doorno' =>['required','numeric','max:100'],                              
