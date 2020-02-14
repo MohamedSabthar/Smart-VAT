@@ -51,7 +51,7 @@ Route::get('/global-conf/industrial/types/{id}', 'GlobalConfigurationController@
 Route::post('/global-conf/industrial/add-type/{id}', 'GlobalConfigurationController@addIndustrialType')->name('add-industrial-type');
 Route::put('/global-conf/industrial/update-type', 'GlobalConfigurationController@updateIndustrialType')->name('update-industrial-type');
 
-Route::get('/global-conf/entertainment', 'GlobalConfigurationController@updateEntertainmentTaxForm')->name('global-conf-entertainment-update');
+Route::get('/global-conf/entertainment', 'GlobalConfigurationController@viewEntertainmentTicketTax')->name('global-conf-entertainment-update');
 
 Route::get('/global-conf/land', 'GlobalConfigurationController@updateLandTaxForm')->name('global-conf-land-update');
 Route::put('/global-conf/land/update-percentage', 'GlobalConfigurationController@updateLandPercentage')->name('update-land-percentage');
@@ -61,6 +61,8 @@ Route::put('/global-conf/club-licence/update-percentage', 'GlobalConfigurationCo
 Route::post('/global-conf/industrial/add-range', 'GlobalConfigurationController@addIndustrialRange')->name('industrial-add-range');
 Route::post('/global-conf/business/add-range', 'GlobalConfigurationController@addBusinessRange')->name('business-add-range');
 
+Route::post('/global-conf/entertainment/add-ticket-type', 'GlobalConfigurationController@addEnterainmentTicketType')->name('add-entertainment-ticket-type');
+Route::put('/global-conf/entertainment/update-ticket-type', 'GlobalConfigurationController@updateEntertainmentTicketPercentage')->name('update-entertainment-ticket-type');
 
 
 
