@@ -58,6 +58,8 @@ Route::put('/global-conf/land/update-percentage', 'GlobalConfigurationController
 
 Route::get('/global-conf/club-licence', 'GlobalConfigurationController@updateClubLicenceTaxForm')->name('global-conf-club-licence-update');
 Route::put('/global-conf/club-licence/update-percentage', 'GlobalConfigurationController@updateClubLicencePercentage')->name('update-club-licence-percentage');
+Route::post('/global-conf/industrial/add-range', 'GlobalConfigurationController@addIndustrialRange')->name('industrial-add-range');
+Route::post('/global-conf/business/add-range', 'GlobalConfigurationController@addBusinessRange')->name('business-add-range');
 
 
 
@@ -117,7 +119,7 @@ Route::get('/business/business-trash/{payer_id}', 'vat\BusinessTaxController@tra
 Route::get('/business/business-restore/{id}', 'vat\BusinessTaxController@restoreBusiness')->name('restore-business'); // restore business
 
 //all business tax related tax routes should starts with "/buisness"
-Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer'); 
+Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
 Route::put('/business-profile/{id}', 'vat\BusinessTaxController@updateBusinessProfile')->name('update-business');
 
@@ -231,7 +233,7 @@ Route::get('/retry-industrial-notification/{id}/{notify}', 'RetryNoticeControlle
 
 /**
  * Routes related to Land tax
- * 
+ *
  * all taxes related to land tax should starts with "/land"
  */
 Route::get('/land/profile/{id}', 'vat\LandTaxController@landProfile')->name('land-profile');
@@ -259,7 +261,7 @@ Route::post('/land/Summary-report-pdf', 'vat\LandTaxController@summaryPdf')->nam
 
 /**
  * Routes related to Club Licece tax
- * 
+ *
  * all taxes related to land tax should starts with "/club-licence"
  */
 Route::get('/club-licence/profile/{id}', 'vat\ClubLicenceTaxController@clubLicenceProfile')->name('club-licence-profile');
@@ -286,11 +288,11 @@ Route::post('/club-licence/generation', 'vat\ClubLicenceTaxController@generateRe
 
 /**
  * Routes related to Vehicle Park tax
- * 
+ *
  * all taxes related to Vehicle Park tax should starts with "/vehicle-park"
  */
-Route::get('/vehicle-park/officers','vat\VehicleParkTaxController@ticketingOfficers')->name('vehicle-park-ticketing-officers');
-Route::get('/vehicle-park/payments','vat\VehicleParkTaxController@vehicleParkPayments')->name('vehicle-park-vehicleParkPayments');
+Route::get('/vehicle-park/officers', 'vat\VehicleParkTaxController@ticketingOfficers')->name('vehicle-park-ticketing-officers');
+Route::get('/vehicle-park/payments', 'vat\VehicleParkTaxController@vehicleParkPayments')->name('vehicle-park-vehicleParkPayments');
 
 
 

@@ -152,11 +152,59 @@
 <div class="row">
     <div class="mb-4 col-lg-10 col-sm-12">
         <div class="card shadow">
+
             <div class="card-header bg-white border-0">
-                <h3 class="mb-0">{{__('menu.Assessment Ranges of Business Tax')}}</h3>
-                <hr class="mt-4 mb-0">
+                <div class="row align-items-center">
+                    <div class="col-6 card-header">
+                        <h3 class="mb-0">{{__('menu.Assessment Ranges of Business Tax')}}</h3>
+                        <hr class="mt-4 mb-0">
+                    </div>
+                    <div class="col-6 text-right">
+                        {{-- {{$industrial->assessmentRanges->last()->start_value}} --}}
+                        <button id="expand-range" class="btn btn-sm btn-icon btn-3 btn-success text-white"
+                            data-toggle="tooltip" data-placement="right"
+                            data-original-title="Click to add new assessment range">
+                            <span><i class="fas fa-plus"></i></span>
+                            <span class="btn-inner--text">Add Range</span>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="table-responsive px-5" style="width:100%">
+
+                <form action="{{route('business-add-range')}}" method="POST" id="assessment-range-form">
+                    @csrf
+                    <div class="row pb-2">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="number" step="0.01" class="form-control"
+                                    value="{{$business->assessmentRanges->last()->start_value}}" readonly
+                                    name="oldLimit">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="number" step="0.01" class="form-control @error('newLimit') is-invalid
+                                @enderror" id="newLimit" placeholder="Enter range limit" name="newLimit" type="text"
+                                    value="{{old('newLimit')}}">
+                                @error('newLimit')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" class="btn btn-primary" value="Add">
+                        </div>
+
+                    </div>
+
+                </form>
+
+
                 {{-- Assessment ranges table --}}
                 <table id="assessment_table" class="table">
                     <thead class="thead-light">
@@ -236,7 +284,7 @@
           "sDom": '<'+
           '<"px-0 text-center d-flex ">l'+
           't'+
-          '<"d-flex justify-content-center pt-4"p>'+
+          '<"d-flex justify-content-center p-4"p>'+
           '>'
         });     
  
@@ -255,6 +303,16 @@
             .columns( 1 )
             .search( this.value )
             .draw();
+        });
+
+        @if(!$errors->first('newLimit'))
+        $("#assessment-range-form").hide();
+        @endif
+
+        $("#expand-range").on('click',function(){
+            console.log('test');
+            $('#assessment-range-form').slideDown("slow")
+            $('#newLimit').focus();
         });
 
     });
