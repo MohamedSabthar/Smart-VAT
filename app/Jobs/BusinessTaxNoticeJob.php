@@ -19,7 +19,7 @@ class BusinessTaxNoticeJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $mail;
-    public $id; //business
+    public $id; //business_id
     /**
      * Create a new job instance.
      *

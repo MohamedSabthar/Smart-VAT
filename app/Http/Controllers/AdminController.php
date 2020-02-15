@@ -24,6 +24,17 @@ class AdminController extends Controller
         return view('admin.manageEmployee', ['employees'=>$employees]);
     }
 
+    public function promoteAsAdmin(Request $request)
+    {
+        if ($request->id==null) {
+            return redirect()->back()->with('error', 'Invalid operation');
+        }
+        $user = User::find($request->id);
+        $user->role = 'admin';
+        $user->save();
+        return redirect()->route('manage-employee')->with('status', 'Employee promoted as admin');
+    }
+
     public function employeeProfile($id)
     {
         $employee = User::where('id', $id)->firstOrFail();                                      //returning paticular user's data

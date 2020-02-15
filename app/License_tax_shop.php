@@ -30,7 +30,7 @@ class License_tax_shop extends Model
 
     public function licenseType()
     {
-        return $this->belongsTo('App\license_type','type');
+        return $this->belongsTo('App\License_type','type_id');
     }
 
 }

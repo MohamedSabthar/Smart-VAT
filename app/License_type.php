@@ -12,4 +12,6 @@ class License_type extends Model
     {
         return $this->belongsTo('App\Assessment_range', 'assessment_range_id');
     }
+
+    
 }

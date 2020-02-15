@@ -17,6 +17,10 @@ class License_tax_payment extends Model
 
     public function licenseTaxShop()
     {
-        return $this->belongsTo('App\License_tax_shop','type');
+        return $this->belongsTo('App\License_tax_shop','shop_id');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User','user_id');        // a payment recieved belongs to a user  
     }
 }

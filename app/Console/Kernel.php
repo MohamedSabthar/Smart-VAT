@@ -4,12 +4,17 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Carbon\Carbon;
 
+use Carbon\Carbon;
 use App\Vat;
 use App\Business_tax_payment;
 use App\Business_tax_shop;
+use App\Industrial_tax_payment;
+use App\Industrial_tax_shop;
 use App\Vat_payer;
+
+
+use App\Console\Timer;
 
 use App\Jobs\BusinessTaxNoticeJob;
 
@@ -32,26 +37,19 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        
         //sending business tax overdue notification
-        $schedule->call(function () {
-            $currentDate = Carbon::now()->toArray();
-            $year = $currentDate['year'];
-            foreach (Business_tax_shop::all() as $BusinessTaxShop) {
-                $taxPayment=Business_tax_payment::where('shop_id', $BusinessTaxShop->id)->where('created_at', 'like', "%$year%")->first();
-                if ($taxPayment==null) {
-                    // dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->payer->email, $BusinessTaxShop->payer->id));
-                    dispatch(new  BusinessTaxNoticeJob($BusinessTaxShop->payer->email, $BusinessTaxShop->id));
-                }
-            }
-        })
+        $schedule->call(Timer::trigerBusinessDue())->when(Timer::triger('business'));
         // ->everyMinute();
-        ->when(function () {
-            $businessTaxDueDate = Carbon::parse(Vat::where('route', '=', 'business')->firstOrFail()->due_date)->toArray();
-            $currentDate = Carbon::now()->toArray();
-            if ($currentDate['month']==$businessTaxDueDate['month'] && $currentDate['day']==$businessTaxDueDate['day']) {
-                return true;
-            }
-        });
+        
+        // sending industrial tax overdue notification
+        $schedule->call(Timer::trigerIndustrialDue())
+        // ->when(Timer::triger('industrial'));
+        ->everyMinute();
+
+        //start due payment transations
+        $schedule->call(Timer::trigerBusinessDueTransaction())->when(Timer::triger('business'));
+        $schedule->call(Timer::trigerIndustrialDueTransaction())->when(Timer::triger('industrial'));
     }
 
     /**

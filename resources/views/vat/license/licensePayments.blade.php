@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','License Payment')
+@section('title','license Payment')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -294,7 +294,7 @@
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
 
-                                            <form action="{{route('remove-industrial-payment',['id'=>$payments->id])}}"
+                                            <form action="{{route('remove-license-payment',['id'=>$payments->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')

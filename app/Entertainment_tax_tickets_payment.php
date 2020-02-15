@@ -26,4 +26,9 @@ class Entertainment_tax_tickets_payment extends Model
     {
         return Entertainment_tax_performance_payment::entertainmentPerformancePayers()->merge(Entertainment_tax_tickets_payment::entertainmentTicketPayers())->unique();
     }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Entertainment_type', 'type_id');
+    }
 }

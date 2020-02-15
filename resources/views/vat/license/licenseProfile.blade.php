@@ -513,7 +513,7 @@ style="cursor:pointer">
             $("#industrial-registration").slideToggle("slow");
         });
         $('#type').select2({
-            placeholder: "Select industrial type here",
+            placeholder: "Select license type here",
             allowClear: true,
         });
         $('#annualAssesmentAmount').blur(function(){
@@ -529,10 +529,10 @@ style="cursor:pointer">
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             });
             $('#type').select2({
-                placeholder: "Select industrial type here",
+                placeholder: "Select license type here",
             allowClear: true,
             ajax: {
-                url: "{{route('get-industrial-types')}}",
+                url: "{{route('get-license-types')}}",
                 dataType: 'json',
                 type:"POST",
                 delay: 250,
