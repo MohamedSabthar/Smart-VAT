@@ -6,6 +6,8 @@ use App\Vat_payer;
 use App\Jobs\BusinessTaxNoticeJob;
 use App\Mail\BusinessTaxNotice;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -306,6 +308,26 @@ Route::get('/vehicle-park/officers', 'vat\VehicleParkTaxController@ticketingOffi
 Route::get('/vehicle-park/payments', 'vat\VehicleParkTaxController@vehicleParkPayments')->name('vehicle-park-vehicleParkPayments');
 
 
+/**
+ * Routes related to license tax
+ *
+ * all license tax related tax routes should starts with "/license"
+ */
+Route::get('/license/profile/{id}', 'vat\LicenseTaxController@licenseProfile')->name('license-profile');
+Route::post('/license/licenfse-register/{id}', 'vat\LicenseTaxController@registerLisenceDuty')->name('license-duty-register');
+Route::get('/license/payments/{shop_id}','vat\LicenseTaxController@licensePayments')->name('license-payments');
+Route::post('/license/payments/{shop_id}', 'vat\LicenseTaxController@reciveLicensePayments')->name('receive-license-payments');
+Route::post('/license/generation', 'vat\LicenseTaxController@generateReport')->name('license-report-view');
+Route::get('/license/generate-report', 'vat\LicenseTaxController@licenseReportGeneration')->name('license-generate-report');
+Route::post('/license/Tax-report-pdf', 'vat\LicenseTaxController@TaxPdf')->name('license-tax-report-pdf');
+Route::post('/license/Summary-report-pdf', 'vat\LicenseTaxController@summaryPdf')->name('license-summary-report-pdf');
+Route::post('/license/get-license-types', 'vat\LicenseTaxController@getLicensetypes')->name('get-license-types');
+Route::delete('/license/payment-remove/{id}', 'vat\LicenseTaxController@removePayment')->name('remove-license-payment');//soft delete industrial payment
+
+
+Route::get('/test',function(){
+    return view('vat.license.test');
+});
 
 /**
  * temperory testing routes
