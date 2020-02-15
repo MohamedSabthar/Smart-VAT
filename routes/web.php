@@ -174,6 +174,9 @@ Route::post('/industrial/generation', 'vat\IndustrialTaxController@generateRepor
 Route::post('/industrial/tax-report-pdf', 'vat\IndustrialTaxController@taxPdf')->name('industrial-tax-report-pdf');
 Route::post('/industrial/summary-report-pdf', 'vat\IndustrialTaxController@summaryPdf')->name('industrial-summary-report-pdf');
 
+Route::get('/industrial/get-unpaid-vat-payers', 'vat\IndustrialTaxController@getUnpaidVatPayer')->name('industrial-un-paid-payers');
+Route::get('/industrial/get-unpaid-vat-payers-pdf', 'vat\IndustrialTaxController@getUnpaidVatPayerPdf')->name('industrial-un-paid-payers-pdf');
+
 
 //shop rent tax
 
