@@ -47,12 +47,12 @@ class VatPagesController extends Controller
     public function land()
     {
         $payers = Land_tax::landTaxPayers();  //get all the vat_payers who pay Land tax
-        return view('vat.land.land',['payers'=>$payers]);
+        return view('vat.land.land', ['payers'=>$payers]);
     }
 
     public function advertizement()
     {
-        return view('vat.advertizement');
+        return view('vat.advertizement.advertizement');
     }
     public function booking()
     {
@@ -61,7 +61,7 @@ class VatPagesController extends Controller
     public function clubLicence()
     {
         $payers = Club_licence_tax::clubLicenceTaxPayers();  //get all the vat_payers who club licence tax
-        return view('vat.clubLicence.clubLicence',['payers'=>$payers]);
+        return view('vat.clubLicence.clubLicence', ['payers'=>$payers]);
     }
     public function landauction()
     {

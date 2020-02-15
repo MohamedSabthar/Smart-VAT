@@ -18,6 +18,8 @@ use App\Reports\IndustrialReport;
 use App\Http\Requests\IndustrialTaxReportRequest;
 
 use App\Industrial_tax_due_payment;
+use Carbon\Carbon;
+use Industrial_tax_due_payments;
 
 class IndustrialTaxController extends Controller
 {
@@ -359,5 +361,24 @@ class IndustrialTaxController extends Controller
         $output .= "<br>Total Shops : ".$ShopCount;
         $output .= "<br>Total Payements : Rs.".number_format($Paymentsum, 2)."/=";
         return $output;
+    }
+
+    public function getUnpaidVatPayer()
+    {
+        $payersDue = Industrial_tax_due_payment::where('due_ammount', '!=', 0)->get();
+        $year = Carbon::now()->toArray()['year'];
+        return view('vat.industrial.industrialTaxUnPaidPayers', ['year'=>$year,'payersDue'=>$payersDue]);
+    }
+
+    public function getUnpaidVatPayerPdf()
+    {
+        $pdf = \App::make('dompdf.wrapper');
+
+        $payersDue = Industrial_tax_due_payment::where('due_ammount', '!=', 0)->get();
+        $year = Carbon::now()->toArray()['year'];
+         
+        $pdf->loadView('vat.industrial.industrialTaxUnPaidPayersPdf', ['year'=>$year,'payersDue'=>$payersDue]);
+   
+        return $pdf->stream();
     }
 }

@@ -8,15 +8,22 @@ use App\Assessment_range;
 use App\Business_type;
 use App\Industrial_type;
 use App\Vats_old_percentage;
+use App\Entertainment_performance_type;
 
+use App\Http\Requests\UpdateEntertainmentPerformanceTypeRequest;
+use App\Http\Requests\AddEntertainmentPerformanceTypeRequest;
 use App\Http\Requests\AddIndustrialTypeRequest;
+use App\Http\Requests\AddEntertainmentTicketTypeRequest;
 use App\Http\Requests\UpdateIndustrialTypeRequest;
+use App\Http\Requests\AddAssessmentRangeRequest;
 use App\Http\Requests\UpdateBusinessTaxPercentageRequest;
 use App\Http\Requests\UpdateIndustrialTaxPercentageRequest;
 use App\Http\Requests\UpdateLandTaxPercentageRequest;
 use App\Http\Requests\AddBusinessTypeRequest;
 use App\Http\Requests\UpdateBusinessTypeRequest;
+use App\Http\Requests\UpdateEntertainmentTicketTypeRequest;
 use Carbon\Carbon;
+use App\Entertainment_type;
 
 class GlobalConfigurationController extends Controller
 {
@@ -65,11 +72,6 @@ class GlobalConfigurationController extends Controller
         $business->save();
 
         return redirect()->back()->with('status', 'Business Tax Details updated successfully');
-    }
-
-    public function updateBusinessAssessmentRanges()
-    {
-        dd('test');
     }
 
     public function viewBusinessRangeTypes($id)
@@ -141,10 +143,7 @@ class GlobalConfigurationController extends Controller
         return redirect()->back()->with('status', 'Industrial Tax Details updated successfully');
     }
 
-    public function updateIndustrialAssessmentRanges()
-    {
-        dd('test');
-    }
+    
 
     public function viewIndustrialRangeTypes($id)
     {
@@ -174,10 +173,58 @@ class GlobalConfigurationController extends Controller
     }
 
 
-    public function updateEntertainmentTaxForm()
+    public function viewEntertainmentTicketTax()
     {
-        $entertainment = Vat::where('route', 'entertainment')->first();
-        return view('admin.globalConfigurationEntertainment', ['entertainment'=>$entertainment]);
+        $entertainmentTypes = Entertainment_type::all();
+        return view('admin.globalConfigurationEntertainmentTicket', ['entertainmentTypes'=>$entertainmentTypes]);
+    }
+
+    public function viewEntertainmentPerformanceTax()
+    {
+        $entertainmentTypes = Entertainment_performance_type::all();
+        return view('admin.globalConfigurationEntertainmentPerformance', ['entertainmentTypes'=>$entertainmentTypes]);
+    }
+
+    public function addEnterainmentPerformanceType(AddEntertainmentPerformanceTypeRequest $request)
+    {
+        $entertainmentTicketType = new Entertainment_performance_type;
+        $entertainmentTicketType->description = $request->description;
+        $entertainmentTicketType->amount  = $request->amount;
+        $entertainmentTicketType->additional_amount  = $request->additionalAmmount;
+        $entertainmentTicketType->save();
+
+        return redirect()->back()->with('status', 'New Perfomance Tax type added successfully');
+    }
+
+    public function updateEntertainmentPerformanceTaxDetails(UpdateEntertainmentPerformanceTypeRequest $request)
+    {
+        $entertainmentTicketType = Entertainment_performance_type::findOrFail($request->updateId);
+        $entertainmentTicketType->description = $request->updateDescription;
+        $entertainmentTicketType->amount  = $request->updateAmount;
+        $entertainmentTicketType->additional_amount  = $request->updateAdditionalAmount;
+        $entertainmentTicketType->save();
+
+        return redirect()->back()->with('status', 'Ticket Tax updated successfully');
+    }
+
+    public function addEnterainmentTicketType(AddEntertainmentTicketTypeRequest $request)
+    {
+        $entertainmentTicketType = new Entertainment_type;
+        $entertainmentTicketType->description = $request->description;
+        $entertainmentTicketType->vat_percentage  = $request->percentage;
+        $entertainmentTicketType->save();
+
+        return redirect()->back()->with('status', 'New Ticket Tax type added successfully');
+    }
+
+    public function updateEntertainmentTicketPercentage(UpdateEntertainmentTicketTypeRequest $request)
+    {
+        $entertainmentTicketType = Entertainment_type::findOrFail($request->updateId);
+        $entertainmentTicketType->description = $request->updateDescription;
+        $entertainmentTicketType->vat_percentage  = $request->updatePercentage;
+        $entertainmentTicketType->save();
+
+        return redirect()->back()->with('status', 'Ticket Tax updated successfully');
     }
 
     /*
@@ -223,6 +270,40 @@ class GlobalConfigurationController extends Controller
         $vatDetails->land = Vat::where('route', 'land')->first();
         $vatDetails->clubLicence = Vat::where('route', 'club-licence')->first();
         return $vatDetails;
+    }
+
+
+    public function addIndustrialRange(AddAssessmentRangeRequest $request)
+    {
+        $industrialId = Vat::where('route', 'industrial')->first()->id;
+        $assessmentRange = Assessment_range::where('vat_id', $industrialId)->where('start_value', $request->oldLimit)->first();
+        $assessmentRange->end_value = $request->newLimit;
+     
+        $assessmentRange->save();
+       
+        $assessmentRange = new Assessment_range;
+        $assessmentRange->start_value = $request->newLimit;
+        $assessmentRange->vat_id = $industrialId;
+        $assessmentRange->save();
+
+        return redirect()->back()->with('status', 'Assessment range added successfully');
+    }
+
+
+    public function addBusinessRange(AddAssessmentRangeRequest $request)
+    {
+        $businessId = Vat::where('route', 'business')->first()->id;
+        $assessmentRange = Assessment_range::where('vat_id', $businessId)->where('start_value', $request->oldLimit)->first();
+        $assessmentRange->end_value = $request->newLimit;
+     
+        $assessmentRange->save();
+       
+        $assessmentRange = new Assessment_range;
+        $assessmentRange->start_value = $request->newLimit;
+        $assessmentRange->vat_id = $businessId;
+        $assessmentRange->save();
+
+        return redirect()->back()->with('status', 'Assessment range added successfully');
     }
 }
 

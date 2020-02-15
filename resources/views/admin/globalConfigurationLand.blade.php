@@ -160,7 +160,7 @@
           "sDom": '<'+
           '<"px-0 text-center d-flex ">l'+
           't'+
-          '<"d-flex justify-content-center pt-4"p>'+
+          '<"d-flex justify-content-center p-4"p>'+
           '>'
         });     
  
