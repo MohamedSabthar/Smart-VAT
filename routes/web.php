@@ -6,8 +6,6 @@ use App\Vat_payer;
 use App\Jobs\BusinessTaxNoticeJob;
 use App\Mail\BusinessTaxNotice;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -178,6 +176,7 @@ Route::post('/industrial/summary-report-pdf', 'vat\IndustrialTaxController@summa
 
 Route::get('/industrial/get-unpaid-vat-payers', 'vat\IndustrialTaxController@getUnpaidVatPayer')->name('industrial-un-paid-payers');
 Route::get('/industrial/get-unpaid-vat-payers-pdf', 'vat\IndustrialTaxController@getUnpaidVatPayerPdf')->name('industrial-un-paid-payers-pdf');
+Route::put('/industrial-profile/{id}', 'vat\IndustrialTaxController@updateIndustrialShop')->name('update-industrial');
 
 
 //shop rent tax
@@ -315,7 +314,7 @@ Route::get('/vehicle-park/payments', 'vat\VehicleParkTaxController@vehicleParkPa
  */
 Route::get('/license/profile/{id}', 'vat\LicenseTaxController@licenseProfile')->name('license-profile');
 Route::post('/license/licenfse-register/{id}', 'vat\LicenseTaxController@registerLisenceDuty')->name('license-duty-register');
-Route::get('/license/payments/{shop_id}','vat\LicenseTaxController@licensePayments')->name('license-payments');
+Route::get('/license/payments/{shop_id}', 'vat\LicenseTaxController@licensePayments')->name('license-payments');
 Route::post('/license/payments/{shop_id}', 'vat\LicenseTaxController@reciveLicensePayments')->name('receive-license-payments');
 Route::post('/license/generation', 'vat\LicenseTaxController@generateReport')->name('license-report-view');
 Route::get('/license/generate-report', 'vat\LicenseTaxController@licenseReportGeneration')->name('license-generate-report');
@@ -325,7 +324,7 @@ Route::post('/license/get-license-types', 'vat\LicenseTaxController@getLicensety
 Route::delete('/license/payment-remove/{id}', 'vat\LicenseTaxController@removePayment')->name('remove-license-payment');//soft delete industrial payment
 
 
-Route::get('/test',function(){
+Route::get('/test', function () {
     return view('vat.license.test');
 });
 

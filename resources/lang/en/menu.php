@@ -101,6 +101,7 @@ return [
     'Registration' => 'Registration',
     'Add Business' => 'Add Business',
     'Update Details' => 'Update Details',
+    'Update business' => 'Update business',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',

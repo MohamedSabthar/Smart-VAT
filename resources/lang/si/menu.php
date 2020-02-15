@@ -93,6 +93,7 @@ return [
     'Registration' => 'ලියාපදිංචි කිරීම',
     'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
     'Update Details' => 'විස්තර යාවත්කාලීන කරන්න',
+    'Update business' => 'Update business',
     'Yes' => 'ඔව්',
 
     
@@ -211,7 +212,7 @@ return [
      'Industrial Range Types'=>'Industrial Range Types',
 
 
-    //Land tax 
+    //Land tax
     '[+] Premises' => '[+] පරිශ්‍රය',
     's premises hired'=>'ගේ පරිශ්‍ර කුලියට',
     'Premises Name' => 'පරිශ්‍රයේ නම',
