@@ -30,6 +30,7 @@ return [
     'Search Username'=>'Search Username',
     'Search Email'=>'Search Email',
     'Search Admin'=>'Search Admin',
+    'Search' => 'Search',
 
     'My profile'=>'My profile',
     'Logout'=>'Logout',
@@ -47,10 +48,10 @@ return [
     'Search Assesment No.' => 'Search Assesment No.',
     'Search Owner Name' => 'Search Owner Name',
     
-     
-     
+    //Common
     'Configurations' => 'Configurations',
     'VAT Categories'=>'VAT Categories',
+    'Accept payments' => 'Accept payments',
     
     //business tax
     'Annual Assesment Amount' => 'Annual Assesment Amount',
@@ -86,6 +87,8 @@ return [
    
     
     //VAT Payer
+    'Register'=> 'Register',
+    'Register VAT Payer'=> 'Register VAT Payer',
     'user Id' => 'User ID',
     'VAT Payer Name'=> 'VAT Payer Name',
     'Address' =>'Address',
@@ -101,9 +104,14 @@ return [
     'Phone No' => 'Phone No',
     'Business Categories' => 'Business Categories',
     'Registration' => 'Registration',
-    'Add Business' => 'Add Business',
     'Update Details' => 'Update Details',
+    'Add Business' => 'Add Business',
     's profile'=> 's profile',
+    'Business Tax Payers' => 'Business Tax Payers',
+    'Industrial Tax Payers' => 'Industrial Tax Payers',
+    'Entertainment Tax Payers' => 'Entertainment Tax Payers',
+    'Land Tax Payers' => 'Land Tax Payers',
+    'Club Licence Tax Payers' => 'Club Licence Tax Payers',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',
@@ -113,7 +121,6 @@ return [
     //employee profile
     'Update employee information' => 'Update employee information',
     'Name' => 'Name',
-    'NIC' => 'NIC',
     'Phone No' => 'Phone No',
     'Assigned VAT categories' => 'Assigned VAT categories',
     'E-Mail' => 'E-Mail',
@@ -173,11 +180,20 @@ return [
     'Payment' => 'Payment',
     'Assigned To Court' => 'Assigned To Court',
     'Search Payment date'=> 'Search Payment date',
+    'Send Notice' => 'Send Notice',
     'All' => 'All',
     'Yes' => 'Yes',
     'No' => 'No',
     'Remove Payment'=> 'Remove Payment',
+
+    
+    //header buttons
     'Restore Payment' =>'Restore Payment',
+    'Restore Business' => 'Restore Business',
+    'Business Payers' => 'Business Payers',
+    'Report Generation' => 'Report Generation',
+    'Latest Payments' => 'Latest Payments',
+    'Quick payments' => 'Quick payments',
 
     //trash payment
     'Trash Payments'=>'Trash Payments',

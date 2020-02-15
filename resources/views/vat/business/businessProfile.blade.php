@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Business</center>
+                    <center>{{__('menu.Restore Business')}}</center>
                     </h3>
 
                 </div>
@@ -185,7 +185,7 @@
 
                     <div class="pt-2 text-center">
                         <a href="{{route('vat-payer-profile',['id'=>$vatPayer->id])}}"
-                            class="btn btn-sm btn-danger">Update Profile</a>
+                            class="btn btn-sm btn-danger">{{__('menu.Update Details')}}</a>
                     </div>
                 </div>
 

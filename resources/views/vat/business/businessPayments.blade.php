@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Payment</center>
+                    <center>{{__('menu.Restore Payment')}}</center>
                     </h3>
                 </div>
                 <div class="col-auto">
@@ -207,7 +207,7 @@
 
                         <div class="pt-2 text-center">
                             <a href="{{route('business-send-notice',['id'=>$businessTaxShop->id])}}"
-                                class="btn btn-sm btn-danger">Send Notice</a>
+                            class="btn btn-sm btn-danger">{{__('menu.Send Notice')}}</a>
                         </div>
 
                     </div>

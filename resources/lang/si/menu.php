@@ -30,6 +30,7 @@ return [
     'Search Username'=>'පරිශීලක නාමය සෙවීම',
     'Search Email'=>'විද්යුත් තැපෑල සෙවීම',
     'Search Admin'=>'පරිපාලක සෙවීම',
+    'Search' => 'සෙවීම',
 
     'My profile'=>'මගේ ගිණුම',
     'Logout'=>'ඉවත්වීම',
@@ -48,6 +49,9 @@ return [
     
     'Configurations'=>'වින්‍යාසයන්',
     'VAT Categories'=>'බදු කාණ්ඩ',
+
+    //Common 
+    'Accept payments' => 'ගෙවීම් භාර ගන්න',
      
     //business tax
     'Annual Assesment Amount' => 'වාර්ෂික තක්සේරු මුදල',
@@ -76,8 +80,11 @@ return [
     'Shop Name' => 'සාප්පු නම',
     'Annual worth' => 'වාර්ෂික වටිනාකම',
     'Update Business details'=> 'ව්‍යාපාර විස්තර යාවත්කාලීන කරන්න',
+    'Update Vat Payer Profile' => 'වැට් ගෙවන්නන්ගේ පැතිකඩ යාවත්කාලීන කරන්න',
     
-    //VAT PAyer
+    //VAT Payer
+    'Register' => 'ලියාපදිංචි කිරීම',
+    'Register VAT Payer' => 'වැට් බදු ගෙවන්නා ලියාපදිංචි කරන්න',
     'User ID' => 'පරිශීලක අංකය',
     'VAT Payer Name'=> 'බදු ගෙවන්නාගේ නම',
     'Address' => 'ලිපිනය',
@@ -97,6 +104,11 @@ return [
     'Update Details' => 'විස්තර යාවත්කාලීන කරන්න',
     'Yes' => 'ඔව්',
     's profile'=> 'පැතිකඩ',
+    'Business Tax Payers' => 'ව්‍යාපාර බදු ගෙවන්නන්',
+    'Industrial Tax Payers' => 'කාර්මික බදු ගෙවන්නන්',
+    'Entertainment Tax Payers' => 'විනෝදාස්වාද බදු ගෙවන්නන්',
+    'Land Tax Payers' => 'ඉඩම් බදු ගෙවන්නන්',
+    'Club Licence Holders' => 'සමාජ ශාලා බලපත්‍ර බදු ගෙවන්නන්',
 
     
     
@@ -160,11 +172,19 @@ return [
      'Payment' => 'ගෙවීම',
      'Assigned To Court' => 'උසාවියට ​​පවරා ඇත',
      'Search Payment date' => 'ගෙවීම් කල දිනය සෙවීම',
+     'Send Notice' => 'දැන්වීම යවන්න',
      'All' =>'සියල්ල',
      'Yes' =>'ඔව්',
      'No' => 'නැත',
      'Remove Payment' => 'ගෙවීම ඉවත් කරන්න',
+     
+     //header Buttons
      'Restore Payment'=> 'ගෙවීම ප්‍රතිස්ථාපනය කරන්න',
+     'Restore Business'=> 'ව්‍යාපාරය ප්‍රතිස්ථාපනය කරන්න',
+     'Business Payers'=> 'ව්‍යාපාර බදු ගෙවන්නන්',
+     'Report Generation' => 'වාර්තාව ජනනය කරන්න',
+     'Latest Payments' => 'නවතම ගෙවීම්',
+     'Quick payments' => 'ඉක්මන් ගෙවීම්',
 
      //trash payment
      'Restore'=> 'ප්‍රතිස්ථාපනය',
