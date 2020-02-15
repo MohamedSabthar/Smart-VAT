@@ -93,13 +93,13 @@ class Timer
                 foreach (Business_tax_shop::all() as $BusinessTaxShop) {
                     $taxPayment=Business_tax_payment::where('shop_id', $BusinessTaxShop->id)->where('created_at', 'like', "%$year%")->first();
                     $duePayment =Business_tax_due_payment::where('shop_id', $BusinessTaxShop->id)->first();
+                    if ($duePayment==null) { //checking for previous due payments
+                        $duePayment = new Business_tax_due_payment;
+                        $duePayment->shop_id = $BusinessTaxShop->id;
+                        $duePayment->payer_id = $BusinessTaxShop->payer->id;
+                        $duePayment->due_ammount = 0;
+                    }
                     if ($taxPayment==null) {    // if not paid for this year
-                        if ($duePayment==null) { //checking for previous due payments
-                            $duePayment = new Business_tax_due_payment;
-                            $duePayment->shop_id = $BusinessTaxShop->id;
-                            $duePayment->payer_id = $BusinessTaxShop->payer->id;
-                            $duePayment->due_ammount = 0;
-                        }
                         // if not paid for this year add due payment
                         $duePayment->due_ammount+=$BusinessTaxShop->anual_worth*($businessTax->vat_percentage/100)+$BusinessTaxShop->businessType->assessment_ammount;
                     } else {
@@ -125,13 +125,13 @@ class Timer
                 foreach (Industrial_tax_shop::all() as $industrialTaxShop) {
                     $taxPayment=Industrial_tax_payment::where('shop_id', $industrialTaxShop->id)->where('created_at', 'like', "%$year%")->first();
                     $duePayment =Industrial_tax_due_payment::where('shop_id', $industrialTaxShop->id)->first();
+                    if ($duePayment==null) {
+                        $duePayment = new Industrial_tax_due_payment;
+                        $duePayment->shop_id = $industrialTaxShop->id;
+                        $duePayment->payer_id = $industrialTaxShop->payer->id;
+                        $duePayment->due_ammount = 0;
+                    }
                     if ($taxPayment==null) {
-                        if ($duePayment==null) {
-                            $duePayment = new Industrial_tax_due_payment;
-                            $duePayment->shop_id = $industrialTaxShop->id;
-                            $duePayment->payer_id = $industrialTaxShop->payer->id;
-                            $duePayment->due_ammount = 0;
-                        }
                         // if not paid for this month add due payment
                         $duePayment->due_ammount+=$industrialTaxShop->anual_worth*($industrialTax->vat_percentage/100)+$industrialTaxShop->industrialType->assessment_ammount;
                     } else {

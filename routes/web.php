@@ -113,7 +113,8 @@ Route::get('/business/generate-report', 'vat\BusinessTaxController@businessRepor
 Route::post('/business/generation', 'vat\BusinessTaxController@generateReport')->name('business-report-view');
 Route::post('/business/Tax-report-pdf', 'vat\BusinessTaxController@TaxPdf')->name('business-tax-report-pdf');
 Route::post('/business/Summary-report-pdf', 'vat\BusinessTaxController@summaryPdf')->name('business-summary-report-pdf');
-
+Route::get('/business/get-unpaid-vat-payers', 'vat\BusinessTaxController@getUnpaidVatPayer')->name('business-un-paid-payers');
+Route::get('/business/get-unpaid-vat-payers-pdf', 'vat\BusinessTaxController@getUnpaidVatPayerPdf')->name('business-un-paid-payers-pdf');
 
 //business payment remove
 Route::delete('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment

@@ -181,7 +181,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($businessTaxPyament as $payment)
+                            @foreach ($businessTaxPayment as $payment)
                             <tr>
                                 <td>{{$payment->id}}</td>
                                 <td>{{$payment->businessTaxShop->shop_name}}</td>
