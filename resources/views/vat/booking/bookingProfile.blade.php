@@ -265,7 +265,7 @@
 						<div class="col-md-10">
 
 							<select id="type" name="type" class="form-control @error('type') is-invalid  @enderror">
-								<option value=""></option>
+							<option value="" disabled selected>Select a Booking Tax Type</option>
 								{{-- only for testing need to implement Ajax searchBuisness --}}
 								@foreach ($bookingTaxType as $type)
 									<option value="{{$type->id}}" @if(old('type')==$type->id) selected

@@ -45,7 +45,7 @@ class IndustrialTaxNotice extends Mailable
         $industrialTaxShop=Industrial_tax_shop::findOrFail($shopId);  //get the VAT payer id
         // $payerId = $industrialTaxShop->payer->id;
        
-        $assessmentAmmount = $industrialTaxShop->businessType->assessment_ammount;
+        $assessmentAmmount = $industrialTaxShop->industrialType->assessment_ammount;
             
        
         $businessTax = Vat::where('name', 'Business Tax')->firstOrFail();

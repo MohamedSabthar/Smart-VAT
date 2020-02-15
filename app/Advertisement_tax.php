@@ -24,4 +24,9 @@ class Advertisement_tax extends Model
             return $tax->payer;
         })->unique('id');   //collection filtered using unique id
     }
+    public function advertisementTaxPayment()
+    {
+        return $this->belongsTo('App\Advertisement_tax_payment', 'shop_id');    // a payment belogns to a buisness tax shop
+    }
+   
 }
