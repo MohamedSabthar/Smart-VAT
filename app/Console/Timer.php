@@ -12,6 +12,7 @@ use App\Industrial_tax_shop;
 use App\Vat_payer;
 use App\Business_tax_due_payment;
 use App\Industrial_tax_due_payment;
+use App\Automatic_log;
 
 use App\Jobs\BusinessTaxNoticeJob;
 use App\Jobs\IndustrialTaxNoticeJob;
@@ -50,20 +51,16 @@ class Timer
 
     public static function triger($tax)
     {
-        $dueDate = Carbon::parse(Vat::where('route', '=', $tax)->firstOrFail()->due_date)->toArray();
-            
+        $vat = Vat::where('route', '=', $tax)->firstOrFail();
+        $dueDate = Carbon::parse($vat->due_date)->toArray();
+        $lastRunDate =  Automatic_log::where('vat_id', $vat->id)->get()->last();
+        $lastRunDate=  $lastRunDate!=null ?  $lastRunDate->toArray() : null ;//get the last log from data base to check whether this transaction already ran or not
         $currentDate = Carbon::now()->toArray();
-        echo $tax;
-        echo " ";
-        echo$currentDate['day'];
-        echo "-";
-        echo$dueDate['day'];
-        echo "\n";
         return function () use ($tax) {
             $dueDate = Carbon::parse(Vat::where('route', '=', $tax)->firstOrFail()->due_date)->toArray();
             
             $currentDate = Carbon::now()->toArray();
-            if ($currentDate['month']==$dueDate['month'] && $currentDate['day']==$dueDate['day']) {
+            if ($currentDate['month']==$dueDate['month'] && $currentDate['day']==$dueDate['day'] && $lastRunDate['year']==$currentDate['year']) {
                 return true;
             }
             return false;
@@ -107,6 +104,10 @@ class Timer
                     }
                     $duePayment->save();
                 }
+
+                $log = new Automatic_log;
+                $log->vat_id = $businessTax->id;
+                $log->save(); // save a log at completion of transaction
             });
         };
     }
@@ -139,6 +140,10 @@ class Timer
                     }
                     $duePayment->save();
                 }
+
+                $log = new Automatic_log;
+                $log->vat_id = $industrialTax->id;
+                $log->save(); // save a log at completion of transaction
             });
         };
     }
