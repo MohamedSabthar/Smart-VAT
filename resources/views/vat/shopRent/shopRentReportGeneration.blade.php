@@ -20,7 +20,7 @@
 
 		<div class="card shadow">
 			<div class="card-header bg-transparent">
-				<h3 class="mb-0"><span class="text-uppercase">Generate Shop Rent Report</span></h3>
+				<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Generate Shop Rent Report')}}</span></h3>
 			</div>
 
 
@@ -39,7 +39,7 @@
 				<form method="POST" action="{{route('shop-rent-report-view')}}">
 					@csrf
 					<div class="form-group row">
-							<label for="example-text-input" class="col-md-2 col-form-label form-control-label " id="startDate" name="startDate">Start Date</label>
+							<label for="example-text-input" class="col-md-2 col-form-label form-control-label " id="startDate" name="startDate">{{__('menu.Start Date')}}</label>
 							<div class="input-group input-group-alternative">
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
@@ -54,7 +54,7 @@
 						</div>
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label " id="endDate" name="endDate">End Date</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label " id="endDate" name="endDate">{{__('menu.End Date')}}</label>
 						<div class="input-group input-group-alternative">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>

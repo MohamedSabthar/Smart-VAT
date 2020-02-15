@@ -35,7 +35,15 @@ return [
     'Logout'=>'Logout',
     'Change Password'=>'Change Password',
 
-
+    //register
+    'View profile' =>'View profile',
+    'Register' =>'Register',
+    'Register VAT Payer'=>'Register VAT Payer',
+    'Confirmation !'=>'Confirmation !',
+    'This VAT payer is alredy registered'=>'This VAT payer is alredy registered',
+    'Are you wish to add a New Business/Payment ?'=>'Are you wish to add a New Business/Payment ?',
+    'Cancel'=>'Cancel',
+    
     //latest payment//
     'Latest Payment'=>'Latest Payment',
     'Assesment No.' => 'Assesment No.',
@@ -227,6 +235,24 @@ return [
     'Assessment Ranges of Industrial Tax' => 'Assessment Ranges of Industrial Tax',
     'Industrial Range Types'=>'Industrial Range Types',
 
+    //shop rent
+    'Shop Rent Tax Payers'=>'Shop Rent Tax Payers',
+    'Add Shop'=>'Add Shop',
+    'Key Money'=>'Key Money',
+    'Month Assessment Amount'=>'Month Assesment Amount',
+    's shops'=>'s shops',
+    'Click here to add new Shop Rent'=>'Click here to add new Shop Rent',
+    'shop Name'=>'shop Name',
+    'Month worth'=>'Month worth',
+    'Payment Date'=>'Payment Date',
+    'Shop Rent payers'=>'Shop Rent payers',
+    'Latest Payments'=>'Latest Payments',
+    'Report Generation'=>'Report Generation',
+    'Quick payments'=>'Quick payments',
+    'Generate Shop Rent Report'=>'Generate Shop Rent Report',
+    'Start Date'=>'Start Date',
+    'End Date'=>'End Date',
+    'Accept payments'=>'Accept payments',
 
     //Land tax
     '[+] Premises' => '[+] Premises',

@@ -168,8 +168,8 @@
                         <hr>
 
                         <div class="pt-1">
-                            <h3 class="d-inline"> {{__('menu.Annual worth')}} : </h3>
-                            {{number_format($shopRentTax->anual_worth,2)}}
+                            <h3 class="d-inline"> {{__('menu.Month worth')}} : </h3>
+                            {{number_format($shopRentTax->month_worth,2)}}
                         </div>
                         <hr>
 

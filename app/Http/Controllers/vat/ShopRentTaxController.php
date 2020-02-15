@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\vat;
+
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,6 @@ use Auth;
 use App\Vat;
 use App\Vat_payer;
 use App\Shop_rent_tax_due_payment;
-
 
 class ShopRentTaxController extends Controller
 {
@@ -34,7 +34,6 @@ class ShopRentTaxController extends Controller
 
     public function registerShopRent($id, AddShopRentRequest $request)
     {
-        
         $vatPayer = Vat_payer :: find($id); // get vat payer id
         $shopRentTax = new Shop_rent_tax();
         $shopRentTax->registration_no = $request->assesmentNo;
@@ -212,5 +211,4 @@ class ShopRentTaxController extends Controller
         $shopRentTax->restore();
         return redirect()->route('shop-rent-profile', ['id'=>$payerId])->with('status', 'shop restored successfully');
     }
-
 }

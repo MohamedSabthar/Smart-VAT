@@ -151,7 +151,7 @@
 
 		<div class="card shadow">
 			<div class="card-header bg-transparent">
-				<h3 class="mb-0"><span class="text-uppercase">Register VAT Payer</span></h3>
+				<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Register VAT Payer')}}</span></h3>
 			</div>
 
 			<div class="card-body bg-secondary ">
@@ -294,7 +294,7 @@
 					<!-- button with onclick event that triggers the form validation. If the form is valid, triggers click of second button -->
 					<div class="form-group">
 						<button type="submit" id="register" value="Submit" class="btn btn-primary float-right"
-							onclick="if(formIsValid() $('#triggerModal').click();)">Register</button>
+							onclick="if(formIsValid() $('#triggerModal').click();)">{{__('menu.Register')}}</button>
 					</div>
 
 					<!-- hidden submit button -->
@@ -310,19 +310,19 @@
 							<div class="modal-content">
 
 								<div class="modal-header">
-									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<h1 class="modal-title" id="modal-title-default">{{__('menu.Confirmation !')}}</h1>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">×</span>
 									</button>
 								</div>
 								<div class="modal-body">
-									<strong>This VAT payer is alredy registered</strong>
-									<p>Are you wish to add a New Business/Payment ? </p>
+									<strong>{{__('menu.This VAT payer is alredy registered')}}</strong>
+									<p>{{__('menu.Are you wish to add a New Business/Payment ?')}} </p>
 								</div>
 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-link"
-										onclick="javascript:location.reload()">Cancel</button>
+										onclick="javascript:location.reload()">{{__('menu.Cancel')}}</button>
 									<a href="" id="redirect" class="btn  btn-primary ml-auto">{{__('menu.Yes')}}</a>
 								</div>
 

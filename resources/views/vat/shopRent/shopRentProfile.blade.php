@@ -120,7 +120,7 @@
 		<div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
-				Click here to add new Shop Rent
+				{{__('menu.Click here to add new Shop Rent')}}
 				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -235,7 +235,7 @@
 
 					<div class="form-group row">
 						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Month Assesment Amount')}}</label>
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Month Assessment Amount')}}</label>
 						<div class="col-md-10 ">
 							<input class="form-control @error('monthAssesmentAmount') is-invalid  @enderror"
 								type="text" value="{{old('monthAssesmentAmount')}}" id="monthAssesmentAmount"

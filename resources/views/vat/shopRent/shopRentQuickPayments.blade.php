@@ -133,7 +133,7 @@
 	<div class="col">
 		<div class="card bg-secondary shadow">
 			<div class="card-header bg-white border-0">
-				<h3 class="mb-0"><span class="text-uppercase">Accept payments</span></h3>
+				<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Accept payments')}}</span></h3>
 			</div>
 
 			<div class="card-body">
@@ -141,7 +141,7 @@
 				<form>
 					@csrf
 					<div class="form-group row pt-3">
-						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">NIC</label>
+						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
 						<div class="col-md-10">
 							<input class="form-control @error('nic') is-invalid @enderror" type="text"
 								value="{{old('nic')}}" id="nic" name="nic" placeholder="Enter vat payer's NIC">
@@ -161,14 +161,14 @@
 						<div class="modal-content">
 
 							<div class="modal-header">
-								<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+								<h1 class="modal-title" id="modal-title-default">{{__('menu.Confirmation !')}}</h1>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">×</span>
 								</button>
 							</div>
 							<div class="modal-body">
 
-								<p>Confirmation needed to accept payments!</p>
+								<p>{{__('menu.Confirmation needed to accept payments!')}}</p>
 							</div>
 
 							<div class="modal-footer">
