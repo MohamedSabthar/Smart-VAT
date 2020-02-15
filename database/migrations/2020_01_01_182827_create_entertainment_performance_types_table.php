@@ -19,7 +19,6 @@ class CreateEntertainmentPerformanceTypesTable extends Migration
             $table->double('amount');               // basic payment
             $table->double('additional_amount');      //ammount per additional day
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

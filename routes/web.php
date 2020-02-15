@@ -6,6 +6,8 @@ use App\Vat_payer;
 use App\Jobs\BusinessTaxNoticeJob;
 use App\Mail\BusinessTaxNotice;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +36,7 @@ Route::name('password.')->group(
 Route::get('/employee-profile/{id}', 'AdminController@employeeProfile')->name('employee-profile');
 Route::put('/employee-profile/{id}', 'AdminController@updateEmployeeProfile')->name('update-employee');
 Route::get('/mangae-employee', 'AdminController@manageEmployee')->name('manage-employee');
+Route::put('/mangae-employee/promote', 'AdminController@promoteAsAdmin')->name('promote-to-admin');
 Route::post('/assign-vat', 'AdminController@assignVatCategories')->name('assign-vat');
 Route::get('/gloabl-conf', 'GlobalConfigurationController@globalConfiguration')->name('global-conf');
 Route::get('/global-conf/business', 'GlobalConfigurationController@updateBusinessTaxForm')->name('global-conf-business-update');
@@ -50,6 +53,22 @@ Route::get('/global-conf/industrial/types/{id}', 'GlobalConfigurationController@
 Route::post('/global-conf/industrial/add-type/{id}', 'GlobalConfigurationController@addIndustrialType')->name('add-industrial-type');
 Route::put('/global-conf/industrial/update-type', 'GlobalConfigurationController@updateIndustrialType')->name('update-industrial-type');
 
+Route::get('/global-conf/entertainment', 'GlobalConfigurationController@viewEntertainmentTicketTax')->name('global-conf-entertainment-update');
+
+Route::get('/global-conf/land', 'GlobalConfigurationController@updateLandTaxForm')->name('global-conf-land-update');
+Route::put('/global-conf/land/update-percentage', 'GlobalConfigurationController@updateLandPercentage')->name('update-land-percentage');
+
+Route::get('/global-conf/club-licence', 'GlobalConfigurationController@updateClubLicenceTaxForm')->name('global-conf-club-licence-update');
+Route::put('/global-conf/club-licence/update-percentage', 'GlobalConfigurationController@updateClubLicencePercentage')->name('update-club-licence-percentage');
+Route::post('/global-conf/industrial/add-range', 'GlobalConfigurationController@addIndustrialRange')->name('industrial-add-range');
+Route::post('/global-conf/business/add-range', 'GlobalConfigurationController@addBusinessRange')->name('business-add-range');
+
+Route::post('/global-conf/entertainment/add-ticket-type', 'GlobalConfigurationController@addEnterainmentTicketType')->name('add-entertainment-ticket-type');
+Route::put('/global-conf/entertainment/update-ticket-type', 'GlobalConfigurationController@updateEntertainmentTicketPercentage')->name('update-entertainment-ticket-type');
+
+Route::get('/global-conf/entertainment-performance', 'GlobalConfigurationController@viewEntertainmentPerformanceTax')->name('global-conf-entertainment-performance-update');
+Route::post('/global-conf/entertainment/add-performance-type', 'GlobalConfigurationController@addEnterainmentPerformanceType')->name('add-entertainment-performance-type');
+Route::put('/global-conf/entertainment/update-performance-type', 'GlobalConfigurationController@updateEntertainmentPerformanceTaxDetails')->name('update-entertainment-performance-type');
 
 
 
@@ -82,6 +101,7 @@ try {
  */
 
 Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
+Route::put('/business-profile/{id}', 'vat\BusinessTaxController@updateBusinessProfile')->name('update-business');  //update VAT payer profile
 Route::get('/business/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
@@ -95,7 +115,8 @@ Route::get('/business/generate-report', 'vat\BusinessTaxController@businessRepor
 Route::post('/business/generation', 'vat\BusinessTaxController@generateReport')->name('business-report-view');
 Route::post('/business/Tax-report-pdf', 'vat\BusinessTaxController@TaxPdf')->name('business-tax-report-pdf');
 Route::post('/business/Summary-report-pdf', 'vat\BusinessTaxController@summaryPdf')->name('business-summary-report-pdf');
-
+Route::get('/business/get-unpaid-vat-payers', 'vat\BusinessTaxController@getUnpaidVatPayer')->name('business-un-paid-payers');
+Route::get('/business/get-unpaid-vat-payers-pdf', 'vat\BusinessTaxController@getUnpaidVatPayerPdf')->name('business-un-paid-payers-pdf');
 
 //business payment remove
 Route::delete('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
@@ -106,7 +127,11 @@ Route::delete('/business/payment-remove-permanent/{id}', 'vat\BusinessTaxControl
 Route::delete('/business/business-remove/{shop_id}', 'vat\BusinessTaxController@removeBusiness')->name('remove-business'); // soft delete business route
 Route::get('/business/business-trash/{payer_id}', 'vat\BusinessTaxController@trashBusiness')->name('trash-business');// trash business
 Route::get('/business/business-restore/{id}', 'vat\BusinessTaxController@restoreBusiness')->name('restore-business'); // restore business
-Route::put('/business-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
+
+//all business tax related tax routes should starts with "/buisness"
+Route::get('/vat-payer', 'PayerController@payer')->name('vat-payer');
+Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+Route::put('/business-profile/{id}', 'vat\BusinessTaxController@updateBusinessProfile')->name('update-business');
 
 
 /**
@@ -145,7 +170,14 @@ Route::get('/industrial/industrial-trash/{payer_id}', 'vat\IndustrialTaxControll
 Route::get('/industrial/industrial-restore/{id}', 'vat\IndustrialTaxController@restoreIndustrialShop')->name('restore-industrial-shop'); // restore industrial
 Route::delete('/industrial/payment-remove-permanent/{id}', 'vat\IndustrialTaxController@destory')->name('industrial-remove-payment-permanent');// permanent delete
 
+Route::get('/industrial/generate-report', 'vat\IndustrialTaxController@industrialReportGeneration')->name('industrial-generate-report');
+Route::post('/industrial/generation', 'vat\IndustrialTaxController@generateReport')->name('industrial-report-view');
 
+Route::post('/industrial/tax-report-pdf', 'vat\IndustrialTaxController@taxPdf')->name('industrial-tax-report-pdf');
+Route::post('/industrial/summary-report-pdf', 'vat\IndustrialTaxController@summaryPdf')->name('industrial-summary-report-pdf');
+
+Route::get('/industrial/get-unpaid-vat-payers', 'vat\IndustrialTaxController@getUnpaidVatPayer')->name('industrial-un-paid-payers');
+Route::get('/industrial/get-unpaid-vat-payers-pdf', 'vat\IndustrialTaxController@getUnpaidVatPayerPdf')->name('industrial-un-paid-payers-pdf');
 
 
 //shop rent tax
@@ -190,12 +222,112 @@ Route::delete('/entertainment/payment-ticket-remove-permanent/{id}', 'vat\Entert
 Route::delete('/entertainment/payment-performance-remove-permanent/{id}', 'vat\EntertainmentTaxController@destoryPerformance')->name('entertainment-remove-ticket-performance-permanent');// permanent delete
 Route::put('/entertainment/performance-payment-update/{id}', 'vat\EntertainmentTaxController@updatePerformancePayment')->name('update-entertainment-performance-payments');
 
+Route::get('/entertainment/generate-ticket-report', 'vat\EntertainmentTaxController@entertainmentTicketReportGeneration')->name('entertainment-generate-ticket-report');
+Route::post('/entertainment/ticket/generation', 'vat\EntertainmentTaxController@generateTicketReport')->name('entertainment-ticket-report-view');
+
+Route::post('/entertainment/ticket-tax-report-pdf', 'vat\EntertainmentTaxController@ticketTaxPdf')->name('entertainment-ticket-tax-report-pdf');
+Route::post('/entertainment/ticket-summary-report-pdf', 'vat\EntertainmentTaxController@ticketSummaryPdf')->name('entertainment-ticket-summary-report-pdf');
+
+
+Route::get('/entertainment/generate-performance-report', 'vat\EntertainmentTaxController@entertainmentPerformanceReportGeneration')->name('entertainment-generate-performance-report');
+Route::post('/entertainment/performance/generation', 'vat\EntertainmentTaxController@generatePerformanceReport')->name('entertainment-performance-report-view');
+
+Route::post('/entertainment/performance-tax-report-pdf', 'vat\EntertainmentTaxController@performanceTaxPdf')->name('entertainment-performance-tax-report-pdf');
+Route::post('/entertainment/performance-summary-report-pdf', 'vat\EntertainmentTaxController@performanceSummaryPdf')->name('entertainment-performance-summary-report-pdf');
+
 
 /**
  * mailing routes
  */
 Route::get('/business/business-notice/{id}', 'vat\BusinessTaxController@sendNotice')->name('business-send-notice');
+Route::get('/retry-business-notification/{id}/{notify}', 'RetryNoticeController@retryBusinessNotice')->name('retry-business-notice');
+Route::get('/retry-industrial-notification/{id}/{notify}', 'RetryNoticeController@retryIndustrialNotice')->name('retry-industrial-notice');
 
+
+/**
+ * Routes related to Land tax
+ *
+ * all taxes related to land tax should starts with "/land"
+ */
+Route::get('/land/profile/{id}', 'vat\LandTaxController@landProfile')->name('land-profile');
+Route::post('/land/land-register/{id}', 'vat\LandTaxController@registerLand')->name('land-register');
+Route::get('/land/payments/{land_id}', 'vat\LandTaxController@landPayments')->name('land-payments');
+Route::post('/land/payments/{land_id}', 'vat\LandTaxController@receiveLandPayments')->name('receive-land-payments');
+
+Route::post('/land/check-payments', 'vat\LandTaxController@checkPayments')->name('check-land-payments'); //check all land payments for a given vat payer for quick payment option
+Route::get('/land/quick-payments', 'vat\LandTaxController@viewQuickPayments')->name('get-land-quick-payments');
+Route::post('/land/accept-quick-payments', 'vat\LandTaxController@acceptQuickPayments')->name('land-quick-payments');
+
+Route::delete('/land/payment-remove/{id}', 'vat\LandTaxController@removePayment')->name('remove-land-payment');//soft delete land payment
+Route::get('/land/payment-trash/{id}', 'vat\LandTaxController@trashPayment')->name('land-trash-payment');//trash land payments
+Route::get('/land/payment-restore/{id}', 'vat\LandTaxController@restorePayment')->name('restore-land-payment');// restore land payments
+
+Route::delete('/land/land-remove/{land_id}', 'vat\LandTaxController@removeLandPremises')->name('remove-land-premises'); // soft delete land route
+Route::get('/land/land-trash/{payer_id}', 'vat\LandTaxController@trashLandPremises')->name('trash-land-premises');// trash land
+Route::get('/land/land-restore/{id}', 'vat\LandTaxController@restoreLandPremises')->name('restore-land-premises'); // restore land
+
+// Land tax report generation
+Route::get('/land/generate-report', 'vat\LandTaxController@landReportGeneration')->name('land-generate-report'); // Summary report generation
+Route::post('/land/generation', 'vat\LandTaxController@generateReport')->name('land-report-view');
+Route::post('/land/Tax-report-pdf', 'vat\LandTaxController@TaxPdf')->name('land-tax-report-pdf');
+Route::post('/land/Summary-report-pdf', 'vat\LandTaxController@summaryPdf')->name('land-summary-report-pdf');
+
+/**
+ * Routes related to Club Licece tax
+ *
+ * all taxes related to land tax should starts with "/club-licence"
+ */
+Route::get('/club-licence/profile/{id}', 'vat\ClubLicenceTaxController@clubLicenceProfile')->name('club-licence-profile');
+//Route::put('/club-licence-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');  //update VAT payer profile
+Route::get('/club-licence/latest', 'vat\ClubLicenceTaxController@latestPayment')->name('latest');
+Route::post('/club-licence/business-register/{id}', 'vat\ClubLicenceTaxController@registerClubLicence')->name('club-licence-register');
+Route::get('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@businessPayments')->name('club-licence-payments');
+Route::post('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@recieveClubLicencePayment')->name('receive-club-licence-payments');
+Route::post('/club-licence/check-payments', 'vat\ClubLicenceTaxController@checkPayments')->name('check-club-licence-payments'); //check all business payments for a given vat payer for quick payment option
+Route::get('/club-licence/quick-payments', 'vat\ClubLicenceTaxController@viewQuickPayments')->name('get-club-licence-quick-payments');
+Route::post('/club-licence/accept-quick-payments', 'vat\ClubLicenceTaxController@acceptQuickPayments')->name('club-licence-quick-payments');
+
+Route::delete('/club-licence/payment-remove/{id}', 'vat\LandTaxController@removePayment')->name('club-licence-land-payment');//soft delete land payment
+Route::get('/club-licence/payment-trash/{id}', 'vat\LandTaxController@trashPayment')->name('club-licence-trash-payment');//trash land payments
+Route::get('/club-licence/payment-restore/{id}', 'vat\LandTaxController@restorePayment')->name('restore-club-licence-payment');// restore land payments
+
+Route::delete('/club-licence/clubLicence-remove/{club_id}', 'vat\LandTaxController@removeClubLicence')->name('remove-club-licence-premises'); // soft delete land route
+Route::get('/club-licence/clubLicence-trash/{payer_id}', 'vat\LandTaxController@trashClubLicence')->name('trash-club-licence-premises');// trash land
+Route::get('/club-licence/clubLicence-restore/{id}', 'vat\LandTaxController@restoreClubLicence')->name('restore-club-licence-premises'); // restore land
+
+Route::get('/club-licence/generate-report', 'vat\ClubLicenceTaxController@clubLicenceReportGeneration')->name('club-licence-generate-report');
+Route::post('/club-licence/generation', 'vat\ClubLicenceTaxController@generateReport')->name('club-licence-report-view');
+
+
+/**
+ * Routes related to Vehicle Park tax
+ *
+ * all taxes related to Vehicle Park tax should starts with "/vehicle-park"
+ */
+Route::get('/vehicle-park/officers', 'vat\VehicleParkTaxController@ticketingOfficers')->name('vehicle-park-ticketing-officers');
+Route::get('/vehicle-park/payments', 'vat\VehicleParkTaxController@vehicleParkPayments')->name('vehicle-park-vehicleParkPayments');
+
+
+/**
+ * Routes related to license tax
+ *
+ * all license tax related tax routes should starts with "/license"
+ */
+Route::get('/license/profile/{id}', 'vat\LicenseTaxController@licenseProfile')->name('license-profile');
+Route::post('/license/licenfse-register/{id}', 'vat\LicenseTaxController@registerLisenceDuty')->name('license-duty-register');
+Route::get('/license/payments/{shop_id}','vat\LicenseTaxController@licensePayments')->name('license-payments');
+Route::post('/license/payments/{shop_id}', 'vat\LicenseTaxController@reciveLicensePayments')->name('receive-license-payments');
+Route::post('/license/generation', 'vat\LicenseTaxController@generateReport')->name('license-report-view');
+Route::get('/license/generate-report', 'vat\LicenseTaxController@licenseReportGeneration')->name('license-generate-report');
+Route::post('/license/Tax-report-pdf', 'vat\LicenseTaxController@TaxPdf')->name('license-tax-report-pdf');
+Route::post('/license/Summary-report-pdf', 'vat\LicenseTaxController@summaryPdf')->name('license-summary-report-pdf');
+Route::post('/license/get-license-types', 'vat\LicenseTaxController@getLicensetypes')->name('get-license-types');
+Route::delete('/license/payment-remove/{id}', 'vat\LicenseTaxController@removePayment')->name('remove-license-payment');//soft delete industrial payment
+
+
+Route::get('/test',function(){
+    return view('vat.license.test');
+});
 
 /**
  * temperory testing routes
@@ -237,4 +369,4 @@ Route::get('/retry', function () {
 Route::get('/retry/{$id}', function () {
     Artisan::call("queue:retry $id");
     dd('done');
-});
+})->name('retry-mail');

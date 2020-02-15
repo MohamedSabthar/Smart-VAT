@@ -72,7 +72,8 @@ return [
     '[+] Buissness' => '[+] ව්‍යාපාරය',
     'View Payments' => 'ගෙවීම් බලන්න',
     'Remove Buisness' => ' ව්‍යාපාරය‍ ඉවත් කරන්න',
-    
+    'Payment received by' => 'ලැබුනු ගෙවීම',
+    'Shop Name' => 'සාප්පු නම',
     
     //VAT PAyer
     'User ID' => 'පරිශීලක අංකය',
@@ -91,6 +92,7 @@ return [
     'Door No.' => 'දොර අංකය',
     'Registration' => 'ලියාපදිංචි කිරීම',
     'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
+    'Update Details' => 'විස්තර යාවත්කාලීන කරන්න',
     'Yes' => 'ඔව්',
 
     
@@ -207,5 +209,22 @@ return [
      'Business Range Types'=>'Business Range Types',
      'Assessment Ranges of Industrial Tax' => 'Assessment Ranges of Industrial Tax',
      'Industrial Range Types'=>'Industrial Range Types',
+
+
+    //Land tax 
+    '[+] Premises' => '[+] පරිශ්‍රය',
+    's premises hired'=>'ගේ පරිශ්‍ර කුලියට',
+    'Premises Name' => 'පරිශ්‍රයේ නම',
+    'Payer Phone' => 'ගෙවන්නාගේ දුරකථනය',
+    'Add new premises' => 'නව පරිශ්‍රයන් එක් කරන්න',
+    'Assesment Amount' => 'තක්සේරු මුදල',
+
+    'Search Premises Name'=> 'පරිශ්‍රයේ නම සොයන්න',
+
+
+
+
+    // Club license tax
+    'Club licence'=> 'සමාජ ශාලා බලපත්‍රය'
 
 ];

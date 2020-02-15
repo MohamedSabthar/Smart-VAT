@@ -122,6 +122,7 @@ return [
     'PasswordDistinct'=>'Can\'t use current password again',
     'PositiveValue' => 'Invalid value provided shoud be a positive value',
     'VatPercentage' => 'Invalid value provided shoud be in between 0 to 100',
+    'CheckAssessmentRange' => 'Invalid value provided should be greater than :value',
 
 
     /*

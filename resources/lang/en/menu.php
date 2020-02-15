@@ -42,7 +42,8 @@ return [
     'Owner Name' => 'Owner Name',
     'Payment(LRK)' => 'Payment(LRK)',
     'Date' => 'Date',
-     
+    'Payment received by' => 'Payment received by',
+    'Shop Name' => 'Shop Name',
     'Search Assesment No.' => 'Search Assesment No.',
     'Search Owner Name' => 'Search Owner Name',
     
@@ -99,6 +100,7 @@ return [
     'Business Categories' => 'Business Categories',
     'Registration' => 'Registration',
     'Add Business' => 'Add Business',
+    'Update Details' => 'Update Details',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',
@@ -224,5 +226,15 @@ return [
 
     'Assessment Ranges of Industrial Tax' => 'Assessment Ranges of Industrial Tax',
     'Industrial Range Types'=>'Industrial Range Types',
+
+
+    //Land tax
+    '[+] Premises' => '[+] Premises',
+    's premises hired' => 's premises hired',
+    'Premises Name' => 'Premises Name',
+    'Payer Phone' => 'Payer Phone',
+    'Add new premises'=> 'Add new premises',
+    'Assessment Amount' => 'Assessment Amount',
+    'Search Premises Name'=> 'Search Premises Name'
 
 ];

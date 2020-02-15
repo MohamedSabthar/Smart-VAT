@@ -25,44 +25,20 @@ class VatPayersTableSeeder extends Seeder
            'employee_id' => 1,
         ]);
 
-        DB::table('vat_payers')->insert([
-         
-            'email' => '2@yopmail.com',
-             'nic' => '972689769V',
-            'phone'=> '0774578399',
-            'first_name' => 'tharu',
-            'middle_name' => 'shi',
-            'last_name' => 'samara',
-            'door_no'    => '40',
-            'street' => 'deen road',
-            'city'   => 'gale 02',
-            'employee_id' => 2,
-         ]);
+        for ($i=1;$i<=20;$i++) {
+            DB::table('vat_payers')->insert([
+               'email' => Str::random(10).'@yopmail.com',
+               'nic' => '98'+(4500000000+$i),
+               'phone'=> '+9471'+(0000000+$i),
+               'first_name' => Str::random(5),
+               'middle_name' => Str::random(5),
+               'last_name' => Str::random(5),
+               'door_no'    => '14',
+               'street' => Str::random(4),
+               'city'   => Str::random(4),
+               'employee_id' => 2,   
 
-        DB::table('vat_payers')->insert([
-         
-            'email' => '3@yopmail.com',
-             'nic' => '962689769V',
-            'phone'=> '0774543399',
-            'first_name' => 'imal',
-            'middle_name' => 'sha',
-            'last_name' => 'rathnaweera',
-            'door_no'    => '50',
-            'street' => 'ds road',
-            'city'   => 'gale 01',
-            'employee_id' => 1,
-         ]);
-
-        DB::table('vat_payers')->insert([
-            'email' => '4@yopmail.com',
-             'nic' => '972689739V',
-            'phone'=> '0774548999',
-            'first_name' => 'sabthar',
-            'last_name' => 'mahroof',
-            'door_no'    => '89',
-            'street' => 'upper road',
-            'city'   => 'gale 89',
-            'employee_id' => 2,
-         ]);
+            ]);
+        }
     }
 }

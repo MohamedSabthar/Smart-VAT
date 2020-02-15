@@ -24,6 +24,83 @@ class UsersTableSeeder extends Seeder
             'phone' => '+94772489893',
             'nic' => '9723584563V',
             'role'=>'admin',
+  
+  'adminId' => 1,          'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+        DB::table('users')->insert([
+            'name' => 'faiz',
+            'userName'=>'faiz',
+            'email' => 'faiz@yopmail.com',
+            'password' => Hash::make('council@123'),
+            'remember_token' => Str::random(10),
+            'phone' => '+94772489893',
+            'nic' => '9723584563V',
+            'role'=>'employee',
+            'adminId' => 1,
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Khosalan',
+            'userName'=>'Khosalan',
+            'email' => 'Khosalan@yopmail.com',
+            'password' => Hash::make('council@123'),
+            'remember_token' => Str::random(10),
+            'phone' => '+94772409893',
+            'nic' => '9723599563V',
+            'role'=>'employee',
+            'adminId' => 1,
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'dilushkumar',
+            'userName'=>'dilushkumar',
+            'email' => 'dilushkumar@yopmail.com',
+            'password' => Hash::make('council@123'),
+            'remember_token' => Str::random(10),
+            'phone' => '+94724589893',
+            'nic' => '9623908563V',
+            'role'=>'employee',
+            'adminId' => 1,
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+
+        DB::table('users')->insert([
+            'name' => 'kasun',
+            'userName'=>'kasun',
+            'email' => 'kasun@yopmail.com',
+            'password' => Hash::make('council@123'),
+            'remember_token' => Str::random(10),
+            'phone' => '+94708909893',
+            'nic' => '9678545373V',
+            'role'=>'employee',
+            'adminId' => 1,
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'suganthan',
+            'userName'=>'suganthan',
+            'email' => 'suganthan@yopmail.com',
+            'password' => Hash::make('council@123'),
+            'remember_token' => Str::random(10),
+            'phone' => '+94758123463',
+            'nic' => '9678245673V',
+            'role'=>'employee',
+            'adminId' => 1,
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),
