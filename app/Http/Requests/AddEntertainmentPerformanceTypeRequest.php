@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\PositiveValue; //custom validation rules
+use App\Rules\PositiveValue;
 
-class AddBusinessTypeRequest extends FormRequest
+class AddEntertainmentPerformanceTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,10 @@ class AddBusinessTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            "description" => ['required','string','unique:business_types,description'],
+            "description" => ['required','string','unique:entertainment_performance_types,description'],
             "amount" => ['required','numeric',new PositiveValue],
+            'additionalAmmount' => ['required','numeric',new PositiveValue],
+             
         ];
     }
 }

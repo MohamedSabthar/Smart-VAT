@@ -60,18 +60,19 @@
                     <div class="card bg-secondary shadow border-0">
                         <div class="card-body px-lg-5 py-lg-5">
 
+                            @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-                                <span class="alert-inner--text"><strong>Success!</strong> @if (session('status'))
+                                <span class="alert-inner--text"><strong>Success!</strong>
 
                                     {{ session('status') }}
 
-                                    @endif</span>
+                                </span>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-
+                            @endif
 
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf

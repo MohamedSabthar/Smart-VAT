@@ -25,7 +25,7 @@ class AddIndustrialTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            "description" => ['required','string'],
+            "description" => ['required','string','unique:industrial_types,description'],
             "amount" => ['required','numeric',new PositiveValue],
         ];
     }
