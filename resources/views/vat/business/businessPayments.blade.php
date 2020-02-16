@@ -244,6 +244,38 @@
                 </div>
             </div>
 
+            {{-- Confirmation modal for adding business for the registered VAT payer--}}
+            <div class=" modal fade" id="confirm-business-payment" tabindex="-1" role="dialog"
+                aria-labelledby="modal-default" aria-hidden="true">
+                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <p>Confirmation needed to add payment for <br>
+                                shop : {{$businessTaxShop->shop_name}} </p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link"
+                                onclick="javascript:location.reload()">Cancel</button>
+                            <button type="button" id="redirect" class="btn  btn-primary ml-auto"
+                                onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {{-- End of confirmation modal --}}
+
+
+
 
 
             @else
