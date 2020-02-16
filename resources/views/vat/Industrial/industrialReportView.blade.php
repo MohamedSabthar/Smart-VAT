@@ -24,6 +24,9 @@
                 <h3 class="mb-0 text-center"><span class="text-uppercase">Industrial Tax Report from
                         {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
+            @if($records->all()!=null)
+            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert to
+                PDF</button>
             <table id="industrial_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
@@ -49,6 +52,10 @@
                 </tbody>
 
             </table>
+            @else
+            <div class="jumbotron bg-trnasparent text-center">No Payment data</div>
+            @endif
+
 
 
 
@@ -60,10 +67,7 @@
             </form>
         </div>
         <br>
-        <div class="col" align="right">
-            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert to
-                PDF</button>
-        </div>
+
     </div>
 </div>
 

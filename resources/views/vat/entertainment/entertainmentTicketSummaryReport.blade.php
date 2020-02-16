@@ -25,11 +25,14 @@
                         payments from
                         {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
+            @if($records->all()!=null)
+            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert into
+                PDF</button>
             <table id="entertainment_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th style="width:250px;" class="text-center">{{__('menu.Entertainment Type')}}</th>
-                        <th style="width:300px;" class="text-center">{{ __('menu.Total Payments')}}</th>
+                        <th class="text-center">{{__('menu.Entertainment Type')}}</th>
+                        <th class="text-center">{{ __('menu.Total Payments')}}</th>
 
                     </tr>
                 </thead>
@@ -37,7 +40,7 @@
                 <tbody>
                     @foreach ($reportData as $discription=>$total)
                     <tr>
-                        <td class="text-center">{{ $discription }}</td>
+                        <td class="pl-6">{{ $discription }}</td>
                         <td class="text-center">{{ number_format($total,2) }}</td>
 
                     </tr>
@@ -46,6 +49,9 @@
                 </tbody>
 
             </table>
+            @else
+            <div class="jumbotron bg-trnasparent text-center">No Payments data</div>
+            @endif
 
 
             <form method="POST" action="{{route('entertainment-ticket-summary-report-pdf')}}" class="d-none" id="dates">
@@ -56,10 +62,7 @@
             </form>
         </div>
         <br>
-        <div class="col" align="right">
-            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert into
-                PDF</button>
-        </div>
+
     </div>
 </div>
 
