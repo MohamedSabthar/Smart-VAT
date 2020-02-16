@@ -169,6 +169,10 @@
                         <div class="pt-1">
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
                         </div>
+                        <div class="pt-2 text-center">
+                            <a href="{{route('vat-payer-profile',['id'=>$vatPayer->id])}}"
+                                class="btn btn-sm btn-danger">{{__('menu.Update Details')}}</a>
+                        </div>
 
 
                     </div>

@@ -422,15 +422,15 @@ class BusinessTaxController extends Controller
         $businessTaxShop = Business_tax_shop::findOrFail($id);
 
         //update business details
-        $businessTaxShop->registration_no = $request->assesmentNo;
-        $businessTaxShop->anual_worth = $request->annualAssesmentAmount;
+     
+        $businessTaxShop->anual_worth = $request->anual_worth;
         $businessTaxShop->shop_name = $request->businessName;
         $businessTaxShop->phone = $request->phoneno;
         $businessTaxShop->door_no = $request->doorno;
         $businessTaxShop->street = $request->street;
         $businessTaxShop->city = $request->city;
              
-        $vatPayer->save();
+        $businessTaxShop->save();
         return redirect()->back()->with('status', 'Business details updated successful');
     }
 

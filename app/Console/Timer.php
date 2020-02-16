@@ -56,7 +56,7 @@ class Timer
         $lastRunDate =  Automatic_log::where('vat_id', $vat->id)->get()->last();
         $lastRunDate=  $lastRunDate!=null ?  $lastRunDate->toArray() : null ;//get the last log from data base to check whether this transaction already ran or not
         $currentDate = Carbon::now()->toArray();
-        return function () use ($tax) {
+        return function () use ($tax,$lastRunDate) {
             $dueDate = Carbon::parse(Vat::where('route', '=', $tax)->firstOrFail()->due_date)->toArray();
             
             $currentDate = Carbon::now()->toArray();
