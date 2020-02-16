@@ -34,7 +34,14 @@ return [
     'My profile'=>'මගේ ගිණුම',
     'Logout'=>'ඉවත්වීම',
     'Change Password'=>'මුරපදය වෙනස් කිරීම ',
-
+    //register
+    'Register'=>'ලියාපදිංචි කරන්න',
+    'View profile' => 'ගිණුම',
+    'Register VAT Payer'=>'බදු ගෙවන්නා ලියාපදිංචි කරන්න',
+    'Confirmation !'=>'තහවුරු කිරීම !',
+    'This VAT payer is alredy registered'=>'මෙම වැට් බදු ගෙවන්නා දැනටමත් ලියාපදිංචි වී ඇත',
+    'Are you wish to add a New Business/Payment ?'=>'ඔබට නව ව්‍යාපාරයක් / ගෙවීමක් එකතු කිරීමට අවශ්‍යද? ?',
+    'Cancel'=>'අවලංගු කරන්න',
     //latest Payment
     'Latest Payment' => 'අවසාන ගෙවීම',
     'Assesment No.' => 'වරිපනම් අංකය',
@@ -72,7 +79,8 @@ return [
     '[+] Buissness' => '[+] ව්‍යාපාරය',
     'View Payments' => 'ගෙවීම් බලන්න',
     'Remove Buisness' => ' ව්‍යාපාරය‍ ඉවත් කරන්න',
-    
+    'Payment received by' => 'ලැබුනු ගෙවීම',
+    'Shop Name' => 'සාප්පු නම',
     
     //VAT PAyer
     'User ID' => 'පරිශීලක අංකය',
@@ -91,6 +99,8 @@ return [
     'Door No.' => 'දොර අංකය',
     'Registration' => 'ලියාපදිංචි කිරීම',
     'Add Business' => 'ව්‍යාපාරය එක් කරන්න',
+    'Update Details' => 'විස්තර යාවත්කාලීන කරන්න',
+    'Update business' => 'Update business',
     'Yes' => 'ඔව්',
 
     
@@ -142,6 +152,7 @@ return [
     'Arrears' => 'හිඟ මුදල',
     'Payment Date' => 'ගෙවීම් දිනය',
     'Annual Amount' =>  'වාර්ෂික මුදල',
+    
      //business payment
      'view owner' => 'අයිතිකරුව බලන්න',
      'Annual worth' => 'වාර්ෂික වටිනාකම',
@@ -207,5 +218,64 @@ return [
      'Business Range Types'=>'Business Range Types',
      'Assessment Ranges of Industrial Tax' => 'Assessment Ranges of Industrial Tax',
      'Industrial Range Types'=>'Industrial Range Types',
+
+
+    //Land tax
+    '[+] Premises' => '[+] පරිශ්‍රය',
+    's premises hired'=>'ගේ පරිශ්‍ර කුලියට',
+    'Premises Name' => 'පරිශ්‍රයේ නම',
+    'Payer Phone' => 'ගෙවන්නාගේ දුරකථනය',
+    'Add new premises' => 'නව පරිශ්‍රයන් එක් කරන්න',
+    'Assesment Amount' => 'තක්සේරු මුදල',
+
+    'Search Premises Name'=> 'පරිශ්‍රයේ නම සොයන්න',
+
+     //shop rent
+    'Shop Rent Tax Payers'=>'කඩ කුලී බදු ගෙවන්නන්',
+    'Add Shop'=>'කඩයක් ඇතුලත් කරන්න ',
+    'Key Money'=>'ප්‍රධාන මුදල්',
+    'Month Assessment Amount'=>'මාස තක්සේරු මුදල',
+    's shops'=>'ගේ කඩය',
+    'Click here to add new Shop Rent'=>'නව සාප්පු කුලියට එක් කිරීමට මෙතන ක්ලික් කරන්න',
+    'shop Name'=>'සාප්පු නම',
+    'Month worth'=>'මාසික වටිනවා',
+    'Payment Date'=>'ගෙවීම් දිනය',
+    'Shop Rent payers'=>'සාප්පු කුලී ගෙවන්නන්',
+    'Latest Payments'=>'නවතම ගෙවීම්',
+    'Report Generation'=>'වාර්තා',
+    'Quick payments'=>'ඉක්මන් ගෙවීම්',
+    'Generate Shop Rent Report'=>'සාප්පු කුලී වාර්තාව ලබා ගන්න',
+    'Start Date'=>'ආරම්භක දිනය',
+    'End Date'=>'අවසාන දිනය',
+    'Accept payments'=>'ගෙවීම් භාර ගන්න',
+
+     //advertisement tax
+    '[+] Advertisement'=>'ප්‍රචාරක දැන්වීම්',
+
+    // Club license tax
+    'Club licence'=> 'සමාජ ශාලා බලපත්‍රය',
+
+
+    //side bar
+    'Industrial Tax' =>'කාර්මන්ත බද්ද',
+    'License Tax' => 'බලපත්‍ර බද්ද',
+    'Land Tax' => 'බිම් බද්ද ',
+    'Advertisement Tax' => 'ප්‍රචාරක දැන්වීම් බද්ද',
+    //not yet
+    'Land Auction Tax' => 'ඉඩම් වෙන්දේසි බද්ද',
+    'Shop Rent Tax' => 'කඩ බද්ද ',
+    'Vehical Park Tax' => 'වාහන බද්ද',
+    'Entertainment Tax' => 'විනෝද බද්ද',
+    'Club Licence Tax' => 'සමාජ ශාලා බලපත්‍ර බද්ද',
+    'Three Wheel Park Tax' => 'ත්‍රී රෝද  බද්ද',
+    'Booking Tax' => 'වෙන්කිරීමේ බද්ද',
+    'Slaughtering Tax' => 'ඝාතනය කිරීමේ බද්ද',
+
+    //dashbord
+    'Total VAT payers'=>'වැට් බදු ගෙවන්නන්',
+    'Register payer' => 'ලියාපදිංචි කරන්න',
+    'Generate report' => 'වාර්තාව ජනනය කරන්න',
+    'Ticket payment report' => 'ප්‍රවේශ පත්‍ර ගෙවීමේ වාර්තාව',
+    'Performance payment report' => 'කාර්ය සාධන ගෙවීම් වාර්තාව',
 
 ];

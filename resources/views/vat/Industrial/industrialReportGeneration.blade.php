@@ -14,6 +14,12 @@
 @includeWhen(Auth::user()->role=='employee','employee.include.sidebar')
 @endsection
 
+@section('header')
+<a href="{{route('industrial-un-paid-payers')}}" class="mx-3 btn btn-secondary"> List Unpaid VAT payers for this
+    year
+</a>
+@endsection
+
 @section('pageContent')
 <div class="row">
     <div class="col">

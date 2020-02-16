@@ -24,11 +24,14 @@
                 <h3 class="mb-0 text-center"><span class="text-uppercase">Industrial Summary Report from
                         {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
+            @if($reportData->all()!=null)
+            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert into
+                PDF</button>
             <table id="industrial_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th style="width:250px;">{{__('menu.Industrial Type')}}</th>
-                        <th style="width:300px;">{{ __('menu.Total Payments')}}</th>
+                        <th class="text-center">{{__('menu.Industrial Type')}}</th>
+                        <th class="text-center">{{ __('menu.Total Payments')}}</th>
 
                     </tr>
                 </thead>
@@ -36,8 +39,8 @@
                 <tbody>
                     @foreach ($reportData as $discription=>$total)
                     <tr>
-                        <td>{{ $discription }}</td>
-                        <td>{{ number_format($total,2) }}</td>
+                        <td class="pl-6">{{ $discription }}</td>
+                        <td class="text-center">Rs.{{ number_format($total,2) }}</td>
 
                     </tr>
                     @endforeach
@@ -45,6 +48,9 @@
                 </tbody>
 
             </table>
+            @else
+            <div class="jumbotron bg-trnasparent text-center">No Payment data</div>
+            @endif
 
 
             <form method="POST" action="{{route('industrial-summary-report-pdf')}}" class="d-none" id="dates">
@@ -55,10 +61,7 @@
             </form>
         </div>
         <br>
-        <div class="col" align="right">
-            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert into
-                PDF</button>
-        </div>
+
     </div>
 </div>
 

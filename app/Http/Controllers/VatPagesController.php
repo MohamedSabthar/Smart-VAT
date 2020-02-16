@@ -5,8 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Business_tax_shop;
 use App\Industrial_tax_shop;
+use App\Land_tax;
 use App\Shop_rent_tax;
+use App\Advertisement_tax;
+use App\Booking_tax_payments_type;
 use App\Entertainment_tax_tickets_payment;
+use App\Club_licence_tax;
+use App\Vehicle_park_tax;
+use App\License_tax_shop;
 
 class VatPagesController extends Controller
 {
@@ -34,28 +40,32 @@ class VatPagesController extends Controller
 
     public function license()
     {
-        //$payers=License_tax_shop::liceseTaxPayers();    //all the vat payers who pays the license tax 
-        //return view('vat.license.license',['payers'=>$payers]);
-        return view('vat.licence');
+        $payers=License_tax_shop::liceseTaxPayers();    //all the vat payers who pays the license tax 
+        return view('vat.license.license',['payers'=>$payers]);
+        
 
     }
 
     public function land()
     {
-        return view('vat.land');
+        $payers = Land_tax::landTaxPayers();  //get all the vat_payers who pay Land tax
+        return view('vat.land.land', ['payers'=>$payers]);
     }
 
-    public function advertizement()
-    {
-        return view('vat.advertizement');
+    public function advertisement()
+    {  
+        $payers = Advertisement_tax::advertisementTaxPayers();
+        return view('vat.advertisement.advertisement',['payers'=>$payers]);
     }
     public function booking()
     {
-        return view('vat.booking.booking');
+        $payers = Booking_tax_payments_type::bookingTaxPayers(); //get all vat_payers who pay booking tax
+        return view('vat.booking.booking', ['payers' => $payers]);
     }
-    public function clubhouselicence()
+    public function clubLicence()
     {
-        return view('vat.clubHouseLicence');
+        $payers = Club_licence_tax::clubLicenceTaxPayers();  //get all the vat_payers who club licence tax
+        return view('vat.clubLicence.clubLicence', ['payers'=>$payers]);
     }
     public function landauction()
     {
@@ -77,7 +87,8 @@ class VatPagesController extends Controller
     }
     public function vehicalpark()
     {
-        return view('vat.vehicalPark');
+        // $payers = Vehicle_park_tax::vehicleParkTaxPayers(); //get all vat_payers who pay vehicle park tax
+        return view('vat.vehiclePark.vehiclePark');
     }
     public function slaughtering()
     {

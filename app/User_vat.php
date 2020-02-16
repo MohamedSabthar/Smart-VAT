@@ -11,6 +11,7 @@ class User_vat extends Model
     protected $primaryKey = ['user_id','vat_id'];
     public $incrementing = false;
     public $timestamps = false;
+    protected $fillable = ['user_id','vat_id'];
 
     /**
      * overriding base Model primarKeySetting to compostie primary key
