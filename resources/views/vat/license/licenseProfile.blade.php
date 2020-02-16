@@ -13,7 +13,7 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('industrial')}}`,'_self')"      {{-- -*** --}}
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('license')}}`,'_self')"      {{-- -*** --}}
 style="cursor:pointer">
 <div class="card card-stats mb-4 mb-xl-0">
 	<div class="card-body">

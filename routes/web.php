@@ -324,6 +324,18 @@ Route::post('/license/Summary-report-pdf', 'vat\LicenseTaxController@summaryPdf'
 Route::post('/license/get-license-types', 'vat\LicenseTaxController@getLicensetypes')->name('get-license-types');
 Route::delete('/license/payment-remove/{id}', 'vat\LicenseTaxController@removePayment')->name('remove-license-payment');//soft delete industrial payment
 
+/**
+ * Routes related to Slaughtering tax
+ *
+ * all slaughtering tax related tax routes should starts with "/slaughtering"
+ */
+Route::get('/slaughtering/profile/{id}', 'vat\SlaughteringTaxController@slaughteringProfile')->name('slaughtering-profile');
+
+
+
+
+
+
 
 Route::get('/test',function(){
     return view('vat.license.test');

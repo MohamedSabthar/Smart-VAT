@@ -11,6 +11,7 @@ use App\Entertainment_tax_tickets_payment;
 use App\Club_licence_tax;
 use App\Vehicle_park_tax;
 use App\License_tax_shop;
+use App\Slaughting_tax_shop;
 
 class VatPagesController extends Controller
 {
@@ -86,8 +87,9 @@ class VatPagesController extends Controller
         // $payers = Vehicle_park_tax::vehicleParkTaxPayers(); //get all vat_payers who pay vehicle park tax
         return view('vat.vehiclePark.vehiclePark');
     }
+    
     public function slaughtering()
-    {
-        return view('vat.slaughtering');
-    }
+     {   $payers= Slaughting_tax_shop::slaughteringTaxPayers();
+         return view('vat.slaughtering.slaughtering',['payers'=>$payers]);
+     }
 }
