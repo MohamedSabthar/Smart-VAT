@@ -219,7 +219,7 @@ Route::get('/booking/booking-restore/{id}', 'vat\BookingTaxController@restoreBoo
 
 //advertisement
 Route::post('/advertisement/advertisement-register/{id}','vat\AdvertisementTaxController@registerAdvertisementPayment')->name('advertisement-register');
-Route::get('/advertisement/profile/{shop_id}','vat\AdvertisementTaxController@advertisementProfile')->name('advertisement-profile');
+Route::get('/advertisement/profile/{payer_id}','vat\AdvertisementTaxController@advertisementProfile')->name('advertisement-profile');
 Route::delete('/advertisement/payment-remove/{id}', 'vat\AdvertisementTaxController@removePayment')->name('remove-advertisement-payment'); //soft delete business payment
 Route::get('/advertisement/payment-trash/{id}', 'vat\AdvertisementTaxController@trashPayment')->name('advertisement-trash-payment'); //trash business payment
 Route::get('/advertisement/payment-restore/{id}', 'vat\AdvertisementTaxController@restorePayment')->name('restore-advertisement-payment'); // restore business

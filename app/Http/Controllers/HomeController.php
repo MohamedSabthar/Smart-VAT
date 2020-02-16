@@ -16,6 +16,7 @@ use App\Entertainment_tax_tickets_payment;
 use App\Entertainment_tax_performance_payment;
 use App\Land_tax;
 use App\Club_licence_tax;
+use App\Advertisement_tax_payment;
 
 class HomeController extends Controller
 {
@@ -60,6 +61,7 @@ class HomeController extends Controller
         $vatPayerCounts->entertainment = Entertainment_tax_performance_payment::entertainmentPerformancePayers()->merge(Entertainment_tax_tickets_payment::entertainmentTicketPayers())->unique()->count();
         $vatPayerCounts->land =   Land_tax::landTaxPayers()->count();
         $vatPayerCounts->clubLicence = Club_licence_tax::clubLicenceTaxPayers()->count();
+        $vatPayerCounts->advertisement = Advertisement_tax_payment::advertisementTaxPayers()->count();
 
         return $vatPayerCounts;
     }

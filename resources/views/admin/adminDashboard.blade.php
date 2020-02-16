@@ -272,7 +272,7 @@
                 <div class="col">
                     <h3 class="card-title text-uppercase  mb-0 text-default">{{__('menu.Advertisement Tax')}}</h3>
                     <span class="h5 font-weight-bold mb-0 text-gray">{{__('menu.Total VAT payers')}} :
-                        {{$vatPayerCount->industrial}}</span>
+                        {{$vatPayerCount->advertisement}}</span>
 
                 </div>
                 <div class="col-auto">

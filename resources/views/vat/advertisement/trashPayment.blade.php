@@ -179,7 +179,7 @@
                                 
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-payment',['id'=>$payment->id])}}">
+                                        href="{{route('restore-advertisement-payment',['id'=>$payment->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
                                 <td class="text-right">
