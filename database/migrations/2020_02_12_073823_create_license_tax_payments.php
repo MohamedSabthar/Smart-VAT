@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateLicenseTaxPayments extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('license_tax_payments', function (Blueprint $table) {
+            
+            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->double('payment');
+            $table->bigInteger('shop_id')->unsigned();
+            $table->bigInteger('payer_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('shop_id')->references('id')->on('license_tax_shops'); // a tax payment for a license shop
+            $table->foreign('payer_id')->references('id')->on('vat_payers');    // a tax payment by a vat payer
+            $table->foreign('user_id')->references('id')->on('users');          // an employee enteres the record
+            $table->softDeletes();
+        
+
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('license_tax_payments');
+    }
+}

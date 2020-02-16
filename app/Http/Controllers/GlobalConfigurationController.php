@@ -76,11 +76,6 @@ class GlobalConfigurationController extends Controller
         return redirect()->back()->with('status', 'Business Tax Details updated successfully');
     }
 
-    public function updateBusinessAssessmentRanges()
-    {
-        dd('test');
-    }
-
     public function viewBusinessRangeTypes($id)
     {
         $assessmentRange = Assessment_range::find($id);

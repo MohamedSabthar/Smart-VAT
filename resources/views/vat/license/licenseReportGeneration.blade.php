@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Industrial Report Generation')
+@section('title','License Report Generation')
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
@@ -14,19 +14,13 @@
 @includeWhen(Auth::user()->role=='employee','employee.include.sidebar')
 @endsection
 
-@section('header')
-<a href="{{route('industrial-un-paid-payers')}}" class="mx-3 btn btn-secondary"> List Unpaid VAT payers for this
-    year
-</a>
-@endsection
-
 @section('pageContent')
 <div class="row">
     <div class="col">
 
         <div class="card shadow">
             <div class="card-header bg-transparent">
-                <h3 class="mb-0"><span class="text-uppercase">Generate Industrial Report</span></h3>
+                <h3 class="mb-0"><span class="text-uppercase">Generate License Report</span></h3>
             </div>
 
 
@@ -42,7 +36,7 @@
                 </div>
                 @endif
 
-                <form method="POST" action="{{route('industrial-report-view')}}">
+                <form method="POST" action="{{route('license-report-view')}}">
                     @csrf
                     <div class="form-group row">
                         <label for="example-text-input" class="col-md-2 col-form-label form-control-label "

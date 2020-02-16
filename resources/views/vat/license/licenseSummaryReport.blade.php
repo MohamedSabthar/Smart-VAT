@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Entertainment Report Generation')
+@section('title','LIcesne Duty Summary Report Generation')
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom-data-table.css')}}">
@@ -21,50 +21,42 @@
     <div class="col">
         <div class="card shadow">
             <div class="card-header bg-transparent">
-                <h3 class="mb-0 text-center"><span class="text-uppercase">Entertainment Tax Summary Report for
-                        Performance
-                        payments from
-                        {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
+                <h3 class="mb-0 text-center"><span class="text-uppercase">License Duty Summary Report from {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
-            @if($reportData->all()!=null)
-            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert into
-                PDF</button>
-            <table id="entertainment_tax_report" class="table">
+            <table id="business_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th class="text-center">{{__('menu.Entertainment Type')}}</th>
-                        <th class="text-center">{{ __('menu.Total Payments')}}</th>
-
+                        <th style="width:250px;" class="text-center">{{__('menu.License Type')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.Total Payments')}}</th>
+                       
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach ($reportData as $discription=>$total)
                     <tr>
-                        <td class="pl-6">{{ $discription }}</td>
-                        <td class="text-center">Rs. {{ number_format($total,2) }}</td>
-
+                        <td class="text-center">{{ $discription }}</td>
+                        <td class="text-center">{{ $total }}</td>
+                       
                     </tr>
                     @endforeach
-
+                    
                 </tbody>
-
+               
             </table>
-            @else
-            <div class="jumbotron bg-trnasparent text-center">No Payments data</div>
-            @endif
-
-
-            <form method="POST" action="{{route('entertainment-performance-summary-report-pdf')}}" class="d-none"
-                id="dates">
+        
+           
+            <form method="POST" action="{{route('license-summary-report-pdf')}}" class="d-none" id="dates">
                 @csrf
-                <input name="startDate" value="{{ $dates->startDate }}">
-                <input name="endDate" value="{{ $dates->endDate }}">
-
+                        <input name="startDate" value="{{ $dates->startDate }}">
+                        <input  name ="endDate" value="{{ $dates->endDate }}">
+            
             </form>
         </div>
         <br>
-
+        <div class="col" align="right">
+            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert into PDF</button>
+        </div>
     </div>
 </div>
 

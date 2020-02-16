@@ -15,7 +15,9 @@ class CreateLicenseTaxShopsTable extends Migration
     {
         Schema::create('license_tax_shops', function (Blueprint $table) {
              // $table->string('assesment_no')->nullable();
-             $table->string('shop_name');                                    // shop/buisness name
+             $table->bigIncrements('id');
+
+             $table->string('shop_name');                                    // shop/ name
              $table->double('anual_worth');                                  // anual worth of the shop
              $table->string('phone', 12);                                    // user's telephone number
              $table->string('registration_no');                              // shop/buisness registration no
@@ -23,7 +25,7 @@ class CreateLicenseTaxShopsTable extends Migration
              $table->string('street');
              $table->string('city');
              $table->string('address')->virtualAs('concat(door_no,", ",street,", ",city)');    //derived attribute Addrerss
-             $table->string('RUT');
+             
              $table->bigInteger('type_id')->unsigned();
              $table->bigInteger('payer_id')->unsigned();                         // buisness/Shop owner
              $table->bigInteger('employee_id')->unsigned();

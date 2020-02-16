@@ -21,54 +21,39 @@
     <div class="col">
         <div class="card shadow">
             <div class="card-header bg-transparent">
-                <h3 class="mb-0 text-center"><span class="text-uppercase">Businness Summary Report from
-                        {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
+                <h3 class="mb-0 text-center"><span class="text-uppercase">Industrial Tax Unpaid payer for year
+                        {{$year}}</span></h3>
             </div>
-            @if($reportData->all()!=null)
-
-            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert
-                into
-                PDF</button>
-
+            @if($payersDue->all()!=null)
+            <a href="{{route('industrial-un-paid-payers-pdf')}}" class="btn btn-danger">Convert to PDF</a>
 
             <table id="business_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th class="text-center">{{__('menu.Business Type')}}</th>
-                        <th class="text-center">Rs. {{ __('menu.Total Payments')}}</th>
-
+                        <th class="text-center">{{__('menu.VAT Payers NIC')}}</th>
+                        <th class="text-center">{{ __('menu.VAT Payer Name')}}</th>
+                        <th class="text-center">{{ __('menu.Shop')}}</th>
+                        <th class="text-center">{{ __('menu.Due Payment')}}</th>
                     </tr>
                 </thead>
 
-
                 <tbody>
-                    @foreach ($reportData as $discription=>$total)
+                    @foreach ($payersDue as $payerDue)
                     <tr>
-                        <td class="pl-6">{{ $discription }}</td>
-                        <td class="text-center">Rs. {{ number_format($total,2) }}</td>
-
+                        <td class="text-center">{{ $payerDue->payer->nic }}</td>
+                        <td>{{ $payerDue->payer->full_name }}</td>
+                        <td>{{ $payerDue->shop_id."-".$payerDue->industrialTaxShop->shop_name }}</td>
+                        <td class="text-center">Rs. {{ number_format($payerDue->due_ammount, 2) }}</td>
                     </tr>
                     @endforeach
+
                 </tbody>
 
             </table>
             @else
-            <div class="jumbotron bg-trnasparent text-center">No Payment data</div>
-
+            <div class="jumbotron bg-trnasparent text-center">No Un-paid VAT-payers</div>
             @endif
 
-
-
-
-            </table>
-
-
-            <form method="POST" action="{{route('business-summary-report-pdf')}}" class="d-none" id="dates">
-                @csrf
-                <input name="startDate" value="{{ $dates->startDate }}">
-                <input name="endDate" value="{{ $dates->endDate }}">
-
-            </form>
         </div>
         <br>
 

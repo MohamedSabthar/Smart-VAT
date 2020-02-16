@@ -113,6 +113,7 @@ return [
     'Entertainment Tax Payers' => 'Entertainment Tax Payers',
     'Land Tax Payers' => 'Land Tax Payers',
     'Club Licence Holders' => 'Club Licence Holders',
+    'Update business' => 'Update business',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',

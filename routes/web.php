@@ -113,7 +113,8 @@ Route::get('/business/generate-report', 'vat\BusinessTaxController@businessRepor
 Route::post('/business/generation', 'vat\BusinessTaxController@generateReport')->name('business-report-view');
 Route::post('/business/Tax-report-pdf', 'vat\BusinessTaxController@TaxPdf')->name('business-tax-report-pdf');
 Route::post('/business/Summary-report-pdf', 'vat\BusinessTaxController@summaryPdf')->name('business-summary-report-pdf');
-
+Route::get('/business/get-unpaid-vat-payers', 'vat\BusinessTaxController@getUnpaidVatPayer')->name('business-un-paid-payers');
+Route::get('/business/get-unpaid-vat-payers-pdf', 'vat\BusinessTaxController@getUnpaidVatPayerPdf')->name('business-un-paid-payers-pdf');
 
 //business payment remove
 Route::delete('/business/payment-remove/{id}', 'vat\BusinessTaxController@removePayment')->name('remove-payment');//soft delete business payment
@@ -174,6 +175,10 @@ Route::post('/industrial/generation', 'vat\IndustrialTaxController@generateRepor
 
 Route::post('/industrial/tax-report-pdf', 'vat\IndustrialTaxController@taxPdf')->name('industrial-tax-report-pdf');
 Route::post('/industrial/summary-report-pdf', 'vat\IndustrialTaxController@summaryPdf')->name('industrial-summary-report-pdf');
+
+Route::get('/industrial/get-unpaid-vat-payers', 'vat\IndustrialTaxController@getUnpaidVatPayer')->name('industrial-un-paid-payers');
+Route::get('/industrial/get-unpaid-vat-payers-pdf', 'vat\IndustrialTaxController@getUnpaidVatPayerPdf')->name('industrial-un-paid-payers-pdf');
+Route::put('/industrial-profile/{id}', 'vat\IndustrialTaxController@updateIndustrialShop')->name('update-industrial');
 
 
 //shop rent tax
@@ -308,6 +313,26 @@ Route::get('/vehicle-park/officers', 'vat\VehicleParkTaxController@ticketingOffi
 Route::get('/vehicle-park/payments', 'vat\VehicleParkTaxController@vehicleParkPayments')->name('vehicle-park-vehicleParkPayments');
 
 
+/**
+ * Routes related to license tax
+ *
+ * all license tax related tax routes should starts with "/license"
+ */
+Route::get('/license/profile/{id}', 'vat\LicenseTaxController@licenseProfile')->name('license-profile');
+Route::post('/license/licenfse-register/{id}', 'vat\LicenseTaxController@registerLisenceDuty')->name('license-duty-register');
+Route::get('/license/payments/{shop_id}', 'vat\LicenseTaxController@licensePayments')->name('license-payments');
+Route::post('/license/payments/{shop_id}', 'vat\LicenseTaxController@reciveLicensePayments')->name('receive-license-payments');
+Route::post('/license/generation', 'vat\LicenseTaxController@generateReport')->name('license-report-view');
+Route::get('/license/generate-report', 'vat\LicenseTaxController@licenseReportGeneration')->name('license-generate-report');
+Route::post('/license/Tax-report-pdf', 'vat\LicenseTaxController@TaxPdf')->name('license-tax-report-pdf');
+Route::post('/license/Summary-report-pdf', 'vat\LicenseTaxController@summaryPdf')->name('license-summary-report-pdf');
+Route::post('/license/get-license-types', 'vat\LicenseTaxController@getLicensetypes')->name('get-license-types');
+Route::delete('/license/payment-remove/{id}', 'vat\LicenseTaxController@removePayment')->name('remove-license-payment');//soft delete industrial payment
+
+
+Route::get('/test', function () {
+    return view('vat.license.test');
+});
 
 /**
  * temperory testing routes

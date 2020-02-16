@@ -14,9 +14,20 @@
 @includeWhen(Auth::user()->role=='employee','employee.include.sidebar')
 @endsection
 
+@section('header')
+<a href="{{route('business-un-paid-payers')}}" class="mx-3 btn btn-secondary"> List Unpaid VAT payers for this
+	year
+</a>
+@endsection
+
 @section('pageContent')
+
+
+
+
 <div class="row">
 	<div class="col">
+
 
 		<div class="card shadow">
 			<div class="card-header bg-transparent">
@@ -39,39 +50,47 @@
 				<form method="POST" action="{{route('business-report-view')}}">
 					@csrf
 					<div class="form-group row">
-							<label for="example-text-input" class="col-md-2 col-form-label form-control-label " id="startDate" name="startDate">Start Date</label>
-							<div class="input-group input-group-alternative">
-								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-								</div>
-								<input name="startDate" class="form-control datepicker @error('startDate') is-invalid  @enderror" placeholder="Select date" type="date" value="06/20/2019">
-								@error('startDate')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                           		 @enderror
-							</div>
-						</div>
-
-					<div class="form-group row">
-						<label for="example-text-input" class="col-md-2 col-form-label form-control-label " id="endDate" name="endDate">End Date</label>
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label "
+							id="startDate" name="startDate">Start Date</label>
 						<div class="input-group input-group-alternative">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
 							</div>
-							<input  name ="endDate" class="form-control datepicker @error('endDate') is-invalid  @enderror" placeholder="Select date" type="date" value="06/20/2019">
+							<input name="startDate"
+								class="form-control datepicker @error('startDate') is-invalid  @enderror"
+								placeholder="Select date" type="date" value="06/20/2019">
+							@error('startDate')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="example-text-input" class="col-md-2 col-form-label form-control-label " id="endDate"
+							name="endDate">End Date</label>
+						<div class="input-group input-group-alternative">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+							</div>
+							<input name="endDate"
+								class="form-control datepicker @error('endDate') is-invalid  @enderror"
+								placeholder="Select date" type="date" value="06/20/2019">
 							@error('endDate')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
 						</div>
 					</div>
 
 					<div class="form-group">
 						{{-- <input class=" btn btn-primary float-right" type="submit">  --}}
-						<button type="submit" class="btn btn-primary" name="TaxReport" value="TaxReport">Tax Report</button>
-						<button type="submit" name="SummaryReport" value="SummaryReport" class="btn btn-success">Summary Report</button>
+						<button type="submit" class="btn btn-primary" name="TaxReport" value="TaxReport">Tax
+							Report</button>
+						<button type="submit" name="SummaryReport" value="SummaryReport" class="btn btn-success">Summary
+							Report</button>
 
 					</div>
 
@@ -83,15 +102,14 @@
 		</div>
 	</div>
 </div>
-	
-
- @endsection	
 
 
- @push('script')
+@endsection
+
+
+@push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('js/select2.js')}}"></script>
 <script src="{{asset('assets/js/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 @endpush
-	 
