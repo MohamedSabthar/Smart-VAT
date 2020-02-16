@@ -29,6 +29,11 @@ class Club_licence_tax extends Model
 
     public function payments()
     {
-        return $this->hasMany('App\Club_licence_tax_payment',);        
+        return $this->hasMany('App\Club_licence_tax_payment', 'club_id');
+    }
+
+    public function due()
+    {
+        return $this->hasOne('App\Club_licence_tax_due_payment', 'club_id');  //licences can have due payment
     }
 }

@@ -30,10 +30,12 @@ return [
     'Search Username'=>'Search Username',
     'Search Email'=>'Search Email',
     'Search Admin'=>'Search Admin',
+    'Search' => 'Search',
 
     'My profile'=>'My profile',
     'Logout'=>'Logout',
     'Change Password'=>'Change Password',
+    'notifications' => 'notifications',
 
 
     //latest payment//
@@ -47,10 +49,10 @@ return [
     'Search Assesment No.' => 'Search Assesment No.',
     'Search Owner Name' => 'Search Owner Name',
     
-     
-     
+    //Common
     'Configurations' => 'Configurations',
     'VAT Categories'=>'VAT Categories',
+    'Accept payments' => 'Accept payments',
     
     //business tax
     'Annual Assesment Amount' => 'Annual Assesment Amount',
@@ -74,6 +76,8 @@ return [
     '[+] Buissness' =>'[+] Buissness',
     'View Payments' => 'View Payments',
     'Remove Buisness' => 'Remove Buisness',
+    'Annual worth' => 'Annual worth',
+    'Update Business details'=> 'Update Business details',
 
     //Business Report Generation
     'Start Date'=>'Start Date',
@@ -84,6 +88,8 @@ return [
    
     
     //VAT Payer
+    'Register'=> 'Register',
+    'Register VAT Payer'=> 'Register VAT Payer',
     'user Id' => 'User ID',
     'VAT Payer Name'=> 'VAT Payer Name',
     'Address' =>'Address',
@@ -99,8 +105,14 @@ return [
     'Phone No' => 'Phone No',
     'Business Categories' => 'Business Categories',
     'Registration' => 'Registration',
-    'Add Business' => 'Add Business',
     'Update Details' => 'Update Details',
+    'Add Business' => 'Add Business',
+    's profile'=> 's profile',
+    'Business Tax Payers' => 'Business Tax Payers',
+    'Industrial Tax Payers' => 'Industrial Tax Payers',
+    'Entertainment Tax Payers' => 'Entertainment Tax Payers',
+    'Land Tax Payers' => 'Land Tax Payers',
+    'Club Licence Holders' => 'Club Licence Holders',
     'Update business' => 'Update business',
 
     'Arrears' => 'Arrears',
@@ -111,7 +123,6 @@ return [
     //employee profile
     'Update employee information' => 'Update employee information',
     'Name' => 'Name',
-    'NIC' => 'NIC',
     'Phone No' => 'Phone No',
     'Assigned VAT categories' => 'Assigned VAT categories',
     'E-Mail' => 'E-Mail',
@@ -171,11 +182,20 @@ return [
     'Payment' => 'Payment',
     'Assigned To Court' => 'Assigned To Court',
     'Search Payment date'=> 'Search Payment date',
+    'Send Notice' => 'Send Notice',
     'All' => 'All',
     'Yes' => 'Yes',
     'No' => 'No',
     'Remove Payment'=> 'Remove Payment',
+
+    
+    //header buttons
     'Restore Payment' =>'Restore Payment',
+    'Restore Business' => 'Restore Business',
+    'Business Payers' => 'Business Payers',
+    'Report Generation' => 'Report Generation',
+    'Latest Payments' => 'Latest Payments',
+    'Quick payments' => 'Quick payments',
 
     //trash payment
     'Trash Payments'=>'Trash Payments',
@@ -235,9 +255,17 @@ return [
     'Premises Name' => 'Premises Name',
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
-    'Assessment Amount' => 'Assessment Amount',
+    'Assesment Amount' => 'Assesment Amount',
+    'Remove Premises'=> 'Remove Premises',
     'Search Premises Name'=> 'Search Premises Name',
 
-    'Business Tax' => 'Business Tax',
+    // Club licence tax
+    'Club licence'=> 'Club licence',
+    '[+] Club' => '[+] Club',
+    's clubs' => 's clubs' ,
+    'Add new Club' => 'Add new Club',
+    'Club Name' => 'Club Name',
+    'Remove Club' => 'Remove Club',
+    'Restore Club Licence' => 'Restore Club Licence'
 
 ];

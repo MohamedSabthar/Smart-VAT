@@ -218,7 +218,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Assessment Amount')}}</label>
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment Amount')}}</label>
 						<div class="col-md-10 ">
 							<input class="form-control @error('assesmentAmount') is-invalid  @enderror"
 								type="text" value="{{old('assesmentAmount')}}" id="assesmentAmount"
@@ -461,7 +461,7 @@
            if(!$.isNumeric(assessmentAmmount)){
             $(this).addClass('is-invalid')
             $('#invalidAnnualAssesmentAmount').removeClass('d-none')
-            $('#invalidAnnualAssesmentAmount>strong').text("{{__('menu.Invalid Assessment Amount')}}")
+            $('#invalidAnnualAssesmentAmount>strong').text("{{__('menu.Invalid Assesment Amount')}}")
             
            }else{
                $(this).removeClass('is-invalid')

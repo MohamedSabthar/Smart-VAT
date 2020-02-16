@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Pyament</center>
+                        <center>{{__('menu.Restore Payment')}}</center>
                     </h3>
                 </div>
                 <div class="col-auto">
@@ -174,10 +174,9 @@
                     <div class="d-flex justify-content-between">
                         <a href="{{route('business-profile',['id'=>$businessTaxShop->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
-                    </div>
-                    <div class="d-flex justify-content-between">
                         <a href="#"
                             class="btn btn-sm btn-default float-left update-profile">{{__('menu.Update Details')}}</a>
+
                     </div>
                 </div>
 
@@ -208,7 +207,7 @@
 
                         <div class="pt-2 text-center">
                             <a href="{{route('business-send-notice',['id'=>$businessTaxShop->id])}}"
-                                class="btn btn-sm btn-danger">Send Notice</a>
+                                class="btn btn-sm btn-danger">{{__('menu.Send Notice')}}</a>
                         </div>
 
                     </div>
@@ -245,6 +244,18 @@
                 </div>
             </div>
 
+
+
+            @else
+            <div class="card shadow text-center mb-3 p-4">
+                <div class="card-body bg-white border-0">
+                    <h1 style="font-weight: 400;">{{__('menu.No Due payments')}}</h1>
+
+                </div>
+            </div>
+            @endif
+            {{-- end of Payment Notice --}}
+
             {{-- Update profile card --}}
             <div class="card bg-secondary shadow mb-5 hide" id="Update-business-info">
                 <div class="card-header bg-white border-0">
@@ -279,10 +290,10 @@
                             <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
                                 {{__('menu.Anual worth')}}</label>
                             <div class="col-md-10">
-                                <input class="form-control @error('annualAssesmentAmount') is-invalid @enderror"
-                                    type="text" value="{{old('annualAssesmentAmount',$businessTaxShop->anual_worth)}}"
-                                    id="annualAssesmentAmount" name="anual_worth">
-                                @error('annualAssesmentAmount')
+                                <input class="form-control @error('anual_worth') is-invalid @enderror" type="text"
+                                    value="{{old('anual_worth',$businessTaxShop->anual_worth)}}" id="anual_worth"
+                                    name="anual_worth">
+                                @error('anual_worth')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -383,45 +394,8 @@
                 </div>
             </div>
 
-            {{-- Confirmation modal for adding business for the registered VAT payer--}}
-            <div class=" modal fade" id="confirm-business-payment" tabindex="-1" role="dialog"
-                aria-labelledby="modal-default" aria-hidden="true">
-                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                    <div class="modal-content">
 
-                        <div class="modal-header">
-                            <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
 
-                            <p>Confirmation needed to add payment for <br>
-                                shop : {{$businessTaxShop->shop_name}} </p>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link"
-                                onclick="javascript:location.reload()">Cancel</button>
-                            <button type="button" id="redirect" class="btn  btn-primary ml-auto"
-                                onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            {{-- End of confirmation modal --}}
-
-            @else
-            <div class="card shadow text-center mb-3 p-4">
-                <div class="card-body bg-white border-0">
-                    <h1 style="font-weight: 400;">{{__('menu.No Due payments')}}</h1>
-
-                </div>
-            </div>
-            @endif
-            {{-- end of Payment Notice --}}
 
 
             <div class="card shadow">
