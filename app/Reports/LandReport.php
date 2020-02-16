@@ -6,12 +6,15 @@ use App\Land_tax_payment;
 
 class LandReport
 {
+    public $landName;
+    public $address;
     public $payments;
 
 
-    public function __construct($payments)
+    public function __construct($landName , $payments)
     {
-        // $this->businessTypeDescription = $description;
+        $this->land_name = $landName;
+        $this->address = $address;
         $this->payments = $payments;
     }
 
@@ -23,7 +26,7 @@ class LandReport
 
         // ### Correct this  ###
         $table =  $records->groupBy(function ($obj) {
-            return $obj->businessTypeDescription;
+            return $obj->land_name;  //+ address
         })->map(function ($row) {
             return $row->sum('payments');
         });

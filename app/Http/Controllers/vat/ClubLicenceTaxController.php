@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddClubLicenceRequest;
-use App\Http\Requests\LandTaxReportRequest;  //### Implent## //
+use App\Http\Requests\ClubLicenceTaxReportRequest;  //### Implent## //
 
 use Auth;
 use Carbon\Carbon;
@@ -16,7 +16,7 @@ use Carbon\Carbon;
 //report Generation
 use PDF;
 use Illuminate\Support\Facades\DB;
-use App\Reports\LandReport;  // ##Implement## //
+use App\Reports\ClubLicenceReport;  // ##Implement## //
 
 use App\Vat;
 use App\Vat_payer;
@@ -72,7 +72,7 @@ class ClubLicenceTaxController extends Controller
 
     public function acceptQuickPayments(Request $request)
     {
-        $clubIds = $request->ecept(['_token']);
+        $clubIds = $request->except(['_token']);
 
         if (count($clubIds)==0) {
             return redirect()->back()->with('error', 'No payments selected');
@@ -176,9 +176,9 @@ class ClubLicenceTaxController extends Controller
 
 
     // HAVA TO CORRECT WHEN REPORT IS GENERATED
-    public function generateReport(LandTaxReportRequest $request)                                              //get the star date and the end date for the report generation
+    public function generateReport(ClubLicenceTaxReportRequest $request)                                              //get the star date and the end date for the report generation
     {
-        $reportData = LandReport::generateLandReport();
+        $reportData = ClubLicenceReport::generateClubLicenceReport();
         $dates = (object)$request->only(["startDate","endDate"]);
           
         $records = Club_licence_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
@@ -189,7 +189,7 @@ class ClubLicenceTaxController extends Controller
         }
     }
 
-    public function TaxPdf(LandTaxReportRequest $request)
+    public function TaxPdf(ClubLicenceTaxReportRequest $request)
     {
         $pdf = \App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
@@ -239,7 +239,7 @@ class ClubLicenceTaxController extends Controller
         return $output;
     }
 
-    public function summaryPdf(LandTaxReportRequest $request)
+    public function summaryPdf(ClubLicenceTaxReportRequest $request)
     {
         $pdf = \App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
@@ -254,7 +254,7 @@ class ClubLicenceTaxController extends Controller
 
     public function summaryReportHTML($records, $dates, $sum)
     {
-        $reportData = LandReport::generateLandReport();
+        $reportData = ClubLicenceReport::generateClubLicenceReport();
         $output = "
          <h3 align='center'>Club Licence Tax Summary Report from $dates->startDate to $dates->endDate </h3>
          <table width='100%' style='border-collapse: collapse; border: 0px;'>

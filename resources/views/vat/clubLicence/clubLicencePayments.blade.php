@@ -113,18 +113,6 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        @if(url()->previous()==route('payer-registration',['requestFrom'=>'clubLicence']))
-        <div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
-            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-            <span class="alert-inner--text mx-2">
-                Click here to add new Club
-                <a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
-
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-        @endif
         @elseif($errors->any())
         <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
             <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
@@ -224,7 +212,7 @@
                 </div>
             </div>
             {{-- payment form --}}
-            <form action="{{route('receive-club-licence-payments',['shop_id'=>$licenceTaxClub->id])}}" id="accept-payment"
+            <form action="{{route('receive-club-licence-payments',['club_id'=>$licenceTaxClub->id])}}" id="accept-payment"
                 method="POST" hidden>
                 @csrf
                 <input type="text" name="payment" value="{{$duePayment}}">
