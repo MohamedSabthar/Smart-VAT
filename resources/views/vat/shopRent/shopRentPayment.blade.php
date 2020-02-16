@@ -192,6 +192,13 @@
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
                     <h1 style="font-weight: 400;">{{__('menu.Due Payment : Rs.')}} {{number_format($duePayment,2)}}</h1>
+                    {{--payment form--}}
+                    <form action = "{{route('receive-shop-rent-payments',['shop_id'=>$shopRentTax->id])}}"
+                        id="accept-payment" method ="POST">
+                        @csrf
+                        <input type="text" name ="payment" value="{{$duePayment}}" hidden> 
+
+                    </form>   
                     <button class="btn btn-success mx-auto my-1" data-toggle="modal"
                         onclick="javascript:event.preventDefault()"
                         data-target="#confirm-business-payment">{{__('menu.Accept Payment')}}</button>

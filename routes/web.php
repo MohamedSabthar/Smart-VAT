@@ -100,7 +100,7 @@ try {
  */
 
 Route::get('/business/profile/{id}', 'vat\BusinessTaxController@buisnessProfile')->name('business-profile');
-Route::put('/business-profile/{id}', 'vat\BusinessTaxController@updateBusinessProfile')->name('update-business');  //update VAT payer profile
+Route::put('/business-profile/{id}', 'vat\BusinessTaxController@updateBusinessProfile')->name('update-business');  //update business details
 Route::get('/business/latest', 'vat\BusinessTaxController@latestPayment')->name('latest');
 Route::post('/business/business-register/{id}', 'vat\BusinessTaxController@registerBusiness')->name('business-register');
 Route::get('/business/payments/{shop_id}', 'vat\BusinessTaxController@businessPayments')->name('business-payments');
@@ -145,6 +145,8 @@ Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->na
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
+Route::get('/vat-payer-profile/{id}', 'PayerController@vatPayerProfile')->name('vat-payer-profile');
+Route::post('/vat-payer/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
 
 /**
  * Routes related to industrial tax
@@ -302,24 +304,28 @@ Route::post('/land/Summary-report-pdf', 'vat\LandTaxController@summaryPdf')->nam
  */
 Route::get('/club-licence/profile/{id}', 'vat\ClubLicenceTaxController@clubLicenceProfile')->name('club-licence-profile');
 //Route::put('/club-licence-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');  //update VAT payer profile
-Route::get('/club-licence/latest', 'vat\ClubLicenceTaxController@latestPayment')->name('latest');
-Route::post('/club-licence/business-register/{id}', 'vat\ClubLicenceTaxController@registerClubLicence')->name('club-licence-register');
-Route::get('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@businessPayments')->name('club-licence-payments');
-Route::post('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@recieveClubLicencePayment')->name('receive-club-licence-payments');
+//Route::get('/club-licence/latest', 'vat\ClubLicenceTaxController@latestPayment')->name('latest');
+Route::post('/club-licence/club-register/{id}', 'vat\ClubLicenceTaxController@registerClubLicence')->name('club-licence-register');
+Route::get('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@clubLicencePayments')->name('club-licence-payments'); 
+Route::post('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@receiveClubLicencePayment')->name('receive-club-licence-payments');
+
 Route::post('/club-licence/check-payments', 'vat\ClubLicenceTaxController@checkPayments')->name('check-club-licence-payments'); //check all business payments for a given vat payer for quick payment option
 Route::get('/club-licence/quick-payments', 'vat\ClubLicenceTaxController@viewQuickPayments')->name('get-club-licence-quick-payments');
 Route::post('/club-licence/accept-quick-payments', 'vat\ClubLicenceTaxController@acceptQuickPayments')->name('club-licence-quick-payments');
 
-Route::delete('/club-licence/payment-remove/{id}', 'vat\LandTaxController@removePayment')->name('club-licence-land-payment');//soft delete land payment
-Route::get('/club-licence/payment-trash/{id}', 'vat\LandTaxController@trashPayment')->name('club-licence-trash-payment');//trash land payments
-Route::get('/club-licence/payment-restore/{id}', 'vat\LandTaxController@restorePayment')->name('restore-club-licence-payment');// restore land payments
+Route::delete('/club-licence/payment-remove/{id}', 'vat\ClubLicenceTaxController@removePayment')->name('remove-club-licence-payment');//soft delete land payment
+Route::get('/club-licence/payment-trash/{id}', 'vat\ClubLicenceTaxController@trashPayment')->name('club-licence-trash-payment');//trash land payments
+Route::get('/club-licence/payment-restore/{id}', 'vat\ClubLicenceTaxController@restorePayment')->name('restore-club-licence-payment');// restore land payments
 
-Route::delete('/club-licence/clubLicence-remove/{club_id}', 'vat\LandTaxController@removeClubLicence')->name('remove-club-licence-premises'); // soft delete land route
-Route::get('/club-licence/clubLicence-trash/{payer_id}', 'vat\LandTaxController@trashClubLicence')->name('trash-club-licence-premises');// trash land
-Route::get('/club-licence/clubLicence-restore/{id}', 'vat\LandTaxController@restoreClubLicence')->name('restore-club-licence-premises'); // restore land
+Route::delete('/club-licence/clubLicence-remove/{club_id}', 'vat\ClubLicenceTaxController@removeClubLicence')->name('remove-club-licence'); // soft delete land route
+Route::get('/club-licence/clubLicence-trash/{payer_id}', 'vat\ClubLicenceTaxController@trashClubLicence')->name('trash-club-licence');// trash land
+Route::get('/club-licence/clubLicence-restore/{id}', 'vat\ClubLicenceTaxController@restoreClubLicence')->name('restore-club-licence'); // restore land
 
+// Club Licence tax report generation
 Route::get('/club-licence/generate-report', 'vat\ClubLicenceTaxController@clubLicenceReportGeneration')->name('club-licence-generate-report');
 Route::post('/club-licence/generation', 'vat\ClubLicenceTaxController@generateReport')->name('club-licence-report-view');
+Route::post('/club-licence/Tax-report-pdf', 'vat\ClubLicenceTaxController@TaxPdf')->name('club-licence-tax-report-pdf');
+Route::post('/club-licence/Summary-report-pdf', 'vat\ClubLicenceTaxController@summaryPdf')->name('club-licence-summary-report-pdf');
 
 
 /**

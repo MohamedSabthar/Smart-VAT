@@ -7,7 +7,7 @@ use App\Vat_payer;
 use App\Business_tax_shop;
 use App\Business_type;
 use Illuminate\Support\Arr;
-use App\Http\Requests\UpdateVATpayerProfileRequest;
+use App\Http\Requests\UpdateVatPayerProfileRequest;
 
 class PayerController extends Controller
 {
@@ -45,6 +45,12 @@ class PayerController extends Controller
         return view('vat.business.payerPaymentList', ['vatPayer'=>$vatPayer,'businessTaxShops'=>$businessTaxShop]);
     }
 
+    public function vatPayerProfile($id)
+    {
+        $vatPayer = Vat_payer::find($id);
+        return view('vatPayer.updateVatPayerProfile',['vatPayer'=>$vatPayer]);
+    }
+
     public function updateVATpayerProfile($id, UpdateVATpayerProfileRequest $request)
     {
         $vatPayer = Vat_payer::findOrFail($id);
@@ -56,7 +62,7 @@ class PayerController extends Controller
         $vatPayer->email = $request->email;
         $vatPayer->phone = $request->phone;
         $vatPayer->nic = $request->nic;
-        $vatPayer->doorNo = $request->doorNo;
+        $vatPayer->door_no = $request->doorNo;
         $vatPayer->street = $request->street;
         $vatPayer->city = $request->city;
              

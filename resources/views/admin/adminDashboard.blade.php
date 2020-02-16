@@ -110,7 +110,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('industrial')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
+                <a href="{{route('land')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
                     Window</a>
             </p>
         </div>
@@ -183,7 +183,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('industrial')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
+                <a href="{{route('clubLicence')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
                     Window</a>
             </p>
         </div>

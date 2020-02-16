@@ -325,7 +325,7 @@
                         </thead>
 
                     </table>
-                    {{-- end of Industrial TAX payments table --}}
+                    {{-- end of Land TAX payments table --}}
                 </div>
             </div>
 
