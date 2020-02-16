@@ -5,25 +5,30 @@ namespace App\Http\Controllers\vat;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddShopRentRequest;
+use App\Http\Requests\ShopRentTaxReportRequest;
+use App\Http\Requests\UpdateShopRentProfileRequest;
 use App\Shop_rent_tax;
 use App\Shop_rent_tax_payment;
 use Auth;
 use App\Vat;
 use App\Vat_payer;
-use App\Http\Requests\AddShopRentRequest;
+use App\Shop_rent_tax_due_payment;
 
 class ShopRentTaxController extends Controller
 {
-    public function _construct()
+    //
+    private $records;
+
+    public function __construct()
     {
         $this->middleware(['auth'=>'verified']);
-        $this->middleware(['vat']);
+        $this->middleware('vat');
     }
 
     public function shoprentProfile($id)
     {
         $vatPayer = Vat_payer::find($id);
-
         return view('vat.shopRent.shopRentProfile', ['vatPayer'=>$vatPayer]);
     }
 
@@ -33,7 +38,8 @@ class ShopRentTaxController extends Controller
         $vatPayer = Vat_payer :: find($id); // get vat payer id
         $shopRentTax = new Shop_rent_tax();
         $shopRentTax->registration_no = $request->assesmentNo;
-        $shopRentTax->anual_worth = $request->annualAssesmentAmount;
+        $shopRentTax->key_money =$request->keyMoney;
+        $shopRentTax->month_worth = $request->monthAssesmentAmount;
         $shopRentTax->shop_name = $request->businessName;
         $shopRentTax->phone = $request->phoneno;
         $shopRentTax->door_no = $request->doorno;
@@ -43,21 +49,18 @@ class ShopRentTaxController extends Controller
         $shopRentTax->payer_id =$id;
  
         $shopRentTax ->save();
+
          
         return redirect()->route('shop-rent-profile', ['id'=>$vatPayer->id])->with('status', 'New shop Rent Added successfully');
     }
-    private function calculateTax($anualWorth, $assessmentAmmount, $lastPaymentDate)
+  
+
+    private function calculateTax($assessmentAmmount, $dueAmount)
     {
         $currentDate = now()->toArray();
         $shopRentTax = Vat::where('route', 'shoprent')->firstOrFail();
-
-        if ($lastPaymentDate!=null) {
-            return ($anualWorth*($shopRentTax->vat_percentage/100)+$assessmentAmmount)*($currentDate['year']-$lastPaymentDate['year']);
-        }
-        
-        return $anualWorth*($shopRentTax->vat_percentage/100)+$assessmentAmmount;
+        return $assessmentAmmount*($shopRentTax->vat_percentage/100)+$assessmentAmmount+$dueAmount;
     }
-
     public function shopRentPayments($shop_id)
     {
         $shopRentTax = Shop_rent_tax::findOrFail($shop_id);
@@ -67,16 +70,17 @@ class ShopRentTaxController extends Controller
         $paid=false;
         $duePayment = 0.0;
         
-        if ($lastPaymentDate!=null && $currentDate['year'] == $lastPaymentDate['year']) { //if last_payment year matchess current year
+        if ($lastPaymentDate!=null && $currentDate['month'] == $lastPaymentDate['month']) { //if last_payment year matchess current year
             $paid=true; // then this year has no due
         } else {
-            $assessmentAmmount = $shopRentTax->assessment_ammount;
-            $duePayment = $this->calculateTax($shopRentTax->anual_worth, $assessmentAmmount, $lastPaymentDate);
+            $assessmentAmmount = $shopRentTax->month_worth;
+            $dueAmount = $shopRentTax->due == null ? 0 : $shopRentTax->due->due_ammount; 
+            $duePayment = $this->calculateTax($shopRentTax->month_worth,$dueAmount);
+          
         }
-       
         return view('vat.shopRent.shopRentPayment', ['shopRentTax'=>$shopRentTax,'paid'=>$paid,'duePayment'=>$duePayment]);
-    }
-
+    } 
+    
     public function reciveshopRentPayments($shop_id, Request $request)
     {
         $payerId=Shop_rent_tax::findOrFail($shop_id)->payer->id;  //get the VAT payer id
@@ -103,15 +107,14 @@ class ShopRentTaxController extends Controller
             $data['duePaymentValue'] = [];
             $data['duePayments']=[];
             $currentDate = now()->toArray();    // get the currrent date properties
-            $year = $currentDate['year'];
+            $month = $currentDate['month'];
             $i =0;
             
             foreach ($data['payerDetails']->shoprent as $shop) {
-                $lastPaymentDate = $shop->payments->pluck('created_at')->last(); // get the last payment date
-                $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
-                $assessmentAmmount = $shop->assessment_ammount;
-                $data['duePaymentValue'][$i] = $this->calculateTax($shop->anual_worth, $assessmentAmmount, $lastPaymentDate);
-                $data['duePayments'][$i]=  Shop_rent_tax_payment::where('shop_id', $shop->id)->where('created_at', 'like', "%$year%")->first(); //getting the latest payment if paid else null
+                $assessmentAmmount = $shop->month_worth;       //assessment amount
+                $dueAmount = $shop->due == null ? 0 : $shop->due->due_ammount;      //last due ammount which is not yet paid
+                $data['duePaymentValue'][$i] = $this->calculateTax($shop->month_worth,$dueAmount);
+                $data['duePayments'][$i]=  Shop_rent_tax_payment::where('shop_id', $shop->id)->where('created_at', 'like', "%$month%")->first(); //getting the latest payment if paid else null
                 $i++;
             }
         }
@@ -132,9 +135,9 @@ class ShopRentTaxController extends Controller
             $payerId = $shopRentTax->payer->id;
             $lastPaymentDate = $shopRentTax->payments->pluck('created_at')->last(); // get the last payment date
             $lastPaymentDate = $lastPaymentDate!=null ? $lastPaymentDate->toArray() : null; // get the last payment date properties
-            $assessmentAmmount = $shopRentTax->assessment_ammount;
+            $assessmentAmmount = $shopRentTax->month_worth;
             
-            $duePayment = $this->calculateTax($shopRentTax->anual_worth, $assessmentAmmount, $lastPaymentDate);
+            $duePayment = $this->calculateTax($shopRentTax->month_worth,$dueAmount);
             $shoprentTaxpayment = new Shop_rent_tax_payment;
             $shoprentTaxpayment->payment = $duePayment;
             $shoprentTaxpayment->shop_id = $shopId;
@@ -147,6 +150,23 @@ class ShopRentTaxController extends Controller
         return redirect()->back()->with('status', 'Payments successfully accepted');
     }
 
+    public function shopRentReportGeneration()                                                                       //directs the report genaration view
+    {
+        return view('vat.shoprent.shopRentReportGeneration');
+    }
+
+    public function generateReport(ShopRentTaxReportRequest $request){
+       // $reportData = BusinessReport::generateBusinessReport();
+        $dates = (object)$request->only(["startDate","endDate"]);
+          
+    
+        $records = Shop_rent_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        if ($request->has('TaxReport')) {
+            return view('vat.shoprent.shopRentReportView', ['dates'=>$dates,'records'=>$records]);
+       
+        }
+        
+    }
     public function removePayment($id)
     {
         $shoprentTaxpayment =  Shop_rent_tax_payment::find($id);
@@ -190,5 +210,22 @@ class ShopRentTaxController extends Controller
         $payerId = $shopRentTax->first()->payer_id;
         $shopRentTax->restore();
         return redirect()->route('shop-rent-profile', ['id'=>$payerId])->with('status', 'shop restored successfully');
+    }
+
+    public function updateShopRentProfile($id, UpdateShopRentProfileRequest $request)
+    {
+        $shopRentTax = Shop_rent_tax::findOrFail($id);
+
+        //update business details
+        $shopRentTax->registration_no = $request->assesmentNo;
+        $shopRentTax->month_worth = $request->monthAssesmentAmount;
+        $shopRentTax->shop_name = $request->businessName;
+        $shopRentTax->phone = $request->phoneno;
+        $shopRentTax->door_no = $request->doorno;
+        $shopRentTax->street = $request->street;
+        $shopRentTax->city = $request->city;
+             
+        $shopRentTax->save();
+        return redirect()->back()->with('status', 'Business details updated successful');
     }
 }

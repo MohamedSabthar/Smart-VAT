@@ -258,10 +258,10 @@
 								<td>{{ $payments->quoted_tickets}}</td>
 								<td>{{ number_format($payments->ticket_price,2)}}</td>
 								<td>{{ $payments->returned_tickets==null ? 'N/A' : $payments->returned_tickets}}</td>
-								<td>{{ number_format($payments->returned_payment,2)}}</th>
+								<td>{{ number_format($payments->returned_payment,2)}}</td>
 								<td>{{ number_format($payments->payment,2)}}</td>
 
-								<td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
+								<td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</td>
 
 
 								<td class="text-right">

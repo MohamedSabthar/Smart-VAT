@@ -15,34 +15,13 @@
 
 <div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
-		{{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
-		<div id="#card" class="card-body">
-			<div class="row">
-				<div class="col">
-					<h5 cla ss="card-title text-uppercase text-muted mb-0">Traffic</h5>
-					<span class="h2 font-weight-bold mb-0">350,897</span>
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-						<i class="fas fa-chart-bar"></i>
-					</div>
-				</div>
-			</div>
-			<p class="mt-3 mb-0 text-muted text-sm">
-				<span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-				<span class="text-nowrap">Since last month</span>
-			</p>
-		</div>
-	</div>
-</div>
-
-<div class="col-xl-3 col-lg-6">
-	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-					<span class="h2 font-weight-bold mb-0">2,356</span>
+					<h3 class="card-title text-uppercase text-muted mb-0">
+						{{__('menu.Latest Payments')}}
+					</h3>
+					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
 					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -50,33 +29,47 @@
 					</div>
 				</div>
 			</div>
-			<p class="mt-3 mb-0 text-muted text-sm">
-				<span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-				<span class="text-nowrap">Since last week</span>
-			</p>
+
 		</div>
 	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6">
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('shop-rent-generate-report')}}`,'_self')"
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
-		{{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-					<span class="h2 font-weight-bold mb-0">924</span>
+					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
+					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
-					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-						<i class="fas fa-users"></i>
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
 					</div>
 				</div>
 			</div>
-			<p class="mt-3 mb-0 text-muted text-sm">
-				<span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-				<span class="text-nowrap">Since yesterday</span>
-			</p>
+
+		</div>
+	</div>
+</div>
+
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('get-shop-rent-quick-payments')}}`,'_self')"
+	style="cursor:pointer">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
+						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>
@@ -116,11 +109,11 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-		@if(url()->previous()==route('payer-registration',['requestFrom'=>'shoprent']))
+		@if(url()->previous()==route('payer-registration',['requestFrom'=>'shop-rent']))
 		<div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
 			<span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
 			<span class="alert-inner--text mx-2">
-				Click here to add new Shop Rent
+				{{__('menu.Click here to add new Shop Rent')}}
 				<a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
 
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -221,10 +214,10 @@
 						<label for="example-text-input"
 							class="col-md-2 col-form-label form-control-label ">{{__('menu.Key Money')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('keymoney') is-invalid  @enderror"
-								type="text" value="{{old('keymoney')}}" id="keymoney"
-								name="keymoney">
-							@error('keymoney')
+							<input class="form-control @error('keyMoney') is-invalid  @enderror"
+								type="text" value="{{old('keyMoney')}}" id="keyMoney"
+								name="keyMoney">
+							@error('keyMoney')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>
@@ -235,16 +228,16 @@
 
 					<div class="form-group row">
 						<label for="example-text-input"
-							class="col-md-2 col-form-label form-control-label ">{{__('menu.Month Assesment Amount')}}</label>
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Month Assessment Amount')}}</label>
 						<div class="col-md-10 ">
-							<input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
-								type="text" value="{{old('annualAssesmentAmount')}}" id="annualAssesmentAmount"
-								name="annualAssesmentAmount">
+							<input class="form-control @error('monthAssesmentAmount') is-invalid  @enderror"
+								type="text" value="{{old('monthAssesmentAmount')}}" id="monthAssesmentAmount"
+								name="monthAssesmentAmount">
 
-							<span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
+							<span class="invalid-feedback" id="invalidMonthAssesmentAmount" role="alert">
 								<strong>dfafjkladfj</strong>
 							</span>
-							@error('annualAssesmentAmount')
+							@error('monthAssesmentAmount')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
 							</span>

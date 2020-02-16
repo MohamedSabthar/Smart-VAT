@@ -37,7 +37,15 @@ return [
     'Change Password'=>'Change Password',
     'notifications' => 'notifications',
 
-
+    //register
+    'View profile' =>'View profile',
+    'Register' =>'Register',
+    'Register VAT Payer'=>'Register VAT Payer',
+    'Confirmation !'=>'Confirmation !',
+    'This VAT payer is alredy registered'=>'This VAT payer is alredy registered',
+    'Are you wish to add a New Business/Payment ?'=>'Are you wish to add a New Business/Payment ?',
+    'Cancel'=>'Cancel',
+    
     //latest payment//
     'Latest Payment'=>'Latest Payment',
     'Assesment No.' => 'Assesment No.',
@@ -248,6 +256,24 @@ return [
     'Assessment Ranges of Industrial Tax' => 'Assessment Ranges of Industrial Tax',
     'Industrial Range Types'=>'Industrial Range Types',
 
+    //shop rent
+    'Shop Rent Tax Payers'=>'Shop Rent Tax Payers',
+    'Add Shop'=>'Add Shop',
+    'Key Money'=>'Key Money',
+    'Month Assessment Amount'=>'Month Assesment Amount',
+    's shops'=>'s shops',
+    'Click here to add new Shop Rent'=>'Click here to add new Shop Rent',
+    'shop Name'=>'shop Name',
+    'Month worth'=>'Month worth',
+    'Payment Date'=>'Payment Date',
+    'Shop Rent payers'=>'Shop Rent payers',
+    'Latest Payments'=>'Latest Payments',
+    'Report Generation'=>'Report Generation',
+    'Quick payments'=>'Quick payments',
+    'Generate Shop Rent Report'=>'Generate Shop Rent Report',
+    'Start Date'=>'Start Date',
+    'End Date'=>'End Date',
+    'Accept payments'=>'Accept payments',
 
     //Land tax
     '[+] Premises' => '[+] Premises',
@@ -255,6 +281,9 @@ return [
     'Premises Name' => 'Premises Name',
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
+
+    //advertisement tax
+    '[+] Advertisement'=>'[+] Advertisement',
     'Assesment Amount' => 'Assesment Amount',
     'Remove Premises'=> 'Remove Premises',
     'Search Premises Name'=> 'Search Premises Name',
@@ -266,6 +295,27 @@ return [
     'Add new Club' => 'Add new Club',
     'Club Name' => 'Club Name',
     'Remove Club' => 'Remove Club',
-    'Restore Club Licence' => 'Restore Club Licence'
+    'Restore Club Licence' => 'Restore Club Licence',
 
+    //side bar
+    'Industrial Tax' =>'Industrial Tax',
+    'License Tax' => 'License Tax',
+    'Land Tax' => 'Land Tax',
+    'Advertisement Tax' => 'Advertisement Tax',
+    'Land Auction Tax' => 'Land Auction Tax',
+    'Shop Rent Tax' => 'Shop Rent Tax',
+    'Vehical Park Tax' => 'Vehical Park Tax',
+    'Entertainment Tax' => 'Entertainment Tax',
+    'Club Licence Tax' => 'Club Licence Tax',
+    'Three Wheel Park Tax' => 'Three Wheel Park Tax',
+    'Booking Tax' => 'Booking Tax',
+    'Slaughtering Tax' => 'Slaughtering Tax',
+     
+    //dashbordRegister payer
+    'Total VAT payers'=>'Total VAT payers',
+    'Register payer' => 'Register payer',
+    'Generate report' => 'Generate report',
+    'Quick payments' => 'Quick payments',
+    'Ticket payment report' => 'Ticket payment report',
+    'Performance payment report' => 'Performance payment report',
 ];
