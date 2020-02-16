@@ -34,6 +34,7 @@ Route::name('password.')->group(
  */
 Route::get('/employee-profile/{id}', 'AdminController@employeeProfile')->name('employee-profile');
 Route::put('/employee-profile/{id}', 'AdminController@updateEmployeeProfile')->name('update-employee');
+Route::put('/my-profile/{id}', 'EmployeeController@updateProfile')->name('update-profile');
 Route::get('/mangae-employee', 'AdminController@manageEmployee')->name('manage-employee');
 Route::put('/mangae-employee/promote', 'AdminController@promoteAsAdmin')->name('promote-to-admin');
 Route::post('/assign-vat', 'AdminController@assignVatCategories')->name('assign-vat');
@@ -218,8 +219,8 @@ Route::get('/booking/booking-trash/{payer_id}', 'vat\BookingTaxController@trashB
 Route::get('/booking/booking-restore/{id}', 'vat\BookingTaxController@restoreBooking')->name('restore-booking'); // restore business
 
 //advertisement
-Route::post('/advertisement/advertisement-register/{id}','vat\AdvertisementTaxController@registerAdvertisementPayment')->name('advertisement-register');
-Route::get('/advertisement/profile/{shop_id}','vat\AdvertisementTaxController@advertisementProfile')->name('advertisement-profile');
+Route::post('/advertisement/advertisement-register/{id}', 'vat\AdvertisementTaxController@registerAdvertisementPayment')->name('advertisement-register');
+Route::get('/advertisement/profile/{shop_id}', 'vat\AdvertisementTaxController@advertisementProfile')->name('advertisement-profile');
 Route::delete('/advertisement/payment-remove/{id}', 'vat\AdvertisementTaxController@removePayment')->name('remove-advertisement-payment'); //soft delete business payment
 Route::get('/advertisement/payment-trash/{id}', 'vat\AdvertisementTaxController@trashPayment')->name('advertisement-trash-payment'); //trash business payment
 Route::get('/advertisement/payment-restore/{id}', 'vat\AdvertisementTaxController@restorePayment')->name('restore-advertisement-payment'); // restore business
@@ -306,7 +307,7 @@ Route::get('/club-licence/profile/{id}', 'vat\ClubLicenceTaxController@clubLicen
 //Route::put('/club-licence-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');  //update VAT payer profile
 //Route::get('/club-licence/latest', 'vat\ClubLicenceTaxController@latestPayment')->name('latest');
 Route::post('/club-licence/club-register/{id}', 'vat\ClubLicenceTaxController@registerClubLicence')->name('club-licence-register');
-Route::get('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@clubLicencePayments')->name('club-licence-payments'); 
+Route::get('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@clubLicencePayments')->name('club-licence-payments');
 Route::post('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@receiveClubLicencePayment')->name('receive-club-licence-payments');
 
 Route::post('/club-licence/check-payments', 'vat\ClubLicenceTaxController@checkPayments')->name('check-club-licence-payments'); //check all business payments for a given vat payer for quick payment option
