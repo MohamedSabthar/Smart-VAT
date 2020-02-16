@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Pyament</center>
+                    <center>{{__('menu.Restore Payment')}}</center>
                     </h3>
                 </div>
                 <div class="col-auto">
@@ -208,7 +208,7 @@
 
                         <div class="pt-2 text-center">
                             <a href="{{route('business-send-notice',['id'=>$businessTaxShop->id])}}"
-                                class="btn btn-sm btn-danger">Send Notice</a>
+                            class="btn btn-sm btn-danger">{{__('menu.Send Notice')}}</a>
                         </div>
 
                     </div>
@@ -246,48 +246,59 @@
             </div>
 
             {{-- Update profile card --}}
-            <div class="card bg-secondary shadow mb-5 hide" id="Update-business-info">
-                <div class="card-header bg-white border-0">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Business')}}</span></h3>
-                        </div>
+        <div class="card bg-secondary shadow mb-5 hide" id="Update-business-info">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Business details')}}</span></h3>
+                    </div>
 
                     </div>
                 </div>
-                <div class="card-body">
-                    {{-- Update business profile form --}}
-                    <form method="POST" id="business-details-form"
-                        action="{{route('update-business',['id'=>$businessTaxShop->id])}}">
-                        @csrf
-                        @method('put')
-                        <div class="form-group row">
-                            <label for="example-text-input"
-                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
-                            <div class="col-md-10 ">
-                                <input class="form-control @error('businessName') is-invalid  @enderror" type="text"
-                                    value="{{old('businessName',$businessTaxShop->shop_name)}}" id="businessName"
-                                    name="businessName">
-                                @error('businessName')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
+            </div>
+            <div class="card-body">
+                {{-- Update business profile form --}}
+                <form method="POST" id="business-details-form"
+                    action="{{route('update-business',['id'=>$businessTaxShop->id])}}">
+                    @csrf
+                    @method('put')
+                    <div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('assesmentNo') is-invalid  @enderror" type="text"
+                                value="{{old('assesmentNo',$businessTaxShop->registration_no)}}" id="assesmentNo" name="assesmentNo">
+                            @error('assesmentNo')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                        <div class="form-group row">
-                            <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
-                                {{__('menu.Anual worth')}}</label>
-                            <div class="col-md-10">
-                                <input class="form-control @error('annualAssesmentAmount') is-invalid @enderror"
-                                    type="text" value="{{old('annualAssesmentAmount',$businessTaxShop->anual_worth)}}"
-                                    id="annualAssesmentAmount" name="anual_worth">
-                                @error('annualAssesmentAmount')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('businessName') is-invalid  @enderror" type="text"
+                                value="{{old('businessName',$businessTaxShop->shop_name)}}" id="businessName" name="businessName">
+                            @error('businessName')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
+                            {{__('menu.Annual worth')}}</label>
+                        <div class="col-md-10">
+                            <input class="form-control @error('annualAssesmentAmount') is-invalid @enderror" type="text"
+                                value="{{old('annualAssesmentAmount',$businessTaxShop->anual_worth)}}" id="annualAssesmentAmount" name="annualAssesmentAmount">
+                            @error('annualAssesmentAmount')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-group row">

@@ -19,7 +19,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						Land Tax payers
+						{{__('menu.Land Tax Payers')}}
 					</h3>
 					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
@@ -40,7 +40,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						Latest Payments
+						{{__('menu.Latest Payments')}}
 					</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
@@ -55,36 +55,33 @@
 	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-					<h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-					<span class="h2 font-weight-bold mb-0">924</span>
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-						<i class="fas fa-users"></i>
-					</div>
-				</div>
-			</div>
-			<p class="mt-3 mb-0 text-muted text-sm">
-				<span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-				<span class="text-nowrap">Since yesterday</span>
-			</p>
-		</div>
-	</div>
-</div>
-
 <div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('land-generate-report')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">Report Generation</h3>
+				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('get-land-quick-payments')}}`,'_self')"
+	style="cursor:pointer">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
+						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
 					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -106,14 +103,14 @@
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-6 card-header">
-						<h3 class="mb-0 d-inline pr-2">Land Tax Payers</h3>
+						<h3 class="mb-0 d-inline pr-2">{{__('menu.Land Tax Payers')}}</h3>
 					</div>
 					<div class="col-6 text-right">
 						<button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
 							data-placement="right" title="Click to register new VAT Payer"
 							onclick="javascript:window.open('{{route('payer-registration',['requestFrom'=>'land'])}}','_self')">
 							<span><i class="fas fa-user-plus"></i></span>
-							<span class="btn-inner--text">Register</span>
+					<span class="btn-inner--text">{{__('menu.Register')}}</span>
 						</button>
 					</div>
 				</div>

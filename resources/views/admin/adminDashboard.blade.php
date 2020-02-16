@@ -110,7 +110,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('industrial')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
+                <a href="{{route('land')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
                     Window</a>
             </p>
         </div>
@@ -178,14 +178,14 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item"
                             href="{{route('payer-registration',['requestFrom'=>'club-licence'])}}">Register payer</a>
-                        <a class="dropdown-item" href="{{route('get-club-licence-quick-payments')}}">Quick payments</a>
-                        <a class="dropdown-item" href="{{route('industrial-generate-report')}}">Generate report</a>
+                    <a class="dropdown-item" href="{{route('get-club-licence-quick-payments')}}">{{__('menu.Quick payments')}}</a>
+                    <a class="dropdown-item" href="{{route('club-licence-generate-report')}}">{{__('menu.Report Generation')}}</a>
 
                     </div>
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('industrial')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
+                <a href="{{route('clubLicence')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
                     Window</a>
             </p>
         </div>

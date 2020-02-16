@@ -20,7 +20,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						Industrial payers
+						{{__('menu.Industrial Tax Payers')}}
 					</h3>
 					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
@@ -41,7 +41,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						Latest Payments
+						{{__('menu.Latest Payments')}}
 					</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
@@ -62,7 +62,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">Report Generation</h3>
+				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -82,7 +82,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">Quick payments</h5>
+				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
 						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -105,14 +105,14 @@
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-6 card-header">
-						<h3 class="mb-0 d-inline pr-2">Industrial Tax Payers</h3>
+					<h3 class="mb-0 d-inline pr-2">{{__('menu.Industrial Tax Payers')}}</h3>
 					</div>
 					<div class="col-6 text-right">
 						<button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
 							data-placement="right" title="Click to register new VAT Payer"
 							onclick="javascript:window.open('{{route('payer-registration',['requestFrom'=>'industrial'])}}','_self')">
 							<span><i class="fas fa-user-plus"></i></span>
-							<span class="btn-inner--text">Register</span>
+					<span class="btn-inner--text">{{__('menu.Register')}}</span>
 						</button>
 					</div>
 				</div>
