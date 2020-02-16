@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Shop Rent Tax')
+@section('title','Advertisement Tax')
 
 @push('css')
 <link rel="stylesheet" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
@@ -18,14 +18,57 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">
-						{{__('menu.Shop Rent payers')}}
-					</h3>
-					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
+					<h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+					<span class="h2 font-weight-bold mb-0">350,897</span>
 				</div>
 				<div class="col-auto">
-					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-						<i class="fas fa-users"></i>
+					<div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+						<i class="fas fa-chart-bar"></i>
+					</div>
+				</div>
+			</div>
+			<p class="mt-3 mb-0 text-muted text-sm">
+				<span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+				<span class="text-nowrap">Since last month</span>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="col-xl-3 col-lg-6">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+					<span class="h2 font-weight-bold mb-0">2,356</span>
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
+					</div>
+				</div>
+			</div>
+			<p class="mt-3 mb-0 text-muted text-sm">
+				<span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+				<span class="text-nowrap">Since last week</span>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('advertisement-generate-report')}}`,'_self')"
+	style="cursor:pointer">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<h3 class="card-title text-uppercase text-muted mb-0">Report Generation</h3>
+					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
 					</div>
 				</div>
 			</div>
@@ -39,64 +82,23 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">
-						{{__('menu.Latest Payments')}}
-					</h3>
-					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+					<h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+					<span class="h2 font-weight-bold mb-0">49,65%</span>
 				</div>
 				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
+					<div class="icon icon-shape bg-info text-white rounded-circle shadow">
+						<i class="fas fa-percent"></i>
 					</div>
 				</div>
 			</div>
-
+			<p class="mt-3 mb-0 text-muted text-sm">
+				<span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+				<span class="text-nowrap">Since last month</span>
+			</p>
 		</div>
 	</div>
 </div>
-
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('shop-rent-generate-report')}}`,'_self')"
-	style="cursor:pointer">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
-					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div>
-
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('get-shop-rent-quick-payments')}}`,'_self')"
-	style="cursor:pointer">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
-						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div>
-
 @endsection
-
 
 @section('pageContent')
 <div class="row">
@@ -106,14 +108,14 @@
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-6 card-header">
-						<h3 class="mb-0 d-inline pr-2">{{__('menu.Shop Rent Tax Payers')}}</h3>
+						<h3 class="mb-0 d-inline pr-2">Advertisement Tax Payers</h3>
 					</div>
 					<div class="col-6 text-right">
 						<button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"
 							data-placement="right" title="Click to register new VAT Payer"
-							onclick="javascript:window.open('{{route('payer-registration',['requestFrom'=>'shop-rent'])}}','_self')">
+							onclick="javascript:window.open('{{route('payer-registration',['requestFrom'=>'advertisement'])}}','_self')">
 							<span><i class="fas fa-user-plus"></i></span>
-							<span class="btn-inner--text">{{__('menu.Register')}}</span>
+							<span class="btn-inner--text">Register</span>
 						</button>
 					</div>
 				</div>
@@ -154,10 +156,9 @@
 						</tr>
 					</thead>
 					<tbody>
-
-						@foreach ($payers as $payer)
+					@foreach ($payers as $payer)
 						<tr>
-							<td>{{$payer->nic}}</th>
+						    <td>{{$payer->nic}}</th>
 							<td>{{$payer->full_name}}</td>
 							<td>{{$payer->address}}</td>
 							<td>{{$payer->email}}</td>
@@ -172,7 +173,7 @@
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<a class="dropdown-item"
-											href="{{route('shop-rent-profile',['id'=>$payer->id])}}">{{__('menu.View profile')}}</a>
+											href="{{route('advertisement-profile',['id'=>$payer->id])}}">View profile</a>
 									</div>
 
 								</div>
@@ -181,6 +182,8 @@
 
 						</tr>
 						@endforeach
+
+						
 
 
 					</tbody>

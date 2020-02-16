@@ -32,4 +32,9 @@ class Shop_rent_tax extends Model
         return $this->hasMany('App\Shop_rent_tax_payment', 'shop_id');   //a shop has many payments
     }
 
+    public function due()
+    {
+        return $this->hasOne('App\Shop_rent_tax_due_payment', 'shop_id'); //a shop can have duepayment
+    }
+
 }

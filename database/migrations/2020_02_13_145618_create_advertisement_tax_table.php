@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookingTaxTypesTable extends Migration
+class CreateAdvertisementTaxTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateBookingTaxTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('booking_tax_types', function (Blueprint $table) {
+        Schema::create('advertisement_tax', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('description');     //type description for booking tax super type
-            $table->bigInteger('parent_id');
+            $table->string('description');
+            $table->bigInteger('vat_percentage');
+            $table->bigInteger('fine_percentage')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +30,6 @@ class CreateBookingTaxTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booking_tax_types');
+        Schema::dropIfExists('advertisement_tax');
     }
 }

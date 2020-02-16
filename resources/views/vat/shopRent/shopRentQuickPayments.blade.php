@@ -133,7 +133,7 @@
 	<div class="col">
 		<div class="card bg-secondary shadow">
 			<div class="card-header bg-white border-0">
-			<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Accept payments')}}</span></h3>
+				<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Accept payments')}}</span></h3>
 			</div>
 
 			<div class="card-body">
@@ -143,8 +143,8 @@
 					<div class="form-group row pt-3">
 						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
 						<div class="col-md-10">
-							<input class="form-control @error('nic') is-invalid @enderror" type="text" value="{{old('nic')}}" id="nic"
-								name="nic" placeholder="Enter vat payer's NIC">
+							<input class="form-control @error('nic') is-invalid @enderror" type="text"
+								value="{{old('nic')}}" id="nic" name="nic" placeholder="Enter vat payer's NIC">
 							<span id="error_nic" class="invalid-feedback" role="alert">
 								@error('nic')
 								<strong>{{ $message }}</strong>
@@ -153,6 +153,35 @@
 						</div>
 					</div>
 				</form>
+
+				{{-- Confirmation modal for adding shop rent for the registered VAT payer--}}
+				<div class=" modal fade" id="confirm-quick-payments" tabindex="-1" role="dialog"
+					aria-labelledby="modal-default" aria-hidden="true">
+					<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<h1 class="modal-title" id="modal-title-default">{{__('menu.Confirmation !')}}</h1>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
+							</div>
+							<div class="modal-body">
+
+								<p>{{__('menu.Confirmation needed to accept payments!')}}</p>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-link"
+									onclick="javascript:location.reload()">Cancel</button>
+								<button type="button" id="redirect" class="btn  btn-primary ml-auto"
+									onclick="javascript:document.getElementById('shop-rent-quick-payments').submit();">{{__('menu.Confirm')}}</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				{{-- End of confirmation modal --}}
 
 				<div class="row">
 					<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 mt-md-5" id="payer-details"></div>
@@ -192,7 +221,7 @@
             });
 				
             $.ajax({
-                url:"{{ route('check-industrial-payments') }}", 
+                url:"{{ route('check-shop-rent-payments') }}", 
                 method:"POST",
                 data: {'nic':nic},
                 success:function(result){
@@ -202,10 +231,12 @@
                         nic!='' ? $('#error_nic').html('<strong>NIC not mached</strong>') 
                                 : $('#error_nic').html('<strong>Please enter the NIC</strong>');
                         $('#payer-details').html('');
+						$('#shop-details').html('')
                     }
                     else{
                         $('#nic').removeClass('is-invalid');
                         $('#error_nic').html('');
+						$('#shop-details').html('')
                         // console.log(result.payerDetails)
 												$('#payer-details').html(`
 												
@@ -221,21 +252,20 @@
 			</div>
 			<div class="card-body pt-0 pt-md-4">
 				<div class="pt-7">
-					<div class='pt-3'>
-					<h3 class='d-inline'>Name :</h3> 
-					${result.payerDetails.full_name} 
-					</div>
-					<div class='pt-1'><h3 class='d-inline'>Address :</h3> ${result.payerDetails.address} </div>
-					<div class='pt-1'><h3 class='d-inline'>Phone No :</h3> ${result.payerDetails.phone} </div>
-					<div class='pt-1'><h3 class='d-inline'>E-mail :</h3> ${result.payerDetails.email} </div>
-			</div>
-		</div>`);
+					<div class='pt-3'><h3 class='d-inline'>Name :</h3> ${result.payerDetails.full_name} </div>
+                            <div class='pt-1'><h3 class='d-inline'>Address :</h3> ${result.payerDetails.address} </div>
+                            <div class='pt-1'><h3 class='d-inline'>Phone No :</h3> ${result.payerDetails.phone} </div>
+                            <div class='pt-1'><h3 class='d-inline'>E-mail :</h3> ${result.payerDetails.email} </div>
+                           
+		</div>
+	</div>
+                            `);
 
                         var i = 0
                         $('#shop-details').append(
                             `<div class="table-responsive">
                                 <div class="card px-3">
-                                    <form method='POST' action="{{route('industrial-quick-payments')}}">
+                                    <form method='POST' action="{{route('shop-rent-quick-payments')}}" id="shop-rent-quick-payments">
                                         @csrf
                                         <table class="my-3 table align-items-center  ">
                                             <thead class="thead-light">
@@ -247,21 +277,22 @@
                                             </thead>
 																				<tbody class="list"></tbody>
 																				</table>
-                                        <input type="submit" id="accept-btn" value="Accept payment" class="btn btn-primary btn-lg btn-block mb-3 accept-btn">
-																		</form>
+																				<button class="btn btn-primary btn-lg btn-block mb-3 accept-btn"" data-toggle="modal"
+						onclick="javascript:event.preventDefault()"
+						data-target="#confirm-quick-payments">{{__('menu.Add')}}</button>								</form>
 																		
 																	</div>
 																</div>`
 																);
 												var nullToken = 0;
-                        result.payerDetails.industrial.forEach(element => {
+                        result.payerDetails.buisness.forEach(element => {
                             // console.log(element)
                             // $('#shop-details').append(`${element.shop_name} ${result.duePayments[i]==null ? 'not paid' : 'paid' } </br>`)
 														
 														$('#shop-details tbody').append(`
                                 <tr>
                                     <td scope="row"> ${element.shop_name} </td>
-                                    <td> ${result.duePaymentValue[i]} </td>
+                                    <td> ${result.duePaymentValue[i].toLocaleString('en',{ minimumFractionDigits: 2 })} </td>
                                     <td class='d-flex px-3'> 
                                         <input  name=${element.id} type="checkbox" ${ result.duePayments[i]!=null ? 'checked disabled' :'' } 
                                         <label>${ result.duePayments[i]==null ? '' :'paid' }</label>
