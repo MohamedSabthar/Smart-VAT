@@ -105,7 +105,7 @@
 			<div class="card-header bg-white border-0">
 				<div class="row align-items-center">
 					<div class="col-6 card-header">
-						<h3 class="mb-0 d-inline pr-2">Club House Licence Holders</h3>
+						<h3 class="mb-0 d-inline pr-2">{{__('menu.Club Licence Holders')}}</h3>
 					</div>
 					<div class="col-6 text-right">
 						<button class="btn btn-sm btn-icon btn-3 btn-success text-white" data-toggle="tooltip"

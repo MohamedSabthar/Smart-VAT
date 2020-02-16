@@ -35,6 +35,7 @@ return [
     'My profile'=>'මගේ ගිණුම',
     'Logout'=>'ඉවත්වීම',
     'Change Password'=>'මුරපදය වෙනස් කිරීම ',
+    'notifications' => 'දැනුම්දීම්',
 
     //latest Payment
     'Latest Payment' => 'අවසාන ගෙවීම',
@@ -241,10 +242,9 @@ return [
     'Payer Phone' => 'ගෙවන්නාගේ දුරකථනය',
     'Add new premises' => 'නව පරිශ්‍රයන් එක් කරන්න',
     'Assesment Amount' => 'තක්සේරු මුදල',
+    'Remove Premises'=> 'පරිශ්‍රය ඉවත් කරන්න',
 
     'Search Premises Name'=> 'පරිශ්‍රයේ නම සොයන්න',
-
-
 
 
     // Club license tax
@@ -252,6 +252,8 @@ return [
     '[+] Club' => 'සමාජ ශාලා',
     's clubs' => 'ගේ සමාජ ශාලා' ,
     'Add new Club' => 'නව සමාජ ශාලාවක් එක් කරන්න',
-    'Club name' => 'සමාජ ශාලා නාමය'
+    'Club name' => 'සමාජ ශාලා නාමය',
+    'Remove Club' => 'සමාජ ශාලා ඉවත් කරන්න',
+    'Restore Club Licence' => 'සමාජ ශාලා බලපත්‍රය ප්‍රතිස්ථාපනය කරන්න'
 
 ];

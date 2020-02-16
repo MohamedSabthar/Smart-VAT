@@ -22,6 +22,8 @@ use App\Http\Requests\UpdateLandTaxPercentageRequest;
 use App\Http\Requests\AddBusinessTypeRequest;
 use App\Http\Requests\UpdateBusinessTypeRequest;
 use App\Http\Requests\UpdateEntertainmentTicketTypeRequest;
+use App\Http\Requests\UpdateClubLicenceTaxPercentageRequest;
+
 use Carbon\Carbon;
 use App\Entertainment_type;
 
@@ -246,7 +248,7 @@ class GlobalConfigurationController extends Controller
         $land = Vat::where('route', 'land')->first();
         //moving the old data to Vats_old_percentages table
         if ($land->vat_percentage==$request->vatPercentage && $land->due_date==$request->dueDate) {
-            return redirect()->back()->with('error', 'Details sre not updated');
+            return redirect()->back()->with('error', 'Details are not updated');
         }
 
         $oldLand = new Vats_old_percentage;
@@ -263,6 +265,41 @@ class GlobalConfigurationController extends Controller
         $land->save();
 
         return redirect()->back()->with('status', 'Land tax details updated successfully');
+    }
+
+    /*
+    * Club Licence Tax percentage update
+    */
+    public function updateClubLicenceTaxForm()
+    {
+        $clubLicence = Vat::where('route', 'clubLicence')->first();
+        return view('admin.globalConfigurationClubLicence', ['clubLicence'=>$clubLicence]);
+    }
+
+    public function updateClubLicencePercentage(UpdateClubLicenceTaxPercentageRequest $request)
+    {
+        $clubLicence = Vat::where('route', 'clubLicence')->first();
+
+        if ($clubLicence->vat_percentage== $request->vatPercentage && $clubLicence->due_date==$request->dueDate) {
+            return redirect()->back()->with('error','Details are not updated');
+        } 
+
+        $oldClubLicence = new Vats_old_percentage;
+        $oldClubLicence->name = $clubLicence->name;
+        $oldClubLicence->created_at = $clubLicence->created_at;
+        $oldClubLicence->due_date = $clubLicence->due_date;
+        $oldClubLicence->updated_at = Carbon::now();
+
+        $oldClubLicence->save();
+
+        //updateing the new vat percentage and due date
+        $clubLicence->vat_percentage = $request->vatPercentage;
+        $clubLicence->due_date = $request->dueDate;
+        $clubLicence->save();
+
+        return redirect()->back()->with('status', 'Club Licence tax percentages updated successfully');
+        
+
     }
 
 

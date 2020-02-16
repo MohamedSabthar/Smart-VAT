@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Club Licence</center>
+                    <center>{{__('menu.Restore Club Licence')}}</center>
                     </h3>
 
                 </div>
@@ -114,7 +114,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        @if(url()->previous()==route('payer-registration',['requestFrom'=>'clubLicence']))
+        @if(url()->previous()==route('payer-registration',['requestFrom'=>'club-licence']))
         <div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
             <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
             <span class="alert-inner--text mx-2">
@@ -393,10 +393,10 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                             <a class="dropdown-item"
-                                                href="{{route('club-licence-payments',['shop_id'=>$clubLicence->id])}}">
+                                                href="{{route('club-licence-payments',['club_id'=>$clubLicence->id])}}">
                                                 {{__('menu.View Payments')}}</a>
 
-                                            <form action="{{route('remove-club-licence',['shop_id'=>$clubLicence->id])}}"
+                                            <form action="{{route('remove-club-licence',['club_id'=>$clubLicence->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')

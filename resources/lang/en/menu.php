@@ -35,6 +35,7 @@ return [
     'My profile'=>'My profile',
     'Logout'=>'Logout',
     'Change Password'=>'Change Password',
+    'notifications' => 'notifications',
 
 
     //latest payment//
@@ -111,7 +112,7 @@ return [
     'Industrial Tax Payers' => 'Industrial Tax Payers',
     'Entertainment Tax Payers' => 'Entertainment Tax Payers',
     'Land Tax Payers' => 'Land Tax Payers',
-    'Club Licence Tax Payers' => 'Club Licence Tax Payers',
+    'Club Licence Holders' => 'Club Licence Holders',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',
@@ -253,7 +254,8 @@ return [
     'Premises Name' => 'Premises Name',
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
-    'Assessment Amount' => 'Assessment Amount',
+    'Assesment Amount' => 'Assesment Amount',
+    'Remove Premises'=> 'Remove Premises',
     'Search Premises Name'=> 'Search Premises Name',
 
     // Club licence tax
@@ -261,6 +263,8 @@ return [
     '[+] Club' => '[+] Club',
     's clubs' => 's clubs' ,
     'Add new Club' => 'Add new Club',
-    'Club Name' => 'Club Name'
+    'Club Name' => 'Club Name',
+    'Remove Club' => 'Remove Club',
+    'Restore Club Licence' => 'Restore Club Licence'
 
 ];
