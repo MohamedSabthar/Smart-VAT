@@ -19,6 +19,7 @@ class CreateAdvertisementTaxTable extends Migration
             $table->bigInteger('vat_percentage');
             $table->bigInteger('fine_percentage')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

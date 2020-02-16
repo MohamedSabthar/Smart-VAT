@@ -179,6 +179,7 @@ Route::post('/industrial/summary-report-pdf', 'vat\IndustrialTaxController@summa
 Route::get('/shop-rent/profile/{id}', 'vat\ShopRentTaxController@shoprentProfile')->name('shop-rent-profile');
 Route::post('/shop-rent/shop-register/{id}', 'vat\ShopRentTaxController@registerShopRent')->name('shop-rent-register');
 Route::get('/shop-rent/payments/{shop_id}', 'vat\ShopRentTaxController@shopRentPayments')->name('shop-rent-payments');
+Route::put('/shop-rent-profile/{id}', 'vat\ShopRentTaxController@updateShopRentProfile')->name('update-shop-rent');
 Route::post('/shop-rent/payments/{shop_id}', 'vat\ShopRentTaxController@reciveshopRentPayments')->name('receive-shop-rent-payments');
 Route::get('/shop-rent/quick-payments', 'vat\ShopRentTaxController@viewQuickPayments')->name('get-shop-rent-quick-payments');
 Route::post('/shop-rent/check-payments', 'vat\ShopRentTaxController@checkPayments')->name('check-shop-rent-payments'); //check all business payments for a given vat payer for quick payment option
@@ -210,8 +211,11 @@ Route::get('/booking/booking-trash/{payer_id}', 'vat\BookingTaxController@trashB
 Route::get('/booking/booking-restore/{id}', 'vat\BookingTaxController@restoreBooking')->name('restore-booking'); // restore business
 
 //advertisement
-Route::post('/advertisement/advertisement-register{id}','vat\AdvertisementTaxController@registerAdvertisementPayment')->name('advertisement-register');
+Route::post('/advertisement/advertisement-register/{id}','vat\AdvertisementTaxController@registerAdvertisementPayment')->name('advertisement-register');
 Route::get('/advertisement/profile/{shop_id}','vat\AdvertisementTaxController@advertisementProfile')->name('advertisement-profile');
+Route::delete('/advertisement/payment-remove/{id}', 'vat\AdvertisementTaxController@removePayment')->name('remove-advertisement-payment'); //soft delete business payment
+Route::get('/advertisement/payment-trash/{id}', 'vat\AdvertisementTaxController@trashPayment')->name('advertisement-trash-payment'); //trash business payment
+Route::get('/advertisement/payment-restore/{id}', 'vat\AdvertisementTaxController@restorePayment')->name('restore-advertisement-payment'); // restore business
 /**
  * Routes related to entertainment tax
  *

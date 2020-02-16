@@ -81,7 +81,7 @@
     </div>
 </div>
 <div class="col-xl-3 col-lg-6"
-    onclick="javascript:window.open(`{{route('trash-business',['payer_id'=>$vatPayer->id])}}`,'_self')"
+    onclick="javascript:window.open(`{{route('advertisement-trash-payment',['payer_id'=>$vatPayer->id])}}`,'_self')"
     style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -146,6 +146,7 @@
 @endsection
 
 @section('pageContent')
+<div class ="pt-5">
 <div class="row ">
     <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
         <div class="card card-profile shadow">
@@ -188,17 +189,106 @@
         </div>
     </div>
     <div class="col-xl-8 order-xl-1">
+    {{-- payment history card --}}
+			<div class="card shadow mb-5" id="payment-history">
+				<div class="card-header bg-white border-0">
+					<div class="row align-items-center">
+						<div class="col-8">
+							<h3 class="mb-0">{{__('menu.Payment History')}}</h3>
+							<hr class="mt-4 mb-0">
+
+						</div>
+					</div>
+				</div>
+
+				<div class="table-responsive py-4">
+					{{-- booking tax payments table --}}
+					<table id="entertainment_payments_table" class="table  px-5">
+						<thead class="thead-light">
+							<tr>
+                                <th>{{__('menu.Receipt No.')}}</th>
+                                <th>{{__('menu.Advertisement type')}}</th>
+								<th>{{__('menu.Final Payment')}}</th>
+								<th>{{__('menu.Payment Date')}}</th>
+								<th></th>
+
+							</tr>
+						</thead>
+						<thead id="search_inputs">
+							<tr>
+								<th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
+										placeholder="{{__('menu.Search Assesment No.')}}" /></th>
+								<th><input type="text" class="form-control form-control-sm" id="searchFinalPayment"
+										placeholder="{{__('menu.Search Payment')}}" /></th>
+								<th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
+										placeholder="{{__('menu.Search Payment date')}}" /></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+                            @foreach($vatPayer->advertisementTaxPayment as $payments)
+                            <tr>
+                                <td>{{$payments->id}}</td>
+                                <td>{{$payments->description}}</td>
+                                <td>{{ number_format($payments->final_payment,2)}}</td>
+                                <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
+                                <td class="text-right">
+									<div class="dropdown">
+										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<i class="fas fa-ellipsis-v"></i>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<form
+												action="{{route('remove-advertisement-payment',['id'=>$payments->id])}}"
+												method="POST">
+												@csrf
+												@method('delete')
+												<input type="submit" value="{{__('menu.Remove Payment')}}"
+													class="dropdown-item">
+
+											</form>
+											<a class="dropdown-item toggle-update" data-value="{{$payments}}">
+												Update payment</a>
+										</div>
+
+									</div>
+								</td>
+
+                            </tr>
+                            @endforeach
+                            
+
+						</tbody>
+						<thead class="thead-light">
+							<tr>
+                                <th>{{__('menu.Receipt No.')}}</th>
+                                <th>{{__('menu.Advertisement type')}}</th>
+								<th>{{__('menu.Final Payment')}}</th>
+								<th>{{__('menu.Payment Date')}}</th>
+								<th></th>
+
+							</tr>
+						</thead>
+
+					</table>
+					{{-- end of booking TAX payments table --}}
+				</div>
+			</div>
+			{{-- end of payment history card --}}
+
         <div class="card bg-secondary shadow mb-5 hide" id="business-registration">
             <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Business')}}</span></h3>
-                    </div>
+					<div class="row align-items-center">
+						<div class="col-8">
+							<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Advertisement payment')}}</span>
+							</h3>
+						</div>
 
-                </div>
-            </div>
+				</div>
+	   	    </div>	
             <div class="card-body">
-                {{-- Industrial shop registration form --}}
+                {{-- Advertisement tax registration form --}}
                 <form method="POST" action="{{route('advertisement-register',['id'=> $vatPayer->id])}}"
                     id="business-shop-register">
 					@csrf
@@ -206,9 +296,9 @@
                         <label for="example-text-input"
                             class="col-md-2 col-form-label form-control-label ">{{__('menu.Description')}}</label>
                         <div class="col-md-10 ">
-                            <input class="form-control @error('phoneno') is-invalid  @enderror" type="text"
-                                value="{{old('phoneno')}}" id="phoneno" name="phoneno">
-                            @error('phoneno')
+                            <input class="form-control @error('description') is-invalid  @enderror" type="text"
+                                value="{{old('description')}}" id="description" name="description">
+                            @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -240,9 +330,22 @@
                         <label for="example-text-input"
                             class="col-md-2 col-form-label form-control-label ">{{__('menu.Square feet')}}</label>
                         <div class="col-md-10 ">
-                            <input class="form-control @error('phoneno') is-invalid  @enderror" type="text"
-                                value="{{old('phoneno')}}" id="phoneno" name="phoneno">
-                            @error('phoneno')
+                            <input class="form-control @error('squarefeet') is-invalid  @enderror" type="text"
+                                value="{{old('squarefeet')}}" id="squarefeet" name="squarefeet">
+                            @error('squarefeet')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Price per square foot')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('price') is-invalid  @enderror" type="text"
+                                value="{{old('price')}}" id="price" name="price">
+                            @error('price')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -292,92 +395,10 @@
         </div>
         
 
-        <div class="card shadow">
-            <div class="card-header bg-white border-0"> 
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h3 class="mb-0">
-                            <span class="text-uppercase">{{$vatPayer->first_name}} '{{__('menu.s businesses')}}</span>
-                        </h3>
-                        <hr class="mt-4 mb-0">
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    {{-- Business shops table --}}
-                    <table id="business_shops_table" class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
-                                <th style="width:300px;">{{__('menu.Business Name')}}</th>
-                                <th>{{__('menu.Shop Phone')}}</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <thead id="search_inputs">
-                            <tr>
-                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
-                                        placeholder="{{__('menu.Search Assesment No.')}}" />
-                                </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                        placeholder="{{__('menu.Search Business Name')}}" />
-                                </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchPhone"
-                                        placeholder="{{__('menu.Search Phone')}}" />
-                                </th>
-
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($vatPayer->buisness as $buisness)
-                            <tr>
-                                <td class="text-center">{{$buisness->id}}</td>
-                                <td>{{$buisness->shop_name}}</td>
-                                <td>{{$buisness->phone}}</td>
-                                <td class="text-right">
-                                    <div class="dropdown">
-                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item"
-                                                href="{{route('business-payments',['shop_id'=>$buisness->id])}}">
-                                                {{__('menu.View Payments')}}</a>
-
-                                            <form action="{{route('remove-business',['shop_id'=>$buisness->id])}}"
-                                                method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <input type="submit" value="{{__('menu.Remove Buisness')}}"
-                                                    class="dropdown-item">
-
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                        <thead class="thead-light">
-                            <tr>
-                                <th>{{__('menu.Assesment No.')}}</th>
-                                <th>{{__('menu.Business Name')}}</th>
-                                <th>{{__('menu.Shop Phone')}}</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                    </table>
-                    {{-- end of Business shops table --}}
-                </div>
-            </div>
-        </div>
+       
     </div>
 </div>
-
+</div>
 @endsection
 
 @push('script')
@@ -388,7 +409,7 @@
 	$(document).ready(function() {
 
 
-        var id = '#business_shops_table';                      //data table id
+        var id = '#entertainment_payments_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+

@@ -27,6 +27,7 @@ class AddAdvertisementRequest extends FormRequest
             'description' => ['required','string','max:255'],
             'type' => ['required','string'],
             'squarefeet' => ['required','string','max:255'],
+            'price'=>['required','numeric']
            
         ];
     }

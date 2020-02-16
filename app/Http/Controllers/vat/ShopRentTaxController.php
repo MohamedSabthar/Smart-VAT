@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddShopRentRequest;
 use App\Http\Requests\ShopRentTaxReportRequest;
+use App\Http\Requests\UpdateShopRentProfileRequest;
 use App\Shop_rent_tax;
 use App\Shop_rent_tax_payment;
 use Auth;
@@ -210,5 +211,22 @@ class ShopRentTaxController extends Controller
         $payerId = $shopRentTax->first()->payer_id;
         $shopRentTax->restore();
         return redirect()->route('shop-rent-profile', ['id'=>$payerId])->with('status', 'shop restored successfully');
+    }
+
+    public function updateShopRentProfile($id, UpdateShopRentProfileRequest $request)
+    {
+        $shopRentTax = Shop_rent_tax::findOrFail($id);
+
+        //update business details
+        $shopRentTax->registration_no = $request->assesmentNo;
+        $shopRentTax->month_worth = $request->monthAssesmentAmount;
+        $shopRentTax->shop_name = $request->businessName;
+        $shopRentTax->phone = $request->phoneno;
+        $shopRentTax->door_no = $request->doorno;
+        $shopRentTax->street = $request->street;
+        $shopRentTax->city = $request->city;
+             
+        $shopRentTax->save();
+        return redirect()->back()->with('status', 'Business details updated successful');
     }
 }

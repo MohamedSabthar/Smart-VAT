@@ -18,7 +18,14 @@ class CreateAdvertisementTaxPaymentTable extends Migration
             $table->string('description');
             $table->string('type');
             $table->bigInteger('square_feet');
+            $table->bigInteger('price');
+            $table->bigInteger('final_payment');
+            $table->bigInteger('payer_id')->unsigned();                         // buisness/Shop owner
+            $table->bigInteger('employee_id')->unsigned();
+            $table->foreign('payer_id')->references('id')->on('vat_payers');                    //payer id is FK of vat_payers table
+            $table->foreign('employee_id')->references('id')->on('users');                    //employee id is FK of users table
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
