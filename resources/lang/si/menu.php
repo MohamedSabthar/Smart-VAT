@@ -226,6 +226,7 @@ return [
 
 
     // Club license tax
-    'Club licence'=> 'සමාජ ශාලා බලපත්‍රය'
+    'Club licence'=> 'සමාජ ශාලා බලපත්‍රය',
+    'Business Tax' => 'ව්‍යාපාර බද්ද',
 
 ];

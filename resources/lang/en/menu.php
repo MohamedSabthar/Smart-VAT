@@ -236,6 +236,8 @@ return [
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
     'Assessment Amount' => 'Assessment Amount',
-    'Search Premises Name'=> 'Search Premises Name'
+    'Search Premises Name'=> 'Search Premises Name',
+
+    'Business Tax' => 'Business Tax',
 
 ];
