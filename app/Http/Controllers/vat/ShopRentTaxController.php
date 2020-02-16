@@ -159,7 +159,6 @@ class ShopRentTaxController extends Controller
        // $reportData = BusinessReport::generateBusinessReport();
         $dates = (object)$request->only(["startDate","endDate"]);
           
-        $records=Shop_rent_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();
     
         $records = Shop_rent_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {

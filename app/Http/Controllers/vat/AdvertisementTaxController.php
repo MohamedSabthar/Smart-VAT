@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddAdvertisementRequest;
+use App\Http\Requests\AdvertisementTaxReportRequest;
 use App\Advertisement_tax;
 use App\Advertisement_tax_payment;
 use Auth;
@@ -66,5 +67,62 @@ class AdvertisementTaxController extends Controller
         return $price*$squarefeet*($advertisementTaxType->vat_percentage/100)+($price*$squarefeet);
 
     }
-    
+    public function advertisementReportGeneration()                                                                       //directs the report genaration view
+    {
+        return view('vat.advertisement.advertisementReportGeneration');
+    }
+    public function generateReport(AdvertisementTaxReportRequest $request){
+        $dates = (object)$request->only(["startDate","endDate"]);
+        $records = Advertisement_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+  
+            return view('vat.advertisement.advertisementReportView', ['dates'=>$dates,'records'=>$records]);
+       
+     }
+    public function TaxPdf(AdvertisementTaxReportRequest $request){
+
+        $pdf = \App::make('dompdf.wrapper');
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Advertisement_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
+        $Paymentsum=Advertisement_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->sum('final_payment');
+        $pdf->loadHTML($this->TaxReportHTML($records, $dates, $Paymentsum));
+        
+
+       
+        return $pdf->stream();
+
+    }
+
+    public function TaxReportHTML($records, $dates, $Paymentsum)
+    {
+        $output = "
+        <h3 align='center'>Advertisement Tax Report from $dates->startDate to $dates->endDate </h3>
+        <table width='100%' style='border-collapse: collapse; border: 0px;' class='table'>
+         <tr>
+       <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER'S NIC</th>
+       <th style='border: 1px solid; padding:12px;' width='25%'>VAT PAYER'S NAME</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT DATE</th>
+   
+       
+       
+      </tr>
+        ";
+        foreach ($records as $record) {
+            $output .= '
+         <tr>
+         <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->nic.'</td>
+          <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->full_name.'</td>
+          <td style="border: 1px solid; padding:12px;">'.'Rs. '.number_format($record->final_payment, 2).'</td>
+          <td style="border: 1px solid; padding:12px;">'.$record->updated_at.'</td>
+           
+         </tr>
+         ';
+        }
+        
+        $output .= '</table>';
+        $output .= "<br>Total Payements : Rs.".number_format($Paymentsum, 2)."/=";
+        return $output;
+    }
+
 }

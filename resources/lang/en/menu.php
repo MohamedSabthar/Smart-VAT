@@ -109,6 +109,7 @@ return [
     'Registration' => 'Registration',
     'Add Business' => 'Add Business',
     'Update Details' => 'Update Details',
+    'Update business' => 'Update business',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',
@@ -261,6 +262,30 @@ return [
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
     'Assessment Amount' => 'Assessment Amount',
-    'Search Premises Name'=> 'Search Premises Name'
+    'Search Premises Name'=> 'Search Premises Name',
 
+    //advertisement tax
+    '[+] Advertisement'=>'[+] Advertisement',
+
+    //side bar
+    'Industrial Tax' =>'Industrial Tax',
+    'License Tax' => 'License Tax',
+    'Land Tax' => 'Land Tax',
+    'Advertisement Tax' => 'Advertisement Tax',
+    'Land Auction Tax' => 'Land Auction Tax',
+    'Shop Rent Tax' => 'Shop Rent Tax',
+    'Vehical Park Tax' => 'Vehical Park Tax',
+    'Entertainment Tax' => 'Entertainment Tax',
+    'Club Licence Tax' => 'Club Licence Tax',
+    'Three Wheel Park Tax' => 'Three Wheel Park Tax',
+    'Booking Tax' => 'Booking Tax',
+    'Slaughtering Tax' => 'Slaughtering Tax',
+     
+    //dashbordRegister payer
+    'Total VAT payers'=>'Total VAT payers',
+    'Register payer' => 'Register payer',
+    'Generate report' => 'Generate report',
+    'Quick payments' => 'Quick payments',
+    'Ticket payment report' => 'Ticket payment report',
+    'Performance payment report' => 'Performance payment report',
 ];

@@ -176,7 +176,8 @@
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-sm btn-default float-left update-profile">{{__('menu.Update Details')}}</a>
+                        <a href="#"
+                            class="btn btn-sm btn-default float-left update-profile">{{__('menu.Update Details')}}</a>
                     </div>
                 </div>
 
@@ -221,6 +222,22 @@
             <div class="card shadow text-center mb-3 p-4">
                 <div class="card-body bg-white border-0">
                     <h1 style="font-weight: 400;">{{__('menu.Due Payment : Rs.')}} {{number_format($duePayment,2)}}</h1>
+                    {{-- payment form --}}
+                    <form action="{{route('receive-business-payments',['shop_id'=>$businessTaxShop->id])}}"
+                        id="accept-payment" method="POST">
+                        @csrf
+                        <input type="text" name="payment" value="{{$duePayment}}" hidden>
+                        <div class="row d-flex justify-content-center mt-2">
+                            <div class="col-1"><label class="custom-toggle">
+                                    <input type="checkbox" name="court">
+                                    <span class="custom-toggle-slider rounded-circle"></span>
+                                </label>
+                            </div>
+                            <div class="col-5">Enable if payment recieved from court</div>
+                        </div>
+
+                    </form>
+                    {{-- end of payment form --}}
                     <button class="btn btn-success mx-auto my-1" data-toggle="modal"
                         onclick="javascript:event.preventDefault()"
                         data-target="#confirm-business-payment">{{__('menu.Accept Payment')}}</button>
@@ -229,146 +246,143 @@
             </div>
 
             {{-- Update profile card --}}
-        <div class="card bg-secondary shadow mb-5 hide" id="Update-business-info">
-            <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Business')}}</span></h3>
-                    </div>
+            <div class="card bg-secondary shadow mb-5 hide" id="Update-business-info">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Business')}}</span></h3>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
-            <div class="card-body">
-                {{-- Update business profile form --}}
-                <form method="POST" id="business-details-form"
-                    action="{{route('update-business',['id'=>$businessTaxShop->id])}}">
-                    @csrf
-                    @method('put')
-                    <div class="form-group row">
-                        <label for="example-text-input"
-                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
-                        <div class="col-md-10 ">
-                            <input class="form-control @error('businessName') is-invalid  @enderror" type="text"
-                                value="{{old('businessName',$businessTaxShop->shop_name)}}" id="businessName" name="businessName">
-                            @error('businessName')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
-                            {{__('menu.Anual worth')}}</label>
-                        <div class="col-md-10">
-                            <input class="form-control @error('annualAssesmentAmount') is-invalid @enderror" type="text"
-                                value="{{old('annualAssesmentAmount',$businessTaxShop->anual_worth)}}" id="annualAssesmentAmount" name="anual_worth">
-                            @error('annualAssesmentAmount')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
-                            {{__('menu.Phone No')}}</label>
-                        <div class="col-md-10">
-                            <input class="form-control @error('phoneno') is-invalid @enderror" type="text"
-                                value="{{old('phoneno',$businessTaxShop->phone)}}" id="phoneno" name="phoneno">
-                            @error('phoneno')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-text-input"
-                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
-                        <div class="col-md-10 ">
-                            <input class="form-control @error('doorno') is-invalid  @enderror" type="text"
-                                value="{{old('doorno',$businessTaxShop->door_no)}}" id="doorno" name="doorno">
-                            @error('doorno')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-text-input"
-                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
-                        <div class="col-md-10 ">
-                            <input class="form-control @error('street') is-invalid  @enderror" type="text"
-                                value="{{old('street',$businessTaxShop->street)}}" id="street" name="street">
-                            @error('street')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-text-input"
-                            class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
-                        <div class="col-md-10 ">
-                            <input class="form-control @error('city') is-invalid  @enderror" type="text"
-                                value="{{old('city',$businessTaxShop->city)}}" id="city" name="city">
-                            @error('city')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary float-right" data-toggle="modal"
-                            onclick="javascript:event.preventDefault()"
-                            data-target="#confirm-update-businessProfile">{{__('menu.Update')}}</button>
-                    </div>
-
-                    {{-- Confirmation modal --}}
-                    <div class="modal fade" id="confirm-update-businessProfile" tabindex="-1" role="dialog"
-                        aria-labelledby="modal-default" aria-hidden="true">
-                        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Are you sure you wish to Update the details of {{$businessTaxShop->shop_name}} ?
-                                    </p>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-link"
-                                        onclick="javascript:location.reload()">Cancel</button>
-                                    <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
-                                        onclick="javascript:document.getElementById('business-details-form').submit();">Confirm</button>
-                                </div>
-
+                <div class="card-body">
+                    {{-- Update business profile form --}}
+                    <form method="POST" id="business-details-form"
+                        action="{{route('update-business',['id'=>$businessTaxShop->id])}}">
+                        @csrf
+                        @method('put')
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('businessName') is-invalid  @enderror" type="text"
+                                    value="{{old('businessName',$businessTaxShop->shop_name)}}" id="businessName"
+                                    name="businessName">
+                                @error('businessName')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
-                    </div>
-                    {{-- end of Confirmation modal --}}
+                        <div class="form-group row">
+                            <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
+                                {{__('menu.Anual worth')}}</label>
+                            <div class="col-md-10">
+                                <input class="form-control @error('annualAssesmentAmount') is-invalid @enderror"
+                                    type="text" value="{{old('annualAssesmentAmount',$businessTaxShop->anual_worth)}}"
+                                    id="annualAssesmentAmount" name="anual_worth">
+                                @error('annualAssesmentAmount')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
 
-                </form>
-                {{-- end of Update VAT payer profile form  --}}
+                        <div class="form-group row">
+                            <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
+                                {{__('menu.Phone No')}}</label>
+                            <div class="col-md-10">
+                                <input class="form-control @error('phoneno') is-invalid @enderror" type="text"
+                                    value="{{old('phoneno',$businessTaxShop->phone)}}" id="phoneno" name="phoneno">
+                                @error('phoneno')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('doorno') is-invalid  @enderror" type="text"
+                                    value="{{old('doorno',$businessTaxShop->door_no)}}" id="doorno" name="doorno">
+                                @error('doorno')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('street') is-invalid  @enderror" type="text"
+                                    value="{{old('street',$businessTaxShop->street)}}" id="street" name="street">
+                                @error('street')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('city') is-invalid  @enderror" type="text"
+                                    value="{{old('city',$businessTaxShop->city)}}" id="city" name="city">
+                                @error('city')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary float-right" data-toggle="modal"
+                                onclick="javascript:event.preventDefault()"
+                                data-target="#confirm-update-businessProfile">{{__('menu.Update')}}</button>
+                        </div>
+
+                        {{-- Confirmation modal --}}
+                        <div class="modal fade" id="confirm-update-businessProfile" tabindex="-1" role="dialog"
+                            aria-labelledby="modal-default" aria-hidden="true">
+                            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you wish to Update the details of
+                                            {{$businessTaxShop->shop_name}} ?
+                                        </p>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-link"
+                                            onclick="javascript:location.reload()">Cancel</button>
+                                        <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
+                                            onclick="javascript:document.getElementById('business-details-form').submit();">Confirm</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{-- end of Confirmation modal --}}
+
+                    </form>
+                    {{-- end of Update VAT payer profile form  --}}
+                </div>
             </div>
-        </div>
-            {{-- payment form --}}
-            <form action="{{route('receive-business-payments',['shop_id'=>$businessTaxShop->id])}}" id="accept-payment"
-                method="POST" hidden>
-                @csrf
-                <input type="text" name="payment" value="{{$duePayment}}">
-            </form>
-            {{-- end of payment form --}}
+
             {{-- Confirmation modal for adding business for the registered VAT payer--}}
             <div class=" modal fade" id="confirm-business-payment" tabindex="-1" role="dialog"
                 aria-labelledby="modal-default" aria-hidden="true">

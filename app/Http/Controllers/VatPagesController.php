@@ -12,6 +12,7 @@ use App\Booking_tax_payments_type;
 use App\Entertainment_tax_tickets_payment;
 use App\Club_licence_tax;
 use App\Vehicle_park_tax;
+use App\License_tax_shop;
 
 class VatPagesController extends Controller
 {
@@ -39,9 +40,10 @@ class VatPagesController extends Controller
 
     public function license()
     {
-        //$payers=License_tax_shop::liceseTaxPayers();    //all the vat payers who pays the license tax
-        //return view('vat.license.license',['payers'=>$payers]);
-        return view('vat.licence');
+        $payers=License_tax_shop::liceseTaxPayers();    //all the vat payers who pays the license tax 
+        return view('vat.license.license',['payers'=>$payers]);
+        
+
     }
 
     public function land()

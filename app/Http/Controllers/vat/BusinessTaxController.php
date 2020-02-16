@@ -92,11 +92,11 @@ class BusinessTaxController extends Controller
             $assessmentAmmount = $businessTaxShop->businessType->assessment_ammount;
             $dueAmount = $businessTaxShop->due == null ? 0 : $businessTaxShop->due->due_ammount;   //last due ammount which is not yet paid
             $duePayment = $this->calculateTax($businessTaxShop->anual_worth, $assessmentAmmount, $dueAmount);
-            $businessTaxPyament = new Business_tax_payment;
-            $businessTaxPyament->payment = $duePayment;
-            $businessTaxPyament->shop_id = $shopId;
-            $businessTaxPyament->payer_id =$payerId;
-            $businessTaxPyament->user_id = Auth::user()->id;
+            $businessTaxPayment = new Business_tax_payment;
+            $businessTaxPayment->payment = $duePayment;
+            $businessTaxPayment->shop_id = $shopId;
+            $businessTaxPayment->payer_id =$payerId;
+            $businessTaxPayment->user_id = Auth::user()->id;
 
             // if there was a duepayment update it to zero
             if ($businessTaxShop->due != null && $businessTaxShop->due->due_ammount!=0) {
@@ -105,7 +105,7 @@ class BusinessTaxController extends Controller
                 $lastDue->save();
             }
 
-            $businessTaxPyament->save();
+            $businessTaxPayment->save();
         }
     
         return redirect()->back()->with('status', 'Payments successfully accepted');
@@ -310,46 +310,48 @@ class BusinessTaxController extends Controller
     //soft delete business payment
     public function removePayment($id)
     {
-        $businessTaxPyament = Business_tax_payment::find($id);
-        $businessTaxShop = $businessTaxPyament->businessTaxShop;
+        $businessTaxPayment = Business_tax_payment::find($id);
+        $businessTaxShop = $businessTaxPayment->businessTaxShop;
 
         //restore the dueAmout
-        $restoreDue = Business_tax_due_payment::where('shop_id', $businessTaxPyament->businessTaxShop->id)->first();
-        $recalculatedDue = $this->calculateTax(-$businessTaxShop->anual_worth, -$businessTaxShop->businessType->assessment_ammount, $businessTaxPyament->payment) ;
+        $restoreDue = Business_tax_due_payment::where('shop_id', $businessTaxPayment->businessTaxShop->id)->first();
+        $recalculatedDue = $this->calculateTax(-$businessTaxShop->anual_worth, -$businessTaxShop->businessType->assessment_ammount, $businessTaxPayment->payment) ;
         if ($restoreDue==null) {
             $restoreDue = new Business_tax_due_payment;
-            $restoreDue->shop_id = $businessTaxPyament->shop_id;
-            $restoreDue->payer_id = $businessTaxPyament->payer_id;
+            $restoreDue->shop_id = $businessTaxPayment->shop_id;
+            $restoreDue->payer_id = $businessTaxPayment->payer_id;
         }
         
         if ($recalculatedDue!=0) {
             $restoreDue->due_ammount =  $recalculatedDue ;
             $restoreDue->save();
         }
-        $businessTaxPyament -> delete();
+        $businessTaxPayment -> delete();
         return redirect()->back()->with('status', 'Delete Successful');
     }
 
     //trash payment
     public function trashPayment($id)
     {
-        $businessTaxPyament = Business_tax_payment::onlyTrashed()->where('payer_id', $id)->get();
+        $businessTaxPayment = Business_tax_payment::onlyTrashed()->where('payer_id', $id)->get();
         
-        return view('vat.business.trashPayment', ['businessTaxPyament'=>$businessTaxPyament]);
+        return view('vat.business.trashPayment', ['businessTaxPayment'=>$businessTaxPayment]);
     }
     
     //restore payment
     public function restorePayment($id)
     {
-        $businessTaxPyament = Business_tax_payment::onlyTrashed()->where('id', $id)->restore($id);
-        return redirect()->route('trash-payment', ['businessTaxPyament'=>$businessTaxPyament])->with('status', 'Payment restore successful');
+        $businessTaxPayment = Business_tax_payment::onlyTrashed()->where('id', $id);
+        $shopId = $businessTaxPayment->first()->shop_id;
+        $businessTaxPayment->restore($id);
+        return redirect()->route('business-payments', ['id'=>$shopId])->with('status', 'Business restore successful');
     }
 
     // premanent delete payment
     public function destory($id)
     {
-        $businessTaxPyament = Business_tax_payment::onlyTrashed()->where('id', $id)->first();
-        $businessTaxPyament->forceDelete();
+        $businessTaxPayment = Business_tax_payment::onlyTrashed()->where('id', $id)->first();
+        $businessTaxPayment->forceDelete();
         return redirect()->back()->with('status', ' Permanent Delete Successful');
     }
 
@@ -358,11 +360,12 @@ class BusinessTaxController extends Controller
     {
         $businessTaxShop=Business_tax_shop::findOrFail($shop_id);
         $payerId =  $businessTaxShop->payer->id;  //get the VAT payer id
-        $businessTaxPyament = new Business_tax_payment;
-        $businessTaxPyament->payment = $request->payment;
-        $businessTaxPyament->shop_id = $shop_id;
-        $businessTaxPyament->payer_id =$payerId;
-        $businessTaxPyament->user_id = Auth::user()->id;
+        $businessTaxPayment = new Business_tax_payment;
+        $businessTaxPayment->payment = $request->payment;
+        $businessTaxPayment->shop_id = $shop_id;
+        $businessTaxPayment->payer_id =$payerId;
+        $businessTaxPayment->user_id = Auth::user()->id;
+        $businessTaxPayment->assinged_to_court = $request->court=='on' ? true : false;
         
         // if there was a duepayment update it to zero
         if ($businessTaxShop->due != null && $businessTaxShop->due->due_ammount!=0) {
@@ -372,7 +375,7 @@ class BusinessTaxController extends Controller
         }
 
 
-        $businessTaxPyament->save();
+        $businessTaxPayment->save();
 
         return redirect()->back()->with('status', 'Payment added successfuly');
     }
@@ -429,5 +432,24 @@ class BusinessTaxController extends Controller
              
         $vatPayer->save();
         return redirect()->back()->with('status', 'Business details updated successful');
+    }
+
+    public function getUnpaidVatPayer()
+    {
+        $payersDue = Business_tax_due_payment::where('due_ammount', '!=', 0)->get();
+        $year = Carbon::now()->toArray()['year'];
+        return view('vat.business.businessTaxUnPaidPayers', ['year'=>$year,'payersDue'=>$payersDue]);
+    }
+
+    public function getUnpaidVatPayerPdf()
+    {
+        $pdf = \App::make('dompdf.wrapper');
+
+        $payersDue = Business_tax_due_payment::where('due_ammount', '!=', 0)->get();
+        $year = Carbon::now()->toArray()['year'];
+         
+        $pdf->loadView('vat.business.businessTaxUnPaidPayersPdf', ['year'=>$year,'payersDue'=>$payersDue]);
+   
+        return $pdf->stream();
     }
 }

@@ -22,4 +22,15 @@ class Business_tax_due_payment extends Model
             ->where('shop_id', '=', $this->getAttribute('shop_id'));
         return $query;
     }
+
+
+    public function payer()
+    {
+        return $this->belongsTo('App\Vat_payer', 'payer_id');
+    }
+
+    public function businessTaxShop()
+    {
+        return $this->belongsTo('App\Business_tax_shop', 'shop_id');
+    }
 }

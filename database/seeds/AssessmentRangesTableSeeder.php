@@ -71,5 +71,26 @@ class AssessmentRangesTableSeeder extends Seeder
             ['start_value' => 2500,
             'vat_id' => $industrialTaxId]
         );
+
+         //Industrial tax ranges vat_id=3
+        //ranges are rupees
+        $licenseTaxId=Vat::where('route','license')->first()->id;
+        DB::table('assessment_ranges')->insert(
+            ['start_value'=>1,
+            'end_value'=>1500,
+            'vat_id'=>$licenseTaxId]
+        );
+        
+        DB::table('assessment_ranges')->insert(
+            ['start_value'=>1500,
+            'end_value'=>2500,
+            'vat_id'=>$licenseTaxId]
+        );
+
+        DB::table('assessment_ranges')->insert(
+            ['start_value'=>2500,
+            'vat_id'=>$licenseTaxId]
+        );
+        
     }
 }

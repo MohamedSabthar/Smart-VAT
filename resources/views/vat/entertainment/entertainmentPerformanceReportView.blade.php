@@ -26,13 +26,16 @@
                         from
                         {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
+            @if($records->all()!=null)
+            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert to
+                PDF</button>
             <table id="entertainment_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th style="width:250px;" class="text-center">{{__('menu.VAT Payers NIC')}}</th>
-                        <th style="width:300px;" class="text-center">{{ __('menu.VAT Payer Name')}}</th>
-                        <th style="width:300px;" class="text-center">{{ __('menu.Payment')}}</th>
-                        <th style="width:300px;" class="text-center">{{ __("menu.Payment Date")}}</th>
+                        <th class="text-center">{{__('menu.VAT Payers NIC')}}</th>
+                        <th class="text-center">{{ __('menu.VAT Payer Name')}}</th>
+                        <th class="text-center">{{ __('menu.Payment')}}</th>
+                        <th class="text-center">{{ __("menu.Payment Date")}}</th>
                     </tr>
                 </thead>
 
@@ -49,7 +52,9 @@
                 </tbody>
 
             </table>
-
+            @else
+            <div class="jumbotron bg-trnasparent text-center">No Payments data</div>
+            @endif
 
 
             <form method="POST" action="{{route('entertainment-performance-tax-report-pdf')}}" class="d-none"
@@ -61,10 +66,7 @@
             </form>
         </div>
         <br>
-        <div class="col" align="right">
-            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert to
-                PDF</button>
-        </div>
+
     </div>
 </div>
 
