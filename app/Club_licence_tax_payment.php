@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\Collection\forceDeletes;
 
 class Club_licence_tax_payment extends Model
 {
     protected $table = 'club_licence_tax_payments';
     use SoftDeletes;
-    // use forceDeletes;
 
     public function VatPayer()
     {

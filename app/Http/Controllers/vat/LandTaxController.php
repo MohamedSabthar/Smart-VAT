@@ -147,15 +147,42 @@ class LandTaxController extends Controller
         return redirect()->route('land-profile', ['id'=>$vatPayer->id])->with('status', 'New Premises Added successfully');
     }
 
+    
+    public function updateLandProfile($id, UpdateLandProfileRequest $request)
+    {
+        $landTaxPremises = Land_tax::findOrFail($id);
+
+        //update business details
+        $landTaxPremises->registration_no = $request->assesmentNo;
+        $landTaxPremises->worth = $request->assesmentAmount;
+        $landTaxPremises->land_name = $request->landName;
+        $landTaxPremises->phone = $request->phoneno;
+        $landTaxPremises->door_no = $request->doorno;
+        $landTaxPremises->street = $request->street;
+        $landTaxPremises->city = $request->city;
+             
+        $landTaxPremises->save();
+        return redirect()->back()->with('status', 'Premises details updated successful');
+    }
+
     public function receiveLandPayments($land_id, Request $request)
     {
-        $payerId = Land_tax::findOrFail($land_id)->payer->id;   // getting vat payer Id
+        $landTaxPremises = Land_tax::findOrFail($land_id);  
+        $payerId = $landTaxPremises->payer->id; // getting vat payer Id
         
         $landTaxPayment = new Land_tax_payment();
         $landTaxPayment->payment = $request->payment;
         $landTaxPayment->land_id = $land_id;
         $landTaxPayment->payer_id = $payerId;
         $landTaxPayment->user_id = Auth::user()->id;
+
+        // if there was a duepayment update it to zero
+        if ($landTaxPremises->due != null && $landTaxPremises->due->due_amount!=0) {
+            $lastDue = Land_tax_due_payment::where('land_id', $landTaxPremises->id)->first();
+            $lastDue->due_amount = 0;
+            $lastDue->save();
+        }
+
         $landTaxPayment->save();
 
         return redirect()->back()->with('status','Payment added Successfully'); 
@@ -169,15 +196,16 @@ class LandTaxController extends Controller
 
     public function generateReport(LandTaxReportRequest $request)
     {
-        $reportData = LandReport::generateLandReport();
         $dates = (object)$request->only(["startDate","endDate"]);
+        $reportData = LandReport::generateLandReport($dates);
 
         $records = Land_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {
             return view('vat.land.landReportView', ['dates'=>$dates, 'records'=>$records]);
-        } elseif ($request->has(SummaryReport)) {
-            return view('vat.land.landSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);
-        }
+        } 
+        // elseif ($request->has('SummaryReport')) {
+        //     return view('vat.land.landSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);
+        // }
 
     }
 
@@ -284,7 +312,7 @@ class LandTaxController extends Controller
 
         //restore the dueAmount
         $restoreDue = Land_tax_due_payment::where('land_id',$landTaxPayment->landTax->id)->first();
-        $recalculateDue = $this->calculateTax(-$landTaxPremises->worth, -$landTaxPayment->payment);
+        $recalculateDue = $this->calculateTax(-$landTaxPremises->worth, $landTaxPayment->payment);
         if($restoreDue==null) {
            $restoreDue = new Land_tax_due_payment;
            $restoreDue->land_id = $landTaxPayment->land_id;
@@ -310,15 +338,16 @@ class LandTaxController extends Controller
 
     public function restorePayment($id)
     {
-        $landTaxPayment = Land_tax_payment::onlyTrashed()->where('id',$id)->restore($id);
-        return redirect()->route('land-trash-payment', ['landTaxPayment'=>$landTaxPayment])->with('status', 'Payment restored successfully');
+        $landTaxPayment = Land_tax_payment::onlyTrashed()->where('id',$id);
+        $landId = $landTaxPayment->first()->land_id;
+        $landTaxPayment->restore($id);
+        return redirect()->route('land-payments', ['id'=>$landId])->with('status', 'Payment restored successfully');
     }
 
     // premanent delete payment
-    public function destory($id)
+    public function destroy($id)
     {
-        $landTaxPayment = Land_tax_payment::onlyTrashed()->where('id',$id)->get();
-        //dd($businessTaxPyament);
+        $landTaxPayment = Land_tax_payment::onlyTrashed()->where('id',$id)->first();
         $landTaxPayment->forceDelete();
         return redirect()->back()->with('status', ' Permanent Delete Successful');
     }

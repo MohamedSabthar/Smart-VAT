@@ -186,7 +186,7 @@
 
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-business',['id'=>$clubLicence->id])}}">
+                                        href="{{route('restore-club-licence',['id'=>$clubLicence->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
 

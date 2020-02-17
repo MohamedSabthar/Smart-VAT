@@ -22,4 +22,14 @@ class Land_tax_due_payment extends Model
             ->where('land_id', '=', $this->getAttribute('land_id'));
         return $query;
     }
+    
+    public function payer()
+    {
+        return $this->belongsTo('App\Vat_payer', 'payer_id');
+    }
+
+    public function landTax()
+    {
+        return $this->belongsTo('App\Land_tax', 'land_id');
+    }
 }
