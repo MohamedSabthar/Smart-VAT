@@ -25,8 +25,7 @@
                         {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
             @if($records->all()!=null)
-            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert to
-                PDF</button>
+            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">{{__('menu.Convert to PDF')}}</button>
             <table id="business_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>

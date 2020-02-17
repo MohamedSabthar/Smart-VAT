@@ -9,10 +9,13 @@ class Land_tax extends Model
 {
     protected $table = 'land_taxes';
     use SoftDeletes;
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait; //sotf delete cascade trait
+
+    protected $softCascade = ['payments'];
 
     public function payer()
     {
-        return $this->belongsTo('App\Vat_payer', 'payer_id');  //a land belongs to one VAT payer 
+        return $this->belongsTo('App\Vat_payer', 'payer_id');  //a land belongs to one VAT payer
     }
 
     public function user()
@@ -36,5 +39,4 @@ class Land_tax extends Model
     {
         return $this->hasOne('App\Land_tax_due_payment', 'land_id');  //Premises can have due payment
     }
-
 }

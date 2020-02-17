@@ -26,7 +26,7 @@
         <i class="ni ni-align-left-2 text-default"></i>
         <span class="nav-link-text">{{__('menu.VAT Categories')}}</span>
     </a>
-    <div class="collapse" id="navbar-vats">
+    <div class="collapse show" id="navbar-vats">
         <ul class="nav nav-sm flex-column">
             @foreach (App\Vat::all() as $vat)
             <li class="nav-item">

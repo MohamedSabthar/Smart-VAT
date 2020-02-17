@@ -13,19 +13,21 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6">
+
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('shoprent')}}`,'_self')"
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						{{__('menu.Latest Payments')}}
+						{{__('menu.Shop Rent payers')}}
 					</h3>
-					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
 				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
+					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+						<i class="fas fa-users"></i>
 					</div>
 				</div>
 			</div>
@@ -33,7 +35,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('shop-rent-generate-report')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
@@ -83,7 +84,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Payment</center>
+                        <center>{{__('menu.Restore Payment')}}</center>
                     </h3>
                 </div>
                 <div class="col-auto">
@@ -140,14 +141,13 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                </div> <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
                         <a href="{{route('shop-rent-profile',['id'=>$shopRentTax->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-sm btn-default float-left update-profile">{{__('menu.Update Details')}}</a>
+                        <a href="#"
+                            class="btn btn-sm btn-default float-left update-profile">{{__('menu.Update Details')}}</a>
+
                     </div>
                 </div>
 
