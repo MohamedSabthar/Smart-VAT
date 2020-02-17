@@ -156,7 +156,7 @@
 					@yield('sidebar')
 				</ul>
 
-				{{-- Divider --}}
+				<!--				{{-- Divider --}}
 				<hr class="my-3">
 				{{-- Heading --}}
 				<h6 class="navbar-heading text-muted">Documentation</h6>
@@ -184,7 +184,7 @@
 							Components
 						</a>
 					</li>
-				</ul>
+				</ul> -->
 			</div>
 
 		</div>
