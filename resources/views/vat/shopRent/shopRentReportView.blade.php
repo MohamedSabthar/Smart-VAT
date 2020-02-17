@@ -28,7 +28,7 @@
                     <tr>
                         <th style="width:250px;"class="text-center">{{__('menu.VAT Payers NIC')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.VAT Payer Name')}}</th>
-                        <th style="width:300px;"class="text-center">{{ __('menu.Shop')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.shop')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.Payment')}}</th>
                         <th style="width:300px;"class="text-center">{{ __("menu.Payment Date")}}</th>
                     </tr>
@@ -60,7 +60,7 @@
         </div>
         <br>
         <div class="col" align="right">
-            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">Convert to PDF</button>
+            <button onclick="javascript:document.getElementById('dates').submit();" class="btn btn-danger">{{__('menu.Convert to PDF')}}</button>
         </div>
     </div>
 </div>

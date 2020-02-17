@@ -47,11 +47,13 @@ class VatsTableSeeder extends Seeder
             'route'=> 'advertisement'
         ]);
 
-        DB::table('vats')->insert([
-            'name' => 'Land Auction Tax',
-            'vat_percentage' => 1,
-            'route'=> 'landauction'
-        ]);
+        // DB::table('vats')->insert([
+        //     'name' => 'Land Auction Tax',
+        //     'vat_percentage' => 1,
+        //     'route'=> 'landauction'
+        // ]);
+
+        
         DB::table('vats')->insert([
             'name' => 'Shop Rent Tax',
             'vat_percentage' => 15,

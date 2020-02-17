@@ -31,6 +31,7 @@ return [
     'Search Email'=>'විද්යුත් තැපෑල සෙවීම',
     'Search Admin'=>'පරිපාලක සෙවීම',
     'Search' => 'සෙවීම',
+    'Search Shop'=>'සාප්පු සෙවීම',
 
     'My profile'=>'මගේ ගිණුම',
     'Logout'=>'ඉවත්වීම',
@@ -44,6 +45,16 @@ return [
     'Are you wish to add a New Business/Payment ?'=>'ඔබට නව ව්‍යාපාරයක් / ගෙවීමක් එකතු කිරීමට අවශ්‍යද? ?',
     'Cancel'=>'අවලංගු කරන්න',
     'notifications' => 'දැනුම්දීම්',
+
+    //repot generation
+    'List Unpaid VAT payers for this year'=>'මෙම වර්ෂය සඳහා නොගෙවූ වැට් බදු ගෙවන්නන්ගේ ලැයිස්තුව',
+    'Generate Business Report'=>'ව්‍යාපාර වාර්තාවක් ජනනය කරන්න',
+    'Tax Report'=>'බදු වාර්තාව',
+    'Summary Report'=>'සාරාංශ වාර්තාව',
+    'Convert to PDF'=>'PDF බවට පරිවර්තනය කරන්න',
+    'VAT Payers NIC'=>'වැට් බදු ගෙවන්නන්ගේ ජාතික හැඳුනුම්පත',
+
+   
 
     //latest Payment
     'Latest Payment' => 'අවසාන ගෙවීම',
@@ -90,6 +101,13 @@ return [
     'Annual worth' => 'වාර්ෂික වටිනාකම',
     'Update Business details'=> 'ව්‍යාපාර විස්තර යාවත්කාලීන කරන්න',
     'Update Vat Payer Profile' => 'වැට් ගෙවන්නන්ගේ පැතිකඩ යාවත්කාලීන කරන්න',
+    'Enable if payment recieved from court'=>'උසාවියෙන් ගෙවීම් ලැබුනේ නම් සක්‍රීය කරන්න',
+    'Confirmation needed to add payment for'=>'ගෙවීම් එකතු කිරීම සඳහා තහවුරු කිරීම අවශ්‍ය වේ',
+    'shop'=>'සාප්පුව',
+    'Click here to add new business'=>'නව ව්‍යාපාරයක් එක් කිරීමට මෙතන ක්ලික් කරන්න',
+    'Confirmation needed to add a business for'=>'ව්‍යාපාරයක් එක් කිරීම සඳහා තහවුරු කිරීම අවශ්‍ය වේ',
+    'Update Business'=>'ව්‍යාපාරය යාවත්කාලීන කරන්න',
+    'Trash Payments'=>'ඉවත් කල ගෙවීම්',
     
     //VAT Payer
     'Register' => 'ලියාපදිංචි කිරීම',
@@ -116,10 +134,13 @@ return [
     's profile'=> 'පැතිකඩ',
     'Business Tax Payers' => 'ව්‍යාපාර බදු ගෙවන්නන්',
     'Industrial Tax Payers' => 'කාර්මික බදු ගෙවන්නන්',
-    'Entertainment Tax Payers' => 'විනෝදාස්වාද බදු ගෙවන්නන්',
+    'Entertainment Tax Payers' => 'විනෝද බදු ගෙවන්නන්',
     'Land Tax Payers' => 'ඉඩම් බදු ගෙවන්නන්',
     'Club Licence Holders' => 'සමාජ ශාලා බලපත්‍ර බදු ගෙවන්නන්',
-
+    'Generate Entertainment Ticket payments Report'=>'විනෝදාස්වාද ප්‍රවේශ පත්‍ර ගෙවීම් වාර්තාව ජනනය කරන්න',
+    'Generate Entertainment Performance payments Report'=>'විනෝදාස්වාද කාර්ය සාධන ගෙවීම් වාර්තාව ජනනය කරන්න',
+    'Performance payments'=>'කාර්ය සාධන ගෙවීම්',
+     'Add new event payment'=>'නව ගෙවීම් එකතු කරන්න',
     
     
     //employee profile
@@ -208,35 +229,33 @@ return [
      'Invalid Assesment Amount'=>'ලබා දී ඇති තක්සේරු මුදල අවලංගුය',
      
      //industrail profile
-     'Add' => 'Add',
-     'Confirm' => 'Confirm',
+     'Add' => 'එකතු කරන්න',
+     'Confirm' => 'තහවුරු කරන්න',
 
     
      //entertainment payment
     'View history'=>'ඉතිහාසය බලන්න',
-    'Place Addr' => 'Place Addr',
-    'Returned Payment' => 'Returned Payment',
-    'Ticket type' => 'Ticket type',
-    'Quoted Ticket' => 'Quoted Ticket',
-    'Ticket Price'=>'Ticket Price',
-    'Event Venue'=>'Event Venue',
-    'Add payment' => 'Add payment',
-    'Add new event payment'=>'Add new event payment',
-    'Quoted Tickets' => 'Quoted Tickets',
-    'Returned Tickets' => 'Returned Tickets',
-    'Final Payment' => 'Final Payment',
+    'Place Addr' => 'ලිපිනය',
+    'Returned Payment' => 'ආපසු ගෙවීම',
+    'Ticket type' => 'ප්‍රවේශ පත්‍ර වර්ගය',
+    'Quoted Tickets' => 'මුළු ටිකට් පත',
+    'Ticket Price'=>'ටිකට් මිල',
+    'Event Venue'=>' ස්ථානය',
+    'Ticket payments'=>'ප්‍රවේශ පත්‍ර ගෙවීම්',
+    'Returned Tickets' => 'ඉතුරු ටිකට්පත්',
+    'Final Payment' => 'අවසාන ගෙවීම',
     'Payment Date' =>'Payment Date',
     'Update payment' => 'Update payment',
     'Tax payment : Rs.' => 'Tax payment : Rs.',
     'Returned tax payment : Rs.' => 'Returned tax payment : Rs.',
-
+    'Number of Days'=>'දින ගණන',
 
     //entertainment other paymentes
-    'Payment type'=>'Payment type',
-    'Number of days' => 'Number of days',
-    'Add new performance payment' => 'Add new performance payment',
+    'Payment type'=>'ගෙවීම් වර්ගය',
+    'Number of days' => 'දින ගණන',
+    'Add new performance payment' => 'නව කාර්ය සාධන ගෙවීම් එක් කරන්න',
     'Assessment Ranges of Business Tax' => 'Assessment Ranges of Business Tax',
-
+    
 
      //globla configuration
      'Assessment Ranges of Business Tax' => 'Assessment Ranges of Business Tax',
@@ -275,12 +294,21 @@ return [
     'Start Date'=>'ආරම්භක දිනය',
     'End Date'=>'අවසාන දිනය',
     'Accept payments'=>'ගෙවීම් භාර ගන්න',
+    'Restore Shop'=>'සාප්පුව ප්‍රතිස්ථාපනය කරන්න',
 
      //advertisement tax
     '[+] Advertisement'=>'ප්‍රචාරක දැන්වීම්',
+    'Advertisement Tax Payers'=>'ප්‍රචාරක දැන්වීම් බදු ගෙවන්නන්',
+    'Advertisement type'=>'දැන්වීම් වර්ගය',
+    'Add new Advertisement payment'=>'නව ප්‍රචාරක දැන්වීම් ගෙවීම් එකතු කරන්න',
+    'Description'=>'විස්තර',
+    'Square feet'=>'වර්ග අඩි',
+    'Price per square foot'=>'වර්ග අඩියකට මිල',
+    'Generate Advertisement Report'=>'දැන්වීම් වාර්තාව ජනනය කරන්න',
 
 
     //side bar
+    'Business Tax'=>'ව්‍යාපාර බද්ද',
     'Industrial Tax' =>'කාර්මන්ත බද්ද',
     'License Tax' => 'බලපත්‍ර බද්ද',
     'Land Tax' => 'බිම් බද්ද ',
@@ -301,6 +329,7 @@ return [
     'Generate report' => 'වාර්තාව ජනනය කරන්න',
     'Ticket payment report' => 'ප්‍රවේශ පත්‍ර ගෙවීමේ වාර්තාව',
     'Performance payment report' => 'කාර්ය සාධන ගෙවීම් වාර්තාව',
+    'New Window'=>'නව බ්‍රව්සරය',
     // Club license tax
     'Club licence'=> 'සමාජ ශාලා බලපත්‍රය',
     '[+] Club' => 'සමාජ ශාලා',
