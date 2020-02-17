@@ -71,7 +71,6 @@
 					<div class="form-group">
 						{{-- <input class=" btn btn-primary float-right" type="submit">  --}}
 						<button type="submit" class="btn btn-primary" name="TaxReport" value="TaxReport">Tax Report</button>
-						<button type="submit" name="SummaryReport" value="SummaryReport" class="btn btn-success">Summary Report</button>
 
 					</div>
 

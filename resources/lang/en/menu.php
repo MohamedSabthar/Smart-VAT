@@ -299,6 +299,7 @@ return [
     'Premises Name' => 'Premises Name',
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
+    'Restore Premises' => 'Restore Premises',
 
     //advertisement tax
     '[+] Advertisement'=>'[+] Advertisement',
@@ -325,6 +326,7 @@ return [
     'Add new Club' => 'Add new Club',
     'Club Name' => 'Club Name',
     'Remove Club' => 'Remove Club',
+    'Trash Club Licence' => 'Trash Club Licence',
     'Restore Club Licence' => 'Restore Club Licence',
 
     //side bar

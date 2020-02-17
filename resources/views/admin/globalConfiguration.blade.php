@@ -212,6 +212,53 @@
         </div>
     </div>
 </div>
+
+{{-- Shop Rent --}}
+<div class="col-xl-3 col-md-6">
+    <div class="card bg-gradient-secondary border-0 my-2">
+        <!-- Card body -->
+        <div class="card-body" onclick="javascript:window.open(`{{route('global-conf-shop-rent-update')}}`,'_self')"
+            style="cursor:pointer">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase  mb-2 text-default">Shop Rent Tax</h3>
+                    <h5 class="h5 font-weight-bold mb-1 text-gray display-block">Vat percentage :
+                        {{number_format($vatDetails->shoprent->vat_percentage,2)}}%
+                    </h5>
+                    <h5 class="h5 font-weight-bold mb-1 text-secondary display-block">Fine percentage : N/A
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{-- Advertisement --}}
+<div class="col-xl-3 col-md-6">
+    <div class="card bg-gradient-secondary border-0 my-2">
+        <!-- Card body -->
+        <div class="card-body" onclick="javascript:window.open(`{{route('global-conf-advertisement-update')}}`,'_self')"
+            style="cursor:pointer">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase  mb-2 text-default">Advertisement Tax</h3>
+                    <h5 class="h5 font-weight-bold mb-1 text-gray display-block">Vat percentage :
+                        {{number_format($vatDetails->advertisement->vat_percentage,2)}}%
+                    </h5>
+                    <h5 class="h5 font-weight-bold mb-1 text-secondary display-block">Fine percentage : N/A
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('pageContent')

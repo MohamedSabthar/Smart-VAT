@@ -272,6 +272,7 @@ return [
     'Add new premises' => 'නව පරිශ්‍රයන් එක් කරන්න',
     'Assesment Amount' => 'තක්සේරු මුදල',
     'Remove Premises'=> 'පරිශ්‍රය ඉවත් කරන්න',
+    'Restore Premises'=> 'පරිශ්‍ර ප්‍රතිස්ථාපනය කරන්න',
 
     'Search Premises Name'=> 'පරිශ්‍රයේ නම සොයන්න',
 
@@ -336,6 +337,7 @@ return [
     'Add new Club' => 'නව සමාජ ශාලාවක් එක් කරන්න',
     'Club name' => 'සමාජ ශාලා නාමය',
     'Remove Club' => 'සමාජ ශාලා ඉවත් කරන්න',
+    'Trash Club Licence' => 'ඉවත් කරන ලදි සමාජ ශාලා බලපත්‍ර',
     'Restore Club Licence' => 'සමාජ ශාලා බලපත්‍රය ප්‍රතිස්ථාපනය කරන්න'
 
 ];
