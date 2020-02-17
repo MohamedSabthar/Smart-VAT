@@ -20,7 +20,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-center text-muted mb-0">
-						Entertainment Tax payers
+						{{__('menu.Entertainment Tax Payers')}}
 					</h3>
 					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
@@ -42,7 +42,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">Report Generation</h3>
+					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -64,7 +64,7 @@
 			<div class="row">
 				<div class="col">
 					<h4 class="card-title text-uppercase text-muted mb-0">
-						Performance payments
+						{{__('menu.Performance payments')}}
 					</h4>
 				</div>
 				<div class="col-auto">
@@ -87,7 +87,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						Restore Pyament
+						{{__('menu.Restore Payment')}}
 					</h3>
 				</div>
 				<div class="col-auto">
@@ -527,7 +527,7 @@
 						</div>
 						<div class="form-group row">
 							<label for="example-text-input"
-								class="col-md-2 col-form-label form-control-label ">{{__('menu.Quoted Ticket')}}</label>
+								class="col-md-2 col-form-label form-control-label ">{{__('menu.Quoted Tickets')}}</label>
 							<div class="col-md-10 ">
 								<input class="form-control @error('quotedTickets') is-invalid  @enderror" type="number"
 									value="{{old('quotedTickets')}}" id="quotedTickets" name="quotedTickets">
@@ -559,7 +559,7 @@
 							type="submit"> --}}
 							<button class="btn btn-primary float-right" data-toggle="modal"
 								onclick="javascript:event.preventDefault()"
-								data-target="#confirm-ticket-payment">{{__('menu.Add payment')}}</button>
+								data-target="#confirm-ticket-payment">{{__('menu.Add')}}</button>
 
 						</div>
 

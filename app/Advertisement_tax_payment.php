@@ -27,5 +27,11 @@ class Advertisement_tax_payment extends Model
     {
         return $this->belongsTo('App\Advertisement_tax','shop_id');    // a payment belogns to a buisness tax shop
     }
+    public static function advertisementTaxPayers()    // return vat payers; only related to industrial tax
+    {
+        return Advertisement_tax_payment::all()->map(function ($tax) {
+            return $tax->payer;
+        })->unique('id');   //collection filtered using unique id
+    }
    
 }
