@@ -32,7 +32,7 @@
             <li class="nav-item">
                 <a href="{{route($vat->route)}}" class="nav-link
                     {!! url()->current() == route($vat->route) ? 'active' : ''!!}">
-                    {{$vat->name}}
+                    {{__("menu.".$vat->name)}}
                 </a>
             </li>
             @endforeach

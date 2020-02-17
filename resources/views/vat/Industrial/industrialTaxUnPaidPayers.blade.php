@@ -24,13 +24,16 @@
                 <h3 class="mb-0 text-center"><span class="text-uppercase">Industrial Tax Unpaid payer for year
                         {{$year}}</span></h3>
             </div>
+            @if($payersDue->all()!=null)
+            <a href="{{route('industrial-un-paid-payers-pdf')}}" class="btn btn-danger">Convert to PDF</a>
+
             <table id="business_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th style="width:250px;" class="text-center">{{__('menu.VAT Payers NIC')}}</th>
-                        <th style="width:300px;" class="text-center">{{ __('menu.VAT Payer Name')}}</th>
-                        <th style="width:300px;" class="text-center">{{ __('menu.Shop')}}</th>
-                        <th style="width:300px;" class="text-center">{{ __('menu.Due Payment')}}</th>
+                        <th class="text-center">{{__('menu.VAT Payers NIC')}}</th>
+                        <th class="text-center">{{ __('menu.VAT Payer Name')}}</th>
+                        <th class="text-center">{{ __('menu.Shop')}}</th>
+                        <th class="text-center">{{ __('menu.Due Payment')}}</th>
                     </tr>
                 </thead>
 
@@ -47,12 +50,13 @@
                 </tbody>
 
             </table>
+            @else
+            <div class="jumbotron bg-trnasparent text-center">No Un-paid VAT-payers</div>
+            @endif
 
         </div>
         <br>
-        <div class="col" align="right">
-            <a href="{{route('industrial-un-paid-payers-pdf')}}" class="btn btn-danger">Convert to PDF</a>
-        </div>
+
     </div>
 </div>
 

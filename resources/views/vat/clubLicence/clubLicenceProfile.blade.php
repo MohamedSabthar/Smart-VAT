@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Business</center>
+                    <center>{{__('menu.Restore Club Licence')}}</center>
                     </h3>
 
                 </div>
@@ -114,12 +114,12 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        @if(url()->previous()==route('payer-registration',['requestFrom'=>'clubLicence']))
+        @if(url()->previous()==route('payer-registration',['requestFrom'=>'club-licence']))
         <div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
             <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
             <span class="alert-inner--text mx-2">
                 Click here to add new club licence
-                <a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] ')}}</a>
+                <a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Club')}}</a>
 
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -235,11 +235,11 @@
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input"
-                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Business Name')}}</label>
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Club Name')}}</label>
                         <div class="col-md-10 ">
-                            <input class="form-control @error('businessName') is-invalid  @enderror" type="text"
-                                value="{{old('businessName')}}" id="businessName" name="businessName">
-                            @error('businessName')
+                            <input class="form-control @error('clubName') is-invalid  @enderror" type="text"
+                                value="{{old('clubName')}}" id="clubName" name="clubName">
+                            @error('clubName')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -354,12 +354,12 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    {{-- Business shops table --}}
+                    {{-- Club Licence table --}}
                     <table id="business_shops_table" class="table">
                         <thead class="thead-light">
                             <tr>
                                 <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
-                                <th style="width:300px;">{{__('menu.Business Name')}}</th>
+                                <th style="width:300px;">{{__('menu.Club Name')}}</th>
                                 <th>{{__('menu.Shop Phone')}}</th>
                                 <th></th>
                             </tr>
@@ -370,7 +370,7 @@
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                        placeholder="{{__('menu.Search Business Name')}}" />
+                                        placeholder="{{__('menu.Search Club Name')}}" />
                                 </th>
                                 <th><input type="text" class="form-control form-control-sm" id="searchPhone"
                                         placeholder="{{__('menu.Search Phone')}}" />
@@ -383,7 +383,7 @@
                             @foreach ($vatPayer->clubLicence as $clubLicence)
                             <tr>
                                 <td class="text-center">{{$clubLicence->id}}</td>
-                                <td>{{$clubLicence->shop_name}}</td>
+                                <td>{{$clubLicence->club_name}}</td>
                                 <td>{{$clubLicence->phone}}</td>
                                 <td class="text-right">
                                     <div class="dropdown">
@@ -393,10 +393,10 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                             <a class="dropdown-item"
-                                                href="{{route('club-licence-payments',['shop_id'=>$clubLicence->id])}}">
+                                                href="{{route('club-licence-payments',['club_id'=>$clubLicence->id])}}">
                                                 {{__('menu.View Payments')}}</a>
 
-                                            <form action="{{route('remove-club-licence',['shop_id'=>$clubLicence->id])}}"
+                                            <form action="{{route('remove-club-licence',['club_id'=>$clubLicence->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -414,13 +414,13 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>{{__('menu.Assesment No.')}}</th>
-                                <th>{{__('menu.Business Name')}}</th>
+                                <th>{{__('menu.Club Name')}}</th>
                                 <th>{{__('menu.Shop Phone')}}</th>
                                 <th></th>
                             </tr>
                         </thead>
                     </table>
-                    {{-- end of Business shops table --}}
+                    {{-- end of Club Licence table --}}
                 </div>
             </div>
         </div>

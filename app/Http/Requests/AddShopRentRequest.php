@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AddShopRentRequest extends FormRequest
@@ -24,8 +24,9 @@ class AddShopRentRequest extends FormRequest
     public function rules()
     {
         return[
-            'assesmentNo' =>['required', 'string', 'max:255', Rule::unique('industrial_tax_shops', 'registration_no')],
-            'annualAssesmentAmount' => ['required','numeric'],
+            'assesmentNo' =>['required', 'string', 'max:255', Rule::unique('shop_rent_tax', 'registration_no')],
+            'keyMoney' => ['required','numeric'],
+            'monthAssesmentAmount'=>['required','numeric'],
             'businessName' => ['required','string','max:255'],
             'phoneno' =>  ['required','regex:/[+94|0][0-9]{9}$/','min:10','max:12'],
             'doorno' => ['required','string','max:255'],

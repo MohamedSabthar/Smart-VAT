@@ -16,7 +16,11 @@ class Authorization extends TestCase
     /** @test */
     public function checkingForAuthorizationBlockUnAuthorizedEmployee()
     {
-        Auth::login(User::find(2)); //login as employee who doesn't have any access
+        $user = User::find(2); //get employees
+        User_vat::where('user_id', $user->id)->delete(); //remove existing authorizations
+        Auth::login($user);
+        
+        $vats = Vat::get();
         foreach (Vat::get() as $vat) {
             $response = $this->get('/'.$vat->route);
             $response->assertStatus(403);   //status should be 'unauthorized'

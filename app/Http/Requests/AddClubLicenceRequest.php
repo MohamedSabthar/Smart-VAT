@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +25,7 @@ class AddClubLicenceRequest extends FormRequest
     public function rules()
     {
         return [
-            'assesmentNo' =>['required', 'string', 'max:255',  Rule::unique('industrial_tax_shops', 'registration_no')],
+            'assesmentNo' =>['required', 'string', 'max:255',  Rule::unique('club_licence_tax_clubs', 'registration_no')],
             'annualAssesmentAmount' => ['required','numeric'],
             'clubName' => ['required','string','max:255'],
             'phoneno' =>  ['required','regex:/[+94|0][0-9]{9}$/','min:10','max:12'],

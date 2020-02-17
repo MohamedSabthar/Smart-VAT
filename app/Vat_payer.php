@@ -21,6 +21,15 @@ class Vat_payer extends Model
     {
         return $this->hasMany('App\Shop_rent_tax', 'payer_id'); //one VAT payer may have many shop rent
     }
+    public function advertisementTaxPayment()
+    {
+        return $this->hasMany('App\Advertisement_tax_payment', 'payer_id'); //one VAT payer may have many shop rent
+    }
+    public function booking()
+    {
+        return $this->hasMany('App\Booking_tax_payment','payer_id');
+    }
+ 
 
     public function license()
     {
@@ -41,6 +50,10 @@ class Vat_payer extends Model
         return $this->hasMany('App\Entertainment_tax_performance_payment', 'payer_id'); //one VAT payer may have many entertainment performance payments
     }
 
+    public function bookingPayment()
+    {
+        return $this->hasMany('App\Booking_tax_payments_type','payer_id');
+    }
     public function clubLicence()
     {
         return $this->hasMany('App\Club_licence_tax', 'payer_id'); //one VAT payer may have many clubs

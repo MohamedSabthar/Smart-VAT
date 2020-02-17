@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateProfileRequest;
 use Auth;
+use App\User;
 
 class EmployeeController extends Controller
 {
@@ -16,5 +18,19 @@ class EmployeeController extends Controller
     {
         Auth::User()->unreadNotifications->markAsRead();
         return redirect()->back();
+    }
+
+    public function updateProfile($id, UpdateProfileRequest $request)
+    {
+        $employee = User::findOrFail($id);
+
+        //updating new employee details
+        $employee->name = $request->name;
+        $employee->userName = $request->userName;
+        $employee->email = $request->email;
+        $employee->phone = $request->phone;
+
+        $employee->save();
+        return redirect()->back()->with('status', 'Your details updated successfuly');
     }
 }

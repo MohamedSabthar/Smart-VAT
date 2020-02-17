@@ -7,6 +7,8 @@ use App\Business_tax_shop;
 use App\Industrial_tax_shop;
 use App\Land_tax;
 use App\Shop_rent_tax;
+use App\Advertisement_tax;
+use App\Booking_tax_payments_type;
 use App\Entertainment_tax_tickets_payment;
 use App\Club_licence_tax;
 use App\Vehicle_park_tax;
@@ -51,13 +53,15 @@ class VatPagesController extends Controller
         return view('vat.land.land', ['payers'=>$payers]);
     }
 
-    public function advertizement()
-    {
-        return view('vat.advertizement.advertizement');
+    public function advertisement()
+    {  
+        $payers = Advertisement_tax::advertisementTaxPayers();
+        return view('vat.advertisement.advertisement',['payers'=>$payers]);
     }
     public function booking()
     {
-        return view('vat.booking.booking');
+        $payers = Booking_tax_payments_type::bookingTaxPayers(); //get all vat_payers who pay booking tax
+        return view('vat.booking.booking', ['payers' => $payers]);
     }
     public function clubLicence()
     {

@@ -23,7 +23,7 @@ class CreateClubLicenceTaxPaymentsTable extends Migration
             $table->foreign('payer_id')->references('id')->on('vat_payers'); // tax payment by a vat payer
             $table->foreign('user_id')->references('id')->on('users'); //an employee enters the record
             $table->timestamps();
-            $table->softdeletes();
+            $table->softDeletes();
         });
     }
 

@@ -15,8 +15,7 @@ class CreateBookingTaxTypesTable extends Migration
     {
         Schema::create('booking_tax_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('place_description');     //type description for booking tax super type
-            $table->string('event_description');
+            $table->string('description');     //type description for booking tax super type
             $table->bigInteger('parent_id');
             $table->timestamps();
         });

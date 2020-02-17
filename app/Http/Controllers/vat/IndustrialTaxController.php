@@ -16,6 +16,7 @@ use App\Industrial_tax_payment;
 use App\Http\Requests\AddIndustrialShopRequest;
 use App\Reports\IndustrialReport;
 use App\Http\Requests\IndustrialTaxReportRequest;
+use App\Http\Requests\UpdateIndustrialShopRequest;
 
 use App\Industrial_tax_due_payment;
 use Carbon\Carbon;
@@ -380,5 +381,18 @@ class IndustrialTaxController extends Controller
         $pdf->loadView('vat.industrial.industrialTaxUnPaidPayersPdf', ['year'=>$year,'payersDue'=>$payersDue]);
    
         return $pdf->stream();
+    }
+
+    public function updateIndustrialShop(UpdateIndustrialShopRequest $request)
+    {
+        $industrialTaxShop = Industrial_tax_shop::find($request->id);
+        $industrialTaxShop->anual_worth = $request->anual_worth;
+        $industrialTaxShop->shop_name = $request->industrialName;
+        $industrialTaxShop->phone = $request->phoneno;
+        $industrialTaxShop->door_no = $request->doorno;
+        $industrialTaxShop->street = $request->street;
+        $industrialTaxShop->city = $request->city;
+        $industrialTaxShop->save();
+        return redirect()->back();
     }
 }

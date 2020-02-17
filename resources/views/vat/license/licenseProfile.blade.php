@@ -508,9 +508,9 @@ style="cursor:pointer">
                 .draw();
         });
         //toggle transition for buisness registration form
-        $("#industrial-registration").hide();
+        $("#license-registration").hide();
         $(".add-buissness").on('click',function(){
-            $("#industrial-registration").slideToggle("slow");
+            $("#license-registration").slideToggle("slow");
         });
         $('#type').select2({
             placeholder: "Select license type here",
