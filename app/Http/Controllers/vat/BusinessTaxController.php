@@ -304,8 +304,10 @@ class BusinessTaxController extends Controller
     // restore business
     public function restoreBusiness($id)
     {
-        $businessTaxShop = Business_tax_shop::onlyTrashed()->where('id', $id)->restore($id);
-        return redirect()->route('trash-business', ['businessTaxShop'=>$businessTaxShop])->with('status', 'Business restore successful');
+        Business_tax_shop::onlyTrashed()->where('id', $id)->restore();
+        $businessTaxShop = Business_tax_shop::find($id);
+        // dd($businessTaxShop);
+        return redirect()->route('business-profile', ['payer_id'=>$businessTaxShop->payer->id])->with('status', 'Business restore successful');
     }
     //soft delete business payment
     public function removePayment($id)

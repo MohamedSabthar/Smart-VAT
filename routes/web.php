@@ -152,8 +152,8 @@ Route::post('/nic_available/check', 'Auth\VATpayerRegisterController@check')->na
 Route::get('/vat-payer/register', 'PayerController@register')->name('register-vat-payer');
 Route::get('/vat-payer-profile', 'PayerController@profile')->name('vat-payer-profile');
 Route::get('/vat-payerbusinessPayment-list', 'PayerController@businessPaymentList')->name('payment-list');
-Route::get('/vat-payer-profile/{id}', 'PayerController@vatPayerProfile')->name('vat-payer-profile');
-Route::post('/vat-payer/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');
+Route::get('/vat-payer-profile/{id}', 'PayerUpdateController@vatPayerProfile')->name('vat-payer-profile');
+Route::post('/vat-payer/{id}', 'PayerUpdateController@updateVATpayerProfile')->name('update-vat-payer');
 
 /**
  * Routes related to industrial tax
@@ -225,8 +225,8 @@ Route::get('/booking/booking-trash/{payer_id}', 'vat\BookingTaxController@trashB
 Route::get('/booking/booking-restore/{id}', 'vat\BookingTaxController@restoreBooking')->name('restore-booking'); // restore business
 
 //advertisement
-Route::post('/advertisement/advertisement-register/{id}','vat\AdvertisementTaxController@registerAdvertisementPayment')->name('advertisement-register');
-Route::get('/advertisement/profile/{payer_id}','vat\AdvertisementTaxController@advertisementProfile')->name('advertisement-profile');
+Route::post('/advertisement/advertisement-register/{id}', 'vat\AdvertisementTaxController@registerAdvertisementPayment')->name('advertisement-register');
+Route::get('/advertisement/profile/{payer_id}', 'vat\AdvertisementTaxController@advertisementProfile')->name('advertisement-profile');
 Route::delete('/advertisement/payment-remove/{id}', 'vat\AdvertisementTaxController@removePayment')->name('remove-advertisement-payment'); //soft delete business payment
 Route::get('/advertisement/payment-trash/{id}', 'vat\AdvertisementTaxController@trashPayment')->name('advertisement-trash-payment'); //trash business payment
 Route::get('/advertisement/payment-restore/{id}', 'vat\AdvertisementTaxController@restorePayment')->name('restore-advertisement-payment'); // restore business
