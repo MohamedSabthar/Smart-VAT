@@ -13,65 +13,64 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('land')}}`,'_self')"
-	style="cursor:pointer">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">
-						{{__('menu.Land Tax Payers')}}
-					</h3>
-					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-						<i class="fas fa-users"></i>
-					</div>
-				</div>
-			</div>
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('land')}}`,'_self')" style="cursor:pointer">
+    <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase text-muted mb-0">
+                        {{__('menu.Land Tax Payers')}}
+                    </h3>
+                    {{-- <span class=" font-weight-bold mb-0">924</span> --}}
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 <div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('land-generate-report')}}`,'_self')"
-	style="cursor:pointer">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
-					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
-					</div>
-				</div>
-			</div>
+    style="cursor:pointer">
+    <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
+                    {{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 <div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('get-land-quick-payments')}}`,'_self')"
-	style="cursor:pointer">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
-						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
-					</div>
-				</div>
-			</div>
+    style="cursor:pointer">
+    <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
+                        {{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 <div class="col-xl-3 col-lg-6"
@@ -144,7 +143,7 @@
                     <div class="d-flex justify-content-between">
                         <a href="{{route('land-profile',['id'=>$landTaxPremises->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
-                            <a href="#"
+                        <a href="#"
                             class="btn btn-sm btn-default float-left update-profile">{{__('menu.Update Details')}}</a>
                     </div>
                 </div>
@@ -165,7 +164,7 @@
 
                         <div class="pt-1">
                             <h3 class="d-inline"> {{__('menu.Annual worth')}} : </h3>
-                            {{number_format($landTaxPremises->worth,2)}}  
+                            {{number_format($landTaxPremises->worth,2)}}
                         </div>
                         <hr>
 
@@ -193,8 +192,8 @@
                 </div>
             </div>
             {{-- payment form --}}
-            <form action="{{route('receive-land-payments',['land_id'=>$landTaxPremises->id])}}"
-                id="accept-payment" method="POST" hidden>
+            <form action="{{route('receive-land-payments',['land_id'=>$landTaxPremises->id])}}" id="accept-payment"
+                method="POST" hidden>
                 @csrf
                 <input type="text" name="payment" value="{{$duePayment}}">
             </form>
@@ -260,7 +259,8 @@
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
                             <div class="col-md-10 ">
                                 <input class="form-control @error('assesmentNo') is-invalid  @enderror" type="text"
-                                    value="{{old('assesmentNo',$landTaxPremises->registration_no)}}" id="assesmentNo" name="assesmentNo" autofocus>
+                                    value="{{old('assesmentNo',$landTaxPremises->registration_no)}}" id="assesmentNo"
+                                    name="assesmentNo" autofocus>
                                 @error('assesmentNo')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -272,10 +272,10 @@
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment Amount')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('assesmentAmount') is-invalid  @enderror"
-                                    type="text" value="{{old('assesmentAmount',$landTaxPremises->worth)}}" id="assesmentAmount"
+                                <input class="form-control @error('assesmentAmount') is-invalid  @enderror" type="text"
+                                    value="{{old('assesmentAmount',$landTaxPremises->worth)}}" id="assesmentAmount"
                                     name="assesmentAmount">
-    
+
                                 <span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
                                     <strong>dfafjkladfj</strong>
                                 </span>
@@ -292,7 +292,8 @@
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Premises Name')}}</label>
                             <div class="col-md-10 ">
                                 <input class="form-control @error('landName') is-invalid  @enderror" type="text"
-                                    value="{{old('landName',$landTaxPremises->land_name)}}" id="landName" name="landName">
+                                    value="{{old('landName',$landTaxPremises->land_name)}}" id="landName"
+                                    name="landName">
                                 @error('landName')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -372,7 +373,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>Are you sure you wish to Update the details of
-                                            {{$businessTaxShop->shop_name}} ?
+                                            {{$landTaxPremises->land_name}} ?
                                         </p>
                                     </div>
 
