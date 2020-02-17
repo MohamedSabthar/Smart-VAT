@@ -202,9 +202,10 @@ class LandTaxController extends Controller
         $records = Land_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {
             return view('vat.land.landReportView', ['dates'=>$dates, 'records'=>$records]);
-        } elseif ($request->has('SummaryReport')) {
-            return view('vat.land.landSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);
-        }
+        } 
+        // elseif ($request->has('SummaryReport')) {
+        //     return view('vat.land.landSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);
+        // }
 
     }
 
