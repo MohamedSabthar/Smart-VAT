@@ -13,19 +13,20 @@
 
 @section('header')
 
-<div class="col-xl-3 col-lg-6">
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('shoprent')}}`,'_self')"
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						{{__('menu.Latest Payments')}}
+						{{__('menu.Shop Rent payers')}}
 					</h3>
-					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
 				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
+					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+						<i class="fas fa-users"></i>
 					</div>
 				</div>
 			</div>
@@ -83,7 +84,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						<center>Restore Shop</center>
+						<center>{{__('menu.Restore Shop')}}</center>
 					</h3>
 
 				</div>

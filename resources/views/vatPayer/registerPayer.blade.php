@@ -294,7 +294,7 @@
 					<!-- button with onclick event that triggers the form validation. If the form is valid, triggers click of second button -->
 					<div class="form-group">
 						<button type="submit" id="register" value="Submit" class="btn btn-primary float-right"
-					onclick="if(formIsValid() $('#triggerModal').click();)">{{__('menu.Register')}}</button>
+							onclick="if(formIsValid() $('#triggerModal').click();)">{{__('menu.Register')}}</button>
 					</div>
 
 					<!-- hidden submit button -->

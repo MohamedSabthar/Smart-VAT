@@ -13,7 +13,7 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('industrial')}}`,'_self')"
+<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('industrial')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -35,7 +35,7 @@
 	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6">
+<!--<div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
@@ -54,9 +54,9 @@
 
 		</div>
 	</div>
-</div>
+</div>-->
 
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('industrial-generate-report')}}`,'_self')"
+<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('industrial-generate-report')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
@@ -76,7 +76,7 @@
 	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('get-industrial-quick-payments')}}`,'_self')"
+<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('get-industrial-quick-payments')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">

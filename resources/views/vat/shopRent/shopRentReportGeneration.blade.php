@@ -70,7 +70,7 @@
 
 					<div class="form-group">
 						{{-- <input class=" btn btn-primary float-right" type="submit">  --}}
-						<button type="submit" class="btn btn-primary" name="TaxReport" value="TaxReport">Tax Report</button>
+						<button type="submit" class="btn btn-primary" name="TaxReport" value="TaxReport">{{__('menu.Tax Report')}}</button>
 						
 
 					</div>

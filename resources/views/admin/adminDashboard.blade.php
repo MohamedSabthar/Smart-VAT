@@ -39,8 +39,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('business')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
-                    Window</a>
+                <a href="{{route('business')}}" class="text-nowrap text-primary font-weight-600" target="_blank">{{__('menu.New Window')}}</a>
             </p>
         </div>
     </div>
@@ -75,8 +74,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('industrial')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
-                    Window</a>
+                <a href="{{route('industrial')}}" class="text-nowrap text-primary font-weight-600" target="_blank">{{__('menu.New Window')}}</a>
             </p>
         </div>
     </div>
@@ -110,8 +108,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('land')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
-                    Window</a>
+                <a href="{{route('land')}}" class="text-nowrap text-primary font-weight-600" target="_blank">{{__('menu.New Window')}}</a>
             </p>
         </div>
     </div>
@@ -148,8 +145,7 @@
             </div>
             <p class="mt-3 mb-0 text-sm">
                 <a href="{{route('entertainment')}}" class="text-nowrap text-primary font-weight-600"
-                    target="_blank">New
-                    Window</a>
+                    target="_blank">{{__('menu.New Window')}}</a>
             </p>
         </div>
     </div>
@@ -183,8 +179,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('clubLicence')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
-                    Window</a>
+                <a href="{{route('clubLicence')}}" class="text-nowrap text-primary font-weight-600" target="_blank">{{__('menu.New Window')}}</a>
             </p>
         </div>
     </div>
@@ -201,7 +196,7 @@
                 <div class="col">
                     <h3 class="card-title text-uppercase  mb-0 text-default">{{__('menu.Shop Rent Tax')}}</h3>
                     <span class="h5 font-weight-bold mb-0 text-gray">{{__('menu.Total VAT payers')}} :
-                        {{$vatPayerCount->industrial}}</span>
+                        {{$vatPayerCount->shoprent}}</span>
 
                 </div>
                 <div class="col-auto">
@@ -219,8 +214,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('shoprent')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
-                    Window</a>
+                <a href="{{route('shoprent')}}" class="text-nowrap text-primary font-weight-600" target="_blank">{{__('menu.New Window')}}</a>
             </p>
         </div>
     </div>
@@ -237,7 +231,7 @@
                 <div class="col">
                     <h3 class="card-title text-uppercase  mb-0 text-default">{{__('menu.Booking Tax')}}</h3>
                     <span class="h5 font-weight-bold mb-0 text-gray">{{__('menu.Total VAT payers')}}:
-                        {{$vatPayerCount->industrial}}</span>
+                        {{$vatPayerCount->booking}}</span>
 
                 </div>
                 <div class="col-auto">
@@ -254,8 +248,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('booking')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
-                    Window</a>
+                <a href="{{route('booking')}}" class="text-nowrap text-primary font-weight-600" target="_blank">{{__('menu.New Window')}}</a>
             </p>
         </div>
     </div>
@@ -289,8 +282,7 @@
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('advertisement')}}" class="text-nowrap text-primary font-weight-600" target="_blank">New
-                    Window</a>
+                <a href="{{route('advertisement')}}" class="text-nowrap text-primary font-weight-600" target="_blank">{{__('menu.New Window')}}</a>
             </p>
         </div>
     </div>

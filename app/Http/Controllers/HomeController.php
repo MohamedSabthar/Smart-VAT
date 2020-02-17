@@ -17,6 +17,8 @@ use App\Entertainment_tax_performance_payment;
 use App\Land_tax;
 use App\Club_licence_tax;
 use App\Advertisement_tax_payment;
+use App\Shop_rent_tax;
+use App\Booking_tax_payments_type;
 
 class HomeController extends Controller
 {
@@ -62,6 +64,8 @@ class HomeController extends Controller
         $vatPayerCounts->land =   Land_tax::landTaxPayers()->count();
         $vatPayerCounts->clubLicence = Club_licence_tax::clubLicenceTaxPayers()->count();
         $vatPayerCounts->advertisement = Advertisement_tax_payment::advertisementTaxPayers()->count();
+        $vatPayerCounts->shoprent=Shop_rent_tax::shopRentTaxPayers()->count();
+        $vatPayerCounts->booking=Booking_tax_payments_type::bookingTaxPayers()->count();
 
         return $vatPayerCounts;
     }
