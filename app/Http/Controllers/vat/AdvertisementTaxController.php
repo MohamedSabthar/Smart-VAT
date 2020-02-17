@@ -58,8 +58,11 @@ class AdvertisementTaxController extends Controller
     //restore payment
     public function restorePayment($id)
     {
-        $advertisementTaxPayment = Advertisement_tax_payment::onlyTrashed()->where('id', $id)->restore($id);
-        return redirect()->route('trash-payment', ['advertisementTaxPayment'=>$advertisementTaxPayment])->with('status', 'Payment restore successful');
+        $advertisementTaxPayment = Advertisement_tax_payment::onlyTrashed()->where('id', $id);
+        // dd($advertisementTaxPayment->get());
+        $payerId = $advertisementTaxPayment->first()->payer_id;
+        $advertisementTaxPayment->restore($id);
+        return redirect()->route('advertisement-profile', ['id'=>$payerId])->with('status', 'Payment restore successful');
     }
     public function calculateTax($price,$squarefeet){
         $currentDate = now()->toArray();

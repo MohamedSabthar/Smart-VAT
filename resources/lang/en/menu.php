@@ -31,6 +31,7 @@ return [
     'Search Email'=>'Search Email',
     'Search Admin'=>'Search Admin',
     'Search' => 'Search',
+    'Search Shop'=>'Search Shop',
 
     'My profile'=>'My profile',
     'Logout'=>'Logout',
@@ -45,6 +46,12 @@ return [
     'This VAT payer is alredy registered'=>'This VAT payer is alredy registered',
     'Are you wish to add a New Business/Payment ?'=>'Are you wish to add a New Business/Payment ?',
     'Cancel'=>'Cancel',
+
+    //report generation
+    'List Unpaid VAT payers for this year'=>'List Unpaid VAT payers for this year',
+    'Generate Business Report'=>'Generate Business Report',
+    'Tax Report'=>'Tax Report',
+    'Summary Report'=>'Summary Report',
     
     //latest payment//
     'Latest Payment'=>'Latest Payment',
@@ -92,7 +99,9 @@ return [
     'End Date'=>'End Date',
     'Shop ID'=>'Shop ID',
     'VAT Payer ID'=>'VAT Payer ID',
-    
+    'Convert to PDF'=>'Convert to PDF',
+    'VAT Payers NIC' => 'VAT Payers NIC',
+    'Shop'=>'Shop',
    
     
     //VAT Payer
@@ -122,6 +131,12 @@ return [
     'Land Tax Payers' => 'Land Tax Payers',
     'Club Licence Holders' => 'Club Licence Holders',
     'Update business' => 'Update business',
+    'Enable if payment recieved from court'=>'Enable if payment recieved from court',
+    'Confirmation needed to add payment for'=>'Confirmation needed to add payment for',
+    'shop'=>'shop',
+    'Click here to add new business'=>'Click here to add new business',
+    'Confirmation needed to add a business for'=>'Confirmation needed to add a business for',
+    'Update Business' => 'Update Business',
 
     'Arrears' => 'Arrears',
     'Payment Date' => 'Payment Date',
@@ -230,11 +245,11 @@ return [
     'Place Addr' => 'Place Addr',
     'Returned Payment' => 'Returned Payment',
     'Ticket type' => 'Ticket type',
-    'Quoted Ticket' => 'Quoted Ticket',
     'Ticket Price' => 'Ticket Price',
     'Event Venue'=>'Event Venue',
     'Add payment' => 'Add payment',
     'Add new event payment'=>'Add new event payment',
+    'Ticket payments'=>'Ticket payments',
     'Quoted Tickets' => 'Quoted Tickets',
     'Returned Tickets' => 'Returned Tickets',
     'Final Payment' => 'Final Payment',
@@ -242,6 +257,7 @@ return [
     'Update payment' => 'Update payment',
     'Tax payment : Rs.' => 'Tax payment : Rs.',
     'Returned tax payment : Rs.' => 'Returned tax payment : Rs.',
+    'Number of Days'=>'Number of Days',
 
 
     //entertainment other paymentes
@@ -274,6 +290,8 @@ return [
     'Start Date'=>'Start Date',
     'End Date'=>'End Date',
     'Accept payments'=>'Accept payments',
+    'Restore Shop'=>'Restore Shop',
+    
 
     //Land tax
     '[+] Premises' => '[+] Premises',
@@ -287,7 +305,19 @@ return [
     'Assesment Amount' => 'Assesment Amount',
     'Remove Premises'=> 'Remove Premises',
     'Search Premises Name'=> 'Search Premises Name',
-
+    'Advertisement Tax Payers'=>'Advertisement Tax Payers',
+    'Advertisement type'=>'Advertisement type',
+    'Add new Advertisement payment'=>'Add new Advertisement payment',
+    'Description'=>'Description',
+    'Square feet'=>'Square feet',
+    'Price per square foot'=>'Price per square foot',
+    'Generate Advertisement Report'=>'Generate Advertisement Report',
+    //entretainment tax
+    'Entertainment Tax Payers' =>'Entertainment Tax Payers',
+    'Generate Entertainment Ticket payments Report'=>'Generate Entertainment Ticket payments Report',
+    'Generate Entertainment Performance payments Report'=>'Generate Entertainment Ticket payments Report',
+    'Performance payments'=>'Performance payments',
+    
     // Club licence tax
     'Club licence'=> 'Club licence',
     '[+] Club' => '[+] Club',
@@ -298,6 +328,7 @@ return [
     'Restore Club Licence' => 'Restore Club Licence',
 
     //side bar
+    'Business Tax' =>'Business Tax',
     'Industrial Tax' =>'Industrial Tax',
     'License Tax' => 'License Tax',
     'Land Tax' => 'Land Tax',
@@ -318,4 +349,5 @@ return [
     'Quick payments' => 'Quick payments',
     'Ticket payment report' => 'Ticket payment report',
     'Performance payment report' => 'Performance payment report',
+    'New Window'=>'New Window',
 ];

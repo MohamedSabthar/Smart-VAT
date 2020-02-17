@@ -13,70 +13,66 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Payment List</h5>
-                    <span class=" font-weight-bold mb-0">924</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-users"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                <span class="text-nowrap">Since yesterday</span>
-            </p>
-        </div>
-    </div>
-</div>
 
 <div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-            </p>
-        </div>
-    </div>
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<h3 class="card-title text-uppercase text-muted mb-0">
+						{{__('menu.Business Tax Payers')}}
+					</h3>
+					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+						<i class="fas fa-users"></i>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </div>
 
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-            </p>
-        </div>
-    </div>
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('business-generate-report')}}`,'_self')"
+	style="cursor:pointer">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
+					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('get-business-quick-payments')}}`,'_self')"
+	style="cursor:pointer">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
+						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </div>
 
 
@@ -117,7 +113,7 @@
         <div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
             <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
             <span class="alert-inner--text mx-2">
-                Click here to add new business
+               {{__('menu.Click here to add new business')}}
                 <a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
 
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -232,7 +228,7 @@
                                     <span class="custom-toggle-slider rounded-circle"></span>
                                 </label>
                             </div>
-                            <div class="col-5">Enable if payment recieved from court</div>
+                            <div class="col-5">{{__('menu.Enable if payment recieved from court')}}</div>
                         </div>
 
                     </form>
@@ -251,20 +247,20 @@
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+                            <h1 class="modal-title" id="modal-title-default">{{__('menu.Confirmation !')}}</h1>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
                         <div class="modal-body">
 
-                            <p>Confirmation needed to add payment for <br>
-                                shop : {{$businessTaxShop->shop_name}} </p>
+                            <p>{{__('menu.Confirmation needed to add payment for')}} <br>
+                                {{__('menu.shop')}} : {{$businessTaxShop->shop_name}} </p>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link"
-                                onclick="javascript:location.reload()">Cancel</button>
+                                onclick="javascript:location.reload()">{{__('menu.Cancel')}}</button>
                             <button type="button" id="redirect" class="btn  btn-primary ml-auto"
                                 onclick="javascript:document.getElementById('accept-payment').submit()">{{__('menu.Accept Payment')}}</button>
                         </div>
@@ -320,7 +316,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="example-time-input" class="col-md-2 col-form-label form-control-label">
-                                {{__('menu.Anual worth')}}</label>
+                                {{__('menu.Annual Assesment Amount')}}</label>
                             <div class="col-md-10">
                                 <input class="form-control @error('anual_worth') is-invalid @enderror" type="text"
                                     value="{{old('anual_worth',$businessTaxShop->anual_worth)}}" id="anual_worth"

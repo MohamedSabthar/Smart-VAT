@@ -51,7 +51,7 @@
 
 		</div>
 	</div>
-</div> -->
+</div>-->
 
 <div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('business-generate-report')}}`,'_self')"
 	style="cursor:pointer">
