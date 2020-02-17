@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 
-class ExampleTest extends TestCase
+class ConnectionTest extends TestCase
 {
     /**
      * A basic test example.

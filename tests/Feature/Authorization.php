@@ -46,7 +46,7 @@ class Authorization extends TestCase
         
         foreach ($vats as $vat) {
             $response = $this->get('/'.$vat->route);
-            echo "$vat->route \n";
+            // echo "$vat->route \n";
             if ($i%2==0) {
                 $response->assertStatus(200);
             }   //if authorized status should be 'success'

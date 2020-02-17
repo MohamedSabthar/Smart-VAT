@@ -9,6 +9,9 @@ class Industrial_tax_shop extends Model
 {
     protected $table = 'industrial_tax_shops';
     use SoftDeletes;
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait; //sotf delete cascade trait
+
+    protected $softCascade = ['payments'];
 
     public function payer()
     {

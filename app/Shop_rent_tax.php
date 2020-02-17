@@ -10,6 +10,10 @@ class Shop_rent_tax extends Model
     //
     protected $table = 'shop_rent_tax';
     use SoftDeletes;
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait; //sotf delete cascade trait
+
+    protected $softCascade = ['payments'];
+
 
     public function payer()
     {
@@ -36,5 +40,4 @@ class Shop_rent_tax extends Model
     {
         return $this->hasOne('App\Shop_rent_tax_due_payment', 'shop_id'); //a shop can have duepayment
     }
-
 }
