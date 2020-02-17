@@ -53,24 +53,24 @@
 
 <div class="col-11 m-3 card shadow ">
     <div class="card-header bg-transparent">
-        <h3 class="mb-0"><span class="text-uppercase">Update Business Tax</span></h3>
+        <h3 class="mb-0"><span class="text-uppercase">Update Club Licence Tax</span></h3>
     </div>
 
     <div class="card-body bg-secondary ">
 
 
-        <form method="POST" action="{{route('update-business-percentage')}}" id="update-business-details">
+        <form method="POST" action="{{route('update-shop-rent-percentage')}}" id="update-shop-rent-details">
             @csrf
             @method('put')
             <div class="row">
                 <div class="form-group row col-12 ">
                     <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
-                        Business Tax percentage </label>
+                        Shop Rent Tax percentage </label>
                     <div class="col-md-7">
 
                         <input type="text" class="form-control  d-inline @error('vatPercentage') is-invalid @enderror"
                             id="vatPercentage" name="vatPercentage"
-                            value="{{old('vatPercentage',number_format($business->vat_percentage,2))}}"
+                            value="{{old('vatPercentage',number_format($shopRentTax->vat_percentage,2))}}"
                             placeholder="Enter vat percentage">
                         @error('vatPercentage')
                         <span class="invalid-feedback" role="alert">
@@ -82,11 +82,11 @@
 
                 <div class="form-group row col-12 ">
                     <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
-                        Business Tax Due date </label>
+                        Shop Rent Tax Due date </label>
                     <div class="col-md-7">
 
                         <input type="date" class="form-control  d-inline @error('dueDate') is-invalid @enderror"
-                            id="dueDate" name="dueDate" value="{{old('dueDate',$business->due_date)}}"
+                            id="dueDate" name="dueDate" value="{{old('dueDate',$shopRentTax->due_date)}}"
                             placeholder="Enter The Due date month/date/0004">
                         @error('dueDate')
                         <span class="invalid-feedback" role="alert">
@@ -97,7 +97,7 @@
 
 
                     <input type="submit" id="register" value="Update" class="btn btn-primary col-md-2 mx-3 mt-3 mt-md-0"
-                        onclick="javascript:event.preventDefault()" data-target="#confirm-update-business"
+                        onclick="javascript:event.preventDefault()" data-target="#confirm-update-shop-rent"
                         data-toggle="modal">
                 </div>
 
@@ -107,7 +107,7 @@
 
 
             {{-- Confirmation modal for update business details--}}
-            <div class=" modal fade" id="confirm-update-business" tabindex="-1" role="dialog"
+            <div class=" modal fade" id="confirm-update-shop-rent" tabindex="-1" role="dialog"
                 aria-labelledby="modal-default" aria-hidden="true">
                 <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                     <div class="modal-content">
@@ -120,14 +120,14 @@
                         </div>
                         <div class="modal-body">
 
-                            <p>Are you sure you wish to update Business Tax details ?<br></p>
+                            <p>Are you sure you wish to update Shop Rent Tax details ?<br></p>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-link"
                                 onclick="javascript:location.reload()">Cancel</button>
                             <button type="button" id="redirect" class="btn  btn-primary ml-auto"
-                                onclick="javascript:document.getElementById('update-business-details').submit();">{{__('menu.Yes')}}</button>
+                                onclick="javascript:document.getElementById('update-shop-rent-details').submit();">{{__('menu.Yes')}}</button>
                         </div>
 
                     </div>
@@ -147,130 +147,6 @@
 
 @endsection
 
-@section('pageContent')
-
-<div class="row">
-    <div class="mb-4 col-lg-10 col-sm-12">
-        <div class="card shadow">
-
-            <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                    <div class="col-6 card-header">
-                        <h3 class="mb-0">{{__('menu.Assessment Ranges of Business Tax')}}</h3>
-                        <hr class="mt-4 mb-0">
-                    </div>
-                    <div class="col-6 text-right">
-                        {{-- {{$industrial->assessmentRanges->last()->start_value}} --}}
-                        <button id="expand-range" class="btn btn-sm btn-icon btn-3 btn-success text-white"
-                            data-toggle="tooltip" data-placement="right"
-                            data-original-title="Click to add new assessment range">
-                            <span><i class="fas fa-plus"></i></span>
-                            <span class="btn-inner--text">Add Range</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="table-responsive px-5" style="width:100%">
-
-                <form action="{{route('business-add-range')}}" method="POST" id="assessment-range-form">
-                    @csrf
-                    <div class="row pb-2">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <input type="number" step="0.01" class="form-control"
-                                    value="{{$business->assessmentRanges->last()->start_value}}" readonly
-                                    name="oldLimit">
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <input type="number" step="0.01" class="form-control @error('newLimit') is-invalid
-                                @enderror" id="newLimit" placeholder="Enter range limit" name="newLimit" type="text"
-                                    value="{{old('newLimit')}}">
-                                @error('newLimit')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-
-                            </div>
-
-                        </div>
-                        <div class="col-md-2">
-                            <input type="submit" class="btn btn-primary" value="Add">
-                        </div>
-
-                    </div>
-
-                </form>
-
-
-                {{-- Assessment ranges table --}}
-                <table id="assessment_table" class="table">
-                    <thead class="thead-light">
-                        <tr>
-
-                            <th>{{__('menu.Start Value (LKR)')}} </th>
-                            <th>{{__('menu.End Value (LKR)')}}</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <thead id="search_inputs">
-                        <tr>
-
-                            <th><input type="text" class="form-control form-control-sm" id="searchStartValue"
-                                    placeholder="{{__('menu.Search start value')}}" /></th>
-                            <th><input type="text" class="form-control form-control-sm" id="searchEndValue"
-                                    placeholder="{{__('menu.Search end value')}}" /></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($business->assessmentRanges as $range)
-                        <tr>
-
-                            <td>{{  number_format( $range->start_value,2)}}</td>
-                            <td>{{ $range->end_value!=null ? number_format($range->end_value,2) : 'Above'}}
-                            </td>
-
-
-                            <td class="text-right">
-                                <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item"
-                                            href="{{route('view-business-range-types',['id'=>$range->id])}}">view
-                                            types</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <thead class="thead-light">
-                        <tr>
-
-                            <th>{{__('menu.Start Value (LKR)')}} </th>
-                            <th>{{__('menu.End Value (LKR)')}}</th>
-
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
-                {{-- end of Assessment ranges table --}}
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-
-
-@endsection
 
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
@@ -304,28 +180,6 @@
             .search( this.value )
             .draw();
         });
-
-        @if(!$errors->first('newLimit'))
-        $("#assessment-range-form").hide();
-        @endif
-
-        $("#expand-range").on('click',function(){
-            console.log('test');
-            $('#assessment-range-form').slideDown("slow")
-            $('#newLimit').focus();
-        });
-
-        $(document).mouseup(function(e) 
-{
-    container =   $('#assessment-range-form')
-
-    // if the target of the click isn't the container nor a descendant of the container
-    if (!container.is(e.target) && container.has(e.target).length === 0) 
-    {
-        container.slideUp("slow");
-    }
-});
-
 
     });
 </script>

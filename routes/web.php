@@ -70,6 +70,12 @@ Route::get('/global-conf/entertainment-performance', 'GlobalConfigurationControl
 Route::post('/global-conf/entertainment/add-performance-type', 'GlobalConfigurationController@addEnterainmentPerformanceType')->name('add-entertainment-performance-type');
 Route::put('/global-conf/entertainment/update-performance-type', 'GlobalConfigurationController@updateEntertainmentPerformanceTaxDetails')->name('update-entertainment-performance-type');
 
+Route::get('/global-conf/shop-rent', 'GlobalConfigurationController@updateShopRentTaxForm')->name('global-conf-shop-rent-update');
+Route::put('/global-conf/shop-rent/update-percentage', 'GlobalConfigurationController@updateShopRentPercentage')->name('update-shop-rent-percentage');
+
+Route::get('/global-conf/advertisement', 'GlobalConfigurationController@updateAdvertisementTaxForm')->name('global-conf-advertisement-update');
+Route::put('/global-conf/advertisement/update-percentage', 'GlobalConfigurationController@updateAdvertisementPercentage')->name('update-advertisement-percentage');
+
 
 
 

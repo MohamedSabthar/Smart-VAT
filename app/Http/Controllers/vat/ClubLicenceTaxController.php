@@ -310,7 +310,7 @@ class ClubLicenceTaxController extends Controller
     //restore club licence
     public function restoreClubLicence($id)
     {
-        $licenceTaxClub = Club_licence_tax::onlyTrashed()->where('payer_id',$payer_id)->restore($id);
+        $licenceTaxClub = Club_licence_tax::onlyTrashed()->where('id',$id)->restore($id);
         return redirect()->route('trash-club-licence', ['licenceTaxClub'=>$licenceTaxClub])->with('status', 'Club Licence restore successful');
     }
 
