@@ -23,7 +23,7 @@
 
 		<div class="card shadow">
 			<div class="card-header bg-transparent">
-				<h3 class="mb-0"><span class="text-uppercase">Generate Advertisement Report</span></h3>
+				<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Generate Advertisement Report')}}</span></h3>
 			</div>
 
 
@@ -79,8 +79,7 @@
 
 					<div class="form-group">
 						{{-- <input class=" btn btn-primary float-right" type="submit">  --}}
-						<button type="submit" class="btn btn-primary" name="TaxReport" value="TaxReport">Tax
-							Report</button>
+						<button type="submit" class="btn btn-primary" name="TaxReport" value="TaxReport">{{__('menu.Tax Report')}}</button>
 						
 					</div>
 

@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-center text-muted mb-0">
-                        Entertainment Tax payers
+                        {{__('menu.Entertainment Tax Payers')}}
                     </h3>
                     {{-- <span class=" font-weight-bold mb-0">924</span> --}}
                 </div>
@@ -42,7 +42,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h3 class="card-title text-uppercase text-muted mb-0">Report Generation</h3>
+                    <h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
                     {{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
                 </div>
                 <div class="col-auto">
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        Ticket payments
+                        {{__('menu.Ticket payments')}}
                     </h3>
                 </div>
                 <div class="col-auto">
@@ -87,7 +87,7 @@
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        Restore Pyament
+                        {{__('menu.Restore Payment')}}
                     </h3>
                 </div>
                 <div class="col-auto">
@@ -399,7 +399,7 @@
                             <div class="modal-content">
 
                                 <div class="modal-header">
-                                    <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+                                    <h1 class="modal-title" id="modal-title-default">{{__('menu.Confirmation !')}}</h1>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
@@ -412,7 +412,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-link"
-                                        onclick="javascript:location.reload()">Cancel</button>
+                                        onclick="javascript:location.reload()">{{__('menu.Cancel')}}</button>
                                     <button type="button" id="redirect" class="btn  btn-primary ml-auto"
                                         onclick="javascript:document.getElementById('performance-update-payment-form').submit();">{{__('menu.Confirm')}}</button>
                                 </div>
@@ -506,7 +506,7 @@
                             type="submit"> --}}
                             <button class="btn btn-primary float-right" data-toggle="modal"
                                 onclick="javascript:event.preventDefault()"
-                                data-target="#confirm-ticket-payment">{{__('menu.Add payment')}}</button>
+                                data-target="#confirm-ticket-payment">{{__('menu.Add')}}</button>
 
                         </div>
 

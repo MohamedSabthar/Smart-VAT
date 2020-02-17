@@ -16,7 +16,7 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6">
+<!--<div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
@@ -36,8 +36,8 @@
 			</p>
 		</div>
 	</div>
-</div>
-<div class="col-xl-3 col-lg-6">
+</div>-->
+<!--<div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
@@ -57,8 +57,8 @@
 			</p>
 		</div>
 	</div>
-</div>
-<div class="col-xl-3 col-lg-6">
+</div>-->
+<!--<div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
@@ -78,9 +78,9 @@
 			</p>
 		</div>
 	</div>
-</div>
+</div>-->
 
-<div class="col-xl-3 col-lg-6">
+<!--<div class="col-xl-3 col-lg-6">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
@@ -100,7 +100,7 @@
 			</p>
 		</div>
 	</div>
-</div>
+</div>-->
 
 <div class="container-fluid d-flex align-items-center">
 	{{-- Alert notifications --}}
@@ -151,11 +151,7 @@
 
 		<div class="card shadow">
 			<div class="card-header bg-transparent">
-<<<<<<< HEAD
 				<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Register VAT Payer')}}</span></h3>
-=======
-			<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Register VAT Payer')}}</span></h3>
->>>>>>> 882797ab908ae01f64ac7d6e188aa0eb3e963f31
 			</div>
 
 			<div class="card-body bg-secondary ">
@@ -298,11 +294,7 @@
 					<!-- button with onclick event that triggers the form validation. If the form is valid, triggers click of second button -->
 					<div class="form-group">
 						<button type="submit" id="register" value="Submit" class="btn btn-primary float-right"
-<<<<<<< HEAD
 							onclick="if(formIsValid() $('#triggerModal').click();)">{{__('menu.Register')}}</button>
-=======
-					onclick="if(formIsValid() $('#triggerModal').click();)">{{__('menu.Register')}}</button>
->>>>>>> 882797ab908ae01f64ac7d6e188aa0eb3e963f31
 					</div>
 
 					<!-- hidden submit button -->
