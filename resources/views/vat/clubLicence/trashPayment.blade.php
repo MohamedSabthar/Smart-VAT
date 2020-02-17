@@ -183,12 +183,12 @@
                             @foreach ($clubLicenceTaxPayment as $payment)
                             <tr>
                                 <td>{{$payment->id}}</td>
-                                <td>{{$payment->licenceTaxClub->club_name}}</td>
+                                <td>{{$payment->clubLicenceTax->club_name}}</td>
                                 <td>{{$payment->created_at}}</td>
                                 <td>{{$payment->payment}}</td>
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-payment',['id'=>$payment->id])}}">
+                                        href="{{route('restore-club-licence-payment',['id'=>$payment->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
                                 <td class="text-right">
@@ -199,9 +199,13 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
-                                            <a class="dropdown-item"
-                                                href="{{route('remove-payment-permanent',['id'=>$payment->id])}}">
-                                                {{__('menu.Delete permenent')}}</a>
+                                            <form action="{{route('club-licence-remove-payment-permanent',['id'=>$payment->id])}}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <input class="dropdown-item" type="submit"
+                                                    value="{{__('menu.Delete permenent')}}">
+                                            </form>
                                         </div>
 
                                     </div>

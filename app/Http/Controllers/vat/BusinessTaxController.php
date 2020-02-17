@@ -348,7 +348,7 @@ class BusinessTaxController extends Controller
     }
 
     // premanent delete payment
-    public function destory($id)
+    public function destroy($id)
     {
         $businessTaxPayment = Business_tax_payment::onlyTrashed()->where('id', $id)->first();
         $businessTaxPayment->forceDelete();

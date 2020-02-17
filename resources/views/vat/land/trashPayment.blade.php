@@ -200,7 +200,7 @@
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
                                             <a class="dropdown-item"
-                                                href="{{route('remove-payment-permanent',['id'=>$payment->id])}}">
+                                                href="{{route('land-remove-payment-permanent',['id'=>$payment->id])}}">
                                                 {{__('menu.Delete permenent')}}</a>
                                         </div>
 

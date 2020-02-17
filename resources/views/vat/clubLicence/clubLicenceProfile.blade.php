@@ -81,7 +81,7 @@
     </div>
 </div>
 <div class="col-xl-3 col-lg-6"
-    {{-- onclick="javascript:window.open(`{{route('trash-club-licence',['payer_id'=>$vatPayer->id])}}`,'_self')" --}}
+    onclick="javascript:window.open(`{{route('trash-club-licence',['id'=>$vatPayer->id])}}`,'_self')"
     style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
@@ -182,6 +182,11 @@
                     <div class="pt-1">
                         <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
                     </div>
+
+                    <div class="pt-2 text-center">
+						<a href="{{route('vat-payer-profile',['id'=>$vatPayer->id])}}"
+							class="btn btn-sm btn-danger">{{__('menu.Update Details')}}</a>
+					</div>
                 </div>
 
             </div>

@@ -162,6 +162,8 @@
                     <div class="d-flex justify-content-between">
                         <a href="{{route('club-licence-profile',['id'=>$licenceTaxClub->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
+                            <a href="#"
+                            class="btn btn-sm btn-default float-left update-profile">{{__('menu.Update Details')}}</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
@@ -233,7 +235,7 @@
                         <div class="modal-body">
 
                             <p>Confirmation needed to add payment for <br>
-                                shop : {{$licenceTaxClub->club_name}} </p>
+                                club : {{$licenceTaxClub->club_name}} </p>
                         </div>
 
                         <div class="modal-footer">

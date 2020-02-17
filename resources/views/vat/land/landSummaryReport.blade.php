@@ -21,13 +21,13 @@
     <div class="col">
         <div class="card shadow">
             <div class="card-header bg-transparent">
-                <h3 class="mb-0 text-center"><span class="text-uppercase">Land Tax Summary Report from {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
+                <h3 class="mb-0 text-center"><span class="text-uppercase">Land Tax Summary Report from 
+                    {{ $dates->startDate }} to {{ $dates->endDate }}</span></h3>
             </div>
             <table id="business_tax_report" class="table">
                 <thead class="thead-light">
                     <tr>
                         <th style="width:250px;" class="text-center">{{__('menu.Premises Name')}}</th>
-                        <th style="width:250px;" class="text-center">{{__('menu.Premises Address')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.Total Payments')}}</th>
                        
                     </tr>
@@ -37,7 +37,6 @@
                     @foreach ($reportData as $discription=>$total)
                     <tr>
                         <td class="text-center">{{ $landTax->land_name }}</td>
-                        <td class="text-center">{{ $discription }}</td>
                         <td class="text-center">{{ $total }}</td>
                        
                     </tr>
