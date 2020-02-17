@@ -244,7 +244,7 @@
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Business')}}</span></h3>
+                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Premises')}}</span></h3>
                         </div>
 
                     </div>
@@ -372,7 +372,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>Are you sure you wish to Update the details of
-                                            {{$businessTaxShop->shop_name}} ?
+                                            {{$landTaxPremises->land_name}} ?
                                         </p>
                                     </div>
 

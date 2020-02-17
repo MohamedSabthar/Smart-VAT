@@ -152,7 +152,7 @@ class LandTaxController extends Controller
     {
         $landTaxPremises = Land_tax::findOrFail($id);
 
-        //update business details
+        //update premises details
         $landTaxPremises->registration_no = $request->assesmentNo;
         $landTaxPremises->worth = $request->assesmentAmount;
         $landTaxPremises->land_name = $request->landName;
