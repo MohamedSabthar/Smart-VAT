@@ -165,95 +165,8 @@
         </div>
     </div>
     <div class="col-xl-8 order-xl-1">
-    {{-- payment history card --}}
-			<div class="card shadow mb-5" id="payment-history">
-				<div class="card-header bg-white border-0">
-					<div class="row align-items-center">
-						<div class="col-8">
-							<h3 class="mb-0">{{__('menu.Payment History')}}</h3>
-							<hr class="mt-4 mb-0">
 
-						</div>
-					</div>
-				</div>
-
-				<div class="table-responsive py-4">
-					{{-- booking tax payments table --}}
-					<table id="entertainment_payments_table" class="table  px-5">
-						<thead class="thead-light">
-							<tr>
-                                <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Advertisement type')}}</th>
-								<th>{{__('menu.Final Payment')}}</th>
-								<th>{{__('menu.Payment Date')}}</th>
-								<th></th>
-
-							</tr>
-						</thead>
-						<thead id="search_inputs">
-							<tr>
-								<th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
-										placeholder="{{__('menu.Search Assesment No.')}}" /></th>
-								<th><input type="text" class="form-control form-control-sm" id="searchFinalPayment"
-										placeholder="{{__('menu.Search Payment')}}" /></th>
-								<th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
-										placeholder="{{__('menu.Search Payment date')}}" /></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-                            @foreach($vatPayer->advertisementTaxPayment as $payments)
-                            <tr>
-                                <td>{{$payments->id}}</td>
-                                <td>{{$payments->description}}</td>
-                                <td>{{ number_format($payments->final_payment,2)}}</td>
-                                <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
-                                <td class="text-right">
-									<div class="dropdown">
-										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<i class="fas fa-ellipsis-v"></i>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-											<form
-												action="{{route('remove-advertisement-payment',['id'=>$payments->id])}}"
-												method="POST">
-												@csrf
-												@method('delete')
-												<input type="submit" value="{{__('menu.Remove Payment')}}"
-													class="dropdown-item">
-
-											</form>
-											<a class="dropdown-item toggle-update" data-value="{{$payments}}">
-												Update payment</a>
-										</div>
-
-									</div>
-								</td>
-
-                            </tr>
-                            @endforeach
-                            
-
-						</tbody>
-						<thead class="thead-light">
-							<tr>
-                                <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Advertisement type')}}</th>
-								<th>{{__('menu.Final Payment')}}</th>
-								<th>{{__('menu.Payment Date')}}</th>
-								<th></th>
-
-							</tr>
-						</thead>
-
-					</table>
-					{{-- end of booking TAX payments table --}}
-				</div>
-			</div>
-			{{-- end of payment history card --}}
-
-        <div class="card bg-secondary shadow mb-5 hide" id="business-registration">
+    <div class="card bg-secondary shadow mb-5 hide" id="business-registration">
             <div class="card-header bg-white border-0">
 					<div class="row align-items-center">
 						<div class="col-8">
@@ -370,6 +283,95 @@
             </div>
         </div>
         
+    {{-- payment history card --}}
+			<div class="card shadow mb-5" id="payment-history">
+				<div class="card-header bg-white border-0">
+					<div class="row align-items-center">
+						<div class="col-8">
+							<h3 class="mb-0">{{__('menu.Payment History')}}</h3>
+							<hr class="mt-4 mb-0">
+
+						</div>
+					</div>
+				</div>
+
+				<div class="table-responsive py-4">
+					{{-- booking tax payments table --}}
+					<table id="entertainment_payments_table" class="table  px-5">
+						<thead class="thead-light">
+							<tr>
+                                <th>{{__('menu.Receipt No.')}}</th>
+                                <th>{{__('menu.Advertisement type')}}</th>
+								<th>{{__('menu.Final Payment')}}</th>
+								<th>{{__('menu.Payment Date')}}</th>
+								<th></th>
+
+							</tr>
+						</thead>
+						<thead id="search_inputs">
+							<tr>
+								<th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
+										placeholder="{{__('menu.Search Assesment No.')}}" /></th>
+								<th><input type="text" class="form-control form-control-sm" id="searchFinalPayment"
+										placeholder="{{__('menu.Search Payment')}}" /></th>
+								<th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
+										placeholder="{{__('menu.Search Payment date')}}" /></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+                            @foreach($vatPayer->advertisementTaxPayment as $payments)
+                            <tr>
+                                <td>{{$payments->id}}</td>
+                                <td>{{$payments->description}}</td>
+                                <td>{{ number_format($payments->final_payment,2)}}</td>
+                                <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</th>
+                                <td class="text-right">
+									<div class="dropdown">
+										<a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<i class="fas fa-ellipsis-v"></i>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+											<form
+												action="{{route('remove-advertisement-payment',['id'=>$payments->id])}}"
+												method="POST">
+												@csrf
+												@method('delete')
+												<input type="submit" value="{{__('menu.Remove Payment')}}"
+													class="dropdown-item">
+
+											</form>
+											<a class="dropdown-item toggle-update" data-value="{{$payments}}">
+												Update payment</a>
+										</div>
+
+									</div>
+								</td>
+
+                            </tr>
+                            @endforeach
+                            
+
+						</tbody>
+						<thead class="thead-light">
+							<tr>
+                                <th>{{__('menu.Receipt No.')}}</th>
+                                <th>{{__('menu.Advertisement type')}}</th>
+								<th>{{__('menu.Final Payment')}}</th>
+								<th>{{__('menu.Payment Date')}}</th>
+								<th></th>
+
+							</tr>
+						</thead>
+
+					</table>
+					{{-- end of booking TAX payments table --}}
+				</div>
+			</div>
+			{{-- end of payment history card --}}
+
+      
 
        
     </div>
