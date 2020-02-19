@@ -26,6 +26,7 @@ use App\Http\Requests\UpdateClubLicenceTaxPercentageRequest;
 
 use Carbon\Carbon;
 use App\Entertainment_type;
+use Auth;
 
 class GlobalConfigurationController extends Controller
 {
@@ -63,8 +64,7 @@ class GlobalConfigurationController extends Controller
         $oldBusiness->created_at = $business->created_at;
         $oldBusiness->due_date = $business->due_date;
         $oldBusiness->updated_at = Carbon::now();
-
-        
+        $oldBusiness->user_id = Auth::user()->id;
         $oldBusiness->save();
       
 
@@ -132,6 +132,7 @@ class GlobalConfigurationController extends Controller
         $oldIndustrial->created_at = $industrial->created_at;
         $oldIndustrial->due_date = $industrial->due_date;
         $oldIndustrial->updated_at = Carbon::now();
+        $oldIndustrial->user_id = Auth::user()->id;
 
         
         $oldIndustrial->save();
@@ -251,6 +252,7 @@ class GlobalConfigurationController extends Controller
         $oldLand->created_at= $land->created_at;
         $oldLand->due_date = $land->due_date;
         $oldLand->updated_at = Carbon::now();
+        $oldLand->user_id = Auth::user()->id;
 
         $oldLand->save();
 
@@ -276,14 +278,15 @@ class GlobalConfigurationController extends Controller
         $clubLicence = Vat::where('route', 'clubLicence')->first();
 
         if ($clubLicence->vat_percentage== $request->vatPercentage && $clubLicence->due_date==$request->dueDate) {
-            return redirect()->back()->with('error','Details are not updated');
-        } 
+            return redirect()->back()->with('error', 'Details are not updated');
+        }
 
         $oldClubLicence = new Vats_old_percentage;
         $oldClubLicence->name = $clubLicence->name;
         $oldClubLicence->created_at = $clubLicence->created_at;
         $oldClubLicence->due_date = $clubLicence->due_date;
         $oldClubLicence->updated_at = Carbon::now();
+        $oldClubLicence->user_id = Auth::user()->id;
 
         $oldClubLicence->save();
 
@@ -293,11 +296,9 @@ class GlobalConfigurationController extends Controller
         $clubLicence->save();
 
         return redirect()->back()->with('status', 'Club Licence tax percentages updated successfully');
-        
-
     }
 
-     /*
+    /*
     * Shop Rent Tax percentage update
     */
     public function updateShopRentTaxForm()
@@ -312,13 +313,17 @@ class GlobalConfigurationController extends Controller
         $shopRentTax = Vat::where('route', 'shoprent')->first();
 
         if ($shopRentTax->vat_percentage== $request->vatPercentage && $shopRentTax->due_date==$request->dueDate) {
-            return redirect()->back()->with('error','Details are not updated');
-        } 
+            return redirect()->back()->with('error', 'Details are not updated');
+        }
 
         $oldShopRentTax = new Vats_old_percentage;
         $oldShopRentTax->name = $shopRentTax->name;
-        $oldShopRentTax->vat_percentage =$shopRentTax->vat_percentage;
+
+        $oldShopRentTax->created_at = $shopRentTax->created_at;
+        $oldShopRentTax->vat_percentage = $shopRentTax->vat_percentage;
         $oldShopRentTax->due_date = $shopRentTax->due_date;
+        $oldShopRentTax->updated_at = Carbon::now();
+        $oldShopRentTax->user_id = Auth::user()->id;
         $oldShopRentTax->save();
 
         //updateing the new vat percentage and due date
@@ -326,11 +331,10 @@ class GlobalConfigurationController extends Controller
         $shopRentTax->due_date = $request->dueDate;
         $shopRentTax->save();
 
-        return redirect()->back()->with('status', 'Shop Rent tax percentages updated successfully');    
-
+        return redirect()->back()->with('status', 'Shop Rent tax percentages updated successfully');
     }
 
-     /*
+    /*
     * Advertisement Tax percentage update
     */
     public function updateAdvertisementTaxForm()
@@ -344,14 +348,17 @@ class GlobalConfigurationController extends Controller
         $advertisementTaxPayment = Vat::where('route', 'advertisement')->first();
 
         if ($advertisementTaxPayment->vat_percentage== $request->vatPercentage && $advertisementTaxPayment->due_date==$request->dueDate) {
-            return redirect()->back()->with('error','Details are not updated');
-        } 
+            return redirect()->back()->with('error', 'Details are not updated');
+        }
 
         $oldAdvertisementTaxPayment = new Vats_old_percentage;
         $oldAdvertisementTaxPayment->name = $advertisementTaxPayment->name;
+
         $oldAdvertisementTaxPayment->vat_percentage =$advertisementTaxPayment->vat_percentage;
         $oldAdvertisementTaxPayment->due_date = $advertisementTaxPayment->due_date;
-       
+        $oldAdvertisementTaxPayment->created_at = $advertisementTaxPayment->created_at;
+        $oldAdvertisementTaxPayment->updated_at = Carbon::now();
+        $oldAdvertisementTaxPayment->user_id = Auth::user()->id;
 
         $oldAdvertisementTaxPayment->save();
 
@@ -361,7 +368,6 @@ class GlobalConfigurationController extends Controller
         $advertisementTaxPayment->save();
 
         return redirect()->back()->with('status', 'Advertisement tax percentages updated successfully');
-
     }
 
 
@@ -373,8 +379,8 @@ class GlobalConfigurationController extends Controller
         $vatDetails->entertainment = Vat::where('route', 'entertainment')->first();
         $vatDetails->land = Vat::where('route', 'land')->first();
         $vatDetails->clubLicence = Vat::where('route', 'clubLicence')->first();
-        $vatDetails->shoprent = Vat::where('route','shoprent')->first();
-        $vatDetails->advertisement = Vat::where('route','advertisement')->first();
+        $vatDetails->shoprent = Vat::where('route', 'shoprent')->first();
+        $vatDetails->advertisement = Vat::where('route', 'advertisement')->first();
         return $vatDetails;
     }
 

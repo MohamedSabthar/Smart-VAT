@@ -34,7 +34,7 @@ class ShopRentTableSeeder extends Seeder
             'door_no' => '13',
             'street' => 'Wakwalla Road',
             'city' => 'Galle',
-            'payer_id'   => 1,
+            'payer_id'   => 2,
             'employee_id' => 1,
            
 
@@ -48,7 +48,7 @@ class ShopRentTableSeeder extends Seeder
             'door_no' => '10',
             'street' => 'Lake Road',
             'city' => 'Galle',
-            'payer_id'   => 1,
+            'payer_id'   => 3,
             'employee_id' => 1,
            
 
@@ -62,7 +62,7 @@ class ShopRentTableSeeder extends Seeder
             'door_no' => '18',
             'street' => 'Temple Road',
             'city' => 'Galle',
-            'payer_id'   => 1,
+            'payer_id'   => 4,
             'employee_id' => 1,
            
 
@@ -81,20 +81,20 @@ class ShopRentTableSeeder extends Seeder
            
 
         ]);
-        DB::table('shop_rent_tax')->insert([
-            'shop_name' => 'wasana bakery',
-            'key_money'=>'15750',
-            'month_worth' => '2500',
-            'phone' => '0776543678',
-            'registration_no' =>'50A' ,
-            'door_no' => '12',
-            'street' => 'Upper Dickson Road',
-            'city' => 'Galle',
-            'payer_id'   => 6,
-            'employee_id' => 1,
-           
+      
+        // DB::table('shop_rent_tax')->insert([
+        //     'shop_name' => 'wasana bakery',
+        //     'key_money'=>'15750',
+        //     'month_worth' => '2500',
+        //     'phone' => '0776543678',
+        //     'registration_no' =>'46A' ,
+        //     'door_no' => '12',
+        //     'street' => 'Upper Dickson Road',
+        //     'city' => 'Galle',
+        //     'payer_id'   => 6,
+        //     'employee_id' => 1,
+        // ]);
 
-        ]);
         DB::table('shop_rent_tax')->insert([
             'shop_name' => 'Indra trades',
             'key_money'=>'19000',

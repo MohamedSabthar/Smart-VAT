@@ -13,65 +13,64 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('land')}}`,'_self')"
-	style="cursor:pointer">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">
-						{{__('menu.Land Tax Payers')}}
-					</h3>
-					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-						<i class="fas fa-users"></i>
-					</div>
-				</div>
-			</div>
+<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('land')}}`,'_self')" style="cursor:pointer">
+    <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase text-muted mb-0">
+                        {{__('menu.Land Tax Payers')}}
+                    </h3>
+                    {{-- <span class=" font-weight-bold mb-0">924</span> --}}
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 <div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('land-generate-report')}}`,'_self')"
-	style="cursor:pointer">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
-					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
-					</div>
-				</div>
-			</div>
+    style="cursor:pointer">
+    <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
+                    {{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 <div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('get-land-quick-payments')}}`,'_self')"
-	style="cursor:pointer">
-	<div class="card card-stats mb-4 mb-xl-0">
-		<div class="card-body">
-			<div class="row">
-				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
-						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
-				</div>
-				<div class="col-auto">
-					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-						<i class="fas fa-chart-pie"></i>
-					</div>
-				</div>
-			</div>
+    style="cursor:pointer">
+    <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
+                        {{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+                </div>
+                <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 <div class="col-xl-3 col-lg-6"
@@ -113,7 +112,18 @@
             <span class="alert-inner--text mx-2">
                 <strong class="mx-1">{{__('menu.Error!')}}</strong>
                 {{__('menu.Data you entered is/are incorrect')}}
-                <a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
+                <a href="#" class="btn btn-sm btn-primary mx-3 update-info update-profile">{{__('menu.view')}}</a>
+            </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif(session('warning'))
+        <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                <strong class="mx-1">{{__('menu.Error!')}}</strong>
+                {{session('warning')}}
             </span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -144,7 +154,7 @@
                     <div class="d-flex justify-content-between">
                         <a href="{{route('land-profile',['id'=>$landTaxPremises->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
-                            <a href="#"
+                        <a href="#"
                             class="btn btn-sm btn-default float-left update-profile">{{__('menu.Update Details')}}</a>
                     </div>
                 </div>
@@ -165,7 +175,7 @@
 
                         <div class="pt-1">
                             <h3 class="d-inline"> {{__('menu.Annual worth')}} : </h3>
-                            {{number_format($landTaxPremises->worth,2)}}  
+                            {{number_format($landTaxPremises->worth,2)}}
                         </div>
                         <hr>
 
@@ -173,6 +183,10 @@
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$landTaxPremises->phone}}
                         </div>
 
+                        <div class="pt-2 text-center">
+                            <a href="{{route('land-send-notice',['id'=>$landTaxPremises->id])}}"
+                                class="btn btn-sm btn-danger">{{__('menu.Send Notice')}}</a>
+                        </div>
 
 
                     </div>
@@ -193,13 +207,13 @@
                 </div>
             </div>
             {{-- payment form --}}
-            <form action="{{route('receive-land-payments',['land_id'=>$landTaxPremises->id])}}"
-                id="accept-payment" method="POST" hidden>
+            <form action="{{route('receive-land-payments',['land_id'=>$landTaxPremises->id])}}" id="accept-payment"
+                method="POST" hidden>
                 @csrf
                 <input type="text" name="payment" value="{{$duePayment}}">
             </form>
             {{-- end of payment form --}}
-            {{-- Confirmation modal for adding business for the registered VAT payer--}}
+            {{-- Confirmation modal for accepting payment of the VAT payer--}}
             <div class=" modal fade" id="confirm-land-payment" tabindex="-1" role="dialog"
                 aria-labelledby="modal-default" aria-hidden="true">
                 <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
@@ -240,18 +254,18 @@
             {{-- end of Payment Notice --}}
 
             {{-- Update profile card --}}
-            <div class="card bg-secondary shadow mb-5 hide" id="Update-business-info">
+            <div class="card bg-secondary shadow mb-5 hide" id="Update-land-info">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Business')}}</span></h3>
+                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Premises Details')}}</span></h3>
                         </div>
 
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- Update business profile form --}}
-                    <form method="POST" id="business-details-form"
+                    {{-- Update Land profile form --}}
+                    <form method="POST" id="premises-details-form"
                         action="{{route('update-premises',['id'=>$landTaxPremises->id])}}">
                         @csrf
                         @method('put')
@@ -260,7 +274,8 @@
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
                             <div class="col-md-10 ">
                                 <input class="form-control @error('assesmentNo') is-invalid  @enderror" type="text"
-                                    value="{{old('assesmentNo',$landTaxPremises->registration_no)}}" id="assesmentNo" name="assesmentNo" autofocus>
+                                    value="{{old('assesmentNo',$landTaxPremises->registration_no)}}" id="assesmentNo"
+                                    name="assesmentNo" autofocus>
                                 @error('assesmentNo')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -272,10 +287,10 @@
                             <label for="example-text-input"
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment Amount')}}</label>
                             <div class="col-md-10 ">
-                                <input class="form-control @error('assesmentAmount') is-invalid  @enderror"
-                                    type="text" value="{{old('assesmentAmount',$landTaxPremises->worth)}}" id="assesmentAmount"
+                                <input class="form-control @error('assesmentAmount') is-invalid  @enderror" type="text"
+                                    value="{{old('assesmentAmount',$landTaxPremises->worth)}}" id="assesmentAmount"
                                     name="assesmentAmount">
-    
+
                                 <span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
                                     <strong>dfafjkladfj</strong>
                                 </span>
@@ -292,7 +307,8 @@
                                 class="col-md-2 col-form-label form-control-label ">{{__('menu.Premises Name')}}</label>
                             <div class="col-md-10 ">
                                 <input class="form-control @error('landName') is-invalid  @enderror" type="text"
-                                    value="{{old('landName',$landTaxPremises->land_name)}}" id="landName" name="landName">
+                                    value="{{old('landName',$landTaxPremises->land_name)}}" id="landName"
+                                    name="landName">
                                 @error('landName')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -355,11 +371,11 @@
                         <div class="form-group">
                             <button class="btn btn-primary float-right" data-toggle="modal"
                                 onclick="javascript:event.preventDefault()"
-                                data-target="#confirm-update-businessProfile">{{__('menu.Update')}}</button>
+                                data-target="#confirm-update-landProfile">{{__('menu.Update')}}</button>
                         </div>
 
                         {{-- Confirmation modal --}}
-                        <div class="modal fade" id="confirm-update-businessProfile" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="confirm-update-landProfile" tabindex="-1" role="dialog"
                             aria-labelledby="modal-default" aria-hidden="true">
                             <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                                 <div class="modal-content">
@@ -380,7 +396,7 @@
                                         <button type="button" class="btn btn-link"
                                             onclick="javascript:location.reload()">Cancel</button>
                                         <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
-                                            onclick="javascript:document.getElementById('business-details-form').submit();">Confirm</button>
+                                            onclick="javascript:document.getElementById('premises-details-form').submit();">Confirm</button>
                                     </div>
 
                                 </div>
@@ -524,6 +540,14 @@
                 .search( this.value )
                 .draw();
             });
+
+        //toggle transition for update profile
+        $("#Update-land-info").hide();
+        $(".update-profile").on('click',function(){
+        $("#Update-land-info").slideToggle("slow");
+        $("#landName").focus();
+        });
+
       } );
 
 </script>

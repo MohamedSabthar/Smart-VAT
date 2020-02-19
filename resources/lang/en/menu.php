@@ -302,6 +302,7 @@ return [
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
     'Restore Premises' => 'Restore Premises',
+    'Update Premises Details' => 'Update Premises Details',
 
     //advertisement tax
     '[+] Advertisement'=>'[+] Advertisement',
@@ -323,6 +324,7 @@ return [
     
     // Club licence tax
     'Club licence'=> 'Club licence',
+    'Club Licence Tax Payers' => 'Club Licence Tax Payers',
     '[+] Club' => '[+] Club',
     's clubs' => 's clubs' ,
     'Add new Club' => 'Add new Club',
@@ -354,4 +356,15 @@ return [
     'Ticket payment report' => 'Ticket payment report',
     'Performance payment report' => 'Performance payment report',
     'New Window'=>'New Window',
+
+
+    'Id' => 'Id' ,
+    'Type' => 'Type',
+    'Amount (LKR)' => 'Amount (LKR)',
+    'Additional ammount (LKR)' => 'Additional ammount (LKR)',
+    'Industrial type' => 'Industrial type',
+    'Anual worth' => 'Anual worth',
+    'Industrial Name' => 'Industrial Name',
+    'Update Industrial' => 'Update Industrial',
+    'Quoted Ticket' => 'Quoted Ticket',
 ];

@@ -13,7 +13,7 @@ class LandReport
 
     public function __construct($landName , $payments, $address)
     {
-        $this->landName = $landName;
+        $this->landName = $landName; // get land name
         $this->address = $address;
         $this->payments = $payments;
     }
@@ -26,9 +26,9 @@ class LandReport
             return new LandReport($obj->landTax->land_name, $obj->payment, $obj->landTax->address);
         });
 //dd($records->map->landTax);
-        // ### Correct this  ###
+        
         $table =  $records->groupBy(function ($obj) {
-            return $obj->landName;  //+ address
+            return $obj->landName;  
         })->map(function ($row) {
             return $row->sum('payments');
         });

@@ -273,6 +273,8 @@ Route::post('/entertainment/performance-summary-report-pdf', 'vat\EntertainmentT
  * mailing routes
  */
 Route::get('/business/business-notice/{id}', 'vat\BusinessTaxController@sendNotice')->name('business-send-notice');
+Route::get('/land/land-notice/{id}', 'vat\LandTaxController@sendNotice')->name('land-send-notice');
+Route::get('/club-licence/land-notice/{id}','vat\ClubLicenceTaxController@sendNotice')->name('club-licence-send-notice');
 Route::get('/retry-business-notification/{id}/{notify}', 'RetryNoticeController@retryBusinessNotice')->name('retry-business-notice');
 Route::get('/retry-industrial-notification/{id}/{notify}', 'RetryNoticeController@retryIndustrialNotice')->name('retry-industrial-notice');
 
@@ -314,8 +316,8 @@ Route::post('/land/Summary-report-pdf', 'vat\LandTaxController@summaryPdf')->nam
  */
 Route::get('/club-licence/profile/{id}', 'vat\ClubLicenceTaxController@clubLicenceProfile')->name('club-licence-profile');
 //Route::put('/club-licence-profile/{id}', 'PayerController@updateVATpayerProfile')->name('update-vat-payer');  //update VAT payer profile
-//Route::get('/club-licence/latest', 'vat\ClubLicenceTaxController@latestPayment')->name('latest');
 Route::post('/club-licence/club-register/{id}', 'vat\ClubLicenceTaxController@registerClubLicence')->name('club-licence-register');
+Route::put('/club-profile/{id}', 'vat\ClubLicenceTaxController@updateClubLicenceProfile')->name('update-club');
 Route::get('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@clubLicencePayments')->name('club-licence-payments');
 Route::post('/club-licence/payments/{club_id}', 'vat\ClubLicenceTaxController@receiveClubLicencePayment')->name('receive-club-licence-payments');
 
@@ -336,7 +338,6 @@ Route::get('/club-licence/clubLicence-restore/{id}', 'vat\ClubLicenceTaxControll
 Route::get('/club-licence/generate-report', 'vat\ClubLicenceTaxController@clubLicenceReportGeneration')->name('club-licence-generate-report');
 Route::post('/club-licence/generation', 'vat\ClubLicenceTaxController@generateReport')->name('club-licence-report-view');
 Route::post('/club-licence/Tax-report-pdf', 'vat\ClubLicenceTaxController@TaxPdf')->name('club-licence-tax-report-pdf');
-Route::post('/club-licence/Summary-report-pdf', 'vat\ClubLicenceTaxController@summaryPdf')->name('club-licence-summary-report-pdf');
 
 
 /**

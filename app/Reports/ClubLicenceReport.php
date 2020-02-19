@@ -11,9 +11,9 @@ class ClubLicenceReport
     public $payments;
 
 
-    public function __construct($clubName, $payments)
+    public function __construct($clubName,$address, $payments)
     {
-        $this->club_name = $clubName; // check club_name
+        $this->clubName = $clubName; // check club_name
         $this->address = $address;
         $this->payments = $payments;
     }
@@ -21,11 +21,11 @@ class ClubLicenceReport
     public static function generateClubLicenceReport($dates)
     {
         $records = Club_licence_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get()->map(function ($obj) {
-            return new ClubLicenceReport($obj->clubLicenceTax->clubName, $obj->clubLicenceTax->address, $obj->payment);
+            return new ClubLicenceReport($obj->clubLicenceTax->club_name, $obj->clubLicenceTax->address, $obj->payment);
         });
 
         $table =  $records->groupBy(function ($obj) {
-            return $obj->club_name; // +address
+            return $obj->clubName; 
         })->map(function ($row) {
             return $row->sum('payments');
         });
