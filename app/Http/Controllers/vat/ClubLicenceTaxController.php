@@ -8,7 +8,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddClubLicenceRequest;
-use App\Http\Requests\ClubLicenceTaxReportRequest;  //### Implent## //
+use App\Http\Requests\ClubLicenceTaxReportRequest;
+use App\Http\Requests\UpdateClubLicenceProfileRequest;
+use App\Jobs\ClubLicenceTaxNoticeJob;
 
 use Auth;
 use Carbon\Carbon;
@@ -16,7 +18,7 @@ use Carbon\Carbon;
 //report Generation
 use PDF;
 use Illuminate\Support\Facades\DB;
-use App\Reports\ClubLicenceReport;  // ##Implement## //
+use App\Reports\ClubLicenceReport;  
 
 use App\Vat;
 use App\Vat_payer;
@@ -178,25 +180,43 @@ class ClubLicenceTaxController extends Controller
         return redirect()->back()->with('status', 'Payment added successfully');
     }
 
+    public function updateClubLicenceProfile($id, UpdateClubLicenceProfileRequest $request)
+    {
+        
+        $licenceTaxClub = Club_licence_tax::findOrFail($id);
+
+        // updating club licence delails
+
+        $licenceTaxClub->registration_no = $request->assesmentNo;
+        $licenceTaxClub->anual_worth = $request->annualAssesmentAmount;
+        $licenceTaxClub->club_name = $request->clubName;
+        $licenceTaxClub->phone = $request->phoneno;
+        $licenceTaxClub->door_no = $request->doorno;
+        $licenceTaxClub->street = $request->street;
+        $licenceTaxClub->city = $request->city;
+
+        $licenceTaxClub->save();
+        return redirect()->back()->with('status', 'Club Licence details updated sucessfully');
+    }
+
     //Report Generation
     public function clubLicenceReportGeneration()
     {
         return view('vat.clubLicence.clubLicenceReportGeneration');
     }
 
-
-    // HAVA TO CORRECT WHEN REPORT IS GENERATED
     public function generateReport(ClubLicenceTaxReportRequest $request)                                              //get the star date and the end date for the report generation
     {
-        $reportData = ClubLicenceReport::generateClubLicenceReport();
         $dates = (object)$request->only(["startDate","endDate"]);
-          
+        $reportData = ClubLicenceReport::generateClubLicenceReport($dates);
+         
         $records = Club_licence_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {
             return view('vat.clubLicence.clubLicenceReportView', ['dates'=>$dates, 'records'=>$records]);
-        } elseif ($request->has(SummaryReport)) {
-            return view('vat.clubLicence.clubLicenceSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);
-        }
+        } 
+        // elseif ($request->has(SummaryReport)) {
+        //     return view('vat.clubLicence.clubLicenceSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);
+        // }
     }
 
     public function TaxPdf(ClubLicenceTaxReportRequest $request)
@@ -360,6 +380,24 @@ class ClubLicenceTaxController extends Controller
         $clubLicenceTaxPayment = Club_licence_tax_payment::onlyTrashed()->where('id',$id)->first();
         $clubLicenceTaxPayment->forceDelete();
         return redirect()->back()->with('status', 'Permanent Delete successful');
+    }
+
+    //send notices
+    public function sendNotice($id)
+    {
+        $currentDate = Carbon::now()->toArray();
+        $year = $currentDate['year'];
+        $taxPayment=Club_licence_tax_payment::where('club_id', $id)->where('created_at', 'like', "%$year%")->first();
+
+        //if already paid for this year don't allow to send notification
+        if ($taxPayment!=null) {
+            return redirect()->back()->with('warning', "Tax already paid for this year for this club Licence");
+        }
+
+        $vatPayerMail = Club_licence_tax::find($id)->payer->email;
+        //pushing mail to the queue
+        dispatch(new  ClubLicenceTaxNoticeJob($vatPayerMail, $id));
+        return redirect()->back()->with('status', 'Mail queued successfully');
     }
 
 }

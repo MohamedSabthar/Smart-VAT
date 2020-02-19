@@ -271,6 +271,7 @@ return [
     'Payer Phone' => 'ගෙවන්නාගේ දුරකථනය',
     'Add new premises' => 'නව පරිශ්‍රයන් එක් කරන්න',
     'Assesment Amount' => 'තක්සේරු මුදල',
+    'Update Premises Details' => 'පරිශ්‍රයේ තොරතුරු යාවත්කාලීන කරන්න',
     'Remove Premises'=> 'පරිශ්‍රය ඉවත් කරන්න',
     'Restore Premises'=> 'පරිශ්‍ර ප්‍රතිස්ථාපනය කරන්න',
 
@@ -332,6 +333,7 @@ return [
     'New Window'=>'නව බ්‍රව්සරය',
     // Club license tax
     'Club licence'=> 'සමාජ ශාලා බලපත්‍රය',
+    'Club Licence Tax Payers' => 'සමාජ ශාලා බලපත්‍ර බදු ගෙවන්නන්',
     '[+] Club' => 'සමාජ ශාලා',
     's clubs' => 'ගේ සමාජ ශාලා' ,
     'Add new Club' => 'නව සමාජ ශාලාවක් එක් කරන්න',
