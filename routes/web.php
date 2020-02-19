@@ -365,7 +365,9 @@ Route::delete('/license/payment-remove/{id}', 'vat\LicenseTaxController@removePa
  *
  * all slaughtering tax related tax routes should starts with "/slaughtering"
  */
-Route::get('/slaughtering/profile/{id}', 'vat\SlaughteringTaxController@slaughteringProfile')->name('slaughtering-profile');
+Route::get('/slaughtering/profile/{id}', 'vat\SlaughteringTaxController@sloughteringProfile')->name('slaughtering-profile');
+Route::post('/slaughtering/profile/{id}', 'vat\SlaughteringTaxController@reciveSlaughteringPayments')->name('receive-slaughtering-payments');
+Route::put('/slaughtering/slaughtering-payment-update/{id}', 'vat\SlaughteringTaxController@updateSlaughteringPayment')->name('update-slaughtering-payments');
 
 
 

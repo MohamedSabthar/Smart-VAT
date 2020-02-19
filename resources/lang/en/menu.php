@@ -350,4 +350,19 @@ return [
     'Ticket payment report' => 'Ticket payment report',
     'Performance payment report' => 'Performance payment report',
     'New Window'=>'New Window',
+
+
+
+    //license Tax
+    '[+] License'=>'[+] License',
+    'Add License Duty'=>'Add License Duty',
+    'License type'=>'License type',
+    's License Tax shops'=>'s License Tax shops',
+    'VAT Payers NIC'=>'VAT Payers NIC',
+
+    //slaughtering Tax
+    'Slaughtering Tax Payers'=>'Slaughtering Tax Payers',
+    'Animal Count'=>'Animal Count',
+    'Slaughtering Type'=>'Slaughtering Type',
+
 ];

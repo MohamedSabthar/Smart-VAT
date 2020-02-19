@@ -13,7 +13,7 @@ use App\Entertainment_tax_tickets_payment;
 use App\Club_licence_tax;
 use App\Vehicle_park_tax;
 use App\License_tax_shop;
-use App\Slaughting_tax_shop;
+use App\Slaguhtering_tax_payment;
 
 class VatPagesController extends Controller
 {
@@ -93,7 +93,7 @@ class VatPagesController extends Controller
     }
     
     public function slaughtering()
-     {   $payers= Slaughting_tax_shop::slaughteringTaxPayers();
+     {   $payers= Slaguhtering_tax_payment::getSlaughteringTaxPayers();
          return view('vat.slaughtering.slaughtering',['payers'=>$payers]);
      }
 }
