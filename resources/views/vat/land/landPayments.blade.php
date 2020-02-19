@@ -525,6 +525,15 @@
                 .search( this.value )
                 .draw();
             });
+
+
+             //toggle transition for update profile
+        $("#Update-business-info").hide();
+        $(".update-profile").on('click',function(){
+        $("#Update-business-info").slideToggle("slow");
+        $("#businessName").focus();
+
+        });
       } );
 
 </script>
