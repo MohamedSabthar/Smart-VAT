@@ -10,12 +10,9 @@ System to automate the VAT process of municipal council of Gale
 -   Club licence Tax.
 -   Licence Tax.
 -   Slautering Fees.
--   Three-wheel parking.
 -   Shop rental.
 -   Advetisment Tax.
--   Booking Tax.
 -   Industrial Tax.
--   Land auction Tax.
 -   Entertainment Tax.
 
 ## Laravel .evn setup
