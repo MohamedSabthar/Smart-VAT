@@ -212,7 +212,7 @@ class ClubLicenceTaxController extends Controller
          
         $records = Club_licence_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {
-            return view('vat.clubLicence.clubLicenceReportView', ['dates'=>$dates, 'records'=>$records]);
+            return view('vat.clubLicence.clubLicenceReportVeiw', ['dates'=>$dates, 'records'=>$records]);
         } 
         // elseif ($request->has(SummaryReport)) {
         //     return view('vat.clubLicence.clubLicenceSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);

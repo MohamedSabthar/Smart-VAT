@@ -268,6 +268,7 @@ return [
     '[+] Premises' => '[+] පරිශ්‍රය',
     's premises hired'=>'ගේ පරිශ්‍ර කුලියට',
     'Premises Name' => 'පරිශ්‍රයේ නම',
+    'Premises ID' => 'පරිශ්‍රයේ අංකය',
     'Payer Phone' => 'ගෙවන්නාගේ දුරකථනය',
     'Add new premises' => 'නව පරිශ්‍රයන් එක් කරන්න',
     'Assesment Amount' => 'තක්සේරු මුදල',
@@ -341,6 +342,7 @@ return [
     'Remove Club' => 'සමාජ ශාලා ඉවත් කරන්න',
     'Trash Club Licence' => 'ඉවත් කරන ලදි සමාජ ශාලා බලපත්‍ර',
     'Restore Club Licence' => 'සමාජ ශාලා බලපත්‍රය ප්‍රතිස්ථාපනය කරන්න',
+    'Search Club Name' => 'සමාජ ශාලාවේ නම සොයන්න',
 
     'Id' => 'අංකය',
     'Type' => 'වර්ගය',
