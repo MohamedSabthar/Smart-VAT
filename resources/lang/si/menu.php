@@ -340,6 +340,19 @@ return [
     'Club name' => 'සමාජ ශාලා නාමය',
     'Remove Club' => 'සමාජ ශාලා ඉවත් කරන්න',
     'Trash Club Licence' => 'ඉවත් කරන ලදි සමාජ ශාලා බලපත්‍ර',
-    'Restore Club Licence' => 'සමාජ ශාලා බලපත්‍රය ප්‍රතිස්ථාපනය කරන්න'
+    'Restore Club Licence' => 'සමාජ ශාලා බලපත්‍රය ප්‍රතිස්ථාපනය කරන්න',
+
+    'Id' => 'අංකය',
+    'Type' => 'වර්ගය',
+    'Amount (LKR)' => 'මුදල',
+    'Additional ammount (LKR)' => 'අතිරේක මුදල (රු)',
+    'industrial type' => 'කාර්මන්ත වර්ගය',
+  
+    'Industrial type' => 'කාර්මන්ත වර්ගය',
+    'Anual worth' => 'වාර්ෂික වටිනාකම',
+    'Industrial Name' => 'කාර්මන්ත නම',
+    'Update Industrial' => 'කාර්මන්ත යාවත්කාලීන',
+    // 'Update payment' => 'Update payment',
+
 
 ];
