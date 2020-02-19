@@ -352,4 +352,14 @@ return [
     'Ticket payment report' => 'Ticket payment report',
     'Performance payment report' => 'Performance payment report',
     'New Window'=>'New Window',
+
+
+    'Id' => 'Id' ,
+    'Type' => 'Type',
+    'Amount (LKR)' => 'Amount (LKR)',
+    'Additional ammount (LKR)' => 'Additional ammount (LKR)',
+    'Industrial type' => 'Industrial type',
+    'Anual worth' => 'Anual worth',
+    'Industrial Name' => 'Industrial Name',
+    'Update Industrial' => 'Update Industrial',
 ];
