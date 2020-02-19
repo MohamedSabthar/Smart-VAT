@@ -362,4 +362,5 @@ return [
     'Anual worth' => 'Anual worth',
     'Industrial Name' => 'Industrial Name',
     'Update Industrial' => 'Update Industrial',
+    'Quoted Ticket' => 'Quoted Ticket',
 ];

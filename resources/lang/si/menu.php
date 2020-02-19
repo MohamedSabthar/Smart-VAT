@@ -350,6 +350,7 @@ return [
     'Anual worth' => 'වාර්ෂික වටිනාකම',
     'Industrial Name' => 'කාර්මන්ත නම',
     'Update Industrial' => 'කාර්මන්ත යාවත්කාලීන',
+    // 'Update payment' => 'Update payment',
 
 
 ];
