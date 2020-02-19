@@ -31,7 +31,6 @@
             <span class="alert-inner--text mx-2">
                 <strong class="mx-1">{{__('menu.Error!')}}</strong>
                 {{__('menu.Data you entered is/are incorrect')}}
-                <a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
             </span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
