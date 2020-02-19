@@ -15,6 +15,8 @@ use App\Vat_payer;
 use App\Land_tax;
 use App\Land_tax_payment;
 use App\Land_tax_due_payment;
+
+use App\Jobs\LandTaxNoticeJob;
  
 
 use Auth;
@@ -156,8 +158,8 @@ class LandTaxController extends Controller
         $landTaxPremises->registration_no = $request->assesmentNo;
         $landTaxPremises->worth = $request->assesmentAmount;
         $landTaxPremises->land_name = $request->landName;
-        $landTaxPremises->phone = $request->phoneno;
-        $landTaxPremises->door_no = $request->doorno;
+        $landTaxPremises->phone = $request->phoneNo;
+        $landTaxPremises->door_no = $request->doorNo;
         $landTaxPremises->street = $request->street;
         $landTaxPremises->city = $request->city;
              
@@ -373,6 +375,24 @@ class LandTaxController extends Controller
         $payerId = $landTaxPremises->first()->payer_id;
         $landTaxPremises->restore();
         return redirect()->route('land-profile', ['id'=>$payerId])->with('status','Premises restored successfully');
+    }
+
+    //send notice
+    public function sendNotice($id)
+    {
+        $currentDate = Carbon::now()->toArray();
+        $year = $currentDate['year'];
+        $taxPayment = Land_tax_payment::where('land_id',$id)->where('created_at', 'like', "%$year%")->first();
+
+        //if already paid for this year don't allow to send notifications
+        if ($taxPayment!=null) {
+            return redirect()->back()->with('warning', "Tax already paid for this year for this premises");
+        }
+
+        $vatPayerMail = Land_tax::find($id)->payer->email;
+        //pushing mail to the queue
+        dispatch(new LandTaxNoticeJob($vatPayerMail, $id));
+        return redirect()->back()->with('status', 'Mail queued successfully');
     }
 
 }

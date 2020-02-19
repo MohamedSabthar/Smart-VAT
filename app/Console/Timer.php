@@ -9,13 +9,21 @@ use App\Business_tax_payment;
 use App\Business_tax_shop;
 use App\Industrial_tax_payment;
 use App\Industrial_tax_shop;
+use App\Land_tax_payment;
+use App\Land_tax;
+use App\Club_licence_tax_payment;
+use App\Club_licence_tax;
+
 use App\Vat_payer;
 use App\Business_tax_due_payment;
 use App\Industrial_tax_due_payment;
+use App\Land_tax_due_payments;
 use App\Automatic_log;
 
 use App\Jobs\BusinessTaxNoticeJob;
 use App\Jobs\IndustrialTaxNoticeJob;
+use App\Jobs\LandTaxNoticeJob;
+use App\Jobs\ClubLicenceTaxNoticeJob;
 
 use Illuminate\Support\Facades\DB;
 
@@ -47,6 +55,16 @@ class Timer
                 }
             }
         };
+    }
+
+    public static function triggerLandDue()
+    {
+        //
+    }
+
+    public static function tiggerClubLicenceDue()
+    {
+        //
     }
 
     public static function triger($tax)

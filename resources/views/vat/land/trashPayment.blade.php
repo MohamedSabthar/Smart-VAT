@@ -169,9 +169,13 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
-                                            <a class="dropdown-item"
-                                                href="{{route('land-remove-payment-permanent',['id'=>$payment->id])}}">
-                                                {{__('menu.Delete permenent')}}</a>
+                                            <form action="{{route('land-remove-payment-permanent',['id'=>$payment->id])}}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <input class="dropdown-item" type="submit"
+                                                    value="{{__('menu.Delete Permanent')}}">
+                                            </form>
                                         </div>
 
                                     </div>

@@ -113,7 +113,18 @@
             <span class="alert-inner--text mx-2">
                 <strong class="mx-1">{{__('menu.Error!')}}</strong>
                 {{__('menu.Data you entered is/are incorrect')}}
-                <a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
+                <a href="#" class="btn btn-sm btn-primary mx-3 update-info update-profile">{{__('menu.view')}}</a>
+            </span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @elseif(session('warning'))
+        <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
+            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+            <span class="alert-inner--text mx-2">
+                <strong class="mx-1">{{__('menu.Error!')}}</strong>
+                {{session('warning')}}
             </span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -173,6 +184,10 @@
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$landTaxPremises->phone}}
                         </div>
 
+                        <div class="pt-2 text-center">
+                            <a href="{{route('land-send-notice',['id'=>$landTaxPremises->id])}}"
+                                class="btn btn-sm btn-danger">{{__('menu.Send Notice')}}</a>
+                        </div>
 
 
                     </div>
@@ -199,7 +214,7 @@
                 <input type="text" name="payment" value="{{$duePayment}}">
             </form>
             {{-- end of payment form --}}
-            {{-- Confirmation modal for adding business for the registered VAT payer--}}
+            {{-- Confirmation modal for accepting payment of the VAT payer--}}
             <div class=" modal fade" id="confirm-land-payment" tabindex="-1" role="dialog"
                 aria-labelledby="modal-default" aria-hidden="true">
                 <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
@@ -240,18 +255,18 @@
             {{-- end of Payment Notice --}}
 
             {{-- Update profile card --}}
-            <div class="card bg-secondary shadow mb-5 hide" id="Update-business-info">
+            <div class="card bg-secondary shadow mb-5 hide" id="Update-land-info">
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Premises')}}</span></h3>
+                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Premises Details')}}</span></h3>
                         </div>
 
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- Update business profile form --}}
-                    <form method="POST" id="business-details-form"
+                    {{-- Update Land profile form --}}
+                    <form method="POST" id="premises-details-form"
                         action="{{route('update-premises',['id'=>$landTaxPremises->id])}}">
                         @csrf
                         @method('put')
@@ -355,11 +370,11 @@
                         <div class="form-group">
                             <button class="btn btn-primary float-right" data-toggle="modal"
                                 onclick="javascript:event.preventDefault()"
-                                data-target="#confirm-update-businessProfile">{{__('menu.Update')}}</button>
+                                data-target="#confirm-update-landProfile">{{__('menu.Update')}}</button>
                         </div>
 
                         {{-- Confirmation modal --}}
-                        <div class="modal fade" id="confirm-update-businessProfile" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="confirm-update-landProfile" tabindex="-1" role="dialog"
                             aria-labelledby="modal-default" aria-hidden="true">
                             <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                                 <div class="modal-content">
@@ -380,7 +395,7 @@
                                         <button type="button" class="btn btn-link"
                                             onclick="javascript:location.reload()">Cancel</button>
                                         <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
-                                            onclick="javascript:document.getElementById('business-details-form').submit();">Confirm</button>
+                                            onclick="javascript:document.getElementById('premises-details-form').submit();">Confirm</button>
                                     </div>
 
                                 </div>
@@ -524,6 +539,14 @@
                 .search( this.value )
                 .draw();
             });
+
+        //toggle transition for update profile
+        $("#Update-land-info").hide();
+        $(".update-profile").on('click',function(){
+        $("#Update-land-info").slideToggle("slow");
+        $("#landNam").focus();
+        });
+
       } );
 
 </script>

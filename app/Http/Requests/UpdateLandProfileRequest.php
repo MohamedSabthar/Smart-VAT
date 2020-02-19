@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +25,7 @@ class UpdateLandProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'assesmentNo' =>['required','string', 'max:255', Rule::unique('land_taxes', 'registration_no')],
+            'assesmentNo' =>['required','string', 'max:255', Rule::unique('land_taxes', 'registration_no')->ignore($this->id)],
             'assesmentAmount' => ['required','numeric'],
             'landName' => ['required','string', 'max:255'],
             'phoneNo' => ['required', 'regex:/[+94|0][0-9]{9}$/','min:10','max:12'],

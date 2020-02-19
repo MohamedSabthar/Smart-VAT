@@ -37,8 +37,8 @@
 
 
 
-<div class="col-xl-4 col-lg-6" {{-- onclick="javascript:window.open(`{{route('industrial-generate-report')}}`,'_self')
-	--}} style="cursor:pointer">
+<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('land-generate-report')}}`,'_self')"
+	 style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
