@@ -13,6 +13,7 @@
 @endsection
 
 @section('header')
+<!--
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
@@ -36,72 +37,7 @@
     </div>
 </div>
 
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-            </p>
-        </div>
-    </div>
-</div>
 
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                    <span class="h2 font-weight-bold mb-0">924</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-users"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                <span class="text-nowrap">Since yesterday</span>
-            </p>
-        </div>
-    </div>
-</div>
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                    <span class="h2 font-weight-bold mb-0">924</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-users"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                <span class="text-nowrap">Since yesterday</span>
-            </p>
-        </div>
-    </div>
-</div>
 
 <div class="container-fluid d-flex align-items-center">
     {{-- Alert notifications --}}
@@ -131,7 +67,7 @@
     </div>
     {{-- end of Alert notifications --}}
 </div>
-
+-->
 @endsection
 
 @section('pageContent')
@@ -178,11 +114,11 @@
         </div>
     </div>
     <div class="col-xl-8 order-xl-1">
-        
-        
- {{-- Start  from here --}}
+
+
+        {{-- Start  from here --}}
         <div class="card shadow">
-            <div class="card-header bg-white border-0"> 
+            <div class="card-header bg-white border-0">
                 <div class="row align-items-center">
                     <div class="col">
                         <h3 class="mb-0">
@@ -216,7 +152,8 @@
                             {{__('menu.Middle Name')}}</label>
                         <div class="col-md-10">
                             <input class="form-control @error('middle_name') is-invalid @enderror" type="text"
-                                value="{{old('middle_name',$vatPayer->middle_name)}}" id="middle_name" name="middle_name">
+                                value="{{old('middle_name',$vatPayer->middle_name)}}" id="middle_name"
+                                name="middle_name">
                             @error('middle_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -264,21 +201,21 @@
                         </div>
                     </div>
                     <div class="form-group row  pt-3">
-                            <label for="example-week-input"
-                                class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
-                            <div class="col-md-10">
-                                <input class="form-control @error('nic') is-invalid @enderror" type="text"
-                                    value="{{old('nic',$vatPayer->nic)}}" id="nic" name="nic">
-                                <span id="error_nic" class="invalid-feedback" role="alert">
-    
-                                </span>
-                                @error('nic')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
+                        <label for="example-week-input"
+                            class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
+                        <div class="col-md-10">
+                            <input class="form-control @error('nic') is-invalid @enderror" type="text"
+                                value="{{old('nic',$vatPayer->nic)}}" id="nic" name="nic">
+                            <span id="error_nic" class="invalid-feedback" role="alert">
+
+                            </span>
+                            @error('nic')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
+                    </div>
                     <div class="form-group row">
                         <label for="example-text-input"
                             class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No.')}}</label>
@@ -367,7 +304,7 @@
 <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('js/select2.js')}}"></script>
 <script>
-	$(document).ready(function() {
+    $(document).ready(function() {
 
 
         var id = '#business_shops_table';                      //data table id

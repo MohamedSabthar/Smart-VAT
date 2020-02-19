@@ -307,7 +307,7 @@
 
 
                                 <th>{{__('menu.Type')}}</th>
-                                <th>{{__('menu.Ammount (LKR)')}}</th>
+                                <th>{{__('menu.Amount (LKR)')}}</th>
                                 <th>{{__('menu.Additional ammount (LKR)')}}</th>
 
 
@@ -362,7 +362,7 @@
                             <tr>
 
                                 <th>{{__('menu.Type')}}</th>
-                                <th>{{__('menu.Ammount (LKR)')}}</th>
+                                <th>{{__('menu.Amount (LKR)')}}</th>
                                 <th>{{__('menu.Additional ammount (LKR)')}}</th>
 
 

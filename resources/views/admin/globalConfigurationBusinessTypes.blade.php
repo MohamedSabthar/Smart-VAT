@@ -248,7 +248,7 @@
 
                                 <th>{{__('menu.Id')}}</th>
                                 <th>{{__('menu.Type')}}</th>
-                                <th>{{__('menu.Ammount (LKR)')}}</th>
+                                <th>{{__('menu.Amount (LKR)')}}</th>
 
 
                                 <th></th>

@@ -20,6 +20,8 @@ class CreateVatsOldPercentagesTable extends Migration
             $table->double('fine_percentage')->nullable();    //fine% some vat doesn't has fine
             $table->date('due_date')->nullable(); // automatic mail notifications send on this data
             $table->timestamps();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users'); //an employee enters the record
         });
     }
 
