@@ -372,7 +372,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p>Are you sure you wish to Update the details of
-                                            {{$businessTaxShop->shop_name}} ?
+                                            {{$landTaxPremises->land_name}} ?
                                         </p>
                                     </div>
 

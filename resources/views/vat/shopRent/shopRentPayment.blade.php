@@ -141,7 +141,8 @@
                             </a>
                         </div>
                     </div>
-                </div> <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                </div> 
+                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
                         <a href="{{route('shop-rent-profile',['id'=>$shopRentTax->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
@@ -176,10 +177,10 @@
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$shopRentTax->phone}}
                         </div>
 
-                        <div class="pt-2 text-center">
-                            <a href="{{route('business-send-notice',['id'=>$shopRentTax->id])}}"
+                        {{-- <div class="pt-2 text-center">
+                            <a href="{{route('shop-rent-send-notice',['id'=>$shopRentTax->id])}}"
                                 class="btn btn-sm btn-danger">Send Notice</a>
-                        </div>
+                        </div>--}}
 
                     </div>
                 </div>
@@ -218,7 +219,7 @@
             </div>
             <div class="card-body">
                 {{-- Update shop rent  profile form --}}
-                <form method="POST" id="business-details-form"
+                <form method="POST" id="shop-rent-details-form"
                     action="{{route('update-shop-rent',['id'=>$shopRentTax->id])}}">
                     @csrf
                     @method('put')
@@ -242,10 +243,6 @@
 							<input class="form-control @error('monthAssesmentAmount') is-invalid  @enderror"
 								type="text" value="{{old('monthAssesmentAmount',$shopRentTax->month_worth)}}" id="monthAssesmentAmount"
 								name="monthAssesmentAmount">
-
-							<span class="invalid-feedback" id="invalidMonthAssesmentAmount" role="alert">
-								<strong>dfafjkladfj</strong>
-							</span>
 							@error('monthAssesmentAmount')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -333,7 +330,7 @@
                                     <button type="button" class="btn btn-link"
                                         onclick="javascript:location.reload()">{{__('menu.Cancel')}}</button>
                                     <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
-                                        onclick="javascript:document.getElementById('business-details-form').submit();">{{__('menu.Confirm')}}</button>
+                                        onclick="javascript:document.getElementById('shop-rent-details-form').submit();">{{__('menu.Confirm')}}</button>
                                 </div>
 
                             </div>

@@ -15,6 +15,9 @@ use App\Vat;
 use App\Vat_payer;
 use App\Shop_rent_tax_due_payment;
 
+
+use Carbon\Carbon;
+
 class ShopRentTaxController extends Controller
 {
     //
@@ -28,7 +31,7 @@ class ShopRentTaxController extends Controller
 
     public function shoprentProfile($id)
     {
-        $vatPayer = Vat_payer::find($id);
+        $vatPayer = Vat_payer::find($id);//get vat payer id
         return view('vat.shopRent.shopRentProfile', ['vatPayer'=>$vatPayer]);
     }
 
@@ -37,7 +40,7 @@ class ShopRentTaxController extends Controller
     {
         $vatPayer = Vat_payer :: find($id); // get vat payer id
         $shopRentTax = new Shop_rent_tax();
-        $shopRentTax->registration_no = $request->assesmentNo;
+        $shopRentTax->registration_no = $request->assesmentNo; 
         $shopRentTax->key_money =$request->keyMoney;
         $shopRentTax->month_worth = $request->monthAssesmentAmount;
         $shopRentTax->shop_name = $request->businessName;
@@ -70,8 +73,8 @@ class ShopRentTaxController extends Controller
         $paid=false;
         $duePayment = 0.0;
         
-        if ($lastPaymentDate!=null && $currentDate['month'] == $lastPaymentDate['month']) { //if last_payment year matchess current year
-            $paid=true; // then this year has no due
+        if ($lastPaymentDate!=null && $currentDate['month'] == $lastPaymentDate['month']) { //if last_payment month matchess current month
+            $paid=true; // then this month has no due
         } else {
             $assessmentAmmount = $shopRentTax->month_worth;
             $dueAmount = $shopRentTax->due == null ? 0 : $shopRentTax->due->due_ammount; 
@@ -223,6 +226,7 @@ class ShopRentTaxController extends Controller
         $output .= "<br>Total Payements : Rs.".number_format($Paymentsum, 2)."/=";
         return $output;
     }
+   
 
     public function removePayment($id)
     {
@@ -273,7 +277,7 @@ class ShopRentTaxController extends Controller
     {
         $shopRentTax = Shop_rent_tax::findOrFail($id);
 
-        //update business details
+        //update shop rent details
         $shopRentTax->registration_no = $request->assesmentNo;
         $shopRentTax->month_worth = $request->monthAssesmentAmount;
         $shopRentTax->shop_name = $request->businessName;

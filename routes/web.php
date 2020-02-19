@@ -207,7 +207,7 @@ Route::get('/shop-rent/shop-rent-restore/{id}', 'vat\ShopRentTaxController@resto
 Route::get('/shop-rent/generate-report', 'vat\ShopRentTaxController@shopRentReportGeneration')->name('shop-rent-generate-report');
 Route::post('/shop-rent/generation', 'vat\ShopRentTaxController@generateReport')->name('shop-rent-report-view');
 Route::post('/shop-rent/Tax-report-pdf', 'vat\ShopRentTaxController@TaxPdf')->name('shop-rent-tax-report-pdf');
-
+//Route::get('/shop-rent/shop-rent-notice/{id}', 'vat\ShopRentTaxController@sendNotice')->name('shop-rent-send-notice');
 //booking tax
 Route::get('/booking/profile/{id}', 'vat\BookingTaxController@bookingprofile')->name('booking-profile');
 Route::post('/booking/booking-register/{id}', 'vat\BookingTaxController@registerBooking')->name('booking-register');
@@ -233,6 +233,7 @@ Route::get('/advertisement/payment-restore/{id}', 'vat\AdvertisementTaxControlle
 Route::get('/advertisement/generate-report', 'vat\AdvertisementTaxController@advertisementReportGeneration')->name('advertisement-generate-report');
 Route::post('/advertisement/generation', 'vat\AdvertisementTaxController@generateReport')->name('advertisement-report-view');
 Route::post('/advertisement/Tax-report-pdf', 'vat\AdvertisementTaxController@TaxPdf')->name('advertisement-tax-report-pdf');
+Route::put('/advertisement/payment-update', 'vat\AdvertisementTaxController@updatePayment')->name('update-advertisement-payments');
 /**
  * Routes related to entertainment tax
  *

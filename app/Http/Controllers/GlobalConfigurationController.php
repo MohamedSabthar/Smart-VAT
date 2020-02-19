@@ -306,8 +306,9 @@ class GlobalConfigurationController extends Controller
         return view('admin.globalConfigurationShopRent', ['shopRentTax'=>$shopRentTax]);
     }
 
-    public function updateShopRentPercentage(UpdateClubLicenceTaxPercentageRequest $request)
+    public function updateShopRentPercentage(UpdateBusinessTaxPercentageRequest $request)
     {
+        // dd($request->all());
         $shopRentTax = Vat::where('route', 'shoprent')->first();
 
         if ($shopRentTax->vat_percentage== $request->vatPercentage && $shopRentTax->due_date==$request->dueDate) {
@@ -316,10 +317,8 @@ class GlobalConfigurationController extends Controller
 
         $oldShopRentTax = new Vats_old_percentage;
         $oldShopRentTax->name = $shopRentTax->name;
-        $oldShopRentTax->created_at = $shopRentTax->created_at;
+        $oldShopRentTax->vat_percentage =$shopRentTax->vat_percentage;
         $oldShopRentTax->due_date = $shopRentTax->due_date;
-        $oldShopRentTax->updated_at = Carbon::now();
-
         $oldShopRentTax->save();
 
         //updateing the new vat percentage and due date
@@ -340,7 +339,7 @@ class GlobalConfigurationController extends Controller
         return view('admin.globalConfigurationAdvertisement', ['advertisementTaxPayment'=>$advertisementTaxPayment]);
     }
 
-    public function updateAdvertisementPercentage(UpdateClubLicenceTaxPercentageRequest $request)
+    public function updateAdvertisementPercentage(UpdateBusinessTaxPercentageRequest $request)
     {
         $advertisementTaxPayment = Vat::where('route', 'advertisement')->first();
 
@@ -350,14 +349,15 @@ class GlobalConfigurationController extends Controller
 
         $oldAdvertisementTaxPayment = new Vats_old_percentage;
         $oldAdvertisementTaxPayment->name = $advertisementTaxPayment->name;
-        $oldAdvertisementTaxPayment->created_at = $advertisementTaxPayment->created_at;
-        $oldAdvertisementTaxPayment->updated_at = Carbon::now();
+        $oldAdvertisementTaxPayment->vat_percentage =$advertisementTaxPayment->vat_percentage;
+        $oldAdvertisementTaxPayment->due_date = $advertisementTaxPayment->due_date;
+       
 
         $oldAdvertisementTaxPayment->save();
 
         //updateing the new vat percentage and due date
         $advertisementTaxPayment->vat_percentage = $request->vatPercentage;
-
+        $advertisementTaxPayment->due_date = $request->dueDate;
         $advertisementTaxPayment->save();
 
         return redirect()->back()->with('status', 'Advertisement tax percentages updated successfully');
