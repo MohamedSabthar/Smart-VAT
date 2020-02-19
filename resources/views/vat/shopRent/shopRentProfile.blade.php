@@ -156,7 +156,7 @@
 			</div>
 			<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 				<div class="d-flex justify-content-between">
-					<a href="#" class="btn btn-sm btn-success mr-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
+					<a href="#" class="btn btn-sm btn-success mr-4 add-buissness">{{__('menu.[+] shop')}}</a>
 				</div>
 			</div>
 			<div class="card-body pt-0 pt-md-4">
@@ -235,9 +235,6 @@
 								type="text" value="{{old('monthAssesmentAmount')}}" id="monthAssesmentAmount"
 								name="monthAssesmentAmount">
 
-							<span class="invalid-feedback" id="invalidMonthAssesmentAmount" role="alert">
-								<strong>dfafjkladfj</strong>
-							</span>
 							@error('monthAssesmentAmount')
 							<span class="invalid-feedback" role="alert">
 								<strong>{{ $message }}</strong>
@@ -339,6 +336,7 @@
 					<table id="shop_rent_table" class="table">
 						<thead class="thead-light">
 							<tr>
+								<th>Id</th>
 								<th style="width:250px;">{{__('menu.Assesment No.')}}</th>
 								<th style="width:300px;">{{__('menu.Shop Name')}}</th>
 								<th>{{__('menu.Shop Phone')}}</th>
@@ -347,6 +345,9 @@
 						</thead>
 						<thead id="search_inputs">
 							<tr>
+							    <th><input type="text" class="form-control form-control-sm" id="searchaId"
+										placeholder="{{__('menu.Id')}}" />
+								</th>
 								<th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
 										placeholder="{{__('menu.Search Assesment No.')}}" />
 								</th>
@@ -364,6 +365,7 @@
 							@foreach ($vatPayer->shoprent as $shoprent)
 							<tr>
 								<td class="text-center">{{$shoprent->id}}</td>
+								<td>{{$shoprent->registration_no}}</td>
 								<td>{{$shoprent->shop_name}}</td>
 								<td>{{$shoprent->phone}}</td>
 								<td class="text-right">
@@ -382,7 +384,7 @@
 												method="POST">
 												@csrf
 												@method('delete')
-												<input type="submit" value="{{__('menu.Remove Buisness')}}"
+												<input type="submit" value="{{__('menu.Remove Shop')}}"
 													class="dropdown-item">
 											</form>
 										</div>
@@ -395,6 +397,7 @@
 					 
 						<thead class="thead-light">
 							<tr>
+								<th>Id</th>
 								<th>{{__('menu.Assesment No.')}}</th>
 								<th>{{__('menu.Shop Name')}}</th>
 								<th>{{__('menu.Shop Phone')}}</th>
@@ -443,22 +446,29 @@
  
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
-        //individulat column search
+		//individulat column search
+		$('#searchaId').on('keyup',function(){
+			table
+				 .columns(0)
+				 .search(this.value)
+				 .draw();
+
+		});
         $('#searchaAssesmentNo').on( 'keyup', function () { 
-            table
-                .columns( 0 )
-                .search( this.value )
-                .draw();
-        });
-        $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
         });
-        $('#searchPhone').on( 'keyup', function () { 
+        $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 2 )
+                .search( this.value )
+                .draw();
+        });
+        $('#searchPhone').on( 'keyup', function () { 
+            table
+                .columns( 3 )
                 .search( this.value )
                 .draw();
         });

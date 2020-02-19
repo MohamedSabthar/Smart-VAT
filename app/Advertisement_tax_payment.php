@@ -12,7 +12,7 @@ class Advertisement_tax_payment extends Model
 
     public function payer()
     {
-        return $this->belongsTo('App\Vat_payer', 'payer_id');   //a shop/buisness belongs to one vat payer
+        return $this->belongsTo('App\Vat_payer', 'payer_id');   //a advertisement belongs to one vat payer
     }
     public function vatPayer()
     {
@@ -25,9 +25,9 @@ class Advertisement_tax_payment extends Model
     
     public function advertisementTaxPayment()
     {
-        return $this->belongsTo('App\Advertisement_tax','shop_id');    // a payment belogns to a buisness tax shop
+        return $this->belongsTo('App\Advertisement_tax','id');    // a payment belogns to a advertisement tax shop
     }
-    public static function advertisementTaxPayers()    // return vat payers; only related to industrial tax
+    public static function advertisementTaxPayers()    // return vat payers; only related to advertisement  tax
     {
         return Advertisement_tax_payment::all()->map(function ($tax) {
             return $tax->payer;

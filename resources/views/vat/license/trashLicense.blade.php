@@ -14,13 +14,14 @@
 
 @section('header')
 
-<div class="col-xl-4 col-lg-6">
+<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('license')}}`,'_self')"
+	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						{{__('menu.Club Licence Holders')}}
+						License Tax payers
 					</h3>
 					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
@@ -35,15 +36,13 @@
 	</div>
 </div>
 
-
-
-<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('club-licence-generate-report')}}`,'_self')"
+<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('license-generate-report')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
+					<h3 class="card-title text-uppercase text-muted mb-0">Report Generation</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -57,13 +56,13 @@
 	</div>
 </div>
 
-<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('get-club-licence-quick-payments')}}`,'_self')"
+<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('get-industrial-quick-payments')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
+					<h3 class="card-title text-uppercase text-muted mb-0">Quick payments</h5>
 						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -129,7 +128,7 @@
                             <tr>
 
                                 <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Club Name')}}</th>
+                                <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
                                 <th>{{__('menu.Action')}}</th>
@@ -139,30 +138,30 @@
                         </thead>
                         <thead id="search_inputs">
                             <tr>
-                                <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
+                                <th><input type="text" class="form-control form-control-sm" id="searchReciptNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
-                                        placeholder="{{__('menu.Search Club Name')}}" />
+                                <th><input type="text" class="form-control form-control-sm" id="searchName"
+                                        placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
-                                <th><input type="text" class="form-control form-control-sm" id="searchPaymentDate"
-                                        placeholder="{{__('menu.Search Payment date')}}" />
+                                <th><input type="text" class="form-control form-control-sm" id="searchDate"
+                                        placeholder="{{__('menu.Search Shop')}}" />
                                 </th>
-
-
-
+                                <th><input type="text" class="form-control form-control-sm" id="searchPayment"
+                                        placeholder="{{__('menu.Search Phone')}}" />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($clubLicenceTaxPayment as $payment)
+                            @foreach ($licenseTaxPyament as $payment)
                             <tr>
                                 <td>{{$payment->id}}</td>
-                                <td>{{$payment->clubLicenceTax->club_name}}</td>
+                                <td>{{$payment->licenseTaxShop->shop_name}}</td>
                                 <td>{{$payment->created_at}}</td>
                                 <td>{{$payment->payment}}</td>
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-club-licence-payment',['id'=>$payment->id])}}">
+                                        href="{{route('restore-payment',['id'=>$payment->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
                                 <td class="text-right">
@@ -173,7 +172,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
-                                            <form action="{{route('club-licence-remove-payment-permanent',['id'=>$payment->id])}}"
+                                            <form action="{{route('remove-payment-permanent',['id'=>$payment->id])}}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -193,7 +192,7 @@
                             <tr>
 
                                 <th>{{__('menu.Receipt No.')}}</th>
-                                <th>{{__('menu.Club Name')}}</th>
+                                <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Payment Date')}}</th>
                                 <th>{{__('menu.Payment')}}</th>
                                 <th>{{__('menu.Action')}}</th>
@@ -238,23 +237,29 @@
  
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
-        //individulat column search
-            $('#searchaAssesmentNo').on( 'keyup', function () { 
+      //individulat column search
+      $('#searchReciptNo').on( 'keyup', function () { 
             table
                 .columns( 0 )
                 .search( this.value )
                 .draw();
             });
 
-            $('#searchBuisness').on( 'keyup', function () { 
+            $('#searchName').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
             });
-            $('#searchPaymentDate').on( 'keyup', function () { 
+            $('#searchDate').on( 'keyup', function () { 
             table
                 .columns( 2 )
+                .search( this.value )
+                .draw();
+            });
+            $('#searchPayment').on( 'keyup', function () { 
+            table
+                .columns( 3 )
                 .search( this.value )
                 .draw();
             });

@@ -132,6 +132,21 @@ class LicenseTaxController extends Controller
         return redirect()->back()->with('status', 'Delete Successful'); 
 
     }
+     //trash payment
+     public function trashPayment($id)
+     {
+         $licenseTaxPyament = License_tax_payment::onlyTrashed()->where('payer_id', $id)->get();
+         return view('vat.license.trashLicense', ['licenseTaxPyament'=>$licenseTaxPyament]);
+     }
+     
+     //restore payment
+     public function restorePayment($id)
+     {
+         $licenseTaxPyament = License_tax_payment::onlyTrashed()->where('id', $id);
+         $shopId = $licenseTaxPyament->first()->shop_id;
+         $licenseTaxPyament->restore($id);
+         return redirect()->route('license-payments', ['id'=>$shopId])->with('status', 'licence restore successful');
+     }
 
 
     //soft delete license duties

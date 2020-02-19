@@ -60,12 +60,12 @@ class VatsTableSeeder extends Seeder
             'fine_percentage'=> 10,
             'route'=> 'shoprent'
         ]);
-        DB::table('vats')->insert([
-            'name' => 'Vehical Park Tax',
-            'vat_percentage' => 15,
-            'fine_percentage'=> 10,
-            'route'=> 'vehicalpark'
-        ]);
+        // DB::table('vats')->insert([
+        //     'name' => 'Vehical Park Tax',
+        //     'vat_percentage' => 15,
+        //     'fine_percentage'=> 10,
+        //     'route'=> 'vehicalpark'
+        // ]);
         DB::table('vats')->insert([
             'name' => 'Entertainment Tax',
             'route'=> 'entertainment'
@@ -75,20 +75,20 @@ class VatsTableSeeder extends Seeder
             'vat_percentage' => 15,
             'route' => 'clubLicence',
         ]);
-        DB:: table('vats')->insert([
-            'name' => 'Three Wheel Park Tax',
-            'vat_percentage' => 15,
-            'route' => 'threewheelpark',
-        ]);
-        DB:: table('vats')->insert([
-            'name' => 'Booking Tax',
-            'vat_percentage' => 15,
-            'route' => 'booking',
-        ]);
-        DB:: table('vats')->insert([
-            'name' => 'Slaughtering Tax',
-            'vat_percentage' => 15,
-            'route' => 'slaughtering',
-        ]);
+        // DB:: table('vats')->insert([
+        //     'name' => 'Three Wheel Park Tax',
+        //     'vat_percentage' => 15,
+        //     'route' => 'threewheelpark',
+        // ]);
+        // DB:: table('vats')->insert([
+        //     'name' => 'Booking Tax',
+        //     'vat_percentage' => 15,
+        //     'route' => 'booking',
+        // ]);
+        // DB:: table('vats')->insert([
+        //     'name' => 'Slaughtering Tax',
+        //     'vat_percentage' => 15,
+        //     'route' => 'slaughtering',
+        // ]);
     }
 }

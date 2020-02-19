@@ -229,9 +229,9 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h3 class="card-title text-uppercase  mb-0 text-default">{{__('menu.Booking Tax')}}</h3>
+                    <h3 class="card-title text-uppercase  mb-0 text-default">{{__('menu.License Tax')}}</h3>
                     <span class="h5 font-weight-bold mb-0 text-gray">{{__('menu.Total VAT payers')}}:
-                        {{$vatPayerCount->booking}}</span>
+                        {{$vatPayerCount->license}}</span>
 
                 </div>
                 <div class="col-auto">
@@ -241,14 +241,14 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item"
-                            href="{{route('payer-registration',['requestFrom'=>'booking'])}}">{{__('menu.Register payer')}}</a>
-                        <a class="dropdown-item" href="{{route('industrial-generate-report')}}">{{__('menu.Generate report')}}</a>
+                            href="{{route('payer-registration',['requestFrom'=>'license'])}}">{{__('menu.Register payer')}}</a>
+                        <a class="dropdown-item" href="{{route('license-generate-report')}}">{{__('menu.Generate report')}}</a>
 
                     </div>
                 </div>
             </div>
             <p class="mt-3 mb-0 text-sm">
-                <a href="{{route('booking')}}" class="text-nowrap text-primary font-weight-600" target="_blank">{{__('menu.New Window')}}</a>
+                <a href="{{route('license')}}" class="text-nowrap text-primary font-weight-600" target="_blank">{{__('menu.New Window')}}</a>
             </p>
         </div>
     </div>

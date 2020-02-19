@@ -122,50 +122,56 @@
 @endsection
 
 @section('pageContent')
-<div class ="pt-5">
-<div class="row ">
-    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-        <div class="card card-profile shadow">
-            <div class="row justify-content-center">
-                <div class="col-lg-3 order-lg-2">
-                    <div class="card-profile-image">
-                        <a href="#">
-                            <img src="{{asset('assets/img/theme/girl.png')}}" class="rounded-circle">
-                        </a>
-                    </div>
+<div class="pt-5">
+	<div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <div class="card card-profile shadow"> 
+                <div class="row justify-content-center">
+					<div class="col-lg-3 order-lg-2">
+						<div class="card-profile-image">
+							<a href="#">
+								<img src="{{asset('assets/img/theme/girl.png')}}" class="rounded-circle">
+							</a>
+						</div>
+					</div>
                 </div>
-            </div>
-            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                <div class="d-flex justify-content-between">
-                    <a href="#" class="btn btn-sm btn-success mr-4 add-buissness">{{__('menu.[+] Advertisement')}}</a>
+                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+					<div class="d-flex justify-content-between">
+						<a href="#" class="btn btn-sm btn-success mr-4 veiw-history">{{__('menu.View history')}}</a>
+					</div>
                 </div>
-            </div>
-            <div class="card-body pt-0 pt-md-4">
-                <div class="text-left pt-5">
-                    <h3 class="d-inline">{{__('menu.Name')}} : </h3> {{ucwords($vatPayer->full_name)}}
-                    <div class="pt-1">
-                        <h3 class="d-inline">{{__('menu.Address')}} : </h3> {{$vatPayer->address}}
-                    </div>
+                <div class="card-body pt-0 pt-md-4">
+					<div class="text-left pt-5">
+						<h3 class="d-inline">{{__('menu.Name')}} : </h3> {{ucwords($vatPayer->full_name)}}
+						<div class="pt-1">
+							<h3 class="d-inline">{{__('menu.Address')}} : </h3> {{$vatPayer->address}}
+						</div>
 
-                    <div class="pt-1">
-                        <h3 class="d-inline">{{__('menu.NIC')}} : </h3> {{$vatPayer->nic}}
-                    </div>
+						<div class="pt-1">
+							<h3 class="d-inline">{{__('menu.NIC')}} : </h3> {{$vatPayer->nic}}
+						</div>
 
-                    <hr class="my-4">
+						<hr class="my-4">
 
-                    <div class=" mt-4">
-                        <h3 class="d-inline">{{__('menu.E-Mail')}} : </h3> {{$vatPayer->email}} <a href="#"></a>
-                    </div>
-                    <div class="pt-1">
-                        <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
-                    </div>
-                </div>
+						<div class=" mt-4">
+							<h3 class="d-inline">{{__('menu.E-Mail')}} : </h3> {{$vatPayer->email}} <a href="#"></a>
+						</div>
+						<div class="pt-1">
+							<h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$vatPayer->phone}}
+						</div>
+						<div class="pt-2 text-center">
+							<a href="{{route('vat-payer-profile',['id'=>$vatPayer->id])}}"
+								class="btn btn-sm btn-danger">{{__('menu.Update Details')}}</a>
+						</div>
 
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-8 order-xl-1">
-    {{-- payment history card --}}
+
+					</div>
+				</div>
+            </div>    
+        </div>  
+        
+        <div class="col-xl-8 order-xl-1">
+        {{-- payment history card --}}
 			<div class="card shadow mb-5" id="payment-history">
 				<div class="card-header bg-white border-0">
 					<div class="row align-items-center">
@@ -177,9 +183,9 @@
 					</div>
 				</div>
 
-				<div class="table-responsive py-4">
+                <div class="table-responsive py-4">
 					{{-- booking tax payments table --}}
-					<table id="entertainment_payments_table" class="table  px-5">
+					<table id="shoprent_payments_table" class="table  px-5">
 						<thead class="thead-light">
 							<tr>
                                 <th>{{__('menu.Receipt No.')}}</th>
@@ -233,8 +239,6 @@
 
                             </tr>
                             @endforeach
-                            
-
 						</tbody>
 						<thead class="thead-light">
 							<tr>
@@ -251,23 +255,155 @@
 					{{-- end of booking TAX payments table --}}
 				</div>
 			</div>
-			{{-- end of payment history card --}}
-
-        <div class="card bg-secondary shadow mb-5 hide" id="business-registration">
-            <div class="card-header bg-white border-0">
+            {{-- end of payment history card --}}
+            
+            {{-- update ticket payment card --}}
+			<div class="card bg-secondary shadow mb-5 " id="update-payment-card">
+				<div class="card-header bg-white border-0">
 					<div class="row align-items-center">
 						<div class="col-8">
-							<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Advertisement payment')}}</span>
+							<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update payment')}}</span>
 							</h3>
 						</div>
 
+					</div>
 				</div>
-	   	    </div>	
-            <div class="card-body">
-                {{-- Advertisement tax registration form --}}
-                <form method="POST" action="{{route('advertisement-register',['id'=> $vatPayer->id])}}"
-                    id="business-shop-register">
-					@csrf
+				<div class="card-body">
+					{{-- Entertainment payment update form --}}
+					<form method="POST"
+						action="{{route('update-advertisement-payments')}}"
+						id="shop-rent-update-payment-form">
+						@csrf
+						@method('put')
+
+					<input type="text" value="{{old('paymentId')}}" id="paymentId" name="paymentId" hidden>
+
+					<div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Description')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('description') is-invalid  @enderror" type="text"
+                                value="" id="update-description" name="description">
+                            @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+					</div>
+					<div class="form-group row">
+						<label for="business-type"
+							class="col-md-2 col-form-label form-control-label ">{{__('menu.Advertisement type')}}</label>
+						<div class="col-md-10">
+
+							<select id="update-type" name="type" class="form-control @error('type') is-invalid  @enderror">
+							<option value="" disabled selected>Select a Advertisement type</option>
+								{{-- only for testing need to implement Ajax searchBuisness --}}
+								@foreach ($advertisementTaxType as $type)
+									<option value="{{$type->id}}" @if(old('type')==$type->id) selected
+										@endif>{{$type->description}} 
+									</option>
+								@endforeach
+							</select>
+							@error('type')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+							@enderror
+						</div>
+					</div>
+					<div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Square feet')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('squarefeet') is-invalid  @enderror" type="text"
+                                value="" id="update-squarefeet" name="squarefeet">
+                            @error('squarefeet')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input"
+                            class="col-md-2 col-form-label form-control-label ">{{__('menu.Price per square foot')}}</label>
+                        <div class="col-md-10 ">
+                            <input class="form-control @error('price') is-invalid  @enderror" type="text"
+                                value="" id="update-price" name="price">
+                            @error('price')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+						<div class="form-group">
+							{{-- <input class=" btn btn-primary float-right" value="{{__('menu.Add payment')}}"
+							type="submit"> --}}
+							<button class="btn btn-primary float-right" data-toggle="modal"
+								onclick="javascript:event.preventDefault()"
+								data-target="#confirm-update-ticket-payment">{{__('menu.Update payment')}}</button>
+
+						</div>
+
+
+					</form>
+					{{-- end of Entertainment update payment form --}}
+
+					{{-- Confirmation modal for update ticket payments--}}
+					<div class=" modal fade" id="confirm-update-ticket-payment" tabindex="-1" role="dialog"
+						aria-labelledby="modal-default" aria-hidden="true">
+						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
+
+									<p>Confirmation needed to update ticket payment for <br>
+										{{$vatPayer->full_name}}-{{$vatPayer->nic}} </p>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
+									<button type="button" id="redirect" class="btn  btn-primary ml-auto"
+										onclick="javascript:document.getElementById('shop-rent-update-payment-form').submit();">{{__('menu.Confirm')}}</button>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					{{-- End of confirmation modal --}}
+
+				</div>
+			</div>
+            {{-- end of update ticket payment card --}}
+            
+            
+			{{-- Recevie ticket payment card --}}
+			<div class="card bg-secondary shadow mb-5 hide">
+				<div class="card-header bg-white border-0">
+					<div class="row align-items-center">
+						<div class="col-8">
+							<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new event payment')}}</span>
+							</h3>
+						</div>
+
+					</div>
+				</div>
+				<div class="card-body">
+					{{-- Entertainment payment form --}}
+					<form method="POST" action="{{route('advertisement-register',['id'=> $vatPayer->id])}}"
+						id="shop-rent-register">
+						@csrf
+						
 					<div class="form-group row">
                         <label for="example-text-input"
                             class="col-md-2 col-form-label form-control-label ">{{__('menu.Description')}}</label>
@@ -328,54 +464,65 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary float-right" data-toggle="modal"
-                            onclick="javascript:event.preventDefault()"
-                            data-target="#confirm-register-business">{{__('menu.Add')}}</button>
-                    </div>
+
+						<div class="form-group">
+							{{-- <input class=" btn btn-primary float-right" value="{{__('menu.Add payment')}}"
+							type="submit"> --}}
+							<button class="btn btn-primary float-right" data-toggle="modal"
+								onclick="javascript:event.preventDefault()"
+								data-target="#confirm-ticket-payment">{{__('menu.Add')}}</button>
+
+						</div>
 
 
-                    {{-- Confirmation modal for adding business for the registered VAT payer--}}
-                    <div class=" modal fade" id="confirm-register-business" tabindex="-1" role="dialog"
-                        aria-labelledby="modal-default" aria-hidden="true">
-                        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                            <div class="modal-content">
+					</form>
+					{{-- end of Entertainment payment form --}}
 
-                                <div class="modal-header">
-                                    <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
+					{{-- Confirmation modal for adding ticket payments--}}
+					<div class=" modal fade" id="confirm-ticket-payment" tabindex="-1" role="dialog"
+						aria-labelledby="modal-default" aria-hidden="true">
+						<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+							<div class="modal-content">
 
-                                    <p>Confirmation needed to add a business for <br>
-                                        {{$vatPayer->full_name}}-{{$vatPayer->nic}} </p>
-                                </div>
+								<div class="modal-header">
+									<h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+									</button>
+								</div>
+								<div class="modal-body">
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-link"
-                                        onclick="javascript:location.reload()">Cancel</button>
-                                    <button type="button" id="redirect" class="btn  btn-primary ml-auto"
-                                        onclick="javascript:document.getElementById('business-shop-register').submit();">{{__('menu.Confirm')}}</button>
-                                </div>
+									<p>Confirmation needed to add a ticket payment for <br>
+										{{$vatPayer->full_name}}-{{$vatPayer->nic}} </p>
+								</div>
 
-                            </div>
-                        </div>
-                    </div>
-                    {{-- End of confirmation modal --}}
+								<div class="modal-footer">
+									<button type="button" class="btn btn-link"
+										onclick="javascript:location.reload()">Cancel</button>
+									<button type="button" id="redirect" class="btn  btn-primary ml-auto"
+										onclick="javascript:document.getElementById('shop-rent-register').submit();">{{__('menu.Confirm')}}</button>
+								</div>
 
-                </form>
-                {{-- end of Industrial shop registration form --}}
-            </div>
-        </div>
-        
+							</div>
+						</div>
+					</div>
+					{{-- End of confirmation modal --}}
 
-       
-    </div>
-</div>
-</div>
+				</div>
+			</div>
+			{{-- end of Receive payment card --}}
+
+    
+
+
+
+
+
+        </div>    
+    </div>   
+</div>     
 @endsection
+
 
 @push('script')
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
@@ -385,7 +532,7 @@
 	$(document).ready(function() {
 
 
-        var id = '#entertainment_payments_table';                      //data table id
+        var id = '#shoprent_payments_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
@@ -398,7 +545,26 @@
           '<"py-3 col-sm-12 col-md-6 px-md-5"i>'+
           '<"py-3 col-sm-12 col-md-6 px-md-5 px-sm-3"p>>'+
           '>'
-        });            //table object
+		});            //table object
+
+		@if(!$errors->any())
+        $('#update-payment-card').hide();
+        @endif
+
+        $('.toggle-update').on('click',function(){
+				$("#payment-history").hide();
+                var payment = $(this).data('value')
+                $('#paymentId').val(payment.id);
+				$('#update-description').val(payment.description)
+				$('#update-type').val(payment.type)
+				$('#update-squarefeet').val(payment.square_feet)
+				$('#update-price').val(payment.price)
+                $('html, body').animate({
+                scrollTop: $("#update-payment-card").offset().top
+                    }, 100)
+                $('#update-payment-card').slideDown("slow")
+               
+            });
  
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
@@ -422,70 +588,17 @@
                 .draw();
         });
 
-        //toggle transition for buisness registration form
-        $("#business-registration").hide();
-        $(".add-buissness").on('click',function(){
-            $("#business-registration").slideToggle("slow");
+        $("#payment-history").hide();
+
+				@if(!$errors->any())
+				$("#update-payment-card").hide();
+				@endif
+
+        $(".veiw-history").on('click',function(){
+						$("#update-payment-card").hide();
+            $("#payment-history").slideToggle("slow");
         });
-        $('#type').select2({
-            placeholder: "Select business type here",
-            allowClear: true,
-        });
-        $('#annualAssesmentAmount').blur(function(){
-            var assessmentAmmount = $(this).val()
-           if(!$.isNumeric(assessmentAmmount)){
-            $(this).addClass('is-invalid')
-            $('#invalidAnnualAssesmentAmount').removeClass('d-none')
-            $('#invalidAnnualAssesmentAmount>strong').text("{{__('menu.Invalid Assesment Amount')}}")
-            
-           }else{
-               $(this).removeClass('is-invalid')
-               $.ajaxSetup({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-            });
-            $('#type').select2({
-                placeholder: "Select business type here",
-            allowClear: true,
-            ajax: {
-                url: "{{route('get-business-types')}}",
-                dataType: 'json',
-                type:"POST",
-                delay: 250,
-                data: function (params) {
-                        return {
-                            assessmentAmmount : assessmentAmmount,
-                            search: params.term,
-                            
-                        };
-                },
-                processResults: function (data) {
-                     return {
-                         results:$.map(data.results, function (obj) {
-                            return {id:obj.id,text:obj.description}
-                    })
-                    }
-                     
-                },
-                cache: true
-            },
-            // minimumInputLength: 1,
         
-            });
-            // $.ajax({
-            //     url: "{{route('get-business-types')}}",
-            //     type:"POST",
-            //     data: { assessmentAmmount : assessmentAmmount },
-            //     success:function(data){
-            //                 // alert(data);
-            //                 console.log(data);
-            //                 $('ul#select2-type-results').empty()
-            //     },error:function(){ 
-            //                 alert("error!!!!");
-            //             }
-            // });
-           }
-        })
-            
-    } );
+      });
 </script>
 @endpush

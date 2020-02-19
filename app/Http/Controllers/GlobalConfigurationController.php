@@ -297,6 +297,73 @@ class GlobalConfigurationController extends Controller
 
     }
 
+     /*
+    * Shop Rent Tax percentage update
+    */
+    public function updateShopRentTaxForm()
+    {
+        $shopRentTax = Vat::where('route', 'shoprent')->first();
+        return view('admin.globalConfigurationShopRent', ['shopRentTax'=>$shopRentTax]);
+    }
+
+    public function updateShopRentPercentage(UpdateBusinessTaxPercentageRequest $request)
+    {
+        // dd($request->all());
+        $shopRentTax = Vat::where('route', 'shoprent')->first();
+
+        if ($shopRentTax->vat_percentage== $request->vatPercentage && $shopRentTax->due_date==$request->dueDate) {
+            return redirect()->back()->with('error','Details are not updated');
+        } 
+
+        $oldShopRentTax = new Vats_old_percentage;
+        $oldShopRentTax->name = $shopRentTax->name;
+        $oldShopRentTax->vat_percentage =$shopRentTax->vat_percentage;
+        $oldShopRentTax->due_date = $shopRentTax->due_date;
+        $oldShopRentTax->save();
+
+        //updateing the new vat percentage and due date
+        $shopRentTax->vat_percentage = $request->vatPercentage;
+        $shopRentTax->due_date = $request->dueDate;
+        $shopRentTax->save();
+
+        return redirect()->back()->with('status', 'Shop Rent tax percentages updated successfully');    
+
+    }
+
+     /*
+    * Advertisement Tax percentage update
+    */
+    public function updateAdvertisementTaxForm()
+    {
+        $advertisementTaxPayment = Vat::where('route', 'advertisement')->first();
+        return view('admin.globalConfigurationAdvertisement', ['advertisementTaxPayment'=>$advertisementTaxPayment]);
+    }
+
+    public function updateAdvertisementPercentage(UpdateBusinessTaxPercentageRequest $request)
+    {
+        $advertisementTaxPayment = Vat::where('route', 'advertisement')->first();
+
+        if ($advertisementTaxPayment->vat_percentage== $request->vatPercentage && $advertisementTaxPayment->due_date==$request->dueDate) {
+            return redirect()->back()->with('error','Details are not updated');
+        } 
+
+        $oldAdvertisementTaxPayment = new Vats_old_percentage;
+        $oldAdvertisementTaxPayment->name = $advertisementTaxPayment->name;
+        $oldAdvertisementTaxPayment->vat_percentage =$advertisementTaxPayment->vat_percentage;
+        $oldAdvertisementTaxPayment->due_date = $advertisementTaxPayment->due_date;
+       
+
+        $oldAdvertisementTaxPayment->save();
+
+        //updateing the new vat percentage and due date
+        $advertisementTaxPayment->vat_percentage = $request->vatPercentage;
+        $advertisementTaxPayment->due_date = $request->dueDate;
+        $advertisementTaxPayment->save();
+
+        return redirect()->back()->with('status', 'Advertisement tax percentages updated successfully');
+
+    }
+
 
     private function getVatDetails()
     {
@@ -306,6 +373,8 @@ class GlobalConfigurationController extends Controller
         $vatDetails->entertainment = Vat::where('route', 'entertainment')->first();
         $vatDetails->land = Vat::where('route', 'land')->first();
         $vatDetails->clubLicence = Vat::where('route', 'clubLicence')->first();
+        $vatDetails->shoprent = Vat::where('route','shoprent')->first();
+        $vatDetails->advertisement = Vat::where('route','advertisement')->first();
         return $vatDetails;
     }
 
