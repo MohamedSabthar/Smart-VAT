@@ -298,6 +298,7 @@ return [
     //Land tax
     '[+] Premises' => '[+] Premises',
     's premises hired' => 's premises hired',
+    'Premises ID' => 'Premises ID',
     'Premises Name' => 'Premises Name',
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
@@ -332,6 +333,7 @@ return [
     'Remove Club' => 'Remove Club',
     'Trash Club Licence' => 'Trash Club Licence',
     'Restore Club Licence' => 'Restore Club Licence',
+    'Search Club Name' => 'Search Club Name',
 
     //side bar
     'Business Tax' =>'Business Tax',

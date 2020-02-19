@@ -29,6 +29,7 @@
                         <th style="width:250px;"class="text-center">{{__('menu.VAT Payers NIC')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.VAT Payer Name')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.Club')}}</th>
+                        <th style="width:300px;"class="text-center">{{ __('menu.Address')}}</th>
                         <th style="width:300px;"class="text-center">{{ __('menu.Payment')}}</th>
                         <th style="width:300px;"class="text-center">{{ __("menu.Payment Date")}}</th>
                     </tr>
@@ -39,7 +40,8 @@
                     <tr>
                         <td class="text-center">{{ $record->vatPayer->nic }}</td>
                         <td >{{ $record->vatPayer->full_name }}</td>
-                        <td >{{ $record->shop_id."-".$record->businessTaxShop->shop_name }}</td>
+                        <td >{{ $record->club_id."-".$record->clubLicenceTax->club_name }}</td>
+                        <td >{{ $record->club_id."-".$record->clubLicenceTax->address}}</td>
                         <td class="text-center">Rs. {{ number_format($record->payment, 2) }}</td>
                         <td class="text-center">{{ $record->updated_at }}</td>
                     </tr>

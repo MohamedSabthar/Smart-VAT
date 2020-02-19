@@ -119,7 +119,7 @@
 
 			<div class="table-responsive py-4">
 				{{-- Land VAT payers table --}}
-				<table id="industrial_payer_table" class="table  px-5">
+				<table id="land_payer_table" class="table  px-5">
 					<thead class="thead-light">
 						<tr>
 							<th>{{__('menu.User ID')}}</th>
@@ -208,7 +208,7 @@
 <script>
 	$(document).ready(function() {
 
-        var id = '#industrial_payer_table';                      //data table id
+        var id = '#land_payer_table';                      //data table id
         var table = $(id).DataTable({
           "pagingType": "full_numbers",
           "sDom": '<'+
