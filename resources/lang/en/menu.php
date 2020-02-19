@@ -300,6 +300,7 @@ return [
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
     'Restore Premises' => 'Restore Premises',
+    'Update Premises Details' => 'Update Premises Details',
 
     //advertisement tax
     '[+] Advertisement'=>'[+] Advertisement',
@@ -321,6 +322,7 @@ return [
     
     // Club licence tax
     'Club licence'=> 'Club licence',
+    'Club Licence Tax Payers' => 'Club Licence Tax Payers',
     '[+] Club' => '[+] Club',
     's clubs' => 's clubs' ,
     'Add new Club' => 'Add new Club',
