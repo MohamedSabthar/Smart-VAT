@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ShopRentTableSeeder::class);
         $this->call(ClubLicenseTableSeeder::class);
         $this->call(LandTaxTableSeeder::class);
+        $this->call(IndustrialTaxShopTableSeeder::class);
     }
 }
