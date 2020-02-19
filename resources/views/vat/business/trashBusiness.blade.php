@@ -125,7 +125,7 @@
                     <table id="trash_business" class="table">
                         <thead class="thead-light">
                             <tr>
-
+                                <th>Id</th>
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
@@ -134,6 +134,9 @@
                         </thead>
                         <thead id="search_inputs">
                             <tr>
+                                <th><input type ="text" class ="form-control form-control-sm" id="searchId"
+                                        placeholder="searchId"/>
+                                </th> 
                                 <th><input type="text" class="form-control form-control-sm" id="searchAssesmentNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
@@ -153,6 +156,7 @@
                             @foreach ($businessTaxShop as $business)
                             <tr>
                                 <td>{{$business->id}}</td>
+                                <td>{{$business->registration_no}}</td>
                                 <td>{{$business->shop_name}}</td>
                                 <td>{{$business->phone}}</td>
 
@@ -168,6 +172,7 @@
 
                         <thead class="thead-light">
                             <tr>
+                                <th>Id</th>
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Shop Name')}}</th>
                                 <th>{{__('menu.Phone')}}</th>
@@ -213,22 +218,28 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
+             $('#searchId').on('keyup',function(){
+            table
+                .columns(0)
+                .search(this.value)
+                .draw();
+            });
             $('#searchAssesmentNo').on( 'keyup', function () { 
             table
-                .columns( 0 )
+                .columns( 1 )
                 .search( this.value )
                 .draw();
             });
 
             $('#searchBuisness').on( 'keyup', function () { 
             table
-                .columns( 1 )
+                .columns( 2 )
                 .search( this.value )
                 .draw();
             });
             $('#searchPhone').on( 'keyup', function () { 
             table
-                .columns( 2 )
+                .columns( 3 )
                 .search( this.value )
                 .draw();
             });

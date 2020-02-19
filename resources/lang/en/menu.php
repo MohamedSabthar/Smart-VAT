@@ -127,6 +127,7 @@ return [
     's profile'=> 's profile',
     'Business Tax Payers' => 'Business Tax Payers',
     'Industrial Tax Payers' => 'Industrial Tax Payers',
+    'Industrial type'=>'Industrial type',
     'Entertainment Tax Payers' => 'Entertainment Tax Payers',
     'Land Tax Payers' => 'Land Tax Payers',
     'Club Licence Holders' => 'Club Licence Holders',
@@ -291,6 +292,7 @@ return [
     'End Date'=>'End Date',
     'Accept payments'=>'Accept payments',
     'Restore Shop'=>'Restore Shop',
+    '[+] shop'=>'shop',
     
 
     //Land tax

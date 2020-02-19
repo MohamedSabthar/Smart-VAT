@@ -15,6 +15,9 @@ use App\Vat;
 use App\Vat_payer;
 use App\Shop_rent_tax_due_payment;
 
+
+use Carbon\Carbon;
+
 class ShopRentTaxController extends Controller
 {
     //
@@ -28,7 +31,7 @@ class ShopRentTaxController extends Controller
 
     public function shoprentProfile($id)
     {
-        $vatPayer = Vat_payer::find($id);
+        $vatPayer = Vat_payer::find($id);//get vat payer id
         return view('vat.shopRent.shopRentProfile', ['vatPayer'=>$vatPayer]);
     }
 
@@ -37,7 +40,7 @@ class ShopRentTaxController extends Controller
     {
         $vatPayer = Vat_payer :: find($id); // get vat payer id
         $shopRentTax = new Shop_rent_tax();
-        $shopRentTax->registration_no = $request->assesmentNo;
+        $shopRentTax->registration_no = $request->assesmentNo; 
         $shopRentTax->key_money =$request->keyMoney;
         $shopRentTax->month_worth = $request->monthAssesmentAmount;
         $shopRentTax->shop_name = $request->businessName;
@@ -70,8 +73,8 @@ class ShopRentTaxController extends Controller
         $paid=false;
         $duePayment = 0.0;
         
-        if ($lastPaymentDate!=null && $currentDate['month'] == $lastPaymentDate['month']) { //if last_payment year matchess current year
-            $paid=true; // then this year has no due
+        if ($lastPaymentDate!=null && $currentDate['month'] == $lastPaymentDate['month']) { //if last_payment month matchess current month
+            $paid=true; // then this month has no due
         } else {
             $assessmentAmmount = $shopRentTax->month_worth;
             $dueAmount = $shopRentTax->due == null ? 0 : $shopRentTax->due->due_ammount; 
@@ -167,6 +170,64 @@ class ShopRentTaxController extends Controller
         }
         
     }
+    
+    public function TaxPdf(ShopRentTaxReportRequest $request)                                                      //pdf generation library function
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $dates = (object)$request->only(["startDate","endDate"]);
+
+        $records = Shop_rent_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
+        $Paymentsum=Shop_rent_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->sum('payment');
+        $ShopCount=Shop_rent_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->count('shop_id');
+        $pdf->loadHTML($this->TaxReportHTML($records, $dates, $Paymentsum, $ShopCount));
+        
+
+       
+        return $pdf->stream();
+        // $reportData = BusinessReport::generateBusinessReport($dates);
+        // $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
+        // $pdf->loadView('vat.business.ab', ['dates'=>$dates,'records'=>$records,'reportData'=>$reportData]);
+   
+        // return $pdf->stream();
+    }
+
+
+    public function TaxReportHTML($records, $dates, $Paymentsum, $ShopCount)
+    {
+        $output = "
+        <h3 align='center'>Businness Tax Report from $dates->startDate to $dates->endDate </h3>
+        <table width='100%' style='border-collapse: collapse; border: 0px;' class='table'>
+         <tr>
+       <th style='border: 1px solid; padding:12px;' width='15%'>VAT PAYER'S NIC</th>
+       <th style='border: 1px solid; padding:12px;' width='25%'>VAT PAYER'S NAME</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>SHOP</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT</th>
+       <th style='border: 1px solid; padding:12px;' width='20%'>PAYMENT DATE</th>
+   
+       
+       
+      </tr>
+        ";
+        foreach ($records as $record) {
+            $output .= '
+         <tr>
+         <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->nic.'</td>
+          <td style="border: 1px solid; padding:12px;">'.$record->vatPayer->full_name.'</td>
+          <td style="border: 1px solid; padding:12px;">'.$record->shop_id.' - '.$record->shopRentTax->shop_name.'</td>
+          <td style="border: 1px solid; padding:12px;">'.'Rs. '.number_format($record->payment, 2).'</td>
+          <td style="border: 1px solid; padding:12px;">'.$record->updated_at.'</td>
+           
+         </tr>
+         ';
+        }
+        
+        $output .= '</table>';
+        $output .= "<br>Total Shops : ".$ShopCount;
+        $output .= "<br>Total Payements : Rs.".number_format($Paymentsum, 2)."/=";
+        return $output;
+    }
+   
+
     public function removePayment($id)
     {
         $shoprentTaxpayment =  Shop_rent_tax_payment::find($id);
@@ -216,7 +277,7 @@ class ShopRentTaxController extends Controller
     {
         $shopRentTax = Shop_rent_tax::findOrFail($id);
 
-        //update business details
+        //update shop rent details
         $shopRentTax->registration_no = $request->assesmentNo;
         $shopRentTax->month_worth = $request->monthAssesmentAmount;
         $shopRentTax->shop_name = $request->businessName;

@@ -262,7 +262,7 @@ return [
      'Business Range Types'=>'Business Range Types',
      'Assessment Ranges of Industrial Tax' => 'Assessment Ranges of Industrial Tax',
      'Industrial Range Types'=>'Industrial Range Types',
-
+     'Industrial type'=>'කර්මාන්ත වර්ගය',
 
     //Land tax
     '[+] Premises' => '[+] පරිශ්‍රය',
@@ -297,6 +297,7 @@ return [
     'End Date'=>'අවසාන දිනය',
     'Accept payments'=>'ගෙවීම් භාර ගන්න',
     'Restore Shop'=>'සාප්පුව ප්‍රතිස්ථාපනය කරන්න',
+    '[+] shop' =>'සාප්පුව',
 
      //advertisement tax
     '[+] Advertisement'=>'ප්‍රචාරක දැන්වීම්',

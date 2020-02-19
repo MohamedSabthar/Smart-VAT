@@ -81,14 +81,14 @@
 
 
 <div class="col-xl-3 col-lg-6"
-    onclick="javascript:window.open(`{{route('industrial-trash-payment',['id'=>$licenseTaxShop->payer->id])}}`,'_self')"
+    onclick="javascript:window.open(`{{route('licence-trash-payment',['id'=>$licenseTaxShop->payer->id])}}`,'_self')"
     style="cursor:pointer">
     <div class="card card-stats mb-4 mb-xl-0">
         <div class="card-body">
             <div class="row">
                 <div class="col">
                     <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Pyament</center>
+                        <center>Restore Payment</center>
                     </h3>
                 </div>
                 <div class="col-auto">

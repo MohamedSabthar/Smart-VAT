@@ -80,7 +80,7 @@
                     </div>
                 </div>
 
-                {{-- <div class="form-group row col-12 ">
+                <div class="form-group row col-12 ">
                     <label for="example-text-input" class="col-md-2 col-form-label form-control-label ">
                         Advertisement Tax Due date </label>
                     <div class="col-md-7">
@@ -93,7 +93,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-                    </div> --}}
+                    </div>
 
 
                     <input type="submit" id="register" value="Update" class="btn btn-primary col-md-2 mx-3 mt-3 mt-md-0"
