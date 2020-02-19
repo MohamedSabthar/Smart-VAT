@@ -12,7 +12,7 @@
         {{-- CSRF Token --}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
         {{-- Favicon --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script> --}}
 
         {{-- CSS Files --}}
         <link href="{{ ltrim(public_path('assets/css/argon-dashboard.css?v=1.1.0'))}}" rel="stylesheet"

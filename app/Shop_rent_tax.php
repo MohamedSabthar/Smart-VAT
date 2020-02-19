@@ -17,7 +17,7 @@ class Shop_rent_tax extends Model
 
     public function payer()
     {
-        return $this->belongsTo('App\Vat_payer', 'payer_id');   //a shop/buisness belongs to one vat payer
+        return $this->belongsTo('App\Vat_payer', 'payer_id');   //a shop belongs to one vat payer
     }
 
     public function user()

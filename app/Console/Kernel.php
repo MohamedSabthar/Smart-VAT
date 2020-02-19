@@ -38,23 +38,23 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         
-        //sending business tax overdue notification
-        $schedule->call(Timer::trigerBusinessDue())
-        ->when(Timer::triger('business'));
-        // ->everyMinute();
+        // //sending business tax overdue notification
+        // $schedule->call(Timer::trigerBusinessDue())
+        // ->when(Timer::triger('business'));
+        // // ->everyMinute();
         
-        // sending industrial tax overdue notification
-        $schedule->call(Timer::trigerIndustrialDue())
-        ->when(Timer::triger('industrial'));
+        // // sending industrial tax overdue notification
+        // $schedule->call(Timer::trigerIndustrialDue())
+        // ->when(Timer::triger('industrial'));
+        // // // ->everyMinute();
+
+        // //start due payment transations
+        // $schedule->call(Timer::trigerBusinessDueTransaction())
+        // ->when(Timer::triger('business'));
         // // ->everyMinute();
 
-        //start due payment transations
-        $schedule->call(Timer::trigerBusinessDueTransaction())
-        ->when(Timer::triger('business'));
-        // ->everyMinute();
-
-        $schedule->call(Timer::trigerIndustrialDueTransaction())
-        ->when(Timer::triger('industrial'));
+        // $schedule->call(Timer::trigerIndustrialDueTransaction())
+        // ->when(Timer::triger('industrial'));
     }
 
     /**

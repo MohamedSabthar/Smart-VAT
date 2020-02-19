@@ -259,7 +259,6 @@
         <a class="dropdown-item"
             href="{{route('payer-registration',['requestFrom'=>'booking'])}}">{{__('menu.Register payer')}}</a>
         <a class="dropdown-item" href="{{route('industrial-generate-report')}}">{{__('menu.Generate report')}}</a>
-
     </div>
 </div>
 </div>

@@ -206,8 +206,8 @@ Route::get('/shop-rent/shop-rent-trash/{payer_id}', 'vat\ShopRentTaxController@t
 Route::get('/shop-rent/shop-rent-restore/{id}', 'vat\ShopRentTaxController@restoreShopRent')->name('restore-shop-rent'); // restore business
 Route::get('/shop-rent/generate-report', 'vat\ShopRentTaxController@shopRentReportGeneration')->name('shop-rent-generate-report');
 Route::post('/shop-rent/generation', 'vat\ShopRentTaxController@generateReport')->name('shop-rent-report-view');
-
-
+Route::post('/shop-rent/Tax-report-pdf', 'vat\ShopRentTaxController@TaxPdf')->name('shop-rent-tax-report-pdf');
+//Route::get('/shop-rent/shop-rent-notice/{id}', 'vat\ShopRentTaxController@sendNotice')->name('shop-rent-send-notice');
 //booking tax
 Route::get('/booking/profile/{id}', 'vat\BookingTaxController@bookingprofile')->name('booking-profile');
 Route::post('/booking/booking-register/{id}', 'vat\BookingTaxController@registerBooking')->name('booking-register');
@@ -233,6 +233,7 @@ Route::get('/advertisement/payment-restore/{id}', 'vat\AdvertisementTaxControlle
 Route::get('/advertisement/generate-report', 'vat\AdvertisementTaxController@advertisementReportGeneration')->name('advertisement-generate-report');
 Route::post('/advertisement/generation', 'vat\AdvertisementTaxController@generateReport')->name('advertisement-report-view');
 Route::post('/advertisement/Tax-report-pdf', 'vat\AdvertisementTaxController@TaxPdf')->name('advertisement-tax-report-pdf');
+Route::put('/advertisement/payment-update', 'vat\AdvertisementTaxController@updatePayment')->name('update-advertisement-payments');
 /**
  * Routes related to entertainment tax
  *
@@ -363,7 +364,8 @@ Route::post('/license/Tax-report-pdf', 'vat\LicenseTaxController@TaxPdf')->name(
 Route::post('/license/Summary-report-pdf', 'vat\LicenseTaxController@summaryPdf')->name('license-summary-report-pdf');
 Route::post('/license/get-license-types', 'vat\LicenseTaxController@getLicensetypes')->name('get-license-types');
 Route::delete('/license/payment-remove/{id}', 'vat\LicenseTaxController@removePayment')->name('remove-license-payment');//soft delete industrial payment
-
+Route::get('/license/payment-trash/{id}', 'vat\LicenseTaxController@trashPayment')->name('licence-trash-payment'); //trash business payment
+Route::get('/business/payment-restore/{shop_id}', 'vat\LicenseTaxController@restorePayment')->name('restore-licence-payment');
 
 Route::get('/test', function () {
     return view('vat.license.test');

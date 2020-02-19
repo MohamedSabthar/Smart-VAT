@@ -127,6 +127,7 @@ return [
     's profile'=> 's profile',
     'Business Tax Payers' => 'Business Tax Payers',
     'Industrial Tax Payers' => 'Industrial Tax Payers',
+    'Industrial type'=>'Industrial type',
     'Entertainment Tax Payers' => 'Entertainment Tax Payers',
     'Land Tax Payers' => 'Land Tax Payers',
     'Club Licence Holders' => 'Club Licence Holders',
@@ -291,11 +292,13 @@ return [
     'End Date'=>'End Date',
     'Accept payments'=>'Accept payments',
     'Restore Shop'=>'Restore Shop',
+    '[+] shop'=>'shop',
     
 
     //Land tax
     '[+] Premises' => '[+] Premises',
     's premises hired' => 's premises hired',
+    'Premises ID' => 'Premises ID',
     'Premises Name' => 'Premises Name',
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
@@ -330,6 +333,7 @@ return [
     'Remove Club' => 'Remove Club',
     'Trash Club Licence' => 'Trash Club Licence',
     'Restore Club Licence' => 'Restore Club Licence',
+    'Search Club Name' => 'Search Club Name',
 
     //side bar
     'Business Tax' =>'Business Tax',

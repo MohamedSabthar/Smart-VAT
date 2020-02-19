@@ -20,7 +20,7 @@ use App\Business_tax_due_payment;
 use App\Assessment_range;
 
 use App\Jobs\BusinessTaxNoticeJob;
-
+use App;
 use Auth;
 use Carbon\Carbon;
 
@@ -192,7 +192,7 @@ class BusinessTaxController extends Controller
 
     public function TaxPdf(BusinessTaxReportRequest $request)                                                      //pdf generation library function
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
@@ -247,7 +247,7 @@ class BusinessTaxController extends Controller
     }
     public function summaryPdf(BusinessTaxReportRequest $request)                         //Summary Report PDF
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
@@ -445,7 +445,7 @@ class BusinessTaxController extends Controller
 
     public function getUnpaidVatPayerPdf()
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
 
         $payersDue = Business_tax_due_payment::where('due_ammount', '!=', 0)->get();
         $year = Carbon::now()->toArray()['year'];
