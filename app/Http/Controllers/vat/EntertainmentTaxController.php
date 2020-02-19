@@ -10,7 +10,7 @@ use App\Http\Requests\UpdateEntertainmentTicketPaymentRequest;
 use App\Http\Requests\AddEntertainmentPerformancePaymentRequest;
 use App\Http\Requests\UpdateEntertainmentPerformancePaymentRequest;
 
-
+use App;
 use Auth;
 
 use App\Vat_payer;
@@ -215,7 +215,7 @@ class EntertainmentTaxController extends Controller
 
     public function ticketTaxPdf(IndustrialTaxReportRequest $request)                                                      //pdf generation library function
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Entertainment_tax_tickets_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
@@ -228,7 +228,7 @@ class EntertainmentTaxController extends Controller
 
     public function ticketSummaryPdf(IndustrialTaxReportRequest $request)                         //Summary Report PDF
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Entertainment_tax_tickets_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
@@ -315,7 +315,7 @@ class EntertainmentTaxController extends Controller
 
     public function performanceTaxPdf(IndustrialTaxReportRequest $request)                                                      //pdf generation library function
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Entertainment_tax_performance_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
@@ -328,7 +328,7 @@ class EntertainmentTaxController extends Controller
 
     public function performanceSummaryPdf(IndustrialTaxReportRequest $request)                         //Summary Report PDF
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Entertainment_tax_performance_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
