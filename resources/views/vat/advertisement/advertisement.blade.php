@@ -134,7 +134,7 @@
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 										<a class="dropdown-item"
-											href="{{route('advertisement-profile',['id'=>$payer->id])}}">{{__('mrnu.View profile')}}</a>
+											href="{{route('advertisement-profile',['id'=>$payer->id])}}">{{__('menu.View profile')}}</a>
 									</div>
 
 								</div>

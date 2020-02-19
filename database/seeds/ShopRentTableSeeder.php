@@ -81,6 +81,7 @@ class ShopRentTableSeeder extends Seeder
            
 
         ]);
+      
         // DB::table('shop_rent_tax')->insert([
         //     'shop_name' => 'wasana bakery',
         //     'key_money'=>'15750',
@@ -92,9 +93,8 @@ class ShopRentTableSeeder extends Seeder
         //     'city' => 'Galle',
         //     'payer_id'   => 6,
         //     'employee_id' => 1,
-           
-
         // ]);
+
         DB::table('shop_rent_tax')->insert([
             'shop_name' => 'Indra trades',
             'key_money'=>'19000',

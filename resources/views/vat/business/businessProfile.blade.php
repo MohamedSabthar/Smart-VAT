@@ -380,6 +380,7 @@
                     <table id="business_shops_table" class="table">
                         <thead class="thead-light">
                             <tr>
+                                <th style ="width:200px">Id</th>
                                 <th style="width:250px;">{{__('menu.Assesment No.')}}</th>
                                 <th style="width:300px;">{{__('menu.Business Name')}}</th>
                                 <th>{{__('menu.Shop Phone')}}</th>
@@ -388,9 +389,13 @@
                         </thead>
                         <thead id="search_inputs">
                             <tr>
+                                <th><input type ="text" class ="form-control form-control-sm" id="searchId"
+                                        placeholder="searchId"/>
+                                </th>  
                                 <th><input type="text" class="form-control form-control-sm" id="searchaAssesmentNo"
                                         placeholder="{{__('menu.Search Assesment No.')}}" />
                                 </th>
+                                     
                                 <th><input type="text" class="form-control form-control-sm" id="searchBuisness"
                                         placeholder="{{__('menu.Search Business Name')}}" />
                                 </th>
@@ -405,6 +410,7 @@
                             @foreach ($vatPayer->buisness as $buisness)
                             <tr>
                                 <td class="text-center">{{$buisness->id}}</td>
+                                <td class="text-center">{{$buisness->registration_no}}</td>
                                 <td>{{$buisness->shop_name}}</td>
                                 <td>{{$buisness->phone}}</td>
                                 <td class="text-right">
@@ -435,6 +441,7 @@
                         </tbody>
                         <thead class="thead-light">
                             <tr>
+                                <th style ="width:200px">Id</th>
                                 <th>{{__('menu.Assesment No.')}}</th>
                                 <th>{{__('menu.Business Name')}}</th>
                                 <th>{{__('menu.Shop Phone')}}</th>
@@ -477,21 +484,27 @@
         $(id+'_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
         
         //individulat column search
-        $('#searchaAssesmentNo').on( 'keyup', function () { 
+        $('#searchId').on('keyup',function(){
             table
-                .columns( 0 )
-                .search( this.value )
+                .columns(0)
+                .search(this.value)
                 .draw();
         });
-        $('#searchBuisness').on( 'keyup', function () { 
+        $('#searchaAssesmentNo').on( 'keyup', function () { 
             table
                 .columns( 1 )
                 .search( this.value )
                 .draw();
         });
-        $('#searchPhone').on( 'keyup', function () { 
+        $('#searchBuisness').on( 'keyup', function () { 
             table
                 .columns( 2 )
+                .search( this.value )
+                .draw();
+        });
+        $('#searchPhone').on( 'keyup', function () { 
+            table
+                .columns( 3 )
                 .search( this.value )
                 .draw();
         });

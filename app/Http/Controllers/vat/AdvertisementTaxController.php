@@ -20,8 +20,9 @@ class AdvertisementTaxController extends Controller
     {
         $vatPayer = Vat_payer::find($id);
         $advertisementTaxType = Advertisement_tax::all();
+        //$advertisementTaxPayment=Advertisement_tax_payment;
 
-        return view('vat.advertisement.advertisementPayment', ['vatPayer'=>$vatPayer,'advertisementTaxType'=>$advertisementTaxType]);
+        return view('vat.advertisement.advertisementPayment', ['vatPayer'=>$vatPayer,'advertisementTaxType'=>$advertisementTaxType,]);
     }
 
     
@@ -36,9 +37,25 @@ class AdvertisementTaxController extends Controller
         $advertisementTaxPayment ->final_payment = $this->calculateTax($request->price, $request->squarefeet);
         $advertisementTaxPayment ->employee_id =Auth::user()->id; // get releted employee id
         $advertisementTaxPayment ->payer_id =$id;
-       
+    
         $advertisementTaxPayment ->save();
         return redirect()->route('advertisement-profile', ['id'=>$vatPayer->id])->with('status', 'New Advertisement Added successfully');
+    }
+
+    public function updatePayment(AddAdvertisementRequest $request){
+        
+        $advertisementTaxPayment = Advertisement_tax_payment::findOrFail($request->paymentId);
+        // dd('test');
+        $advertisementTaxPayment ->description = $request->description;
+        $advertisementTaxPayment ->type = $request->type;
+        $advertisementTaxPayment ->square_feet = $request->squarefeet;
+        $advertisementTaxPayment ->price =$request->price;
+        $advertisementTaxPayment ->final_payment = $this->calculateTax($request->price, $request->squarefeet);
+        $advertisementTaxPayment ->employee_id =Auth::user()->id; // get releted employee id
+       
+        $advertisementTaxPayment ->save();
+        return redirect()->back()->with('status', 'New Advertisement Added successfully');
+
     }
     
     public function removePayment($id)
