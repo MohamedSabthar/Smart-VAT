@@ -19,6 +19,7 @@ use App\Club_licence_tax;
 use App\Advertisement_tax_payment;
 use App\Shop_rent_tax;
 use App\Booking_tax_payments_type;
+use App\License_tax_shop;
 
 class HomeController extends Controller
 {
@@ -66,6 +67,8 @@ class HomeController extends Controller
         $vatPayerCounts->advertisement = Advertisement_tax_payment::advertisementTaxPayers()->count();
         $vatPayerCounts->shoprent=Shop_rent_tax::shopRentTaxPayers()->count();
         $vatPayerCounts->booking=Booking_tax_payments_type::bookingTaxPayers()->count();
+        $vatPayerCounts->license=License_tax_shop::liceseTaxPayers()->count();
+        
 
         return $vatPayerCounts;
     }

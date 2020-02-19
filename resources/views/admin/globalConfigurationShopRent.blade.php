@@ -53,7 +53,7 @@
 
 <div class="col-11 m-3 card shadow ">
     <div class="card-header bg-transparent">
-        <h3 class="mb-0"><span class="text-uppercase">Update Club Licence Tax</span></h3>
+        <h3 class="mb-0"><span class="text-uppercase">Update Shop Rent Tax</span></h3>
     </div>
 
     <div class="card-body bg-secondary ">
@@ -167,19 +167,7 @@
         $('#assessment_table_length select').removeClass('custom-select custom-select-sm'); //remove default classed from selector
        
 
-        $('#searchStartValue').on( 'keyup', function () { 
-        assessment_table
-            .columns( 0 )
-            .search( this.value )
-            .draw();
-        });
-
-        $('#searchEndValue').on( 'keyup', function () { 
-        assessment_table
-            .columns( 1 )
-            .search( this.value )
-            .draw();
-        });
+   
 
     });
 </script>

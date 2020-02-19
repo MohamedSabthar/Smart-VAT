@@ -19,6 +19,6 @@ class Shop_rent_tax_payment extends Model
 
     public function shopRentTax()
     {
-        return $this->belongsTo('App\shop_rent_tax', 'shop_id');    // a payment belogns to a industrial tax shop
+        return $this->belongsTo('App\shop_rent_tax', 'shop_id');    // a payment belogns to a shop tax shop
     }
 }
