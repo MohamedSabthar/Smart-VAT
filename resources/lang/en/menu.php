@@ -360,6 +360,20 @@ return [
     'New Window'=>'New Window',
 
 
+
+
+    //license Tax
+    '[+] License'=>'[+] License',
+    'Add License Duty'=>'Add License Duty',
+    'License type'=>'License type',
+    's License Tax shops'=>'s License Tax shops',
+    'VAT Payers NIC'=>'VAT Payers NIC',
+
+    //slaughtering Tax
+    'Slaughtering Tax Payers'=>'Slaughtering Tax Payers',
+    'Animal Count'=>'Animal Count',
+    'Slaughtering Type'=>'Slaughtering Type',
+
     'Id' => 'Id' ,
     'Type' => 'Type',
     'Amount (LKR)' => 'Amount (LKR)',
@@ -369,4 +383,5 @@ return [
     'Industrial Name' => 'Industrial Name',
     'Update Industrial' => 'Update Industrial',
     'Quoted Ticket' => 'Quoted Ticket',
+
 ];
