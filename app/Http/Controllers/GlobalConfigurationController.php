@@ -9,6 +9,7 @@ use App\Business_type;
 use App\Industrial_type;
 use App\Vats_old_percentage;
 use App\Entertainment_performance_type;
+use App\License_type;
 
 use App\Http\Requests\UpdateEntertainmentPerformanceTypeRequest;
 use App\Http\Requests\AddEntertainmentPerformanceTypeRequest;
@@ -23,6 +24,14 @@ use App\Http\Requests\AddBusinessTypeRequest;
 use App\Http\Requests\UpdateBusinessTypeRequest;
 use App\Http\Requests\UpdateEntertainmentTicketTypeRequest;
 use App\Http\Requests\UpdateClubLicenceTaxPercentageRequest;
+
+
+use App\Http\Requests\UpdateLicenseTaxPercentageRequest;
+use App\Http\Requests\AddLicenseTypeRequest;
+use App\Http\Requests\UpdateLicenseTypeRequest;
+
+
+
 
 use Carbon\Carbon;
 use App\Entertainment_type;
@@ -264,6 +273,9 @@ class GlobalConfigurationController extends Controller
         return redirect()->back()->with('status', 'Land tax details updated successfully');
     }
 
+
+
+
     /*
     * Club Licence Tax percentage update
     */
@@ -417,7 +429,92 @@ class GlobalConfigurationController extends Controller
 
         return redirect()->back()->with('status', 'Assessment range added successfully');
     }
+
+/***
+ * License Tax related configurations
+ */
+
+
+
+    public function updateLicenseTaxForm()
+    {
+        $license = Vat::where('route', 'license')->first();
+        return view('admin.globalConfigurationLicense', ['license'=>$license]);
+    }
+
+    public function updatelicensePercentage(UpdateLicenseTaxPercentageRequest $request)
+    {
+        $license = Vat::where('route', 'license')->first();
+        //moving the old data to Vats_old_percentages table
+        if ($license->vat_percentage==$request->vatPercentage && $license->due_date==$request->dueDate) {
+            return redirect()->back()->with('error', 'Details entered are not updated');
+        }
+
+        $oldlicense = new Vats_old_percentage;
+        $oldlicense->name = $license->name;
+        $oldlicense->vat_percentage = $license->vat_percentage;
+        $oldlicense->created_at = $license->created_at;
+        $oldlicense->due_date = $license->due_date;
+        $oldlicense->updated_at = Carbon::now();
+
+        
+        $oldlicense->save();
+      
+
+        //updating the new vat percentage and due date
+        $license->vat_percentage = $request->vatPercentage;
+        $license->due_date=$request->dueDate;
+        $license->save();
+
+        return redirect()->back()->with('status', 'Licnese Tax Details updated successfully');
+    }
+
+    public function viewLicenseRangeTypes($id)
+    {
+        $assessmentRange = Assessment_range::find($id);
+        return view('admin.globalConfigurationLicenseTypes', ['assessmentRange'=>$assessmentRange]);
+    }
+
+    public function addLicenseType($id, AddLicenseTypeRequest $request)
+    {
+        $licenseType = new License_type;
+        $licenseType->description = $request->description;
+        $licenseType->assessment_ammount = $request->amount;
+        $licenseType->assessment_range_id = $id;
+        $licenseType->save();
+
+        return redirect()->back()->with('status', 'New License Tax type added successfully');
+    }
+
+    public function updateLicenselType(UpdateLicenseTypeRequest $request)
+    {
+        $licenseType = Industrial_type::find($request->updateId);
+        $licenseType->assessment_ammount = $request->updatedAmount;
+        $licenseType->description = $request->updatedDescription;
+
+        $licenseType->save();
+        return redirect()->back()->with('status', ' Industrial Tax type updated successfully');
+    }
+
+    public function addLicenseRange(AddAssessmentRangeRequest $request)
+    {
+        $licenseId = Vat::where('route', 'license')->first()->id;
+        $assessmentRange = Assessment_range::where('vat_id', $licenseId)->where('start_value', $request->oldLimit)->first();
+        $assessmentRange->end_value = $request->newLimit;
+     
+        $assessmentRange->save();
+       
+        $assessmentRange = new Assessment_range;
+        $assessmentRange->start_value = $request->newLimit;
+        $assessmentRange->vat_id = $licenseId;
+        $assessmentRange->save();
+
+        return redirect()->back()->with('status', 'Assessment range added successfully');
+    }
 }
+
+
+
 
 class VatDetails
 {

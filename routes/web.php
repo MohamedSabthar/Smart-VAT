@@ -70,11 +70,19 @@ Route::get('/global-conf/entertainment-performance', 'GlobalConfigurationControl
 Route::post('/global-conf/entertainment/add-performance-type', 'GlobalConfigurationController@addEnterainmentPerformanceType')->name('add-entertainment-performance-type');
 Route::put('/global-conf/entertainment/update-performance-type', 'GlobalConfigurationController@updateEntertainmentPerformanceTaxDetails')->name('update-entertainment-performance-type');
 
+Route::get('/global-conf/license', 'GlobalConfigurationController@updateLicenseTaxForm')->name('global-conf-license-update');
+Route::put('/global-conf/license/update-percentage', 'GlobalConfigurationController@updateLicensePercentage')->name('update-license-percentage');
+Route::post('/global-conf/license/add-range', 'GlobalConfigurationController@addLicenseRange')->name('license-add-range');
+Route::get('/global-conf/license/types/{id}', 'GlobalConfigurationController@viewLicenseRangeTypes')->name('view-license-range-types');
+Route::post('/global-conf/license/add-type/{id}', 'GlobalConfigurationController@addLicenseType')->name('add-license-type');
+Route::get('/global-conf/license/types/{id}', 'GlobalConfigurationController@viewLicenseRangeTypes')->name('view-license-range-types');
+
 Route::get('/global-conf/shop-rent', 'GlobalConfigurationController@updateShopRentTaxForm')->name('global-conf-shop-rent-update');
 Route::put('/global-conf/shop-rent/update-percentage', 'GlobalConfigurationController@updateShopRentPercentage')->name('update-shop-rent-percentage');
 
 Route::get('/global-conf/advertisement', 'GlobalConfigurationController@updateAdvertisementTaxForm')->name('global-conf-advertisement-update');
 Route::put('/global-conf/advertisement/update-percentage', 'GlobalConfigurationController@updateAdvertisementPercentage')->name('update-advertisement-percentage');
+
 
 
 
@@ -364,8 +372,16 @@ Route::post('/license/Tax-report-pdf', 'vat\LicenseTaxController@TaxPdf')->name(
 Route::post('/license/Summary-report-pdf', 'vat\LicenseTaxController@summaryPdf')->name('license-summary-report-pdf');
 Route::post('/license/get-license-types', 'vat\LicenseTaxController@getLicensetypes')->name('get-license-types');
 Route::delete('/license/payment-remove/{id}', 'vat\LicenseTaxController@removePayment')->name('remove-license-payment');//soft delete industrial payment
-Route::get('/license/payment-trash/{id}', 'vat\LicenseTaxController@trashPayment')->name('licence-trash-payment'); //trash business payment
-Route::get('/business/payment-restore/{shop_id}', 'vat\LicenseTaxController@restorePayment')->name('restore-licence-payment');
+
+/**
+ * Routes related to Slaughtering tax
+ *
+ * all slaughtering tax related tax routes should starts with "/slaughtering"
+ */
+Route::get('/slaughtering/profile/{id}', 'vat\SlaughteringTaxController@sloughteringProfile')->name('slaughtering-profile');
+Route::post('/slaughtering/profile/{id}', 'vat\SlaughteringTaxController@reciveSlaughteringPayments')->name('receive-slaughtering-payments');
+Route::put('/slaughtering/slaughtering-payment-update/{id}', 'vat\SlaughteringTaxController@updateSlaughteringPayment')->name('update-slaughtering-payments');
+
 
 Route::get('/test', function () {
     return view('vat.license.test');

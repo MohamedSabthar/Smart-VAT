@@ -63,5 +63,8 @@ class Vat_payer extends Model
     {
         return $this->hasMany('App\Land_tax', 'payer_id');
     }
-
+    public function slaughtering()
+    {
+        return $this->hasMany("App\Slaguhtering_tax_payment",'payer_id');
+    }
 }

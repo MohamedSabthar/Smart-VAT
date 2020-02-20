@@ -13,93 +13,66 @@
 @endsection
 
 @section('header')
-<div class="col-xl-3 col-lg-6" onclick="javascript:window.open(`{{route('industrial')}}`,'_self')"
-    style="cursor:pointer">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h3 class="card-title text-uppercase text-muted mb-0">
-                        LIcense payers
-                    </h3>
-                    {{-- <span class=" font-weight-bold mb-0">924</span> --}}
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-users"></i>
-                    </div>
-                </div>
-            </div>
+<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('license')}}`,'_self')"
+	style="cursor:pointer">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<h3 class="card-title text-uppercase text-muted mb-0">
+						License Tax payers
+					</h3>
+					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+						<i class="fas fa-users"></i>
+					</div>
+				</div>
+			</div>
 
-        </div>
-    </div>
-</div>
-
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-            </p>
-        </div>
-    </div>
-</div>
-
-<div class="col-xl-3 col-lg-6">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
-            <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-            </p>
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
 
 
-<div class="col-xl-3 col-lg-6"
-    onclick="javascript:window.open(`{{route('licence-trash-payment',['id'=>$licenseTaxShop->payer->id])}}`,'_self')"
-    style="cursor:pointer">
-    <div class="card card-stats mb-4 mb-xl-0">
-        <div class="card-body">
-            <div class="row">
-                <div class="col">
-                    <h3 class="card-title text-uppercase text-muted mb-0">
-                        <center>Restore Payment</center>
-                    </h3>
-                </div>
-                <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
+<!--<div class="col-xl-3 col-lg-6">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Latest Payments')}}</h3>
+					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
+					</div>
+				</div>
+			</div>
 
-        </div>
-    </div>
+		</div>
+	</div>
+</div>-->
+
+<div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('license-generate-report')}}`,'_self')"
+	style="cursor:pointer">
+	<div class="card card-stats mb-4 mb-xl-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<h3 class="card-title text-uppercase text-muted mb-0">Report Generation</h3>
+					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
+				</div>
+				<div class="col-auto">
+					<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+						<i class="fas fa-chart-pie"></i>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </div>
 
 <div class="container-fluid d-flex align-items-center">
@@ -148,7 +121,7 @@
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
-                        <a href="{{route('industrial-profile',['id'=>$licenseTaxShop->payer->id])}}"
+                        <a href="{{route('license-profile',['id'=>$licenseTaxShop->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
                     </div>
                 </div>
