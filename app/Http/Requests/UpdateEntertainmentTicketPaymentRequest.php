@@ -29,9 +29,9 @@ class UpdateEntertainmentTicketPaymentRequest extends FormRequest
             "paymentId" => ['required'],
             "updateTicketType" => ['required'],
             "updatePlaceAddress" => ['required'],
-            "updateQuotedTickets" => ['required','numeric',new PositiveValue],
+            "updateQuotedTickets" => ['required','numeric',new PositiveValue,],
             "updateTicketPrice" => ['required','numeric',new PositiveValue],
-            "updateReturnedTickets" => ['required','numeric',new PositiveValue],
+            "updateReturnedTickets" => ['required','numeric',new PositiveValue,'lte:updateQuotedTickets'],
         ];
     }
 }

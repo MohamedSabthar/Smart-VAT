@@ -127,6 +127,7 @@ return [
     's profile'=> 's profile',
     'Business Tax Payers' => 'Business Tax Payers',
     'Industrial Tax Payers' => 'Industrial Tax Payers',
+    'Industrial type'=>'Industrial type',
     'Entertainment Tax Payers' => 'Entertainment Tax Payers',
     'Land Tax Payers' => 'Land Tax Payers',
     'Club Licence Holders' => 'Club Licence Holders',
@@ -291,14 +292,18 @@ return [
     'End Date'=>'End Date',
     'Accept payments'=>'Accept payments',
     'Restore Shop'=>'Restore Shop',
+    '[+] shop'=>'shop',
     
 
     //Land tax
     '[+] Premises' => '[+] Premises',
     's premises hired' => 's premises hired',
+    'Premises ID' => 'Premises ID',
     'Premises Name' => 'Premises Name',
     'Payer Phone' => 'Payer Phone',
     'Add new premises'=> 'Add new premises',
+    'Restore Premises' => 'Restore Premises',
+    'Update Premises Details' => 'Update Premises Details',
 
     //advertisement tax
     '[+] Advertisement'=>'[+] Advertisement',
@@ -320,12 +325,15 @@ return [
     
     // Club licence tax
     'Club licence'=> 'Club licence',
+    'Club Licence Tax Payers' => 'Club Licence Tax Payers',
     '[+] Club' => '[+] Club',
     's clubs' => 's clubs' ,
     'Add new Club' => 'Add new Club',
     'Club Name' => 'Club Name',
     'Remove Club' => 'Remove Club',
+    'Trash Club Licence' => 'Trash Club Licence',
     'Restore Club Licence' => 'Restore Club Licence',
+    'Search Club Name' => 'Search Club Name',
 
     //side bar
     'Business Tax' =>'Business Tax',
@@ -353,6 +361,7 @@ return [
 
 
 
+
     //license Tax
     '[+] License'=>'[+] License',
     'Add License Duty'=>'Add License Duty',
@@ -364,5 +373,15 @@ return [
     'Slaughtering Tax Payers'=>'Slaughtering Tax Payers',
     'Animal Count'=>'Animal Count',
     'Slaughtering Type'=>'Slaughtering Type',
+
+    'Id' => 'Id' ,
+    'Type' => 'Type',
+    'Amount (LKR)' => 'Amount (LKR)',
+    'Additional ammount (LKR)' => 'Additional ammount (LKR)',
+    'Industrial type' => 'Industrial type',
+    'Anual worth' => 'Anual worth',
+    'Industrial Name' => 'Industrial Name',
+    'Update Industrial' => 'Update Industrial',
+    'Quoted Ticket' => 'Quoted Ticket',
 
 ];

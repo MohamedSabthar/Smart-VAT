@@ -42,7 +42,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
+					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -62,7 +62,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
+					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Quick payments')}}</h5>
 						{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -116,7 +116,8 @@
 				<form>
 					@csrf
 					<div class="form-group row pt-3">
-						<label for="example-week-input" class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
+						<label for="example-week-input"
+							class="col-md-2 col-form-label form-control-label">{{__('menu.NIC')}}</label>
 						<div class="col-md-10">
 							<input class="form-control @error('nic') is-invalid @enderror" type="text"
 								value="{{old('nic')}}" id="nic" name="nic" placeholder="Enter vat payer's NIC">
@@ -201,7 +202,7 @@
                 method:"POST",
                 data: {'nic':nic},
                 success:function(result){
-                    console.log(result);
+                    // console.log(result);
                     if(result.payerDetails==null ){
                         $('#nic').addClass('is-invalid');
                         nic!='' ? $('#error_nic').html('<strong>NIC not mached</strong>') 

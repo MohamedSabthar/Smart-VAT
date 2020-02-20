@@ -109,25 +109,13 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        @if(url()->previous()==route('payer-registration',['requestFrom'=>'clubLicence']))
-        <div class="alert alert-primary alert-dismissible fade show col-8 mb-5" role="alert">
-            <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-            <span class="alert-inner--text mx-2">
-                Click here to add new Club
-                <a href="#" class="btn btn-sm btn-success mx-4 add-buissness">{{__('menu.[+] Buissness')}}</a>
-
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-        </div>
-        @endif
         @elseif($errors->any())
         <div class="alert alert-danger alert-dismissible fade show col-8 mb-5" role="alert">
             <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
             <span class="alert-inner--text mx-2">
                 <strong class="mx-1">{{__('menu.Error!')}}</strong>
                 {{__('menu.Data you entered is/are incorrect')}}
-                <a href="#" class="btn btn-sm btn-primary mx-3 update-info add-buissness">{{__('menu.view')}}</a>
+                <a href="#" class="btn btn-sm btn-primary mx-3 update-info update-profile">{{__('menu.view')}}</a>
             </span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -170,6 +158,8 @@
                     <div class="d-flex justify-content-between">
                         <a href="{{route('club-licence-profile',['id'=>$licenceTaxClub->payer->id])}}"
                             class="btn btn-sm btn-default float-right">{{__('menu.view owner')}}</a>
+                            <a href="#"
+                            class="btn btn-sm btn-default float-left update-profile">{{__('menu.Update Details')}}</a>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
@@ -197,10 +187,10 @@
                             <h3 class="d-inline">{{__('menu.Phone No')}} : </h3> {{$licenceTaxClub->phone}}
                         </div>
 
-                        {{-- <div class="pt-2 text-center">
+                        <div class="pt-2 text-center">
                             <a href="{{route('club-licence-send-notice',['id'=>$licenceTaxClub->id])}}"
                                 class="btn btn-sm btn-danger">Send Notice</a>
-                        </div> --}}
+                        </div>
 
                     </div>
                 </div>
@@ -220,7 +210,7 @@
                 </div>
             </div>
             {{-- payment form --}}
-            <form action="{{route('receive-club-licence-payments',['shop_id'=>$licenceTaxClub->id])}}" id="accept-payment"
+            <form action="{{route('receive-club-licence-payments',['club_id'=>$licenceTaxClub->id])}}" id="accept-payment"
                 method="POST" hidden>
                 @csrf
                 <input type="text" name="payment" value="{{$duePayment}}">
@@ -241,7 +231,7 @@
                         <div class="modal-body">
 
                             <p>Confirmation needed to add payment for <br>
-                                shop : {{$licenceTaxClub->club_name}} </p>
+                                club : {{$licenceTaxClub->club_name}} </p>
                         </div>
 
                         <div class="modal-footer">
@@ -265,6 +255,161 @@
             </div>
             @endif
             {{-- end of Payment Notice --}}
+
+            {{-- Update profile card --}}
+            <div class="card bg-secondary shadow mb-5 hide" id="Update-club-info">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0"><span class="text-uppercase">{{__('menu.Update Business')}}</span></h3>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{-- Update business profile form --}}
+                    <form method="POST" id="club-details-form"
+                        action="{{route('update-club',['id'=>$licenceTaxClub->id])}}">
+                        @csrf
+                        @method('put')
+                        <div class="form-group row pt-3">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Assesment No.')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('assesmentNo') is-invalid  @enderror" type="text"
+                                    value="{{old('assesmentNo',$licenceTaxClub->registration_no)}}" id="assesmentNo" name="assesmentNo" autofocus>
+                                @error('assesmentNo')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Annual Assesment Amount')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('annualAssesmentAmount') is-invalid  @enderror"
+                                    type="text" value="{{old('annualAssesmentAmount',$licenceTaxClub->anual_worth)}}" id="annualAssesmentAmount"
+                                    name="annualAssesmentAmount">
+    
+                                <span class="invalid-feedback" id="invalidAnnualAssesmentAmount" role="alert">
+                                    <strong></strong>
+                                </span>
+                                @error('annualAssesmentAmount')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Club Name')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('clubName') is-invalid  @enderror" type="text"
+                                    value="{{old('clubName',$licenceTaxClub->club_name)}}" id="clubName" name="clubName">
+                                @error('clubName')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Phone No')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('phoneno') is-invalid  @enderror" type="text"
+                                    value="{{old('phoneno',$licenceTaxClub->phone)}}" id="phoneno" name="phoneno">
+                                @error('phoneno')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Door No')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('doorno') is-invalid  @enderror" type="text"
+                                    value="{{old('doorno',$licenceTaxClub->door_no)}}" id="doorno" name="doorno">
+                                @error('doorno')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.Street')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('street') is-invalid  @enderror" type="text"
+                                    value="{{old('street',$licenceTaxClub->street)}}" id="street" name="street">
+                                @error('street')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-text-input"
+                                class="col-md-2 col-form-label form-control-label ">{{__('menu.City')}}</label>
+                            <div class="col-md-10 ">
+                                <input class="form-control @error('city') is-invalid  @enderror" type="text"
+                                    value="{{old('city',$licenceTaxClub->city)}}" id="city" name="city">
+                                @error('city')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary float-right" data-toggle="modal"
+                                onclick="javascript:event.preventDefault()"
+                                data-target="#confirm-update-clubLicenceProfile">{{__('menu.Update')}}</button>
+                        </div>
+
+                        {{-- Confirmation modal --}}
+                        <div class="modal fade" id="confirm-update-clubLicenceProfile" tabindex="-1" role="dialog"
+                            aria-labelledby="modal-default" aria-hidden="true">
+                            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h1 class="modal-title" id="modal-title-default">Confirmation !</h1>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you wish to Update the details of
+                                            {{$licenceTaxClub->sclub_name}} ?
+                                        </p>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-link"
+                                            onclick="javascript:location.reload()">Cancel</button>
+                                        <button type="button" class="btn  btn-primary ml-auto" data-dismiss="modal"
+                                            onclick="javascript:document.getElementById('club-details-form').submit();">Confirm</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        {{-- end of Confirmation modal --}}
+
+                    </form>
+                    {{-- end of Update VAT payer profile form  --}}
+                </div>
+            </div>
 
 
             <div class="card shadow">
@@ -396,6 +541,14 @@
                 .search( this.value )
                 .draw();
             });
+
+        //toggle transition for update profile
+        $("#Update-club-info").hide();
+        $(".update-profile").on('click',function(){
+        $("#Update-club-info").slideToggle("slow");
+        $("#clubName").focus();
+
+        });
       } );
 
 </script>

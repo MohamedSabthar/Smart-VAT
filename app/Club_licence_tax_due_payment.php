@@ -22,4 +22,14 @@ class Club_licence_tax_due_payment extends Model
             ->where('club_id', '=', $this->getAttribute('club_id'));
         return $query;
     }
+
+    public function payer()
+    {
+        return $this->belongsTo('App\Vat_payer', 'payer_id');
+    }
+
+    public function clubLicenceTax()
+    {
+        return $this->belongsTo('App\Club_licence_tax', 'club_id');  // a payment belogns to a Club 
+    }
 }

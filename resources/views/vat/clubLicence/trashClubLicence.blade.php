@@ -13,7 +13,7 @@
 @endsection
 
 @section('header')
-
+<!--
 <div class="col-xl-3 col-lg-6">
     <div class="card card-stats mb-4 mb-xl-0">
         {{-- <div id="#card" class="card-body" style="cursor:pointer" onclick="javascript:window.open('/','_self')"> --}}
@@ -131,7 +131,7 @@
     </div>
     {{-- end of Alert notifications --}}
 </div>
-
+-->
 @endsection
 
 @section('pageContent')
@@ -186,7 +186,7 @@
 
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-business',['id'=>$clubLicence->id])}}">
+                                        href="{{route('restore-club-licence',['id'=>$clubLicence->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
 

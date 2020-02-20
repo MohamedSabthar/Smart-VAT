@@ -20,7 +20,7 @@
 			<div class="row">
 				<div class="col">
 					<h3 class="card-title text-uppercase text-muted mb-0">
-						{{__('menu.Club Licence Holders')}}
+						{{__('menu.Club Licence Tax Payers')}}
 					</h3>
 					{{-- <span class=" font-weight-bold mb-0">924</span> --}}
 				</div>
@@ -36,14 +36,13 @@
 </div>
 
 
-
 <div class="col-xl-4 col-lg-6" onclick="javascript:window.open(`{{route('club-licence-generate-report')}}`,'_self')"
 	style="cursor:pointer">
 	<div class="card card-stats mb-4 mb-xl-0">
 		<div class="card-body">
 			<div class="row">
 				<div class="col">
-					<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
+				<h3 class="card-title text-uppercase text-muted mb-0">{{__('menu.Report Generation')}}</h3>
 					{{-- <span class="h2 font-weight-bold mb-0">2,356</span> --}}
 				</div>
 				<div class="col-auto">
@@ -157,12 +156,12 @@
                             @foreach ($clubLicenceTaxPayment as $payment)
                             <tr>
                                 <td>{{$payment->id}}</td>
-                                <td>{{$payment->licenceTaxClub->club_name}}</td>
+                                <td>{{$payment->clubLicenceTax->club_name}}</td>
                                 <td>{{$payment->created_at}}</td>
                                 <td>{{$payment->payment}}</td>
                                 <td>
                                     <a class="btn btn-outline-success btn-sm "
-                                        href="{{route('restore-payment',['id'=>$payment->id])}}">
+                                        href="{{route('restore-club-licence-payment',['id'=>$payment->id])}}">
                                         {{__('menu.Restore')}}</a>
                                 </td>
                                 <td class="text-right">
@@ -173,9 +172,13 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
-                                            <a class="dropdown-item"
-                                                href="{{route('remove-payment-permanent',['id'=>$payment->id])}}">
-                                                {{__('menu.Delete permenent')}}</a>
+                                            <form action="{{route('club-licence-remove-payment-permanent',['id'=>$payment->id])}}"
+                                                method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <input class="dropdown-item" type="submit"
+                                                    value="{{__('menu.Delete permenent')}}">
+                                            </form>
                                         </div>
 
                                     </div>

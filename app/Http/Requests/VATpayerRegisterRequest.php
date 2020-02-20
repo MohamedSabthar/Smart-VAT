@@ -27,6 +27,7 @@ class VATPayerRegisterRequest extends FormRequest
     {
         return [
             'first_name' => ['required','alpha', 'string', 'max:255'],
+            'middle_name' => ['alpha', 'max:255'],
             'last_name' => ['required','alpha', 'string', 'max:255'],
             'doorNo' => ['required','max:255'],
             'street' => ['required','max:255'],

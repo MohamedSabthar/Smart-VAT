@@ -9,6 +9,12 @@ use App\User;
 
 class EmployeeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'=>'verified']);  //checking for email verification
+        // $this->middleware('admin');               //allow if user is admin
+    }
+    
     public function myProfile()
     {
         return view('profile.myProfile');

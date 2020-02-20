@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App;
 use Auth;
 use App\Vat;
 use App\Vat_payer;
@@ -284,7 +285,7 @@ class IndustrialTaxController extends Controller
 
     public function taxPdf(IndustrialTaxReportRequest $request)                                                      //pdf generation library function
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Industrial_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
@@ -298,7 +299,7 @@ class IndustrialTaxController extends Controller
 
     public function summaryPdf(IndustrialTaxReportRequest $request)                         //Summary Report PDF
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Industrial_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
@@ -373,7 +374,7 @@ class IndustrialTaxController extends Controller
 
     public function getUnpaidVatPayerPdf()
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
 
         $payersDue = Industrial_tax_due_payment::where('due_ammount', '!=', 0)->get();
         $year = Carbon::now()->toArray()['year'];

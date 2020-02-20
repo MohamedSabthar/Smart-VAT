@@ -8,7 +8,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddClubLicenceRequest;
-use App\Http\Requests\LandTaxReportRequest;  //### Implent## //
+use App\Http\Requests\ClubLicenceTaxReportRequest;
+use App\Http\Requests\UpdateClubLicenceProfileRequest;
+use App\Jobs\ClubLicenceTaxNoticeJob;
 
 use Auth;
 use Carbon\Carbon;
@@ -16,7 +18,7 @@ use Carbon\Carbon;
 //report Generation
 use PDF;
 use Illuminate\Support\Facades\DB;
-use App\Reports\LandReport;  // ##Implement## //
+use App\Reports\ClubLicenceReport;  
 
 use App\Vat;
 use App\Vat_payer;
@@ -72,7 +74,7 @@ class ClubLicenceTaxController extends Controller
 
     public function acceptQuickPayments(Request $request)
     {
-        $clubIds = $request->ecept(['_token']);
+        $clubIds = $request->except(['_token']);
 
         if (count($clubIds)==0) {
             return redirect()->back()->with('error', 'No payments selected');
@@ -157,7 +159,8 @@ class ClubLicenceTaxController extends Controller
 
     public function receiveClubLicencePayment($club_id, Request $request)
     {
-        $payerId = Club_licence_tax::findOrFail($club_id)->payer->id;  //get the VAT payer id
+        $licenceTaxClub = Club_licence_tax::findOrFail($club_id);
+        $payerId = $licenceTaxClub->payer->id;  //get the VAT payer id
 
         $clubLicenceTaxPayment = new Club_licence_tax_payment;
         $clubLicenceTaxPayment->payment = $request->payment;
@@ -165,7 +168,35 @@ class ClubLicenceTaxController extends Controller
         $clubLicenceTaxPayment->payer_id = $payerId;
         $clubLicenceTaxPayment->user_id = Auth::user()->id;
 
+        // if there was a duepayment update it to zero
+        if ($licenceTaxClub->due != null && $licenceTaxClub->due->due_amount!=0) {
+            $lastDue = Club_licence_tax_due_payment::where('club_id', $licenceTaxClub->id)->first();
+            $lastDue->due_amount = 0;
+            $lastDue->save();
+        }
+
+        $clubLicenceTaxPayment->save();
+
         return redirect()->back()->with('status', 'Payment added successfully');
+    }
+
+    public function updateClubLicenceProfile($id, UpdateClubLicenceProfileRequest $request)
+    {
+        
+        $licenceTaxClub = Club_licence_tax::findOrFail($id);
+
+        // updating club licence delails
+
+        $licenceTaxClub->registration_no = $request->assesmentNo;
+        $licenceTaxClub->anual_worth = $request->annualAssesmentAmount;
+        $licenceTaxClub->club_name = $request->clubName;
+        $licenceTaxClub->phone = $request->phoneno;
+        $licenceTaxClub->door_no = $request->doorno;
+        $licenceTaxClub->street = $request->street;
+        $licenceTaxClub->city = $request->city;
+
+        $licenceTaxClub->save();
+        return redirect()->back()->with('status', 'Club Licence details updated sucessfully');
     }
 
     //Report Generation
@@ -174,22 +205,21 @@ class ClubLicenceTaxController extends Controller
         return view('vat.clubLicence.clubLicenceReportGeneration');
     }
 
-
-    // HAVA TO CORRECT WHEN REPORT IS GENERATED
-    public function generateReport(LandTaxReportRequest $request)                                              //get the star date and the end date for the report generation
+    public function generateReport(ClubLicenceTaxReportRequest $request)                                              //get the star date and the end date for the report generation
     {
-        $reportData = LandReport::generateLandReport();
         $dates = (object)$request->only(["startDate","endDate"]);
-          
+        $reportData = ClubLicenceReport::generateClubLicenceReport($dates);
+         
         $records = Club_licence_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
         if ($request->has('TaxReport')) {
-            return view('vat.clubLicence.clubLicenceReportView', ['dates'=>$dates, 'records'=>$records]);
-        } elseif ($request->has(SummaryReport)) {
-            return view('vat.clubLicence.clubLicenceSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);
-        }
+            return view('vat.clubLicence.clubLicenceReportVeiw', ['dates'=>$dates, 'records'=>$records]);
+        } 
+        // elseif ($request->has(SummaryReport)) {
+        //     return view('vat.clubLicence.clubLicenceSummaryReport', ['dates'=>$dates, 'records'=>$records, 'reportData'=>$reportData]);
+        // }
     }
 
-    public function TaxPdf(LandTaxReportRequest $request)
+    public function TaxPdf(ClubLicenceTaxReportRequest $request)
     {
         $pdf = \App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
@@ -239,7 +269,7 @@ class ClubLicenceTaxController extends Controller
         return $output;
     }
 
-    public function summaryPdf(LandTaxReportRequest $request)
+    public function summaryPdf(ClubLicenceTaxReportRequest $request)
     {
         $pdf = \App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
@@ -254,7 +284,7 @@ class ClubLicenceTaxController extends Controller
 
     public function summaryReportHTML($records, $dates, $sum)
     {
-        $reportData = LandReport::generateLandReport();
+        $reportData = ClubLicenceReport::generateClubLicenceReport();
         $output = "
          <h3 align='center'>Club Licence Tax Summary Report from $dates->startDate to $dates->endDate </h3>
          <table width='100%' style='border-collapse: collapse; border: 0px;'>
@@ -286,8 +316,8 @@ class ClubLicenceTaxController extends Controller
     public function removeClubLicence($club_id)
     {
         $licenceTaxClub = Club_licence_tax::find($club_id);
-        $licenceTaxClub = delete();
-        return redirect()->back->with('status','Deleted successfully');
+        $licenceTaxClub -> delete();
+        return redirect()->back()->with('status','Deleted successfully');
     }
 
     //trash club licence
@@ -300,7 +330,7 @@ class ClubLicenceTaxController extends Controller
     //restore club licence
     public function restoreClubLicence($id)
     {
-        $licenceTaxClub = Club_licence_tax::onlyTrashed()->where('payer_id',$payer_id)->restore($id);
+        $licenceTaxClub = Club_licence_tax::onlyTrashed()->where('id',$id)->restore($id);
         return redirect()->route('trash-club-licence', ['licenceTaxClub'=>$licenceTaxClub])->with('status', 'Club Licence restore successful');
     }
 
@@ -312,7 +342,7 @@ class ClubLicenceTaxController extends Controller
 
         //restore the dueAmount
         $restoreDue = Club_licence_tax_due_payment::where('club_id',$clubLicenceTaxPayment->clubLicenceTax->id)->first();
-        $recalculateDue = $this->calculateTax(-$licenceTaxClub->anual_worth, -$clubLicenceTaxPayment->payment);
+        $recalculateDue = $this->calculateTax(-$licenceTaxClub->anual_worth, $clubLicenceTaxPayment->payment);
         if($restoreDue==null) {
            $restoreDue = new Club_licence_tax_due_payment;
            $restoreDue->club_id = $clubLicenceTaxPayment->club_id;
@@ -331,24 +361,43 @@ class ClubLicenceTaxController extends Controller
     //trash payment
     public function trashPayment($id)
     {
-        $clubLicenceTaxPayment = Club_licence_tax_payment::onlyTrash()->where('id',$id)->get();
+        $clubLicenceTaxPayment = Club_licence_tax_payment::onlyTrashed()->where('payer_id',$id)->get();
         return view('vat.clubLicence.trashPayment',['clubLicenceTaxPayment'=>$clubLicenceTaxPayment]);
     }
 
     //restore payment
     public function restorePayment($id)
     {
-        $clubLicenceTaxPayment = Club_licence_tax_payment::onlyTrash()->where('id',$id)->restore($id);
-        return redirect()->route('club-licence-trash-payment',['clubLicenceTaxPayment'=>$clubLicenceTaxPayment])->with('status', 'Payment restored successfully');
+        $clubLicenceTaxPayment = Club_licence_tax_payment::onlyTrashed()->where('id',$id);
+        $clubId = $clubLicenceTaxPayment->first()->club_id;
+        $clubLicenceTaxPayment->restore($id);
+        return redirect()->route('club-licence-payments',['id'=>$clubId])->with('status', 'Payment restored successfully');
     }
 
     // permanent delete payment
-    public function destroy()
+    public function destroy($id)
     {
-        $clubLicenceTaxPayment = Club_licence_tax_payment::onlyTrash()->where('id',$id)->get();
-        //dd($clubLicenceTaxPayment);
+        $clubLicenceTaxPayment = Club_licence_tax_payment::onlyTrashed()->where('id',$id)->first();
         $clubLicenceTaxPayment->forceDelete();
         return redirect()->back()->with('status', 'Permanent Delete successful');
+    }
+
+    //send notices
+    public function sendNotice($id)
+    {
+        $currentDate = Carbon::now()->toArray();
+        $year = $currentDate['year'];
+        $taxPayment=Club_licence_tax_payment::where('club_id', $id)->where('created_at', 'like', "%$year%")->first();
+
+        //if already paid for this year don't allow to send notification
+        if ($taxPayment!=null) {
+            return redirect()->back()->with('warning', "Tax already paid for this year for this club Licence");
+        }
+
+        $vatPayerMail = Club_licence_tax::find($id)->payer->email;
+        //pushing mail to the queue
+        dispatch(new  ClubLicenceTaxNoticeJob($vatPayerMail, $id));
+        return redirect()->back()->with('status', 'Mail queued successfully');
     }
 
 }

@@ -20,7 +20,7 @@ use App\Business_tax_due_payment;
 use App\Assessment_range;
 
 use App\Jobs\BusinessTaxNoticeJob;
-
+use App;
 use Auth;
 use Carbon\Carbon;
 
@@ -192,7 +192,7 @@ class BusinessTaxController extends Controller
 
     public function TaxPdf(BusinessTaxReportRequest $request)                                                      //pdf generation library function
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();                  //get the records with in the range of given dates
@@ -247,7 +247,7 @@ class BusinessTaxController extends Controller
     }
     public function summaryPdf(BusinessTaxReportRequest $request)                         //Summary Report PDF
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
         $dates = (object)$request->only(["startDate","endDate"]);
 
         $records = Business_tax_payment::whereBetween('created_at', [$dates->startDate,$dates->endDate])->get();   //get the records with in the range of given dates
@@ -304,8 +304,10 @@ class BusinessTaxController extends Controller
     // restore business
     public function restoreBusiness($id)
     {
-        $businessTaxShop = Business_tax_shop::onlyTrashed()->where('id', $id)->restore($id);
-        return redirect()->route('trash-business', ['businessTaxShop'=>$businessTaxShop])->with('status', 'Business restore successful');
+        Business_tax_shop::onlyTrashed()->where('id', $id)->restore();
+        $businessTaxShop = Business_tax_shop::find($id);
+        // dd($businessTaxShop);
+        return redirect()->route('business-profile', ['payer_id'=>$businessTaxShop->payer->id])->with('status', 'Business restore successful');
     }
     //soft delete business payment
     public function removePayment($id)
@@ -348,7 +350,7 @@ class BusinessTaxController extends Controller
     }
 
     // premanent delete payment
-    public function destory($id)
+    public function destroy($id)
     {
         $businessTaxPayment = Business_tax_payment::onlyTrashed()->where('id', $id)->first();
         $businessTaxPayment->forceDelete();
@@ -443,7 +445,7 @@ class BusinessTaxController extends Controller
 
     public function getUnpaidVatPayerPdf()
     {
-        $pdf = \App::make('dompdf.wrapper');
+        $pdf = App::make('dompdf.wrapper');
 
         $payersDue = Business_tax_due_payment::where('due_ammount', '!=', 0)->get();
         $year = Carbon::now()->toArray()['year'];

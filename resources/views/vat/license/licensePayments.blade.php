@@ -75,7 +75,6 @@
 	</div>
 </div>
 
-
 <div class="container-fluid d-flex align-items-center">
     {{-- Alert notifications --}}
     <div class="col mt-5">

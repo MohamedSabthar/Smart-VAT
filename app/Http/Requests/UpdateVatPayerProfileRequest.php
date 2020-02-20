@@ -27,13 +27,13 @@ class UpdateVATpayerProfileRequest extends FormRequest
     {
         return [
             // "full_name" and address instead
-            'first_name' => ['required', 'string', 'max:255', Rule::unique('vat_payers')->ignore($this->id)],
-            'middle_name' => ['required', 'string', 'max:255', Rule::unique('vat_payers')->ignore($this->id)],
-            'last_name' => ['required', 'string', 'max:255',Rule::unique('vat_payers')->ignore($this->id)],
+            'first_name' => ['required', 'alpha', 'max:255' ],
+            'middle_name' => ['alpha', 'max:255' ],
+            'last_name' => ['required', 'alpha', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('vat_payers')->ignore($this->id)],            //   Validate to be a unique email
             'nic' => ['required','string','regex:/[0-9]{9}([x|X|v|V]$|[0-9]{3}$)/',Rule::unique('vat_payers')->ignore($this->id)],     //   validation for nic
             'phone' => ['required','regex:/[+94|0][0-9]{9}$/','min:10','max:12'],
-            'doorNo' =>['required','numeric','max:100'],
+            'doorNo' =>['required','string'],
             'street'=>['required', 'string', 'max:255'],
             'city'  =>['required', 'string', 'max:255'],
             
