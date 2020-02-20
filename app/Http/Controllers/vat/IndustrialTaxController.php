@@ -394,6 +394,6 @@ class IndustrialTaxController extends Controller
         $industrialTaxShop->street = $request->street;
         $industrialTaxShop->city = $request->city;
         $industrialTaxShop->save();
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Industrial details updated successfuly');
     }
 }

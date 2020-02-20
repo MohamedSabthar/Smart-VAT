@@ -155,19 +155,19 @@
 								<th>{{__('menu.Payment Date')}}</th>
 								<th>{{__('menu.Animal Count')}}</th>
 								<th>{{__('menu.Slaughtering Type')}}</th>
-								
+
 								<th></th>
 
 							</tr>
 						</thead>
-						
+
 						<tbody>
 
 							@foreach ($vatPayer->slaughtering as $payments)
 							<tr>
 								<td>{{$payments->payment}}</td>
-						
-                                <td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</td>
+
+								<td class="text-center">{{date("m-d-Y",strtotime($payments->created_at))}}</td>
 								<td>{{$payments->animal_count}}</td>
 								<td>{{$payments->slaughteringType->description}}</td>
 
@@ -180,7 +180,7 @@
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
 
-											
+
 											<a class="dropdown-item toggle-update" data-value="{{$payments}}">
 												Update payment</a>
 										</div>
@@ -225,11 +225,10 @@
 				</div>
 				<div class="card-body">
 					{{-- Slaughtering payment update form --}}
-					<form method="POST"
-						action="{{route('update-slaughtering-payments',['id'=> $vatPayer->id])}}"
+					<form method="POST" action="{{route('update-slaughtering-payments',['id'=> $vatPayer->id])}}"
 						id="slaughtering-update-form">
 						@csrf
-						@method('put')  {{-- for updates --}}
+						@method('put') {{-- for updates --}}
 
 						<input type="text" value="{{old('paymentId')}}" id="paymentId" name="paymentId" hidden>
 
@@ -273,7 +272,7 @@
 								@enderror
 							</div>
 						</div>
-						
+
 
 
 						<div class="form-group">
@@ -324,30 +323,14 @@
 			{{-- end of update slaughtering payment card --}}
 
 
-            <div class="col-xl-8 order-xl-1">
-
-                @if(session('taxPayment'))
-                <div class="card shadow text-justify mb-3 p-4">
-                    <div class="card-body bg-white border-0">
-                        <h1 style="font-weight: 400;">{{__('menu.Tax payment : Rs.')}}
-                            {{number_format(session('taxPayment'),2)}}
-                        </h1>
-                        @if (session('retunTaxPayment'))
-                        <h1 style="font-weight: 400;">{{__('menu.Returned tax payment : Rs.')}}
-                            {{number_format(session('retunTaxPayment'),2)}}
-                        </h1>
-                        @endif
-                    </div>
-                </div>
-                @endif
-    
 
 			{{-- Recevie slaughtering record card --}}
-			 <div class="card bg-secondary shadow mb-5 hide">
+			<div class="card bg-secondary shadow mb-5 hide">
 				<div class="card-header bg-white border-0">
 					<div class="row align-items-center">
 						<div class="col-8">
-							<h3 class="mb-0"><span class="text-uppercase">{{__('menu.Add new Slaughtering Record')}}</span>
+							<h3 class="mb-0"><span
+									class="text-uppercase">{{__('menu.Add new Slaughtering Record')}}</span>
 							</h3>
 						</div>
 
@@ -397,7 +380,7 @@
 								@enderror
 							</div>
 						</div>
-						
+
 
 
 						<div class="form-group">
