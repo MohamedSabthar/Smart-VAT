@@ -110,10 +110,9 @@
 								class="col-md-2 col-form-label form-control-label">{{__('menu.Username')}}</label>
 							<div class="col-md-10">
 								<input class="form-control @error('userName') is-invalid @enderror" type="text"
-									value="{{old('userName',Auth::user()->userName)}}" id="userName" name="userName">
-								@error('userName')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
+									value="{{old('userName',Auth::user()->userName)}}" id="userName" name="userName"
+									readonly @error('userName') <span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
 								</span>
 								@enderror
 							</div>
